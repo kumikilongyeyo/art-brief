@@ -12,8 +12,8 @@
       ]
     },
     {
-      "id": "seen-from-the-road-doors-wide",
-      "text": "Seen from the road: {name}, {f:condition}, doors wide, a loaded cart rattling off",
+      "id": "seen-from-the-road-a-loaded",
+      "text": "Seen from the road, a loaded cart rattles away from {name}, {f:condition}",
       "weight": 4,
       "spines": [
         "stolen"
@@ -55,16 +55,16 @@
       ]
     },
     {
-      "id": "through-the-fog-every-window-showing",
-      "text": "Through the fog: {name}, {f:condition}, every window showing the same pale face",
+      "id": "the-same-pale-face-looks-out",
+      "text": "The same pale face looks out from every window of {name}, {f:condition}",
       "weight": 4,
       "spines": [
         "cursed"
       ]
     },
     {
-      "id": "close-on-the-front-door-of",
-      "text": "Close on the front door of {name}, its {f:material} weeping dark sap from every seam",
+      "id": "on-the-front-door-of-dark",
+      "text": "On the front door of {name}, dark sap weeps from every seam in its {f:material}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -79,8 +79,8 @@
       ]
     },
     {
-      "id": "ghosts-crowd-every-window-of-faces",
-      "text": "Ghosts crowd every window of {name}, {f:condition}, faces pressed to the glass",
+      "id": "faces-pressed-to-the-glass-ghosts",
+      "text": "Faces pressed to the glass, ghosts crowd every window of {name}, {f:condition}",
       "weight": 8,
       "themes": [
         "undead"
@@ -91,7 +91,7 @@
     },
     {
       "id": "a-contract-nailed-to-the-door",
-      "text": "A contract nailed to the door of {name} flutters in the wind, lit by {f:light}",
+      "text": "A contract nailed to the door of {name} flutters in the wind, under {f:light}",
       "weight": 4,
       "spines": [
         "bargain"
@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "close-on-a-signature-burned-into",
-      "text": "Close on a signature burned into the {f:material} above the door of {name}",
+      "id": "above-the-door-of-a-signature",
+      "text": "Above the door of {name}, a signature is burned into the {f:material}",
       "weight": 4,
       "spines": [
         "bargain"
@@ -115,7 +115,7 @@
     },
     {
       "id": "a-smiling-figure-waits-at-the",
-      "text": "A smiling figure waits at the gate of {name} with an open palm, lit by {f:light}",
+      "text": "A smiling figure waits at the gate of {name} with an open palm, bathed in {f:light}",
       "weight": 4,
       "spines": [
         "bargain"
@@ -141,16 +141,16 @@
       ]
     },
     {
-      "id": "burns-behind-a-lone-rider-collapsing",
-      "text": "{name} burns behind a lone rider, {its:feature} collapsing into the flames",
+      "id": "behind-a-lone-rider-burns-flames",
+      "text": "Behind a lone rider, {name} burns, flames swallowing {its:feature}",
       "weight": 4,
       "spines": [
         "betrayed"
       ]
     },
     {
-      "id": "behind-a-trusted-steward-signals-the",
-      "text": "Behind {name}, {f:condition}, a trusted steward signals the enemy with a lantern",
+      "id": "a-trusted-steward-signals-the-enemy",
+      "text": "A trusted steward signals the enemy by lantern from {name}, {f:condition}",
       "weight": 4,
       "spines": [
         "betrayed"
@@ -176,16 +176,16 @@
       ]
     },
     {
-      "id": "mist-parts-to-reveal-as-if",
-      "text": "Mist parts to reveal {name}, {f:condition}, as if it had never been gone",
+      "id": "as-if-it-had-never-been",
+      "text": "As if it had never been gone, mist parts to reveal {name}, {f:condition}",
       "weight": 4,
       "spines": [
         "lost"
       ]
     },
     {
-      "id": "roots-have-swallowed-whole-only-still",
-      "text": "Roots have swallowed {name} whole; only {its:feature} still shows",
+      "id": "roots-have-swallowed-whole-all-but",
+      "text": "Roots have swallowed {name} whole, all but {its:feature}",
       "weight": 4,
       "spines": [
         "lost"
@@ -193,7 +193,7 @@
     },
     {
       "id": "an-explorer-s-torch-finds-the",
-      "text": "An explorer's torch finds the doorway of {name}, its {f:material} furred with dust",
+      "text": "An explorer's torch finds the doorway of {name}, dust furring its {f:material}",
       "weight": 4,
       "spines": [
         "lost"
@@ -201,7 +201,7 @@
     },
     {
       "id": "sinks-into-a-sea-of-cloud",
-      "text": "{name} sinks into a sea of cloud, {its:feature} the last thing showing",
+      "text": "{name} sinks into a sea of cloud; the last thing in sight is {its:feature}",
       "weight": 4,
       "spines": [
         "lost"
@@ -209,7 +209,7 @@
     },
     {
       "id": "divers-lanterns-sweep-across-on-the",
-      "text": "Divers' lanterns sweep across {name} on the seabed, {its:feature} draped in kelp",
+      "text": "Divers' lanterns sweep across {name} on the seabed, kelp draping {its:feature}",
       "weight": 8,
       "themes": [
         "nautical"
@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "snow-buries-to-the-eaves-only",
-      "text": "Snow buries {name} to the eaves, only {its:feature} breaking the drifts",
+      "id": "snowdrifts-climb-to-the-eaves-a",
+      "text": "Snowdrifts climb {name} to the eaves, a lone torch picking out {its:feature}",
       "weight": 8,
       "themes": [
         "frost"
@@ -231,7 +231,7 @@
     },
     {
       "id": "every-window-of-blazes-at-once",
-      "text": "Every window of {name} blazes at once, {its:feature} shuddering into motion",
+      "text": "Every window of {name} blazes at once, and a shudder runs through {its:feature}",
       "weight": 4,
       "spines": [
         "awakened"
@@ -246,24 +246,24 @@
       ]
     },
     {
-      "id": "tight-on-s-doorstep-of-splitting",
-      "text": "Tight on {name}'s doorstep of {f:material}, splitting around a slowly opening eye",
+      "id": "a-slowly-opening-eye-splits-the",
+      "text": "A slowly opening eye splits the doorstep of {name}, cracking its {f:material}",
       "weight": 4,
       "spines": [
         "awakened"
       ]
     },
     {
-      "id": "seen-at-dusk-turns-on-its",
-      "text": "Seen at dusk, {name}, {f:condition}, turns on its foundations to face the viewer",
+      "id": "at-dusk-turning-on-its-foundations",
+      "text": "At dusk, turning on its foundations to face the viewer: {name}, {f:condition}",
       "weight": 4,
       "spines": [
         "awakened"
       ]
     },
     {
-      "id": "runes-race-across-the-of-as",
-      "text": "Runes race across the {f:material} of {name} as every book inside takes flight",
+      "id": "every-book-inside-takes-flight-as",
+      "text": "Every book inside {name} takes flight as runes race across its {f:material}",
       "weight": 8,
       "themes": [
         "arcane"
@@ -284,8 +284,8 @@
       ]
     },
     {
-      "id": "stands-between-a-fleeing-crowd-and",
-      "text": "{name} stands between a fleeing crowd and the storm, {its:feature} braced",
+      "id": "doors-thrown-wide-shelters-a-fleeing",
+      "text": "Doors thrown wide, {name} shelters a fleeing crowd from the storm, lit by {f:light}",
       "weight": 4,
       "spines": [
         "guardian"
@@ -300,16 +300,16 @@
       ]
     },
     {
-      "id": "torches-of-a-besieging-army-ring",
-      "text": "Torches of a besieging army ring {name}, {f:condition}, which still holds",
+      "id": "the-torches-of-a-whole-army",
+      "text": "The torches of a whole army ring {name}, which still stands, {f:condition}",
       "weight": 4,
       "spines": [
         "guardian"
       ]
     },
     {
-      "id": "wards-flare-along-the-walls-of",
-      "text": "Wards flare along the {f:material} walls of {name} as something huge tests the gate",
+      "id": "as-something-huge-tests-the-gate",
+      "text": "As something huge tests the gate of {name}, wards flare across its {f:material}",
       "weight": 4,
       "spines": [
         "guardian"
@@ -338,16 +338,16 @@
       ]
     },
     {
-      "id": "a-comet-hangs-directly-over-its",
-      "text": "A comet hangs directly over {name}, its tail pointing down at {its:feature}",
+      "id": "a-comet-hangs-directly-over-tail",
+      "text": "A comet hangs directly over {name}, tail pointing straight down at {its:feature}",
       "weight": 4,
       "spines": [
         "prophecy"
       ]
     },
     {
-      "id": "pilgrims-kneel-in-the-mud-before",
-      "text": "Pilgrims kneel in the mud before {name}, {f:condition}, waiting for its door to open",
+      "id": "waiting-for-its-door-to-open",
+      "text": "Waiting for its door to open, pilgrims kneel in the mud before {name}, {f:condition}",
       "weight": 4,
       "spines": [
         "prophecy"

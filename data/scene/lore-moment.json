@@ -12,8 +12,8 @@
       ]
     },
     {
-      "id": "seen-from-the-rafters-of-a",
-      "text": "Seen from the rafters of {the:location}: a thief's rope uncoils toward the one lit strongbox",
+      "id": "from-high-above-a-thief-s",
+      "text": "From high above {the:location}, a thief's rope uncoils toward the one lit strongbox",
       "weight": 4,
       "spines": [
         "stolen"
@@ -36,8 +36,8 @@
       ]
     },
     {
-      "id": "in-the-crush-of-a-cranium",
-      "text": "In the crush of {the:location}, a cranium rat scurries off with a glowing key",
+      "id": "through-the-crowd-at-a-cranium",
+      "text": "Through the crowd at {the:location}, a cranium rat scurries off with a glowing key",
       "weight": 8,
       "themes": [
         "planar"
@@ -71,8 +71,8 @@
       ]
     },
     {
-      "id": "every-candle-in-gutters-blue-at",
-      "text": "Every candle in {the:location} gutters blue at once",
+      "id": "every-candle-gutters-blue-at-once",
+      "text": "Every candle gutters blue at once across {the:location}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "in-a-trusted-ally-lights-the",
-      "text": "In {the:location}, a trusted ally lights the signal fire for the enemy",
+      "id": "at-a-trusted-ally-lights-a",
+      "text": "At {the:location}, a trusted ally lights a signal fire for the enemy",
       "weight": 4,
       "spines": [
         "betrayed"
@@ -222,8 +222,8 @@
       ]
     },
     {
-      "id": "fog-swallows-half-the-frame-and",
-      "text": "Fog swallows half the frame, {f:time}, and one torch hangs in it, held by no visible hand",
+      "id": "a-torch-held-by-no-visible",
+      "text": "A torch held by no visible hand hangs in the fog, {f:time}",
       "weight": 4,
       "spines": [
         "lost"
@@ -368,8 +368,8 @@
       ]
     },
     {
-      "id": "a-comet-tears-the-sky-open",
-      "text": "A comet tears the sky open above {the:location}",
+      "id": "a-single-shaft-of-gold-light",
+      "text": "A single shaft of gold light picks out one figure at {the:location}",
       "weight": 4,
       "spines": [
         "prophecy"

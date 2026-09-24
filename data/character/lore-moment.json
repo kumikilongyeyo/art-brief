@@ -28,8 +28,8 @@
       ]
     },
     {
-      "id": "a-guard-s-torch-sweeps-past",
-      "text": "A guard's torch sweeps past {first}, {f:pose}, a stolen seal glinting at the belt",
+      "id": "a-stolen-seal-glinting-at-the",
+      "text": "A stolen seal glinting at the belt, {first} freezes flat against the wall as a guard's torch sweeps past",
       "weight": 4,
       "spines": [
         "stolen"
@@ -37,7 +37,7 @@
     },
     {
       "id": "half-through-a-stolen-portal-glances",
-      "text": "Half through a stolen portal, {first} glances back, the doorway glow catching {f:look}",
+      "text": "Half through a stolen portal, {first} glances back, the doorway glow washing over {f:look}",
       "weight": 8,
       "themes": [
         "planar"
@@ -48,7 +48,7 @@
     },
     {
       "id": "stares-into-a-cracked-mirror-whose",
-      "text": "{first} stares into a cracked mirror whose reflection moves a heartbeat late, candlelight on {f:look}",
+      "text": "{first} stares into a cracked mirror whose reflection moves a heartbeat late, showing {f:look}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -63,8 +63,8 @@
       ]
     },
     {
-      "id": "ash-drifts-upward-around-as-a",
-      "text": "Ash drifts upward around {first}, {f:pose}, as a curse-mark flares under the skin",
+      "id": "a-curse-mark-flares-under-the",
+      "text": "A curse-mark flares under the skin as ash drifts upward around {first}, {f:pose}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -72,7 +72,7 @@
     },
     {
       "id": "green-witchfire-from-a-broken-salt",
-      "text": "Green witchfire from a broken salt ring lights {first} from below, {f:look} thrown into hard relief",
+      "text": "Green witchfire from a broken salt ring lights {first} from below, picking out {f:look}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -92,7 +92,7 @@
     },
     {
       "id": "close-on-s-thumb-pressing-blood",
-      "text": "Close on {first}'s thumb pressing blood onto a contract, the candle picking out {f:look}",
+      "text": "Close on {first}'s thumb pressing blood onto a contract, candlelight on {f:look}",
       "weight": 4,
       "spines": [
         "bargain"
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "turns-too-late-caught-in-the",
-      "text": "{first} turns too late, {f:look} caught in the flash of a friend's crossbow",
+      "id": "turns-too-late-and-the-flash",
+      "text": "{first} turns too late, and the flash of a friend's crossbow falls across {f:look}",
       "weight": 4,
       "spines": [
         "betrayed"
@@ -178,7 +178,7 @@
     },
     {
       "id": "hanged-in-effigy-by-their-own",
-      "text": "Hanged in effigy by their own company, {first} watches from the treeline, the pyre's glow catching {f:look}",
+      "text": "Hanged in effigy by their own company, {first} watches from the treeline, the pyre's glow on {f:look}",
       "weight": 8,
       "themes": [
         "dark-fantasy"
@@ -212,8 +212,8 @@
       ]
     },
     {
-      "id": "dust-sifts-through-a-single-sunbeam",
-      "text": "Dust sifts through a single sunbeam onto {first}, {f:pose}, in a hall no map remembers",
+      "id": "in-a-hall-no-map-remembers",
+      "text": "In a hall no map remembers, dust sifts through a single sunbeam onto {first}, {f:pose}",
       "weight": 4,
       "spines": [
         "lost"
@@ -231,8 +231,8 @@
       ]
     },
     {
-      "id": "wind-driven-snow-erases-the-trail",
-      "text": "Wind-driven snow erases the trail behind {first}, {f:pose}, the aurora the only light",
+      "id": "under-the-aurora-wind-driven-snow",
+      "text": "Under the aurora, wind-driven snow erases the trail behind {first}, {f:pose}",
       "weight": 8,
       "themes": [
         "frost"
@@ -242,8 +242,8 @@
       ]
     },
     {
-      "id": "light-pours-from-s-eyes-and",
-      "text": "Light pours from {first}'s eyes and open mouth, {f:pose}, as something old wakes inside",
+      "id": "as-something-old-wakes-inside-light",
+      "text": "As something old wakes inside, light pours from the eyes and mouth of {first}, {f:pose}",
       "weight": 4,
       "spines": [
         "awakened"
@@ -266,8 +266,8 @@
       ]
     },
     {
-      "id": "a-storm-of-loose-pages-whirls",
-      "text": "A storm of loose pages whirls around {first}, {f:pose}, every candle in the room blown sideways",
+      "id": "every-candle-blown-sideways-a-storm",
+      "text": "Every candle blown sideways, a storm of loose pages whirls around {first}, {f:pose}",
       "weight": 4,
       "spines": [
         "awakened"
@@ -286,7 +286,7 @@
     },
     {
       "id": "a-column-of-dawn-light-strikes",
-      "text": "A column of dawn light strikes {first} through the chapel roof, turning {f:look} to gold",
+      "text": "A column of dawn light strikes {first} through the chapel roof, gilding {f:look}",
       "weight": 8,
       "themes": [
         "celestial"
@@ -296,8 +296,8 @@
       ]
     },
     {
-      "id": "behind-a-sleeping-village-glows-in",
-      "text": "Behind {first}, {f:pose}, a sleeping village glows in the valley below",
+      "id": "a-sleeping-village-glows-in-the",
+      "text": "A sleeping village glows in the valley behind {first}, {f:pose}",
       "weight": 4,
       "spines": [
         "guardian"
@@ -313,15 +313,15 @@
     },
     {
       "id": "s-palm-rests-flat-on-a",
-      "text": "{first}'s palm rests flat on a sealed door, {f:look} half-lit by the last torch",
+      "text": "{first}'s palm rests flat on a sealed door, the last torch guttering over {f:look}",
       "weight": 4,
       "spines": [
         "guardian"
       ]
     },
     {
-      "id": "snow-rimes-s-at-a-lonely",
-      "text": "Snow rimes {first}'s {wearing} at a lonely gate",
+      "id": "at-a-lonely-gate-snow-rimes",
+      "text": "At a lonely gate, snow rimes {first}'s {wearing}",
       "weight": 4,
       "spines": [
         "guardian"
@@ -355,8 +355,8 @@
       ]
     },
     {
-      "id": "close-on-a-crumbling-fresco-of",
-      "text": "Close on a crumbling fresco of a hero with {f:look}, {first}'s torchlit hand frozen beside it",
+      "id": "tight-on-s-torchlit-hand-frozen",
+      "text": "Tight on {first}'s torchlit hand, frozen beside a crumbling fresco of a hero with {f:look}",
       "weight": 4,
       "spines": [
         "prophecy"

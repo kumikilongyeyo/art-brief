@@ -255,8 +255,11 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
 
   // Hook card: same figure/place state as the story, so names carry over into the twist.
   const line = (id: string, asSentence = true) => {
-    const entries = forSpine(tableEntries(data, id), spineEntry.id);
-    if (!entries.length) return undefined;
+    const spined = forSpine(tableEntries(data, id), spineEntry.id);
+    if (!spined.length) return undefined;
+    // Like the story: skip lines about a card line that was trimmed, when there is another choice.
+    const visible = spined.filter((e) => !mentionsHidden(e.text, hidden));
+    const entries = visible.length ? visible : spined;
     const out = render(pickEntry(entries, ctx, tell.rng).entry.text, data, cat, brief, tell.st, ctx, tell.rng);
     return asSentence ? sentence(out) : capitalise(out.trim());
   };

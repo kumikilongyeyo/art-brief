@@ -12,8 +12,8 @@
       ]
     },
     {
-      "id": "a-gloved-hand-lifts-an-egg",
-      "text": "A gloved hand lifts an egg from the nest of {name}, {f:adaptation} glinting behind",
+      "id": "a-gloved-hand-slips-an-egg",
+      "text": "A gloved hand slips an egg from beneath {name}, lamplight grazing {f:adaptation}",
       "weight": 4,
       "spines": [
         "stolen"
@@ -29,7 +29,7 @@
     },
     {
       "id": "paces-a-gilded-cage-on-a",
-      "text": "{name} paces a gilded cage on a noble's lawn, {f:adaptation} dulled under lantern light",
+      "text": "{name} paces a gilded cage on a noble's lawn, lantern light dulling {f:adaptation}",
       "weight": 4,
       "spines": [
         "stolen"
@@ -48,7 +48,7 @@
     },
     {
       "id": "writhes-in-a-ring-of-moonlight",
-      "text": "{name} writhes in a ring of moonlight, {f:adaptation} spreading like rot",
+      "text": "{name} writhes in a ring of moonlight, rot spreading from {f:adaptation}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -71,8 +71,8 @@
       ]
     },
     {
-      "id": "hollow-eyed-and-starving-ribs-showing",
-      "text": "Hollow-eyed and starving, {name} {f:behaviour}, ribs showing in the grey light",
+      "id": "ribs-showing-in-the-grey-light",
+      "text": "Ribs showing in the grey light, the starving {name} {f:behaviour}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -91,7 +91,7 @@
     },
     {
       "id": "crows-circle-as-it-staggers-through",
-      "text": "Crows circle {name} as it staggers through a burned village, {f:adaptation} caked in ash",
+      "text": "Crows circle {name} as it staggers through a burned village, ash caking {f:adaptation}",
       "weight": 8,
       "themes": [
         "dark-fantasy"
@@ -102,7 +102,7 @@
     },
     {
       "id": "bows-to-a-hooded-figure-over",
-      "text": "{name} bows to a hooded figure over a candle ring, {f:adaptation} glowing in the smoke",
+      "text": "{name} bows to a hooded figure over a candle ring, smoke curling around {f:adaptation}",
       "weight": 4,
       "spines": [
         "bargain"
@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "turns-on-its-own-pack-lit",
-      "text": "{name} turns on its own pack, {f:adaptation} lit by a lightning flash",
+      "id": "turns-on-its-own-pack-a",
+      "text": "{name} turns on its own pack, a lightning flash picking out {f:adaptation}",
       "weight": 4,
       "spines": [
         "betrayed"
@@ -196,7 +196,7 @@
     },
     {
       "id": "a-lantern-swings-into-a-cave",
-      "text": "A lantern swings into a cave and finds {name} asleep, {f:adaptation} rising and falling",
+      "text": "A lantern swings into a cave and finds {name} asleep, its light sliding over {f:adaptation}",
       "weight": 4,
       "spines": [
         "lost"
@@ -204,15 +204,15 @@
     },
     {
       "id": "far-below-the-surface-drifts-past",
-      "text": "Far below the surface, {name} drifts past a ruined city, {f:adaptation} lit by one sunbeam",
+      "text": "Far below the surface, {name} drifts past a ruined city, one sunbeam touching {f:adaptation}",
       "weight": 4,
       "spines": [
         "lost"
       ]
     },
     {
-      "id": "seen-from-a-hunter-s-hide",
-      "text": "Seen from a hunter's hide: {name} {f:behaviour}, unaware it has been found after centuries",
+      "id": "through-the-reeds-of-a-hunter",
+      "text": "Through the reeds of a hunter's hide, the long-lost {name} {f:behaviour}",
       "weight": 4,
       "spines": [
         "lost"
@@ -220,7 +220,7 @@
     },
     {
       "id": "a-diver-s-lantern-finds-in",
-      "text": "A diver's lantern finds {name} in a wreck's rigging, {f:adaptation} swaying with the tide",
+      "text": "A diver's lantern finds {name} in a wreck's rigging, its beam wavering over {f:adaptation}",
       "weight": 8,
       "themes": [
         "nautical"
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "ice-cracks-away-from-in-sheets",
-      "text": "Ice cracks away from {name} in sheets as one eye opens, {f:adaptation} steaming",
+      "id": "as-one-eye-opens-ice-cracks",
+      "text": "As one eye opens, ice cracks from {name} in sheets, steam rising off {f:adaptation}",
       "weight": 4,
       "spines": [
         "awakened"
@@ -274,7 +274,7 @@
     },
     {
       "id": "lava-splits-open-and-hauls-itself",
-      "text": "Lava splits open and {name} hauls itself out, {f:adaptation} glowing cherry-red",
+      "text": "Lava splits open and {name} hauls itself out, magma dripping from {f:adaptation}",
       "weight": 8,
       "themes": [
         "elemental-fire"
@@ -295,8 +295,8 @@
       ]
     },
     {
-      "id": "rears-across-the-doorway-flaring-as",
-      "text": "{name} rears across the doorway, {f:adaptation} flaring as torchlight hits it",
+      "id": "rears-across-the-doorway-torchlight-flaring",
+      "text": "{name} rears across the doorway, torchlight flaring on {f:adaptation}",
       "weight": 4,
       "spines": [
         "guardian"
@@ -319,16 +319,16 @@
       ]
     },
     {
-      "id": "a-child-sleeps-against-as-it",
-      "text": "A child sleeps against {name} as it watches the treeline, {f:adaptation} bristling",
+      "id": "a-child-sleeps-curled-against-as",
+      "text": "A child sleeps curled against {name} as it watches the treeline, moonlight on {f:adaptation}",
       "weight": 4,
       "spines": [
         "guardian"
       ]
     },
     {
-      "id": "spreads-itself-over-a-shrine-in",
-      "text": "{name} spreads itself over a shrine in a shaft of gold light, {f:adaptation} shining",
+      "id": "shelters-a-shrine-in-a-shaft",
+      "text": "{name} shelters a shrine in a shaft of gold light that blazes on {f:adaptation}",
       "weight": 8,
       "themes": [
         "celestial"

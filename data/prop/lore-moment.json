@@ -4,16 +4,16 @@
   "slot": "lore-moment",
   "entries": [
     {
-      "id": "a-gloved-hand-lifts-from-its",
-      "text": "A gloved hand lifts {name}, {f:details}, from its velvet cradle by lantern light",
+      "id": "by-lantern-light-a-gloved-hand",
+      "text": "By lantern light, a gloved hand lifts {name} from its velvet cradle, {f:details}",
       "weight": 4,
       "spines": [
         "stolen"
       ]
     },
     {
-      "id": "a-thief-on-a-rope-lowers",
-      "text": "A thief on a rope lowers toward {name}, moonlight pooling on its {f:material}",
+      "id": "a-thief-on-a-rope-descends",
+      "text": "A thief on a rope descends toward {name}, moonlight pooling on its {f:material}",
       "weight": 4,
       "spines": [
         "stolen"
@@ -29,7 +29,7 @@
     },
     {
       "id": "mid-chase-spins-from-a-thief",
-      "text": "Mid-chase, {name} spins from a thief's grip, its {f:material} flashing under a full moon",
+      "text": "Mid-chase, {name} spins from a thief's grip, moonlight flashing on its {f:material}",
       "weight": 4,
       "spines": [
         "stolen"
@@ -58,8 +58,8 @@
       ]
     },
     {
-      "id": "lies-alone-on-a-stone-table",
-      "text": "{name} lies alone on a stone table, {f:details}, as frost spreads out from it in rings",
+      "id": "frost-spreads-in-rings-across-the",
+      "text": "Frost spreads in rings across the stone table under {name}, {f:details}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -75,15 +75,15 @@
     },
     {
       "id": "candles-gutter-around-in-the-dark",
-      "text": "Candles gutter around {name}; in the dark, only its {f:material} still glows",
+      "text": "Candles gutter around {name}; in the dark, a glow still clings to its {f:material}",
       "weight": 4,
       "spines": [
         "cursed"
       ]
     },
     {
-      "id": "every-mirror-in-the-shop-shows",
-      "text": "Every mirror in the shop shows {name}, {f:details}, but not the hand that holds it",
+      "id": "the-shop-s-mirrors-show-no",
+      "text": "The shop's mirrors show no one holding {name}, {f:details}",
       "weight": 4,
       "spines": [
         "cursed"
@@ -102,7 +102,7 @@
     },
     {
       "id": "spectral-hands-rise-from-the-grave",
-      "text": "Spectral hands rise from the grave-dirt around {name}, its {f:material} rimed with frost",
+      "text": "Spectral hands rise from the grave-dirt around {name}, frost riming its {f:material}",
       "weight": 8,
       "themes": [
         "undead"
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "a-clawed-hand-and-a-human",
-      "text": "A clawed hand and a human one both grip {name}, {f:details}, over a guttering candle",
+      "id": "over-a-guttering-candle-a-clawed",
+      "text": "Over a guttering candle, a clawed hand and a human one both grip {name}, {f:details}",
       "weight": 4,
       "spines": [
         "bargain"
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "in-a-ring-of-hellfire-a",
-      "text": "In a ring of hellfire, a devil's talon taps {name}, its {f:material} glowing cherry-red",
+      "id": "ringed-by-hellfire-a-devil-s",
+      "text": "Ringed by hellfire, a devil's talon taps {name}, red light crawling on its {f:material}",
       "weight": 8,
       "themes": [
         "infernal"
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "lies-on-a-friend-s-pillow",
-      "text": "{name} lies on a friend's pillow, {f:details}, beside a note in a familiar hand",
+      "id": "beside-a-note-in-a-familiar",
+      "text": "Beside a note in a familiar hand, {name} lies on a friend's pillow, {f:details}",
       "weight": 4,
       "spines": [
         "betrayed"
@@ -183,7 +183,7 @@
     },
     {
       "id": "two-silhouettes-embrace-on-a-bridge",
-      "text": "Two silhouettes embrace on a bridge at dusk; one slips {name} from the other's belt",
+      "text": "Two silhouettes embrace on a bridge at dusk; one slips {name} out of the other's pack",
       "weight": 4,
       "spines": [
         "betrayed"
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "snow-drifts-half-over-beside-a",
-      "text": "Snow drifts half over {name}, {f:details}, beside a frozen hand",
+      "id": "beside-a-frozen-hand-snow-drifts",
+      "text": "Beside a frozen hand, snow drifts half over {name}, {f:details}",
       "weight": 4,
       "spines": [
         "lost"
@@ -233,16 +233,16 @@
       ]
     },
     {
-      "id": "behind-cracked-sunken-glass-the-its",
-      "text": "Behind cracked, sunken glass: the {f:objectType}, its {f:material} dulled by centuries",
+      "id": "behind-cracked-sunken-glass-lies-the",
+      "text": "Behind cracked, sunken glass lies the {f:objectType}, centuries of silt on its {f:material}",
       "weight": 4,
       "spines": [
         "lost"
       ]
     },
     {
-      "id": "tumbles-slowly-through-the-astral-sea",
-      "text": "{name} tumbles slowly through the Astral Sea, {f:details}, lit by a dead god's glow",
+      "id": "lit-by-a-dead-god-s",
+      "text": "Lit by a dead god's glow, {name} tumbles slowly through the Astral Sea, {f:details}",
       "weight": 8,
       "themes": [
         "planar"
@@ -263,16 +263,16 @@
       ]
     },
     {
-      "id": "rises-off-its-pedestal-on-its",
-      "text": "{name} rises off its pedestal on its own, {f:details}, dust streaming away in a slow ring",
+      "id": "dust-streaming-off-in-a-slow",
+      "text": "Dust streaming off in a slow ring, {name} rises from its pedestal on its own, {f:details}",
       "weight": 4,
       "spines": [
         "awakened"
       ]
     },
     {
-      "id": "sleeping-fingers-twitch-as-stirs-its",
-      "text": "Sleeping fingers twitch as {name} stirs, its {f:material} kindling from within",
+      "id": "sleeping-fingers-twitch-as-stirs-light",
+      "text": "Sleeping fingers twitch as {name} stirs, light kindling inside its {f:material}",
       "weight": 4,
       "spines": [
         "awakened"
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "id": "hangs-above-a-sealed-door-as",
-      "text": "{name} hangs above a sealed door, {f:details}, as a thief's torch rounds the corner",
+      "id": "a-thief-s-torch-rounds-the",
+      "text": "A thief's torch rounds the corner and finds {name} hung above a sealed door, {f:details}",
       "weight": 4,
       "spines": [
         "guardian"
@@ -333,8 +333,8 @@
       ]
     },
     {
-      "id": "a-burglar-recoils-as-flares-its",
-      "text": "A burglar recoils as {name} flares, its {f:material} throwing white light up the walls",
+      "id": "a-burglar-recoils-as-flares-white",
+      "text": "A burglar recoils as {name} flares, white light blazing from its {f:material}",
       "weight": 4,
       "spines": [
         "guardian"
@@ -384,8 +384,8 @@
       ]
     },
     {
-      "id": "blazes-up-in-a-seer-s",
-      "text": "{name} blazes up in a seer's scrying bowl, {f:details}, as the water begins to boil",
+      "id": "a-seer-s-scrying-bowl-boils",
+      "text": "A seer's scrying bowl boils around the image of {name}, {f:details}",
       "weight": 4,
       "spines": [
         "prophecy"
