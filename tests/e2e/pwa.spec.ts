@@ -25,6 +25,7 @@ test.describe('PWA', () => {
   });
 
   test.describe('update flow', () => {
+    test.skip(() => !!process.env.E2E_BASE_URL, 'local A/B builds only; live.spec.ts covers the deployed site');
     let server: ChildProcess;
     const PORT = 4180;
     test.beforeAll(async () => {
