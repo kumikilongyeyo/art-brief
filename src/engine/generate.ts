@@ -218,7 +218,11 @@ function pickSlot(
     }
     case 'event': {
       const ev = pickEntry(tableEntries(data, slot.table), ctx, rng, avoidPrev);
-      const actors = tableEntries(data, slot.actors);
+      // Skip actors that echo a word already in the event ("a weeping ghost kneels weeping").
+      const eventWords = new Set(contentWords(ev.entry.text));
+      const all = tableEntries(data, slot.actors);
+      const fresh = all.filter((x) => !contentWords(x.text).some((w) => eventWords.has(w)));
+      const actors = fresh.length >= 2 ? fresh : all;
       const a = pickEntry(actors, ctx, rng);
       const parts = [fromEntry(ev.entry, ev.depth), fromEntry(a.entry, a.depth)];
       let id = `${ev.entry.id}~${a.entry.id}`;
@@ -244,6 +248,11 @@ function pickSlot(
       return { entryId: text, text, tags: [], excludes: [], depth: 0 };
     }
   }
+}
+
+/** Lower-cased words of 5+ letters, roughly stemmed, for spotting repeated words. */
+function contentWords(text: string): string[] {
+  return (text.toLowerCase().match(/[a-z]{5,}/g) ?? []).map((w) => w.replace(/(ing|ed|es|s)$/, ''));
 }
 
 function slotSeed(spec: VariationSpec, slot: SlotId): string {

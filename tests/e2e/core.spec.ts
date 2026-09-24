@@ -218,11 +218,11 @@ test('a share link recreates the exact brief in a fresh context', async ({ page,
 });
 
 test('a batch link reproduces the batch; bad hashes fall back safely', async ({ page }) => {
-  await page.goto('./#c=creature&t=infernal&w=mixed&n=3&s=K7Q2PX&v=2026.09.1');
+  await page.goto('./#c=creature&t=infernal&w=mixed&n=3&s=K7Q2PX&v=2026.09.2');
   await expect(cards(page)).toHaveCount(3);
   const a = await page.locator('.cards').innerText();
   await page.goto('about:blank');
-  await page.goto('./#c=creature&t=infernal&w=mixed&n=3&s=K7Q2PX&v=2026.09.1');
+  await page.goto('./#c=creature&t=infernal&w=mixed&n=3&s=K7Q2PX&v=2026.09.2');
   expect(await page.locator('.cards').innerText()).toBe(a);
   await expect(page.locator('#data-notice')).toHaveCount(0);
   await page.goto('about:blank');

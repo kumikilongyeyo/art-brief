@@ -165,6 +165,15 @@ function render(tpl: string, data: DataSet, cat: CategoryDef, brief: Brief, st: 
   });
 }
 
+function mentionsHidden(tpl: string, hidden: Set<SlotId>): boolean {
+  if (!hidden.size) return false;
+  for (const m of tpl.matchAll(LORE_PLACEHOLDER)) {
+    if (m[2] && hidden.has(m[2])) return true;
+    if (m[3] === 'traits' && hidden.has('traits')) return true;
+  }
+  return false;
+}
+
 function sentence(s: string): string {
   const t = capitalise(s.trim().replace(/\s+/g, ' '));
   return /[.!?…]$/.test(t) ? t : `${t}.`;
@@ -181,6 +190,10 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
   // Weirdness makes the brief stranger, not the storyteller: the voice always follows the theme.
   const ctx: PickContext = { theme, weirdness: 'grounded', tags, excludes: new Set(), applyBlock: true };
 
+  // Don't tell the story of a line the card trimmed to fit its word budget (e.g. a dropped Mood).
+  const shown = new Set(brief.lines.flatMap((l) => l.slots ?? [l.slot]));
+  const hidden = new Set(cat.dropOrder.filter((s) => !shown.has(s)));
+
   // Try several tellings and keep the one closest to ~65 words inside 50–80, so stories read tight
   // instead of all hugging the cap.
   let best: { text: string; score: number } | null = null;
@@ -188,8 +201,10 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
     const rng = rngFrom(`${brief.seed}-lore-${roll}-${a}`);
     const st: LoreState = {};
     const parts = LORE_BEATS.map((beat) => {
-      const entries = tableEntries(data, `${cat.id}.lore-${beat}`);
-      if (!entries.length) return '';
+      const all = tableEntries(data, `${cat.id}.lore-${beat}`);
+      if (!all.length) return '';
+      const visible = all.filter((e) => !mentionsHidden(e.text, hidden));
+      const entries = visible.length ? visible : all;
       return sentence(render(pickEntry(entries, ctx, rng).entry.text, data, cat, brief, st, ctx, rng));
     }).filter(Boolean);
     const text = parts.join(' ');

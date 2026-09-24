@@ -312,6 +312,26 @@ describe('U13–U15 exhaustive sweep', () => {
   });
 });
 
+describe('scene events', () => {
+  it('actors never echo a word already in the event', () => {
+    const words = (t: string) => (t.toLowerCase().match(/[a-z]{5,}/g) ?? []).map((w) => w.replace(/(ing|ed|es|s)$/, ''));
+    const events = data.tables['scene.event'].entries;
+    const actors = data.tables['scene.actors'].entries;
+    for (const s of seeds(2000, 'echo')) {
+      const b = one('scene', s, { weirdness: WEIRDNESS[s.charCodeAt(0) % 3] });
+      const [evId, ...actorIds] = b.fields.event.entryId.split('~');
+      const ev = new Set(words(events.find((e) => e.id === evId)!.text));
+      for (const id of actorIds) {
+        const a = actors.find((x) => x.id === id)!;
+        expect(
+          words(a.text).some((w) => ev.has(w)),
+          `${a.text} echoes ${evId}`,
+        ).toBe(false);
+      }
+    }
+  });
+});
+
 describe('U19 combination count', () => {
   it.each(CATS)('%s: at least 100,000 combinations', (c) => {
     expect(countCombinations(data, c)).toBeGreaterThanOrEqual(100000);

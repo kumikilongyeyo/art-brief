@@ -66,6 +66,33 @@ describe('lore sweep: every category x theme x weirdness', () => {
   });
 });
 
+describe('lore regressions', () => {
+  it('never tells the story of a line the card trimmed (e.g. a dropped Mood)', () => {
+    let quotedBefore = 0;
+    for (const c of CATS) {
+      const cat = data.categories[c];
+      for (const base of seeds(150, `hidden-${c}`)) {
+        const b = one(c, base);
+        for (const slot of cat.dropOrder.filter((x) => x !== 'traits')) {
+          // Only promised when every beat has a telling that doesn't use this line.
+          const avoidable = ['origin', 'purpose', 'turn', 'now'].every((beat) =>
+            (data.tables[`${c}.lore-${beat}`]?.entries ?? []).some(
+              (e) => !new RegExp(`\\{(f|the|a|al|its|their|l):${slot}\\}`).test(e.text),
+            ),
+          );
+          if (!avoidable) continue;
+          const text = b.fields[slot].text.replace(/\s*\{m\}/, '');
+          for (let roll = 0; roll < 3; roll++) if (makeLore(data, b, roll).text.includes(text)) quotedBefore++;
+          // Same card with that line trimmed, as the word budget would do.
+          const trimmed = { ...b, lines: b.lines.filter((l) => !(l.slots ?? [l.slot]).includes(slot)) };
+          for (let roll = 0; roll < 3; roll++) expect(makeLore(data, trimmed, roll).text, `${c}: trimmed ${slot}`).not.toContain(text);
+        }
+      }
+    }
+    expect(quotedBefore).toBeGreaterThan(50); // the check is meaningful: those lines do get quoted when shown
+  });
+});
+
 describe('lore behaviour', () => {
   it.each(CATS)('%s: deterministic, and a reroll tells it differently', (c) => {
     let differ = 0;

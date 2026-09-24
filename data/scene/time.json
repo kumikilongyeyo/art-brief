@@ -16,7 +16,8 @@
       "text": "high noon, heat haze warping the horizon",
       "tags": [
         "day",
-        "sunlit"
+        "sunlit",
+        "tropical"
       ]
     },
     {
@@ -125,6 +126,7 @@
       "id": "clear-night-aurora-rippling-green",
       "text": "clear night, aurora rippling green overhead",
       "tags": [
+        "frost",
         "night",
         "north"
       ]

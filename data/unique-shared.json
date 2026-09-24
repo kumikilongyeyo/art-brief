@@ -176,7 +176,7 @@
         "flora"
       ],
       "requires": [
-        "animate"
+        "cat-character"
       ],
       "form": "clause"
     },
@@ -185,7 +185,7 @@
       "text": "every sound they make echoes from somewhere far below",
       "tier": "notable",
       "requires": [
-        "animate"
+        "cat-character"
       ],
       "form": "clause"
     },
@@ -215,7 +215,7 @@
         "eerie"
       ],
       "requires": [
-        "animate"
+        "cat-character"
       ],
       "form": "clause"
     },
@@ -227,7 +227,7 @@
         "storm"
       ],
       "requires": [
-        "animate"
+        "cat-character"
       ],
       "form": "clause"
     },
@@ -239,7 +239,7 @@
         "shadow"
       ],
       "requires": [
-        "animate"
+        "cat-character"
       ],
       "form": "clause"
     },
@@ -251,7 +251,7 @@
         "druidic"
       ],
       "requires": [
-        "animate"
+        "cat-character"
       ],
       "form": "clause"
     },
@@ -260,7 +260,7 @@
       "text": "ancient dragons lower their heads when they pass",
       "tier": "legendary",
       "requires": [
-        "animate"
+        "cat-character"
       ],
       "form": "clause"
     },

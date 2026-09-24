@@ -426,7 +426,7 @@
     },
     {
       "id": "each-limb-ending-different-tool",
-      "text": "each limb ending in a different tool-like claw",
+      "text": "limbs that each end in a different tool-like claw",
       "requires": [
         "multi-limbed"
       ]
