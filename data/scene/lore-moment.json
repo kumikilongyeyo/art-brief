@@ -1,0 +1,406 @@
+{
+  "id": "scene.lore-moment",
+  "category": "scene",
+  "slot": "lore-moment",
+  "entries": [
+    {
+      "id": "unseen-a-small-hand-lifts-a",
+      "text": "{f:event}; unseen, a small hand lifts a purse",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "seen-from-the-rafters-of-a",
+      "text": "Seen from the rafters of {the:location}: a thief's rope uncoils toward the one lit strongbox",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "an-empty-velvet-cushion-behind-it",
+      "text": "An empty velvet cushion; behind it, {f:event}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "an-empty-display-case-under-one",
+      "text": "An empty display case under one open window, {f:time}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "in-the-crush-of-a-cranium",
+      "text": "In the crush of {the:location}, a cranium rat scurries off with a glowing key",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "green-witchfire-races-along-the-ground",
+      "text": "Green witchfire races along the ground of {the:location}, lighting every face from below",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "every-shadow-leans-toward-one-figure",
+      "text": "{f:event}; every shadow leans toward one figure",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "sickly-green-light-floods-up-from",
+      "text": "Sickly green light floods up from below: {f:event}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "every-candle-in-gutters-blue-at",
+      "text": "Every candle in {the:location} gutters blue at once",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "around-them-the-dead-sit-up",
+      "text": "{f:event}; around them, the dead sit up",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "ash-falls-upward",
+      "text": "Ash falls upward: {f:event}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-contract-smoulders-in-the-foreground",
+      "text": "A contract smoulders in the foreground: {f:event}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "between-them-a-coin-spins-in",
+      "text": "{f:event}; between them, a coin spins in mid-air",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "two-shadows-shake-hands-across-one",
+      "text": "Two shadows shake hands across {the:location}, one of them with horns",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "one-clawed-hand-and-one-human",
+      "text": "One clawed hand and one human hand clasp in the foreground, {f:time}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-devil-s-contract-unrolls",
+      "text": "A devil's contract unrolls: {f:event}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-faerie-pockets-someone-s-name",
+      "text": "{f:event}; a faerie pockets someone's name",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "behind-them-a-friend-draws-a",
+      "text": "{f:event}; behind them, a friend draws a knife",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-eye-lands-on-a-poisoned",
+      "text": "The eye lands on a poisoned cup rolling across {the:location}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "mid-embrace-one-figure-reaches-for",
+      "text": "Mid-embrace, one figure reaches for a hidden blade, {f:time}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "in-a-trusted-ally-lights-the",
+      "text": "In {the:location}, a trusted ally lights the signal fire for the enemy",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-crow-settles-by-the-one",
+      "text": "A crow settles by the one smiling face: {f:event}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-lone-lantern-bobs-off-into",
+      "text": "{f:event}; a lone lantern bobs off into the dark",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "seen-from-far-above-one-small",
+      "text": "Seen from far above: {the:location}, one small lit island in the dark",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-torn-map-flutters-in-the",
+      "text": "A torn map flutters in the foreground: {f:event}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "fog-swallows-half-the-frame-and",
+      "text": "Fog swallows half the frame, {f:time}, and one torch hangs in it, held by no visible hand",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "sea-fog-swallows-the-far-side",
+      "text": "Sea fog swallows the far side of {the:location}; one ship's lantern still swings in it",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "fresh-snow-fills-the-only-footprints",
+      "text": "Fresh snow fills the only footprints leading out of {the:location}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "beneath-them-a-great-eye-opens",
+      "text": "{f:event}; beneath them, a great eye opens",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "across-every-statue-has-turned-its",
+      "text": "Across {the:location}, every statue has turned its head toward the viewer",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "something-vast-stirs-below",
+      "text": "Something vast stirs below: {f:event}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "old-runes-blaze-awake-underfoot",
+      "text": "Old runes blaze awake underfoot: {f:event}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "every-book-flaps-open-at-once",
+      "text": "Every book flaps open at once: {f:event}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-trees-lean-in-like-listeners",
+      "text": "The trees lean in like listeners: {f:event}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "spear-levelled-one-lone-sentinel-holds",
+      "text": "Spear levelled, one lone sentinel holds the only way into {the:location}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-stone-warden-s-eyes-begin",
+      "text": "{f:event}; a stone warden's eyes begin to glow",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-great-sealed-door-dominates-the",
+      "text": "A great sealed door dominates the frame, a single warden before it, {f:time}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "wards-flare-in-a-ring-of",
+      "text": "Wards flare in a ring of gold light around the edges of {the:location}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "radiant-wings-spread-overhead",
+      "text": "Radiant wings spread overhead: {f:event}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "faerzress-flares-violet-along-the-walls",
+      "text": "Faerzress flares violet along the walls: {f:event}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "exactly-as-the-mural-shows-it",
+      "text": "{f:event}, exactly as the mural shows it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-comet-tears-the-sky-open",
+      "text": "A comet tears the sky open above {the:location}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-blind-seer-points-at-the",
+      "text": "A blind seer points at the moment: {f:event}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "at-the-foretold-hour-every-face",
+      "text": "At the foretold hour, {f:time}, every face in the frame turns skyward",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "under-a-banner-showing-this-very",
+      "text": "{f:event}, under a banner showing this very scene",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    }
+  ]
+}

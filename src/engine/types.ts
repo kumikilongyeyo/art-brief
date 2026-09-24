@@ -123,6 +123,8 @@ export interface Brief {
   plainText: string;
   /** D&D stat tag ("Weapon, rare (requires attunement)", "Large fiend, lawful evil · CR 7"…). */
   stat?: string;
+  /** How to draw it: shape language, focal point, light & value, camera. */
+  art?: { shape: string; focal: string; light: string; camera?: string; deliverable?: string; note?: string };
   dataVersion: string;
   createdAt: number;
   rerolls: Record<SlotId, number>;
@@ -137,6 +139,7 @@ export interface Brief {
     patron?: string;
     reward?: string;
     twist?: string;
+    moment?: string;
   };
   /** Saved briefs only: folder id (none = Unsorted) and when it was saved. */
   folder?: string;

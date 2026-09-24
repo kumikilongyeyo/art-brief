@@ -1,0 +1,154 @@
+{
+  "id": "shared.art-deliverable",
+  "category": "shared",
+  "slot": "art-deliverable",
+  "entries": [
+    {
+      "id": "full-body-concept-in-3-4",
+      "text": "Full-body concept in 3/4 view, plus three quick expression sketches (about 3 hours)",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "front-and-back-turnaround-with-one",
+      "text": "Front and back turnaround, with one costume detail callout (about 3 hours)",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "three-silhouette-thumbnails-then-one-refined",
+      "text": "Three silhouette thumbnails, then one refined full-body pass (about 2 hours)",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "bust-portrait-with-a-colour-key",
+      "text": "Bust portrait with a colour key, plus a pose thumbnail (about 90 minutes)",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "character-sheet-full-body-face-close",
+      "text": "Character sheet: full body, face close-up and the gear they carry (about 4 hours)",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "callout-sheet-3-4-view-front",
+      "text": "Callout sheet: 3/4 view, front and side, one detail close-up (about 2 hours)",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "five-silhouette-thumbnails-then-one-rendered",
+      "text": "Five silhouette thumbnails, then one rendered 3/4 view (about 90 minutes)",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "an-in-hand-view-for-scale",
+      "text": "An in-hand view for scale, plus a material swatch study (about 2 hours)",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "orthographic-front-and-side-views-with",
+      "text": "Orthographic front and side views with notes for a 3D modeller (about 2 hours)",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "six-silhouette-thumbnails-then-one-rendered",
+      "text": "Six silhouette thumbnails, then one rendered 3/4 view with a human for scale (about 3 hours)",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "side-profile-design-a-head-study",
+      "text": "Side-profile design, a head study and one close-up of the adaptation (about 3 hours)",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "the-creature-in-its-habitat-as",
+      "text": "The creature in its habitat as one key-art sketch (about 2 hours)",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "anatomy-pass-a-skeleton-sketch-under",
+      "text": "Anatomy pass: a skeleton sketch under a finished side view (about 4 hours)",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "exterior-concept-from-street-level-plus",
+      "text": "Exterior concept from street level, plus one detail of the signature feature (about 3 hours)",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "three-thumbnail-angles-then-one-refined",
+      "text": "Three thumbnail angles, then one refined establishing shot (about 2 hours)",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "the-exterior-plus-a-quick-sketch",
+      "text": "The exterior plus a quick sketch of one interior room (about 4 hours)",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "day-and-night-colour-keys-of",
+      "text": "Day and night colour keys of the same view (about 2 hours)",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "three-value-thumbnails-then-one-refined",
+      "text": "Three value thumbnails, then one refined key-art sketch (about 2 hours)",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "a-16-9-colour-key-and",
+      "text": "A 16:9 colour key and a black-and-white value pass (about 90 minutes)",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "a-three-panel-storyboard-leading-into",
+      "text": "A three-panel storyboard leading into the moment (about 2 hours)",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "one-finished-illustration-at-book-cover",
+      "text": "One finished illustration at book-cover proportions (about 5 hours)",
+      "requires": [
+        "cat-scene"
+      ]
+    }
+  ]
+}

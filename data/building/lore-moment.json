@@ -1,0 +1,395 @@
+{
+  "id": "building.lore-moment",
+  "category": "building",
+  "slot": "lore-moment",
+  "entries": [
+    {
+      "id": "a-thief-drops-from-the-eaves",
+      "text": "A thief drops from the eaves of {name}, moonlight glinting on {its:feature}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "seen-from-the-road-doors-wide",
+      "text": "Seen from the road: {name}, {f:condition}, doors wide, a loaded cart rattling off",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "one-window-of-glows-as-a",
+      "text": "One window of {name} glows as a lantern moves from room to room, far too fast for a guard",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-rope-hangs-from-a-broken",
+      "text": "A rope hangs from a broken window of {name}, lit by {f:light}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "drow-raiders-lower-stolen-crates-from",
+      "text": "Drow raiders lower stolen crates from {name} on ropes of spider silk, faerzress pulsing below",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "black-thorns-climb-in-a-single",
+      "text": "Black thorns climb {name} in a single night, strangling {its:feature}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "through-the-fog-every-window-showing",
+      "text": "Through the fog: {name}, {f:condition}, every window showing the same pale face",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "close-on-the-front-door-of",
+      "text": "Close on the front door of {name}, its {f:material} weeping dark sap from every seam",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-last-villager-backs-away-from",
+      "text": "The last villager backs away from {name} as its shadow stretches toward them, against the sun",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "ghosts-crowd-every-window-of-faces",
+      "text": "Ghosts crowd every window of {name}, {f:condition}, faces pressed to the glass",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-contract-nailed-to-the-door",
+      "text": "A contract nailed to the door of {name} flutters in the wind, lit by {f:light}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-builder-shakes-a-clawed-hand",
+      "text": "A builder shakes a clawed hand at midnight as {name} rises around them, stone by stone",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "close-on-a-signature-burned-into",
+      "text": "Close on a signature burned into the {f:material} above the door of {name}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-smiling-figure-waits-at-the",
+      "text": "A smiling figure waits at the gate of {name} with an open palm, lit by {f:light}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "chains-of-red-iron-stretch-from",
+      "text": "Chains of red iron stretch from {name} down into a crack of hellfire",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-gates-of-swing-open-from",
+      "text": "The gates of {name} swing open from the inside, and a torchlit army pours through",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "burns-behind-a-lone-rider-collapsing",
+      "text": "{name} burns behind a lone rider, {its:feature} collapsing into the flames",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "behind-a-trusted-steward-signals-the",
+      "text": "Behind {name}, {f:condition}, a trusted steward signals the enemy with a lantern",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "close-on-a-key-turning-in",
+      "text": "Close on a key turning in the lock of {name}, the hand wearing the founder's own signet",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "crows-burst-from-the-roof-of",
+      "text": "Crows burst from the roof of {name} as its gates open to the enemy",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "mist-parts-to-reveal-as-if",
+      "text": "Mist parts to reveal {name}, {f:condition}, as if it had never been gone",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "roots-have-swallowed-whole-only-still",
+      "text": "Roots have swallowed {name} whole; only {its:feature} still shows",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "an-explorer-s-torch-finds-the",
+      "text": "An explorer's torch finds the doorway of {name}, its {f:material} furred with dust",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "sinks-into-a-sea-of-cloud",
+      "text": "{name} sinks into a sea of cloud, {its:feature} the last thing showing",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "divers-lanterns-sweep-across-on-the",
+      "text": "Divers' lanterns sweep across {name} on the seabed, {its:feature} draped in kelp",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "snow-buries-to-the-eaves-only",
+      "text": "Snow buries {name} to the eaves, only {its:feature} breaking the drifts",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "every-window-of-blazes-at-once",
+      "text": "Every window of {name} blazes at once, {its:feature} shuddering into motion",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "draws-a-breath-doors-flexing-dust",
+      "text": "{name} draws a breath, doors flexing, dust exhaling from every crack, lit by {f:light}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "tight-on-s-doorstep-of-splitting",
+      "text": "Tight on {name}'s doorstep of {f:material}, splitting around a slowly opening eye",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "seen-at-dusk-turns-on-its",
+      "text": "Seen at dusk, {name}, {f:condition}, turns on its foundations to face the viewer",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "runes-race-across-the-of-as",
+      "text": "Runes race across the {f:material} of {name} as every book inside takes flight",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "vines-burst-into-blossom-across-as",
+      "text": "Vines burst into blossom across {name} as its doors swing open by themselves",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "stands-between-a-fleeing-crowd-and",
+      "text": "{name} stands between a fleeing crowd and the storm, {its:feature} braced",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-burglar-s-lantern-freezes-at",
+      "text": "A burglar's lantern freezes at the threshold of {name} as its doors grind shut",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "torches-of-a-besieging-army-ring",
+      "text": "Torches of a besieging army ring {name}, {f:condition}, which still holds",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "wards-flare-along-the-walls-of",
+      "text": "Wards flare along the {f:material} walls of {name} as something huge tests the gate",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-colossal-angel-of-light-stands",
+      "text": "A colossal angel of light stands astride {name}, wings sheltering {its:feature}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "lava-parts-around-like-a-river",
+      "text": "Lava parts around {name} like a river around a stone",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-comet-hangs-directly-over-its",
+      "text": "A comet hangs directly over {name}, its tail pointing down at {its:feature}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "pilgrims-kneel-in-the-mud-before",
+      "text": "Pilgrims kneel in the mud before {name}, {f:condition}, waiting for its door to open",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "above-the-door-of-a-carving",
+      "text": "Above the door of {name}, a carving shows the building in flames, lit by {f:light}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "at-sunrise-the-shadow-of-falls",
+      "text": "At sunrise the shadow of {name} falls exactly across an ancient standing stone",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-portal-tears-open-above-exactly",
+      "text": "A portal tears open above {name}, exactly where the seers of Sigil drew it",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-great-stag-stands-on-the",
+      "text": "A great stag stands on the roof of {name} at dawn, antlers black against the sun",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    }
+  ]
+}

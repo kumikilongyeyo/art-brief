@@ -3,6 +3,7 @@ import { makeLore } from './lore';
 import { buildName } from './names';
 import { FUSION_CHANCE, pickEntry, type PickContext } from './pick';
 import { cyrb128, rngFrom, type Rng } from './rng';
+import { artLines, makeArt } from './art';
 import { makeStat } from './stat';
 import { renderBrief } from './templates';
 import { rollTier } from './unique';
@@ -330,8 +331,10 @@ function assemble(
   const palette = { name: pal.text, hex: pal.hex ?? [] };
   const rendered = renderBrief({ category: cat, fields, palette, labelOf: (s) => resolved[s]?.label ?? '' });
   const stat = makeStat(data, cat, spec.seed, resolved, Object.fromEntries(cat.slots.map((sl) => [sl.id, resolved[sl.id]?.text ?? ''])));
+  const theme = data.themeById[themeId] ?? data.themes[0];
+  const art = makeArt(data, cat, theme, spec.seed, resolved, palette.hex, spec.rerolls?.art ?? 0);
   const [titleLine, ...rest] = rendered.plainText.split('\n');
-  const plainText = [titleLine, `D&D: ${stat}`, ...rest].join('\n');
+  const plainText = [titleLine, `D&D: ${stat}`, ...rest, ...artLines(art, cat.id)].join('\n');
   const rerolls = { ...(spec.rerolls ?? {}) };
   const changed = Object.values(rerolls).some((n) => n > 0) || spec.seed !== `${spec.base}-${spec.index}`;
   const baseId = `${spec.base}-${spec.index}`;
@@ -351,6 +354,7 @@ function assemble(
     lines: rendered.lines,
     plainText,
     stat,
+    art,
     dataVersion: data.version,
     createdAt: spec.createdAt ?? 0,
     rerolls,
@@ -488,4 +492,25 @@ export function fieldEntries(data: DataSet, cat: CategoryDef, slotId: SlotId, en
     case 'name':
       return [];
   }
+}
+
+/** A different take on the art direction (shape / light / camera); the brief itself stays the same. */
+export function rerollArt(data: DataSet, brief: Brief, uniqueFrequency: UniqueFrequency): Brief {
+  const cat = data.categories[brief.category];
+  const pins: Record<SlotId, Pin> = {};
+  for (const s of cat.slots) pins[s.id] = { entryId: brief.fields[s.id].entryId, locked: brief.fields[s.id].locked };
+  const next = generateVariation(data, {
+    category: brief.category,
+    theme: brief.theme,
+    themeChoice: brief.themeChoice,
+    weirdness: brief.weirdness,
+    base: brief.base,
+    index: brief.index,
+    seed: brief.seed,
+    uniqueFrequency,
+    pins,
+    rerolls: { ...brief.rerolls, art: (brief.rerolls.art ?? 0) + 1 },
+    createdAt: brief.createdAt,
+  });
+  return brief.lore ? { ...next, lore: brief.lore } : next;
 }

@@ -1,0 +1,406 @@
+{
+  "id": "prop.lore-moment",
+  "category": "prop",
+  "slot": "lore-moment",
+  "entries": [
+    {
+      "id": "a-gloved-hand-lifts-from-its",
+      "text": "A gloved hand lifts {name}, {f:details}, from its velvet cradle by lantern light",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-thief-on-a-rope-lowers",
+      "text": "A thief on a rope lowers toward {name}, moonlight pooling on its {f:material}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "tight-on-tucked-inside-a-fence",
+      "text": "Tight on {name} tucked inside a fence's coat, the {f:objectType} catching the last of the alley light",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "mid-chase-spins-from-a-thief",
+      "text": "Mid-chase, {name} spins from a thief's grip, its {f:material} flashing under a full moon",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "pirates-haul-over-the-rail-in",
+      "text": "Pirates haul {name} over the rail in a torn net, stormlight flashing on its {f:material}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "drow-fingers-pry-from-a-sleeping",
+      "text": "Drow fingers pry {name} from a sleeping dwarf, faerzress glowing on its {f:material}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "lies-alone-on-a-stone-table",
+      "text": "{name} lies alone on a stone table, {f:details}, as frost spreads out from it in rings",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "close-on-the-hand-that-holds",
+      "text": "Close on the hand that holds {name}, blackening from the fingertips as the {f:objectType} pulses",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "candles-gutter-around-in-the-dark",
+      "text": "Candles gutter around {name}; in the dark, only its {f:material} still glows",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "every-mirror-in-the-shop-shows",
+      "text": "Every mirror in the shop shows {name}, {f:details}, but not the hand that holds it",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-hanged-man-s-fingers-clutch",
+      "text": "A hanged man's fingers clutch {name}, crows circling, dusk light on its {f:material}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "spectral-hands-rise-from-the-grave",
+      "text": "Spectral hands rise from the grave-dirt around {name}, its {f:material} rimed with frost",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "lies-between-two-signatures-on-a",
+      "text": "{name} lies between two signatures on a contract, one wet with ink, one still smoking",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-clawed-hand-and-a-human",
+      "text": "A clawed hand and a human one both grip {name}, {f:details}, over a guttering candle",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "close-on-the-scales-on-one",
+      "text": "Close on the scales: {name} on one pan, a single heart-red gem on the other, perfectly level",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "at-a-lantern-lit-crossroads-a",
+      "text": "At a lantern-lit crossroads, a hooded stranger holds out {name}, {f:details}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "in-a-ring-of-hellfire-a",
+      "text": "In a ring of hellfire, a devil's talon taps {name}, its {f:material} glowing cherry-red",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-faerie-queen-s-pale-hand",
+      "text": "A faerie queen's pale hand trades a single rose for {name} under a sky of falling blossom",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "lies-on-a-friend-s-pillow",
+      "text": "{name} lies on a friend's pillow, {f:details}, beside a note in a familiar hand",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-former-ally-turns-on-its",
+      "text": "A former ally turns {name} on its old owner, torchlight running along its {f:material}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "two-silhouettes-embrace-on-a-bridge",
+      "text": "Two silhouettes embrace on a bridge at dusk; one slips {name} from the other's belt",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-lies-in-a-pool-of",
+      "text": "The {f:objectType} lies in a pool of spilled wine beside an overturned chair, a knife quivering in the table",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "an-apprentice-s-shadow-falls-across",
+      "text": "An apprentice's shadow falls across the master's desk as {name} vanishes into a sleeve",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "rests-on-the-silt-of-a",
+      "text": "{name} rests on the silt of a drowned hall, green light touching its {f:material}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "snow-drifts-half-over-beside-a",
+      "text": "Snow drifts half over {name}, {f:details}, beside a frozen hand",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "roots-grip-at-the-bottom-of",
+      "text": "Roots grip {name} at the bottom of a pit, and a torch lowered on a rope finds it at last",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "behind-cracked-sunken-glass-the-its",
+      "text": "Behind cracked, sunken glass: the {f:objectType}, its {f:material} dulled by centuries",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "tumbles-slowly-through-the-astral-sea",
+      "text": "{name} tumbles slowly through the Astral Sea, {f:details}, lit by a dead god's glow",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "deep-in-blue-glacier-ice-hangs",
+      "text": "Deep in blue glacier ice, {name} hangs frozen mid-fall, torchlight bleeding through from above",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "rises-off-its-pedestal-on-its",
+      "text": "{name} rises off its pedestal on its own, {f:details}, dust streaming away in a slow ring",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "sleeping-fingers-twitch-as-stirs-its",
+      "text": "Sleeping fingers twitch as {name} stirs, its {f:material} kindling from within",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "in-a-dark-museum-hall-the",
+      "text": "In a dark museum hall, the {f:objectType} turns on its stand to face the night watchman's lantern",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "sparks-leap-from-across-an-alchemist",
+      "text": "Sparks leap from {name} across an alchemist's bench as it {f:function}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "forge-coals-flare-white-as-wakes",
+      "text": "Forge coals flare white as {name} wakes on the anvil, {f:details}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-beam-of-dawn-light-strikes",
+      "text": "A beam of dawn light strikes {name} on the altar, and it lifts, humming, above the praying monks",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "hangs-above-a-sealed-door-as",
+      "text": "{name} hangs above a sealed door, {f:details}, as a thief's torch rounds the corner",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "close-on-a-skeletal-hand-still",
+      "text": "Close on a skeletal hand still wrapped around {name}, laid across the tomb's threshold",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-burglar-recoils-as-flares-its",
+      "text": "A burglar recoils as {name} flares, its {f:material} throwing white light up the walls",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "at-the-centre-of-a-ring",
+      "text": "At the centre of a ring of standing stones, {name} sits on a moss-grown stump in the first dawn light",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "lies-across-the-knees-of-a",
+      "text": "{name} lies across the knees of a stone king in a sunlit crypt, dust motes turning above it",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-stained-glass-window-throws-the",
+      "text": "A stained-glass window throws the image of {name} across the chapel floor, exactly where it now lies",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-child-lifts-from-a-market",
+      "text": "A child lifts {name} from a market stall, and every bird in the square takes flight at once",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "close-on-an-old-tapestry-of",
+      "text": "Close on an old tapestry of a hero holding the {f:objectType}, the real one glinting on the floor below",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "blazes-up-in-a-seer-s",
+      "text": "{name} blazes up in a seer's scrying bowl, {f:details}, as the water begins to boil",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "shamans-ring-with-antlers-and-ochre",
+      "text": "Shamans ring {name} with antlers and ochre as a red comet crosses the sky",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    }
+  ]
+}

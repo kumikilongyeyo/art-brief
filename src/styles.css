@@ -460,6 +460,109 @@ select.theme {
 .row.locked {
   background: var(--lock-tint);
 }
+.overline {
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.art {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+.art-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.art-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.art-lines {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+.art-row {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 8px;
+  font-size: 14px;
+}
+.art-row dt {
+  color: var(--muted);
+  font-size: 13px;
+  padding-top: 1px;
+}
+.art-row dd {
+  margin: 0;
+}
+.deliverable,
+.ad-note {
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+.deliverable-label,
+.ad-note-label,
+.moment-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.ad-note {
+  padding-left: 10px;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+}
+.moment {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 15px;
+}
+.hook > summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  list-style: none;
+}
+.hook > summary::-webkit-details-marker {
+  display: none;
+}
+.hook > summary::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg);
+  margin-right: 10px;
+  transition: transform 0.15s;
+}
+.hook[open] > summary::before {
+  transform: rotate(45deg);
+}
 .stat {
   display: flex;
   align-items: center;
@@ -707,6 +810,10 @@ select.theme {
   font-size: 14px;
 }
 @media (max-width: 520px) {
+  .art-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
   .hook-row {
     grid-template-columns: 1fr;
     gap: 0;

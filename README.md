@@ -7,7 +7,10 @@ One-screen tool that answers “What do you want to create?” with short, dense
 
 ## Use
 - Pick a category, theme, variations (1–4) and weirdness → **Generate** (or press Enter / Space).
-- Each card gets a **D&D stat tag** that agrees with it ("Weapon, very rare (requires attunement by a paladin)",
+- Every card reads like a **studio assignment**: a ticket header, the brief, then **Direction** (shape language,
+  focal point, light & value from the palette, camera), **Deliverables** with a suggested time, and an **AD note**.
+  Stories end with a **Moment to paint**.
+- Optional **D&D details** (Settings, off by default): each card gets a **D&D stat tag** that agrees with it ("Weapon, very rare (requires attunement by a paladin)",
   "Large fiend, lawful evil · CR 7", "Level 12 · chaotic good", "Adventure site · Tier 2", "Encounter · Hard"), and
   every line shows the d100 roll it came from, DMG-table style.
 - 🔒 lock a line to keep it on the next Generate; ↻ rerolls just that line (and lines that depend on it).

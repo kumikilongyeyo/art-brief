@@ -4,7 +4,7 @@ import { chatText, storyText } from './chat';
 import { copyText } from './clipboard';
 import { loadData } from './data';
 import { countCombinations, formatCount } from './engine/count';
-import { generateBatch, generateVariation, lockedMap, rerollSlots, rollTheme, setLocked, type Pin } from './engine/generate';
+import { generateBatch, generateVariation, lockedMap, rerollArt, rerollSlots, rollTheme, setLocked, type Pin } from './engine/generate';
 import { fullText, withLore, withoutLore } from './engine/lore';
 import { chooseFreshBatch, pushRecent } from './engine/recent';
 import { CATEGORY_IDS, WEIRDNESS, type Brief, type CategoryId, type SlotId, type ThemeId, type Weirdness } from './engine/types';
@@ -306,12 +306,12 @@ const cardHandlers: CardHandlers = {
   },
   copy(i) {
     const b = state.results[i];
-    if (b) void doCopy(fullText(b));
+    if (b) void doCopy(fullText(b, settings.showDnd));
   },
   copyChat(i) {
     const b = state.results[i];
     if (!b) return;
-    void doCopy(chatText([b], settings.instruction), 'Copied for ChatGPT');
+    void doCopy(chatText([b], settings.instruction, settings.showDnd), 'Copied for ChatGPT');
     if (settings.openChatGPT) window.open('https://chatgpt.com/', '_blank', 'noopener');
   },
   save(i) {
@@ -340,6 +340,7 @@ const cardHandlers: CardHandlers = {
       fields,
       locked: lockedMap(b),
       lore: b.lore?.roll,
+      art: b.rerolls.art,
     });
     void doCopy(url, 'Link copied');
   },
@@ -355,10 +356,13 @@ const cardHandlers: CardHandlers = {
   hideLore(i) {
     updateCard(i, (b) => withoutLore(b), 'lore-add');
   },
+  rerollArt(i) {
+    updateCard(i, (b) => rerollArt(data, b, settings.uniqueFrequency), 'art-reroll');
+  },
   refineLore(i) {
     const b = state.results[i];
     if (!b?.lore) return;
-    void doCopy(storyText(b, settings.storyInstruction), 'Story copied for ChatGPT');
+    void doCopy(storyText(b, settings.storyInstruction, settings.showDnd), 'Story copied for ChatGPT');
     if (settings.openChatGPT) window.open('https://chatgpt.com/', '_blank', 'noopener');
   },
 };
@@ -388,6 +392,7 @@ function cardFor(b: Brief, i: number): HTMLElement {
       saved: !!s,
       folderName: s ? folderName(folderOf(s, folders), folders) : undefined,
       showChatGPT: settings.showChatGPT,
+      showDnd: settings.showDnd,
       data,
     },
     cardHandlers,
@@ -418,7 +423,7 @@ function renderResults() {
             class: 'btn',
             type: 'button',
             id: 'copy-all',
-            onclick: () => void doCopy(state.results.map((b) => fullText(b)).join('\n\n---\n\n'), 'Copied all'),
+            onclick: () => void doCopy(state.results.map((b) => fullText(b, settings.showDnd)).join('\n\n---\n\n'), 'Copied all'),
           },
           icon('copy'),
           'Copy all',
@@ -431,7 +436,7 @@ function renderResults() {
                 type: 'button',
                 id: 'copy-all-chat',
                 onclick: () => {
-                  void doCopy(chatText(state.results, settings.instruction), 'Copied all for ChatGPT');
+                  void doCopy(chatText(state.results, settings.instruction, settings.showDnd), 'Copied all for ChatGPT');
                   if (settings.openChatGPT) window.open('https://chatgpt.com/', '_blank', 'noopener');
                 },
               },
@@ -728,6 +733,7 @@ function applyShare(s: ShareState) {
         seed: s.seed ?? `${s.base}-${s.index}`,
         uniqueFrequency: s.uniqueFrequency,
         pins,
+        rerolls: s.art ? { art: s.art } : undefined,
         createdAt: Date.now(),
       }),
     ];
@@ -764,7 +770,9 @@ function showSettings() {
     },
     {
       change(patch) {
-        const chatChanged = patch.showChatGPT !== undefined && patch.showChatGPT !== settings.showChatGPT;
+        const chatChanged =
+          (patch.showChatGPT !== undefined && patch.showChatGPT !== settings.showChatGPT) ||
+          (patch.showDnd !== undefined && patch.showDnd !== settings.showDnd);
         settings = { ...settings, ...patch };
         saveSettings(settings);
         applyColorScheme();

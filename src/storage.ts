@@ -11,11 +11,9 @@ Rewrite the art brief below into one vivid paragraph of 60–90 words.
 Keep every element listed. Do not add new characters, objects or colours.
 Impossible or surreal materials are intentional: describe how they
 could look, do not correct or explain them away.
-Then give:
-- Silhouette: the shape language in one line (e.g. top-heavy, spiky, round and soft)
-- Focal point: where the eye should land first
-- Value plan: light, mid and dark areas, using the palette
-- 3 thumbnail composition ideas, one short line each
+Follow the brief's Shape, Focal point, Light & value and Camera notes, and
+say how each one shows up in the image. Then give 3 thumbnail composition
+ideas, one short line each.
 
 BRIEF:
 {{brief}}`;
@@ -32,6 +30,8 @@ export interface Settings {
   seenSample: boolean;
   /** Which folder the Saved library is showing. */
   libraryFilter: LibraryFilter;
+  /** Show D&D extras: stat line, dice rolls and the DM notes (hook card). Off = art-first. */
+  showDnd: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -45,6 +45,7 @@ export const DEFAULT_SETTINGS: Settings = {
   last: { category: 'character', themeChoice: 'any', count: 2, weirdness: 'mixed', lore: false },
   seenSample: false,
   libraryFilter: 'all',
+  showDnd: false,
 };
 
 interface Wrapped<T> {
@@ -129,8 +130,42 @@ export function isBrief(v: unknown): v is Brief {
   );
 }
 
+/** Earlier default story prompts (the D&D-heavy v1.3 one). */
+const OLD_STORY_INSTRUCTIONS = [
+  `You are a Dungeon Master and lore writer helping a fantasy concept artist.
+Below is an art brief and a rough lore draft built from it.
+Rewrite the lore as one vivid paragraph of 80–120 words, told the way a DM
+would tell it at the table. Keep every visual element in the brief true and
+keep the draft's beats (who made it, what it was for, what went wrong, where
+it is now). You may add sensory detail and one memorable name or place.
+Impossible or surreal materials are intentional: make them feel real.
+Keep the plot, rumour, job, patron, reward and twist; weave the rumour in as
+tavern talk and keep the twist as a separate "DM secret" line. Then write
+2–3 sentences of boxed read-aloud text a DM could read when the party first
+sees it, and name the single moment that would make the strongest illustration.
+
+BRIEF:
+{{brief}}
+
+LORE DRAFT:
+{{lore}}`,
+];
+
 /** Earlier default prompts: people who never edited them get the improved ones automatically. */
 const OLD_DEFAULT_INSTRUCTIONS = [
+  `You are an art director writing for a fantasy concept artist.
+Rewrite the art brief below into one vivid paragraph of 60–90 words.
+Keep every element listed. Do not add new characters, objects or colours.
+Impossible or surreal materials are intentional: describe how they
+could look, do not correct or explain them away.
+Then give:
+- Silhouette: the shape language in one line (e.g. top-heavy, spiky, round and soft)
+- Focal point: where the eye should land first
+- Value plan: light, mid and dark areas, using the palette
+- 3 thumbnail composition ideas, one short line each
+
+BRIEF:
+{{brief}}`,
   `You are an art director writing for a fantasy concept artist.
 Rewrite the art brief below into one vivid paragraph of 60–90 words.
 Keep every element listed. Do not add new characters, objects or colours.
@@ -146,6 +181,7 @@ export function loadSettings(): Settings {
   const s = read<Partial<Settings>>(K.settings, {}, isObj);
   const merged = { ...DEFAULT_SETTINGS, ...s, last: { ...DEFAULT_SETTINGS.last, ...(s.last ?? {}) } };
   if (OLD_DEFAULT_INSTRUCTIONS.includes(merged.instruction)) merged.instruction = DEFAULT_INSTRUCTION;
+  if (OLD_STORY_INSTRUCTIONS.includes(merged.storyInstruction)) merged.storyInstruction = DEFAULT_STORY_INSTRUCTION;
   return merged;
 }
 export const saveSettings = (s: Settings) => write(K.settings, s);

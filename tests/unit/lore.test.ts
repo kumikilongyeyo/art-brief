@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { storyText, DEFAULT_STORY_INSTRUCTION } from '../../src/chat';
 import { generateBatch, rerollSlots } from '../../src/engine/generate';
 import { findArticleErrors } from '../../src/engine/grammar';
-import { fullText, loreWords, LORE_MAX, LORE_MIN, makeLore, withLore, withoutLore, withThe } from '../../src/engine/lore';
+import { artText, fullText, loreWords, LORE_MAX, LORE_MIN, makeLore, withLore, withoutLore, withThe } from '../../src/engine/lore';
 import { WEIRDNESS, type Brief } from '../../src/engine/types';
 import { CATS, data, one, seeds } from './helpers';
 
@@ -117,18 +117,20 @@ describe('lore behaviour', () => {
 
   it('withoutLore and fullText', () => {
     const b = withLore(data, one('prop', 'FULL01'));
-    const text = fullText(b);
-    expect(text.startsWith(`${b.plainText}\n\nLore: ${b.lore!.text}\n`)).toBe(true);
+    expect(fullText(b)).not.toContain('Plot:'); // art-first: DM notes only with D&D details on
+    expect(fullText(b)).not.toContain('D&D: ');
+    const text = fullText(b, true);
+    expect(text.startsWith(`${b.plainText}\n\nLore: ${b.lore!.text}`)).toBe(true);
     expect(text).toContain(`Plot: ${b.lore!.spine}`);
     if (b.lore!.twist) expect(text).toContain(`Twist (DM only): ${b.lore!.twist}`);
     expect(withoutLore(b).lore).toBeUndefined();
-    expect(fullText(withoutLore(b))).toBe(b.plainText);
+    expect(fullText(withoutLore(b))).toBe(artText(b));
   });
 
   it('the story prompt carries both the brief and the draft', () => {
     const b = withLore(data, one('creature', 'STORY1'));
     const t = storyText(b, DEFAULT_STORY_INSTRUCTION);
-    expect(t).toContain(`BRIEF:\n${b.plainText}`);
+    expect(t).toContain(`BRIEF:\n${artText(b)}`);
     expect(t).toContain(`LORE DRAFT:\n${b.lore!.text}`);
     expect(storyText(b, 'Just make it good.')).toContain(b.lore!.text);
   });

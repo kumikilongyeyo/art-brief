@@ -50,6 +50,8 @@ export interface Lore {
   patron?: string;
   reward?: string;
   twist?: string;
+  /** One frozen image to paint, tied to the spine. */
+  moment?: string;
 }
 
 /** The eight plot spines; turn/now beats and hook lines require one of these tags. */
@@ -269,6 +271,8 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
   if (reward) lore.reward = reward;
   const twist = line('shared.lore-twist');
   if (twist) lore.twist = twist;
+  const moment = line(`${cat.id}.lore-moment`);
+  if (moment) lore.moment = moment;
   return lore;
 }
 
@@ -299,8 +303,22 @@ export function withoutLore(brief: Brief): Brief {
   return rest;
 }
 
-/** Brief text plus its story, for Copy / Copy all. */
-export function fullText(brief: Brief): string {
-  if (!brief.lore?.text) return brief.plainText;
-  return [brief.plainText, '', `Lore: ${brief.lore.text}`, ...hookLines(brief.lore)].join('\n');
+/** The brief without its D&D stat line (art-first copy). */
+export function artText(brief: Brief, dnd = false): string {
+  return dnd
+    ? brief.plainText
+    : brief.plainText
+        .split('\n')
+        .filter((l) => !l.startsWith('D&D: '))
+        .join('\n');
+}
+
+/** Brief text plus its story (and, with D&D details on, the stat line and DM hook card). */
+export function fullText(brief: Brief, dnd = false): string {
+  const base = artText(brief, dnd);
+  if (!brief.lore?.text) return base;
+  const out = [base, '', `Lore: ${brief.lore.text}`];
+  if (brief.lore.moment) out.push(`Moment to paint: ${brief.lore.moment}`);
+  if (dnd) out.push(...hookLines(brief.lore));
+  return out.join('\n');
 }

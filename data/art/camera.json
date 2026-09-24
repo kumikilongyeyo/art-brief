@@ -1,0 +1,206 @@
+{
+  "id": "shared.art-camera",
+  "category": "shared",
+  "slot": "art-camera",
+  "entries": [
+    {
+      "id": "3-4-view-full-body-eye",
+      "text": "3/4 view, full body, eye level",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "low-angle-hero-shot-looking-up",
+      "text": "low-angle hero shot, looking up",
+      "requires": [
+        "cat-character"
+      ],
+      "tags": [
+        "heroic",
+        "martial",
+        "noble"
+      ]
+    },
+    {
+      "id": "waist-up-portrait-looking-just-past",
+      "text": "waist-up portrait, looking just past the viewer",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "over-the-shoulder-glancing-back-at",
+      "text": "over-the-shoulder, glancing back at the viewer",
+      "requires": [
+        "cat-character"
+      ],
+      "tags": [
+        "stealth",
+        "trickster"
+      ]
+    },
+    {
+      "id": "front-view-plus-a-quick-back",
+      "text": "front view plus a quick back view, design-sheet style",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "high-angle-looking-down-small-in",
+      "text": "high angle looking down, small in a big space",
+      "requires": [
+        "cat-character"
+      ],
+      "tags": [
+        "melancholy",
+        "grim"
+      ]
+    },
+    {
+      "id": "3-4-product-view-on-plain",
+      "text": "3/4 product view on plain ground, plus one detail callout",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "front-and-side-orthographic-views-with",
+      "text": "front and side orthographic views, with a scale bar",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "weapon",
+        "tool",
+        "armour"
+      ]
+    },
+    {
+      "id": "held-in-a-hand-to-show",
+      "text": "held in a hand to show scale",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "held",
+        "jewellery",
+        "instrument"
+      ]
+    },
+    {
+      "id": "close-up-on-the-most-worn",
+      "text": "close-up on the most worn part, the rest out of focus",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "floating-against-darkness-lit-like-a",
+      "text": "floating against darkness, lit like a museum piece",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "relic",
+        "arcane"
+      ]
+    },
+    {
+      "id": "side-profile-for-a-clean-silhouette",
+      "text": "side profile for a clean silhouette read, plus a head close-up",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "low-angle-looming-over-the-viewer",
+      "text": "low angle, looming over the viewer",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "large",
+        "huge",
+        "giant"
+      ]
+    },
+    {
+      "id": "in-its-habitat-at-a-distance",
+      "text": "in its habitat at a distance, with a human figure for scale",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "3-4-view-mid-stride",
+      "text": "3/4 view mid-stride",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "legged",
+        "quadruped",
+        "biped"
+      ]
+    },
+    {
+      "id": "close-up-on-the-adaptation-the",
+      "text": "close-up on the adaptation, the body falling into shadow",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "worm-s-eye-view-from-the",
+      "text": "worm's-eye view from the ground",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "temple",
+        "holy",
+        "arcane"
+      ]
+    },
+    {
+      "id": "establishing-shot-at-a-distance-the",
+      "text": "establishing shot at a distance, the setting dominating",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "isometric-cutaway-showing-two-floors",
+      "text": "isometric cutaway showing two floors",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "guild",
+        "library",
+        "urban"
+      ]
+    },
+    {
+      "id": "the-front-entrance-at-human-eye",
+      "text": "the front entrance at human eye level",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "bird-s-eye-view-at-dusk",
+      "text": "bird's-eye view at dusk, windows glowing",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "city",
+        "village",
+        "night"
+      ]
+    }
+  ]
+}

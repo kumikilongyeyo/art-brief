@@ -1,0 +1,132 @@
+{
+  "id": "shared.art-light",
+  "category": "shared",
+  "slot": "art-light",
+  "entries": [
+    {
+      "id": "rim-light-from-behind-face-half",
+      "text": "rim light from behind, face half in shadow",
+      "tags": [
+        "shadow",
+        "stealth",
+        "night"
+      ]
+    },
+    {
+      "id": "cool-key-light-from-above-warm",
+      "text": "cool key light from above, warm bounce from below"
+    },
+    {
+      "id": "a-single-candle-source-with-deep",
+      "text": "a single candle source with deep falloff",
+      "tags": [
+        "gothic",
+        "grim",
+        "library"
+      ]
+    },
+    {
+      "id": "overcast-soft-light-forms-read-by",
+      "text": "overcast soft light, forms read by value alone",
+      "tags": [
+        "muted",
+        "frost"
+      ]
+    },
+    {
+      "id": "underlit-by-its-own-glow",
+      "text": "underlit by its own glow",
+      "tags": [
+        "luminous",
+        "arcane",
+        "fungal"
+      ]
+    },
+    {
+      "id": "backlit-silhouette-with-glowing-edges",
+      "text": "backlit silhouette with glowing edges",
+      "tags": [
+        "celestial",
+        "holy",
+        "radiant"
+      ]
+    },
+    {
+      "id": "dappled-light-through-leaves",
+      "text": "dappled light through leaves",
+      "tags": [
+        "forest",
+        "fey",
+        "flora"
+      ]
+    },
+    {
+      "id": "hard-noon-sun-and-crisp-cast",
+      "text": "hard noon sun and crisp cast shadows",
+      "tags": [
+        "desert",
+        "sunlit",
+        "day"
+      ]
+    },
+    {
+      "id": "firelight-on-one-side-moonlight-on",
+      "text": "firelight on one side, moonlight on the other",
+      "tags": [
+        "fire",
+        "moonlit",
+        "night"
+      ]
+    },
+    {
+      "id": "a-narrow-shaft-of-light-cutting",
+      "text": "a narrow shaft of light cutting through dust",
+      "tags": [
+        "ruin",
+        "temple",
+        "subterranean"
+      ]
+    },
+    {
+      "id": "lightning-flash-stark-whites-everything-else",
+      "text": "lightning flash: stark whites, everything else nearly black",
+      "tags": [
+        "storm"
+      ]
+    },
+    {
+      "id": "furnace-glow-from-below-sparks-in",
+      "text": "furnace glow from below, sparks in the air",
+      "tags": [
+        "forge",
+        "fire",
+        "magma"
+      ]
+    },
+    {
+      "id": "green-witchlight-sickly-and-flat",
+      "text": "green witchlight, sickly and flat",
+      "tags": [
+        "necrotic",
+        "cursed",
+        "undead"
+      ]
+    },
+    {
+      "id": "cold-blue-ambient-light-with-one",
+      "text": "cold blue ambient light with one warm accent",
+      "tags": [
+        "frost",
+        "water",
+        "abyssal"
+      ]
+    },
+    {
+      "id": "studio-clean-even-light-as-for",
+      "text": "studio-clean even light, as for a design sheet",
+      "requires": [
+        "cat-prop"
+      ]
+    }
+  ]
+}

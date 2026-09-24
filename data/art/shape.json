@@ -1,0 +1,450 @@
+{
+  "id": "shared.art-shape",
+  "category": "shared",
+  "slot": "art-shape",
+  "entries": [
+    {
+      "id": "angular-and-top-heavy-broad-shoulders",
+      "text": "angular and top-heavy: broad shoulders over a narrow base",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "martial",
+        "armour",
+        "fiend",
+        "giant"
+      ]
+    },
+    {
+      "id": "long-vertical-lines-a-slim-silhouette",
+      "text": "long vertical lines, a slim silhouette that reads from far away",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "elf",
+        "caster",
+        "celestial",
+        "large"
+      ]
+    },
+    {
+      "id": "round-compact-masses-with-one-sharp",
+      "text": "round, compact masses with one sharp accent",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "small",
+        "halfling",
+        "gnome",
+        "whimsical"
+      ]
+    },
+    {
+      "id": "a-heavy-triangle-wide-stance-low",
+      "text": "a heavy triangle: wide stance, low centre of gravity",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "dwarf",
+        "martial",
+        "giantkin",
+        "stone"
+      ]
+    },
+    {
+      "id": "spiky-and-asymmetric-nothing-at-rest",
+      "text": "spiky and asymmetric, nothing at rest",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "fiend",
+        "infernal",
+        "trickster",
+        "aberration"
+      ]
+    },
+    {
+      "id": "soft-s-curves-and-flowing-cloth",
+      "text": "soft S-curves and flowing cloth that hide the frame",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "fey",
+        "performer",
+        "cloth"
+      ]
+    },
+    {
+      "id": "a-hunched-silhouette-head-low-shoulders",
+      "text": "a hunched silhouette: head low, shoulders forward",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "stealth",
+        "undead",
+        "grim"
+      ]
+    },
+    {
+      "id": "a-clean-readable-silhouette-arms-clear",
+      "text": "a clean, readable silhouette: arms clear of the body",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "a-big-simple-shape-broken-by",
+      "text": "a big simple shape broken by one striking detail",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "layered-ragged-edges-that-suggest-decay",
+      "text": "layered, ragged edges that suggest decay",
+      "requires": [
+        "cat-character",
+        "cat-creature"
+      ],
+      "tags": [
+        "undead",
+        "necrotic",
+        "ruin"
+      ]
+    },
+    {
+      "id": "coiled-and-sinuous-every-line-flows",
+      "text": "coiled and sinuous: every line flows into the next",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "serpentine",
+        "limbless",
+        "aquatic"
+      ]
+    },
+    {
+      "id": "a-wide-low-mass-that-hugs",
+      "text": "a wide, low mass that hugs the ground",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "quadruped",
+        "shelled",
+        "insectoid"
+      ]
+    },
+    {
+      "id": "a-towering-vertical-shape-that-dwarfs",
+      "text": "a towering vertical shape that dwarfs the viewer",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "huge",
+        "giant",
+        "large"
+      ]
+    },
+    {
+      "id": "many-repeated-forms-legs-eyes-or",
+      "text": "many repeated forms, legs, eyes or tendrils, arranged in rhythm",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "multi-limbed",
+        "tentacled",
+        "aberration"
+      ]
+    },
+    {
+      "id": "an-amorphous-blob-anchored-by-one",
+      "text": "an amorphous blob anchored by one hard-edged element",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "amorphous",
+        "ooze",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "wings-spread-to-make-a-huge",
+      "text": "wings spread to make a huge, simple read",
+      "requires": [
+        "cat-creature"
+      ],
+      "tags": [
+        "winged",
+        "feathered",
+        "sky"
+      ]
+    },
+    {
+      "id": "a-strong-single-axis-long-straight",
+      "text": "a strong single axis: long, straight and balanced",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "weapon",
+        "held"
+      ]
+    },
+    {
+      "id": "a-heavy-base-with-a-delicate",
+      "text": "a heavy base with a delicate top",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "container",
+        "relic"
+      ]
+    },
+    {
+      "id": "a-circle-broken-by-one-jagged",
+      "text": "a circle broken by one jagged interruption",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "jewellery",
+        "worn"
+      ]
+    },
+    {
+      "id": "crisp-geometric-shapes-with-engraved-detail",
+      "text": "crisp geometric shapes with engraved detail inside",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "clockwork",
+        "tool",
+        "metal"
+      ]
+    },
+    {
+      "id": "an-organic-grown-shape-with-no",
+      "text": "an organic, grown shape with no straight lines",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "organic",
+        "wood",
+        "flora"
+      ]
+    },
+    {
+      "id": "a-compact-brick-of-a-shape",
+      "text": "a compact brick of a shape that feels heavy in the hand",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "book",
+        "container"
+      ]
+    },
+    {
+      "id": "elegant-tapering-curves-thin-at-the",
+      "text": "elegant tapering curves, thin at the tips",
+      "requires": [
+        "cat-prop"
+      ],
+      "tags": [
+        "instrument",
+        "elf",
+        "noble"
+      ]
+    },
+    {
+      "id": "rough-hand-made-shapes-with-visible",
+      "text": "rough, hand-made shapes with visible wear",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "a-simple-silhouette-with-one-oversized",
+      "text": "a simple silhouette with one oversized feature",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "a-strong-vertical-spire-against-a",
+      "text": "a strong vertical spire against a wide base",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "temple",
+        "arcane",
+        "holy"
+      ]
+    },
+    {
+      "id": "a-heavy-horizontal-mass-hunkered-into",
+      "text": "a heavy horizontal mass hunkered into the ground",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "dwarf",
+        "martial",
+        "stone"
+      ]
+    },
+    {
+      "id": "stacked-irregular-volumes-that-grew-over",
+      "text": "stacked, irregular volumes that grew over centuries",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "urban",
+        "ruin",
+        "guild"
+      ]
+    },
+    {
+      "id": "flowing-organic-curves-with-no-hard",
+      "text": "flowing organic curves with no hard corners",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "fey",
+        "flora",
+        "druidic"
+      ]
+    },
+    {
+      "id": "a-symmetrical-formal-front-that-hides",
+      "text": "a symmetrical, formal front that hides a messy back",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "court",
+        "noble"
+      ]
+    },
+    {
+      "id": "a-crooked-leaning-silhouette-that-looks",
+      "text": "a crooked, leaning silhouette that looks about to fall",
+      "requires": [
+        "cat-building"
+      ],
+      "tags": [
+        "ruin",
+        "cursed",
+        "whimsical"
+      ]
+    },
+    {
+      "id": "a-small-building-made-huge-by",
+      "text": "a small building made huge by its setting",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "one-dominant-shape-with-smaller-forms",
+      "text": "one dominant shape with smaller forms clustered around it",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "a-strong-diagonal-from-corner-to",
+      "text": "a strong diagonal from corner to corner",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "a-triangle-of-figures-with-the",
+      "text": "a triangle of figures with the focal figure at the peak",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "a-big-dark-shape-framing-a",
+      "text": "a big dark shape framing a small bright space",
+      "requires": [
+        "cat-scene"
+      ],
+      "tags": [
+        "dark",
+        "night",
+        "shadow"
+      ]
+    },
+    {
+      "id": "a-circle-of-figures-pulling-the",
+      "text": "a circle of figures pulling the eye to the centre",
+      "requires": [
+        "cat-scene"
+      ],
+      "tags": [
+        "festive",
+        "court"
+      ]
+    },
+    {
+      "id": "a-clear-foreground-midground-and-background",
+      "text": "a clear foreground, midground and background, one idea each",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "tiny-figures-against-an-overwhelming-shape",
+      "text": "tiny figures against an overwhelming shape",
+      "requires": [
+        "cat-scene"
+      ],
+      "tags": [
+        "mountain",
+        "huge",
+        "sky"
+      ]
+    },
+    {
+      "id": "a-zigzag-path-leading-the-eye",
+      "text": "a zigzag path leading the eye through the scene",
+      "requires": [
+        "cat-scene"
+      ],
+      "tags": [
+        "road",
+        "river"
+      ]
+    }
+  ]
+}

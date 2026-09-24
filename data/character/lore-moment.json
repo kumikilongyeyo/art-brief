@@ -1,0 +1,396 @@
+{
+  "id": "character.lore-moment",
+  "category": "character",
+  "slot": "lore-moment",
+  "entries": [
+    {
+      "id": "lantern-light-spills-across-an-empty",
+      "text": "Lantern light spills across an empty strongbox and onto {first}, {f:pose}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "tight-on-s-fingers-lifting-a",
+      "text": "Tight on {first}'s fingers lifting a stranger's purse, the lamplight catching {f:look}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "silhouetted-against-a-burning-window-vaults",
+      "text": "Silhouetted against a burning window, {al:species} {l:class} vaults the sill, a stolen reliquary under one arm",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-guard-s-torch-sweeps-past",
+      "text": "A guard's torch sweeps past {first}, {f:pose}, a stolen seal glinting at the belt",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "half-through-a-stolen-portal-glances",
+      "text": "Half through a stolen portal, {first} glances back, the doorway glow catching {f:look}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "stares-into-a-cracked-mirror-whose",
+      "text": "{first} stares into a cracked mirror whose reflection moves a heartbeat late, candlelight on {f:look}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "moonlight-catches-mid-change-one-hand",
+      "text": "Moonlight catches {al:species} {l:class} mid-change, one hand already a claw gripping the doorframe",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "ash-drifts-upward-around-as-a",
+      "text": "Ash drifts upward around {first}, {f:pose}, as a curse-mark flares under the skin",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "green-witchfire-from-a-broken-salt",
+      "text": "Green witchfire from a broken salt ring lights {first} from below, {f:look} thrown into hard relief",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "frost-blooms-where-a-ghostly-hand",
+      "text": "Frost blooms where a ghostly hand grips {first}'s {wearing}",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "close-on-s-thumb-pressing-blood",
+      "text": "Close on {first}'s thumb pressing blood onto a contract, the candle picking out {f:look}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "across-a-table-of-guttering-candles",
+      "text": "Across a table of guttering candles, {al:species} {l:class} grips a hand far too cold, and every flame leans away",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "at-a-moonlit-crossroads-a-stranger",
+      "text": "At a moonlit crossroads, a stranger's lantern falls on {first}, {f:pose}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-coin-spins-between-s-spread",
+      "text": "A coin spins between {first}'s spread fingers and a smiling figure in shadow, the {l:class}'s face lit by its glint",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "brimstone-smoke-parts-as-a-devil",
+      "text": "Brimstone smoke parts as a devil's quill hovers over {first}'s signature, hellfire picking out {f:look}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "inside-a-ring-of-toadstools-kisses",
+      "text": "Inside a ring of toadstools, {first} kisses a faerie queen's hand, dawn light catching {f:look}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-knife-slides-between-s-ribs",
+      "text": "A knife slides between {first}'s ribs from behind, the other hand still resting on their shoulder like a friend's",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "turns-too-late-caught-in-the",
+      "text": "{first} turns too late, {f:look} caught in the flash of a friend's crossbow",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-banquet-table-lies-overturned-mid",
+      "text": "A banquet table lies overturned mid-toast; {al:species} {l:class} stares at a poisoned cup, the wine still falling",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "on-an-empty-dock-in-lashing",
+      "text": "On an empty dock in lashing rain, {al:species} {l:class} watches a traitor's sail shrink to nothing",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "hanged-in-effigy-by-their-own",
+      "text": "Hanged in effigy by their own company, {first} watches from the treeline, the pyre's glow catching {f:look}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-lone-figure-in-a-whiteout",
+      "text": "A lone figure in a whiteout, {first} holds up a dying lantern, its last warm light on {f:look}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "seen-from-far-above-stands-at",
+      "text": "Seen from far above, {al:species} {l:class} stands at the heart of a ruined maze, every path curling back",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "waist-deep-in-black-water-lifts",
+      "text": "Waist-deep in black water, {first} lifts a torch toward a cave mouth that was not there yesterday",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "dust-sifts-through-a-single-sunbeam",
+      "text": "Dust sifts through a single sunbeam onto {first}, {f:pose}, in a hall no map remembers",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "adrift-on-a-shattered-mast-squints",
+      "text": "Adrift on a shattered mast, {first} squints at a lighthouse that should be dark, salt spray on {f:look}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "wind-driven-snow-erases-the-trail",
+      "text": "Wind-driven snow erases the trail behind {first}, {f:pose}, the aurora the only light",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "light-pours-from-s-eyes-and",
+      "text": "Light pours from {first}'s eyes and open mouth, {f:pose}, as something old wakes inside",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "close-on-the-s-hands-as",
+      "text": "Close on the {l:class}'s hands as dormant runes kindle under the skin, one by one, out to the fingertips",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "behind-their-own-shadow-peels-off",
+      "text": "Behind {al:species} {l:class}, their own shadow peels off the wall and reaches for the lamp",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-storm-of-loose-pages-whirls",
+      "text": "A storm of loose pages whirls around {first}, {f:pose}, every candle in the room blown sideways",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "sigils-blaze-awake-across-the-tower",
+      "text": "Sigils blaze awake across the tower floor beneath {first}, {f:pose}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-column-of-dawn-light-strikes",
+      "text": "A column of dawn light strikes {first} through the chapel roof, turning {f:look} to gold",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "behind-a-sleeping-village-glows-in",
+      "text": "Behind {first}, {f:pose}, a sleeping village glows in the valley below",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "fills-a-narrow-doorway-torchlight-on",
+      "text": "{al:species} {l:class} fills a narrow doorway, torchlight on raised steel, a crowd of enemy shadows on the wall",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "s-palm-rests-flat-on-a",
+      "text": "{first}'s palm rests flat on a sealed door, {f:look} half-lit by the last torch",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "snow-rimes-s-at-a-lonely",
+      "text": "Snow rimes {first}'s {wearing} at a lonely gate",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-dragon-s-shadow-sweeps-over",
+      "text": "A dragon's shadow sweeps over {al:species} {l:class} standing firm before a fallen king",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "every-candle-in-the-oracle-s",
+      "text": "Every candle in the oracle's cave bends toward {first}, {f:pose}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-comet-splits-the-sky-over",
+      "text": "A comet splits the sky over {al:species} {l:class}, the whole crowd below turning to point",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "close-on-a-crumbling-fresco-of",
+      "text": "Close on a crumbling fresco of a hero with {f:look}, {first}'s torchlit hand frozen beside it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-blind-seer-seizes-s-wrist",
+      "text": "A blind seer seizes {first}'s wrist across the fire, sparks rising as a finger traces {f:look}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "an-angel-s-feather-drifts-down",
+      "text": "An angel's feather drifts down onto {first}'s open palm, a shaft of gold light falling with it",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "painted-in-ochre-on-a-torchlit",
+      "text": "Painted in ochre on a torchlit cave wall: {al:species} {l:class}, drawn a thousand years before {first} was born",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    }
+  ]
+}

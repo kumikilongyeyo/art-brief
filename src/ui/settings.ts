@@ -123,6 +123,23 @@ export function openSettings(settings: Settings, info: SettingsInfo, hd: Setting
     ),
     h(
       'section',
+      {},
+      h('h3', {}, 'D&D details'),
+      h(
+        'label',
+        { class: 'check' },
+        h('input', {
+          type: 'checkbox',
+          id: 'opt-dnd',
+          checked: settings.showDnd,
+          onchange: (e: Event) => hd.change({ showDnd: (e.target as HTMLInputElement).checked }),
+        }),
+        'Show D&D details (stat line, dice rolls, DM notes)',
+      ),
+      h('p', { class: 'small' }, 'Off keeps cards art-first. The details are still there when you turn this on.'),
+    ),
+    h(
+      'section',
       { role: 'radiogroup', 'aria-labelledby': 'uq-h' },
       h('h3', { id: 'uq-h' }, 'Unique trait frequency'),
       radio('uq', 'never', 'Never', settings.uniqueFrequency === 'never', () => hd.change({ uniqueFrequency: 'never' })),

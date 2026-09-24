@@ -16,6 +16,7 @@ export interface CardHandlers {
   rerollLore: (index: number) => void;
   hideLore: (index: number) => void;
   refineLore: (index: number) => void;
+  rerollArt: (index: number) => void;
 }
 
 export interface CardOptions {
@@ -24,6 +25,8 @@ export interface CardOptions {
   /** Folder name when saved, shown on the folder button. */
   folderName?: string;
   showChatGPT: boolean;
+  /** D&D extras (stat line, dice rolls, DM notes). Off = art-first. */
+  showDnd?: boolean;
   sample?: boolean;
   data: DataSet;
 }
@@ -74,6 +77,41 @@ function rollChip(brief: Brief, slot: SlotId, o: CardOptions): HTMLElement | nul
   return roll ? h('span', { class: 'roll', title: `Rolled ${roll} on d100`, 'aria-label': `d100 roll ${roll}` }, String(roll)) : null;
 }
 
+/** How to draw it: shape language, focal point, light & value, camera. */
+function artBlock(brief: Brief, o: CardOptions, hd: CardHandlers): HTMLElement | null {
+  const a = brief.art;
+  if (!a) return null;
+  const row = (label: string, text: string | undefined) =>
+    text ? h('div', { class: 'art-row' }, h('dt', {}, label), h('dd', {}, text)) : null;
+  const valueLabel = brief.category === 'building' || brief.category === 'scene' ? 'Value' : 'Light & value';
+  return h(
+    'section',
+    { class: 'art', 'aria-label': 'Art direction' },
+    h(
+      'div',
+      { class: 'art-head' },
+      h('h3', { class: 'art-title' }, 'Direction'),
+      o.sample
+        ? null
+        : h(
+            'button',
+            {
+              class: 'mini',
+              type: 'button',
+              'aria-label': 'Reroll art direction',
+              title: 'Another take on shape, light and camera',
+              'data-focus': `art-reroll:${o.index}`,
+              onclick: () => hd.rerollArt(o.index),
+            },
+            icon('reroll'),
+          ),
+    ),
+    h('dl', { class: 'art-lines' }, row('Shape', a.shape), row('Focal point', a.focal), row(valueLabel, a.light), row('Camera', a.camera)),
+    a.deliverable ? h('p', { class: 'deliverable' }, h('span', { class: 'deliverable-label' }, 'Deliverables'), a.deliverable) : null,
+    a.note ? h('p', { class: 'ad-note' }, h('span', { class: 'ad-note-label' }, 'AD note'), `“${a.note}.”`) : null,
+  );
+}
+
 /** D&D job-board lines under the story; the twist stays hidden until revealed. */
 function hookCard(brief: Brief): HTMLElement | null {
   const l = brief.lore;
@@ -81,8 +119,9 @@ function hookCard(brief: Brief): HTMLElement | null {
   const row = (label: string, text: string | undefined, cls = '') =>
     text ? h('div', { class: `hook-row ${cls}` }, h('dt', {}, label), h('dd', {}, text)) : null;
   return h(
-    'div',
+    'details',
     { class: 'hook' },
+    h('summary', {}, 'DM notes'),
     h(
       'dl',
       { class: 'hook-lines' },
@@ -108,6 +147,13 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
   const card = h('article', { class: `card${o.sample ? ' sample' : ''}`, 'data-brief-id': brief.id, 'aria-label': brief.title });
 
   if (o.sample) card.append(h('span', { class: 'sample-tag' }, 'Sample — press Generate for your own'));
+  card.append(
+    h(
+      'p',
+      { class: 'overline' },
+      `Art brief · ${o.data.categories[brief.category]?.name ?? brief.category} concept · #${brief.base}-${brief.index + 1}`,
+    ),
+  );
 
   const titleLocked = isLocked(brief, tpl.titleLock);
   card.append(
@@ -118,7 +164,7 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
         'div',
         { class: 'title-block' },
         h('h2', { class: 'title' }, brief.title),
-        brief.stat ? h('p', { class: 'stat' }, icon('d20'), brief.stat) : null,
+        brief.stat && o.showDnd ? h('p', { class: 'stat' }, icon('d20'), brief.stat) : null,
       ),
       o.sample ? null : lineActions(brief, 'Title', tpl.titleLock, tpl.titleReroll, o, hd),
     ),
@@ -156,12 +202,14 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
       h(
         'div',
         { class: `row line${locked ? ' locked' : ''}`, 'data-slot': line.slot },
-        h('dt', {}, line.label, rollChip(brief, line.slot, o)),
+        h('dt', {}, line.label, o.showDnd ? rollChip(brief, line.slot, o) : null),
         h('dd', {}, h('span', { class: 'value' }, value), o.sample ? null : lineActions(brief, line.label, slots, slots, o, hd)),
       ),
     );
   }
   card.append(dl);
+  const art = artBlock(brief, o, hd);
+  if (art) card.append(art);
 
   if (brief.lore?.text) {
     card.append(
@@ -197,7 +245,8 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
               ),
         ),
         h('p', { class: 'lore-text' }, brief.lore.text),
-        hookCard(brief),
+        brief.lore.moment ? h('p', { class: 'moment' }, h('span', { class: 'moment-label' }, 'Moment to paint'), brief.lore.moment) : null,
+        o.showDnd ? hookCard(brief) : null,
         o.sample
           ? null
           : h(

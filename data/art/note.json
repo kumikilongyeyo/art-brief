@@ -1,0 +1,240 @@
+{
+  "id": "shared.art-note",
+  "category": "shared",
+  "slot": "art-note",
+  "entries": [
+    {
+      "id": "nail-the-silhouette-at-thumbnail-size",
+      "text": "Nail the silhouette at thumbnail size before any rendering"
+    },
+    {
+      "id": "keep-the-palette-tight-no-hues",
+      "text": "Keep the palette tight: no hues outside the five swatches"
+    },
+    {
+      "id": "the-focal-point-is-the-hook",
+      "text": "The focal point is the hook, so it has to read in the first second"
+    },
+    {
+      "id": "less-detail-than-you-think-detail",
+      "text": "Less detail than you think; detail only where the eye should land"
+    },
+    {
+      "id": "push-the-value-contrast-this-lives",
+      "text": "Push the value contrast; this lives or dies in greyscale"
+    },
+    {
+      "id": "the-materials-are-impossible-on-purpose",
+      "text": "The materials are impossible on purpose, so make them look touchable"
+    },
+    {
+      "id": "one-strong-idea-beats-three-medium",
+      "text": "One strong idea beats three medium ones"
+    },
+    {
+      "id": "readability-first-cool-second",
+      "text": "Readability first, cool second"
+    },
+    {
+      "id": "keep-the-background-quiet-so-the",
+      "text": "Keep the background quiet so the subject can talk"
+    },
+    {
+      "id": "ground-the-mundane-parts-in-real",
+      "text": "Ground the mundane parts in real reference so the magic stands out"
+    },
+    {
+      "id": "i-want-a-strong-feeling-over",
+      "text": "I want a strong feeling over clean edges on this one"
+    },
+    {
+      "id": "the-story-is-context-not-a",
+      "text": "The story is context, not a checklist; pick the part that makes the best image"
+    },
+    {
+      "id": "avoid-symmetry-unless-you-are-making",
+      "text": "Avoid symmetry unless you are making a point with it"
+    },
+    {
+      "id": "if-the-pose-does-not-tell",
+      "text": "If the pose does not tell me the personality, try again",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "body-language-first-the-face-last",
+      "text": "Body language first, the face last",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "tell-me-who-they-are-from",
+      "text": "Tell me who they are from how the gear is worn, not from extra props",
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "it-should-look-used-scratches-repairs",
+      "text": "It should look used: scratches, repairs, fingerprints",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "show-what-it-does-in-the",
+      "text": "Show what it does in the design itself, not just in the notes",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "someone-will-build-this-in-3d",
+      "text": "Someone will build this in 3D, so give it a clear front and back",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "make-it-plausible-how-does-it",
+      "text": "Make it plausible: show how it eats, sees and moves",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "the-silhouette-should-read-as-dangerous",
+      "text": "The silhouette should read as dangerous from across a field",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "show-how-big-it-is-without",
+      "text": "Show how big it is without needing a ruler",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "where-do-people-come-in-and",
+      "text": "Show me where people come in and where the light gets in",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "buildings-are-characters-too-so-give",
+      "text": "Buildings are characters too, so give it a posture",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "clear-focal-figure-first-the-crowd",
+      "text": "Clear focal figure first, the crowd second",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "lead-the-eye-in-with-light",
+      "text": "Lead the eye in with light, not with lines everywhere",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "let-the-dark-eat-the-edges",
+      "text": "Let the dark eat the edges; only the focal point gets clean light",
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "warm-light-should-feel-dangerous-here",
+      "text": "Warm light should feel dangerous here, not cosy",
+      "themes": [
+        "infernal",
+        "elemental-fire"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "keep-the-whimsy-but-something-should",
+      "text": "Keep the whimsy, but something should feel slightly wrong",
+      "themes": [
+        "fey"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "cold-palette-one-warm-accent-nothing",
+      "text": "Cold palette, one warm accent, nothing else",
+      "themes": [
+        "frost"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "let-water-and-weather-do-half",
+      "text": "Let water and weather do half the storytelling",
+      "themes": [
+        "nautical"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "light-comes-from-the-strange-things",
+      "text": "Light comes from the strange things here, not the sky",
+      "themes": [
+        "underdark"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "make-the-magic-feel-engineered-not",
+      "text": "Make the magic feel engineered, not sparkly",
+      "themes": [
+        "arcane"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "weathered-and-hand-made-with-no",
+      "text": "Weathered and hand-made, with no factory edges",
+      "themes": [
+        "wild-primal"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "geometry-can-be-wrong-on-purpose",
+      "text": "Geometry can be wrong on purpose here, so commit to it",
+      "themes": [
+        "planar"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "clean-heroic-shapes-that-read-from",
+      "text": "Clean, heroic shapes that read from a book cover",
+      "themes": [
+        "high-fantasy"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "radiance-should-feel-heavy-and-holy",
+      "text": "Radiance should feel heavy and holy, not glittery",
+      "themes": [
+        "celestial"
+      ],
+      "weight": 8
+    }
+  ]
+}

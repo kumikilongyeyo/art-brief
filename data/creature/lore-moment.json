@@ -1,0 +1,384 @@
+{
+  "id": "creature.lore-moment",
+  "category": "creature",
+  "slot": "lore-moment",
+  "entries": [
+    {
+      "id": "a-poacher-s-net-drops-over",
+      "text": "A poacher's net drops over {name}, {f:scale}, as it bursts across {the:habitat}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-gloved-hand-lifts-an-egg",
+      "text": "A gloved hand lifts an egg from the nest of {name}, {f:adaptation} glinting behind",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "silhouetted-against-a-burning-wagon-tears",
+      "text": "Silhouetted against a burning wagon, {name} tears open a smuggler's cage",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "paces-a-gilded-cage-on-a",
+      "text": "{name} paces a gilded cage on a noble's lawn, {f:adaptation} dulled under lantern light",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-pixie-flits-away-with-a",
+      "text": "A pixie flits away with a stolen egg as {name} rears behind it in the moonlight",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "writhes-in-a-ring-of-moonlight",
+      "text": "{name} writhes in a ring of moonlight, {f:adaptation} spreading like rot",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-hex-sign-smoulders-on-the",
+      "text": "A hex-sign smoulders on the flank of {name} as it bolts across {the:habitat}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "every-other-animal-flees-stands-alone",
+      "text": "Every other animal flees; {name}, {f:scale}, stands alone in a circle of dead grass",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "hollow-eyed-and-starving-ribs-showing",
+      "text": "Hollow-eyed and starving, {name} {f:behaviour}, ribs showing in the grey light",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "grave-mist-pours-from-the-wounds",
+      "text": "Grave-mist pours from the wounds of {name} as it drags itself across {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "crows-circle-as-it-staggers-through",
+      "text": "Crows circle {name} as it staggers through a burned village, {f:adaptation} caked in ash",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "bows-to-a-hooded-figure-over",
+      "text": "{name} bows to a hooded figure over a candle ring, {f:adaptation} glowing in the smoke",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-druid-presses-a-palm-to",
+      "text": "A druid presses a palm to the brow of {name}, {f:scale}, and every leaf around them turns silver",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "close-on-an-open-palm-offering",
+      "text": "Close on an open palm offering a heart-shaped stone to {name}, its breath fogging the air",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "carries-a-sleeping-child-across-an",
+      "text": "{name} carries a sleeping child across {the:habitat}, an old pact's golden collar at its neck",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-devil-clips-a-brass-tag",
+      "text": "A devil clips a brass tag to the ear of {name} and seals it with a drop of fire",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-hunter-it-trusted-raises-a",
+      "text": "The hunter it trusted raises a spear behind {name}, which is still eating from their hand",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "close-on-an-arrow-in-the",
+      "text": "Close on an arrow in the flank of {name}, fletched in its keeper's colours",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "turns-on-its-own-pack-lit",
+      "text": "{name} turns on its own pack, {f:adaptation} lit by a lightning flash",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "chained-in-a-torchlit-arena-stares",
+      "text": "Chained in a torchlit arena, {name}, {f:scale}, stares up at the keeper who sold it",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-clan-s-drums-fall-silent",
+      "text": "The clan's drums fall silent as {name} is led into a pit by its own tamer",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-last-of-its-kind-stands",
+      "text": "The last of its kind, {name} stands at the edge of {the:habitat}, dwarfed by an empty sky",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-lantern-swings-into-a-cave",
+      "text": "A lantern swings into a cave and finds {name} asleep, {f:adaptation} rising and falling",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "far-below-the-surface-drifts-past",
+      "text": "Far below the surface, {name} drifts past a ruined city, {f:adaptation} lit by one sunbeam",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "seen-from-a-hunter-s-hide",
+      "text": "Seen from a hunter's hide: {name} {f:behaviour}, unaware it has been found after centuries",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-diver-s-lantern-finds-in",
+      "text": "A diver's lantern finds {name} in a wreck's rigging, {f:adaptation} swaying with the tide",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "blizzard-snow-half-buries-its-breath",
+      "text": "Blizzard snow half-buries {name}, its breath the only warmth left across {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "ice-cracks-away-from-in-sheets",
+      "text": "Ice cracks away from {name} in sheets as one eye opens, {f:adaptation} steaming",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "close-on-a-fossil-wall-as",
+      "text": "Close on a fossil wall as {name} tears free, shards of stone frozen in mid-air",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "heaves-up-out-of-the-earth",
+      "text": "{name} heaves up out of the earth, soil pouring off {f:adaptation}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "rises-for-the-first-time-in",
+      "text": "{name}, {f:scale}, rises for the first time in a thousand years, silhouetted against the dawn",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "lava-splits-open-and-hauls-itself",
+      "text": "Lava splits open and {name} hauls itself out, {f:adaptation} glowing cherry-red",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "glowing-spores-burst-from-the-cavern",
+      "text": "Glowing spores burst from the cavern floor as {name} unfolds from its long sleep",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "rears-across-the-doorway-flaring-as",
+      "text": "{name} rears across the doorway, {f:adaptation} flaring as torchlight hits it",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "curls-around-a-single-glowing-egg",
+      "text": "{name} curls around a single glowing egg, one eye open toward the approaching torches",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "behind-raiders-torches-strung-across",
+      "text": "Behind {name}, {f:scale}: raiders' torches strung across {the:habitat}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-child-sleeps-against-as-it",
+      "text": "A child sleeps against {name} as it watches the treeline, {f:adaptation} bristling",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "spreads-itself-over-a-shrine-in",
+      "text": "{name} spreads itself over a shrine in a shaft of gold light, {f:adaptation} shining",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "lands-on-the-temple-roof-at",
+      "text": "{name} lands on the temple roof at the stroke of midnight, the crowd below all pointing",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "an-ancient-cave-painting-of-flickers",
+      "text": "An ancient cave painting of {name} flickers in torchlight, the real one's shadow falling across it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-white-comet-crosses-the-sky",
+      "text": "A white comet crosses the sky as {name} {f:behaviour}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "every-bird-across-falls-silent-and",
+      "text": "Every bird across {the:habitat} falls silent and turns toward {name}, {f:scale}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-scholar-s-star-chart-flutters",
+      "text": "A scholar's star chart flutters loose as {name} passes overhead, exactly as drawn",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    }
+  ]
+}

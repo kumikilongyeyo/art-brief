@@ -159,7 +159,7 @@ describe('prompt upgrade', () => {
     resetStorageProbe();
     store.set('ab:settings', JSON.stringify({ schemaVersion: 1, value: { instruction: old } }));
     expect(loadSettings().instruction).toBe(DEFAULT_INSTRUCTION);
-    expect(DEFAULT_INSTRUCTION).toContain('Silhouette');
+    expect(DEFAULT_INSTRUCTION).toContain('Shape, Focal point');
     store.set('ab:settings', JSON.stringify({ schemaVersion: 1, value: { instruction: 'My own prompt {{brief}}' } }));
     expect(loadSettings().instruction).toBe('My own prompt {{brief}}');
   });

@@ -71,6 +71,7 @@ export const MIN_ENTRIES: Record<string, number> = {
   'shared.lore-reward': 30,
   'shared.lore-twist': 48,
   ...Object.fromEntries(['character', 'prop', 'creature', 'building', 'scene'].map((c) => [`${c}.lore-rumour`, 24])),
+  ...Object.fromEntries(['character', 'prop', 'creature', 'building', 'scene'].map((c) => [`${c}.lore-moment`, 24])),
   ...Object.fromEntries(
     ['character', 'prop', 'creature', 'building', 'scene'].flatMap((c) =>
       ['origin', 'purpose', 'turn', 'now'].map((b) => [`${c}.lore-${b}`, 14]),
@@ -157,7 +158,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
     files[rel] = json;
     if (schema === 'table.schema.json') {
       const t = json as Table;
-      const expected = rel.replace(/^(names\/words|lore)\//, 'shared/').replace(/\.json$/, '');
+      const expected = rel.replace(/^(names\/words|lore|art)\//, 'shared/').replace(/\.json$/, '');
       const [cat, slot] = expected.includes('/') ? expected.split('/') : ['shared', expected];
       if (t.id !== `${t.category}.${t.slot}`) errors.push(`${rel}: id "${t.id}" must equal "<category>.<slot>"`);
       if (cat !== t.category && !(cat === 'shared' && t.category === 'shared'))
@@ -195,9 +196,10 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       tagOk(`${w} requires`, e.requires);
       tagOk(`${w} excludes`, e.excludes);
       themeOk(w, e.themes);
-      const isLoreBeat = /\.lore-(origin|purpose|turn|now|rumour)$/.test(t.id);
+      const isLoreBeat = /\.lore-(origin|purpose|turn|now|rumour|moment)$/.test(t.id);
       const isHookLine = /^shared\.lore-(job|twist)$/.test(t.id);
-      checkText(w, e.text, errors, isLoreBeat ? 170 : isHookLine ? 130 : 90);
+      const isArtLine = t.id.startsWith('shared.art-');
+      checkText(w, e.text, errors, isLoreBeat ? 170 : isHookLine || isArtLine ? 130 : 90);
       if (SPINE_TABLES.test(t.id) && !e.spines?.length) errors.push(`${w}: needs "spines" (which plots this line belongs to)`);
       if (t.id !== 'scene.event' && e.people) errors.push(`${w}: "people" only belongs in scene.event`);
       if (!SPINE_TABLES.test(t.id) && e.spines) errors.push(`${w}: "spines" only belongs in turn/now/rumour/job/twist tables`);
@@ -288,6 +290,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       ['turn', 3, 0],
       ['now', 3, 2],
       ['rumour', 2, 0],
+      ['moment', 3, 0],
     ] as const) {
       const t = data.tables[`${cat.id}.lore-${slot}`];
       if (!t || !t.entries.some((e) => e.spines)) continue;
@@ -335,7 +338,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
 }
 
 const CHARACTER_ONLY = new Set(['first', 'wearing', 'traits']);
-const SPINE_TABLES = /\.lore-(turn|now|rumour)$|^shared\.lore-(job|twist)$/;
+const SPINE_TABLES = /\.lore-(turn|now|rumour|moment)$|^shared\.lore-(job|twist)$/;
 /** Hook lines are shared by every category, so they may only use category-neutral placeholders. */
 const HOOK_OK = new Set(['name', 'subj', 'obj', 'poss', 'npc', 'npcname', 'place', 'era']);
 
