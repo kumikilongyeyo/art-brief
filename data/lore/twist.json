@@ -1,0 +1,757 @@
+{
+  "id": "shared.lore-twist",
+  "category": "shared",
+  "slot": "lore-twist",
+  "entries": [
+    {
+      "id": "the-client-is-the-real-thief-and",
+      "text": "the client is the real thief and needs someone to take the blame",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-client-is-a-doppelganger-wearing-the",
+      "text": "the client is a doppelganger wearing the rightful owner's face",
+      "spines": [
+        "stolen",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-promised-reward-is-loot-from-the",
+      "text": "the promised reward is loot from the very same heist",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "npcname-stole-it-to-keep-it-from",
+      "text": "{npcname} stole it to keep it from someone far worse",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-thieves-were-hired-by-the-city",
+      "text": "the thieves were hired by the city watch",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-theft-was-a-distraction-from-a",
+      "text": "the theft was a distraction from a far bigger job the same night",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "whoever-took-it-is-being-hunted-by",
+      "text": "whoever took it is being hunted by something older than the party",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "what-the-party-recovers-is-a-forgery",
+      "text": "what the party recovers is a forgery; the original never left the vault",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "subj-went-willingly-and-does-not-want",
+      "text": "{subj} went willingly and does not want to be rescued",
+      "spines": [
+        "stolen",
+        "lost"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "the-squatters-hold-the-true-deed-the",
+      "text": "the squatters hold the true deed; the client forged theirs",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "the-thieves-were-mind-flayer-thralls-and",
+      "text": "the thieves were mind flayer thralls, and the elder brain is still listening",
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-curse-moves-to-whoever-breaks-it",
+      "text": "the curse moves to whoever breaks it",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-moves-to-whoever-returns-obj",
+      "text": "the curse moves to whoever returns {obj}",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "the-client-laid-the-curse-and-wants",
+      "text": "the client laid the curse and wants the party to spread it further",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-is-the-only-thing-holding",
+      "text": "the curse is the only thing holding something worse at bay",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "npcname-never-died-the-curse-is-what",
+      "text": "{npcname} never died; the curse is what keeps them walking",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-counter-rite-needs-a-willing-sacrifice",
+      "text": "the counter-rite needs a willing sacrifice, and the client knows it",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-was-a-punishment-and-the",
+      "text": "the curse was a punishment, and the victims earned it",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-priest-offering-help-is-the-one",
+      "text": "the priest offering help is the one feeding the curse",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-is-not-on-obj-it",
+      "text": "the curse is not on {obj}; it falls on everyone who looks too long",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-on-the-place-is-a",
+      "text": "the curse on the place is a ward, and breaking it opens a gate",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "the-dead-the-curse-raised-are-the",
+      "text": "the dead the curse raised are the client's own family",
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-party-is-the-price-named-in",
+      "text": "the party is the price named in the bargain",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "one-of-the-party-already-signed-the",
+      "text": "one of the party already signed the same contract, in a dream",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-devil-holding-the-contract-wants-it",
+      "text": "the devil holding the contract wants it broken, for reasons of its own",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-client-is-the-collector-in-disguise",
+      "text": "the client is the collector in disguise",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-bargain-was-paid-long-ago-and",
+      "text": "the bargain was paid long ago, and the payment is still walking around",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "npcname-sold-the-same-debt-to-two",
+      "text": "{npcname} sold the same debt to two different collectors",
+      "spines": [
+        "bargain",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "breaking-the-contract-frees-something-the-bargain",
+      "text": "breaking the contract frees something the bargain was keeping bound",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-loophole-is-a-trap-written-in",
+      "text": "the loophole is a trap, written in on purpose",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-place-itself-was-the-price-and",
+      "text": "the place itself was the price, and it is overdue",
+      "spines": [
+        "bargain"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "the-devil-s-contract-lists-the-party",
+      "text": "the devil's contract lists the party's patron as co-signer",
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-archfey-sees-the-whole-affair-as",
+      "text": "the archfey sees the whole affair as a courtship, and the party as gifts",
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "fey"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-client-is-the-traitor-quietly-cleaning",
+      "text": "the client is the traitor, quietly cleaning up witnesses",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "npcname-never-died-and-has-been-planning",
+      "text": "{npcname} never died and has been planning this for years",
+      "spines": [
+        "betrayed",
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-victim-arranged-the-betrayal-to-fake",
+      "text": "the victim arranged the betrayal to fake their own ruin",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-was-charmed-at-the-time",
+      "text": "the betrayer was charmed at the time and remembers none of it",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "one-of-the-party-s-past-patrons",
+      "text": "one of the party's past patrons paid for the betrayal",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-traitor-was-right-the-betrayal-saved",
+      "text": "the traitor was right: the betrayal saved a city",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-witness-the-party-is-protecting-is",
+      "text": "the witness the party is protecting is a mimic, and it is hungry",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-proof-of-betrayal-is-a-forgery",
+      "text": "the proof of betrayal is a forgery planted by the real traitor",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "subj-was-the-one-who-betrayed-first",
+      "text": "{subj} was the one who betrayed first",
+      "spines": [
+        "betrayed"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "the-traitor-fled-to-sigil-and-paid",
+      "text": "the traitor fled to Sigil and paid the dabus to look the other way",
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "planar"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-heroic-client-is-a-red-dragon",
+      "text": "the heroic client is a red dragon wearing a human shape",
+      "spines": [
+        "betrayed",
+        "prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "subj-was-never-lost-someone-hid-obj",
+      "text": "{subj} was never lost; someone hid {obj} on purpose",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "the-rival-searchers-are-the-client-s",
+      "text": "the rival searchers are the client's own knives, waiting for the party to finish",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "the-map-is-a-mimic-and-it",
+      "text": "the map is a mimic, and it knows the way to its own lair",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "npcname-found-it-first-and-never-came",
+      "text": "{npcname} found it first and never came back",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "those-who-lost-it-did-so-on",
+      "text": "those who lost it did so on purpose, and will kill to keep it lost",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "the-first-expedition-is-still-down-there",
+      "text": "the first expedition is still down there and does not want rescuing",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "time-runs-differently-where-it-was-lost",
+      "text": "time runs differently where it was lost; decades have passed there",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "what-comes-back-is-not-subj-something",
+      "text": "what comes back is not {subj}; something has been wearing {poss} shape",
+      "spines": [
+        "lost",
+        "awakened"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "subj-does-not-want-to-be-found",
+      "text": "{subj} does not want to be found and has built a new life",
+      "spines": [
+        "lost"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "the-wreck-rests-on-the-back-of",
+      "text": "the wreck rests on the back of a sleeping dragon turtle",
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-thaw-that-frees-it-will-also",
+      "text": "the thaw that frees it will also free what the ice was holding",
+      "spines": [
+        "lost",
+        "awakened"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-monster-is-protecting-something-the-client",
+      "text": "the ‘monster’ is protecting something the client wants",
+      "spines": [
+        "awakened",
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-waking-was-the-client-s-doing",
+      "text": "the waking was the client's doing, and it went wrong",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "what-woke-is-friendly-what-is-hunting",
+      "text": "what woke is friendly; what is hunting it is not",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "what-woke-only-wants-to-go-home",
+      "text": "what woke only wants to go home, and home is {place}",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "every-time-it-is-put-back-to",
+      "text": "every time it is put back to sleep, it wakes stronger",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-waking-was-foretold-and-a-cult",
+      "text": "the waking was foretold, and a cult is already celebrating",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "putting-it-back-to-sleep-will-kill",
+      "text": "putting it back to sleep will kill whoever woke it: the client",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "subj-is-not-possessed-subj-is-remembering",
+      "text": "{subj} is not possessed; {subj} is remembering a past life",
+      "spines": [
+        "awakened"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "what-woke-beneath-the-place-is-its",
+      "text": "what woke beneath the place is its original owner, and it wants the deed back",
+      "spines": [
+        "awakened"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "what-woke-in-the-forge-is-an",
+      "text": "what woke in the forge is an elemental lord, and it is still small",
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-runes-that-woke-it-were-carved",
+      "text": "the runes that woke it were carved by the client's own guild",
+      "spines": [
+        "awakened",
+        "betrayed"
+      ],
+      "themes": [
+        "arcane"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-guardian-is-not-keeping-thieves-out",
+      "text": "the guardian is not keeping thieves out; it is keeping something in",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-client-wants-the-guardian-gone-to",
+      "text": "the client wants the guardian gone to loot what it protects",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-guarded-chest-is-empty-the-guardian",
+      "text": "the guarded chest is empty; the guardian itself is the treasure",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-ward-holds-only-while-the-guardian",
+      "text": "the ward holds only while the guardian lives, and the client knows it",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-raiders-are-the-rightful-owners-of",
+      "text": "the raiders are the rightful owners of what is being guarded",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-old-guardian-is-dying-and-has",
+      "text": "the old guardian is dying and has chosen one of the party as successor",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "npcname-set-the-guardian-there-and-is",
+      "text": "{npcname} set the guardian there and is on the way to collect",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "subj-cannot-leave-poss-post-without-dying",
+      "text": "{subj} cannot leave {poss} post without dying",
+      "spines": [
+        "guardian"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "the-place-is-a-prison-and-the",
+      "text": "the place is a prison, and the party is guarding the wrong side of the door",
+      "spines": [
+        "guardian"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "the-celestial-warden-has-fallen-and-hides",
+      "text": "the celestial warden has fallen and hides it with borrowed light",
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "celestial"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-beast-the-party-must-drive-off",
+      "text": "the beast the party must drive off is the clan's own totem spirit",
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-prophecy-is-a-forgery-written-by",
+      "text": "the prophecy is a forgery written by the client",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecy-is-real-and-it-names",
+      "text": "the prophecy is real, and it names one of the party instead",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "fulfilling-the-prophecy-ends-the-world-stopping",
+      "text": "fulfilling the prophecy ends the world; stopping it ends a city",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-seer-is-a-doppelganger-who-delivers",
+      "text": "the seer is a doppelganger who delivers prophecies to order",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "npcname-never-died-and-wrote-the-prophecy",
+      "text": "{npcname} never died, and wrote the prophecy to be remembered",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecy-came-true-a-century-ago",
+      "text": "the prophecy came true a century ago, and nobody noticed",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "both-sides-of-the-prophecy-are-paying",
+      "text": "both sides of the prophecy are paying the same broker",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecy-was-mistranslated-it-is-a",
+      "text": "the prophecy was mistranslated: it is a warning, not a promise",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "subj-knows-the-prophecy-is-false-and",
+      "text": "{subj} knows the prophecy is false and is playing along for the gold",
+      "spines": [
+        "prophecy"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "the-prophecy-came-from-a-divination-engine",
+      "text": "the prophecy came from a divination engine that has been misfiring for years",
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "arcane"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "the-client-is-already-dead-and-has",
+      "text": "the client is already dead and has not noticed yet",
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "weight": 6
+    }
+  ]
+}

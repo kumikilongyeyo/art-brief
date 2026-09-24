@@ -1,0 +1,779 @@
+{
+  "id": "shared.lore-faction",
+  "category": "shared",
+  "slot": "lore-faction",
+  "entries": [
+    {
+      "id": "the-harpers",
+      "text": "the Harpers",
+      "weight": 3,
+      "tags": [
+        "spine-prophecy",
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "the-zhentarim",
+      "text": "the Zhentarim",
+      "weight": 3,
+      "tags": [
+        "spine-stolen"
+      ]
+    },
+    {
+      "id": "the-lords-alliance",
+      "text": "the Lords' Alliance",
+      "weight": 3,
+      "tags": [
+        "noble",
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "the-flaming-fist-of-baldur-s-gate",
+      "text": "the Flaming Fist of Baldur's Gate",
+      "weight": 3,
+      "tags": [
+        "martial",
+        "spine-stolen"
+      ]
+    },
+    {
+      "id": "house-thann-of-waterdeep",
+      "text": "House Thann of Waterdeep",
+      "weight": 3,
+      "tags": [
+        "noble"
+      ]
+    },
+    {
+      "id": "the-council-of-four-of-baldur-s",
+      "text": "the Council of Four of Baldur's Gate",
+      "weight": 3,
+      "tags": [
+        "noble",
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "a-nervous-halfling-mayor",
+      "text": "a nervous halfling mayor",
+      "weight": 3,
+      "tags": [
+        "village"
+      ]
+    },
+    {
+      "id": "a-retired-adventurer-who-owns-the-local",
+      "text": "a retired adventurer who owns the local tavern",
+      "weight": 3,
+      "tags": [
+        "spine-lost"
+      ]
+    },
+    {
+      "id": "an-eccentric-collector-with-more-gold-than",
+      "text": "an eccentric collector with more gold than sense",
+      "weight": 3,
+      "tags": [
+        "spine-stolen"
+      ]
+    },
+    {
+      "id": "an-anonymous-letter-sealed-in-black-wax",
+      "text": "an anonymous letter sealed in black wax",
+      "weight": 3,
+      "tags": [
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "the-guild-of-mapmakers-and-surveyors",
+      "text": "the Guild of Mapmakers and Surveyors",
+      "weight": 3,
+      "tags": [
+        "guild",
+        "spine-lost"
+      ]
+    },
+    {
+      "id": "a-grieving-captain-of-the-town-guard",
+      "text": "a grieving captain of the town guard",
+      "weight": 3,
+      "tags": [
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "a-priest-of-a-god-nobody-else",
+      "text": "a priest of a god nobody else worships",
+      "weight": 3,
+      "tags": [
+        "spine-prophecy"
+      ]
+    },
+    {
+      "id": "a-merchant-prince-of-amn",
+      "text": "a merchant prince of Amn",
+      "weight": 3,
+      "tags": [
+        "noble",
+        "spine-stolen"
+      ]
+    },
+    {
+      "id": "a-disgraced-knight-seeking-redemption",
+      "text": "a disgraced knight seeking redemption",
+      "weight": 3,
+      "tags": [
+        "martial",
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "a-village-elder-speaking-for-three-hamlets",
+      "text": "a village elder speaking for three hamlets",
+      "weight": 3,
+      "tags": [
+        "village",
+        "spine-guardian"
+      ]
+    },
+    {
+      "id": "the-executor-of-a-dead-adventurer-s",
+      "text": "the executor of a dead adventurer's will",
+      "weight": 3,
+      "tags": [
+        "spine-lost"
+      ]
+    },
+    {
+      "id": "a-dragonborn-caravan-master-with-a-debt",
+      "text": "a dragonborn caravan-master with a debt to settle",
+      "weight": 3,
+      "tags": [
+        "spine-bargain"
+      ]
+    },
+    {
+      "id": "a-rival-adventuring-company-that-owes-the",
+      "text": "a rival adventuring company that owes the party",
+      "weight": 3
+    },
+    {
+      "id": "the-order-of-the-gauntlet",
+      "text": "the Order of the Gauntlet",
+      "weight": 8,
+      "tags": [
+        "heroic",
+        "martial",
+        "spine-guardian"
+      ],
+      "themes": [
+        "high-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-church-of-tyr",
+      "text": "the Church of Tyr",
+      "weight": 8,
+      "tags": [
+        "holy",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "high-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-young-silver-dragon-in-human-guise",
+      "text": "a young silver dragon in human guise",
+      "weight": 8,
+      "tags": [
+        "dragon",
+        "spine-prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-hellriders-of-elturel",
+      "text": "the Hellriders of Elturel",
+      "weight": 8,
+      "tags": [
+        "heroic",
+        "martial"
+      ],
+      "themes": [
+        "high-fantasy",
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-dwarven-king-without-a-hall",
+      "text": "a dwarven king without a hall",
+      "weight": 8,
+      "tags": [
+        "noble",
+        "spine-lost"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-dark-sisters-of-shar",
+      "text": "the Dark Sisters of Shar",
+      "weight": 8,
+      "tags": [
+        "shadow",
+        "spine-lost"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "the-night-masks-of-westgate",
+      "text": "the Night Masks of Westgate",
+      "weight": 8,
+      "tags": [
+        "stealth",
+        "spine-stolen"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-last-magistrate-of-a-plague-town",
+      "text": "the last magistrate of a plague town",
+      "weight": 8,
+      "tags": [
+        "grim",
+        "spine-cursed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-vampire-lord-s-majordomo",
+      "text": "a vampire lord's majordomo",
+      "weight": 8,
+      "tags": [
+        "gothic",
+        "spine-bargain"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "a-devil-s-notary-from-avernus",
+      "text": "a devil's notary from Avernus",
+      "weight": 8,
+      "tags": [
+        "contract",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-cambion-envoy-of-the-nine-hells",
+      "text": "a cambion envoy of the Nine Hells",
+      "weight": 8,
+      "tags": [
+        "fiend",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "an-erinyes-bounty-hunter-with-a-warrant",
+      "text": "an erinyes bounty hunter with a warrant",
+      "weight": 8,
+      "tags": [
+        "fiend",
+        "spine-stolen"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-lich-s-solicitor",
+      "text": "a lich's solicitor",
+      "weight": 8,
+      "tags": [
+        "contract"
+      ],
+      "themes": [
+        "infernal",
+        "undead"
+      ]
+    },
+    {
+      "id": "the-temple-of-lathander",
+      "text": "the Temple of Lathander",
+      "weight": 8,
+      "tags": [
+        "radiant",
+        "holy",
+        "dawn",
+        "spine-awakened"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-deva-on-an-errand-from-mount",
+      "text": "a deva on an errand from Mount Celestia",
+      "weight": 8,
+      "tags": [
+        "feathered",
+        "spine-prophecy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-house-of-the-moon-in-waterdeep",
+      "text": "the House of the Moon in Waterdeep",
+      "weight": 8,
+      "tags": [
+        "holy",
+        "moonlit",
+        "spine-guardian"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "an-archfey-s-herald",
+      "text": "an archfey's herald",
+      "weight": 8,
+      "tags": [
+        "glamour",
+        "spine-bargain"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "the-summer-court-s-master-of-revels",
+      "text": "the Summer Court's master of revels",
+      "weight": 8,
+      "tags": [
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-hag-coven-with-a-long-grudge",
+      "text": "a hag coven with a long grudge",
+      "weight": 8,
+      "tags": [
+        "trickster",
+        "spine-cursed"
+      ],
+      "themes": [
+        "fey",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-emerald-enclave",
+      "text": "the Emerald Enclave",
+      "weight": 8,
+      "tags": [
+        "druidic",
+        "spine-guardian",
+        "spine-awakened"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-cult-of-the-dragon",
+      "text": "the Cult of the Dragon",
+      "weight": 8,
+      "tags": [
+        "dragon",
+        "spine-prophecy",
+        "spine-awakened"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-ghost-who-cannot-leave-the-manor",
+      "text": "a ghost who cannot leave the manor",
+      "weight": 8,
+      "tags": [
+        "grave",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-gravediggers-guild-of-neverwinter",
+      "text": "the Gravediggers' Guild of Neverwinter",
+      "weight": 8,
+      "tags": [
+        "grave",
+        "guild"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "an-efreeti-pasha-of-the-city-of",
+      "text": "an efreeti pasha of the City of Brass",
+      "weight": 8,
+      "tags": [
+        "fire",
+        "contract"
+      ],
+      "themes": [
+        "elemental-fire",
+        "planar"
+      ]
+    },
+    {
+      "id": "the-cult-of-the-eternal-flame",
+      "text": "the Cult of the Eternal Flame",
+      "weight": 8,
+      "tags": [
+        "fire",
+        "spine-awakened"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-fire-giant-forgemaster",
+      "text": "a fire giant forgemaster",
+      "weight": 8,
+      "tags": [
+        "forge",
+        "giant"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-grieving-dwarven-jarl",
+      "text": "a grieving dwarven jarl",
+      "weight": 8,
+      "tags": [
+        "north",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-speakers-of-ten-towns-in-icewind",
+      "text": "the Speakers of Ten-Towns in Icewind Dale",
+      "weight": 8,
+      "tags": [
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-frost-giant-s-exiled-heir",
+      "text": "a frost giant's exiled heir",
+      "weight": 8,
+      "tags": [
+        "giant",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-reghed-tribes-of-the-tundra",
+      "text": "the Reghed tribes of the tundra",
+      "weight": 8,
+      "tags": [
+        "tribal",
+        "north"
+      ],
+      "themes": [
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-kraken-society",
+      "text": "the Kraken Society",
+      "weight": 8,
+      "tags": [
+        "abyssal",
+        "spine-lost"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-high-captain-of-luskan",
+      "text": "a High Captain of Luskan",
+      "weight": 8,
+      "tags": [
+        "pirate",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-triton-sea-warden",
+      "text": "a triton sea-warden",
+      "weight": 8,
+      "tags": [
+        "water",
+        "spine-guardian"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "bregan-d-aerthe",
+      "text": "Bregan D'aerthe",
+      "weight": 8,
+      "tags": [
+        "drow",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-xanathar-guild",
+      "text": "the Xanathar Guild",
+      "weight": 8,
+      "tags": [
+        "aberration",
+        "spine-stolen"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-drow-matron-in-exile",
+      "text": "a drow matron in exile",
+      "weight": 8,
+      "tags": [
+        "drow",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-myconid-sovereign",
+      "text": "a myconid sovereign",
+      "weight": 8,
+      "tags": [
+        "fungal",
+        "spine-awakened"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-red-wizard-of-thay",
+      "text": "a Red Wizard of Thay",
+      "weight": 8,
+      "tags": [
+        "caster",
+        "spine-awakened",
+        "spine-bargain"
+      ],
+      "themes": [
+        "arcane",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-arcane-brotherhood-of-luskan",
+      "text": "the Arcane Brotherhood of Luskan",
+      "weight": 8,
+      "tags": [
+        "caster"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-watchful-order-of-magists-and-protectors",
+      "text": "the Watchful Order of Magists and Protectors",
+      "weight": 8,
+      "tags": [
+        "caster",
+        "guild",
+        "spine-guardian"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-avowed-of-candlekeep",
+      "text": "the Avowed of Candlekeep",
+      "weight": 8,
+      "tags": [
+        "library",
+        "spine-prophecy"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "an-uthgardt-chieftain",
+      "text": "an Uthgardt chieftain",
+      "weight": 8,
+      "tags": [
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-centaur-clan-s-eldest",
+      "text": "a centaur clan's eldest",
+      "weight": 8,
+      "tags": [
+        "beast",
+        "spine-guardian"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-druid-circle-of-the-high-forest",
+      "text": "a druid circle of the High Forest",
+      "weight": 8,
+      "tags": [
+        "druidic",
+        "spine-awakened"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-doomguard-of-sigil",
+      "text": "the Doomguard of Sigil",
+      "weight": 8,
+      "tags": [
+        "guild",
+        "spine-awakened"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "the-mercykillers",
+      "text": "the Mercykillers",
+      "weight": 8,
+      "tags": [
+        "guild",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "the-fated",
+      "text": "the Fated",
+      "weight": 8,
+      "tags": [
+        "guild",
+        "contract"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "the-harmonium",
+      "text": "the Harmonium",
+      "weight": 8,
+      "tags": [
+        "guild",
+        "spine-guardian"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "the-society-of-sensation",
+      "text": "the Society of Sensation",
+      "weight": 8,
+      "tags": [
+        "guild"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-githzerai-monastery-in-limbo",
+      "text": "a githzerai monastery in Limbo",
+      "weight": 8,
+      "tags": [
+        "planar",
+        "spine-prophecy"
+      ],
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

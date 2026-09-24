@@ -102,6 +102,23 @@
               "predicate",
               "clause"
             ]
+          },
+          "spines": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "stolen",
+                "cursed",
+                "bargain",
+                "betrayed",
+                "lost",
+                "awakened",
+                "guardian",
+                "prophecy"
+              ]
+            }
           }
         }
       }

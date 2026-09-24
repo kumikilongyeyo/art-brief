@@ -1,0 +1,486 @@
+{
+  "id": "scene.lore-rumour",
+  "category": "scene",
+  "slot": "lore-rumour",
+  "entries": [
+    {
+      "id": "my-cousin-was-at-that",
+      "text": "My cousin was at {name} that night. Swears the thief was one of the guards",
+      "weight": 4,
+      "spines": [
+        "stolen",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-fence-in-is-already",
+      "text": "A fence in {place} is already asking silly money for what got nicked",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "they-say-took-it-but",
+      "text": "They say {npcname} took it, but {npcname} can barely lift a tankard",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-thief-left-something-behind",
+      "text": "The thief left something behind, I hear. A glove, or maybe a hand",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "nobody-saw-the-theft-because",
+      "text": "Nobody saw the theft because everybody was watching the show. That was the point",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "dont-go-near-after-dark",
+      "text": "Don't go near {name} after dark. Folk who were there that night still cough up ash",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-only-takes-liars",
+      "text": "The curse only takes liars, they say. Which is why the magistrate left town",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "knows-the-cure-ask-yourself",
+      "text": "{npcname} knows the cure. Ask yourself why {npcname} is still charging for it",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "my-aunt-took-a-pebble",
+      "text": "My aunt took a pebble home from {name}. Went grey overnight, and the goats went barren",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "you-break-it-by-going",
+      "text": "You break it by going back to {name}, apparently. Nobody who tried has come back to say",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "i-heard-someone-sold-their",
+      "text": "I heard someone sold their shadow at {name}. Got a good price, too",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-contracts-real-enough-keeps",
+      "text": "The contract's real enough. {npcname} keeps it framed above a bar in {place}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "deals-struck-at-always-come",
+      "text": "Deals struck at {name} always come due at the worst moment. Everyone knows that",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "they-shook-on-it-before",
+      "text": "They shook on it before the ink was dry. Now watch who starts limping",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "whatever-they-bargained-for-the",
+      "text": "Whatever they bargained for, the other party got the better end. They always do",
+      "weight": 4,
+      "spines": [
+        "bargain",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "it-was-an-inside-job",
+      "text": "It was an inside job. Always is. Someone at {name} got paid very well",
+      "weight": 4,
+      "spines": [
+        "betrayed",
+        "stolen"
+      ]
+    },
+    {
+      "id": "was-stabbed-in-the-back",
+      "text": "{npcname} was stabbed in the back, I heard. Or did the stabbing. Depends who's buying",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-traitors-drinking-in-as",
+      "text": "The traitor's drinking in {place} as we speak, bold as brass",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "trust-nobody-who-walked-out",
+      "text": "Trust nobody who walked out of {name} that night without a scratch",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "friends-since-childhood-they-were",
+      "text": "Friends since childhood, they were. Now one's rich and the other's in a ditch",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "someone-went-missing-at-and",
+      "text": "Someone went missing at {name}, and the search party came back one searcher short",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "my-brother-says-the-missing",
+      "text": "My brother says the missing one's alive, held somewhere in {place}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "is-offering-a-reward-but",
+      "text": "{npcname} is offering a reward, but won't say for what. Or for whom",
+      "weight": 4,
+      "spines": [
+        "lost",
+        "stolen"
+      ]
+    },
+    {
+      "id": "whatever-was-lost-at-three",
+      "text": "Whatever was lost at {name}, three different crews are digging for it now",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "theyll-never-find-it-some",
+      "text": "They'll never find it. Some things vanish because they want to",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "something-under-woke-up-that",
+      "text": "Something under {name} woke up that night. My dog won't walk past it anymore",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-slept-for-centuries-they",
+      "text": "It slept for centuries, they say. Now it's asking questions about people",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "saw-it-open-its-eyes",
+      "text": "{npcname} saw it open its eyes, and hasn't slept a wink since",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "my-gran-says-it-woke",
+      "text": "My gran says it woke once before, a hundred years back. It ate the mayor",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-stones-at-are-warm",
+      "text": "The stones at {name} are warm to the touch now. They never used to be",
+      "weight": 4,
+      "spines": [
+        "awakened",
+        "cursed"
+      ]
+    },
+    {
+      "id": "something-guards-it-let-the",
+      "text": "Something guards {name}. It let the children pass, and nobody else",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-old-keeper-died-last",
+      "text": "The old keeper died last winter, and that's when the trouble started",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "is-the-only-one-it",
+      "text": "{npcname} is the only one it answers to. Probably why {npcname} drinks",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "whatever-it-guards-is-worth",
+      "text": "Whatever it guards is worth more than this whole town, I'd wager",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-guardians-getting-tired-you",
+      "text": "The guardian's getting tired. You can tell by the way the lights flicker",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-was-in-the-old",
+      "text": "It was in the old verses, word for word. {name}, the hour, even the weather",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecy-has-three-signs",
+      "text": "The prophecy has three signs. That was the first. Nobody wants to guess the second",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "keeps-telling-everyone-it-was",
+      "text": "{npcname} keeps telling everyone it was foretold. Suspicious, if you ask me",
+      "weight": 4,
+      "spines": [
+        "prophecy",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-seer-in-named-the",
+      "text": "A seer in {place} named the day years ago, and died the night before it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "half-the-town-thinks-its",
+      "text": "Half the town thinks it's the end of the world. The other half is selling charms",
+      "weight": 4,
+      "spines": [
+        "prophecy",
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-hangmans-sober-for-once",
+      "text": "The hangman's sober for once. That means someone's name has come up",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "cursed",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-devil-in-a-fine",
+      "text": "A devil in a fine coat bought drinks all night at {name}. Paid in teeth",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "an-angel-was-seen-weeping",
+      "text": "An angel was seen weeping on the rooftops. Angels only weep when a vow breaks",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "betrayed",
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-fair-folk-were-laughing",
+      "text": "The fair folk were laughing at {name}. When they laugh, something's been taken",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "stolen",
+        "bargain"
+      ]
+    },
+    {
+      "id": "grandads-grave-was-empty-the",
+      "text": "Grandad's grave was empty the morning after. Always did like a party",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-ship-went-down-that",
+      "text": "A ship went down that same hour. No wreckage, no bodies, nothing at all",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "the-drow-traders-stopped-coming",
+      "text": "The drow traders stopped coming the day after. Drow don't scare easy",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "awakened",
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-academy-has-sent-apprentices",
+      "text": "The academy has sent apprentices to {name} all week. They're measuring something",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "awakened",
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-wolves-circle-but-wont",
+      "text": "The wolves circle {name} but won't go in. Wolves know a cursed place",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "cursed",
+        "guardian"
+      ]
+    },
+    {
+      "id": "that-ice-hasnt-moved-in",
+      "text": "That ice hasn't moved in a thousand years, and now it's moving",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-forges-burned-blue-all",
+      "text": "The forges burned blue all week. The smiths say that's a promise being kept",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "bargain",
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-knight-rode-through-asking",
+      "text": "A knight rode through asking about {name}, armour polished like the old days",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "prophecy",
+        "guardian"
+      ]
+    },
+    {
+      "id": "in-sigil-theyre-taking-bets",
+      "text": "In Sigil they're taking bets on this. The odds changed the minute it happened",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "prophecy",
+        "bargain"
+      ]
+    }
+  ]
+}

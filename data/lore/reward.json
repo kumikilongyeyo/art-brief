@@ -1,0 +1,598 @@
+{
+  "id": "shared.lore-reward",
+  "category": "shared",
+  "slot": "lore-reward",
+  "entries": [
+    {
+      "id": "500-gp-half-paid-up-front",
+      "text": "500 gp, half paid up front",
+      "weight": 3
+    },
+    {
+      "id": "1-000-gp-in-unmarked-coin",
+      "text": "1,000 gp in unmarked coin",
+      "weight": 3,
+      "tags": [
+        "spine-stolen"
+      ]
+    },
+    {
+      "id": "a-1-weapon-of-the-party-s",
+      "text": "a +1 weapon of the party's choice",
+      "weight": 3
+    },
+    {
+      "id": "a-bag-of-holding",
+      "text": "a bag of holding",
+      "weight": 3
+    },
+    {
+      "id": "a-potion-of-flying-each",
+      "text": "a potion of flying each",
+      "weight": 3
+    },
+    {
+      "id": "a-favour-from-a-noble-house",
+      "text": "a favour from a noble house",
+      "weight": 3,
+      "tags": [
+        "noble"
+      ]
+    },
+    {
+      "id": "a-pardon-for-one-crime-no-questions",
+      "text": "a pardon for one crime, no questions asked",
+      "weight": 3,
+      "tags": [
+        "spine-stolen",
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "a-dragon-egg-of-uncertain-species",
+      "text": "a dragon egg of uncertain species",
+      "weight": 3,
+      "tags": [
+        "dragon"
+      ]
+    },
+    {
+      "id": "the-location-of-a-dragon-s-hoard",
+      "text": "the location of a dragon's hoard",
+      "weight": 3,
+      "tags": [
+        "spine-lost"
+      ]
+    },
+    {
+      "id": "a-small-damp-barony-and-the-title",
+      "text": "a small, damp barony and the title that goes with it",
+      "weight": 3,
+      "tags": [
+        "noble"
+      ]
+    },
+    {
+      "id": "free-drinks-for-life-at-the-yawning",
+      "text": "free drinks for life at the Yawning Portal",
+      "weight": 3
+    },
+    {
+      "id": "a-single-wish-very-carefully-worded",
+      "text": "a single wish, very carefully worded",
+      "weight": 3,
+      "tags": [
+        "spine-bargain"
+      ]
+    },
+    {
+      "id": "a-pair-of-sending-stones-one-kept",
+      "text": "a pair of sending stones, one kept by the patron",
+      "weight": 3
+    },
+    {
+      "id": "the-patron-s-silence-about-what-the",
+      "text": "the patron's silence about what the party did last spring",
+      "weight": 3,
+      "tags": [
+        "spine-betrayed"
+      ]
+    },
+    {
+      "id": "a-map-to-the-lost-vault-the",
+      "text": "a map to the lost vault the patron was too scared to enter",
+      "weight": 3,
+      "tags": [
+        "spine-lost"
+      ]
+    },
+    {
+      "id": "a-letter-of-introduction-to-the-lords",
+      "text": "a letter of introduction to the Lords' Alliance",
+      "weight": 3,
+      "tags": [
+        "noble"
+      ]
+    },
+    {
+      "id": "a-sack-of-gems-of-doubtful-provenance",
+      "text": "a sack of gems of doubtful provenance",
+      "weight": 3,
+      "tags": [
+        "spine-stolen"
+      ]
+    },
+    {
+      "id": "a-riding-horse-and-a-year-of",
+      "text": "a riding horse and a year of free stabling",
+      "weight": 3
+    },
+    {
+      "id": "a-knighthood-and-a-warhorse",
+      "text": "a knighthood and a warhorse",
+      "weight": 8,
+      "tags": [
+        "heroic",
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-title-and-lands-on-the-frontier",
+      "text": "a title and lands on the frontier",
+      "weight": 8,
+      "tags": [
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-sword-that-once-belonged-to-a",
+      "text": "a sword that once belonged to a dragonslayer",
+      "weight": 8,
+      "tags": [
+        "heroic",
+        "spine-prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-deed-to-a-haunted-manor",
+      "text": "the deed to a haunted manor",
+      "weight": 8,
+      "tags": [
+        "gothic"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "a-vial-of-vampire-blood-still-warm",
+      "text": "a vial of vampire blood, still warm",
+      "weight": 8,
+      "tags": [
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-name-of-the-one-who-killed",
+      "text": "the name of the one who killed the party's mentor",
+      "weight": 8,
+      "tags": [
+        "grim",
+        "spine-betrayed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-blade-the-patron-is-very-glad",
+      "text": "a blade the patron is very glad to be rid of",
+      "weight": 8,
+      "tags": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-signed-release-from-one-infernal-contract",
+      "text": "a signed release from one infernal contract",
+      "weight": 8,
+      "tags": [
+        "contract"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-soul-coin-that-still-whispers",
+      "text": "a soul coin that still whispers",
+      "weight": 8,
+      "tags": [
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-lesser-devil-s-true-name",
+      "text": "a lesser devil's true name",
+      "weight": 8,
+      "tags": [
+        "fiend",
+        "spine-bargain"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "one-resurrection-at-the-temple-s-expense",
+      "text": "one resurrection at the temple's expense",
+      "weight": 8,
+      "tags": [
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-blessing-that-turns-aside-one-killing",
+      "text": "a blessing that turns aside one killing blow",
+      "weight": 8,
+      "tags": [
+        "radiant",
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-feather-from-a-planetar-s-wing",
+      "text": "a feather from a planetar's wing",
+      "weight": 8,
+      "tags": [
+        "feathered"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-year-and-a-day-of-the",
+      "text": "a year and a day of the archfey's hospitality",
+      "weight": 8,
+      "tags": [
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-name-the-feywild-will-answer-to",
+      "text": "a name the Feywild will answer to",
+      "weight": 8,
+      "tags": [
+        "glamour",
+        "spine-bargain"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-pouch-of-pixie-dust-good-for",
+      "text": "a pouch of pixie dust good for one flight",
+      "weight": 8,
+      "tags": [
+        "fey"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "the-location-of-a-lich-s-phylactery",
+      "text": "the location of a lich's phylactery",
+      "weight": 8,
+      "tags": [
+        "necrotic",
+        "spine-awakened"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "a-bone-flute-that-calls-one-ghost",
+      "text": "a bone flute that calls one ghost to answer",
+      "weight": 8,
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "safe-passage-through-the-shadowfell-once",
+      "text": "safe passage through the Shadowfell, once",
+      "weight": 8,
+      "tags": [
+        "shadow"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-flame-tongue-sword",
+      "text": "a flame tongue sword",
+      "weight": 8,
+      "tags": [
+        "fire",
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-sealed-efreeti-bottle",
+      "text": "a sealed efreeti bottle",
+      "weight": 8,
+      "tags": [
+        "fire",
+        "spine-awakened"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-shield-forged-in-a-salamander-s",
+      "text": "a shield forged in a salamander's kiln",
+      "weight": 8,
+      "tags": [
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-ring-of-warmth",
+      "text": "a ring of warmth",
+      "weight": 8,
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-sled-team-of-trained-winter-wolves",
+      "text": "a sled team of trained winter wolves",
+      "weight": 8,
+      "tags": [
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-rune-carved-axe-from-a-frost",
+      "text": "a rune-carved axe from a frost giant's hall",
+      "weight": 8,
+      "tags": [
+        "north",
+        "giant"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-ship-of-the-party-s-own",
+      "text": "a ship of the party's own, barely seaworthy",
+      "weight": 8,
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-letter-of-marque-from-a-coastal",
+      "text": "a letter of marque from a coastal crown",
+      "weight": 8,
+      "tags": [
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-cap-of-water-breathing",
+      "text": "a cap of water breathing",
+      "weight": 8,
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-map-of-the-underdark-s-safer",
+      "text": "a map of the Underdark's safer tunnels",
+      "weight": 8,
+      "tags": [
+        "subterranean",
+        "spine-lost"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-drow-house-s-protection-for-now",
+      "text": "a drow house's protection, for now",
+      "weight": 8,
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-svirfneblin-cut-gem-the-size-of",
+      "text": "a svirfneblin-cut gem the size of a hen's egg",
+      "weight": 8,
+      "tags": [
+        "crystal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "access-to-candlekeep-s-restricted-stacks",
+      "text": "access to Candlekeep's restricted stacks",
+      "weight": 8,
+      "tags": [
+        "library",
+        "spine-prophecy"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-spellbook-with-one-page-nobody-can",
+      "text": "a spellbook with one page nobody can read",
+      "weight": 8,
+      "tags": [
+        "arcane"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-wand-of-magic-missiles-with-three",
+      "text": "a wand of magic missiles with three charges left",
+      "weight": 8,
+      "tags": [
+        "arcane"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "an-orphaned-owlbear-cub",
+      "text": "an orphaned owlbear cub",
+      "weight": 8,
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-clan-s-hunting-rights-for-a",
+      "text": "the clan's hunting rights for a season",
+      "weight": 8,
+      "tags": [
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-totem-that-lets-its-bearer-speak",
+      "text": "a totem that lets its bearer speak with beasts",
+      "weight": 8,
+      "tags": [
+        "druidic",
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "passage-on-a-spelljammer",
+      "text": "passage on a spelljammer",
+      "weight": 8,
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-portal-key-to-sigil",
+      "text": "a portal key to Sigil",
+      "weight": 8,
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-purse-of-coins-from-a-dozen",
+      "text": "a purse of coins from a dozen different worlds",
+      "weight": 8,
+      "tags": [
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-favour-owed-by-a-githzerai-monastery",
+      "text": "a favour owed by a githzerai monastery",
+      "weight": 8,
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

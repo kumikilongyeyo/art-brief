@@ -1,0 +1,460 @@
+{
+  "id": "character.lore-rumour",
+  "category": "character",
+  "slot": "lore-rumour",
+  "entries": [
+    {
+      "id": "my-cousin-swears-has-the",
+      "text": "My cousin swears {first} has the thief's name tattooed somewhere private",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "they-say-got-robbed-i",
+      "text": "They say {first} got robbed blind. I say {first} did the robbing",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "whatever-got-pinched-from-it",
+      "text": "Whatever got pinched from {first}, it glowed. The fence down the road went pale just hearing about it",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "dont-mention-thieves-near-that",
+      "text": "Don't mention thieves near that {l:class}. The last fellow who did lost two teeth",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "heard-pays-good-coin-for",
+      "text": "Heard {first} pays good coin for any word of a certain pawned heirloom",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-devils-clerk-came-asking",
+      "text": "A devil's clerk came asking whether {first} had reported anything missing. Nobody reports things to devils",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "pixies-nicked-whatever-it-pixies",
+      "text": "Pixies nicked it, whatever it was. Pixies always nick the good stuff",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "milk-curdles-when-walks-saw",
+      "text": "Milk curdles when {first} walks past. Saw it myself, twice",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "that-s-sure-as-drinks",
+      "text": "That {l:class}'s cursed, sure as rain. Drinks alone every new moon and never says why",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "my-gran-says-the-only",
+      "text": "My gran says the only cure for what {first} has is a kiss from the dead",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "they-say-was-before-the",
+      "text": "They say {first} was {a:background} before the curse. Now look at them",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "dont-take-coin-from-cursed",
+      "text": "Don't take coin from {first}. Cursed coin, cursed hands, cursed house",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "crows-follow-from-town-to",
+      "text": "Crows follow {first} from town to town. Never fewer than seven",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "the-priest-wont-let-past",
+      "text": "The priest won't let {first} past the temple steps, and won't say why",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "made-a-deal-with-and",
+      "text": "{first} made a deal with something, and it wasn't the tax collector",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "saw-sign-a-paper-the",
+      "text": "Saw {first} sign a paper once. The ink moved",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "word-is-owns-body-and",
+      "text": "Word is {npcname} owns {first} body and soul, down to the bootlaces",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "that-never-says-i-not",
+      "text": "That {l:class} never says 'I promise'. Not once. Makes you wonder",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "heard-traded-a-memory-for",
+      "text": "Heard {first} traded a memory for those {l:class} tricks. Won't say which memory",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "smelled-brimstone-on-s-signature",
+      "text": "Smelled brimstone on {first}'s signature once. On the ink, mind you",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "never-thank-fey-thanking-starts",
+      "text": "Never thank {first}. Fey rules, apparently. Thanking starts a debt",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "sold-they-funny-how-scarce",
+      "text": "{npcname} sold {first} out, they say. Funny how scarce {npcname} has been since",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "never-stand-behind-ask-the",
+      "text": "Never stand behind {first}. Ask the last friend who did",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "they-say-s-own-crew",
+      "text": "They say {first}'s own crew left them for dead. The crew's not doing so well now",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "was-and-loyaltys-what-got",
+      "text": "{first} was {a:background} once, and loyal. Loyalty's what got them hurt",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "watch-watching-the-thats-someone",
+      "text": "Watch {first} watching the door. That's someone waiting for an old friend",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "still-sends-a-letter-to",
+      "text": "{first} still sends a letter to the capital every month. Unsigned. The recipient keeps moving house",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "folk-say-was-dead-seven",
+      "text": "Folk say {first} was dead seven years, then walked in and ordered a pie",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "heard-draws-the-same-map",
+      "text": "Heard {first} draws the same map on every tabletop. Same coastline, every time",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "somebodys-been-asking-after-by",
+      "text": "Somebody's been asking after {first} by an older name. Didn't leave their own",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "came-back-from-wherever-it",
+      "text": "{first} came back from wherever it was alone. Nobody asks where the others went",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "they-say-counts-the-days",
+      "text": "They say {first} counts the days on their fingers, like a few went missing",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "flinches-at-every-ships-went",
+      "text": "{first} flinches at every ship's bell. Went down with one, they say, and came back up",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "talks-in-their-and-the",
+      "text": "{first} talks in their sleep, and the voice isn't theirs",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "saw-that-catch-a-falling",
+      "text": "Saw that {l:class} catch a falling knife without looking. Without even looking",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "my-aunt-says-whatevers-in",
+      "text": "My aunt says whatever's in {first} slept a thousand years and woke up hungry",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "they-used-to-be-dull",
+      "text": "They used to be {a:background}, dull as ditchwater. Then something woke up in them",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "dogs-wont-go-near-dogs",
+      "text": "Dogs won't go near {first} anymore. Dogs know",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-wizard-offered-a-fortune",
+      "text": "A wizard offered {first} a fortune just to be allowed to watch them sleep",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "never-sleeps-two-nights-in",
+      "text": "{first} never sleeps two nights in the same bed. Guarding something, mark my words",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "asked-whats-in-that-box",
+      "text": "Asked {first} what's in that box once. Got a look that aged me a year",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "they-say-left-a-and",
+      "text": "They say {npcname} left {first} a key, and a promise never to use it",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "that-hasnt-strayed-more-than",
+      "text": "That {l:class} hasn't strayed more than a day's ride from home in ten years",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "whatever-is-i-hope-its",
+      "text": "Whatever {first} is guarding, I hope it's worth it. It's cost them plenty",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-dead-rest-quiet-wherever",
+      "text": "The dead rest quiet wherever {first} keeps watch. Gravediggers love that {l:class}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "old-mother-ness-says-is",
+      "text": "Old Mother Ness says {first} is the one in the verse. The bad verse",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "heard-a-priest-fainted-when",
+      "text": "Heard a priest fainted when {first} walked in. Muttered about the stars being right",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "my-cousin-swears-s-birthmark",
+      "text": "My cousin swears {first}'s birthmark matches the one in the temple fresco",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "they-say-will-end-a",
+      "text": "They say {first} will end a king or become one. Either way, I'm not lending them money",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "born-in-a-thats-the",
+      "text": "{al:species} {l:class}, born in a storm. That's the prophecy, friend, word for word",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-dragon-asked-for-by",
+      "text": "A dragon asked for {first} by name last spring. Politely. That's the frightening part",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-clan-shamans-wont-meet",
+      "text": "The clan shamans won't meet {first}'s eyes. Say they already know how it ends",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    }
+  ]
+}

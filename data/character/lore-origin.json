@@ -16,7 +16,7 @@
     {
       "id": "before-any-of-this-was",
       "text": "Before any of this, {first} was {a:background}, and nobody's hero",
-      "weight": 3
+      "weight": 2
     },
     {
       "id": "was-with-a-past",
@@ -36,7 +36,7 @@
     {
       "id": "nobody-expected-much-of-and",
       "text": "Nobody expected much of {name}, {a:background} and {al:species} besides",
-      "weight": 3
+      "weight": 2
     },
     {
       "id": "was-from-a-town-that",

@@ -117,7 +117,10 @@ describe('lore behaviour', () => {
 
   it('withoutLore and fullText', () => {
     const b = withLore(data, one('prop', 'FULL01'));
-    expect(fullText(b)).toBe(`${b.plainText}\n\nLore: ${b.lore!.text}`);
+    const text = fullText(b);
+    expect(text.startsWith(`${b.plainText}\n\nLore: ${b.lore!.text}\n`)).toBe(true);
+    expect(text).toContain(`Plot: ${b.lore!.spine}`);
+    if (b.lore!.twist) expect(text).toContain(`Twist (DM only): ${b.lore!.twist}`);
     expect(withoutLore(b).lore).toBeUndefined();
     expect(fullText(withoutLore(b))).toBe(b.plainText);
   });

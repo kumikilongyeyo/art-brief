@@ -4,29 +4,356 @@
   "slot": "lore-turn",
   "entries": [
     {
-      "id": "then-vanished-and-it-turned",
-      "text": "Then {npcname} vanished, and it turned up weeks later, {f:details}",
-      "weight": 4
+      "id": "three-thieves-stole-it-in",
+      "text": "Three thieves stole it in turn, each leaving a mark, {f:details}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "it-was-stolen-three-times",
-      "text": "It was stolen three times and came back stranger, {f:details}",
-      "weight": 4
+      "id": "thieves-took-it-from-s",
+      "text": "Thieves took it from {npcname}'s vault; fences knew the mark, {f:details}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "its-last-journey-changed-it",
-      "text": "Its last journey changed it, {f:details}",
-      "weight": 4
+      "id": "it-vanished-from-its-first",
+      "text": "It vanished from its first showing; wanted posters described it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "a-rival-tried-to-destroy",
-      "text": "A rival tried to destroy it; it survived, {f:details}",
-      "weight": 3
+      "id": "a-hired-thief-took-it",
+      "text": "A hired thief took it; the struggle left it scarred, {f:details}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "every-owner-died-young-and",
-      "text": "Every owner died young, and each left it the same way, {f:details}",
-      "weight": 2
+      "id": "thieves-took-it-the-night",
+      "text": "Thieves took it the night {npc} died, before the heirs arrived",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "woke-to-an-empty-case",
+      "text": "{npcname} woke to an empty case and a thief's calling card",
+      "weight": 3,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "an-imp-stole-it-for",
+      "text": "An imp stole it for Avernus; the inventory described it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "fey-thieves-swapped-it-for",
+      "text": "Fey thieves swapped it for a copy lacking one thing, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "robbers-took-it-from-s",
+      "text": "Robbers took it from {npcname}'s coffin; the ghost described it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "boarding-pirates-seized-it-the",
+      "text": "Boarding pirates seized it; the ship's log described it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "drow-raiders-took-it-the",
+      "text": "Drow raiders took it; the only survivor could describe it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-rival-mage-teleported-it",
+      "text": "A rival mage teleported it away; the wards recorded it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-dragon-stole-it-for",
+      "text": "A dragon stole it for its hoard and gloated, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy",
+        "elemental-fire"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-fallen-deva-stole-it",
+      "text": "A fallen deva stole it; the temple hymns described it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "frost-giant-reavers-carried-it",
+      "text": "Frost giant reavers carried it off; the skalds described it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-rival-clan-seized-it",
+      "text": "A rival clan seized it and paraded it home, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-sigil-cutpurse-palmed-it",
+      "text": "A Sigil cutpurse palmed it; the Hardheads' report described it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "then-the-curse-took-hold",
+      "text": "Then the curse took hold, the price of {npcname}'s greed, {f:details}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "every-owner-died-young-each",
+      "text": "Every owner died young, each leaving it the same way, {f:details}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-dying-foe-cursed-it",
+      "text": "A dying foe cursed it, and it darkened overnight, {f:details}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "one-skipped-rite-let-a",
+      "text": "One skipped rite let a curse creep into it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-was-cursed-to-punish",
+      "text": "It was cursed to punish {npcname}, and it bore the proof, {f:details}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-claimed-first-then",
+      "text": "The curse claimed {npcname} first, then every owner after",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "whoever-held-it-began-to",
+      "text": "Whoever held it began to sicken, starting with {npcname}",
+      "weight": 3,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "an-archfey-cursed-it-for",
+      "text": "An archfey cursed it for a slight no mortal remembers, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "an-angel-judged-its-owner",
+      "text": "An angel judged its owner, and it bore the verdict, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "cursed",
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-drowned-crew-cursed-it",
+      "text": "A drowned crew cursed it on their way down, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "an-apprentice-tried-to-copy",
+      "text": "An apprentice tried to copy it; the backlash marked it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "an-aboleths-dream-seeped-into",
+      "text": "An aboleth's dream seeped into it and would not leave, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "cursed",
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-frost-witch-cursed-it",
+      "text": "A frost witch cursed it to carry winter everywhere, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-fire-giant-cursed-it",
+      "text": "A fire giant cursed it to burn whoever held it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-hunted-beast-cursed-it",
+      "text": "A hunted beast cursed it with its dying howl, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-crossed-the-abyss-once",
+      "text": "It crossed the Abyss once, and part of it stayed, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "cursed",
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-dying-dragon-cursed-it",
+      "text": "A dying dragon cursed it in Draconic; the words stuck, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-broken-contract-with-avernus",
+      "text": "A broken contract with Avernus cursed it overnight, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "cursed",
+        "bargain"
+      ]
     },
     {
       "id": "it-was-buried-with-and",
@@ -35,6 +362,58 @@
       "themes": [
         "undead",
         "dark-fantasy"
+      ],
+      "spines": [
+        "cursed",
+        "awakened"
+      ]
+    },
+    {
+      "id": "bargained-for-more-power-and",
+      "text": "{npcname} bargained for more power, and the deal left its mark, {f:details}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-crossroads-stranger-made-it",
+      "text": "A crossroads stranger made it stronger, for a price, {f:details}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-moneylender-held-it-against",
+      "text": "A moneylender held it against a debt, and marked it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "staked-it-on-a-foolish",
+      "text": "{npcname} staked it on a foolish wager and lost it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "made-a-deal-for-it",
+      "text": "{npcname} made a deal for it with something that never forgets",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "bought-it-from-a-smiling",
+      "text": "{npcname} bought it from a smiling stranger for ten years",
+      "weight": 3,
+      "spines": [
+        "bargain"
       ]
     },
     {
@@ -43,79 +422,1084 @@
       "weight": 8,
       "themes": [
         "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "signed-a-contract-in-brimstone",
+      "text": "{npcname} signed a contract in brimstone, and it became the collateral, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
       ]
     },
     {
       "id": "an-archfey-borrowed-it-for",
-      "text": "An archfey borrowed it for one dance and returned it a century later, {f:details}",
+      "text": "An archfey borrowed it for one dance lasting a century, {f:details}",
       "weight": 8,
       "themes": [
         "fey"
+      ],
+      "spines": [
+        "bargain",
+        "lost"
       ]
     },
     {
-      "id": "a-storm-took-the-ship",
-      "text": "A storm took the ship, but it washed ashore whole, {f:details}",
+      "id": "swapped-their-laughter-to-a",
+      "text": "{npcname} swapped their laughter to a hag to finish it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-god-granted-it-power",
+      "text": "A god granted it power in return for a vow, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "sigil-brokers-bought-it-with",
+      "text": "Sigil brokers bought it with a promise and tagged it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "it-was-traded-to-a",
+      "text": "It was traded to a beholder for safe passage, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "it-was-a-sea-hags",
+      "text": "It was a sea hag's price for fair winds, {f:details}",
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "spines": [
+        "bargain"
       ]
     },
     {
-      "id": "it-went-into-a-dragon",
-      "text": "It went into a dragon's lair with a hero and came out alone, {f:details}",
+      "id": "a-lich-lent-it-power",
+      "text": "A lich lent it power for one favour, still owed, {f:details}",
       "weight": 8,
       "themes": [
-        "high-fantasy",
+        "undead"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "struck-a-deal-with-a",
+      "text": "{npcname} struck a deal with a bound spirit to power it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-frost-giant-spared-a",
+      "text": "A frost giant spared a village in exchange for it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "an-efreeti-granted-a-wish",
+      "text": "An efreeti granted a wish through it, very literally, {f:details}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire",
+        "planar"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "hunters-pledged-it-to-the",
+      "text": "Hunters pledged it to the spirits and marked it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-dragon-spared-a-kingdom",
+      "text": "A dragon spared a kingdom in exchange for it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "s-closest-friend-sold-it",
+      "text": "{npcname}'s closest friend sold it out from under them, {f:details}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-trusted-guard-handed-it",
+      "text": "A trusted guard handed it to the enemy, {f:details}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-one-person-who-knew",
+      "text": "The one person who knew its secret betrayed {npcname} for it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-steward-poisoned-its-keeper",
+      "text": "A steward poisoned its keeper at dinner and claimed it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-sworn-ally-turned-on",
+      "text": "A sworn ally turned on {npcname} and took it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "was-knifed-by-their-own",
+      "text": "{npcname} was knifed by their own sibling, who took it",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "s-most-trusted-apprentice-sold",
+      "text": "{npcname}'s most trusted apprentice sold it to a rival",
+      "weight": 3,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-trusted-squire-slit-s",
+      "text": "A trusted squire slit {npcname}'s throat for it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-drow-consort-betrayed-and",
+      "text": "A drow consort betrayed {npcname} and kept it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-sworn-knight-broke-faith",
+      "text": "A sworn knight broke faith mid-quest and fled with it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "its-keepers-advisor-a-devil",
+      "text": "Its keeper's advisor, a devil in disguise, took it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-fey-friend-handed-it",
+      "text": "A fey friend handed it to the Unseelie court, laughing, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "an-oathsworn-paladin-broke-faith",
+      "text": "An oathsworn paladin broke faith to take it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "s-murderer-buried-it-with",
+      "text": "{npcname}'s murderer buried it with the body; neither stayed buried",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "betrayed",
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-first-mate-led-a",
+      "text": "The first mate led a mutiny and took it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "s-apprentice-sold-the-formula",
+      "text": "{npcname}'s apprentice sold the formula, then stole it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-shield-sibling-left-in-the",
+      "text": "A shield-sibling left {npcname} in the blizzard and took it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-blood-sworn-clanmate-led-raiders",
+      "text": "A blood-sworn clanmate led raiders in and took it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-sigil-partner-got-mazed",
+      "text": "A Sigil partner got {npcname} mazed and took it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-forge-partner-shoved-into-the",
+      "text": "A forge-partner shoved {npcname} into the furnace and claimed it, {f:details}",
+      "weight": 8,
+      "themes": [
         "elemental-fire"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "then-vanished-on-the-road",
+      "text": "Then {npcname} vanished on the road, and it went with them",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-vanished-from-a-locked",
+      "text": "It vanished from a locked room one winter night",
+      "weight": 3,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "lost-in-a-war-it",
+      "text": "Lost in a war, it survives only in a sketch, {f:details}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "an-avalanche-buried-its-caravan",
+      "text": "An avalanche buried its caravan; one guard described it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "floodwater-swept-it-away-a",
+      "text": "Floodwater swept it away; a salvager glimpsed it once, {f:details}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-careless-clerk-misplaced-it",
+      "text": "A careless clerk misplaced it; the inventory still describes it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-vanished-when-the-city",
+      "text": "It vanished when the city fell; one witness described it, {f:details}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-storm-sank-its-ship",
+      "text": "A storm sank its ship; divers glimpsed it once, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-fell-through-lake-ice",
+      "text": "It fell through lake ice, and the ice kept it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-portal-swallowed-it-the",
+      "text": "A portal swallowed it; the last glimpse showed it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-beast-dragged-it-off",
+      "text": "A beast dragged it off; trackers glimpsed it once, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-volcano-swallowed-its-forge",
+      "text": "A volcano swallowed its forge; one smith described it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-tumbled-into-a-bottomless",
+      "text": "It tumbled into a bottomless chasm, glimpsed once by torchlight, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-went-into-an-unmarked",
+      "text": "It went into an unmarked grave; the grave-list describes it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-botched-teleport-sent-it",
+      "text": "A botched teleport sent it astray; the logs describe it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-dragon-war-swallowed-it",
+      "text": "A dragon war swallowed it; only the ballads describe it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "holy-light-lifted-it-skyward",
+      "text": "Holy light lifted it skyward mid-battle; a psalm describes it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-devil-lost-it-at",
+      "text": "A devil lost it at dice, and the winner vanished, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "then-something-inside-it-woke",
+      "text": "Then something inside it woke, and it changed overnight, {f:details}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "at-s-deathbed-it-spoke",
+      "text": "At {npcname}'s deathbed, it spoke aloud for the first time",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "one-night-it-simply-began",
+      "text": "One night it simply began to hum, and never stopped",
+      "weight": 3,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-spirit-sealed-inside-it",
+      "text": "The spirit sealed inside it woke, and it showed, {f:details}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "night-by-night-it-began",
+      "text": "Night by night it began to move on its own, {f:details}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "lightning-struck-it-and-something",
+      "text": "Lightning struck it, and something inside answered, {f:details}",
+      "weight": 4,
+      "spines": [
+        "awakened"
       ]
     },
     {
       "id": "a-century-in-the-ice",
-      "text": "A century in the ice changed it, {f:details}",
+      "text": "A century in the ice woke something in it, {f:details}",
       "weight": 8,
       "themes": [
         "frost"
-      ]
-    },
-    {
-      "id": "an-angel-judged-its-owner",
-      "text": "An angel judged its owner and left the verdict on it, {f:details}",
-      "weight": 8,
-      "themes": [
-        "celestial"
-      ]
-    },
-    {
-      "id": "a-mind-flayer-studied-it",
-      "text": "A mind flayer studied it for a year, then let it go, {f:details}",
-      "weight": 8,
-      "themes": [
-        "underdark"
-      ]
-    },
-    {
-      "id": "an-apprentice-tried-to-copy",
-      "text": "An apprentice tried to copy it, and the backlash marked it, {f:details}",
-      "weight": 8,
-      "themes": [
-        "arcane"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
       "id": "it-fell-through-a-portal",
-      "text": "It fell through a portal and came back, {f:details}",
+      "text": "It fell through a portal and returned with a passenger, {f:details}",
       "weight": 8,
       "themes": [
         "planar"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
-      "id": "a-beast-dragged-it-into",
-      "text": "A beast dragged it into the wilds; it was found years later, {f:details}",
+      "id": "a-mind-flayer-probed-it",
+      "text": "A mind flayer probed it until it began to think, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-failed-spell-soaked-into",
+      "text": "A failed spell soaked into it, and it began learning, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "dragonfire-reforged-it-and-it",
+      "text": "Dragonfire reforged it, and it woke hungry, {f:details}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-feywild-leaned-close-one",
+      "text": "The Feywild leaned close one midsummer, and it woke giggling, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "an-angels-feather-touched-it",
+      "text": "An angel's feather touched it, and it grew a conscience, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-devils-name-was-carved",
+      "text": "A devil's name was carved into it and woke, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "drowned-souls-from-the-wreck",
+      "text": "Drowned souls from the wreck crept into it and woke, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical",
+        "undead"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-great-beasts-spirit-took",
+      "text": "A great beast's spirit took up residence in it, {f:details}",
       "weight": 8,
       "themes": [
         "wild-primal"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "its-hero-died-to-a",
+      "text": "Its hero died to a dragon; it walked out alone, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy",
+        "elemental-fire"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "set-it-to-guard-a",
+      "text": "{npcname} set it to guard a sealed door; it kept watch, {f:details}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-was-bound-to-guard",
+      "text": "It was bound to guard {npcname}'s bloodline and paid dearly, {f:details}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-was-made-warden-of",
+      "text": "It was made warden of a sealed tomb, and held, {f:details}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-warded-a-walled-town",
+      "text": "It warded a walled town and bore the scars, {f:details}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "ordered-it-to-keep-one",
+      "text": "{npcname} ordered it to keep one vault shut, whatever came",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "warding-a-doorway-it-let",
+      "text": "Warding a doorway, it let nothing through for centuries",
+      "weight": 3,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-warded-a-bound-demon",
+      "text": "It warded a bound demon for an angel, never faltering, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-guarded-a-young-heir",
+      "text": "It guarded a young heir through two wars, scarred, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "jarls-set-it-to-hold",
+      "text": "Jarls set it to hold back winter, and it held, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-guarded-the-clans-herds",
+      "text": "It guarded the clan's herds and earned its scars, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-kept-a-crypts-dead",
+      "text": "It kept a crypt's dead lying still, and it endured, {f:details}",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-lighthouse-keeper-set-it",
+      "text": "A lighthouse keeper set it against the storms; it held, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-sealed-a-tunnel-against",
+      "text": "It sealed a tunnel against the deep things, and held, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-anchored-an-archmages-wards",
+      "text": "It anchored an archmage's wards, and took every blow, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-guarded-a-fairy-ring",
+      "text": "It guarded a fairy ring, taking the job too seriously, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-kept-a-fire-elemental",
+      "text": "It kept a fire elemental caged; the heat marked it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-was-the-lock-on",
+      "text": "It was the lock on a devil's prison, and held, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-held-a-portal-shut",
+      "text": "It held a portal shut for centuries, bearing the strain, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-seer-named-it-in",
+      "text": "A seer named it in a prophecy, and it changed, {f:details}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-dying-oracle-described-it",
+      "text": "A dying oracle described it exactly, down to one flaw, {f:details}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecy-spoke-of-a",
+      "text": "The prophecy spoke of a thing marked just so, {f:details}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "dreamed-of-it-before-making",
+      "text": "{npcname} dreamed of it before making it, mark for mark, {f:details}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-temples-oldest-scroll-foretold",
+      "text": "A temple's oldest scroll foretold it and drew it plainly, {f:details}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-seer-named-it-the",
+      "text": "A seer named it the key to an age's ending",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "every-oracle-in-the-city",
+      "text": "Every oracle in the city dreamed of it one night",
+      "weight": 3,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "an-angel-foretold-it-in",
+      "text": "An angel foretold it in a hymn, describing it exactly, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "an-astrologer-read-it-in",
+      "text": "An astrologer read it in the stars, precisely, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-githzerai-seer-foretold-it",
+      "text": "A githzerai seer foretold it, drawing it exactly, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-fey-fortune-teller-foretold-it",
+      "text": "A fey fortune-teller foretold it in a limerick, alarmingly exact, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-banshees-wail-foretold-it",
+      "text": "A banshee's wail foretold it, down to one mark, {f:details}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-devils-fine-print-foretold",
+      "text": "A devil's fine print foretold it, clause by clause, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-sea-witch-read-it",
+      "text": "A sea witch read it in the tides, plainly, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-runes-on-a-frozen",
+      "text": "The runes on a frozen standing stone foretold it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-shaman-saw-it-in",
+      "text": "A shaman saw it in sacred smoke, clear as bone, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-forge-flames-showed-it",
+      "text": "The forge flames showed it to a fire-reader, unmistakably, {f:details}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "an-aboleths-memory-held-it",
+      "text": "An aboleth's memory held it long before it was made, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-dragons-riddle-foretold-it",
+      "text": "A dragon's riddle foretold it, verse for verse, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-hanged-seer-foretold-it",
+      "text": "A hanged seer foretold it before the drop, exactly, {f:details}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "prophecy"
       ]
     }
   ]

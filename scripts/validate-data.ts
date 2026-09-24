@@ -63,6 +63,12 @@ export const MIN_ENTRIES: Record<string, number> = {
   'shared.lore-npc': 40,
   'shared.lore-place': 30,
   'shared.lore-era': 20,
+  'shared.lore-spine': 8,
+  'shared.lore-job': 40,
+  'shared.lore-faction': 30,
+  'shared.lore-reward': 30,
+  'shared.lore-twist': 48,
+  ...Object.fromEntries(['character', 'prop', 'creature', 'building', 'scene'].map((c) => [`${c}.lore-rumour`, 24])),
   ...Object.fromEntries(
     ['character', 'prop', 'creature', 'building', 'scene'].flatMap((c) =>
       ['origin', 'purpose', 'turn', 'now'].map((b) => [`${c}.lore-${b}`, 14]),
@@ -187,13 +193,18 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       tagOk(`${w} requires`, e.requires);
       tagOk(`${w} excludes`, e.excludes);
       themeOk(w, e.themes);
-      const isLoreBeat = /\.lore-(origin|purpose|turn|now)$/.test(t.id);
-      checkText(w, e.text, errors, isLoreBeat ? 170 : 90);
+      const isLoreBeat = /\.lore-(origin|purpose|turn|now|rumour)$/.test(t.id);
+      const isHookLine = /^shared\.lore-(job|twist)$/.test(t.id);
+      checkText(w, e.text, errors, isLoreBeat ? 170 : isHookLine ? 130 : 90);
+      if (SPINE_TABLES.test(t.id) && !e.spines?.length) errors.push(`${w}: needs "spines" (which plots this line belongs to)`);
+      if (!SPINE_TABLES.test(t.id) && e.spines) errors.push(`${w}: "spines" only belongs in turn/now/rumour/job/twist tables`);
       if (e.label) checkText(`${w} label`, e.label, errors);
       for (const x of e.excludes ?? []) if (e.tags?.includes(x)) errors.push(`${w}: both has and excludes tag "${x}"`);
       const placeholders = e.text.match(/\{[^}]*\}/g) ?? [];
       if (isLoreBeat) {
         validateLoreEntry(t, e, data, errors);
+      } else if (isHookLine) {
+        validateHookEntry(t, e, errors);
       } else if (t.id === 'scene.event') {
         if (!e.text.includes('{a}')) errors.push(`${w}: event text must contain {a}`);
         for (const p of placeholders) if (p !== '{a}' && p !== '{b}') errors.push(`${w}: unknown placeholder ${p}`);
@@ -266,7 +277,38 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       }
     }
   }
-  for (const id of ['shared.lore-npc', 'shared.lore-place', 'shared.lore-era']) {
+  // Spines: every plot has enough lines in every theme, for every category.
+  const spineIds = (data.tables['shared.lore-spine']?.entries ?? []).map((e) => e.id);
+  for (const cat of Object.values(data.categories)) {
+    for (const [slot, need, needNoUnique] of [
+      ['turn', 3, 0],
+      ['now', 3, 2],
+      ['rumour', 2, 0],
+    ] as const) {
+      const t = data.tables[`${cat.id}.lore-${slot}`];
+      if (!t || !t.entries.some((e) => e.spines)) continue;
+      for (const spine of spineIds) {
+        for (const theme of data.themes) {
+          const ok = t.entries.filter((e) => e.spines?.includes(spine) && isOnTheme(e, theme) && !isBlocked(e, theme) && !e.surreal);
+          if (ok.length < need) errors.push(`${t.id}: spine "${spine}" has ${ok.length} lines for theme "${theme.id}" (need ${need})`);
+          const free = ok.filter((e) => !(e.requires ?? []).includes('has-unique'));
+          if (free.length < needNoUnique) errors.push(`${t.id}: spine "${spine}" has ${free.length} lines without a unique trait for "${theme.id}" (need ${needNoUnique})`);
+        }
+      }
+    }
+  }
+  for (const id of ['shared.lore-job', 'shared.lore-twist']) {
+    const t = data.tables[id];
+    if (!t) continue;
+    for (const spine of spineIds) {
+      for (const cat of Object.values(data.categories)) {
+        const ok = t.entries.filter((e) => e.spines?.includes(spine) && !(e.excludes ?? []).some((x) => cat.baseTags.includes(x)) && !(e.requires ?? []).length);
+        if (ok.length < 3) errors.push(`${id}: spine "${spine}" has ${ok.length} lines usable for ${cat.id} (need 3)`);
+      }
+    }
+  }
+
+  for (const id of ['shared.lore-npc', 'shared.lore-place', 'shared.lore-era', 'shared.lore-faction', 'shared.lore-reward']) {
     const t = data.tables[id];
     if (!t) continue;
     for (const theme of data.themes) {
@@ -289,6 +331,21 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
 }
 
 const CHARACTER_ONLY = new Set(['first', 'wearing', 'traits']);
+const SPINE_TABLES = /\.lore-(turn|now|rumour)$|^shared\.lore-(job|twist)$/;
+/** Hook lines are shared by every category, so they may only use category-neutral placeholders. */
+const HOOK_OK = new Set(['name', 'subj', 'obj', 'poss', 'npc', 'npcname', 'place', 'era']);
+
+function validateHookEntry(t: Table, e: Entry, errors: string[]) {
+  const w = `${t.id}#${e.id}`;
+  const known = new Set<string>();
+  for (const m of e.text.matchAll(LORE_PLACEHOLDER)) {
+    known.add(m[0]);
+    if (m[2] || !HOOK_OK.has(m[3])) errors.push(`${w}: ${m[0]} is not allowed in shared hook lines (use {name} {subj} {obj} {poss} {npc} {npcname} {place} {era})`);
+  }
+  for (const p of e.text.match(/\{[^}]*\}/g) ?? []) if (!known.has(p)) errors.push(`${w}: unknown placeholder ${p}`);
+  if (e.text.includes("{npc}'s")) errors.push(`${w}: {npc}'s reads badly on first use`);
+  if (e.requires?.length) errors.push(`${w}: hook lines use "excludes" with category tags (cat-scene…) instead of requires`);
+}
 
 function validateLoreEntry(t: Table, e: Entry, data: DataSet, errors: string[]) {
   const w = `${t.id}#${e.id}`;

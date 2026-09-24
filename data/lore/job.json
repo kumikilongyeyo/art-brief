@@ -1,0 +1,1094 @@
+{
+  "id": "shared.lore-job",
+  "category": "shared",
+  "slot": "lore-job",
+  "entries": [
+    {
+      "id": "track-the-thieves-to-place-before-dawn",
+      "text": "track the thieves to {place} before dawn",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "unmask-the-insider-who-opened-the-door",
+      "text": "unmask the insider who opened the door for the thieves",
+      "spines": [
+        "stolen",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "steal-back-what-was-taken-and-leave",
+      "text": "steal back what was taken, and leave no sign the party was there",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "catch-npc-with-the-stolen-goods-alive",
+      "text": "catch {npc} with the stolen goods, alive and talking",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "outbid-the-fence-s-other-buyers-before",
+      "text": "outbid the fence's other buyers before the auction closes",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "find-out-who-ordered-the-theft-and",
+      "text": "find out who ordered the theft, and what they plan to do with it",
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "recover-obj-from-the-fence-before-it",
+      "text": "recover {obj} from the fence before it is sold on",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "swap-obj-for-a-forgery-without-the",
+      "text": "swap {obj} for a forgery without the new owner noticing",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "rescue-obj-from-the-kidnappers-before-the",
+      "text": "rescue {obj} from the kidnappers before the ransom deadline",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "buy-obj-back-from-the-menagerie-that",
+      "text": "buy {obj} back from the menagerie that paid good coin for it",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "retake-the-place-from-the-squatters-who",
+      "text": "retake the place from the squatters who seized it",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "recover-everything-the-looters-stripped-from-the",
+      "text": "recover everything the looters stripped from the place",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "find-the-stolen-deed-and-prove-who",
+      "text": "find the stolen deed and prove who really owns {obj}",
+      "spines": [
+        "stolen"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "chase-the-thief-through-three-of-sigil",
+      "text": "chase the thief through three of Sigil's portals without losing the trail",
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "planar"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "follow-the-thieves-into-the-underdark-without",
+      "text": "follow the thieves into the Underdark without waking what sleeps there",
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "track-the-raiders-longship-up-the-coast",
+      "text": "track the raiders' longship up the coast before the storm breaks",
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "break-the-curse-on-obj-before-the",
+      "text": "break the curse on {obj} before the next new moon",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "find-the-one-who-laid-the-curse",
+      "text": "find the one who laid the curse and make them lift it",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "learn-what-the-curse-costs-then-decide",
+      "text": "learn what the curse costs, then decide who pays",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "gather-the-counter-rite-s-ingredients-one",
+      "text": "gather the counter-rite's ingredients, one from {place}",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "find-npc-the-only-one-who-remembers",
+      "text": "find {npc}, the only one who remembers how the curse began",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "stop-the-curse-spreading-to-the-next",
+      "text": "stop the curse spreading to the next village, whatever it takes",
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "carry-obj-back-to-the-forge-where",
+      "text": "carry {obj} back to the forge where it was made and unmake it there",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "destroy-obj-without-letting-anyone-touch-it",
+      "text": "destroy {obj} without letting anyone touch it bare-handed",
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "cure-obj-before-the-curse-finishes-its",
+      "text": "cure {obj} before the curse finishes its work",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "keep-obj-alive-until-the-curse-can",
+      "text": "keep {obj} alive until the curse can be lifted",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "put-obj-down-mercifully-unless-a-cure",
+      "text": "put {obj} down mercifully, unless a cure turns up first",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "cleanse-the-place-and-survive-a-full",
+      "text": "cleanse the place and survive a full night inside it",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "drive-out-whatever-the-curse-has-drawn",
+      "text": "drive out whatever the curse has drawn to the place",
+      "spines": [
+        "cursed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "lay-the-curse-s-restless-dead-back",
+      "text": "lay the curse's restless dead back in their graves before the harvest",
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "undead"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "find-the-witch-who-cursed-the-family",
+      "text": "find the witch who cursed the family line and bargain for the counter-spell",
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "fey"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "find-the-original-contract-and-read-what",
+      "text": "find the original contract and read what is written in the margins",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "broker-a-new-deal-before-the-old",
+      "text": "broker a new deal before the old one comes due",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "find-a-loophole-in-the-pact-before",
+      "text": "find a loophole in the pact before the debt is collected",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "stand-witness-when-npcname-comes-to-collect",
+      "text": "stand witness when {npcname} comes to collect",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "burn-the-contract-kept-in-place",
+      "text": "burn the contract kept in {place}",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "find-someone-willing-to-pay-the-price",
+      "text": "find someone willing to pay the price in the client's place",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "stall-the-collector-until-the-bargain-s",
+      "text": "stall the collector until the bargain's terms expire at dawn",
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "deliver-obj-as-payment-exactly-on-time",
+      "text": "deliver {obj} as payment, exactly on time and unopened",
+      "spines": [
+        "bargain"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "escort-obj-to-the-crossroads-where-the",
+      "text": "escort {obj} to the crossroads where the deal was struck",
+      "spines": [
+        "bargain"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "hold-the-place-against-the-collectors-until",
+      "text": "hold the place against the collectors until the deed is renegotiated",
+      "spines": [
+        "bargain"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "find-out-what-was-promised-in-exchange",
+      "text": "find out what was promised in exchange for the place",
+      "spines": [
+        "bargain"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "tear-up-the-infernal-contract-in-front",
+      "text": "tear up the infernal contract in front of the devil who wrote it",
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "win-back-a-stolen-name-from-an",
+      "text": "win back a stolen name from an archfey at a game of riddles",
+      "spines": [
+        "bargain",
+        "stolen"
+      ],
+      "themes": [
+        "fey"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "gather-proof-of-the-betrayal-that-no",
+      "text": "gather proof of the betrayal that no court can ignore",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "find-npc-and-learn-why-they-turned",
+      "text": "find {npc} and learn why they turned",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "deliver-a-sealed-message-to-the-betrayer",
+      "text": "deliver a sealed message to the betrayer, in person",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "protect-the-last-witness-to-the-betrayal",
+      "text": "protect the last witness to the betrayal until the trial",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "turn-the-traitor-s-allies-against-them",
+      "text": "turn the traitor's allies against them, quietly",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "find-out-who-paid-for-the-betrayal",
+      "text": "find out who paid for the betrayal, and how much",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "expose-the-traitor-before-the-next-council",
+      "text": "expose the traitor before the next council meeting",
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "clear-poss-name-before-the-bounty-hunters",
+      "text": "clear {poss} name before the bounty hunters find {obj}",
+      "spines": [
+        "betrayed"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "help-obj-take-back-what-was-taken",
+      "text": "help {obj} take back what was taken, and settle the score",
+      "spines": [
+        "betrayed",
+        "stolen"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "return-obj-to-the-rightful-heir-the",
+      "text": "return {obj} to the rightful heir the traitor cheated",
+      "spines": [
+        "betrayed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "retake-the-place-from-the-traitor-s",
+      "text": "retake the place from the traitor's hired swords",
+      "spines": [
+        "betrayed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "find-the-secret-way-in-that-the",
+      "text": "find the secret way in that the traitor sold to the enemy",
+      "spines": [
+        "betrayed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "bring-the-traitor-to-the-gallows-or",
+      "text": "bring the traitor to the gallows, or bring the gallows to them",
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "smuggle-the-traitor-s-confession-out-of",
+      "text": "smuggle the traitor's confession out of a drow noble house",
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "follow-the-old-maps-to-place",
+      "text": "follow the old maps to {place}",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "find-npc-the-last-one-to-see",
+      "text": "find {npc}, the last one to see {obj}",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "reach-the-wreck-before-the-salvagers-do",
+      "text": "reach the wreck before the salvagers do",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "find-out-what-happened-to-the-first",
+      "text": "find out what happened to the first expedition sent looking",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "outrun-the-rival-searchers-npcname-has-hired",
+      "text": "outrun the rival searchers {npcname} has hired",
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "recover-obj-from-where-it-was-lost",
+      "text": "recover {obj} from where it was lost and bring it home",
+      "spines": [
+        "lost"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "find-obj-and-bring-them-home-whatever",
+      "text": "find {obj} and bring them home, whatever they have become",
+      "spines": [
+        "lost"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "track-obj-through-the-wilds-and-bring",
+      "text": "track {obj} through the wilds and bring it back unharmed",
+      "spines": [
+        "lost"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "find-the-way-back-into-the-place",
+      "text": "find the way back into the place before the path closes again",
+      "spines": [
+        "lost"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "map-the-place-and-mark-every-door",
+      "text": "map the place and mark every door for those who follow",
+      "spines": [
+        "lost"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "prove-the-place-still-exists-then-sell",
+      "text": "prove the place still exists, then sell the map to the highest bidder",
+      "spines": [
+        "lost"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "dive-the-wreck-at-low-tide-and",
+      "text": "dive the wreck at low tide and bring up whatever survived",
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "cross-the-glacier-and-back-before-the",
+      "text": "cross the glacier and back before the thaw closes the pass",
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "learn-what-woke-and-what-it-wants",
+      "text": "learn what woke, and what it wants",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "put-whatever-woke-back-to-sleep-by",
+      "text": "put whatever woke back to sleep, by any means",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "find-out-who-performed-the-waking-rite",
+      "text": "find out who performed the waking rite, and why",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "stop-whatever-woke-from-reaching-place",
+      "text": "stop whatever woke from reaching {place}",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "parley-with-the-thing-that-woke-before",
+      "text": "parley with the thing that woke before someone attacks it",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "evacuate-the-nearest-village-before-the-waking",
+      "text": "evacuate the nearest village before the waking is complete",
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "help-subj-master-what-woke-inside-them",
+      "text": "help {subj} master what woke inside them before it takes over",
+      "spines": [
+        "awakened"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "lead-obj-away-from-the-city-before",
+      "text": "lead {obj} away from the city before it wakes fully",
+      "spines": [
+        "awakened"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "carry-obj-sealed-and-warded-to-place",
+      "text": "carry {obj}, sealed and warded, to {place}",
+      "spines": [
+        "awakened",
+        "cursed"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "destroy-obj-before-what-woke-inside-grows",
+      "text": "destroy {obj} before what woke inside grows stronger",
+      "spines": [
+        "awakened"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "survive-a-night-inside-the-place-and",
+      "text": "survive a night inside the place and learn what walks there now",
+      "spines": [
+        "awakened"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "reseal-the-vault-beneath-the-place-before",
+      "text": "reseal the vault beneath the place before it opens fully",
+      "spines": [
+        "awakened",
+        "guardian"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "shut-down-the-old-runes-one-by",
+      "text": "shut down the old runes one by one before the whole circle wakes",
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "arcane"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "bank-the-fires-in-the-old-forge",
+      "text": "bank the fires in the old forge before what woke there spreads",
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "guard-obj-until-the-new-moon-no",
+      "text": "guard {obj} until the new moon, no matter who comes",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "find-what-subj-was-set-to-guard",
+      "text": "find what {subj} was set to guard, before the thieves do",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "relieve-the-old-guardian-and-take-up",
+      "text": "relieve the old guardian and take up the watch for one season",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "learn-who-set-the-ward-and-whether",
+      "text": "learn who set the ward, and whether it still holds",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "hold-the-line-against-the-raiders-for",
+      "text": "hold the line against the raiders for three nights",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "find-a-worthy-successor-to-take-the",
+      "text": "find a worthy successor to take the guardian's place",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "carry-the-guardian-s-warning-to-npc",
+      "text": "carry the guardian's warning to {npc} before it is too late",
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "carry-obj-to-the-vault-it-was",
+      "text": "carry {obj} to the vault it was made to protect",
+      "spines": [
+        "guardian"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-creature",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "lure-obj-away-from-poss-post-long",
+      "text": "lure {obj} away from {poss} post long enough to slip inside",
+      "spines": [
+        "guardian"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "escort-obj-back-to-poss-post-before",
+      "text": "escort {obj} back to {poss} post before the ward fails",
+      "spines": [
+        "guardian"
+      ],
+      "excludes": [
+        "cat-prop",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "repair-the-wards-on-the-place-before",
+      "text": "repair the wards on the place before the next assault",
+      "spines": [
+        "guardian"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "garrison-the-place-against-whatever-it-was",
+      "text": "garrison the place against whatever it was built to keep in",
+      "spines": [
+        "guardian",
+        "awakened"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "earn-the-trust-of-the-beast-clans",
+      "text": "earn the trust of the beast-clans who guard the old grove",
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "relight-the-beacon-above-the-pass-before",
+      "text": "relight the beacon above the pass before the frost giants march",
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "find-the-rest-of-the-prophecy-before",
+      "text": "find the rest of the prophecy before its enemies do",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "prove-the-prophecy-a-forgery-or-prove",
+      "text": "prove the prophecy a forgery, or prove it true",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "stop-the-prophecy-coming-true-without-killing",
+      "text": "stop the prophecy coming true without killing anyone",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "find-npc-who-first-spoke-the-prophecy",
+      "text": "find {npc}, who first spoke the prophecy aloud",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "retrieve-the-prophecy-s-oldest-copy-from",
+      "text": "retrieve the prophecy's oldest copy from {place}",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "protect-the-seer-until-the-prophecy-is",
+      "text": "protect the seer until the prophecy is read before the court",
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "keep-obj-away-from-the-cult-that",
+      "text": "keep {obj} away from the cult that wants the prophecy fulfilled",
+      "spines": [
+        "prophecy"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "deliver-obj-to-the-altar-the-prophecy",
+      "text": "deliver {obj} to the altar the prophecy names, at the hour it names",
+      "spines": [
+        "prophecy"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "prepare-the-place-for-the-day-the",
+      "text": "prepare the place for the day the prophecy names",
+      "spines": [
+        "prophecy"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "clear-the-place-before-the-foretold-army",
+      "text": "clear the place before the foretold army arrives",
+      "spines": [
+        "prophecy"
+      ],
+      "excludes": [
+        "cat-character",
+        "cat-prop",
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "carry-the-prophecy-to-mount-celestia-and",
+      "text": "carry the prophecy to Mount Celestia and ask for a ruling",
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "celestial"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "gather-the-heroes-the-prophecy-names-before",
+      "text": "gather the heroes the prophecy names before the dragon finds them",
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
+      ],
+      "weight": 6
+    }
+  ]
+}

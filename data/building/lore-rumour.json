@@ -1,0 +1,578 @@
+{
+  "id": "building.lore-rumour",
+  "category": "building",
+  "slot": "lore-rumour",
+  "entries": [
+    {
+      "id": "my-cousin-fenced-a-candlestick",
+      "text": "My cousin fenced a candlestick from {name} once. Swears it walked back home on its own",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-thieves-took-the-wrong",
+      "text": "The thieves took the wrong thing. The real treasure's still somewhere near {its:feature}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "they-say-the-thief-who",
+      "text": "They say the thief who hit that {l:function} still drinks here, bold as brass",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "folk-say-what-was-stolen",
+      "text": "Folk say what was stolen from {name} was a fake all along, and the owners knew",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "never-buy-anything-that-smells",
+      "text": "Never buy anything that smells of {name}. Stolen goods from there come back to haunt you",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-fire-priests-want-back",
+      "text": "The fire-priests want back what was stolen from {name}, and they aren't asking nicely",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-pirate-in-the-harbour",
+      "text": "A pirate in the harbour's selling bits of {name} by the pound. Cheap, too. Too cheap",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "spend-a-night-in-and",
+      "text": "Spend a night in {name} and you wake a year older. My uncle did, or so my uncle claims",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "don-t-take-so-much",
+      "text": "Don't take so much as a pebble from {name}. The curse follows the pebble",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-on-that-started",
+      "text": "The curse on that {l:function}? Started with one unpaid bill, my gran says",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "every-owner-of-dies-on",
+      "text": "Every owner of {name} dies on a feast day. Every single one, I swear it",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "they-say-a-kiss-on",
+      "text": "They say a kiss on the doorstep of {name} breaks the curse. Nobody's volunteered",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "they-buried-the-last-owner",
+      "text": "They buried the last owner of {name} face down, to be safe",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "never-thank-anyone-inside-the",
+      "text": "Never thank anyone inside {name}. The fey count thanks as payment, and the curse collects",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "whoever-built-made-a-deal",
+      "text": "Whoever built {name} made a deal. Now something's come to collect, and it doesn't take coin",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "my-gran-says-was-the",
+      "text": "My gran says {its:feature} was the price of the pact. Or the down payment",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "sign-nothing-inside-not-the",
+      "text": "Sign nothing inside {name}. Not the guestbook, not a bar tab, nothing",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-contract-for-that-is",
+      "text": "The contract for that {l:function} is written on skin, they say. Whose skin, nobody says",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "they-say-the-debt-passes",
+      "text": "They say the debt passes to whoever sleeps in {name} last. So nobody sleeps there",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-devil-drinks-in-the",
+      "text": "A devil drinks in the back room of {name} every tenth night, holding a sheaf of paper",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "everyone-knows-who-sold-out",
+      "text": "Everyone knows who sold out {name}. Nobody says it, because they own half the town",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-traitor-still-leaves-flowers",
+      "text": "The traitor still leaves flowers at {name} every year. Guilt, or checking it stays dead",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "my-old-sergeant-was-there",
+      "text": "My old sergeant was there the night {name} fell. Says the gates were opened from inside",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "they-say-the-founder-left",
+      "text": "They say the founder left a letter naming the traitor. It's somewhere near {its:feature}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "that-was-sold-out-for",
+      "text": "That {l:function} was sold out for thirty silver and a title. The title's still in use",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-clans-have-a-hunt",
+      "text": "The clans have a hunt-mark out for whoever wronged {name}. They've not caught them yet",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "my-grandfather-found-once-drunk",
+      "text": "My grandfather found {name} once, drunk as a lord. Sober, never again",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "maps-lie-about-you-follow",
+      "text": "Maps lie about {name}. You follow the moths, my mother says",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "three-expeditions-went-looking-for",
+      "text": "Three expeditions went looking for that {l:function}. One came back, and won't talk",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "they-say-only-shows-itself",
+      "text": "They say {name} only shows itself to the desperate. Good thing I'm desperate",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "sailors-swear-the-lights-of",
+      "text": "Sailors swear the lights of {name} still show on foggy nights, far out at sea",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-sigil-cabbie-claims-to",
+      "text": "A Sigil cabbie claims to know a door that opens straight into {name}. For a fee",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "breathes-lean-on-the-walls",
+      "text": "{name} breathes. Lean on the walls at night and you'll feel it",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "something-under-woke-up-and",
+      "text": "Something under {name} woke up, and it's been asking for someone by name",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "doors-in-lock-themselves-now",
+      "text": "Doors in {name} lock themselves now. Unlock themselves too, when it wants company",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "my-cousin-swears-turned-to",
+      "text": "My cousin swears {its:feature} turned to watch the road last market day",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-dead-of-vote-in",
+      "text": "The dead of {name} vote in the town elections now. Always the same way",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "don-t-dig-near-it",
+      "text": "Don't dig near {name}. It's not keeping folk out, it's keeping something in",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-old-keeper-of-told",
+      "text": "The old keeper of {name} told me what's under it, then asked me to forget",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "they-say-if-ever-falls",
+      "text": "They say if {name} ever falls, the river runs backwards, and worse follows",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "isn-t-decoration-friend-it",
+      "text": "{its:feature} isn't decoration, friend. It's a lock",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-drow-pay-good-coin",
+      "text": "The drow pay good coin for news of {name}. Makes you wonder what's in the cellar",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "when-the-snow-on-the",
+      "text": "When the snow on the roof of {name} melts, run. That's all my gran ever said",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "angels-were-seen-on-the",
+      "text": "Angels were seen on the roof of {name} last solstice. Guarding it, or waiting for it to fall",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "half-the-fences-in-the",
+      "text": "Half the fences in the city have been offered a piece of {name}. None of them took it",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-watch-knows-who-robbed",
+      "text": "The watch knows who robbed that {l:function}. The watch got paid, too",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "my-dog-won-t-walk",
+      "text": "My dog won't walk past {name}. Smartest thing in this village, that dog",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-priest-went-in-to",
+      "text": "A priest went in to lift the curse on that {l:function}. Came out and joined a different faith",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "every-year-on-the-same",
+      "text": "Every year on the same night, a stranger knocks at {name} with a ledger. Nobody answers anymore",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "they-say-the-deal-that",
+      "text": "They say the deal that saved {name} has a clause about the founder's heirs. Never met an heir who lived long",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "ask-about-the-night-fell",
+      "text": "Ask about the night {name} fell, and watch who leaves the room first",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-one-who-sold-out",
+      "text": "The one who sold out {name} is buried under a fancy stone. Empty grave, if you ask me",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-tinker-sold-me-directions",
+      "text": "A tinker sold me directions to {name}. Different directions every time I asked",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "you-don-t-find-it",
+      "text": "You don't find {name}. It finds you, usually when you're lost and scared",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "walk-past-after-dark-and",
+      "text": "Walk past {name} after dark and it creaks your name. Mine, anyway",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-cats-all-left-the",
+      "text": "The cats all left the streets around {name}. Cats know when a house wakes up",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "every-hundred-years-something-knocks",
+      "text": "Every hundred years, something knocks from under {name}. It's been ninety-nine, my gran says",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-warding-marks-on-that",
+      "text": "The warding marks on that {l:function} get repainted every spring, and nobody knows who does it",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "my-aunt-read-tea-leaves",
+      "text": "My aunt read tea leaves over {name} and they spelled a date. Next month's date",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "some-hooded-lot-keep-measuring",
+      "text": "Some hooded lot keep measuring the doorway of {name}. For a coffin or a crown, I reckon",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-seer-told-my-ma",
+      "text": "A seer told my ma {name} will be the last thing standing. Last thing standing after what, eh",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "no-fortune-teller-in-the",
+      "text": "No fortune-teller in the district will read cards about {name}. That's a sign in itself",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "they-say-the-chosen-one",
+      "text": "They say the chosen one will walk out of {name} carrying fire. Probably a torch",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecy-about-that-is",
+      "text": "The prophecy about that {l:function} is real, my priest says. The ending just keeps changing",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-academy-s-forbidden-shelf",
+      "text": "The academy's forbidden shelf has a whole book on {name}. The last page is blank",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-bard-sang-about-once",
+      "text": "A bard sang about {name} once, and the ending came true word for word",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    }
+  ]
+}

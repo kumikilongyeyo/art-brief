@@ -22,6 +22,8 @@ export interface Entry {
   group?: string;
   /** Unique traits: 'predicate' needs a subject ("grows warm…"), 'clause' stands alone ("its eyes glow…"). */
   form?: 'predicate' | 'clause';
+  /** Story lines that belong to particular plot spines (turn, now, rumour, job, twist). */
+  spines?: string[];
 }
 
 export interface Table {
@@ -121,7 +123,17 @@ export interface Brief {
   createdAt: number;
   rerolls: Record<SlotId, number>;
   /** Optional story built from the fields (src/engine/lore.ts). */
-  lore?: { roll: number; text: string };
+  lore?: {
+    roll: number;
+    text: string;
+    /** Plot spine (Stolen, Cursed…) and the D&D hook card built on it. */
+    spine?: string;
+    rumour?: string;
+    job?: string;
+    patron?: string;
+    reward?: string;
+    twist?: string;
+  };
   /** Saved briefs only: folder id (none = Unsorted) and when it was saved. */
   folder?: string;
   savedAt?: number;

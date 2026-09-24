@@ -1,0 +1,514 @@
+{
+  "id": "creature.lore-rumour",
+  "category": "creature",
+  "slot": "lore-rumour",
+  "entries": [
+    {
+      "id": "my-cousin-swears-the-tore",
+      "text": "My cousin swears the {name} tore a caravan apart looking for one stolen egg",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "somebody-s-selling-egg-under",
+      "text": "Somebody's selling {al:bodyPlan} egg under the counter. Whoever it is, I hope they can run",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "they-say-it-now-ever",
+      "text": "They say it {f:behaviour} now, ever since someone robbed its lair",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "never-buy-an-egg-off",
+      "text": "Never buy an egg off a stranger. Last fool who did, the parent came calling",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-thief-s-still-out",
+      "text": "The thief's still out there. So is the {name}, and it's got the scent",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "saw-the-stolen-egg-on",
+      "text": "Saw the stolen egg on a stall in Sigil, priced like a small castle",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-fey-took-its-young",
+      "text": "The fey took its young, they say, and left a pinecone in its place",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "pirates-took-its-young-now",
+      "text": "Pirates took its young. Now every ship out of port gets followed",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "touch-a-and-your-children",
+      "text": "Touch a {name} and your children are born with its eyes. Or so Gran says",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-was-a-person-once",
+      "text": "It was a person once, cursed for lying, the way I heard it",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "my-uncle-wounded-one-out",
+      "text": "My uncle wounded one out in {the:habitat}. Hasn't slept a night since",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "they-say-the-curse-breaks",
+      "text": "They say the curse breaks if someone shows it kindness. Nobody's volunteered",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "why-do-you-think-it",
+      "text": "Why do you think it {f:behaviour}? Curses make a creature do strange things",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "salt-your-door-and-never",
+      "text": "Salt your door and never say its name after dark. That's all I'll say",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-ones-it-kills-get",
+      "text": "The ones it kills get up again. Seen it myself, near enough",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "its-kind-made-a-deal",
+      "text": "Its kind made a deal once. The other party's coming to collect, and soon",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "somebody-holds-a-contract-on",
+      "text": "Somebody holds a contract on every {name} alive. Find the paper, own the beasts",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "folk-say-it-because-the",
+      "text": "Folk say it {f:behaviour} because the deal says so. Terms are terms",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "my-gran-swore-you-can",
+      "text": "My gran swore you can bargain with one, if you bring the right price",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "whoever-wrote-the-pact-is",
+      "text": "Whoever wrote the pact is still alive, and still owed",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "ask-any-tiefling-a-devil",
+      "text": "Ask any tiefling: a devil holds the deed, and devils never forget a debt",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "it-lost-a-wager-with",
+      "text": "It lost a wager with the fey. Now it pays in riddles, poor thing",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "someone-it-trusted-sold-it",
+      "text": "Someone it trusted sold it out. It remembers faces, you know",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-one-who-betrayed-it",
+      "text": "The one who betrayed it lives in comfort now. Not for long, I'd wager",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "used-to-eat-from-a",
+      "text": "Used to eat from a keeper's hand, that one. Then the keeper brought hunters",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "it-won-t-come-near",
+      "text": "It won't come near folk any more. Can't blame it, after what was done",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "ever-wonder-why-it-betrayal",
+      "text": "Ever wonder why it {f:behaviour}? Betrayal changes a creature",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-lord-up-the-valley",
+      "text": "A lord up the valley got rich off its hide. The {name} wants the rest back",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-drow-sold-it-out",
+      "text": "The drow sold it out. Now drow patrols go missing, and nobody weeps",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "last-of-its-kind-supposedly",
+      "text": "Last of its kind, supposedly. My brother saw one in {the:habitat} last spring",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "scholars-pay-silver-for-any",
+      "text": "Scholars pay silver for any sighting of a {name}. Most are made up",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "they-re-all-gone-they",
+      "text": "They're all gone, they say. Funny, then, that something still {f:behaviour}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "an-old-map-shows-where",
+      "text": "An old map shows where the last one went to ground. Map's for sale, of course",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "hunters-swear-there-s-one",
+      "text": "Hunters swear there's one left, {f:scale}, deep in {the:habitat}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-salvage-crew-found-its",
+      "text": "A salvage crew found its bones. Then the bones walked off",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "went-through-a-portal-and",
+      "text": "Went through a portal and never came out. Or came out somewhere worse",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-s-awake-again-the",
+      "text": "It's awake again. The birds knew before we did",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-slept-for-a-hundred",
+      "text": "It slept for a hundred years. Now it {f:behaviour}, and it's in a mood",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "something-woke-it-and-i",
+      "text": "Something woke it, and I'd bet my boots it wants something",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "my-neighbour-heard-it-calling",
+      "text": "My neighbour heard it calling a name in the night. Not a name anyone knows",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "dead-ones-don-t-stay",
+      "text": "Dead ones don't stay dead, not this kind. Mark my words",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-ice-cracked-on-the",
+      "text": "The ice cracked on the lake last week, and something walked out of it",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-forge-fire-went-green",
+      "text": "The forge fire went green, and the {name} came out of it purring",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-s-guarding-something-nothing",
+      "text": "It's guarding something. Nothing sits that still without a reason",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "get-past-the-and-there",
+      "text": "Get past the {name} and there's treasure. Nobody's got past the {name}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "my-grandad-said-it-was",
+      "text": "My grandad said it was set to watch a door. Nobody knows what's behind it",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "leave-it-be-if-it",
+      "text": "Leave it be. If it ever stops guarding, we'll find out why it was there",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-sure-but-only-near",
+      "text": "It {f:behaviour}, sure, but only near that old ruin. It's on duty",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "an-angel-put-it-there",
+      "text": "An angel put it there. You don't argue with an angel's watchdog",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-crypt-it-sits-on",
+      "text": "The crypt it sits on is full of old lords. Rich ones",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-old-songs-name-it",
+      "text": "The old songs name it. When it comes down from {the:habitat}, a king falls",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "there-s-a-prophecy-about",
+      "text": "There's a prophecy about the {name}. Everybody's got a different version",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-seer-told-my-sister",
+      "text": "A seer told my sister it would come this year. My sister's moved away",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "when-it-three-nights-running",
+      "text": "When it {f:behaviour} three nights running, that's the sign. It did last week",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "some-cult-wants-the-prophecy",
+      "text": "Some cult wants the prophecy to happen. Others are paying good coin to stop it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-chosen-one-s-meant",
+      "text": "The chosen one's meant to ride it. Good luck with that, I say",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-skalds-have-started-singing",
+      "text": "The skalds have started singing the last verse. They never sing the last verse",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    }
+  ]
+}

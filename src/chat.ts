@@ -1,3 +1,4 @@
+import { hookLines } from './engine/lore';
 import type { Brief } from './engine/types';
 
 export const DEFAULT_STORY_INSTRUCTION = `You are a Dungeon Master and lore writer helping a fantasy concept artist.
@@ -7,8 +8,10 @@ would tell it at the table. Keep every visual element in the brief true and
 keep the draft's beats (who made it, what it was for, what went wrong, where
 it is now). You may add sensory detail and one memorable name or place.
 Impossible or surreal materials are intentional: make them feel real.
-End with a one-line adventure hook, then name the single moment from the
-story that would make the strongest illustration.
+Keep the plot, rumour, job, patron, reward and twist; weave the rumour in as
+tavern talk and keep the twist as a separate "DM secret" line. Then write
+2–3 sentences of boxed read-aloud text a DM could read when the party first
+sees it, and name the single moment that would make the strongest illustration.
 
 BRIEF:
 {{brief}}
@@ -35,9 +38,6 @@ export function storyText(brief: Brief, instruction: string): string {
   let tpl = instruction;
   if (!tpl.includes('{{brief}}')) tpl += '\n\nBRIEF:\n{{brief}}';
   if (!tpl.includes('{{lore}}')) tpl += '\n\nLORE DRAFT:\n{{lore}}';
-  return tpl
-    .split('{{brief}}')
-    .join(brief.plainText)
-    .split('{{lore}}')
-    .join(brief.lore?.text ?? '');
+  const lore = brief.lore ? [brief.lore.text, '', ...hookLines(brief.lore)].join('\n') : '';
+  return tpl.split('{{brief}}').join(brief.plainText).split('{{lore}}').join(lore);
 }

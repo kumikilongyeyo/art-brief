@@ -1,0 +1,347 @@
+{
+  "id": "prop.lore-rumour",
+  "category": "prop",
+  "slot": "lore-rumour",
+  "entries": [
+    {
+      "id": "the-one-who-stole-it",
+      "text": "The one who stole it drinks here most nights. Pays in coin nobody recognises",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-fence-by-the-docks",
+      "text": "A fence by the docks swears it passed through last month. Nobody's seen that fence since",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "it-was-stolen-to-order",
+      "text": "It was stolen to order, mark my words. Someone wanted a thing that {f:function}, and paid ahead",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "heard-s-heirs-put-up",
+      "text": "Heard {npcname}'s heirs put up a reward. Heard the thief put up a bigger one to keep folk quiet",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "my-cousin-bought-it-off",
+      "text": "My cousin bought it off a cart for three silver. Two very large strangers bought it back, very politely",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "dont-touch-it-my-uncle",
+      "text": "Don't touch it. My uncle held it once, and now my uncle won't go near a mirror",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "everyone-who-ever-owned-died",
+      "text": "Everyone who ever owned {name} died before their fortieth winter. Everyone we know about, anyway",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "oh-it-right-enough-but",
+      "text": "Oh, it {f:function}, right enough. But it takes something back every time",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-priest-says-carry-it",
+      "text": "The priest says carry it home to {the:origin} and the curse lifts. The priest also drinks",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "my-gran-swore-it-hums",
+      "text": "My gran swore it hums the night before a death. Hummed at my wedding, too",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "whoever-holds-it-owes-someone",
+      "text": "Whoever holds it owes someone. Nobody says who, and nobody says it loudly",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "they-say-gave-up-something",
+      "text": "They say {npcname} gave up something they can't buy back to get it. A shadow, or a name",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "theres-a-contract-see-signed",
+      "text": "There's a contract, see. Signed in something that isn't ink, and it's coming due soon",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "someone-offered-it-to-my",
+      "text": "Someone offered it to my friend for free. Nothing that {f:function} comes free, I said",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-collector-came-asking-after",
+      "text": "The collector came asking after it last winter. Polite as anything. Left no footprints in the snow",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "it-wasnt-lost-whatever-the",
+      "text": "It wasn't lost, whatever the heirs say. Somebody close sold {npcname} out, and everyone at that table knows who",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "ask-the-old-steward-how",
+      "text": "Ask the old steward how they got so rich so fast. Go on, ask. Watch their hands",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "best-friends-the-two-of",
+      "text": "Best friends, the two of them. Then one had {name} and the other had a knife in the back",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-one-who-got-betrayed",
+      "text": "The one who got betrayed is still alive, they say. Alive, and very, very patient",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "whoever-did-it-still-comes",
+      "text": "Whoever did it still comes in here. Buys rounds. Laughs too loud. You'd never guess",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-treasure-hunter-i-know-swears",
+      "text": "A treasure-hunter I know swears they saw it glinting in the dark. Then they stopped talking about it",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "half-the-fortune-seekers-in-town",
+      "text": "Half the fortune-seekers in town are hunting it. The other half are selling them fake maps",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "my-granddad-had-a-map",
+      "text": "My granddad had a map to {name}. Used it to patch the roof",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "lost-not-lost-someone-knows",
+      "text": "Lost? Not lost. Someone knows exactly where it is and wants the rest of us looking elsewhere",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "every-spring-some-fool-goes",
+      "text": "Every spring some fool goes looking for it. Every summer we hold a small funeral",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "i-swear-it-moved-left",
+      "text": "I swear it moved. Left it on the table, came back, and it was facing the door",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "they-say-it-on-its",
+      "text": "They say it {f:function} on its own now, whenever the mood takes it",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-talks-apparently-mostly-at",
+      "text": "It talks, apparently. Mostly at night. Mostly about {npcname}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "my-mate-kept-it-in",
+      "text": "My mate kept it in a drawer. Woke up with it on the pillow, watching",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "its-not-a-thing-any",
+      "text": "It's not a thing any more, if you ask me. It's a someone, and it's in a mood",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "leave-it-be-its-guarding",
+      "text": "Leave it be. It's guarding something, and you don't want to meet what it's guarding",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "folk-leave-flowers-by-it",
+      "text": "Folk leave flowers by it. Nobody remembers why, but nobody dares stop",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-old-ones-say-the",
+      "text": "The old ones say the night it's moved, whatever it's been keeping in gets out",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "sure-it-but-thats-not",
+      "text": "Sure, it {f:function}, but that's not its job. Its job is keeping something shut",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-lord-tried-to-sell",
+      "text": "A lord tried to sell it once. The crops failed that same week, every field",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "theres-a-prophecy-about-every",
+      "text": "There's a prophecy about {name}. Every seer in town gives a different ending, and they all charge",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "some-farm-kids-been-dreaming",
+      "text": "Some farm kid's been dreaming of it every night. Kid's never even heard of it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-cult-on-the-hill",
+      "text": "The cult on the hill wants it badly. The temple wants it worse, and the temple has more swords",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "my-aunt-read-it-in",
+      "text": "My aunt read it in the tea leaves: that thing, a stranger at the door, and a very bad winter",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "old-verse-says-itll-be",
+      "text": "Old verse says it'll be found when the river runs backwards. The river's been acting strange",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "came-from-they-say-and",
+      "text": "Came from {the:origin}, they say, and the folk there want it back more than anyone",
+      "weight": 2,
+      "spines": [
+        "stolen",
+        "lost",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "whatever-you-heard-about-it",
+      "text": "Whatever you heard about it, halve it. Then double the danger",
+      "weight": 2,
+      "spines": [
+        "cursed",
+        "awakened",
+        "guardian"
+      ]
+    }
+  ]
+}

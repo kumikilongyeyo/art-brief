@@ -4,65 +4,355 @@
   "slot": "lore-now",
   "entries": [
     {
-      "id": "whatever-happens-next-everyone-present",
-      "text": "Whatever happens next, everyone present will remember it as {f:mood}",
-      "weight": 2
-    },
-    {
-      "id": "the-survivors-will-remember-it",
-      "text": "The survivors will remember it as {f:mood}, and argue the rest",
-      "weight": 3
-    },
-    {
-      "id": "should-be-here-and-is",
-      "text": "{npcname} should be here and is not; the trail leads to {place}",
-      "weight": 4
-    },
-    {
-      "id": "it-ends-as-and-the",
-      "text": "It ends as {f:mood}, and the proof is hidden in {place}",
-      "weight": 4
-    },
-    {
-      "id": "soon-the-tale-reaches-told",
-      "text": "Soon the tale reaches {place}, told as {f:mood}",
-      "weight": 3
-    },
-    {
-      "id": "it-will-go-down-in",
-      "text": "It will go down in song as {f:mood}",
-      "weight": 2
-    },
-    {
-      "id": "stranger-still-and-knows-why",
-      "text": "Stranger still, {unique}, and {npcname} knows why",
-      "weight": 3,
-      "requires": [
-        "has-unique"
+      "id": "the-loot-surfaces-in-wants",
+      "text": "The loot surfaces in {place}; {npcname} wants it back",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "nobody-mentions-that-it-will",
-      "text": "Nobody mentions that {unique}; it will matter by morning",
+      "id": "the-thief-flees-toward-and",
+      "text": "The thief flees toward {place}, and the trail is warm",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "will-pay-well-to-name",
+      "text": "{npcname} will pay well to name the thief",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "it-ends-as-the-thief",
+      "text": "It ends as {f:mood}; the thief is still here",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "worse-and-only-the-thief",
+      "text": "Worse, {unique}, and only the thief knows why",
       "weight": 4,
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "even-now-and-someone-will",
-      "text": "Even now, {unique}, and someone will pay to know why",
+      "id": "all-present-are-cursed-the",
+      "text": "All present are cursed; the cure lies in {place}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "by-morning-the-curse-spreads",
+      "text": "By morning the curse spreads to everyone they touch",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "can-lift-the-curse-for",
+      "text": "{npcname} can lift the curse, for a steep price",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "survivors-remember-it-as-the",
+      "text": "Survivors remember it as {f:mood}; the curse remembers them too",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "already-the-curses-first-sign",
+      "text": "Already {unique}: the curse's first sign",
       "weight": 4,
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "it-will-be-remembered-as",
-      "text": "It will be remembered as {f:mood}, if anyone survives to remember",
-      "weight": 8,
-      "themes": [
-        "dark-fantasy"
+      "id": "holds-the-contract-due-at",
+      "text": "{npcname} holds the contract, due at new moon",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "somewhere-in-the-signed-contract",
+      "text": "Somewhere in {place}, the signed contract waits to be collected",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "someone-here-sold-too-much",
+      "text": "Someone here sold too much; the collector is coming",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "it-ends-as-until-the",
+      "text": "It ends as {f:mood}, until the bill arrives",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "and-as-the-fine-print",
+      "text": "And {unique}, as the fine print promised",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-traitor-walks-away-richer",
+      "text": "The traitor walks away richer; {npcname} plots revenge",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-traitor-is-toasted-in",
+      "text": "The traitor is toasted in {place}, and revenge waits",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "survives-the-knife-and-wants",
+      "text": "{npcname} survives the knife, and wants a reckoning",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-loyal-remember-it-as",
+      "text": "The loyal remember it as {f:mood}; the traitor, as payday",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "and-just-as-the-traitor",
+      "text": "And {unique}, just as the traitor planned",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "never-arrives-the-trail-leads",
+      "text": "{npcname} never arrives; the trail leads to {place}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "is-still-searching-and-pays",
+      "text": "{npcname} is still searching, and pays for news",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "what-was-lost-lies-in",
+      "text": "What was lost lies in {place}, and rivals are looking",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-ends-as-the-missing",
+      "text": "It ends as {f:mood}; the missing are still out there",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "stranger-still-and-it-points",
+      "text": "Stranger still, {unique}, and it points toward the missing",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "what-woke-here-walks-toward",
+      "text": "What woke here walks toward {place}, hungry",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "what-woke-remembers-every-face",
+      "text": "What woke remembers every face, and wants something back",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "knows-what-woke-and-is",
+      "text": "{npcname} knows what woke, and is afraid to say",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "they-remember-it-as-the",
+      "text": "They remember it as {f:mood}; the waking thing remembers faces",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "now-and-it-grows-stronger",
+      "text": "Now {unique}, and it grows stronger every night",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-guardian-is-failing-and",
+      "text": "The guardian is failing, and needs help before nightfall",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "thieves-already-circle-what-the",
+      "text": "Thieves already circle what the guardian protects",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "if-the-guard-falls-what",
+      "text": "If the guard falls, what it holds back reaches {place}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "is-the-last-keeper-and",
+      "text": "{npcname} is the last keeper, and needs an heir",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-ends-as-but-the",
+      "text": "It ends as {f:mood}, but the guardian is weaker now",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "and-a-sign-the-guardian",
+      "text": "And {unique}: a sign the guardian is failing",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-rest-of-the-prophecy",
+      "text": "The rest of the prophecy nears; {npcname} wants it stopped",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-cult-in-awaits-the",
+      "text": "A cult in {place} awaits the next sign",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "half-the-prophecy-is-fulfilled",
+      "text": "Half the prophecy is fulfilled; someone must stop the rest",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "it-ends-as-the-first",
+      "text": "It ends as {f:mood}: the first of three signs",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "and-exactly-as-the-verse",
+      "text": "And {unique}, exactly as the verse foretold",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "prophecy"
       ]
     },
     {
@@ -71,14 +361,45 @@
       "weight": 8,
       "themes": [
         "dark-fantasy"
+      ],
+      "spines": [
+        "betrayed",
+        "cursed",
+        "prophecy"
       ]
     },
     {
-      "id": "someone-in-is-already-drafting",
-      "text": "Someone in {place} is already drafting the bill in infernal ink",
+      "id": "it-will-be-remembered-as",
+      "text": "It will be remembered as {f:mood}, if anyone survives the curse",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-noose-in-waits-for",
+      "text": "A noose in {place} waits for the traitor, once caught",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "someone-in-is-drafting-the",
+      "text": "Someone in {place} is drafting the bill in infernal ink",
       "weight": 8,
       "themes": [
         "infernal"
+      ],
+      "spines": [
+        "bargain",
+        "cursed"
       ]
     },
     {
@@ -90,14 +411,21 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "bargain"
       ]
     },
     {
-      "id": "the-heavens-will-record-it",
-      "text": "The heavens will record it as {f:mood}",
+      "id": "a-devil-in-holds-the",
+      "text": "A devil in {place} holds the loot, and will trade",
       "weight": 8,
       "themes": [
-        "celestial"
+        "infernal"
+      ],
+      "spines": [
+        "stolen",
+        "bargain"
       ]
     },
     {
@@ -106,6 +434,10 @@
       "weight": 8,
       "themes": [
         "celestial"
+      ],
+      "spines": [
+        "betrayed",
+        "stolen"
       ]
     },
     {
@@ -117,14 +449,22 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "prophecy",
+        "awakened"
       ]
     },
     {
-      "id": "the-fey-will-retell-it",
-      "text": "The fey will retell it as {f:mood}, getting every detail wrong",
+      "id": "the-heavens-record-it-as",
+      "text": "The heavens record it as {f:mood}, and send a watcher",
       "weight": 8,
       "themes": [
-        "fey"
+        "celestial"
+      ],
+      "spines": [
+        "guardian",
+        "prophecy"
       ]
     },
     {
@@ -133,6 +473,10 @@
       "weight": 8,
       "themes": [
         "fey"
+      ],
+      "spines": [
+        "bargain",
+        "prophecy"
       ]
     },
     {
@@ -144,14 +488,21 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "the-dead-will-remember-it",
-      "text": "The dead will remember it for a century as {f:mood}",
+      "id": "the-fey-keep-the-missing",
+      "text": "The fey keep the missing one, for a price",
       "weight": 8,
       "themes": [
-        "undead"
+        "fey"
+      ],
+      "spines": [
+        "lost",
+        "stolen"
       ]
     },
     {
@@ -160,6 +511,10 @@
       "weight": 8,
       "themes": [
         "undead"
+      ],
+      "spines": [
+        "awakened",
+        "cursed"
       ]
     },
     {
@@ -171,14 +526,21 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "guardian",
+        "cursed"
       ]
     },
     {
-      "id": "every-tavern-on-the-coast",
-      "text": "Every tavern on the coast will tell it as {f:mood}",
+      "id": "the-dead-keep-watch-now",
+      "text": "The dead keep watch now, and hate visitors",
       "weight": 8,
       "themes": [
-        "nautical"
+        "undead"
+      ],
+      "spines": [
+        "guardian"
       ]
     },
     {
@@ -187,6 +549,34 @@
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "spines": [
+        "stolen",
+        "lost",
+        "betrayed"
+      ]
+    },
+    {
+      "id": "salvagers-in-already-know-where",
+      "text": "Salvagers in {place} already know where the wreck lies",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "the-sea-witchs-price-comes",
+      "text": "The sea-witch's price comes in with the tide",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "bargain",
+        "cursed"
       ]
     },
     {
@@ -195,6 +585,10 @@
       "weight": 8,
       "themes": [
         "underdark"
+      ],
+      "spines": [
+        "awakened",
+        "guardian"
       ]
     },
     {
@@ -206,14 +600,33 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-drow-reward-the-traitor",
+      "text": "The drow reward the traitor, and hunt the survivors",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "betrayed"
       ]
     },
     {
       "id": "a-wizard-in-felt-the",
-      "text": "A wizard in {place} felt the ripple and is already coming",
+      "text": "A wizard in {place} felt the ripple, and is coming",
       "weight": 8,
       "themes": [
         "arcane"
+      ],
+      "spines": [
+        "awakened",
+        "stolen",
+        "prophecy"
       ]
     },
     {
@@ -225,6 +638,21 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "cursed",
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-stolen-spellbook-is-being",
+      "text": "The stolen spellbook is being read aloud in {place}, badly",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "stolen"
       ]
     },
     {
@@ -233,6 +661,10 @@
       "weight": 8,
       "themes": [
         "wild-primal"
+      ],
+      "spines": [
+        "stolen",
+        "betrayed"
       ]
     },
     {
@@ -244,14 +676,32 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "awakened",
+        "cursed"
       ]
     },
     {
-      "id": "the-story-will-outlast-the",
-      "text": "The story will outlast the winter, remembered as {f:mood}",
+      "id": "the-waking-spirit-gathers-the",
+      "text": "The waking spirit gathers the beasts and turns toward {place}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "winter-will-not-lift-until",
+      "text": "Winter will not lift until the curse breaks in {place}",
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
@@ -263,25 +713,53 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "it-will-be-sung-at",
-      "text": "It will be sung at every forge as {f:mood}",
+      "id": "the-lost-patrols-tracks-lead",
+      "text": "The lost patrol's tracks lead toward {place}, fading fast",
       "weight": 8,
       "themes": [
-        "elemental-fire"
+        "frost"
+      ],
+      "spines": [
+        "lost"
       ]
     },
     {
-      "id": "and-while-the-ashes-are",
-      "text": "And {unique}, while the ashes are still warm",
+      "id": "the-fire-debt-falls-due",
+      "text": "The fire-debt falls due; {npcname} cannot pay",
       "weight": 8,
       "themes": [
         "elemental-fire"
       ],
-      "requires": [
-        "has-unique"
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-forge-seers-say-the",
+      "text": "The forge-seers say the next flame rises in {place}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-fire-that-woke-here",
+      "text": "The fire that woke here now answers to no one",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
@@ -290,6 +768,10 @@
       "weight": 8,
       "themes": [
         "high-fantasy"
+      ],
+      "spines": [
+        "awakened",
+        "prophecy"
       ]
     },
     {
@@ -298,14 +780,34 @@
       "weight": 8,
       "themes": [
         "high-fantasy"
+      ],
+      "spines": [
+        "lost",
+        "stolen",
+        "prophecy"
       ]
     },
     {
-      "id": "word-will-reach-sigil-within",
-      "text": "Word will reach Sigil within the hour, told as {f:mood}",
+      "id": "the-crowns-rightful-heir-is",
+      "text": "The crown's rightful heir is in {place}, and knows nothing",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "prophecy",
+        "lost"
+      ]
+    },
+    {
+      "id": "the-traitor-reaches-sigil-within",
+      "text": "The traitor reaches Sigil within the hour, and hides",
       "weight": 8,
       "themes": [
         "planar"
+      ],
+      "spines": [
+        "betrayed"
       ]
     },
     {
@@ -317,6 +819,21 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "prophecy",
+        "cursed"
+      ]
+    },
+    {
+      "id": "in-sigil-the-contract-is",
+      "text": "In Sigil the contract is filed; interest grows daily",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "bargain"
       ]
     }
   ]

@@ -241,6 +241,16 @@
     ],
     "lore": [
       "has-unique"
+    ],
+    "spine": [
+      "spine-stolen",
+      "spine-cursed",
+      "spine-bargain",
+      "spine-betrayed",
+      "spine-lost",
+      "spine-awakened",
+      "spine-guardian",
+      "spine-prophecy"
     ]
   }
 }

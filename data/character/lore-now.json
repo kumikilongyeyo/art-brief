@@ -4,50 +4,230 @@
   "slot": "lore-now",
   "entries": [
     {
-      "id": "now-is-and-hunting-whoever",
-      "text": "Now {first} is {traits}, and hunting whoever sold out {npcname}",
-      "weight": 3
-    },
-    {
-      "id": "as-ever-they-want-the",
-      "text": "{traits} as ever, they want the relic {npcname} hid in {place}",
-      "weight": 3
-    },
-    {
-      "id": "they-are-these-days-and",
-      "text": "They are {traits} these days, and owe {npcname} one last favour",
-      "weight": 3
-    },
-    {
-      "id": "hire-if-you-dare-and",
-      "text": "Hire {first} if you dare: {traits}, and hunted by {npcname}'s people",
-      "weight": 3
+      "id": "what-was-taken-from-now",
+      "text": "What was taken from {first} now sits in {place}, well guarded",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
       "id": "something-of-theirs-sits-in",
       "text": "Something of theirs sits in {place}, and {first}, {traits}, wants it back",
-      "weight": 3
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "now-and-wants-to-know",
-      "text": "Now {unique}, and {npcname}'s old rivals want to know why",
+      "id": "is-tracking-the-thief-from",
+      "text": "{first}, {traits}, is tracking the thief from fence to fence",
       "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "is-selling-what-was-stolen",
+      "text": "{npcname} is selling what was stolen in {place}, and {first} knows it",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "now-and-the-thief-knows",
+      "text": "Now {unique}, and the thief knows exactly why",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ],
       "requires": [
         "has-unique"
       ]
     },
     {
-      "id": "these-days-and-they-would",
-      "text": "These days {unique}, and they would pay well to learn why",
-      "weight": 4,
-      "requires": [
-        "has-unique"
+      "id": "a-devil-in-avernus-bought",
+      "text": "A devil in Avernus bought what was taken, and never resells",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "infernal"
       ]
     },
     {
-      "id": "innkeepers-charge-them-double-because",
-      "text": "Innkeepers charge them double, because {unique}",
+      "id": "an-archfey-wears-what-was",
+      "text": "An archfey wears what was taken, and {first} wants it back",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "what-was-stolen-changed-hands",
+      "text": "What was stolen changed hands in Menzoberranzan, and {first} is going down",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-thief-sailed-for-and",
+      "text": "The thief sailed for {place}, and {first} needs a fast ship",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-thief-and-still-refuses",
+      "text": "The thief died, and still refuses to give it back",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "what-was-taken-is-lot",
+      "text": "What was taken is lot nine at a wizards' auction",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-dragon-now-hoards-what",
+      "text": "A dragon now hoards what was taken, and {first} will try anyway",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "three-sigil-factions-are-bidding",
+      "text": "Three Sigil factions are bidding on what was stolen",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "has-found-the-thiefs-and",
+      "text": "{first} has found the thief's family, and is deciding what to do",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-thief-went-where-the",
+      "text": "The thief went north, where the ice keeps what it takes",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-thief-fled-to-the",
+      "text": "The thief fled to the City of Brass, and {first} follows",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "has-the-thiefs-scent-and",
+      "text": "{first} has the thief's scent now, and the clans are lending hounds",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-temple-in-displays-what",
+      "text": "A temple in {place} displays what was taken as a holy relic",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-curse-tightens-each-new",
+      "text": "The curse tightens each new moon, and {first}, {traits}, is out of time",
       "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "only-can-lift-the-and",
+      "text": "Only {npcname} can lift the curse, and {npcname} is hiding in {place}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "stays-but-the-curse-now",
+      "text": "{first} stays {traits}, but the curse now spreads to anyone they touch",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-cure-is-rumoured-to",
+      "text": "A cure is rumoured to lie in {place}, and {first} will pay anything",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "now-and-it-gets-a",
+      "text": "Now {unique}, and it gets a little worse every year",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ],
       "requires": [
         "has-unique"
       ]
@@ -56,24 +236,33 @@
       "id": "they-are-and-hide-the",
       "text": "They are {traits}, and hide the worst of it: {unique}",
       "weight": 4,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
       "requires": [
         "has-unique"
       ]
     },
     {
-      "id": "buy-a-drink-broke-and",
-      "text": "Buy {first} a drink: {traits}, broke, and carrying a secret about {place}",
-      "weight": 3
-    },
-    {
-      "id": "left-a-debt-and-a",
-      "text": "{npcname} left {first} a debt and a key; both lead to {place}",
-      "weight": 3
+      "id": "innkeepers-charge-them-double-because",
+      "text": "Innkeepers charge them double, because {unique}",
+      "weight": 4,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "requires": [
+        "has-unique"
+      ]
     },
     {
       "id": "what-marked-them-still-hunts",
       "text": "What marked them still hunts, and {first} has stopped running",
       "weight": 8,
+      "spines": [
+        "cursed"
+      ],
       "themes": [
         "dark-fantasy"
       ]
@@ -82,6 +271,10 @@
       "id": "and-every-priest-they-meet",
       "text": "{unique}, and every priest they meet reaches for a weapon",
       "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
       "themes": [
         "dark-fantasy"
       ],
@@ -90,19 +283,299 @@
       ]
     },
     {
-      "id": "to-a-fault-walks-the",
-      "text": "{traits} to a fault, {first} walks the barrows, settling the dead's debts",
+      "id": "since-then-and-gravediggers-leave",
+      "text": "Since then {unique}, and gravediggers leave when they arrive",
       "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "themes": [
+        "undead"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-dead-want-and-send",
+      "text": "The dead want {first} back, and send someone every winter",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
       "themes": [
         "undead"
       ]
     },
     {
-      "id": "since-then-and-gravediggers-leave",
-      "text": "Since then {unique}, and gravediggers leave when they arrive",
+      "id": "now-the-fey-insist-it",
+      "text": "Now {unique}. The fey insist it is a gift",
       "weight": 8,
+      "spines": [
+        "cursed",
+        "bargain"
+      ],
       "themes": [
-        "undead"
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-curse-breaks-only-if",
+      "text": "The curse breaks only if someone gives {first} a true name freely",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-relic-that-could-redeem",
+      "text": "A relic that could redeem {first} sits in {place}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "no-captain-will-take-aboard",
+      "text": "No captain will take them aboard, because {unique}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "every-ship-boards-meets-a",
+      "text": "Every ship {first} boards meets a storm, so {first} needs a brave crew",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "is-one-spell-short-of",
+      "text": "{first} is one spell short of undoing it all",
+      "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "no-scholar-can-explain-why",
+      "text": "No scholar can explain why {unique}, and several want to dissect them",
+      "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "themes": [
+        "arcane"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-spellbook-that-did-this",
+      "text": "The spellbook that did this sits in {place}, and {first} wants it",
+      "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "ever-since-and-the-winter",
+      "text": "Ever since, {unique}, and the winter seems to follow them",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "frost-follows-only-a-giants",
+      "text": "Frost follows {first} indoors; only a giant's forgiveness can end it",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "now-and-the-salamanders-call",
+      "text": "Now {unique}, and the salamanders call them kin",
+      "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "only-the-fire-priests-of-brass",
+      "text": "Only the fire-priests of Brass can burn the curse out",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-clans-call-omen-touched",
+      "text": "The clans call them omen-touched, because {unique}",
+      "weight": 8,
+      "spines": [
+        "cursed",
+        "prophecy"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-forest-spirits-will-lift",
+      "text": "The forest spirits will lift the curse for one impossible hunt",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "only-a-drow-curse-breaker-in",
+      "text": "Only a drow curse-breaker in Menzoberranzan can help, at a price",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-devil-offers-to-lift",
+      "text": "A devil offers to lift the curse for one small favour",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "the-cure-lies-in-a",
+      "text": "The cure lies in a dragon's hoard, and {first} needs companions",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-sigil-guild-offers-a",
+      "text": "A Sigil guild offers a cure; nobody trusts it",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "they-are-these-days-and",
+      "text": "They are {traits} these days, and owe {npcname} one last favour",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-debt-comes-due-at",
+      "text": "The debt comes due at midwinter, and {first} cannot pay",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "holds-the-contract-in-and",
+      "text": "{npcname} holds the contract in {place}, and {first} wants it burned",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "has-one-year-left-before",
+      "text": "{first}, {traits}, has one year left before the price is collected",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "left-a-debt-and-a",
+      "text": "{npcname} left {first} a debt and a key; both lead to {place}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "now-and-that-was-only",
+      "text": "Now {unique}, and that was only the first payment",
+      "weight": 4,
+      "spines": [
+        "bargain"
       ],
       "requires": [
         "has-unique"
@@ -112,6 +585,20 @@
       "id": "their-contract-sits-in-steal",
       "text": "Their contract sits in {place}; steal it back and {first} is free",
       "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "or-not-is-three-payments",
+      "text": "{traits} or not, {first} is three payments behind to a devil",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
       "themes": [
         "infernal"
       ]
@@ -120,6 +607,9 @@
       "id": "now-and-the-interest-keeps",
       "text": "Now {unique}, and the interest keeps compounding",
       "weight": 8,
+      "spines": [
+        "bargain"
+      ],
       "themes": [
         "infernal"
       ],
@@ -131,187 +621,172 @@
       "id": "being-never-helped-owes-the",
       "text": "Being {traits} never helped: {first} owes the fey a forgotten name",
       "weight": 8,
+      "spines": [
+        "bargain"
+      ],
       "themes": [
         "fey"
       ]
     },
     {
-      "id": "now-the-fey-insist-it",
-      "text": "Now {unique}. The fey insist it is a gift",
+      "id": "a-frost-giant-now-holds",
+      "text": "A frost giant now holds the contract, due at first snow",
       "weight": 8,
-      "themes": [
-        "fey"
+      "spines": [
+        "bargain"
       ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "a-relic-that-could-redeem",
-      "text": "A relic that could redeem {first} sits in {place}",
-      "weight": 8,
-      "themes": [
-        "celestial"
-      ]
-    },
-    {
-      "id": "pilgrims-follow-from-town-to",
-      "text": "Pilgrims follow them from town to town, because {unique}",
-      "weight": 8,
-      "themes": [
-        "celestial"
-      ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "wants-a-ship-a-crew",
-      "text": "{first} wants a ship, a crew and one more storm",
-      "weight": 8,
-      "themes": [
-        "nautical"
-      ]
-    },
-    {
-      "id": "no-captain-will-take-aboard",
-      "text": "No captain will take them aboard, because {unique}",
-      "weight": 8,
-      "themes": [
-        "nautical"
-      ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "something-below-is-following-s",
-      "text": "Something below is following {first}'s scent, and closing",
-      "weight": 8,
-      "themes": [
-        "underdark"
-      ]
-    },
-    {
-      "id": "down-in-the-dark-and",
-      "text": "Down in the dark, {unique}, and the drow have noticed",
-      "weight": 8,
-      "themes": [
-        "underdark"
-      ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "the-spellbook-that-did-this",
-      "text": "The spellbook that did this sits in {place}, and {first} wants it",
-      "weight": 8,
-      "themes": [
-        "arcane"
-      ]
-    },
-    {
-      "id": "no-scholar-can-explain-why",
-      "text": "No scholar can explain why {unique}, and several want to dissect them",
-      "weight": 8,
-      "themes": [
-        "arcane"
-      ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "one-beast-is-left-on",
-      "text": "One beast is left on {first}'s list, and it knows",
-      "weight": 8,
-      "themes": [
-        "wild-primal"
-      ]
-    },
-    {
-      "id": "the-clans-call-omen-touched",
-      "text": "The clans call them omen-touched, because {unique}",
-      "weight": 8,
-      "themes": [
-        "wild-primal"
-      ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "is-heading-north-where-the",
-      "text": "{first} is heading north, where the ice keeps what it took",
-      "weight": 8,
       "themes": [
         "frost"
       ]
     },
     {
-      "id": "ever-since-and-the-winter",
-      "text": "Ever since, {unique}, and the winter seems to follow them",
+      "id": "the-debt-was-sold-on",
+      "text": "The debt was sold on in Sigil, to someone far worse",
       "weight": 8,
-      "themes": [
-        "frost"
+      "spines": [
+        "bargain"
       ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "the-forge-lord-who-burned",
-      "text": "The forge-lord who burned their home still lives; {first} is coming",
-      "weight": 8,
-      "themes": [
-        "elemental-fire"
-      ]
-    },
-    {
-      "id": "now-and-the-salamanders-call",
-      "text": "Now {unique}, and the salamanders call them kin",
-      "weight": 8,
-      "themes": [
-        "elemental-fire"
-      ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "somewhere-a-dragon-has-learned",
-      "text": "Somewhere a dragon has learned {first}'s name, and waits",
-      "weight": 8,
-      "themes": [
-        "high-fantasy"
-      ]
-    },
-    {
-      "id": "bards-sing-that-the-song",
-      "text": "Bards sing that {unique}; the song still needs an ending",
-      "weight": 8,
-      "themes": [
-        "high-fantasy"
-      ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "their-way-home-sits-in",
-      "text": "Their way home sits in {place}, and rivals want it too",
-      "weight": 8,
       "themes": [
         "planar"
       ]
     },
     {
-      "id": "now-and-a-sigil-guild",
-      "text": "Now {unique}, and a Sigil guild will pay for the reason",
+      "id": "the-sea-wants-its-and",
+      "text": "The sea wants its due, and every storm now looks for {first}",
       "weight": 8,
+      "spines": [
+        "bargain"
+      ],
       "themes": [
-        "planar"
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-god-calls-in-s",
+      "text": "A god calls in {first}'s vow, with a terrible task",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-king-wants-the-debt",
+      "text": "The king wants the debt repaid with a dragon's head",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-dead-have-come-to",
+      "text": "The dead have come to collect, and they are very patient",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "a-drow-house-has-bought",
+      "text": "A drow house has bought the debt, and {first} must return below",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-contracts-small-print-is",
+      "text": "The contract's small print is a spell, and it is waking",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-clans-bought-the-must",
+      "text": "The clans bought the debt; {first} must run the spring hunt",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "an-efreet-holds-the-and",
+      "text": "An efreet holds the contract, and it burns hotter each month",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "whatever-holds-the-contract-has",
+      "text": "Whatever holds the contract has started visiting {first}'s dreams",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "now-is-and-hunting-whoever",
+      "text": "Now {first} is {traits}, and hunting whoever sold them out",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-one-who-sold-them",
+      "text": "The one who sold them out, {npcname}, prospers in {place}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "hire-if-you-dare-and",
+      "text": "Hire {first} if you dare: {traits}, and hunted by {npcname}'s people",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "trusts-nobody-and-needs-a",
+      "text": "{first} trusts nobody now, and needs a crew for one last reckoning",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-never-learned-that",
+      "text": "The betrayer never learned that {unique}; that is {first}'s edge",
+      "weight": 4,
+      "spines": [
+        "betrayed"
       ],
       "requires": [
         "has-unique"
@@ -321,89 +796,1011 @@
       "id": "keeps-a-list-of-names",
       "text": "{first} keeps a list of names; yours may be on it",
       "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
       "themes": [
         "dark-fantasy"
       ]
     },
     {
-      "id": "or-not-is-three-payments",
-      "text": "{traits} or not, {first} is three payments behind to a devil",
+      "id": "the-betrayer-now-sits-at",
+      "text": "The betrayer now sits at a drow matron's table, far below",
       "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-betrayer-wears-a-crown",
+      "text": "The betrayer wears a crown now, and {first} knows the secret passage",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-betrayer-runs-a-forge-guild",
+      "text": "The betrayer runs a forge-guild now, and {first} is coming",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-betrayer-took-holy-and",
+      "text": "The betrayer took holy orders, and {first} wants a confession",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-betrayer-bought-a-devils",
+      "text": "The betrayer bought a devil's protection; {first} means to break it",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
       "themes": [
         "infernal"
       ]
     },
     {
-      "id": "is-and-a-small-fey",
-      "text": "{first} is {traits}, and a small fey follows them, taking notes",
+      "id": "the-betrayer-hides-at-an",
+      "text": "The betrayer hides at an archfey's court, where lies are law",
       "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
       "themes": [
         "fey"
       ]
     },
     {
-      "id": "rides-on-a-quest-they",
-      "text": "{first} rides on a quest they refuse to explain",
+      "id": "the-betrayer-captains-a-ship",
+      "text": "The betrayer captains a ship now, and {first} has booked passage",
       "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
       "themes": [
-        "celestial",
-        "high-fantasy"
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-betrayer-died-of-old",
+      "text": "The betrayer died of old age; {first} wants the grave opened anyway",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-betrayer-sits-on-a",
+      "text": "The betrayer sits on a wizards' council and writes the laws",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "will-call-the-betrayer-out",
+      "text": "{first} will call the betrayer out at the next clan moot",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-betrayer-winters-in-a",
+      "text": "The betrayer winters in a warm hall, and {first} is walking there",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-betrayer-fled-to-and",
+      "text": "The betrayer fled to Sigil, and {first} has finally learned the way",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "everything-they-lost-lies-somewhere",
+      "text": "Everything they lost lies somewhere in {place}, and {first} has a map",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "is-still-searching-for-and",
+      "text": "{npcname} is still searching for {first}, and not kindly",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "their-way-home-sits-in",
+      "text": "Their way home sits in {place}, and rivals want it too",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "is-and-paying-well-for",
+      "text": "{first} is {traits}, and paying well for anyone who knows the way back",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "whatever-happened-out-and-they",
+      "text": "Whatever happened out there, {unique}, and they want to know why",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "buy-a-drink-broke-and",
+      "text": "Buy {first} a drink: {traits}, broke, and carrying a secret about {place}",
+      "weight": 4,
+      "spines": [
+        "lost",
+        "guardian"
+      ]
+    },
+    {
+      "id": "is-heading-north-where-the",
+      "text": "{first} is heading north, where the ice keeps what it took",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "frost"
       ]
     },
     {
       "id": "the-last-page-of-s",
       "text": "The last page of {npcname}'s logbook points to {place}",
       "weight": 8,
+      "spines": [
+        "lost"
+      ],
       "themes": [
         "nautical"
+      ]
+    },
+    {
+      "id": "wants-a-ship-a-crew",
+      "text": "{first} wants a ship, a crew and one more storm",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "something-below-is-following-s",
+      "text": "Something below is following {first}'s scent, and closing",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "underdark"
       ]
     },
     {
       "id": "the-underdark-wants-back-and",
       "text": "The Underdark wants {first} back, and has sent something",
       "weight": 8,
+      "spines": [
+        "lost"
+      ],
       "themes": [
         "underdark"
       ]
     },
     {
-      "id": "is-one-spell-short-of",
-      "text": "{first} is one spell short of undoing it all",
+      "id": "holds-a-sigil-key-and",
+      "text": "{first} holds a Sigil key home, and three factions want it",
       "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-bard-swears-one-of",
+      "text": "A bard swears one of the fallen still lives, somewhere in {place}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-fog-is-and-can",
+      "text": "The fog is thinning, and {first} can see the way back again",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "time-runs-wrong-for-and",
+      "text": "Time runs wrong for {first} now, and home is not waiting",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-celestial-door-home-opens",
+      "text": "A celestial door home opens once a century, and soon",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-devil-sells-maps-of",
+      "text": "A devil sells maps of the way back, for a favour",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "clan-scouts-found-where-it",
+      "text": "Clan scouts found where it happened, and something was waiting there",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-scrying-pool-in-shows",
+      "text": "A scrying pool in {place} shows the missing years, for a price",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
       "themes": [
         "arcane"
+      ]
+    },
+    {
+      "id": "the-ash-has-cooled-enough",
+      "text": "The ash has cooled enough to dig, and {first} is hiring",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-ghosts-of-the-lost",
+      "text": "The ghosts of the lost ask for {first} by name each night",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "it-acts-on-its-own",
+      "text": "It acts on its own now, and {first}, {traits}, cannot always stop it",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "what-woke-in-wants-something",
+      "text": "What woke in {first} wants something in {place}, and it is patient",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "wakes-in-strange-and-knows",
+      "text": "{first} wakes in strange places, and {npcname} knows why",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-thing-inside-has-started",
+      "text": "The thing inside {first} has started keeping its own journal",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "now-and-wants-to-know",
+      "text": "Now {unique}, and {npcname}'s old rivals want to know why",
+      "weight": 4,
+      "spines": [
+        "awakened",
+        "cursed"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "these-days-and-they-would",
+      "text": "These days {unique}, and they would pay well to learn why",
+      "weight": 4,
+      "spines": [
+        "awakened",
+        "cursed"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-dead-nod-to-in",
+      "text": "The dead nod to {first} in passing now, and ask favours",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-elder-brain-has-started",
+      "text": "The elder brain has started calling, and {first} hears it",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "down-in-the-dark-and",
+      "text": "Down in the dark, {unique}, and the drow have noticed",
+      "weight": 8,
+      "spines": [
+        "awakened",
+        "cursed"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-fey-have-noticed-what",
+      "text": "The fey have noticed what woke, and want it at court",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "dragons-can-smell-what-woke",
+      "text": "Dragons can smell what woke in {first}, and one is coming",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-light-in-will-not",
+      "text": "The light in {first} will not hide, and inquisitors are asking",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-blood-wants-a-throne",
+      "text": "The blood wants a throne in Avernus, and has started bargaining",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "the-beast-inside-and-the",
+      "text": "The beast inside hungers, and the moon is nearly full",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "frost-spreads-wherever-and-the",
+      "text": "Frost spreads wherever {first} sleeps, and the jarls want them",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-tide-pulls-at-toward",
+      "text": "The tide pulls at {first} now, toward something in {place}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "three-planes-claim-what-woke",
+      "text": "Three planes claim what woke in {first}, and all have sent envoys",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "now-and-a-sigil-guild",
+      "text": "Now {unique}, and a Sigil guild will pay for the reason",
+      "weight": 8,
+      "spines": [
+        "awakened",
+        "cursed"
+      ],
+      "themes": [
+        "planar"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "what-woke-in-whispers-in",
+      "text": "What woke in {first} whispers in the voice of the dead",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "it-burns-hotter-every-and",
+      "text": "It burns hotter every day, and a forge-lord wants it harnessed",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-wizards-college-wants-awake",
+      "text": "A wizards' college wants {first} studied, awake or otherwise",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "still-guards-and-has-not",
+      "text": "{first} still guards it, {traits}, and has not slept well in years",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "if-what-they-guard-gets",
+      "text": "If {first} fails, what they guard gets out, and {place} goes first",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "needs-someone-to-take-the",
+      "text": "{first} needs someone to take the watch for one night, no questions",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "someone-in-wants-what-and",
+      "text": "Someone in {place} wants what {first} guards, and has hired help",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "as-they-guard-the-relic",
+      "text": "{traits} as ever, they guard the relic {npcname} hid in {place}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "what-they-guard-has-changed",
+      "text": "What they guard has changed them: {unique}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "to-a-fault-walks-the",
+      "text": "{traits} to a fault, {first} walks the barrows, settling the dead's debts",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "rides-on-a-quest-they",
+      "text": "{first} rides on a quest they refuse to explain",
+      "weight": 8,
+      "spines": [
+        "guardian",
+        "prophecy"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "pilgrims-follow-from-town-to",
+      "text": "Pilgrims follow them from town to town, because {unique}",
+      "weight": 8,
+      "spines": [
+        "guardian",
+        "prophecy"
+      ],
+      "themes": [
+        "celestial"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-seal-is-and-is",
+      "text": "The seal is cracking, and {first} is the only one who noticed",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-fey-want-back-what",
+      "text": "The fey want back what {first} protects, and they are patient",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-devil-has-offered-to",
+      "text": "A devil has offered to take the watch, for a price",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "the-storms-are-getting-and",
+      "text": "The storms are getting worse, and something below is waking",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "something-below-tests-the-ward",
+      "text": "Something below tests the ward each night, and it is learning",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-ward-is-and-the",
+      "text": "The ward is failing, and the only renewal spell sits in {place}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "poachers-are-and-cannot-hold",
+      "text": "Poachers are circling, and {first} cannot hold them off alone",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-ice-is-thinning-over",
+      "text": "The ice is thinning over what {first} watches",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-fire-tends-is-and",
+      "text": "The fire {first} tends is guttering, and nobody knows why",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "three-factions-want-the-portal",
+      "text": "Three factions want the portal open, and {first} is in the way",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-dragon-has-come-asking",
+      "text": "A dragon has come asking for what {first} guards",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-prophecy-comes-true-at",
+      "text": "The prophecy comes true at the next eclipse, and {first} is {traits}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "wants-the-prophecy-others-want",
+      "text": "{npcname} wants the prophecy fulfilled; others want {first} dead first",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-last-line-of-the",
+      "text": "The last line of the prophecy sits in {place}, unread",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "is-trying-very-hard-to",
+      "text": "{first}, {traits}, is trying very hard to prove the prophecy wrong",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "it-was-foretold-that-and",
+      "text": "It was foretold that {unique}, and now it is true",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "bards-sing-that-the-song",
+      "text": "Bards sing that {unique}; the song still needs an ending",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "somewhere-a-dragon-has-learned",
+      "text": "Somewhere a dragon has learned {first}'s name, and waits",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
       ]
     },
     {
       "id": "the-clans-have-called-a",
       "text": "The clans have called a hunt, and {first} is the quarry",
       "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
       "themes": [
         "wild-primal"
       ]
     },
     {
-      "id": "owes-a-frost-giant-a",
-      "text": "{first} owes a frost giant a favour, due at first snow",
+      "id": "is-and-a-small-fey",
+      "text": "{first} is {traits}, and a small fey follows them, taking notes",
       "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "the-fey-courts-are-betting",
+      "text": "The fey courts are betting on how the prophecy ends",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "cultists-want-to-reach-the",
+      "text": "Cultists want {first} to reach the end of the prophecy intact",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-lich-has-waited-centuries",
+      "text": "A lich has waited centuries for {first} to arrive",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "devils-are-bidding-on-s",
+      "text": "Devils are bidding on {first}'s destiny, and the auction closes soon",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "every-sailor-knows-the-and",
+      "text": "Every sailor knows the rhyme, and no captain will carry {first}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-drow-have-sent-assassins",
+      "text": "The drow have sent assassins to stop the prophecy",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-wizards-college-wants-under",
+      "text": "A wizards' college wants {first} under glass until the date passes",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-giants-expect-at-the",
+      "text": "The giants expect {first} at the thaw, crowned or dead",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
       "themes": [
         "frost"
       ]
     },
     {
-      "id": "wants-back-the-ember-stole",
-      "text": "{first} wants back the ember {npcname} stole from them",
+      "id": "the-forge-priests-are-building-the",
+      "text": "The forge-priests are building the throne the prophecy describes",
       "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
       "themes": [
         "elemental-fire"
       ]
     },
     {
-      "id": "holds-a-sigil-key-that",
-      "text": "{first} holds a Sigil key that three factions want",
+      "id": "every-faction-in-sigil-reads",
+      "text": "Every faction in Sigil reads it differently, and all want {first}",
       "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
       "themes": [
         "planar"
+      ]
+    },
+    {
+      "id": "a-temple-has-named-its",
+      "text": "A temple has named {first} its chosen one, without asking",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "celestial"
       ]
     }
   ]

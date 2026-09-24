@@ -107,3 +107,51 @@ A scene is a single moment, so its story is **before → why they came → the m
 3. `npx tsx scripts/lore-stats.ts <category>` until median 60–70, 0 over 80, 0 under 50.
 4. `npx tsx scripts/sample-briefs.ts <category> 4` and **read every story**. Fix anything awkward: broken
    grammar at a placeholder seam, a story that ignores the card, a tone clash, a repeated shape.
+
+---
+
+# Plot spines and the hook card (v1.3)
+
+Every story now rolls a **plot spine** first (`data/lore/spine.json`):
+**stolen · cursed · bargain · betrayed · lost · awakened · guardian · prophecy**.
+`origin` and `purpose` stay generic (they set up the card). **`turn` and `now` are told from the spine**, so the
+story builds to one plot: the turn is the spine's defining event, the now is that plot's consequence + hook.
+
+Each spine-driven line carries `"spines": [...]` (one or more spine ids it genuinely fits). The engine only picks
+lines for the rolled spine.
+
+| spine | turn = the event | now = consequence / hook |
+|---|---|---|
+| stolen | it (or something of theirs) was taken, by whom | it is out there, being fenced / hunted / used |
+| cursed | the curse took hold, why | the curse's price today; how it might be broken |
+| bargain | a deal was struck with a devil / archfey / god / guild | the debt comes due; who holds the contract |
+| betrayed | someone trusted turned | the betrayer prospers; revenge is waiting |
+| lost | it vanished — shipwreck, war, a portal, an avalanche | where it lies; who is searching |
+| awakened | something inside woke up / came back | it acts on its own now; it wants something |
+| guardian | it was set to guard or protect something | what it still guards; what happens if it fails |
+| prophecy | a prophecy named it / them | the prophecy is close; who wants it fulfilled or stopped |
+
+## Hook card (shown under the story, D&D job-board style)
+- **Rumour** — `data/<category>/lore-rumour.json`, `"spines"` required. What tavern folk *say* — in-world
+  speech, ≤ 25 words, first person or hearsay, may be wrong or half-true ("My cousin swears it hums when a liar
+  speaks"). Rendered inside quotes; no final full stop needed. Use card placeholders as in the story.
+- **Job** — `data/lore/job.json` (shared). What the party is hired to do, imperative, ≤ 16 words: "Recover {obj}
+  before the new moon", "Find who broke the seal". Category-neutral placeholders only: `{name} {subj} {obj}
+  {poss} {npc} {npcname} {place} {era}`. Use `"excludes": ["cat-scene"]` etc. when a line can't fit a category
+  (a scene can't be "carried"). Every spine needs ≥ 3 usable lines **per category**.
+- **Patron** — `data/lore/faction.json`: who hires the party. Noun phrase *with* its article/title: "the
+  Harpers", "the Zhentarim", "a Red Wizard of Thay", "House Thann of Waterdeep", "the Doomguard of Sigil",
+  "the Emerald Enclave", "the Church of Tyr". Theme-tagged.
+- **Reward** — `data/lore/reward.json`: noun phrase: "500 gp", "a +1 weapon of the party's choice", "a favour
+  from a noble house", "the location of a dragon's hoard", "passage on a spelljammer". Theme-tagged.
+- **Twist** — `data/lore/twist.json` (shared, `"spines"` required): the DM-only secret complication, one
+  sentence ≤ 20 words, shown behind a *Reveal* button: "The client is a doppelganger", "The curse moves to
+  whoever returns {obj}", "{npcname} never died". Same placeholder rules as Job.
+
+## Coverage rules (validator)
+- `turn`: for every spine and every theme ≥ 3 grounded on-theme lines. `now`: ≥ 3, of which ≥ 2 without a
+  unique trait. `rumour`: ≥ 2. Easiest: ≥ 3 theme-free lines per spine, then themed flavour on top (weight 8).
+- `job` / `twist`: ≥ 3 lines per spine usable for each category.
+- Story length rules are unchanged (50–80 words, median 60–70 via `scripts/lore-stats.ts`).
+- Keep the rest of this guide's rules: appositives for noun fields, `{place}` fits any place, no `{npc}'s`,
+  no gendered pronouns, original wording.

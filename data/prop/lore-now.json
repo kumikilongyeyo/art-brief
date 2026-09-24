@@ -4,139 +4,306 @@
   "slot": "lore-now",
   "entries": [
     {
-      "id": "now-and-s-heirs-want",
-      "text": "Now {unique}, and {npcname}'s heirs want it back",
-      "weight": 5,
-      "requires": [
-        "has-unique"
+      "id": "the-trail-ends-in-where",
+      "text": "The trail ends in {place}, where the thief is taking bids",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "these-days-return-it-to",
-      "text": "These days {unique}. Return it to {the:origin} and name your price",
-      "weight": 5,
-      "requires": [
-        "has-unique"
+      "id": "it-was-last-fenced-in",
+      "text": "It was last fenced in {place}; {npcname}'s heirs offer a bounty",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "even-now-as-if-waiting",
-      "text": "Even now {unique}, as if waiting for its maker",
-      "weight": 5,
-      "requires": [
-        "has-unique"
+      "id": "the-thief-lies-low-in",
+      "text": "The thief lies low in {place}, using it for small jobs",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "whoever-holds-it-keeps-quiet",
-      "text": "Whoever holds it keeps quiet, because {unique}",
-      "weight": 5,
-      "requires": [
-        "has-unique"
+      "id": "it-keeps-changing-hands-it",
+      "text": "It keeps changing hands; it was last seen in {place}",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "it-was-last-seen-in",
-      "text": "It was last seen in {place}, and three parties are hunting it",
-      "weight": 4
+      "id": "its-thief-turned-up-dead",
+      "text": "Its thief turned up dead in {place}, and it was gone",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "it-sits-forgotten-in-waiting",
-      "text": "It sits forgotten in {place}, waiting for a fool",
-      "weight": 4
+      "id": "a-collector-in-has-a",
+      "text": "A collector in {place} has a fake; the real one wanders",
+      "weight": 3,
+      "spines": [
+        "stolen",
+        "awakened"
+      ]
     },
     {
-      "id": "rumour-puts-it-in-and",
-      "text": "Rumour puts it in {place}, and the rumour is spreading",
-      "weight": 4
+      "id": "it-is-locked-in-the",
+      "text": "It is locked in {place}; the lock is its weakest guard",
+      "weight": 8,
+      "themes": [
+        "arcane",
+        "wild-primal"
+      ],
+      "spines": [
+        "stolen",
+        "prophecy"
+      ]
     },
     {
-      "id": "a-collector-in-claims-to",
-      "text": "A collector in {place} claims to own it; the real one keeps turning up elsewhere",
-      "weight": 3
+      "id": "the-thief-cannot-sell-it",
+      "text": "The thief cannot sell it quietly, because {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "it-is-somewhere-in-and",
-      "text": "It is somewhere in {place}, and whoever goes looking does not come back",
+      "id": "a-devil-owns-the-thiefs",
+      "text": "A devil owns the thief's contract and sent collectors to {place}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-thief-will-return-it",
+      "text": "The thief will return it only for a true name",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "each-thief-who-held-it",
+      "text": "Each thief who held it died; something in {place} has it",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "it-passes-ship-to-ship",
+      "text": "It passes ship to ship like coin, last seen in {place}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "it-was-sold-in-to",
+      "text": "It was sold in {place} to a buyer with ten eyestalks",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "whoever-stole-it-is-dismantling",
+      "text": "Whoever stole it is dismantling it in {place}, rune by rune",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "it-lies-under-a-sleeping",
+      "text": "It lies under a sleeping dragon, prize of its hoard",
+      "weight": 8,
+      "themes": [
+        "high-fantasy",
+        "elemental-fire"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-thieves-hold-it-in",
+      "text": "The thieves hold it in {place} until the ice breaks",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "a-temple-has-gone-dark",
+      "text": "A temple has gone dark while the thief misuses it",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-thieves-parade-it-at",
+      "text": "The thieves parade it at every moot; a blood-feud brews",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "it-was-fenced-in-and",
+      "text": "It was fenced in {place}, and the Fated bid first",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "the-curse-holds-whoever-keeps",
+      "text": "The curse holds; whoever keeps it in {place} is wasting away",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-sits-in-the-curse",
+      "text": "It sits in {place}; the curse ends only where it began",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-waits-in-return-it",
+      "text": "It waits in {place}; return it to {the:origin} to break the curse",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "its-owner-in-would-pay",
+      "text": "Its owner in {place} would pay anything to lose it",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "nobody-in-will-touch-it",
+      "text": "Nobody in {place} will touch it; the curse spreads anyway",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "now-and-each-time-the",
+      "text": "Now {unique}, and each time the curse tightens",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-lies-in-ringed-by",
+      "text": "It lies in {place}, ringed by its last owners' bones",
       "weight": 8,
       "themes": [
         "dark-fantasy",
         "undead"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "it-sits-in-and-a",
-      "text": "It sits in {place}, and a devil keeps the receipt",
-      "weight": 8,
-      "themes": [
-        "infernal"
-      ]
-    },
-    {
-      "id": "now-and-somewhere-a-devil",
-      "text": "Now {unique}, and somewhere a devil is counting the days",
+      "id": "a-devil-offers-to-lift",
+      "text": "A devil offers to lift the curse, for a soul",
       "weight": 8,
       "themes": [
         "infernal"
       ],
-      "requires": [
-        "has-unique"
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "it-turns-up-in-whenever",
-      "text": "It turns up in {place} whenever it is least wanted, which the fey adore",
-      "weight": 8,
-      "themes": [
-        "fey"
-      ]
-    },
-    {
-      "id": "now-the-fey-call-this",
-      "text": "Now {unique}. The fey call this a compliment",
+      "id": "the-archfey-lifts-curses-for",
+      "text": "The archfey lifts curses for anyone who makes it laugh",
       "weight": 8,
       "themes": [
         "fey"
       ],
-      "requires": [
-        "has-unique"
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "it-is-enshrined-in-humming",
-      "text": "It is enshrined in {place}, humming when the righteous pass",
+      "id": "it-rests-in-only-true",
+      "text": "It rests in {place}; only true penance can cleanse it",
       "weight": 8,
       "themes": [
-        "celestial",
-        "high-fantasy"
+        "celestial"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "it-lies-in-and-every",
-      "text": "It lies in {place}, and it still smells of salt and deep water",
+      "id": "no-captain-will-carry-it",
+      "text": "No captain will carry it; the last three drowned",
       "weight": 8,
       "themes": [
         "nautical"
-      ]
-    },
-    {
-      "id": "now-the-dead-at-least",
-      "text": "Now {unique}. The dead, at least, recognise it",
-      "weight": 8,
-      "themes": [
-        "undead"
       ],
-      "requires": [
-        "has-unique"
-      ]
-    },
-    {
-      "id": "it-waits-in-with-every",
-      "text": "It waits in {place}, with every enemy its makers ever made",
-      "weight": 8,
-      "themes": [
-        "high-fantasy",
-        "planar"
+      "spines": [
+        "cursed"
       ]
     },
     {
@@ -148,14 +315,766 @@
       ],
       "requires": [
         "has-unique"
+      ],
+      "spines": [
+        "cursed",
+        "awakened"
       ]
     },
     {
-      "id": "it-is-buried-in-and",
-      "text": "It waits in {place}, still cold enough to frost the glass around it",
+      "id": "it-waits-in-cold-enough",
+      "text": "It waits in {place}, cold enough to frost nearby glass",
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "spines": [
+        "cursed",
+        "lost"
+      ]
+    },
+    {
+      "id": "every-beast-near-it-turns",
+      "text": "Every beast near it turns savage, and it rests in {place}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-drifts-in-and-something",
+      "text": "It drifts in {place}, and something in the Abyss wants it",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-dragon-can-lift-the",
+      "text": "A dragon can lift the curse, for a hoard's worth",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-smoulders-in-and-everything",
+      "text": "It smoulders in {place}, and everything it touches catches fire",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-lies-in-the-dark",
+      "text": "It lies in {place}; the dark around it has grown teeth",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "now-the-fey-call-this",
+      "text": "Now {unique}. The fey call this a compliment",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-debt-falls-due-this",
+      "text": "The debt falls due this year; it still sits in {place}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-contract-binds-whoever-holds",
+      "text": "The contract binds whoever holds it next; it waits in {place}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "s-heirs-inherited-the-debt",
+      "text": "{npcname}'s heirs inherited the debt, and the collector is in {place}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-contract-lies-in-burn",
+      "text": "The contract lies in {place}; burn it, and the debt dies",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "its-keeper-in-is-desperate",
+      "text": "Its keeper in {place} is desperate to pass on the debt",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "now-which-the-contract-calls",
+      "text": "Now {unique}, which the contract calls interest",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "it-sits-in-and-a",
+      "text": "It sits in {place}, and a devil keeps the receipt",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "now-and-somewhere-a-devil",
+      "text": "Now {unique}, and somewhere a devil is counting the days",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "an-archfey-will-collect-the",
+      "text": "An archfey will collect the favour at the next eclipse",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-solar-watches-its-bearer",
+      "text": "A solar watches its bearer for a broken vow",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-sigil-ledger-records-the",
+      "text": "A Sigil ledger records the promise; its collectors are patient",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-debt-passed-to-a",
+      "text": "The debt passed to a lich, which has started asking",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-sea-hag-bought-the",
+      "text": "A sea hag bought the debt, and wants a drowning",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-beholder-bought-the-debt",
+      "text": "A beholder bought the debt, and considers it unfinished",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-debt-falls-due-at",
+      "text": "The debt falls due at the solstice, payable in blood",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-frost-giant-holds-the",
+      "text": "A frost giant holds the debt, due before winter",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-deal-has-one-clause",
+      "text": "The deal has one clause left, written by an efreeti",
+      "weight": 8,
+      "themes": [
+        "elemental-fire",
+        "planar"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-hunt-spirits-are-collecting",
+      "text": "The hunt spirits are collecting, and the herds are thinning",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-dragon-holds-the-debt",
+      "text": "A dragon holds the debt and has woken early",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-betrayer-prospers-in-using",
+      "text": "The betrayer prospers in {place}, using it openly, fearing no one",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-keeps-it-in",
+      "text": "The betrayer keeps it in {place}, always within reach",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "someone-survived-the-betrayal-and",
+      "text": "Someone survived the betrayal and is waiting in {place} for help",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-sits-in-rich",
+      "text": "The betrayer sits in {place}, rich and respected; revenge is overdue",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "it-rests-in-the-betrayers",
+      "text": "It rests in {place}; the betrayer's heirs call it theirs",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-cannot-sleep-near",
+      "text": "The betrayer cannot sleep near it, because {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "now-and-s-heirs-want",
+      "text": "Now {unique}, and {npcname}'s heirs want it back",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "betrayed",
+        "stolen",
+        "lost"
+      ]
+    },
+    {
+      "id": "the-betrayer-lives-untouched-in",
+      "text": "The betrayer lives untouched in {place}; the betrayed do not rest",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayers-house-rose-on",
+      "text": "The betrayer's house rose on it, and rivals smell weakness",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-is-crowned-now",
+      "text": "The betrayer is crowned now; it hangs above the throne",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-bought-infernal-protection",
+      "text": "The betrayer bought infernal protection, and the term is ending",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-sends-cheerful-apologies",
+      "text": "The betrayer sends cheerful apologies every spring, from somewhere in {place}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-still-carries-it",
+      "text": "The betrayer still carries it; heaven is recruiting a champion",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-now-captains-a",
+      "text": "The betrayer now captains a ship, and wears it openly",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-is-a-celebrated",
+      "text": "The betrayer is a celebrated archmage, built entirely on it",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-is-jarl-now",
+      "text": "The betrayer is jarl now, and the blizzard remembers",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-winters-in-comfort",
+      "text": "The betrayer winters in comfort in {place}, but the cold remembers",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-leads-a-rival",
+      "text": "The betrayer leads a rival clan; the betrayed want blood",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-wears-a-new",
+      "text": "The betrayer wears a new face in {place}; the Mercykillers know",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "the-betrayer-runs-the-forge",
+      "text": "The betrayer runs the forge now; its fires burn wrong",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "it-lies-in-the-last",
+      "text": "It lies in {place}; the last expedition after it is overdue",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "half-its-map-surfaced-in",
+      "text": "Half its map surfaced in {place}; the other half is missing",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "s-descendants-believe-it-lies",
+      "text": "{npcname}'s descendants believe it lies in {place}, and are hiring",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "nobody-knows-it-lies-in",
+      "text": "Nobody knows it lies in {place}, and nobody has looked",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-fresh-sighting-puts-it",
+      "text": "A fresh sighting puts it in {place}, and searchers are gathering",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-was-last-seen-in",
+      "text": "It was last seen in {place}; three parties are hunting it",
+      "weight": 3,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "searchers-know-it-by-one",
+      "text": "Searchers know it by one sign: {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "these-days-return-it-to",
+      "text": "These days {unique}. Return it to {the:origin} and name your price",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "lost",
+        "cursed"
+      ]
+    },
+    {
+      "id": "it-lies-in-still-smelling",
+      "text": "It lies in {place}, still smelling of salt and deep water",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-is-somewhere-in-whoever",
+      "text": "It is somewhere in {place}; whoever goes looking never returns",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "last-glimpsed-in-it-may",
+      "text": "Last glimpsed in {place}, it may have drifted planes since",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "its-trail-runs-cold-in",
+      "text": "Its trail runs cold in {place}, but a tracker swears otherwise",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-surfaces-in-when-least",
+      "text": "It surfaces in {place} when least wanted; the fey adore this",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "lost",
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-logs-place-it-in",
+      "text": "The logs place it in {place}, give or take a plane",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-lies-in-where-the",
+      "text": "It lies in {place}, where the dark grows thick around it",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-lies-in-under-a",
+      "text": "It lies in {place}, under a crust of cooled ash",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "pilgrims-still-search-for-it",
+      "text": "Pilgrims still search {place} for it, praying for a sign",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "heroes-went-looking-for-it",
+      "text": "Heroes went looking for it in {place}; only songs came back",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-devil-lists-it-as",
+      "text": "A devil lists it as missing property, with a reward",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "it-roams-at-night-in",
+      "text": "It roams at night in {place}, looking for {npcname}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-chooses-its-own-bearer",
+      "text": "It chooses its own bearer now; the latest is in {place}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-will-not-stay-in",
+      "text": "It will not stay in {place}; each night it edges toward {the:origin}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-whispers-one-request-to",
+      "text": "It whispers one request to anyone who sleeps near it",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-lies-still-in-pretending",
+      "text": "It lies still in {place}, pretending to be ordinary, and waiting",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "now-and-it-does-so",
+      "text": "Now {unique}, and it does so deliberately",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "even-now-as-if-waiting",
+      "text": "Even now {unique}, as if waiting for its maker",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "awakened",
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-dead-in-answer-to",
+      "text": "The dead in {place} answer to it now",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
@@ -165,15 +1084,499 @@
       "themes": [
         "underdark",
         "elemental-fire"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
-      "id": "it-is-locked-in-the",
-      "text": "It is locked in {place}; the lock is the least of its guards",
+      "id": "it-hums-in-and-the",
+      "text": "It hums in {place}, and the ice around it is spreading",
       "weight": 8,
       "themes": [
-        "arcane",
+        "frost"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-is-enshrined-in-humming",
+      "text": "It is enshrined in {place}, humming when the righteous pass",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ],
+      "spines": [
+        "awakened",
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-sings-in-at-high",
+      "text": "It sings in {place} at high tide, calling a sunken ship",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-writes-a-devils-name",
+      "text": "It writes a devil's name everywhere, and the devil answers",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-howls-in-on-the",
+      "text": "It howls in {place} on the full moon, calling its pack",
+      "weight": 8,
+      "themes": [
         "wild-primal"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-keeps-opening-small-doors",
+      "text": "It keeps opening small doors in {place}; something looks through",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-wants-a-hero-and",
+      "text": "It wants a hero, and has chosen someone deeply unsuitable",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-feeds-on-its-keepers",
+      "text": "It feeds on its keepers in {place}, nightmare by nightmare",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-rewrites-its-own-runes",
+      "text": "It rewrites its own runes nightly; nobody can read them",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-keeps-watch-in-and",
+      "text": "It keeps watch in {place}, and it has begun to crack",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-was-taken-to-and",
+      "text": "It was taken to {place}, and what it guarded is stirring",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-waits-in-move-it",
+      "text": "It waits in {place}; move it, and the seal breaks",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-still-guards-s-last",
+      "text": "It still guards {npcname}'s last heir, who is hiding in {place}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-stands-alone-in-guarding",
+      "text": "It stands alone in {place}, guarding something no one remembers",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-still-keeps-watch-and",
+      "text": "It still keeps watch, and {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-keeps-watch-in-and-2",
+      "text": "It keeps watch in {place}, and the dead are testing it",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "what-it-holds-back-has",
+      "text": "What it holds back has started offering its keepers deals",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "it-keeps-watch-in-and-3",
+      "text": "It keeps watch in {place} and bites anyone without an invitation",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "each-storm-season-it-weakens",
+      "text": "Each storm season it weakens, and the drowned grow bolder",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-hundred-winters-of-watching",
+      "text": "A hundred winters of watching; this one may break it",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "something-below-is-knocking-on",
+      "text": "Something below is knocking on the other side of it",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "its-wards-weaken-yearly-no",
+      "text": "Its wards weaken yearly; no living mage can renew them",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-beasts-around-it-have",
+      "text": "The beasts around it have fled; something bigger is coming",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "whatever-it-holds-shut-in",
+      "text": "Whatever it holds shut in {place} has started pushing back",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "its-charge-smoulders-now-and",
+      "text": "Its charge smoulders now, and it cannot hold much longer",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "its-heroes-are-gone-and",
+      "text": "Its heroes are gone, and it keeps their charge alone",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "its-vigil-has-lasted-ages",
+      "text": "Its vigil has lasted ages; heaven stopped sending relief",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-foretold-year-has-come",
+      "text": "The foretold year has come, and it still sits in {place}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "one-order-wants-the-prophecy",
+      "text": "One order wants the prophecy fulfilled; another wants it stopped",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "it-waits-for-the-one",
+      "text": "It waits for the one the prophecy named, in {place}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "cultists-in-have-started-the",
+      "text": "Cultists in {place} have started the ritual without it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecys-signs-have-begun",
+      "text": "The prophecy's signs have begun, one by one, in {place}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "scholars-dispute-the-prophecys-last",
+      "text": "Scholars dispute the prophecy's last line; lives hang on it",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "now-the-final-sign-the",
+      "text": "Now {unique}, the final sign the prophecy promised",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "whoever-holds-it-keeps-quiet",
+      "text": "Whoever holds it keeps quiet, because {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ],
+      "spines": [
+        "prophecy",
+        "stolen",
+        "cursed"
+      ]
+    },
+    {
+      "id": "pilgrims-gather-in-singing-the",
+      "text": "Pilgrims gather in {place}, singing the prophecy aloud",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-stars-align-next-month",
+      "text": "The stars align next month, and it lies in {place}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-doomguard-want-it-fulfilled",
+      "text": "The Doomguard want it fulfilled; the Harmonium want it buried",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecys-final-rhyme-is",
+      "text": "The prophecy's final rhyme is coming true, rude part included",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-banshee-has-begun-to",
+      "text": "A banshee has begun to wail in {place}",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-devil-wants-it-fulfilled",
+      "text": "A devil wants it fulfilled, having read the fine print",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-tides-rise-exactly-as",
+      "text": "The tides rise exactly as foretold, and it lies in {place}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-foretold-winter-has-begun",
+      "text": "The foretold winter has begun, and it lies in {place}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-sacred-smoke-has-turned",
+      "text": "The sacred smoke has turned red; the clans are gathering",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-volcano-the-prophecy-named",
+      "text": "The volcano the prophecy named has begun to smoke",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "something-vast-in-the-deep",
+      "text": "Something vast in the deep has started moving toward it",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecys-chosen-one-is",
+      "text": "The prophecy's chosen one is coming, and is utterly unready",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "prophecy"
       ]
     }
   ]

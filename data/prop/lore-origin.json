@@ -11,7 +11,7 @@
     {
       "id": "it-began-in-where-first",
       "text": "It began in {the:origin}, where {npc} first worked {f:material}",
-      "weight": 4
+      "weight": 2
     },
     {
       "id": "ordered-it-from",
@@ -26,7 +26,7 @@
     {
       "id": "no-one-asked-for-it",
       "text": "No one asked for it; {npc} simply carried it home from {the:origin}",
-      "weight": 3
+      "weight": 2
     },
     {
       "id": "traded-a-soul-to-for",

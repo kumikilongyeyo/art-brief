@@ -169,9 +169,11 @@ test('saved briefs and history survive a reload', async ({ page }) => {
   await cards(page).first().getByRole('button', { name: 'Save' }).click();
   await expect(cards(page).first().getByRole('button', { name: 'Remove from saved' })).toHaveAttribute('aria-pressed', 'true');
   await page.reload();
-  await expect(page.locator('#list-saved summary')).toHaveText('Saved (1)');
-  await page.locator('#list-saved summary').click();
-  await expect(page.locator('#list-saved')).toContainText(title);
+  await expect(page.locator('#saved-toggle .badge')).toHaveText('1');
+  await page.locator('#saved-toggle').click();
+  await expect(page.locator('#saved-panel')).toContainText(title);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#saved-panel')).toBeHidden();
   await expect(page.locator('#list-history summary')).toHaveText('History (1)');
   await page.locator('#list-history summary').click();
   await page.locator('#list-history li button').first().click();
@@ -313,8 +315,9 @@ test('keyboard-only walkthrough with visible focus', async ({ page }, info) => {
       const cs = getComputedStyle(el);
       return el !== document.body && cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) >= 2;
     });
-  await page.keyboard.press('Tab'); // settings
+  await page.keyboard.press('Tab'); // Saved (header)
   expect(await focusVisible()).toBe(true);
+  await page.keyboard.press('Tab'); // settings
   await page.keyboard.press('Tab'); // Character pill
   await page.keyboard.press('Tab'); // Prop pill
   await page.keyboard.press('Enter');

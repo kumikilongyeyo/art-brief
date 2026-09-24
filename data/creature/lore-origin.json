@@ -11,12 +11,12 @@
     {
       "id": "sages-class-it-as-but",
       "text": "Sages class it as {a:creatureType}, but {the:habitat} made it what it is",
-      "weight": 4
+      "weight": 2
     },
     {
       "id": "it-was-once-before-changed",
       "text": "It was {a:creatureType} once, before {the:habitat} changed it",
-      "weight": 4
+      "weight": 2
     },
     {
       "id": "found-the-first-one-in",
@@ -26,7 +26,7 @@
     {
       "id": "its-kind-began-in-where",
       "text": "Its kind began in {the:habitat}, where nothing else could live",
-      "weight": 4
+      "weight": 2
     },
     {
       "id": "nobody-meant-to-make-the",
@@ -44,7 +44,7 @@
     {
       "id": "it-was-before-starved-it",
       "text": "It was {a:creatureType} before {the:habitat} starved it into something worse",
-      "weight": 8,
+      "weight": 2,
       "themes": [
         "dark-fantasy"
       ]
@@ -52,7 +52,7 @@
     {
       "id": "its-kind-began-as-a",
       "text": "Its kind began as a devil's wager, settled in {the:habitat} {era}",
-      "weight": 8,
+      "weight": 2,
       "themes": [
         "infernal"
       ]
@@ -84,7 +84,7 @@
     {
       "id": "it-was-sent-to-watch",
       "text": "It was {a:creatureType} sent to watch over {the:habitat}, {era}",
-      "weight": 8,
+      "weight": 2,
       "themes": [
         "celestial"
       ]
@@ -124,7 +124,7 @@
     {
       "id": "it-was-of-the-deep",
       "text": "It was {a:creatureType} of the deep sea before {the:habitat} claimed it",
-      "weight": 8,
+      "weight": 2,
       "themes": [
         "nautical"
       ]
@@ -188,7 +188,7 @@
     {
       "id": "it-was-until-the-long",
       "text": "It was {a:creatureType} until the long winter locked {the:habitat} in ice",
-      "weight": 8,
+      "weight": 2,
       "themes": [
         "frost"
       ]
@@ -220,7 +220,7 @@
     {
       "id": "it-was-in-a-dragons",
       "text": "It was {a:creatureType} in a dragon's service before it fled to {the:habitat}",
-      "weight": 8,
+      "weight": 2,
       "themes": [
         "high-fantasy"
       ]

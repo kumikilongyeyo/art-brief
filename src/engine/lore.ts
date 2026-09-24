@@ -1,7 +1,7 @@
 import { capitalise, withArticle } from './grammar';
 import { fieldEntries } from './generate';
 import { givenName } from './names';
-import { pickEntry, type PickContext } from './pick';
+import { pickEntry, weightedPick, type PickContext } from './pick';
 import { rngFrom, type Rng } from './rng';
 import { withMaterial } from './templates';
 import type { Brief, CategoryDef, CategoryId, DataSet, Entry, SlotId } from './types';
@@ -21,14 +21,14 @@ import type { Brief, CategoryDef, CategoryId, DataSet, Entry, SlotId } from './t
  *   {npc} / {npcname} "a disgraced court wizard named Vharn" on first use, then "Vharn";
  *   never write {npc}'s — before the introduction {npcname}'s becomes "its maker's" (per category)
  *   {place} {era}  from data/lore/place.json and data/lore/era.json
+ *   {obj} them/it   {poss} their/its  (lets shared hook lines fit every category)
  */
 
 export const LORE_BEATS = ['origin', 'purpose', 'turn', 'now'] as const;
 export const LORE_MIN = 50;
 export const LORE_MAX = 80;
+const SPINE_THEME_BOOST = 2.5;
 const ATTEMPTS = 60;
-const TRY_AT_LEAST = 8;
-export const LORE_TARGET = 65;
 /** Who a possessive points at before the story's figure has been introduced ("its maker's heirs"). */
 const NPC_FALLBACK: Record<CategoryId, string> = {
   character: 'their mentor',
@@ -39,11 +39,27 @@ const NPC_FALLBACK: Record<CategoryId, string> = {
 };
 
 export const LORE_PLACEHOLDER =
-  /\{(f|the|a|al|its|their|l):([a-zA-Z]+)\}|\{(name|first|subj|unique|wearing|traits|npc|npcname|place|era)\}/g;
+  /\{(f|the|a|al|its|their|l):([a-zA-Z]+)\}|\{(name|first|subj|unique|wearing|traits|npc|npcname|place|era|obj|poss)\}/g;
 
 export interface Lore {
   roll: number;
   text: string;
+  spine?: string;
+  rumour?: string;
+  job?: string;
+  patron?: string;
+  reward?: string;
+  twist?: string;
+}
+
+/** The eight plot spines; turn/now beats and hook lines require one of these tags. */
+export const SPINES = ['stolen', 'cursed', 'bargain', 'betrayed', 'lost', 'awakened', 'guardian', 'prophecy'] as const;
+
+/** Keep only lines written for this spine (tables without spine lines pass through unchanged). */
+function forSpine(entries: Entry[], spine: string): Entry[] {
+  if (!entries.some((e) => e.spines)) return entries;
+  const hit = entries.filter((e) => e.spines?.includes(spine));
+  return hit.length ? hit : entries;
 }
 
 function tableEntries(data: DataSet, id: string): Entry[] {
@@ -133,7 +149,8 @@ function render(tpl: string, data: DataSet, cat: CategoryDef, brief: Brief, st: 
     }
     switch (word) {
       case 'name':
-        return brief.fields.name.text;
+        // "near the Ninth Orphanage" mid-sentence; sentence() re-capitalises a sentence start.
+        return brief.fields.name.text.replace(/^The /, 'the ');
       case 'first':
         return brief.fields.name.text.split(' ')[0];
       case 'subj':
@@ -154,6 +171,10 @@ function render(tpl: string, data: DataSet, cat: CategoryDef, brief: Brief, st: 
         st.npc.used = true;
         return `${withArticle(st.npc.role)} named ${st.npc.name}`;
       }
+      case 'obj':
+        return cat.id === 'character' ? 'them' : 'it';
+      case 'poss':
+        return cat.id === 'character' ? 'their' : 'its';
       case 'place':
         st.place ??= pickEntry(tableEntries(data, 'shared.lore-place'), ctx, rng).entry.text;
         return st.place;
@@ -194,14 +215,22 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
   const shown = new Set(brief.lines.flatMap((l) => l.slots ?? [l.slot]));
   const hidden = new Set(cat.dropOrder.filter((s) => !shown.has(s)));
 
-  // Try several tellings and keep the one closest to ~65 words inside 50–80, so stories read tight
-  // instead of all hugging the cap.
-  let best: { text: string; score: number } | null = null;
-  for (let a = 0; a < ATTEMPTS; a++) {
+  // The plot spine is rolled first; every later beat and the hook card are told from it.
+  // A spine's themes only tilt the odds (x2.5); every plot can happen in every theme.
+  const spines = tableEntries(data, 'shared.lore-spine');
+  const spineWeights = spines.map((e) => (e.weight ?? 5) * (e.themes?.includes(theme.id) ? SPINE_THEME_BOOST : 1));
+  const spineEntry = weightedPick(spines, spineWeights, rngFrom(`${brief.seed}-spine-${roll}`)) ?? spines[0];
+  (spineEntry.tags ?? []).forEach((t) => tags.add(t));
+
+  // Take the first telling that fits 50–80 words (preferring "closest to a target" made a handful of
+  // short templates win every time).
+  let chosen: { text: string; st: LoreState; rng: ReturnType<typeof rngFrom> } | null = null;
+  let fallback: { text: string; gap: number; st: LoreState; rng: ReturnType<typeof rngFrom> } | null = null;
+  for (let a = 0; a < ATTEMPTS && !chosen; a++) {
     const rng = rngFrom(`${brief.seed}-lore-${roll}-${a}`);
     const st: LoreState = {};
     const parts = LORE_BEATS.map((beat) => {
-      const all = tableEntries(data, `${cat.id}.lore-${beat}`);
+      const all = forSpine(tableEntries(data, `${cat.id}.lore-${beat}`), spineEntry.id);
       if (!all.length) return '';
       const visible = all.filter((e) => !mentionsHidden(e.text, hidden));
       const entries = visible.length ? visible : all;
@@ -209,12 +238,43 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
     }).filter(Boolean);
     const text = parts.join(' ');
     const n = countWords(text);
-    const outside = n < LORE_MIN ? LORE_MIN - n : n > LORE_MAX ? n - LORE_MAX : 0;
-    const score = outside * 100 + Math.abs(n - LORE_TARGET);
-    if (!best || score < best.score) best = { text, score };
-    if (a >= TRY_AT_LEAST && best.score < 100) break;
+    const gap = n < LORE_MIN ? LORE_MIN - n : n > LORE_MAX ? n - LORE_MAX : 0;
+    if (gap === 0) chosen = { text, st, rng };
+    else if (!fallback || gap < fallback.gap) fallback = { text, gap, st, rng };
   }
-  return { roll, text: best!.text };
+  const tell = chosen ?? fallback!;
+
+  // Hook card: same figure/place state as the story, so names carry over into the twist.
+  const line = (id: string, asSentence = true) => {
+    const entries = forSpine(tableEntries(data, id), spineEntry.id);
+    if (!entries.length) return undefined;
+    const out = render(pickEntry(entries, ctx, tell.rng).entry.text, data, cat, brief, tell.st, ctx, tell.rng);
+    return asSentence ? sentence(out) : capitalise(out.trim());
+  };
+  const lore: Lore = { roll, text: tell.text, spine: spineEntry.label ?? spineEntry.text };
+  const rumour = line(`${cat.id}.lore-rumour`);
+  if (rumour) lore.rumour = rumour;
+  const job = line('shared.lore-job');
+  if (job) lore.job = job;
+  const patron = line('shared.lore-faction', false);
+  if (patron) lore.patron = patron;
+  const reward = line('shared.lore-reward', false);
+  if (reward) lore.reward = reward;
+  const twist = line('shared.lore-twist');
+  if (twist) lore.twist = twist;
+  return lore;
+}
+
+/** The hook card as plain text lines (for Copy and the ChatGPT prompt). */
+export function hookLines(lore: Lore): string[] {
+  const out: string[] = [];
+  if (lore.spine) out.push(`Plot: ${lore.spine}`);
+  if (lore.rumour) out.push(`Rumour: “${lore.rumour}”`);
+  if (lore.job) out.push(`Job: ${lore.job}`);
+  if (lore.patron) out.push(`Patron: ${lore.patron}`);
+  if (lore.reward) out.push(`Reward: ${lore.reward}`);
+  if (lore.twist) out.push(`Twist (DM only): ${lore.twist}`);
+  return out;
 }
 
 export function loreWords(text: string): number {
@@ -234,5 +294,6 @@ export function withoutLore(brief: Brief): Brief {
 
 /** Brief text plus its story, for Copy / Copy all. */
 export function fullText(brief: Brief): string {
-  return brief.lore?.text ? `${brief.plainText}\n\nLore: ${brief.lore.text}` : brief.plainText;
+  if (!brief.lore?.text) return brief.plainText;
+  return [brief.plainText, '', `Lore: ${brief.lore.text}`, ...hookLines(brief.lore)].join('\n');
 }

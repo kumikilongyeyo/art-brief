@@ -255,6 +255,8 @@ function savedSection(st: ListsState, data: DataSet, hd: ListsHandlers, setEditi
               iconBtn('trash', 'Remove from saved', () => hd.removeSaved(b), { 'data-focus': `sremove:${b.id}` }),
             ),
           );
+          // Browsers won't start a drag from a button inside a draggable row, so the title button is the handle.
+          li.querySelector('.item-main')?.setAttribute('draggable', 'true');
           li.addEventListener('dragstart', (e) => {
             e.dataTransfer?.setData('text/x-brief', b.id);
             if (e.dataTransfer) e.dataTransfer.effectAllowed = 'move';
@@ -266,23 +268,14 @@ function savedSection(st: ListsState, data: DataSet, hd: ListsHandlers, setEditi
       )
     : h('p', { class: 'empty' }, empty);
 
-  const d = h(
-    'details',
-    { open: st.open.saved, id: 'list-saved' },
-    h('summary', {}, `Saved (${counts.all})`),
-    h('div', { class: 'chips', role: 'group', 'aria-label': 'Folders' }, ...chips),
-    tools,
-    list,
-  );
-  d.addEventListener('toggle', () => hd.toggle('saved', d.open));
-  return d;
+  return h('div', { class: 'saved-body' }, h('div', { class: 'chips', role: 'group', 'aria-label': 'Folders' }, ...chips), tools, list);
 }
 
-export function renderLists(st: ListsState, data: DataSet, hd: ListsHandlers, setEditing: (v: string | null) => void): HTMLElement {
-  return h(
-    'section',
-    { class: 'lists', 'aria-label': 'History and saved' },
-    historySection(st, data, hd),
-    savedSection(st, data, hd, setEditing),
-  );
+export function renderHistory(st: ListsState, data: DataSet, hd: ListsHandlers): HTMLElement {
+  return h('section', { class: 'lists', 'aria-label': 'History' }, historySection(st, data, hd));
+}
+
+/** Contents of the Saved dropdown in the header. */
+export function renderSaved(st: ListsState, data: DataSet, hd: ListsHandlers, setEditing: (v: string | null) => void): HTMLElement {
+  return savedSection(st, data, hd, setEditing);
 }

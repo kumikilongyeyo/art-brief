@@ -1,0 +1,119 @@
+{
+  "id": "shared.lore-spine",
+  "category": "shared",
+  "slot": "lore-spine",
+  "entries": [
+    {
+      "id": "stolen",
+      "text": "Stolen",
+      "label": "Stolen",
+      "tags": [
+        "spine-stolen"
+      ],
+      "weight": 5
+    },
+    {
+      "id": "cursed",
+      "text": "Cursed",
+      "label": "Cursed",
+      "tags": [
+        "spine-cursed",
+        "cursed"
+      ],
+      "weight": 5,
+      "themes": [
+        "dark-fantasy",
+        "undead",
+        "infernal"
+      ]
+    },
+    {
+      "id": "bargain",
+      "text": "Bargain",
+      "label": "Bargain",
+      "tags": [
+        "spine-bargain",
+        "contract"
+      ],
+      "weight": 5,
+      "themes": [
+        "infernal",
+        "fey",
+        "planar"
+      ]
+    },
+    {
+      "id": "betrayed",
+      "text": "Betrayed",
+      "label": "Betrayed",
+      "tags": [
+        "spine-betrayed"
+      ],
+      "weight": 5,
+      "themes": [
+        "dark-fantasy",
+        "underdark",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "lost",
+      "text": "Lost",
+      "label": "Lost",
+      "tags": [
+        "spine-lost"
+      ],
+      "weight": 5,
+      "themes": [
+        "nautical",
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "awakened",
+      "text": "Awakened",
+      "label": "Awakened",
+      "tags": [
+        "spine-awakened"
+      ],
+      "weight": 5,
+      "themes": [
+        "undead",
+        "arcane",
+        "elemental-fire",
+        "underdark"
+      ]
+    },
+    {
+      "id": "guardian",
+      "text": "Guardian",
+      "label": "Guardian",
+      "tags": [
+        "spine-guardian"
+      ],
+      "weight": 5,
+      "themes": [
+        "celestial",
+        "high-fantasy",
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "prophecy",
+      "text": "Prophecy",
+      "label": "Prophecy",
+      "tags": [
+        "spine-prophecy"
+      ],
+      "weight": 5,
+      "themes": [
+        "celestial",
+        "arcane",
+        "planar",
+        "fey"
+      ]
+    }
+  ]
+}

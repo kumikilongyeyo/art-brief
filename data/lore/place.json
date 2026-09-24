@@ -6,7 +6,10 @@
     {
       "id": "a-pawnshop-in-baldur-s",
       "text": "a pawnshop in Baldur's Gate",
-      "weight": 4
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
     },
     {
       "id": "the-vaults-beneath-waterdeep",
@@ -68,6 +71,9 @@
       "themes": [
         "fey",
         "wild-primal"
+      ],
+      "excludes": [
+        "animate"
       ]
     },
     {
@@ -117,22 +123,34 @@
       "themes": [
         "underdark",
         "dark-fantasy"
+      ],
+      "excludes": [
+        "animate"
       ]
     },
     {
       "id": "a-museum-that-pretends-it",
       "text": "a museum that pretends it is a copy",
-      "weight": 4
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
     },
     {
       "id": "a-noble-s-locked-study",
       "text": "a noble's locked study",
-      "weight": 4
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
     },
     {
       "id": "a-tavern-s-trophy-room",
       "text": "a tavern's trophy room",
-      "weight": 4
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
     },
     {
       "id": "a-monastery-library-high-in",
@@ -163,7 +181,10 @@
     {
       "id": "the-lost-property-room-of",
       "text": "the lost-property room of a city watch",
-      "weight": 4
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
     },
     {
       "id": "a-ghost-ship-s-hold",
@@ -203,6 +224,9 @@
       "themes": [
         "celestial",
         "dark-fantasy"
+      ],
+      "excludes": [
+        "animate"
       ]
     },
     {
@@ -211,6 +235,9 @@
       "weight": 7,
       "themes": [
         "underdark"
+      ],
+      "excludes": [
+        "animate"
       ]
     },
     {
@@ -220,6 +247,9 @@
       "themes": [
         "underdark",
         "arcane"
+      ],
+      "excludes": [
+        "animate"
       ]
     },
     {

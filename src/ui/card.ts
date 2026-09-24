@@ -66,6 +66,34 @@ function lineActions(brief: Brief, label: string, lockSlots: SlotId[], rerollSlo
   );
 }
 
+/** D&D job-board lines under the story; the twist stays hidden until revealed. */
+function hookCard(brief: Brief): HTMLElement | null {
+  const l = brief.lore;
+  if (!l || !(l.rumour || l.job || l.patron || l.reward || l.twist)) return null;
+  const row = (label: string, text: string | undefined, cls = '') =>
+    text ? h('div', { class: `hook-row ${cls}` }, h('dt', {}, label), h('dd', {}, text)) : null;
+  return h(
+    'div',
+    { class: 'hook' },
+    h(
+      'dl',
+      { class: 'hook-lines' },
+      row('Rumour', l.rumour ? `“${l.rumour.replace(/\.$/, '')}”` : undefined, 'rumour'),
+      row('Job', l.job),
+      row('Patron', l.patron),
+      row('Reward', l.reward),
+    ),
+    l.twist
+      ? h(
+          'details',
+          { class: 'twist' },
+          h('summary', {}, h('span', { class: 'twist-label' }, 'Twist'), h('span', { class: 'twist-hint' }, 'DM only — tap to reveal')),
+          h('p', {}, l.twist),
+        )
+      : null,
+  );
+}
+
 export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTMLElement {
   const tpl = TEMPLATES[brief.category];
   const themeName = o.data.themeById[brief.theme]?.name ?? brief.theme;
@@ -130,7 +158,7 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
         h(
           'div',
           { class: 'lore-head' },
-          h('h3', { class: 'lore-title' }, 'Lore'),
+          h('h3', { class: 'lore-title' }, 'Lore', brief.lore.spine ? h('span', { class: 'spine-tag' }, brief.lore.spine) : null),
           o.sample
             ? null
             : h(
@@ -156,6 +184,7 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
               ),
         ),
         h('p', { class: 'lore-text' }, brief.lore.text),
+        hookCard(brief),
         o.sample
           ? null
           : h(

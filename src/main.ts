@@ -30,7 +30,7 @@ import {
 } from './storage';
 import { renderCard, type CardHandlers } from './ui/card';
 import { h, icon } from './ui/dom';
-import { renderLists as buildLists } from './ui/history';
+import { renderHistory, renderSaved, type ListsHandlers } from './ui/history';
 import { openFolderMenu } from './ui/folder-menu';
 import {
   createFolder,
@@ -74,6 +74,7 @@ const state = {
   listsOpen: { history: false, saved: false },
   libraryFilter: validFilter(settings.libraryFilter ?? 'all', folders) as LibraryFilter,
   editing: null as string | null,
+  savedOpen: false,
 };
 
 // ---------- helpers ----------
@@ -124,6 +125,23 @@ const settingsBtn = h(
   { class: 'icon-btn', type: 'button', 'aria-label': 'Settings', onclick: () => showSettings() },
   icon('gear'),
 );
+const savedCount = h('span', { class: 'badge', 'aria-hidden': 'true' }, '0');
+const savedBtn = h(
+  'button',
+  {
+    class: 'saved-toggle',
+    type: 'button',
+    id: 'saved-toggle',
+    'aria-haspopup': 'dialog',
+    'aria-expanded': 'false',
+    'aria-controls': 'saved-panel',
+    onclick: () => toggleSavedPanel(),
+  },
+  icon('star'),
+  h('span', { class: 'saved-toggle-label' }, 'Saved'),
+  savedCount,
+);
+const savedPanel = h('div', { class: 'saved-pop', id: 'saved-panel', role: 'dialog', 'aria-label': 'Saved briefs', hidden: true });
 const pillsEl = h('div', { class: 'pills', role: 'group', 'aria-label': 'Category' });
 const themeSelect = h('select', { class: 'theme', id: 'theme', 'aria-label': 'Theme' });
 const countSeg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Variations' });
@@ -148,7 +166,8 @@ app.append(
       'header',
       { class: 'top' },
       h('div', { class: 'brand' }, h('span', { class: 'brand-mark', 'aria-hidden': 'true' }), 'Art Brief'),
-      settingsBtn,
+      h('div', { class: 'top-actions' }, savedBtn, settingsBtn),
+      savedPanel,
     ),
     h(
       'main',
@@ -430,93 +449,133 @@ function renderResults() {
 
 function renderLists() {
   state.libraryFilter = validFilter(state.libraryFilter, folders);
-  const el = buildLists(
-    { history: historyList, saved, folders, filter: state.libraryFilter, open: state.listsOpen, editing: state.editing },
-    data,
-    {
-      restore(b) {
-        state.results = [b];
-        state.sample = null;
-        state.category = b.category;
-        persistLast();
-        renderControls();
-        renderFooter();
-        renderResults();
-        resultsEl.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-      },
-      toggle(which, open) {
-        state.listsOpen[which] = open;
-      },
-      toggleSave,
-      removeHistory(b) {
-        const before = historyList;
-        historyList = historyList.filter((x) => x.id !== b.id);
-        saveHistory(historyList);
-        refresh();
-        toast('Removed from history', { action: { label: 'Undo', run: () => ((historyList = before), saveHistory(before), refresh()) } });
-      },
-      clearHistory() {
-        const before = historyList;
-        historyList = [];
-        clearKey('history');
-        refresh('chip:all');
-        toast('History cleared — saved briefs kept', {
-          action: { label: 'Undo', run: () => ((historyList = before), saveHistory(before), refresh()) },
-        });
-      },
-      setFilter(filter) {
-        state.libraryFilter = filter;
-        settings = { ...settings, libraryFilter: filter };
-        saveSettings(settings);
-        refresh();
-      },
-      moveMenu,
-      removeSaved(b) {
-        const snapshot = saved[b.id];
-        setSaved(removeBrief(saved, b.id));
-        toast('Removed from saved', { action: { label: 'Undo', run: () => setSaved({ ...saved, [b.id]: snapshot }) } });
-      },
-      moveTo(briefId, folderId) {
-        if (!saved[briefId] || folderOf(saved[briefId], folders) === folderId) return;
-        setSaved(moveBrief(saved, briefId, folderId));
-        toast(`Moved to ${folderName(folderId, folders)}`);
-      },
-      createFolder: addFolder,
-      renameFolder(id, name) {
-        const next = renameFolder(folders, id, name);
-        if (next === folders && name.trim() && folders.find((f) => f.id === id)?.name !== name.trim())
-          toast('A folder with that name already exists');
-        setFolders(next);
-        refresh(`chip:${id}`);
-      },
-      deleteFolder(id) {
-        const f = folders.find((x) => x.id === id);
-        if (!f) return;
-        const before = { folders, saved, filter: state.libraryFilter };
-        const moved = Object.values(saved).filter((b) => b.folder === id).length;
-        const r = deleteFolder(folders, saved, id);
-        state.libraryFilter = 'unsorted';
-        setFolders(r.folders);
-        setSaved(r.saved, 'chip:unsorted');
-        toast(`Deleted “${f.name}”${moved ? ` — ${moved} moved to Unsorted` : ''}`, {
-          action: {
-            label: 'Undo',
-            run: () => {
-              state.libraryFilter = before.filter;
-              setFolders(before.folders);
-              setSaved(before.saved, `chip:${id}`);
-            },
+  const st = { history: historyList, saved, folders, filter: state.libraryFilter, open: state.listsOpen, editing: state.editing };
+  const handlers: ListsHandlers = {
+    restore(b) {
+      toggleSavedPanel(false);
+      state.results = [b];
+      state.sample = null;
+      state.category = b.category;
+      persistLast();
+      renderControls();
+      renderFooter();
+      renderResults();
+      resultsEl.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    },
+    toggle(which, open) {
+      state.listsOpen[which] = open;
+    },
+    toggleSave,
+    removeHistory(b) {
+      const before = historyList;
+      historyList = historyList.filter((x) => x.id !== b.id);
+      saveHistory(historyList);
+      refresh();
+      toast('Removed from history', { action: { label: 'Undo', run: () => ((historyList = before), saveHistory(before), refresh()) } });
+    },
+    clearHistory() {
+      const before = historyList;
+      historyList = [];
+      clearKey('history');
+      refresh('chip:all');
+      toast('History cleared — saved briefs kept', {
+        action: { label: 'Undo', run: () => ((historyList = before), saveHistory(before), refresh()) },
+      });
+    },
+    setFilter(filter) {
+      state.libraryFilter = filter;
+      settings = { ...settings, libraryFilter: filter };
+      saveSettings(settings);
+      refresh();
+    },
+    moveMenu,
+    removeSaved(b) {
+      const snapshot = saved[b.id];
+      setSaved(removeBrief(saved, b.id));
+      toast('Removed from saved', { action: { label: 'Undo', run: () => setSaved({ ...saved, [b.id]: snapshot }) } });
+    },
+    moveTo(briefId, folderId) {
+      if (!saved[briefId] || folderOf(saved[briefId], folders) === folderId) return;
+      setSaved(moveBrief(saved, briefId, folderId));
+      toast(`Moved to ${folderName(folderId, folders)}`);
+    },
+    createFolder: addFolder,
+    renameFolder(id, name) {
+      const next = renameFolder(folders, id, name);
+      if (next === folders && name.trim() && folders.find((f) => f.id === id)?.name !== name.trim())
+        toast('A folder with that name already exists');
+      setFolders(next);
+      refresh(`chip:${id}`);
+    },
+    deleteFolder(id) {
+      const f = folders.find((x) => x.id === id);
+      if (!f) return;
+      const before = { folders, saved, filter: state.libraryFilter };
+      const moved = Object.values(saved).filter((b) => b.folder === id).length;
+      const r = deleteFolder(folders, saved, id);
+      state.libraryFilter = 'unsorted';
+      setFolders(r.folders);
+      setSaved(r.saved, 'chip:unsorted');
+      toast(`Deleted “${f.name}”${moved ? ` — ${moved} moved to Unsorted` : ''}`, {
+        action: {
+          label: 'Undo',
+          run: () => {
+            state.libraryFilter = before.filter;
+            setFolders(before.folders);
+            setSaved(before.saved, `chip:${id}`);
           },
-        });
-      },
+        },
+      });
     },
-    (v) => {
-      state.editing = v;
-      refresh(v === 'new' ? undefined : v ? undefined : 'chip:new');
-    },
-  );
-  listsEl.replaceChildren(el);
+  };
+  const setEditing = (v: string | null) => {
+    state.editing = v;
+    refresh(v === 'new' ? undefined : v ? undefined : 'chip:new');
+  };
+  listsEl.replaceChildren(renderHistory(st, data, handlers));
+  savedCount.textContent = String(Object.keys(saved).length);
+  savedBtn.setAttribute('aria-label', `Saved briefs (${Object.keys(saved).length})`);
+  if (state.savedOpen) savedPanel.replaceChildren(savedHead(), renderSaved(st, data, handlers, setEditing));
 }
+
+function savedHead() {
+  return h(
+    'div',
+    { class: 'saved-pop-head' },
+    h('h2', {}, 'Saved'),
+    h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Close saved', onclick: () => toggleSavedPanel(false) }, icon('close')),
+  );
+}
+
+let savedOutside: ((e: PointerEvent) => void) | null = null;
+
+/** The Saved library opens as a dropdown under the header button. */
+function toggleSavedPanel(open = !state.savedOpen) {
+  state.savedOpen = open;
+  savedPanel.hidden = !open;
+  savedBtn.setAttribute('aria-expanded', String(open));
+  if (savedOutside) document.removeEventListener('pointerdown', savedOutside, true);
+  savedOutside = null;
+  if (!open) {
+    savedPanel.replaceChildren();
+    return;
+  }
+  renderLists();
+  savedOutside = (e: PointerEvent) => {
+    const t = e.target as Element;
+    if (savedPanel.contains(t) || savedBtn.contains(t) || t.closest('.menu, .toast')) return;
+    toggleSavedPanel(false);
+  };
+  document.addEventListener('pointerdown', savedOutside, true);
+  savedPanel.querySelector<HTMLElement>('.chip[aria-pressed="true"]')?.focus();
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && state.savedOpen && !document.querySelector('.menu')) {
+    toggleSavedPanel(false);
+    savedBtn.focus();
+  }
+});
 
 // ---------- saved library ----------
 
@@ -574,6 +633,9 @@ function toggleSave(b: Brief) {
   const folder = currentSaveFolder();
   setSaved(saveBrief(saved, b, folder, Date.now()));
   toast(`Saved to ${folderName(folder, folders)}`);
+  savedBtn.classList.remove('pulse');
+  void savedBtn.offsetWidth; // restart the animation
+  savedBtn.classList.add('pulse');
 }
 
 function moveMenu(b: Brief, anchor: HTMLElement) {

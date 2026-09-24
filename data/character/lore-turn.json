@@ -4,255 +4,1465 @@
   "slot": "lore-turn",
   "entries": [
     {
-      "id": "a-job-went-wrong-and",
-      "text": "A job went wrong and left its mark, {f:look}",
-      "weight": 3
-    },
-    {
-      "id": "they-survived-what-killed-and",
-      "text": "They survived what killed {npcname} and carry the proof, {f:look}",
-      "weight": 3
-    },
-    {
-      "id": "s-betrayal-marked-them-for",
-      "text": "{npcname}'s betrayal marked them for life, {f:look}",
-      "weight": 3
-    },
-    {
-      "id": "they-walked-away-with-nothing",
-      "text": "They walked away with nothing but their {wearing}",
-      "weight": 3
-    },
-    {
-      "id": "they-won-the-fight-and",
-      "text": "They won the fight and paid for it, {f:look}",
-      "weight": 3
-    },
-    {
-      "id": "they-lost-a-friend-and",
-      "text": "They lost a friend and a fight in one night, {f:look}",
-      "weight": 3
-    },
-    {
-      "id": "a-tavern-brawl-in-the",
-      "text": "A tavern brawl in the wrong town went badly, {f:look}",
-      "weight": 3
-    },
-    {
-      "id": "something-in-the-dark-took",
-      "text": "Something in the dark took a taste and let go, {f:look}",
-      "weight": 8,
-      "themes": [
-        "dark-fantasy"
+      "id": "robbed-them-in-the-night",
+      "text": "{npc} robbed them in the night and left a reminder, {f:look}",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "they-died-once-briefly-and",
-      "text": "They died once, briefly, and came back marked, {f:look}",
-      "weight": 8,
-      "themes": [
-        "undead",
-        "dark-fantasy"
+      "id": "thieves-took-everything-they-owned",
+      "text": "Thieves took everything they owned except their {wearing}",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "they-buried-and-wore-their",
-      "text": "They buried {npcname} and wore their {wearing} ever after",
-      "weight": 8,
-      "themes": [
-        "undead"
+      "id": "someone-stole-their-true-and",
+      "text": "Someone stole their true name, and it shows, {f:look}",
+      "weight": 4,
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "a-devil-collected-the-first",
-      "text": "A devil collected the first instalment and signed it, {f:look}",
-      "weight": 8,
-      "themes": [
-        "infernal"
+      "id": "a-cutpurse-lifted-their-family",
+      "text": "A cutpurse lifted their family heirloom, and the chase went badly, {f:look}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
+    },
+    {
+      "id": "walked-off-with-their-lifes",
+      "text": "{npcname} walked off with their life's work and left this, {f:look}",
+      "weight": 4,
+      "spines": [
+        "stolen",
+        "betrayed"
       ]
     },
     {
       "id": "a-fey-revel-stole-a",
       "text": "A fey revel stole a year and left a souvenir, {f:look}",
       "weight": 8,
+      "spines": [
+        "stolen",
+        "lost"
+      ],
       "themes": [
         "fey"
+      ]
+    },
+    {
+      "id": "a-hag-won-their-laughter",
+      "text": "A hag won their laughter in a game of riddles, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-mind-flayer-took-a",
+      "text": "A mind flayer took a season of their memories, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "pirates-took-their-ship-and",
+      "text": "Pirates took their ship and left them the plank, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-devil-pocketed-their-soul",
+      "text": "A devil pocketed their soul on a technicality, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen",
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-sigil-pickpocket-lifted-the",
+      "text": "A Sigil pickpocket lifted the key to their home plane, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "grave-robbers-took-their-familys-bones",
+      "text": "Grave-robbers took their family's bones and their sleep, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "a-rival-mage-stole-their",
+      "text": "A rival mage stole their spellbook and their face, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "raiders-crossed-the-ice-and",
+      "text": "Raiders crossed the ice and took the clan's fire-stone, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "stole-the-living-ember-from",
+      "text": "{npc} stole the living ember from their forge, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-dragon-carried-off-their",
+      "text": "A dragon carried off their family's hoard, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-fallen-angel-stole-their",
+      "text": "A fallen angel stole their blessing mid-prayer, {f:look}",
+      "weight": 8,
+      "spines": [
+        "stolen"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-dying-witch-cursed-them",
+      "text": "A dying witch cursed them with a single word, {f:look}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "laid-a-curse-on-them",
+      "text": "{npc} laid a curse on them over a broken promise, {f:look}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "they-opened-a-sealed-coffer",
+      "text": "They opened a sealed coffer and the curse got in, {f:look}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "the-curse-took-hold-the",
+      "text": "The curse took hold the night they turned {npcname} away, {f:look}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "they-wore-a-dead-strangers",
+      "text": "They wore a dead stranger's ring for one night, {f:look}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "something-in-the-dark-took",
+      "text": "Something in the dark took a taste and let go, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy"
       ]
     },
     {
       "id": "they-were-judged-unworthy-once",
       "text": "They were judged unworthy once, and bear the proof, {f:look}",
       "weight": 8,
+      "spines": [
+        "cursed"
+      ],
       "themes": [
         "celestial"
-      ]
-    },
-    {
-      "id": "a-storm-took-the-ship",
-      "text": "A storm took the ship and spat them ashore, {f:look}",
-      "weight": 8,
-      "themes": [
-        "nautical"
-      ]
-    },
-    {
-      "id": "a-season-as-a-mind",
-      "text": "A season as a mind flayer's thrall left its mark, {f:look}",
-      "weight": 8,
-      "themes": [
-        "underdark"
       ]
     },
     {
       "id": "a-spell-went-off-in",
       "text": "A spell went off in their face, and it shows, {f:look}",
       "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
       "themes": [
         "arcane"
-      ]
-    },
-    {
-      "id": "a-beast-they-hunted-hunted",
-      "text": "A beast they hunted hunted them back, {f:look}",
-      "weight": 8,
-      "themes": [
-        "wild-primal"
-      ]
-    },
-    {
-      "id": "a-winter-alone-on-the",
-      "text": "A winter alone on the ice took its toll, {f:look}",
-      "weight": 8,
-      "themes": [
-        "frost"
-      ]
-    },
-    {
-      "id": "they-walked-out-of-a",
-      "text": "They walked out of a burning forge-hall with a reminder, {f:look}",
-      "weight": 8,
-      "themes": [
-        "elemental-fire"
-      ]
-    },
-    {
-      "id": "they-faced-a-dragon-and",
-      "text": "They faced a dragon and walked away, {f:look}",
-      "weight": 8,
-      "themes": [
-        "high-fantasy"
-      ]
-    },
-    {
-      "id": "a-portal-closed-on-them",
-      "text": "A portal closed on them halfway through, {f:look}",
-      "weight": 8,
-      "themes": [
-        "planar"
-      ]
-    },
-    {
-      "id": "a-friend-sold-them-to",
-      "text": "A friend sold them to worse things, and it shows, {f:look}",
-      "weight": 8,
-      "themes": [
-        "dark-fantasy"
-      ]
-    },
-    {
-      "id": "they-broke-a-contract-once",
-      "text": "They broke a contract once and paid in flesh, {f:look}",
-      "weight": 8,
-      "themes": [
-        "infernal"
-      ]
-    },
-    {
-      "id": "they-beat-an-archfey-at",
-      "text": "They beat an archfey at riddles and were marked, {f:look}",
-      "weight": 8,
-      "themes": [
-        "fey"
-      ]
-    },
-    {
-      "id": "they-held-a-gate-alone",
-      "text": "They held a gate alone until dawn, {f:look}",
-      "weight": 8,
-      "themes": [
-        "celestial",
-        "high-fantasy"
-      ]
-    },
-    {
-      "id": "they-swore-vows-at-dawn",
-      "text": "They swore vows at dawn and took up their {wearing}",
-      "weight": 8,
-      "themes": [
-        "celestial"
-      ]
-    },
-    {
-      "id": "a-season-aboard-a-ghost",
-      "text": "A season aboard a ghost ship left a souvenir, {f:look}",
-      "weight": 8,
-      "themes": [
-        "nautical",
-        "undead"
-      ]
-    },
-    {
-      "id": "a-year-lost-in-the",
-      "text": "A year lost in the Underdark changed them, {f:look}",
-      "weight": 8,
-      "themes": [
-        "underdark"
       ]
     },
     {
       "id": "they-read-one-page-too",
       "text": "They read one page too many, {f:look}",
       "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
       "themes": [
         "arcane"
       ]
     },
     {
-      "id": "a-blood-rite-with-the",
-      "text": "A blood rite with the clans left them marked, {f:look}",
+      "id": "a-season-aboard-a-ghost",
+      "text": "A season aboard a ghost ship left a souvenir, {f:look}",
       "weight": 8,
+      "spines": [
+        "cursed",
+        "lost"
+      ],
+      "themes": [
+        "nautical",
+        "undead"
+      ]
+    },
+    {
+      "id": "a-portal-closed-on-them",
+      "text": "A portal closed on them halfway through, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed",
+        "lost"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "they-killed-a-stag-the",
+      "text": "They killed a stag the forest spirits had claimed, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
       "themes": [
         "wild-primal"
       ]
     },
     {
-      "id": "they-crossed-the-ice-to",
-      "text": "They crossed the ice to find {npcname} and came back alone, {f:look}",
+      "id": "they-beat-an-archfey-at",
+      "text": "They beat an archfey at riddles and were marked, {f:look}",
       "weight": 8,
+      "spines": [
+        "cursed",
+        "bargain"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "they-robbed-a-and-the",
+      "text": "They robbed a barrow, and the barrow kept a piece, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "they-broke-a-frost-giants",
+      "text": "They broke a frost giant's oath-stone and the cold moved in, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
       "themes": [
         "frost"
       ]
     },
     {
-      "id": "tested-them-in-the-forge",
-      "text": "{npc} tested them in the forge-fire, {f:look}",
+      "id": "a-devil-cursed-them-for",
+      "text": "A devil cursed them for reading its small print aloud, {f:look}",
       "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "they-stole-a-salamanders-and",
+      "text": "They stole a salamander's egg, and the fire remembers, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
       "themes": [
         "elemental-fire"
+      ]
+    },
+    {
+      "id": "spores-from-a-fungal-shrine",
+      "text": "Spores from a fungal shrine took root in them, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed",
+        "awakened"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-dying-dragon-cursed-them",
+      "text": "A dying dragon cursed them with its last breath, {f:look}",
+      "weight": 8,
+      "spines": [
+        "cursed"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "they-struck-a-deal-with",
+      "text": "They struck a deal with {npc} and sealed it in blood, {f:look}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "they-signed-away-something-and",
+      "text": "They signed away something small, and it shows, {f:look}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "paid-for-their-the-price",
+      "text": "{npc} paid for their {wearing}, the price to be named later",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "they-bargained-a-year-of",
+      "text": "They bargained a year of their life for one night's luck, {f:look}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-handshake-at-a-crossroads",
+      "text": "A handshake at a crossroads changed everything, {f:look}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-devil-collected-the-first",
+      "text": "A devil collected the first instalment and signed it, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "they-broke-a-contract-once",
+      "text": "They broke a contract once and paid in flesh, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
       ]
     },
     {
       "id": "a-grateful-king-gave-them",
       "text": "A grateful king gave them their {wearing}, and a debt",
       "weight": 8,
+      "spines": [
+        "bargain"
+      ],
       "themes": [
         "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-blood-rite-with-the",
+      "text": "A blood rite with the clans left them marked, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain",
+        "prophecy"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "they-swore-vows-at-dawn",
+      "text": "They swore vows at dawn and took up their {wearing}",
+      "weight": 8,
+      "spines": [
+        "bargain",
+        "guardian"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "they-traded-their-shadow-to",
+      "text": "They traded their shadow to an archfey for a way home, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-sigil-broker-sold-them",
+      "text": "A Sigil broker sold them a favour on credit, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "they-promised-the-sea-their",
+      "text": "They promised the sea their firstborn for a calm crossing, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "they-paid-years-of-life",
+      "text": "They paid years of life for a dead friend's soul, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "they-swore-fealty-to-a",
+      "text": "They swore fealty to a drow house for safe passage, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "they-signed-a-lichs-apprenticeship",
+      "text": "They signed a lich's apprenticeship without reading it, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "arcane",
+        "undead"
+      ]
+    },
+    {
+      "id": "a-frost-giant-sheltered-them",
+      "text": "A frost giant sheltered them one winter, for a favour, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "an-efreet-granted-their-word",
+      "text": "An efreet granted their wish, word for word, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "elemental-fire",
+        "planar"
+      ]
+    },
+    {
+      "id": "they-sold-their-name-to",
+      "text": "They sold their name to something in the fog, {f:look}",
+      "weight": 8,
+      "spines": [
+        "bargain"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "s-betrayal-marked-them-for",
+      "text": "{npcname}'s betrayal marked them for life, {f:look}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "sold-them-out-for-a",
+      "text": "{npc} sold them out for a purse of silver, {f:look}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "their-closest-friend-left-them",
+      "text": "Their closest friend left them for dead, {f:look}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-crewmate-they-trusted-cut",
+      "text": "A crewmate they trusted cut them loose mid-job, {f:look}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "turned-on-them-in-the",
+      "text": "{npc} turned on them in the middle of a job, {f:look}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-friend-sold-them-to",
+      "text": "A friend sold them to worse things, and it shows, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "their-own-guild-barred-the",
+      "text": "Their own guild barred the doors of a burning forge-hall, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "their-drow-house-offered-them",
+      "text": "Their drow house offered them up to a rival, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-king-they-bled-for",
+      "text": "The king they bled for named them a traitor, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "their-own-temple-cast-them",
+      "text": "Their own temple cast them out on a lie, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "forged-their-name-on-a",
+      "text": "{npc} forged their name on a devil's contract, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed",
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-fey-friend-sold-them",
+      "text": "A fey friend sold them to the Unseelie court, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "their-crew-mutinied-and-left",
+      "text": "Their crew mutinied and left them on a sandbar, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "let-them-die-to-buy",
+      "text": "{npc} let them die to buy a necromancer's favour, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "their-master-stole-their-then",
+      "text": "Their master stole their spell, then framed them, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "their-own-clan-left-them",
+      "text": "Their own clan left them for the wolves, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "their-companions-took-the-last",
+      "text": "Their companions took the last sled south without them, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-sigil-partner-sold-them",
+      "text": "A Sigil partner sold them to a githyanki raid, {f:look}",
+      "weight": 8,
+      "spines": [
+        "betrayed"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-shipwreck-took-their-and",
+      "text": "A shipwreck took their crew, and they washed up alone, {f:look}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "they-vanished-for-seven-years",
+      "text": "They vanished for seven years and remember none of it, {f:look}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "an-avalanche-buried-their-only",
+      "text": "An avalanche buried their company; only {first} dug out, {f:look}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-war-swept-their-home",
+      "text": "A war swept their home off every map, {f:look}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "they-stepped-through-a-door",
+      "text": "They stepped through a door and came out a decade later, {f:look}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-storm-took-the-ship",
+      "text": "A storm took the ship and spat them ashore, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-winter-alone-on-the",
+      "text": "A winter alone on the ice took its toll, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "they-crossed-the-ice-to",
+      "text": "They crossed the ice to find {npcname} and came back alone, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-year-lost-in-the",
+      "text": "A year lost in the Underdark changed them, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "underdark"
       ]
     },
     {
       "id": "they-spent-a-night-in",
       "text": "They spent a night in Sigil that lasted a year, {f:look}",
       "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "their-company-fell-at-a",
+      "text": "Their company fell at a dragon's lair; only {first} crawled out, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-fog-took-their-whole",
+      "text": "The fog took their whole village in a single night, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "they-were-lost-in-the",
+      "text": "They were lost in the deep forest and ran with wolves, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-teleport-went-wrong-and",
+      "text": "A teleport went wrong and scattered their memories, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-volcano-swallowed-their-forge-town",
+      "text": "A volcano swallowed their forge-town whole, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "they-fell-from-a-flying",
+      "text": "They fell from a flying temple and nobody came looking, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-caravan-bound-for-avernus",
+      "text": "A caravan bound for Avernus took a wrong turn, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "they-woke-in-a-sealed",
+      "text": "They woke in a sealed tomb, buried by mistake, {f:look}",
+      "weight": 8,
+      "spines": [
+        "lost"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "something-old-woke-inside-them",
+      "text": "Something old woke inside them on a moonless night, {f:look}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-power-they-never-asked",
+      "text": "A power they never asked for woke all at once, {f:look}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "spoke-a-and-something-in",
+      "text": "{npc} spoke a word, and something in their blood answered, {f:look}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "an-old-wound-opened-and",
+      "text": "An old wound opened and something looked out, {f:look}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "their-began-whispering-to-them",
+      "text": "Their {wearing} began whispering to them one night",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "they-died-once-briefly-and",
+      "text": "They died once, briefly, and came back marked, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-mind-flayers-tadpole-stirred",
+      "text": "A mind flayer's tadpole stirred behind their eyes one night, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "their-fey-blood-woke-on",
+      "text": "Their fey blood woke on a midsummer night, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "they-walked-out-of-a",
+      "text": "They walked out of a burning forge-hall unburnt, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "dragon-blood-woke-in-them",
+      "text": "Dragon blood woke in them the day the dragon died, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-sleeping-angel-stirred-in",
+      "text": "A sleeping angel stirred in their bloodline, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "their-devil-grandsires-blood-came",
+      "text": "Their devil grandsire's blood came due all at once, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-beast-spirit-woke-in-them",
+      "text": "A beast-spirit woke in them during the hunt, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "something-frozen-in-them-since",
+      "text": "Something frozen in them since birth began to thaw, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-sea-started-speaking-to",
+      "text": "The sea started speaking to them after they nearly drowned, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-shard-of-another-plane",
+      "text": "A shard of another plane woke in their chest, {f:look}",
+      "weight": 8,
+      "spines": [
+        "awakened"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "made-them-swear-to-guard",
+      "text": "{npc} made them swear to guard a sealed box, {f:look}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "they-took-an-oath-to",
+      "text": "They took an oath to protect {npcname}'s child, and kept it, {f:look}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "they-swore-to-keep-one",
+      "text": "They swore to keep one door shut at any cost, {f:look}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "a-dying-order-handed-them",
+      "text": "A dying order handed them its last relic, {f:look}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "they-were-set-to-watch",
+      "text": "They were set to watch over a thing nobody may see, {f:look}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "they-held-a-gate-alone",
+      "text": "They held a gate alone until dawn, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "they-swore-at-s-grave",
+      "text": "They swore at {npcname}'s grave to keep the dead in it, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "they-were-chained-to-a",
+      "text": "They were chained to a crypt door as its living ward, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "an-archfey-made-them-keeper",
+      "text": "An archfey made them keeper of a stolen child, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "they-signed-on-to-guard",
+      "text": "They signed on to guard a devil's ledger for a century, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian",
+        "bargain"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "left-them-a-lighthouse-and",
+      "text": "{npc} left them a lighthouse and one strict rule, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "they-held-the-last-bridge",
+      "text": "They held the last bridge against the drow, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-dying-archmage-bound-them",
+      "text": "A dying archmage bound them to a sealed tower, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-clans-made-them-warden",
+      "text": "The clans made them warden of a sacred grove, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "they-were-sent-to-watch",
+      "text": "They were sent to watch the ice for what sleeps beneath, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "set-them-to-tend-a",
+      "text": "{npc} set them to tend a forge that must never go out, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-dragons-egg-was-placed",
+      "text": "A dragon's egg was placed in their care, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "they-stood-watch-at-a",
+      "text": "They stood watch at a portal the Lady forgot to close, {f:look}",
+      "weight": 8,
+      "spines": [
+        "guardian"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-blind-seer-named-them",
+      "text": "A blind seer named them in a prophecy, then died, {f:look}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "they-were-born-under-the",
+      "text": "They were born under the omen an old prophecy promised, {f:look}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "read-their-future-in-the",
+      "text": "{npc} read their future in the ashes and wept, {f:look}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-prophecys-sign-appeared-on",
+      "text": "The prophecy's sign appeared on them overnight, {f:look}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "an-old-verse-turned-out",
+      "text": "An old verse turned out to describe them exactly, {f:look}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "a-prophecy-said-they-would",
+      "text": "A prophecy said they would face a dragon; they did, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "an-angel-appeared-at-dawn",
+      "text": "An angel appeared at dawn and named them its herald, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-dying-oracle-gave-them",
+      "text": "A dying oracle gave them a vision of the end, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-dead-began-whispering-their",
+      "text": "The dead began whispering their name in unison, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "their-name-appeared-in-the",
+      "text": "Their name appeared in the Nine Hells' oldest ledger, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-fey-court-sang-about",
+      "text": "A fey court sang about them before they were born, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-sea-hag-read-their",
+      "text": "A sea hag read their fate in drowned bones, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-beholder-dreamed-of-them",
+      "text": "A beholder dreamed of them and woke afraid, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "an-astrologers-chart-put-their",
+      "text": "An astrologer's chart put their birth at the world's end, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-frost-giants-carved-their",
+      "text": "The frost giants carved their likeness into an oath-stone, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-salamander-priest-saw-their",
+      "text": "A salamander priest saw their face in the forge-flame, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-dabus-of-sigil-spelled",
+      "text": "A dabus of Sigil spelled their name in floating runes, {f:look}",
+      "weight": 8,
+      "spines": [
+        "prophecy"
+      ],
       "themes": [
         "planar"
       ]

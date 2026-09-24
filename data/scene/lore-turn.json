@@ -4,251 +4,775 @@
   "slot": "lore-turn",
   "entries": [
     {
-      "id": "this-is-the-moment",
-      "text": "This is the moment: {f:event}",
-      "weight": 4
+      "id": "in-the-confusion-a-thief",
+      "text": "{f:event}; in the confusion, a thief slips away",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "and-now-at-last",
-      "text": "And now, at last, {f:event}",
-      "weight": 4
+      "id": "it-is-cover-for-a",
+      "text": "It is cover for a theft: {f:event}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "then-it-happens-faster-than",
-      "text": "Then it happens, faster than anyone planned: {f:event}",
-      "weight": 4
+      "id": "all-eyes-miss-the-thief",
+      "text": "All eyes miss the thief, because {f:event}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "no-one-is-where-they",
-      "text": "No one is where they should be, and {f:event}",
-      "weight": 4
+      "id": "s-treasure-vanishes-just-as",
+      "text": "{npcname}'s treasure vanishes just as {f:event}",
+      "weight": 4,
+      "spines": [
+        "stolen",
+        "lost"
+      ]
     },
     {
-      "id": "everyone-holds-their-breath",
-      "text": "Everyone holds their breath: {f:event}",
-      "weight": 3
+      "id": "someone-is-being-robbed-blind",
+      "text": "Someone is being robbed blind as {f:event}",
+      "weight": 4,
+      "spines": [
+        "stolen"
+      ]
     },
     {
-      "id": "right-on-time-and-against",
-      "text": "Right on time, and against all advice, {f:event}",
-      "weight": 4
+      "id": "the-curse-takes-hold-at",
+      "text": "The curse takes hold at the worst moment: {f:event}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
     },
     {
-      "id": "nobody-planned-it-this-way",
-      "text": "Nobody planned it this way, but {f:event}",
-      "weight": 4
+      "id": "an-old-curse-picks-its",
+      "text": "An old curse picks its victim as {f:event}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
     },
     {
-      "id": "it-all-comes-down-to",
-      "text": "It all comes down to this: {f:event}",
-      "weight": 4
+      "id": "s-curse-comes-true-exactly",
+      "text": "{npcname}'s curse comes true, exactly as spoken: {f:event}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
     },
     {
-      "id": "the-crows-go-quiet-and",
-      "text": "The crows go quiet, and {f:event}",
+      "id": "the-air-sours-with-something",
+      "text": "The air sours with something cursed as {f:event}",
+      "weight": 4,
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "someone-here-is-doomed-from",
+      "text": "Someone here is doomed from now on: {f:event}",
+      "weight": 4,
+      "spines": [
+        "cursed",
+        "prophecy"
+      ]
+    },
+    {
+      "id": "this-is-the-price-of",
+      "text": "This is the price of {npcname}'s bargain: {f:event}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-deal-is-sealed-without",
+      "text": "A deal is sealed without a word: {f:event}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-deal-is-struck-and",
+      "text": "The deal is struck, and {f:event}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "the-deals-terms-are-paid",
+      "text": "The deal's terms are paid in full: {f:event}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "hands-are-shaken-on-a",
+      "text": "Hands are shaken on a bargain, and {f:event}",
+      "weight": 4,
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "someone-trusted-turns-traitor",
+      "text": "Someone trusted turns traitor: {f:event}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "chooses-now-to-turn-traitor",
+      "text": "{npcname} chooses now to turn traitor: {f:event}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "a-friends-knife-comes-out",
+      "text": "A friend's knife comes out as {f:event}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "an-ally-quietly-switches-sides",
+      "text": "An ally quietly switches sides as {f:event}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "it-is-a-trap-sprung",
+      "text": "It is a trap, sprung by a friend: {f:event}",
+      "weight": 4,
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "someone-is-missing-and",
+      "text": "Someone is missing, and {f:event}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "nobody-can-find-and-meanwhile",
+      "text": "Nobody can find {npcname}, and meanwhile {f:event}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "what-they-came-for-is",
+      "text": "What they came for is gone, and {f:event}",
+      "weight": 4,
+      "spines": [
+        "lost",
+        "stolen"
+      ]
+    },
+    {
+      "id": "searchers-are-still-calling-a",
+      "text": "Searchers are still calling a name as {f:event}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "the-trail-of-the-missing",
+      "text": "The trail of the missing ends right here: {f:event}",
+      "weight": 4,
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "something-long-asleep-opens-its",
+      "text": "Something long asleep opens its eyes as {f:event}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-place-itself-wakes-up",
+      "text": "The place itself wakes up, and {f:event}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "something-buried-here-stirs",
+      "text": "Something buried here stirs: {f:event}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "what-put-to-sleep-is",
+      "text": "What {npcname} put to sleep is waking: {f:event}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "an-old-power-wakes-and",
+      "text": "An old power wakes, and {f:event}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-places-old-guardian-is",
+      "text": "The place's old guardian is watching: {f:event}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "s-wards-are-tested-at",
+      "text": "{npcname}'s wards are tested at last: {f:event}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "one-protector-stands-between-the",
+      "text": "One protector stands between the place and ruin: {f:event}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-long-watch-is-finally",
+      "text": "The long watch is finally tested: {f:event}",
+      "weight": 4,
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "something-set-to-guard-the",
+      "text": "Something set to guard the place stirs as {f:event}",
+      "weight": 4,
+      "spines": [
+        "guardian",
+        "awakened"
+      ]
+    },
+    {
+      "id": "it-was-foretold-to-the",
+      "text": "It was foretold to the hour: {f:event}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "exactly-as-the-prophecy-said",
+      "text": "Exactly as the prophecy said, {f:event}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "foresaw-this-moment",
+      "text": "{npcname} foresaw this moment: {f:event}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-foretold-moment-arrives-on",
+      "text": "The foretold moment arrives on time: {f:event}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "every-seer-in-saw-this",
+      "text": "Every seer in {place} saw this coming: {f:event}",
+      "weight": 4,
+      "spines": [
+        "prophecy"
+      ]
+    },
+    {
+      "id": "the-crows-go-quiet-as",
+      "text": "The crows go quiet as the curse bites, and {f:event}",
       "weight": 8,
       "themes": [
         "dark-fantasy"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "hope-is-the-first-casualty",
-      "text": "Hope is the first casualty as {f:event}",
+      "id": "hope-dies-first-as-a",
+      "text": "Hope dies first, as a friend turns: {f:event}",
       "weight": 8,
       "themes": [
         "dark-fantasy"
+      ],
+      "spines": [
+        "betrayed"
       ]
     },
     {
-      "id": "somewhere-a-devil-smiles-because",
-      "text": "Somewhere a devil smiles, because {f:event}",
+      "id": "the-gallows-creak-in-warning",
+      "text": "The gallows creak in warning, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "spines": [
+        "cursed",
+        "prophecy"
+      ]
+    },
+    {
+      "id": "somewhere-a-devil-smiles-at",
+      "text": "Somewhere a devil smiles at the bargain, because {f:event}",
       "weight": 8,
       "themes": [
         "infernal"
+      ],
+      "spines": [
+        "bargain"
       ]
     },
     {
-      "id": "brimstone-hangs-in-the-air",
-      "text": "Brimstone hangs in the air as {f:event}",
+      "id": "brimstone-rises-as-the-contract",
+      "text": "Brimstone rises as the contract bites: {f:event}",
       "weight": 8,
       "themes": [
         "infernal"
+      ],
+      "spines": [
+        "bargain",
+        "cursed"
       ]
     },
     {
-      "id": "light-breaks-through-for-one",
-      "text": "Light breaks through for one heartbeat, and {f:event}",
+      "id": "a-soul-changes-hands-as",
+      "text": "A soul changes hands as {f:event}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "spines": [
+        "bargain",
+        "stolen"
+      ]
+    },
+    {
+      "id": "light-breaks-through-as-the",
+      "text": "Light breaks through as the foretold hour arrives: {f:event}",
       "weight": 8,
       "themes": [
         "celestial"
+      ],
+      "spines": [
+        "prophecy"
       ]
     },
     {
-      "id": "an-unseen-choir-holds-one",
-      "text": "An unseen choir holds one note as {f:event}",
+      "id": "an-unseen-choir-falls-silent",
+      "text": "An unseen choir falls silent at the betrayal: {f:event}",
       "weight": 8,
       "themes": [
         "celestial"
+      ],
+      "spines": [
+        "betrayed"
       ]
     },
     {
-      "id": "the-music-changes-key-and",
-      "text": "The music changes key, and {f:event}",
+      "id": "a-holy-ward-flares-for",
+      "text": "A holy ward flares for one heartbeat, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-music-changes-key-as",
+      "text": "The music changes key as the fey deal lands: {f:event}",
       "weight": 8,
       "themes": [
         "fey"
+      ],
+      "spines": [
+        "bargain"
       ]
     },
     {
-      "id": "laughter-comes-from-nowhere-as",
-      "text": "Laughter comes from nowhere as {f:event}",
+      "id": "laughter-rings-as-something-is",
+      "text": "Laughter rings as something is spirited away: {f:event}",
       "weight": 8,
       "themes": [
         "fey"
+      ],
+      "spines": [
+        "stolen",
+        "lost"
       ]
     },
     {
-      "id": "the-dead-lean-closer-to",
-      "text": "The dead lean closer to watch: {f:event}",
+      "id": "a-fairy-ring-wakes-glowing",
+      "text": "A fairy ring wakes, glowing, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-dead-lean-closer-as",
+      "text": "The dead lean closer as one of them wakes: {f:event}",
       "weight": 8,
       "themes": [
         "undead"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
-      "id": "every-candle-gutters-at-once",
-      "text": "Every candle gutters at once, and {f:event}",
+      "id": "every-candle-gutters-as-the",
+      "text": "Every candle gutters as the curse spreads: {f:event}",
       "weight": 8,
       "themes": [
         "undead"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "the-wind-turns-the-timbers",
-      "text": "The wind turns, the timbers groan, and {f:event}",
+      "id": "the-grave-wardens-hold-their",
+      "text": "The grave-wardens hold their line as {f:event}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-wind-turns-a-hold",
+      "text": "The wind turns, a hold is emptied, and {f:event}",
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "thunder-rolls-in-off-the",
-      "text": "Thunder rolls in off the water, and {f:event}",
+      "id": "thunder-rolls-in-a-ship",
+      "text": "Thunder rolls in, a ship is missing, and {f:event}",
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "spines": [
+        "lost"
       ]
     },
     {
-      "id": "something-vast-stirs-below-and",
-      "text": "Something vast stirs below, and {f:event}",
+      "id": "the-drowned-bell-rings-as",
+      "text": "The drowned bell rings as foretold, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "spines": [
+        "prophecy",
+        "awakened"
+      ]
+    },
+    {
+      "id": "something-vast-stirs-below-awake",
+      "text": "Something vast stirs below, awake at last, and {f:event}",
       "weight": 8,
       "themes": [
         "underdark"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
-      "id": "faerzress-glimmers-in-the-dark",
-      "text": "Faerzress glimmers in the dark, and {f:event}",
+      "id": "a-drow-ally-draws-a",
+      "text": "A drow ally draws a hidden blade as {f:event}",
       "weight": 8,
       "themes": [
         "underdark"
+      ],
+      "spines": [
+        "betrayed"
       ]
     },
     {
-      "id": "the-wards-flicker-and",
-      "text": "The wards flicker, and {f:event}",
+      "id": "faerzress-glimmers-the-tunnels-swallow",
+      "text": "Faerzress glimmers, the tunnels swallow a scout, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "the-wards-flicker-and-fail",
+      "text": "The wards flicker and fail as {f:event}",
       "weight": 8,
       "themes": [
         "arcane"
+      ],
+      "spines": [
+        "guardian",
+        "stolen"
       ]
     },
     {
-      "id": "somewhere-a-spell-misfires-and",
-      "text": "Somewhere a spell misfires, and {f:event}",
+      "id": "a-cursed-spell-misfires-and",
+      "text": "A cursed spell misfires, and {f:event}",
       "weight": 8,
       "themes": [
         "arcane"
+      ],
+      "spines": [
+        "cursed"
       ]
     },
     {
-      "id": "every-beast-for-a-mile",
-      "text": "Every beast for a mile falls silent as {f:event}",
+      "id": "the-spellbook-is-gone-from",
+      "text": "The spellbook is gone from its lectern, and {f:event}",
       "weight": 8,
       "themes": [
-        "wild-primal"
+        "arcane"
+      ],
+      "spines": [
+        "stolen"
       ]
     },
     {
       "id": "a-horn-calls-the-hunt",
-      "text": "A horn calls the hunt, and {f:event}",
+      "text": "A horn calls the hunt for the thief, and {f:event}",
       "weight": 8,
       "themes": [
         "wild-primal"
+      ],
+      "spines": [
+        "stolen",
+        "betrayed"
       ]
     },
     {
-      "id": "breath-freezes-in-the-air",
-      "text": "Breath freezes in the air, and {f:event}",
+      "id": "every-beast-falls-silent-as",
+      "text": "Every beast falls silent as the old spirit wakes: {f:event}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "awakened"
+      ]
+    },
+    {
+      "id": "the-totem-warden-bares-its",
+      "text": "The totem-warden bares its teeth as {f:event}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "spines": [
+        "guardian"
+      ]
+    },
+    {
+      "id": "the-ice-cracks-and-something",
+      "text": "The ice cracks and something frozen wakes: {f:event}",
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "spines": [
+        "awakened"
       ]
     },
     {
-      "id": "the-ice-cracks-like-a",
-      "text": "The ice cracks like a whip, and {f:event}",
+      "id": "breath-freezes-a-patrol-is",
+      "text": "Breath freezes, a patrol is missing, and {f:event}",
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "spines": [
+        "lost"
       ]
     },
     {
-      "id": "sparks-rise-like-a-warning",
-      "text": "Sparks rise like a warning, and {f:event}",
+      "id": "the-winter-curse-tightens-its",
+      "text": "The winter-curse tightens its grip as {f:event}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "spines": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "sparks-rise-just-as-the",
+      "text": "Sparks rise just as the forge-seers foretold: {f:event}",
       "weight": 8,
       "themes": [
         "elemental-fire"
+      ],
+      "spines": [
+        "prophecy"
       ]
     },
     {
-      "id": "the-heat-becomes-unbearable-and",
-      "text": "The heat becomes unbearable, and {f:event}",
+      "id": "a-fire-debt-comes-due",
+      "text": "A fire-debt comes due: {f:event}",
       "weight": 8,
       "themes": [
         "elemental-fire"
+      ],
+      "spines": [
+        "bargain"
       ]
     },
     {
-      "id": "horns-sound-in-the-distance",
-      "text": "Horns sound in the distance, and {f:event}",
+      "id": "the-flame-guardian-roars-awake",
+      "text": "The flame-guardian roars awake, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "spines": [
+        "guardian",
+        "awakened"
+      ]
+    },
+    {
+      "id": "a-dragons-shadow-passes-as",
+      "text": "A dragon's shadow passes, as foretold, and {f:event}",
       "weight": 8,
       "themes": [
         "high-fantasy"
+      ],
+      "spines": [
+        "prophecy"
       ]
     },
     {
-      "id": "a-dragons-shadow-crosses-the",
-      "text": "A dragon's shadow crosses the sky, and {f:event}",
+      "id": "horns-sound-for-the-stolen",
+      "text": "Horns sound for the stolen crown, and {f:event}",
       "weight": 8,
       "themes": [
         "high-fantasy"
+      ],
+      "spines": [
+        "stolen"
       ]
     },
     {
-      "id": "reality-thins-like-cheap-cloth",
-      "text": "Reality thins like cheap cloth, and {f:event}",
+      "id": "the-last-knight-of-the",
+      "text": "The last knight of the order holds the gate as {f:event}",
       "weight": 8,
       "themes": [
-        "planar"
+        "high-fantasy"
+      ],
+      "spines": [
+        "guardian"
       ]
     },
     {
-      "id": "the-sky-briefly-shows-another",
-      "text": "The sky briefly shows another plane, and {f:event}",
+      "id": "a-trusted-captain-lowers-the",
+      "text": "A trusted captain lowers the banner as {f:event}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "spines": [
+        "betrayed"
+      ]
+    },
+    {
+      "id": "reality-thins-a-portal-swallows",
+      "text": "Reality thins, a portal swallows someone, and {f:event}",
       "weight": 8,
       "themes": [
         "planar"
+      ],
+      "spines": [
+        "lost"
+      ]
+    },
+    {
+      "id": "a-sigil-contract-closes-as",
+      "text": "A Sigil contract closes as {f:event}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "bargain"
+      ]
+    },
+    {
+      "id": "a-planar-prophecy-clicks-into",
+      "text": "A planar prophecy clicks into place: {f:event}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "spines": [
+        "prophecy"
       ]
     }
   ]
