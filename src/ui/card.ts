@@ -85,18 +85,33 @@ function artBlock(brief: Brief, o: CardOptions, hd: CardHandlers): HTMLElement |
     text ? h('div', { class: 'art-row' }, h('dt', {}, label), h('dd', {}, text)) : null;
   const valueLabel = brief.category === 'building' || brief.category === 'scene' ? 'Value' : 'Light & value';
   return h(
-    'section',
-    { class: 'art', 'aria-label': 'Art direction' },
+    'details',
+    { class: 'art' },
+    h(
+      'summary',
+      { class: 'art-summary' },
+      h('span', { class: 'art-title' }, 'Technical direction'),
+      h('span', { class: 'art-hint' }, 'shape · focal point · light · camera · deliverables'),
+    ),
     h(
       'div',
-      { class: 'art-head' },
-      h('h3', { class: 'art-title' }, 'Direction'),
+      { class: 'art-body' },
+      h(
+        'dl',
+        { class: 'art-lines' },
+        row('Shape', a.shape),
+        row('Focal point', `${a.focal}.`),
+        row(valueLabel, a.light),
+        row('Camera', a.camera),
+      ),
+      a.deliverable ? h('p', { class: 'deliverable' }, h('span', { class: 'deliverable-label' }, 'Deliverables'), a.deliverable) : null,
+      a.note ? h('p', { class: 'ad-note' }, h('span', { class: 'ad-note-label' }, 'AD note'), `“${a.note}.”`) : null,
       o.sample
         ? null
         : h(
             'button',
             {
-              class: 'mini',
+              class: 'btn btn-small',
               type: 'button',
               'aria-label': 'Reroll art direction',
               title: 'Another take on shape, light and camera',
@@ -104,11 +119,9 @@ function artBlock(brief: Brief, o: CardOptions, hd: CardHandlers): HTMLElement |
               onclick: () => hd.rerollArt(o.index),
             },
             icon('reroll'),
+            'Another take',
           ),
     ),
-    h('dl', { class: 'art-lines' }, row('Shape', a.shape), row('Focal point', a.focal), row(valueLabel, a.light), row('Camera', a.camera)),
-    a.deliverable ? h('p', { class: 'deliverable' }, h('span', { class: 'deliverable-label' }, 'Deliverables'), a.deliverable) : null,
-    a.note ? h('p', { class: 'ad-note' }, h('span', { class: 'ad-note-label' }, 'AD note'), `“${a.note}.”`) : null,
   );
 }
 
@@ -151,7 +164,7 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
     h(
       'p',
       { class: 'overline' },
-      `Art brief · ${o.data.categories[brief.category]?.name ?? brief.category} concept · #${brief.base}-${brief.index + 1}`,
+      `${brief.art?.purpose ?? 'Art brief'} · ${o.data.categories[brief.category]?.name ?? brief.category} · #${brief.base}-${brief.index + 1}`,
     ),
   );
 
@@ -169,6 +182,8 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
       o.sample ? null : lineActions(brief, 'Title', tpl.titleLock, tpl.titleReroll, o, hd),
     ),
   );
+
+  if (brief.art?.ask) card.append(h('p', { class: 'ask-line' }, h('span', { class: 'ask-label' }, 'The ask'), `${brief.art.ask}.`));
 
   const dl = h('dl', { class: 'lines' });
   for (const line of brief.lines) {
@@ -208,8 +223,6 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
     );
   }
   card.append(dl);
-  const art = artBlock(brief, o, hd);
-  if (art) card.append(art);
 
   if (brief.lore?.text) {
     card.append(
@@ -258,6 +271,10 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
       ),
     );
   }
+
+  // Technical direction lives in a fold so the card leads with the subject and its story.
+  const art = artBlock(brief, o, hd);
+  if (art) card.append(art);
 
   if (!o.sample) {
     card.append(

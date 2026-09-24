@@ -201,11 +201,15 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       const isArtLine = t.id.startsWith('shared.art-');
       checkText(w, e.text, errors, isLoreBeat ? 170 : isHookLine || isArtLine ? 130 : 90);
       if (SPINE_TABLES.test(t.id) && !e.spines?.length) errors.push(`${w}: needs "spines" (which plots this line belongs to)`);
+      if (e.purposes && !['shared.art-camera', 'shared.art-deliverable', 'shared.art-note'].includes(t.id))
+        errors.push(`${w}: "purposes" only belongs in art camera/deliverable/note tables`);
+      for (const pid of e.purposes ?? [])
+        if (!(data.tables['shared.art-purpose']?.entries ?? []).some((x) => x.id === pid)) errors.push(`${w}: unknown purpose "${pid}"`);
       if (t.id !== 'scene.event' && e.people) errors.push(`${w}: "people" only belongs in scene.event`);
       if (!SPINE_TABLES.test(t.id) && e.spines) errors.push(`${w}: "spines" only belongs in turn/now/rumour/job/twist tables`);
       if (e.label) checkText(`${w} label`, e.label, errors);
       for (const x of e.excludes ?? []) if (e.tags?.includes(x)) errors.push(`${w}: both has and excludes tag "${x}"`);
-      const placeholders = e.text.match(/\{[^}]*\}/g) ?? [];
+      const placeholders: string[] = e.text.match(/\{[^}]*\}/g) ?? [];
       if (isLoreBeat) {
         validateLoreEntry(t, e, data, errors);
       } else if (isHookLine) {
@@ -219,6 +223,11 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
         if (placeholders.some((p) => p !== '{m}') || placeholders.length > 1) errors.push(`${w}: only one {m} placeholder allowed`);
         if (/ (with|over|on|at|from|to|in|by) /.test(e.text) && !placeholders.length)
           errors.push(`${w}: trailing clause — add {m} where "of <material>" should go`);
+      } else if (t.id === 'shared.art-purpose') {
+        if (placeholders.some((p) => p !== '{name}')) errors.push(`${w}: purpose lines may only use {name}`);
+        if (!placeholders.includes('{name}')) errors.push(`${w}: purpose lines must include {name}`);
+      } else if (t.id === 'shared.art-hook') {
+        for (const p of placeholders) if (p !== '{focal}' && p !== '{counter}') errors.push(`${w}: hooks may only use {focal} and {counter}`);
       } else if (placeholders.length) {
         errors.push(`${w}: placeholders are only allowed in scene.event, character.outfit and prop.object`);
       }
@@ -321,6 +330,20 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
     for (const theme of data.themes) {
       const ok = t.entries.filter((e) => isOnTheme(e, theme) && !isBlocked(e, theme) && !e.surreal);
       if (ok.length < 3) errors.push(`${id}: only ${ok.length} grounded on-theme entries for "${theme.id}" (need 3)`);
+    }
+  }
+
+  // Every purpose must offer cameras and deliverables for every category it can be rolled for.
+  const purposes = data.tables['shared.art-purpose']?.entries ?? [];
+  for (const cat of Object.values(data.categories)) {
+    for (const pur of purposes) {
+      const fits = (e: Entry) =>
+        (!e.requires?.length || e.requires.some((r) => cat.baseTags.includes(r))) && !(e.excludes ?? []).some((x) => cat.baseTags.includes(x));
+      if (!fits(pur)) continue;
+      for (const id of ['shared.art-camera', 'shared.art-deliverable']) {
+        const n = (data.tables[id]?.entries ?? []).filter((e) => e.purposes?.includes(pur.id) && fits(e)).length;
+        if (n < 1) errors.push(`${id}: purpose "${pur.id}" has no lines for ${cat.id}`);
+      }
     }
   }
 

@@ -4,151 +4,148 @@
   "slot": "art-deliverable",
   "entries": [
     {
-      "id": "full-body-concept-in-3-4",
-      "text": "Full-body concept in 3/4 view, plus three quick expression sketches (about 3 hours)",
-      "requires": [
-        "cat-character"
-      ]
+      "text": "Five silhouette thumbnails, then one card-ready colour piece (about 3 hours)",
+      "purposes": [
+        "tcg"
+      ],
+      "id": "five-silhouette-thumbnails-then-one-card-ready"
     },
     {
-      "id": "front-and-back-turnaround-with-one",
-      "text": "Front and back turnaround, with one costume detail callout (about 3 hours)",
-      "requires": [
-        "cat-character"
-      ]
+      "text": "Two quick colour roughs, then one refined card painting (about 4 hours)",
+      "purposes": [
+        "tcg"
+      ],
+      "id": "two-quick-colour-roughs-then-one-refined"
     },
     {
-      "id": "three-silhouette-thumbnails-then-one-refined",
-      "text": "Three silhouette thumbnails, then one refined full-body pass (about 2 hours)",
-      "requires": [
-        "cat-character"
-      ]
+      "text": "One card painting, plus a crop check at thumbnail size (about 3 hours)",
+      "purposes": [
+        "tcg"
+      ],
+      "id": "one-card-painting-plus-a-crop-check"
     },
     {
-      "id": "bust-portrait-with-a-colour-key",
-      "text": "Bust portrait with a colour key, plus a pose thumbnail (about 90 minutes)",
-      "requires": [
-        "cat-character"
-      ]
+      "text": "Turnaround sheet with material callouts and colour notes (about 4 hours)",
+      "purposes": [
+        "turnaround"
+      ],
+      "id": "turnaround-sheet-with-material-callouts-and-colour"
     },
     {
-      "id": "character-sheet-full-body-face-close",
-      "text": "Character sheet: full body, face close-up and the gear they carry (about 4 hours)",
-      "requires": [
-        "cat-character"
-      ]
+      "text": "Line turnaround plus one colour 3/4 view (about 3 hours)",
+      "purposes": [
+        "turnaround"
+      ],
+      "id": "line-turnaround-plus-one-colour-3-4"
     },
     {
-      "id": "callout-sheet-3-4-view-front",
-      "text": "Callout sheet: 3/4 view, front and side, one detail close-up (about 2 hours)",
+      "text": "Turnaround plus a breakdown of every separate part (about 5 hours)",
+      "purposes": [
+        "turnaround"
+      ],
       "requires": [
-        "cat-prop"
-      ]
-    },
-    {
-      "id": "five-silhouette-thumbnails-then-one-rendered",
-      "text": "Five silhouette thumbnails, then one rendered 3/4 view (about 90 minutes)",
-      "requires": [
-        "cat-prop"
-      ]
-    },
-    {
-      "id": "an-in-hand-view-for-scale",
-      "text": "An in-hand view for scale, plus a material swatch study (about 2 hours)",
-      "requires": [
-        "cat-prop"
-      ]
-    },
-    {
-      "id": "orthographic-front-and-side-views-with",
-      "text": "Orthographic front and side views with notes for a 3D modeller (about 2 hours)",
-      "requires": [
-        "cat-prop"
-      ]
-    },
-    {
-      "id": "six-silhouette-thumbnails-then-one-rendered",
-      "text": "Six silhouette thumbnails, then one rendered 3/4 view with a human for scale (about 3 hours)",
-      "requires": [
-        "cat-creature"
-      ]
-    },
-    {
-      "id": "side-profile-design-a-head-study",
-      "text": "Side-profile design, a head study and one close-up of the adaptation (about 3 hours)",
-      "requires": [
-        "cat-creature"
-      ]
-    },
-    {
-      "id": "the-creature-in-its-habitat-as",
-      "text": "The creature in its habitat as one key-art sketch (about 2 hours)",
-      "requires": [
-        "cat-creature"
-      ]
-    },
-    {
-      "id": "anatomy-pass-a-skeleton-sketch-under",
-      "text": "Anatomy pass: a skeleton sketch under a finished side view (about 4 hours)",
-      "requires": [
-        "cat-creature"
-      ]
-    },
-    {
-      "id": "exterior-concept-from-street-level-plus",
-      "text": "Exterior concept from street level, plus one detail of the signature feature (about 3 hours)",
-      "requires": [
+        "cat-prop",
         "cat-building"
-      ]
+      ],
+      "id": "turnaround-plus-a-breakdown-of-every-separate"
     },
     {
-      "id": "three-thumbnail-angles-then-one-refined",
-      "text": "Three thumbnail angles, then one refined establishing shot (about 2 hours)",
-      "requires": [
-        "cat-building"
-      ]
+      "text": "Three value thumbnails, then one finished illustration (about 5 hours)",
+      "purposes": [
+        "chapter"
+      ],
+      "id": "three-value-thumbnails-then-one-finished-illustration"
     },
     {
-      "id": "the-exterior-plus-a-quick-sketch",
-      "text": "The exterior plus a quick sketch of one interior room (about 4 hours)",
-      "requires": [
-        "cat-building"
-      ]
+      "text": "A colour key and one refined sketch, ready for final (about 3 hours)",
+      "purposes": [
+        "chapter"
+      ],
+      "id": "a-colour-key-and-one-refined-sketch"
     },
     {
-      "id": "day-and-night-colour-keys-of",
-      "text": "Day and night colour keys of the same view (about 2 hours)",
-      "requires": [
-        "cat-building"
-      ]
+      "text": "One clean 3/4 render with two detail callouts (about 2 hours)",
+      "purposes": [
+        "codex"
+      ],
+      "id": "one-clean-3-4-render-with-two"
     },
     {
-      "id": "three-value-thumbnails-then-one-refined",
-      "text": "Three value thumbnails, then one refined key-art sketch (about 2 hours)",
-      "requires": [
-        "cat-scene"
-      ]
+      "text": "Codex plate: the subject, a scale figure and three annotations (about 3 hours)",
+      "purposes": [
+        "codex"
+      ],
+      "id": "codex-plate-the-subject-a-scale-figure"
     },
     {
-      "id": "a-16-9-colour-key-and",
-      "text": "A 16:9 colour key and a black-and-white value pass (about 90 minutes)",
-      "requires": [
-        "cat-scene"
-      ]
+      "text": "Three lighting thumbnails, then one polished key frame (about 4 hours)",
+      "purposes": [
+        "keyframe"
+      ],
+      "id": "three-lighting-thumbnails-then-one-polished-key"
     },
     {
-      "id": "a-three-panel-storyboard-leading-into",
-      "text": "A three-panel storyboard leading into the moment (about 2 hours)",
-      "requires": [
-        "cat-scene"
-      ]
+      "text": "A black-and-white value pass and a colour key frame (about 3 hours)",
+      "purposes": [
+        "keyframe"
+      ],
+      "id": "a-black-and-white-value-pass-and"
     },
     {
-      "id": "one-finished-illustration-at-book-cover",
-      "text": "One finished illustration at book-cover proportions (about 5 hours)",
-      "requires": [
-        "cat-scene"
-      ]
+      "text": "Three cover thumbnails with title placement, then one painted cover (about 6 hours)",
+      "purposes": [
+        "cover"
+      ],
+      "id": "three-cover-thumbnails-with-title-placement-then"
+    },
+    {
+      "text": "A cover sketch with a colour comp, ready for client review (about 3 hours)",
+      "purposes": [
+        "cover"
+      ],
+      "id": "a-cover-sketch-with-a-colour-comp"
+    },
+    {
+      "text": "Sculpt-ready front and back drawings, with parts that won’t break (about 3 hours)",
+      "purposes": [
+        "miniature"
+      ],
+      "id": "sculpt-ready-front-and-back-drawings-with"
+    },
+    {
+      "text": "Two pose options and one refined 3/4 view on the base (about 3 hours)",
+      "purposes": [
+        "miniature"
+      ],
+      "id": "two-pose-options-and-one-refined-3"
+    },
+    {
+      "text": "Three thumbnails of the space, then one refined environment piece (about 4 hours)",
+      "purposes": [
+        "environment"
+      ],
+      "id": "three-thumbnails-of-the-space-then-one"
+    },
+    {
+      "text": "A paintover-ready blockout sketch plus a lighting key (about 3 hours)",
+      "purposes": [
+        "environment"
+      ],
+      "id": "a-paintover-ready-blockout-sketch-plus-a"
+    },
+    {
+      "text": "Three tiny ink thumbnails, then one finished vignette (about 90 minutes)",
+      "purposes": [
+        "vignette"
+      ],
+      "id": "three-tiny-ink-thumbnails-then-one-finished"
+    },
+    {
+      "text": "One vignette in two versions: ink only and lightly tinted (about 2 hours)",
+      "purposes": [
+        "vignette"
+      ],
+      "id": "one-vignette-in-two-versions-ink-only"
     }
   ]
 }

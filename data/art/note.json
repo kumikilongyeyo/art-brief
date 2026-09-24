@@ -235,6 +235,94 @@
         "celestial"
       ],
       "weight": 8
+    },
+    {
+      "id": "it-has-to-read-at-thumbnail",
+      "text": "It has to read at thumbnail size on a card, so silhouette first",
+      "purposes": [
+        "tcg"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "leave-room-for-the-card-frame",
+      "text": "Leave room for the card frame and text box at the bottom",
+      "purposes": [
+        "tcg"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "no-hidden-parts-the-modeller-needs",
+      "text": "No hidden parts: the modeller needs every angle and every seam",
+      "purposes": [
+        "turnaround"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "mark-what-is-metal-cloth-and",
+      "text": "Mark what is metal, cloth and skin; the 3D team will ask",
+      "purposes": [
+        "turnaround"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "the-page-has-to-breathe-so",
+      "text": "The page has to breathe, so leave space around the subject",
+      "purposes": [
+        "chapter"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "clarity-over-drama-this-is-reference",
+      "text": "Clarity over drama: this is reference, not a poster",
+      "purposes": [
+        "codex"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "sell-the-reveal-we-see-this",
+      "text": "Sell the reveal: we see this for two seconds before the fight",
+      "purposes": [
+        "keyframe"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "leave-the-top-third-quiet-for",
+      "text": "Leave the top third quiet for the title",
+      "purposes": [
+        "cover"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "think-in-solid-shapes-thin-parts",
+      "text": "Think in solid shapes; thin parts snap off a miniature",
+      "purposes": [
+        "miniature"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "show-where-the-player-can-walk",
+      "text": "Show where the player can walk and where they cannot",
+      "purposes": [
+        "environment"
+      ],
+      "weight": 8
+    },
+    {
+      "id": "bold-shapes-only-it-will-be",
+      "text": "Bold shapes only; it will be printed small next to the map",
+      "purposes": [
+        "vignette"
+      ],
+      "weight": 8
     }
   ]
 }

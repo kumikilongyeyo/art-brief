@@ -1,0 +1,50 @@
+{
+  "id": "shared.art-hook",
+  "category": "shared",
+  "slot": "art-hook",
+  "entries": [
+    {
+      "id": "lead-with-keep-quiet-so-it",
+      "text": "Lead with {focal}; keep {counter} quiet so it has nowhere to hide"
+    },
+    {
+      "id": "make-the-brightest-thing-in-the",
+      "text": "Make {focal} the brightest thing in the frame and let {counter} fall into shadow"
+    },
+    {
+      "id": "build-the-whole-silhouette-around-is",
+      "text": "Build the whole silhouette around {focal}; {counter} is supporting detail"
+    },
+    {
+      "id": "let-be-the-first-read-and",
+      "text": "Let {counter} be the first read and {focal} the second-look surprise"
+    },
+    {
+      "id": "contrast-against-sharp-against-soft-bright",
+      "text": "Contrast {focal} against {counter}: sharp against soft, bright against dull"
+    },
+    {
+      "id": "everything-should-point-at-use-to",
+      "text": "Everything should point at {focal}; use {counter} to frame it"
+    },
+    {
+      "id": "spend-your-detail-on-paint-in",
+      "text": "Spend your detail on {focal}; paint {counter} in big simple shapes"
+    },
+    {
+      "id": "put-the-hardest-edges-on-and",
+      "text": "Put the hardest edges on {focal} and keep {counter} soft"
+    },
+    {
+      "id": "make-the-only-warm-note-keep",
+      "text": "Make {focal} the only warm note; keep {counter} cool",
+      "tags": [
+        "warm"
+      ]
+    },
+    {
+      "id": "push-saturation-on-and-grey-down",
+      "text": "Push saturation on {focal} and grey down {counter}"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "shared.art-purpose",
+  "category": "shared",
+  "slot": "art-purpose",
+  "entries": [
+    {
+      "id": "tcg",
+      "label": "TCG card art",
+      "text": "Card art of {name} for a trading-card game"
+    },
+    {
+      "id": "turnaround",
+      "label": "3D turnaround",
+      "text": "A turnaround of {name} for the 3D team",
+      "excludes": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "chapter",
+      "label": "Book illustration",
+      "text": "A chapter-opener illustration of {name}"
+    },
+    {
+      "id": "codex",
+      "label": "Codex entry",
+      "text": "The codex entry for {name}",
+      "excludes": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "keyframe",
+      "label": "Cinematic key frame",
+      "text": "A cinematic key frame introducing {name}",
+      "excludes": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "cover",
+      "label": "Cover painting",
+      "text": "The cover painting for a campaign book, featuring {name}",
+      "excludes": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "miniature",
+      "label": "Miniature concept",
+      "text": "A concept for a tabletop miniature of {name}",
+      "requires": [
+        "cat-character",
+        "cat-creature",
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "environment",
+      "label": "Environment concept",
+      "text": "An environment concept of {name} for a game level",
+      "requires": [
+        "cat-building",
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "vignette",
+      "label": "Atlas vignette",
+      "text": "A map-margin vignette of {name} for a campaign atlas",
+      "requires": [
+        "cat-building",
+        "cat-scene",
+        "cat-prop"
+      ]
+    }
+  ]
+}

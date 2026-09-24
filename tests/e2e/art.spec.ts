@@ -19,9 +19,14 @@ test('cards read like a studio assignment; D&D extras are off by default', async
   await page.locator('.pill[data-category="creature"]').click();
   await page.getByLabel('Add a short story to each card').check();
   await page.locator('#generate').click();
-  await expect(card(page).locator('.overline')).toHaveText(/^Art brief · Creature concept · #[0-9A-Z]{6}-\d$/i);
+  await expect(card(page).locator('.overline')).toHaveText(/ · Creature · #[0-9A-Z]{6}-\d$/i);
+  // General info first: the ask and the story are visible, technical direction is folded.
+  await expect(card(page).locator('.ask-line')).toContainText('The ask');
+  await expect(card(page).locator('.lore-text')).toBeVisible();
   const art = card(page).locator('.art');
-  await expect(art.locator('.art-title')).toHaveText('Direction');
+  await expect(art).not.toHaveAttribute('open', '');
+  await expect(art.locator('.art-title')).toHaveText('Technical direction');
+  await art.locator('summary').click();
   for (const label of ['Shape', 'Focal point', 'Light & value', 'Camera'])
     await expect(art.locator('dt', { hasText: label })).toHaveCount(1);
   await expect(art.locator('.deliverable')).toContainText(/about \d+ (hours|minutes)/);
@@ -43,6 +48,8 @@ test('cards read like a studio assignment; D&D extras are off by default', async
   let changed = false;
   for (let i = 0; i < 4 && !changed; i++) {
     await card(page).getByRole('button', { name: 'Reroll art direction' }).click();
+    // The card re-renders with the fold closed; open it again to read the new take.
+    if ((await card(page).locator('.art').getAttribute('open')) === null) await card(page).locator('.art summary').click();
     changed = (await card(page).locator('.art .art-lines').innerText()) !== before;
   }
   expect(changed).toBe(true);
@@ -54,6 +61,7 @@ test('cards read like a studio assignment; D&D extras are off by default', async
   expect(url).toContain('ar=');
   const p2 = await page.context().browser()!.newPage();
   await p2.goto(url);
+  await p2.locator('.card .art summary').click();
   await expect(p2.locator('.card .art .art-lines')).toBeVisible();
   expect(await p2.locator('.card .art .art-lines').innerText()).toBe(direction);
   await p2.close();

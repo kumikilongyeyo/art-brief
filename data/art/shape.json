@@ -15,6 +15,17 @@
         "armour",
         "fiend",
         "giant"
+      ],
+      "excludes": [
+        "amorphous",
+        "gaseous",
+        "insectoid",
+        "limbless",
+        "ooze",
+        "plant",
+        "quadruped",
+        "serpentine",
+        "shelled"
       ]
     },
     {
@@ -29,6 +40,14 @@
         "caster",
         "celestial",
         "large"
+      ],
+      "excludes": [
+        "amorphous",
+        "gaseous",
+        "insectoid",
+        "ooze",
+        "quadruped",
+        "shelled"
       ]
     },
     {
@@ -57,6 +76,13 @@
         "martial",
         "giantkin",
         "stone"
+      ],
+      "excludes": [
+        "amorphous",
+        "gaseous",
+        "limbless",
+        "ooze",
+        "serpentine"
       ]
     },
     {
@@ -84,6 +110,15 @@
         "fey",
         "performer",
         "cloth"
+      ],
+      "excludes": [
+        "amorphous",
+        "construct",
+        "gaseous",
+        "insectoid",
+        "ooze",
+        "quadruped",
+        "shelled"
       ]
     },
     {
@@ -97,6 +132,14 @@
         "stealth",
         "undead",
         "grim"
+      ],
+      "excludes": [
+        "amorphous",
+        "gaseous",
+        "limbless",
+        "ooze",
+        "plant",
+        "serpentine"
       ]
     },
     {
@@ -105,6 +148,17 @@
       "requires": [
         "cat-character",
         "cat-creature"
+      ],
+      "excludes": [
+        "amorphous",
+        "gaseous",
+        "insectoid",
+        "limbless",
+        "ooze",
+        "plant",
+        "quadruped",
+        "serpentine",
+        "shelled"
       ]
     },
     {
@@ -132,24 +186,44 @@
       "id": "coiled-and-sinuous-every-line-flows",
       "text": "coiled and sinuous: every line flows into the next",
       "requires": [
-        "cat-creature"
+        "serpentine",
+        "limbless",
+        "aquatic",
+        "tentacled"
       ],
       "tags": [
         "serpentine",
         "limbless",
         "aquatic"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-character",
+        "cat-prop",
+        "cat-scene"
       ]
     },
     {
       "id": "a-wide-low-mass-that-hugs",
       "text": "a wide, low mass that hugs the ground",
       "requires": [
-        "cat-creature"
+        "quadruped",
+        "shelled",
+        "insectoid",
+        "multi-limbed",
+        "amorphous",
+        "ooze"
       ],
       "tags": [
         "quadruped",
         "shelled",
         "insectoid"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-character",
+        "cat-prop",
+        "cat-scene"
       ]
     },
     {
@@ -168,47 +242,79 @@
       "id": "many-repeated-forms-legs-eyes-or",
       "text": "many repeated forms, legs, eyes or tendrils, arranged in rhythm",
       "requires": [
-        "cat-creature"
+        "multi-limbed",
+        "tentacled",
+        "insectoid",
+        "aberration"
       ],
       "tags": [
         "multi-limbed",
         "tentacled",
         "aberration"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-character",
+        "cat-prop",
+        "cat-scene"
       ]
     },
     {
       "id": "an-amorphous-blob-anchored-by-one",
       "text": "an amorphous blob anchored by one hard-edged element",
       "requires": [
-        "cat-creature"
+        "amorphous",
+        "ooze",
+        "gaseous"
       ],
       "tags": [
         "amorphous",
         "ooze",
         "gaseous"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-character",
+        "cat-prop",
+        "cat-scene"
       ]
     },
     {
       "id": "wings-spread-to-make-a-huge",
       "text": "wings spread to make a huge, simple read",
       "requires": [
-        "cat-creature"
+        "winged"
       ],
       "tags": [
         "winged",
         "feathered",
         "sky"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-character",
+        "cat-prop",
+        "cat-scene"
       ]
     },
     {
       "id": "a-strong-single-axis-long-straight",
       "text": "a strong single axis: long, straight and balanced",
       "requires": [
-        "cat-prop"
+        "weapon",
+        "held",
+        "tool",
+        "instrument"
       ],
       "tags": [
         "weapon",
         "held"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-character",
+        "cat-creature",
+        "cat-scene"
       ]
     },
     {
@@ -226,11 +332,21 @@
       "id": "a-circle-broken-by-one-jagged",
       "text": "a circle broken by one jagged interruption",
       "requires": [
-        "cat-prop"
+        "jewellery",
+        "worn",
+        "relic",
+        "container",
+        "instrument"
       ],
       "tags": [
         "jewellery",
         "worn"
+      ],
+      "excludes": [
+        "cat-building",
+        "cat-character",
+        "cat-creature",
+        "cat-scene"
       ]
     },
     {
@@ -243,6 +359,11 @@
         "clockwork",
         "tool",
         "metal"
+      ],
+      "excludes": [
+        "flora",
+        "organic",
+        "plant"
       ]
     },
     {
@@ -255,6 +376,14 @@
         "organic",
         "wood",
         "flora"
+      ],
+      "excludes": [
+        "armour",
+        "book",
+        "clockwork",
+        "metal",
+        "tool",
+        "weapon"
       ]
     },
     {

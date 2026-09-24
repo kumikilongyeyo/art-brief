@@ -26,6 +26,8 @@ export interface Entry {
   spines?: string[];
   /** Scene events: which actor placeholders must be a person (can talk, hold things). */
   people?: ('a' | 'b')[];
+  /** Art camera/deliverable/note lines: which studio purposes they belong to. */
+  purposes?: string[];
 }
 
 export interface Table {
@@ -124,7 +126,16 @@ export interface Brief {
   /** D&D stat tag ("Weapon, rare (requires attunement)", "Large fiend, lawful evil · CR 7"…). */
   stat?: string;
   /** How to draw it: shape language, focal point, light & value, camera. */
-  art?: { shape: string; focal: string; light: string; camera?: string; deliverable?: string; note?: string };
+  art?: {
+    purpose?: string;
+    ask?: string;
+    shape: string;
+    focal: string;
+    light: string;
+    camera?: string;
+    deliverable?: string;
+    note?: string;
+  };
   dataVersion: string;
   createdAt: number;
   rerolls: Record<SlotId, number>;

@@ -470,16 +470,64 @@ select.theme {
 }
 .art {
   margin-top: 12px;
-  padding: 12px 14px;
+  padding: 2px 14px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--bg);
 }
-.art-head {
+.ask-line {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+.ask-label {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+.art-summary {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+}
+.art-summary::-webkit-details-marker {
+  display: none;
+}
+.art-summary::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+  transition: transform 0.15s;
+}
+.art[open] > .art-summary::before {
+  transform: rotate(45deg);
+}
+.art-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+.art[open] .art-hint {
+  display: none;
+}
+.art-body {
+  padding: 4px 0 4px;
+}
+.art-body .btn-small {
+  margin-top: 10px;
 }
 .art-title {
   margin: 0;
