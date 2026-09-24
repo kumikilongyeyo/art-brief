@@ -16,7 +16,7 @@
     {
       "id": "the-signs-all-pointed-to",
       "text": "The signs all pointed to one moment: {f:time}",
-      "weight": 4
+      "weight": 3
     },
     {
       "id": "had-dreamed-of-this-exact",
@@ -26,6 +26,11 @@
     {
       "id": "an-old-debt-came-due",
       "text": "An old debt came due at the worst moment: {f:time}",
+      "weight": 3
+    },
+    {
+      "id": "paid-good-coin-to-be",
+      "text": "{npcname} paid good coin to be elsewhere at that moment: {f:time}",
       "weight": 4
     },
     {
@@ -59,7 +64,7 @@
     },
     {
       "id": "a-devil-came-to-collect",
-      "text": "A devil came to collect a soul: {f:time}",
+      "text": "A devil came to collect, punctual as ever: {f:time}",
       "weight": 8,
       "themes": [
         "infernal"

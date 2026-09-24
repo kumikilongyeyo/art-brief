@@ -209,6 +209,14 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
           icon('link'),
           'Link',
         ),
+        brief.lore
+          ? null
+          : h(
+              'button',
+              { class: 'btn', type: 'button', 'data-focus': `lore-add:${o.index}`, onclick: () => hd.addLore(o.index) },
+              icon('book'),
+              'Add lore',
+            ),
         h('span', { class: 'meta' }, `${themeName} · ${brief.weirdness} · ${brief.seed}`),
       ),
     );

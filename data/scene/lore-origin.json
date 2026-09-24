@@ -6,6 +6,11 @@
     {
       "id": "swore-never-to-go-back",
       "text": "{npc} swore never to go back to {the:location}",
+      "weight": 3
+    },
+    {
+      "id": "held-the-deed-to-and",
+      "text": "{npc} held the deed to {the:location}, and never once visited",
       "weight": 4
     },
     {
@@ -41,7 +46,7 @@
     {
       "id": "before-it-went-wrong-tended",
       "text": "Before it went wrong, {npc} tended {the:location}",
-      "weight": 4
+      "weight": 3
     },
     {
       "id": "a-massacre-at-left-only",
@@ -60,8 +65,8 @@
       ]
     },
     {
-      "id": "sold-to-a-devil-and",
-      "text": "{npc} sold {the:location} to a devil, and skimmed the fine print",
+      "id": "signed-over-to-avernus-and",
+      "text": "{npc} signed {the:location} over to Avernus, and skimmed the fine print",
       "weight": 8,
       "themes": [
         "infernal"
