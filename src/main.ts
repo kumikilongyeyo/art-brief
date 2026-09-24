@@ -5,6 +5,7 @@ import { copyText } from './clipboard';
 import { loadData } from './data';
 import { countCombinations, formatCount } from './engine/count';
 import { generateBatch, generateVariation, lockedMap, rerollArt, rerollSlots, rollTheme, setLocked, type Pin } from './engine/generate';
+import { jobFits } from './engine/art';
 import { fullText, withLore, withoutLore } from './engine/lore';
 import { chooseFreshBatch, pushRecent } from './engine/recent';
 import { CATEGORY_IDS, WEIRDNESS, type Brief, type CategoryId, type SlotId, type ThemeId, type Weirdness } from './engine/types';
@@ -68,6 +69,7 @@ const state = {
   count: Math.min(4, Math.max(1, settings.last.count || 2)),
   weirdness: (WEIRDNESS.includes(settings.last.weirdness) ? settings.last.weirdness : 'mixed') as Weirdness,
   lore: !!settings.last.lore,
+  job: (settings.last.job ?? 'any') as string,
   results: [] as Brief[],
   sample: null as Brief | null,
   notice: null as string | null,
@@ -88,7 +90,14 @@ function entropy(): string {
 function persistLast() {
   settings = {
     ...settings,
-    last: { category: state.category, themeChoice: state.themeChoice, count: state.count, weirdness: state.weirdness, lore: state.lore },
+    last: {
+      category: state.category,
+      themeChoice: state.themeChoice,
+      count: state.count,
+      weirdness: state.weirdness,
+      lore: state.lore,
+      job: state.job,
+    },
   };
   saveSettings(settings);
 }
@@ -146,6 +155,11 @@ const pillsEl = h('div', { class: 'pills', role: 'group', 'aria-label': 'Categor
 const themeSelect = h('select', { class: 'theme', id: 'theme', 'aria-label': 'Theme' });
 const countSeg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Variations' });
 const weirdSeg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Weirdness' });
+const jobSelect = h('select', { class: 'theme', id: 'job', 'aria-label': 'Job' });
+jobSelect.addEventListener('change', () => {
+  state.job = jobSelect.value;
+  persistLast();
+});
 const loreBox = h('input', { type: 'checkbox', id: 'lore-toggle' });
 loreBox.checked = state.lore;
 loreBox.addEventListener('change', () => {
@@ -182,6 +196,7 @@ app.append(
       h('div', { class: 'field-row' }, h('label', { class: 'label', for: 'theme' }, 'Theme'), themeSelect),
       h('div', { class: 'field-row' }, h('span', { class: 'label' }, 'Variations'), countSeg),
       h('div', { class: 'field-row' }, h('span', { class: 'label' }, 'Weirdness'), weirdSeg),
+      h('div', { class: 'field-row' }, h('label', { class: 'label', for: 'job' }, 'Job'), jobSelect),
       h(
         'div',
         { class: 'field-row' },
@@ -227,6 +242,26 @@ function renderControls() {
     ),
   );
   themeSelect.value = state.themeChoice;
+  const cat = data.categories[state.category];
+  const jobs = data.tables['shared.art-purpose']?.entries ?? [];
+  if (state.job !== 'any' && !jobFits(data, cat, state.job)) {
+    const was = jobs.find((j) => j.id === state.job)?.label ?? state.job;
+    state.job = 'any';
+    persistLast();
+    toast(`${was} isn't offered for ${cat.name.toLowerCase()}s, so Job is back to Any`);
+  }
+  jobSelect.replaceChildren(
+    h('option', { value: 'any' }, 'Any (surprise me)'),
+    ...jobs.map((j) => {
+      const ok = jobFits(data, cat, j.id);
+      return h(
+        'option',
+        { value: j.id, disabled: !ok },
+        ok ? (j.label ?? j.id) : `${j.label ?? j.id} (not for ${cat.name.toLowerCase()}s)`,
+      );
+    }),
+  );
+  jobSelect.value = state.job;
   const seg = (el: HTMLElement, items: { v: string; label: string; aria: string }[], current: string, set: (v: string) => void) => {
     el.replaceChildren(
       ...items.map((it) =>
@@ -341,6 +376,7 @@ const cardHandlers: CardHandlers = {
       locked: lockedMap(b),
       lore: b.lore?.roll,
       art: b.rerolls.art,
+      job: b.job,
     });
     void doCopy(url, 'Link copied');
   },
@@ -688,6 +724,7 @@ function generate() {
       uniqueFrequency: settings.uniqueFrequency,
       locks,
       lore: state.lore,
+      job: state.job,
       createdAt: Date.now(),
     },
     entropy(),
@@ -716,6 +753,7 @@ function applyShare(s: ShareState) {
   state.themeChoice = s.themeChoice;
   state.weirdness = s.weirdness;
   state.count = s.count;
+  if (s.job) state.job = s.job;
   let briefs: Brief[];
   if (s.index !== undefined && s.fields) {
     const pins: Record<SlotId, Pin> = {};
@@ -734,6 +772,7 @@ function applyShare(s: ShareState) {
         uniqueFrequency: s.uniqueFrequency,
         pins,
         rerolls: s.art ? { art: s.art } : undefined,
+        job: s.job,
         createdAt: Date.now(),
       }),
     ];
@@ -746,6 +785,7 @@ function applyShare(s: ShareState) {
       base: s.base,
       uniqueFrequency: s.uniqueFrequency,
       locks: s.locked ? Array.from({ length: s.count }, () => s.locked) : undefined,
+      job: s.job,
       createdAt: Date.now(),
     });
   }

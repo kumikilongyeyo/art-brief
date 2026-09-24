@@ -47,6 +47,8 @@ export interface BatchOptions {
   locks?: (Record<SlotId, string> | undefined)[];
   /** Attach a story to every brief. */
   lore?: boolean;
+  /** Studio job id, or 'any' / undefined to roll one. */
+  job?: string;
   createdAt?: number;
 }
 
@@ -64,6 +66,8 @@ export interface VariationSpec {
   rerolls?: Record<SlotId, number>;
   avoidPalettes?: Set<string>;
   avoidPrimary?: Set<string>;
+  /** Studio job id, or 'any' / undefined to roll one. */
+  job?: string;
   /** Directly rerolled slots avoid their previous value so a reroll always visibly changes. */
   avoidCurrent?: Record<SlotId, string>;
   createdAt?: number;
@@ -332,7 +336,7 @@ function assemble(
   const rendered = renderBrief({ category: cat, fields, palette, labelOf: (s) => resolved[s]?.label ?? '' });
   const stat = makeStat(data, cat, spec.seed, resolved, Object.fromEntries(cat.slots.map((sl) => [sl.id, resolved[sl.id]?.text ?? ''])));
   const theme = data.themeById[themeId] ?? data.themes[0];
-  const art = makeArt(data, cat, theme, spec.seed, resolved, palette.hex, spec.rerolls?.art ?? 0);
+  const art = makeArt(data, cat, theme, spec.seed, resolved, palette.hex, spec.rerolls?.art ?? 0, spec.job);
   const [titleLine, ...rest] = rendered.plainText.split('\n');
   const plainText = [titleLine, `D&D: ${stat}`, ...rest, ...artLines(art, cat.id)].join('\n');
   const rerolls = { ...(spec.rerolls ?? {}) };
@@ -355,6 +359,7 @@ function assemble(
     plainText,
     stat,
     art,
+    ...(spec.job && spec.job !== 'any' ? { job: spec.job } : {}),
     dataVersion: data.version,
     createdAt: spec.createdAt ?? 0,
     rerolls,
@@ -390,6 +395,7 @@ export function generateBatch(data: DataSet, opts: BatchOptions, diag?: Diagnost
         index: i,
         seed: r === 0 ? `${opts.base}-${i}` : `${opts.base}-${i}-r${r}`,
         uniqueFrequency: opts.uniqueFrequency,
+        job: opts.job,
         pins,
         avoidPalettes: new Set(usedPalettes),
         avoidPrimary: r === 0 ? undefined : new Set(usedPrimary),
@@ -436,6 +442,7 @@ export function rerollSlots(data: DataSet, brief: Brief, slots: SlotId[], unique
       index: brief.index,
       seed: brief.seed,
       uniqueFrequency,
+      job: brief.job,
       pins,
       rerolls,
       avoidCurrent,
@@ -508,6 +515,7 @@ export function rerollArt(data: DataSet, brief: Brief, uniqueFrequency: UniqueFr
     index: brief.index,
     seed: brief.seed,
     uniqueFrequency,
+    job: brief.job,
     pins,
     rerolls: { ...brief.rerolls, art: (brief.rerolls.art ?? 0) + 1 },
     createdAt: brief.createdAt,

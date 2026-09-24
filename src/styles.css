@@ -479,6 +479,24 @@ select.theme {
   margin: 0 0 10px;
   font-size: 15px;
 }
+.deadline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.deadline svg {
+  width: 13px;
+  height: 13px;
+}
 .ask-label {
   display: inline-block;
   margin-right: 8px;

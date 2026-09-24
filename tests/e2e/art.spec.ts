@@ -87,3 +87,25 @@ test('the D&D details switch brings back stat line, dice and DM notes', async ({
   expect(text).toContain('\nD&D: ');
   expect(text).toContain('\nJob: ');
 });
+
+test('Job selector: chosen job on every card, unfitting jobs greyed, falls back on category switch', async ({ page }) => {
+  await page.goto('./');
+  await page.locator('.seg[aria-label="Variations"] button[data-value="3"]').click();
+  await page.locator('#job').selectOption('tcg');
+  await page.locator('#generate').click();
+  const overlines = page.locator('.card:not(.sample) .overline');
+  await expect(overlines).toHaveCount(3);
+  for (const t of await overlines.allInnerTexts()) expect(t.toLowerCase()).toContain('tcg card art');
+  await expect(page.locator('.card:not(.sample) .deadline').first()).toContainText(/Due in \d+ (day|days|week|weeks)/);
+
+  // Remembered across reloads.
+  await page.reload();
+  await expect(page.locator('#job')).toHaveValue('tcg');
+
+  // 3D turnaround isn't offered for scenes: greyed out, and picking Scene while it's selected falls back.
+  await page.locator('#job').selectOption('turnaround');
+  await page.locator('.pill[data-category="scene"]').click();
+  await expect(page.locator('#job')).toHaveValue('any');
+  await expect(page.locator('#job option[value="turnaround"]')).toBeDisabled();
+  await expect(page.locator('.toast')).toContainText("isn't offered for scenes");
+});

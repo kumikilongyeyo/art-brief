@@ -183,7 +183,18 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
     ),
   );
 
-  if (brief.art?.ask) card.append(h('p', { class: 'ask-line' }, h('span', { class: 'ask-label' }, 'The ask'), `${brief.art.ask}.`));
+  if (brief.art?.ask)
+    card.append(
+      h(
+        'p',
+        { class: 'ask-line' },
+        h('span', { class: 'ask-label' }, 'The ask'),
+        `${brief.art.ask}.`,
+        brief.art.deadline
+          ? h('span', { class: 'deadline' }, icon('clock'), `Due in ${brief.art.deadline === 'tomorrow' ? '1 day' : brief.art.deadline}`)
+          : null,
+      ),
+    );
 
   const dl = h('dl', { class: 'lines' });
   for (const line of brief.lines) {

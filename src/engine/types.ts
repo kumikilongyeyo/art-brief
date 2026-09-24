@@ -125,6 +125,8 @@ export interface Brief {
   plainText: string;
   /** D&D stat tag ("Weapon, rare (requires attunement)", "Large fiend, lawful evil · CR 7"…). */
   stat?: string;
+  /** Job the user picked ('any' or absent = rolled). */
+  job?: string;
   /** How to draw it: shape language, focal point, light & value, camera. */
   art?: {
     purpose?: string;
@@ -135,6 +137,7 @@ export interface Brief {
     camera?: string;
     deliverable?: string;
     note?: string;
+    deadline?: string;
   };
   dataVersion: string;
   createdAt: number;

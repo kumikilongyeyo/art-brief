@@ -27,6 +27,8 @@ export interface ShareState {
   lore?: number;
   /** Which take on the art direction. */
   art?: number;
+  /** Studio job id. */
+  job?: string;
 }
 
 const FREQ: UniqueFrequency[] = ['never', 'sometimes', 'often'];
@@ -68,6 +70,7 @@ export function encodeShare(s: ShareState): string {
   if (s.locked && Object.keys(s.locked).length) p.push(`l=${encodePairs(s.locked)}`);
   if (s.lore !== undefined) p.push(`lo=${s.lore}`);
   if (s.art) p.push(`ar=${s.art}`);
+  if (s.job && s.job !== 'any') p.push(`j=${encodeURIComponent(s.job)}`);
   return `#${p.join('&')}`;
 }
 
@@ -105,6 +108,8 @@ export function decodeShare(hash: string, data: DataSet): ShareState | null {
   const locked = decodePairs(params.get('l'), slots);
   const lo = parseInt(params.get('lo') ?? '', 10);
   if (Number.isFinite(lo) && lo >= 0 && lo < 10000) state.lore = lo;
+  const j = params.get('j');
+  if (j && (data.tables['shared.art-purpose']?.entries ?? []).some((e) => e.id === j)) state.job = j;
   const ar = parseInt(params.get('ar') ?? '', 10);
   if (Number.isFinite(ar) && ar > 0 && ar < 10000) state.art = ar;
   if (Object.keys(fields).length) state.fields = fields;

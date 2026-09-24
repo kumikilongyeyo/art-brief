@@ -23,6 +23,8 @@ export interface ArtDirection {
   deliverable?: string;
   /** One line of art-director feedback. */
   note?: string;
+  /** Deadline scaled to the work, e.g. "3 days", "1 week". */
+  deadline?: string;
 }
 
 interface ArtField {
@@ -107,6 +109,14 @@ function sceneActors(data: DataSet, fields: Record<SlotId, ArtField>): [string, 
   return [`the ${fa}`, fb ? `the ${fb}` : loc ? `the ${shorten(loc, 6)}` : 'the background'];
 }
 
+/** Can this job (purpose) be given for this category? */
+export function jobFits(data: DataSet, cat: CategoryDef, jobId: string): boolean {
+  const e = (data.tables['shared.art-purpose']?.entries ?? []).find((x) => x.id === jobId);
+  if (!e) return false;
+  if (e.requires?.length && !e.requires.some((r) => cat.baseTags.includes(r))) return false;
+  return !(e.excludes ?? []).some((x) => cat.baseTags.includes(x));
+}
+
 function pickFrom(entries: Entry[], ctx: PickContext, rng: Rng): Entry | undefined {
   return entries.length ? pickEntry(entries, ctx, rng).entry : undefined;
 }
@@ -119,6 +129,7 @@ export function makeArt(
   fields: Record<SlotId, ArtField>,
   paletteHex: string[],
   artRoll: number,
+  job?: string,
 ): ArtDirection {
   const tags = new Set<string>(cat.baseTags);
   for (const s of cat.slots) fields[s.id]?.tags.forEach((t) => tags.add(t));
@@ -130,7 +141,10 @@ export function makeArt(
   const name = (fields.name?.text ?? 'it').replace(/^The /, 'the ');
 
   // 1. The job. Its camera and deliverables come only from lines written for that purpose.
-  const purpose = pickFrom(table('shared.art-purpose'), ctx, rng);
+  // A chosen job wins when it fits the category; otherwise one is rolled.
+  const chosen = job && job !== 'any' && jobFits(data, cat, job) ? table('shared.art-purpose').find((e) => e.id === job) : undefined;
+  const rolled = pickFrom(table('shared.art-purpose'), ctx, rng);
+  const purpose = chosen ?? rolled;
   const forPurpose = (id: string) => {
     const all = table(id);
     if (!purpose) return all;
@@ -162,7 +176,10 @@ export function makeArt(
   const cam = pickFrom(forPurpose('shared.art-camera'), ctx, rng)?.text;
   if (cam) art.camera = cam;
   const deliverable = pickFrom(forPurpose('shared.art-deliverable'), ctx, rng)?.text;
-  if (deliverable) art.deliverable = deliverable;
+  if (deliverable) {
+    art.deliverable = deliverable;
+    art.deadline = deadlineFor(deliverable, rng);
+  }
   // Notes: general ones plus those written for this purpose.
   const notes = table('shared.art-note').filter((e) => !e.purposes || (purpose && e.purposes.includes(purpose.id)));
   const note = pickFrom(notes, ctx, rng)?.text;
@@ -170,9 +187,27 @@ export function makeArt(
   return art;
 }
 
+/** A deadline that fits the size of the work ("about 3 hours" → a few days, a painted cover → a week or two). */
+export function deadlineFor(deliverable: string, rng: Rng): string {
+  const m = deliverable.match(/about (\d+) (hours?|minutes)/);
+  const hours = !m ? 3 : m[2] === 'minutes' ? Number(m[1]) / 60 : Number(m[1]);
+  const options =
+    hours <= 1.5
+      ? ['tomorrow', '2 days']
+      : hours <= 2
+        ? ['2 days', '3 days']
+        : hours <= 3
+          ? ['3 days', '4 days', '5 days']
+          : hours <= 4
+            ? ['5 days', '1 week']
+            : ['1 week', '10 days', '2 weeks'];
+  return options[Math.floor(rng() * options.length)];
+}
+
 export function artLines(art: ArtDirection, category: string): string[] {
   const out: string[] = [];
   if (art.ask) out.push(`The ask: ${art.ask}.`);
+  if (art.deadline) out.push(`Deadline: ${art.deadline}`);
   out.push(
     `Shape: ${art.shape}`,
     `Focal point: ${art.focal}.`,

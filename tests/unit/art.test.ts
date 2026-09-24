@@ -56,3 +56,33 @@ describe('the purpose drives the job', () => {
     for (const s of seeds(600, 'scene-pur')) expect(one('scene', s).art!.purpose).not.toMatch(/3D turnaround|Codex/);
   });
 });
+
+describe('job selector', () => {
+  it('a chosen job is used on every card it fits; an unfitting one falls back to a rolled job', () => {
+    for (const s of seeds(200, 'job-tcg')) expect(one('creature', s, { job: 'tcg' }).art!.purpose).toBe('TCG card art');
+    for (const s of seeds(200, 'job-bad')) {
+      const b = one('scene', s, { job: 'turnaround' });
+      expect(b.art!.purpose).not.toBe('3D turnaround');
+      expect(b.art!.purpose).toBeTruthy();
+    }
+  });
+  it('the job survives line and art rerolls', async () => {
+    const { rerollArt, rerollSlots } = await import('../../src/engine/generate');
+    let b = one('prop', 'JOBKEP', { job: 'miniature' });
+    expect(b.art!.purpose).toBe('Miniature concept');
+    b = rerollSlots(data, b, ['origin'], 'sometimes');
+    expect(b.art!.purpose).toBe('Miniature concept');
+    b = rerollArt(data, b, 'sometimes');
+    expect(b.art!.purpose).toBe('Miniature concept');
+  });
+  it('deadlines scale with the size of the work', () => {
+    for (const s of seeds(800, 'deadline')) {
+      const b = one(CATS[s.charCodeAt(2) % 5], s);
+      const d = b.art!.deliverable!;
+      const dl = b.art!.deadline!;
+      expect(b.plainText).toContain(`\nDeadline: ${dl}`);
+      if (/90 minutes/.test(d)) expect(['tomorrow', '2 days']).toContain(dl);
+      if (/about [56] hours/.test(d)) expect(['1 week', '10 days', '2 weeks']).toContain(dl);
+    }
+  });
+});

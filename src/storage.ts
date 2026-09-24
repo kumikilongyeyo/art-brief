@@ -26,7 +26,7 @@ export interface Settings {
   openChatGPT: boolean;
   uniqueFrequency: UniqueFrequency;
   colorScheme: 'system' | 'light' | 'dark';
-  last: { category: CategoryId; themeChoice: ThemeId | 'any'; count: number; weirdness: Weirdness; lore: boolean };
+  last: { category: CategoryId; themeChoice: ThemeId | 'any'; count: number; weirdness: Weirdness; lore: boolean; job: string };
   seenSample: boolean;
   /** Which folder the Saved library is showing. */
   libraryFilter: LibraryFilter;
@@ -42,7 +42,7 @@ export const DEFAULT_SETTINGS: Settings = {
   openChatGPT: false,
   uniqueFrequency: 'sometimes',
   colorScheme: 'system',
-  last: { category: 'character', themeChoice: 'any', count: 2, weirdness: 'mixed', lore: false },
+  last: { category: 'character', themeChoice: 'any', count: 2, weirdness: 'mixed', lore: false, job: 'any' },
   seenSample: false,
   libraryFilter: 'all',
   showDnd: false,
