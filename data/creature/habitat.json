@@ -1,0 +1,270 @@
+{
+  "id": "creature.habitat",
+  "category": "creature",
+  "slot": "habitat",
+  "entries": [
+    {
+      "id": "volcanic-salt-flats-cracked-into",
+      "text": "volcanic salt flats cracked into hexagons",
+      "tags": [
+        "volcanic",
+        "desert",
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "fungal-forests-underdark",
+      "text": "fungal forests of the Underdark",
+      "tags": [
+        "cavern",
+        "fungal",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "storm-lashed-sea-cliffs-riddled",
+      "text": "storm-lashed sea cliffs riddled with caves",
+      "tags": [
+        "coast",
+        "storm"
+      ]
+    },
+    {
+      "id": "fog-bound-mangrove-swamp",
+      "text": "fog-bound mangrove swamp",
+      "tags": [
+        "swamp"
+      ]
+    },
+    {
+      "id": "thorn-hedge-mazes-feywild",
+      "text": "thorn-hedge mazes of the Feywild",
+      "tags": [
+        "forest",
+        "fey",
+        "flora"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "blue-glacier-crevasses",
+      "text": "blue glacier crevasses",
+      "tags": [
+        "arctic",
+        "glacier",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "shadowfell-moors-grey-heather-cairns",
+      "text": "Shadowfell moors of grey heather and cairns",
+      "tags": [
+        "plains",
+        "shadow",
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "black-smoker-vents-abyssal-trench",
+      "text": "black-smoker vents in an abyssal trench",
+      "tags": [
+        "ocean",
+        "abyssal",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "sunlit-coral-shallows",
+      "text": "sunlit coral shallows",
+      "tags": [
+        "ocean",
+        "coral",
+        "water",
+        "sunlit"
+      ],
+      "themes": [
+        "nautical",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "wind-scoured-aeries-above-clouds",
+      "text": "wind-scoured aeries above the clouds",
+      "tags": [
+        "mountain",
+        "sky"
+      ]
+    },
+    {
+      "id": "drowned-stacks-lost-wizard-library",
+      "text": "drowned stacks of a lost wizard library",
+      "tags": [
+        "ruins",
+        "library",
+        "arcane"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "brimstone-canyons-avernus",
+      "text": "brimstone canyons of Avernus",
+      "tags": [
+        "volcanic",
+        "brimstone",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "terraced-gardens-slopes-mount-celestia",
+      "text": "terraced gardens on the slopes of Mount Celestia",
+      "tags": [
+        "mountain",
+        "holy",
+        "radiant"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "husk-dead-god-adrift-astral",
+      "text": "husk of a dead god adrift in the Astral Sea",
+      "tags": [
+        "astral",
+        "planar"
+      ],
+      "themes": [
+        "planar",
+        "arcane",
+        "celestial"
+      ]
+    },
+    {
+      "id": "crooked-back-alleys-sigil",
+      "text": "crooked back alleys of Sigil",
+      "tags": [
+        "city",
+        "planar",
+        "urban",
+        "guild"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "collapsed-dwarven-mine-galleries",
+      "text": "collapsed dwarven mine galleries",
+      "tags": [
+        "cavern",
+        "ruins",
+        "subterranean"
+      ]
+    },
+    {
+      "id": "reed-choked-river-delta",
+      "text": "reed-choked river delta",
+      "tags": [
+        "river",
+        "swamp"
+      ]
+    },
+    {
+      "id": "tundra-under-restless-aurora",
+      "text": "tundra under a restless aurora",
+      "tags": [
+        "arctic",
+        "north"
+      ]
+    },
+    {
+      "id": "moss-hung-old-growth-forest",
+      "text": "moss-hung old-growth forest",
+      "weight": 7,
+      "tags": [
+        "forest",
+        "wilderness"
+      ]
+    },
+    {
+      "id": "cisterns-sewers-beneath-great-city",
+      "text": "cisterns and sewers beneath a great city",
+      "tags": [
+        "city",
+        "urban"
+      ]
+    },
+    {
+      "id": "red-sandstone-canyons",
+      "text": "red sandstone canyons",
+      "tags": [
+        "desert",
+        "wilderness"
+      ]
+    },
+    {
+      "id": "strangler-fig-jungle-canopy",
+      "text": "strangler-fig jungle canopy",
+      "tags": [
+        "jungle",
+        "forest",
+        "tropical"
+      ]
+    },
+    {
+      "id": "flooded-crypts-beneath-ruined-abbey",
+      "text": "flooded crypts beneath a ruined abbey",
+      "tags": [
+        "ruins",
+        "grave",
+        "gothic"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "grassland-ringed-standing-stones",
+      "text": "grassland ringed with standing stones",
+      "tags": [
+        "plains",
+        "pastoral",
+        "druidic"
+      ]
+    },
+    {
+      "id": "earthmotes-tumbling-through-elemental-chaos",
+      "text": "earthmotes tumbling through the Elemental Chaos",
+      "weight": 3,
+      "tags": [
+        "planar",
+        "sky"
+      ],
+      "surreal": true
+    }
+  ]
+}

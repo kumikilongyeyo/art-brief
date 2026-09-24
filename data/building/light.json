@@ -1,0 +1,162 @@
+{
+  "id": "building.light",
+  "category": "building",
+  "slot": "light",
+  "entries": [
+    {
+      "id": "blue-bioluminescence-rising-from",
+      "text": "blue bioluminescence rising from below",
+      "tags": [
+        "luminous"
+      ]
+    },
+    {
+      "id": "low-amber-sun-through",
+      "text": "low amber sun through dusty shutters",
+      "tags": [
+        "warm",
+        "sunlit",
+        "dusk"
+      ]
+    },
+    {
+      "id": "cold-moonlight-through-a",
+      "text": "cold moonlight through a broken roof",
+      "tags": [
+        "moonlit",
+        "night"
+      ]
+    },
+    {
+      "id": "hundreds-of-guttering-candles",
+      "text": "hundreds of guttering candles",
+      "tags": [
+        "warm"
+      ]
+    },
+    {
+      "id": "forge-glow-spilling-from",
+      "text": "forge-glow spilling from every opening",
+      "tags": [
+        "fire",
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "lightning-flashing-through-tall",
+      "text": "lightning flashing through tall windows",
+      "tags": [
+        "storm",
+        "night"
+      ]
+    },
+    {
+      "id": "green-witchlight-flickering-in",
+      "text": "green witchlight flickering in iron braziers",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "dawn-mist-lit-pink",
+      "text": "dawn mist lit pink and gold",
+      "tags": [
+        "dawn"
+      ]
+    },
+    {
+      "id": "shafts-of-holy-radiance",
+      "text": "shafts of holy radiance through a skylight",
+      "tags": [
+        "holy",
+        "radiant"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "grey-half-light-with",
+      "text": "grey half-light with no clear source",
+      "tags": [
+        "shadow"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "ship-lanterns-swaying-over",
+      "text": "ship lanterns swaying over wet stone",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "aurora-rippling-across-a",
+      "text": "aurora rippling across a black sky",
+      "tags": [
+        "frost",
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "fireflies-and-glowing-pollen",
+      "text": "fireflies and glowing pollen in the twilight",
+      "tags": [
+        "fey",
+        "twilight"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "hellfire-glare-from-vents",
+      "text": "hellfire glare from vents in the floor",
+      "tags": [
+        "fire",
+        "infernal",
+        "brimstone"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "rainbow-beams-split-by",
+      "text": "rainbow beams split by hanging crystals",
+      "tags": [
+        "crystal"
+      ]
+    },
+    {
+      "id": "faerzress-glow-pulsing-violet",
+      "text": "faerzress glow pulsing violet in the walls",
+      "tags": [
+        "subterranean",
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "harsh-noon-light-no",
+      "text": "harsh noon light, no shadows anywhere",
+      "tags": [
+        "day",
+        "sunlit"
+      ]
+    }
+  ]
+}

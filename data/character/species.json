@@ -1,0 +1,33 @@
+{
+  "id": "character.species",
+  "category": "character",
+  "slot": "species",
+  "entries": [
+    {"id": "human", "text": "broad-shouldered, sun-weathered skin", "label": "Human", "tags": ["humanoid", "biped", "medium", "culture-human"]},
+    {"id": "half-elf", "text": "rangy, olive skin, softly pointed ears", "label": "Half-Elf", "tags": ["humanoid", "biped", "elf", "medium", "culture-elven"]},
+    {"id": "hill-dwarf", "text": "stocky, ruddy skin, barrel chest", "label": "Hill Dwarf", "tags": ["dwarf", "biped", "small", "culture-dwarven"]},
+    {"id": "halfling", "text": "small, apple-cheeked, big bare feet", "label": "Halfling", "tags": ["halfling", "biped", "small", "culture-human"]},
+    {"id": "rock-gnome", "text": "tiny, nut-brown skin, huge bright eyes", "label": "Rock Gnome", "tags": ["gnome", "biped", "tiny", "culture-gnomish"]},
+    {"id": "half-orc", "text": "heavy-browed, grey-green, jutting tusks", "label": "Half-Orc", "tags": ["orc", "humanoid", "biped", "tusked", "medium", "culture-orcish"]},
+    {"id": "dragonborn", "text": "hulking, bronze scales, frilled snout", "label": "Dragonborn", "tags": ["dragonborn", "reptilian", "scaled", "biped", "large", "culture-draconic"]},
+    {"id": "goliath", "text": "towering, granite-mottled grey skin", "label": "Goliath", "tags": ["giantkin", "biped", "large", "culture-dwarven"]},
+    {"id": "tabaxi", "text": "lithe, rosette-spotted tawny fur", "label": "Tabaxi", "tags": ["catfolk", "furred", "biped", "medium", "culture-fey"]},
+    {"id": "goblin", "text": "wiry, mustard-green skin, bat-wing ears", "label": "Goblin", "tags": ["goblinoid", "biped", "small", "culture-orcish"]},
+    {"id": "high-elf", "text": "willowy, pale gold skin, tapered ears", "label": "High Elf", "tags": ["elf", "biped", "medium", "culture-elven", "noble"], "themes": ["high-fantasy", "arcane", "celestial"]},
+    {"id": "wood-elf", "text": "lean, copper skin, leaf-tip ears", "label": "Wood Elf", "tags": ["elf", "biped", "medium", "culture-elven", "druidic"], "themes": ["fey", "wild-primal", "high-fantasy"]},
+    {"id": "drow", "text": "slender, obsidian skin, stark white hair", "label": "Drow", "tags": ["elf", "drow", "biped", "medium", "culture-elven"], "themes": ["underdark", "dark-fantasy"]},
+    {"id": "deep-gnome", "text": "wiry, bald, stone-grey skin", "label": "Deep Gnome", "tags": ["gnome", "biped", "tiny", "subterranean", "culture-gnomish"], "themes": ["underdark"]},
+    {"id": "mountain-dwarf", "text": "broad as a door, frost-pale beard", "label": "Mountain Dwarf", "tags": ["dwarf", "biped", "small", "north", "culture-dwarven"], "themes": ["frost", "high-fantasy", "elemental-fire"]},
+    {"id": "tiefling", "text": "ram horns, plum-red skin, whip tail", "label": "Tiefling", "tags": ["tiefling", "humanoid", "horned", "biped", "medium", "culture-infernal"], "themes": ["infernal", "dark-fantasy", "planar"]},
+    {"id": "aasimar", "text": "tall, silver-flecked skin, blank eyes", "label": "Aasimar", "tags": ["aasimar", "humanoid", "biped", "medium", "radiant", "culture-human"], "themes": ["celestial", "high-fantasy"]},
+    {"id": "firbolg", "text": "towering, mossy blue-grey skin", "label": "Firbolg", "tags": ["giantkin", "biped", "large", "culture-fey"], "themes": ["fey", "wild-primal"]},
+    {"id": "kenku", "text": "hunched, ink-black feathers, hooked beak", "label": "Kenku", "tags": ["birdfolk", "feathered", "biped", "small", "culture-human"], "themes": ["dark-fantasy", "planar", "underdark"]},
+    {"id": "aarakocra", "text": "lanky, crimson plumage, taloned feet", "label": "Aarakocra", "tags": ["birdfolk", "feathered", "winged", "biped", "medium", "culture-elven"], "themes": ["celestial", "wild-primal", "high-fantasy"]},
+    {"id": "tortle", "text": "squat, domed olive shell, leathery beak", "label": "Tortle", "tags": ["reptilian", "shelled", "biped", "medium", "culture-gnomish"], "themes": ["nautical", "wild-primal"]},
+    {"id": "triton", "text": "sea-blue skin, finned calves and ears", "label": "Triton", "tags": ["humanoid", "aquatic", "biped", "medium", "water", "culture-elven"], "themes": ["nautical"]},
+    {"id": "warforged", "text": "riveted plate body, cable-sinew joints", "label": "Warforged", "tags": ["construct", "biped", "medium", "culture-gnomish"], "themes": ["arcane", "dark-fantasy", "planar"]},
+    {"id": "fire-genasi", "text": "ember-orange skin, hair of live flame", "label": "Fire Genasi", "tags": ["humanoid", "biped", "medium", "fire", "culture-draconic"], "themes": ["elemental-fire", "infernal"]},
+    {"id": "shadar-kai", "text": "gaunt, ash-white skin, hollow dark eyes", "label": "Shadar-kai", "tags": ["elf", "biped", "medium", "shadow", "culture-elven"], "themes": ["undead", "dark-fantasy"]},
+    {"id": "dhampir", "text": "pallid, fine-fanged, veins faintly dark", "label": "Dhampir", "tags": ["humanoid", "biped", "medium", "gothic", "culture-human"], "themes": ["undead", "dark-fantasy"]}
+  ]
+}

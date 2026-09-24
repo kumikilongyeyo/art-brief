@@ -1,0 +1,447 @@
+{
+  "id": "prop.function",
+  "category": "prop",
+  "slot": "function",
+  "entries": [
+    {
+      "id": "silences-every-sound-within",
+      "text": "silences every sound within ten feet of its bearer",
+      "tags": [
+        "worn"
+      ]
+    },
+    {
+      "id": "burns-cold-instead-of",
+      "text": "burns cold instead of hot, frosting whatever it touches",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "drinks-the-blood-of",
+      "text": "drinks the blood of each wound it opens and glows redder",
+      "tags": [
+        "weapon",
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sings-the-name-of",
+      "text": "sings the name of any creature it strikes",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "hums-a-warning-note",
+      "text": "hums a warning note whenever poison is near",
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "replays-the-last-words",
+      "text": "replays the last words spoken in the room each dusk",
+      "tags": [
+        "relic"
+      ]
+    },
+    {
+      "id": "opens-any-lock-once",
+      "text": "opens any lock once, then never again",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "holds-a-single-breath",
+      "text": "holds a single breath of air for the drowning",
+      "tags": [
+        "container",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "casts-its-bearers-shadow",
+      "text": "casts its bearer's shadow elsewhere in the room",
+      "tags": [
+        "worn",
+        "shadow",
+        "trickster"
+      ]
+    },
+    {
+      "id": "shows-the-reflection-of",
+      "text": "shows the reflection of whoever last died nearby",
+      "tags": [
+        "held",
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "turns-every-lie-spoken",
+      "text": "turns every lie spoken near it into curling grey smoke",
+      "tags": [
+        "relic"
+      ]
+    },
+    {
+      "id": "rewinds-the-last-six",
+      "text": "rewinds the last six seconds for its wielder once a day",
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "seals-any-signature-written",
+      "text": "seals any signature written with it into an unbreakable oath",
+      "tags": [
+        "tool",
+        "contract"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "outlines-invisible-creatures-in",
+      "text": "outlines invisible creatures in chalk-white light",
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "sprouts-thorned-vines-wherever",
+      "text": "sprouts thorned vines wherever it is planted in soil",
+      "tags": [
+        "flora",
+        "druidic"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "ticks-down-the-days",
+      "text": "ticks down the days left in its owner's life",
+      "tags": [
+        "clockwork",
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "arcane"
+      ]
+    },
+    {
+      "id": "summons-a-spectral-hound",
+      "text": "summons a spectral hound that follows any scent",
+      "tags": [
+        "beast"
+      ]
+    },
+    {
+      "id": "translates-every-spoken-tongue",
+      "text": "translates every spoken tongue, but only in a whisper",
+      "tags": [
+        "worn",
+        "jewellery"
+      ]
+    },
+    {
+      "id": "stores-one-spell-cast",
+      "text": "stores one spell cast into it and releases it on command",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "freezes-flowing-water-into",
+      "text": "freezes flowing water into glassy stepping stones",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "stitches-shallow-wounds-closed",
+      "text": "stitches shallow wounds closed with threads of gold light",
+      "tags": [
+        "holy",
+        "radiant"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "raises-a-dome-of",
+      "text": "raises a dome of force the size of a campfire circle",
+      "tags": [
+        "armour"
+      ]
+    },
+    {
+      "id": "drains-warmth-from-the",
+      "text": "drains warmth from the air to feed its wielder's strength",
+      "tags": [
+        "necrotic"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "bursts-into-sheets-of",
+      "text": "bursts into sheets of flame when its wielder shouts in anger",
+      "tags": [
+        "weapon",
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "tugs-its-bearer-toward",
+      "text": "tugs its bearer toward the nearest way out of any maze",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "lets-its-wearer-breathe",
+      "text": "lets its wearer breathe underwater for an hour",
+      "tags": [
+        "worn",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "shrinks-anything-placed-inside",
+      "text": "shrinks anything placed inside to the size of a walnut",
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "id": "keeps-whatever-it-holds",
+      "text": "keeps whatever it holds as fresh as the day it was sealed",
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "id": "calls-down-lightning-when",
+      "text": "calls down lightning when raised beneath an open sky",
+      "tags": [
+        "storm"
+      ],
+      "themes": [
+        "nautical",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "plays-a-jig-that",
+      "text": "plays a jig that forces every listener to dance",
+      "tags": [
+        "instrument",
+        "fey",
+        "trickster"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "lulls-any-beast-that",
+      "text": "lulls any beast that hears it into drowsy calm",
+      "tags": [
+        "instrument",
+        "beast"
+      ]
+    },
+    {
+      "id": "lets-its-owner-speak",
+      "text": "lets its owner speak with the ghost bound inside",
+      "tags": [
+        "relic",
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "reveals-hidden-doors-as",
+      "text": "reveals hidden doors as faintly glowing outlines",
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "shatters-stone-with-a",
+      "text": "shatters stone with a single struck note",
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "id": "brands-its-target-with",
+      "text": "brands its target with a mark only the wielder can see",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "returns-to-the-throwers",
+      "text": "returns to the thrower's hand in a spiral of sparks",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "unfolds-into-a-songbird",
+      "text": "unfolds into a songbird when set down and left alone",
+      "weight": 3,
+      "tags": [
+        "relic"
+      ]
+    },
+    {
+      "id": "opens-a-doorway-to",
+      "text": "opens a doorway to a pocket room behind any painted wall",
+      "tags": [
+        "portal",
+        "planar"
+      ],
+      "themes": [
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "whispers-where-gold-is",
+      "text": "whispers where gold is buried, but only to the greedy",
+      "tags": [
+        "gold",
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "absorbs-one-blow-meant",
+      "text": "absorbs one blow meant for its wearer, then cracks",
+      "tags": [
+        "armour",
+        "worn"
+      ]
+    },
+    {
+      "id": "grows-heavier-with-every",
+      "text": "grows heavier with every lie its bearer tells",
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "releases-a-cloud-of",
+      "text": "releases a cloud of glowing moths when opened",
+      "tags": [
+        "container",
+        "twilight"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "drips-molten-rock-that",
+      "text": "drips molten rock that cools into obsidian coins",
+      "tags": [
+        "magma"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "lures-aberrations-from-miles",
+      "text": "lures aberrations from miles around like moths to flame",
+      "tags": [
+        "aberration",
+        "cursed"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "grows-a-crust-of",
+      "text": "grows a crust of glowing fungus that heals when eaten",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "writes-new-pages-of",
+      "text": "writes new pages of its own each night in an unknown hand",
+      "tags": [
+        "book",
+        "arcane"
+      ]
+    },
+    {
+      "id": "turns-its-bearers-footprints",
+      "text": "turns its bearer's footprints into small white flowers",
+      "weight": 3,
+      "tags": [
+        "worn"
+      ]
+    },
+    {
+      "id": "bottles-one-sunset-and",
+      "text": "bottles one sunset and releases it indoors",
+      "tags": [
+        "container"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "swaps-its-bearers-voice",
+      "text": "swaps its bearer's voice with the nearest bird's",
+      "tags": [
+        "worn"
+      ],
+      "surreal": true
+    }
+  ]
+}

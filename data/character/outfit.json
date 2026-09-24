@@ -1,0 +1,438 @@
+{
+  "id": "character.outfit",
+  "category": "character",
+  "slot": "outfit",
+  "entries": [
+    {
+      "id": "long-hooded-robe",
+      "text": "long hooded robe",
+      "weight": 7,
+      "tags": [
+        "caster",
+        "scholar"
+      ]
+    },
+    {
+      "id": "scale-hauberk",
+      "text": "scale hauberk",
+      "tags": [
+        "martial",
+        "armour"
+      ]
+    },
+    {
+      "id": "patchwork-travelling-coat",
+      "text": "patchwork travelling coat",
+      "weight": 7
+    },
+    {
+      "id": "sleeveless-harness",
+      "text": "sleeveless harness",
+      "tags": [
+        "martial",
+        "primal"
+      ]
+    },
+    {
+      "id": "layered-pilgrim-s-mantle",
+      "text": "layered pilgrim's mantle",
+      "tags": [
+        "divine"
+      ]
+    },
+    {
+      "id": "high-collared-duelling-coat",
+      "text": "high-collared duelling coat",
+      "tags": [
+        "martial",
+        "performer"
+      ]
+    },
+    {
+      "id": "ruffled-stage-doublet",
+      "text": "ruffled stage doublet",
+      "tags": [
+        "performer"
+      ]
+    },
+    {
+      "id": "close-fitting-hooded-bodysuit",
+      "text": "close-fitting hooded bodysuit",
+      "tags": [
+        "stealth"
+      ]
+    },
+    {
+      "id": "full-plate-with-a-crested",
+      "text": "full plate {m} with a crested helm",
+      "tags": [
+        "martial",
+        "divine",
+        "armour"
+      ]
+    },
+    {
+      "id": "wrap-of-layered-shawls",
+      "text": "layered shawl wrap"
+    },
+    {
+      "id": "work-apron-heavy-with-tool",
+      "text": "work apron {m} heavy with tool loops",
+      "tags": [
+        "tinker"
+      ]
+    },
+    {
+      "id": "quilted-gambeson",
+      "text": "quilted gambeson",
+      "tags": [
+        "martial"
+      ]
+    },
+    {
+      "id": "ceremonial-vestments-with-a-tall",
+      "text": "ceremonial vestments {m} with a tall collar",
+      "tags": [
+        "divine"
+      ]
+    },
+    {
+      "id": "deep-hooded-hunting-cloak",
+      "text": "deep-hooded hunting cloak",
+      "tags": [
+        "primal",
+        "stealth"
+      ]
+    },
+    {
+      "id": "beaded-ritual-shawl",
+      "text": "beaded ritual shawl",
+      "tags": [
+        "primal",
+        "tribal"
+      ]
+    },
+    {
+      "id": "asymmetric-pauldron-and-waist-sash",
+      "text": "asymmetric pauldron and waist sash",
+      "tags": [
+        "martial"
+      ]
+    },
+    {
+      "id": "academic-gown-with-bell-sleeves",
+      "text": "academic gown {m} with bell sleeves",
+      "tags": [
+        "scholar"
+      ]
+    },
+    {
+      "id": "monastic-wrap-tied-at-the",
+      "text": "monastic wrap {m} tied at the hip",
+      "tags": [
+        "martial"
+      ]
+    },
+    {
+      "id": "pleated-battle-skirt-and-bracers",
+      "text": "pleated battle skirt and bracers",
+      "tags": [
+        "martial"
+      ]
+    },
+    {
+      "id": "knee-length-brigandine",
+      "text": "knee-length brigandine",
+      "tags": [
+        "martial",
+        "armour"
+      ]
+    },
+    {
+      "id": "lamellar-coat-with-flared-skirts",
+      "text": "lamellar coat {m} with flared skirts",
+      "tags": [
+        "martial",
+        "armour"
+      ]
+    },
+    {
+      "id": "masquerade-gown-with-a-sweeping",
+      "text": "masquerade gown {m} with a sweeping train",
+      "tags": [
+        "performer"
+      ]
+    },
+    {
+      "id": "court-doublet-with-slashed-sleeves",
+      "text": "court doublet {m} with slashed sleeves",
+      "tags": [
+        "performer",
+        "noble"
+      ]
+    },
+    {
+      "id": "banded-cuirass-over-bare-arms",
+      "text": "banded cuirass {m} over bare arms",
+      "tags": [
+        "martial",
+        "armour"
+      ]
+    },
+    {
+      "id": "threadbare-robe-spangled-with-stars",
+      "text": "threadbare robe {m} spangled with stars",
+      "tags": [
+        "caster"
+      ]
+    },
+    {
+      "id": "many-pocketed-alchemist-s-coat",
+      "text": "many-pocketed alchemist's coat",
+      "tags": [
+        "tinker"
+      ]
+    },
+    {
+      "id": "loincloth-and-shoulder-mantle",
+      "text": "loincloth and shoulder mantle",
+      "tags": [
+        "primal"
+      ]
+    },
+    {
+      "id": "tiered-samurai-style-armour",
+      "text": "tiered samurai-style armour",
+      "tags": [
+        "martial",
+        "armour"
+      ]
+    },
+    {
+      "id": "mismatched-armour-salvaged-from-three",
+      "text": "mismatched armour {m} salvaged from three wars",
+      "tags": [
+        "martial",
+        "armour"
+      ]
+    },
+    {
+      "id": "wide-brimmed-hat-and-trailing",
+      "text": "wide-brimmed hat and trailing cape",
+      "tags": [
+        "performer",
+        "stealth"
+      ]
+    },
+    {
+      "id": "hooded-wanderer-s-poncho",
+      "text": "hooded wanderer's poncho"
+    },
+    {
+      "id": "tattered-burial-wrappings",
+      "text": "tattered burial wrappings",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "plague-doctor-longcoat-and-beaked",
+      "text": "plague-doctor longcoat and beaked mask",
+      "tags": [
+        "gothic"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "priest-s-cassock-buttoned-to",
+      "text": "priest's cassock {m} buttoned to the throat",
+      "tags": [
+        "divine",
+        "gothic"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "half-plate-hung-with-reliquary",
+      "text": "half-plate {m} hung with reliquary cages",
+      "tags": [
+        "martial",
+        "bone"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sailor-s-slops-and-open",
+      "text": "sailor's slops and open vest",
+      "tags": [
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "captain-s-frock-coat-with",
+      "text": "captain's frock coat {m} with gilt frogging",
+      "tags": [
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "storm-cloak-with-a-salt",
+      "text": "storm cloak {m} with a salt-stained hem",
+      "tags": [
+        "storm"
+      ],
+      "themes": [
+        "nautical",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "quilted-parka-with-a-snow",
+      "text": "quilted parka {m} with a snow hood",
+      "tags": [
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "rune-stitched-greatcoat",
+      "text": "rune-stitched greatcoat",
+      "tags": [
+        "rune",
+        "caster"
+      ],
+      "themes": [
+        "arcane",
+        "frost"
+      ]
+    },
+    {
+      "id": "spiked-harness-hung-with-hooks",
+      "text": "spiked harness {m} hung with hooks",
+      "tags": [
+        "chains",
+        "martial"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "forge-apron-and-elbow-length",
+      "text": "forge apron and elbow-length gauntlets",
+      "tags": [
+        "forge",
+        "tinker"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "thorned-bodice-and-sweeping-skirts",
+      "text": "thorned bodice and sweeping skirts",
+      "tags": [
+        "flora",
+        "performer"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "petal-layered-cape",
+      "text": "petal-layered cape",
+      "tags": [
+        "flora",
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "sun-rayed-breastplate",
+      "text": "sun-rayed breastplate",
+      "tags": [
+        "radiant",
+        "martial"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "mantle-cut-into-layered-feathers",
+      "text": "mantle cut into layered feathers",
+      "tags": [
+        "feathered"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "spider-motif-bodysuit-with-a",
+      "text": "spider-motif bodysuit {m} with a web cape",
+      "tags": [
+        "drow",
+        "stealth"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "cape-with-a-spore-dusted",
+      "text": "cape {m} with a spore-dusted hem",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "guild-livery-with-a-faction",
+      "text": "guild livery {m} with a faction badge",
+      "tags": [
+        "guild"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "hide-wraps-and-a-skull",
+      "text": "hide wraps and a skull-topped cowl",
+      "tags": [
+        "tribal",
+        "primal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    }
+  ]
+}

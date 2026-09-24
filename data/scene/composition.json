@@ -1,0 +1,83 @@
+{
+  "id": "scene.composition",
+  "category": "scene",
+  "slot": "composition",
+  "entries": [
+    {
+      "id": "low-angle-figures-silhouetted-against",
+      "text": "low angle, figures silhouetted against a torn sky"
+    },
+    {
+      "id": "bird-s-eye-view-figures",
+      "text": "bird's-eye view, figures tiny against sprawling ground"
+    },
+    {
+      "id": "tight-close-up-hands-rest",
+      "text": "tight close-up on hands, the rest blurred behind"
+    },
+    {
+      "id": "over-shoulder-main-figure",
+      "text": "over the shoulder of the main figure"
+    },
+    {
+      "id": "framed-through-broken-archway",
+      "text": "framed through a broken archway"
+    },
+    {
+      "id": "extreme-wide-shot-event-small",
+      "text": "extreme wide shot, the event small in the lower third"
+    },
+    {
+      "id": "steep-dutch-tilt-horizon-slashed",
+      "text": "steep dutch tilt, the horizon slashed diagonally"
+    },
+    {
+      "id": "seen-reflected-still-water-image",
+      "text": "seen reflected in still water, the image inverted"
+    },
+    {
+      "id": "deep-foreground-foliage-action-glimpsed",
+      "text": "deep foreground foliage, the action glimpsed through gaps"
+    },
+    {
+      "id": "strong-backlight-every-figure-rim",
+      "text": "strong backlight, every figure rim-lit"
+    },
+    {
+      "id": "rigid-symmetry-key-figure-dead",
+      "text": "rigid symmetry, the key figure dead centre"
+    },
+    {
+      "id": "worm-s-eye-view-from",
+      "text": "worm's-eye view from the dirt"
+    },
+    {
+      "id": "split-frame-warm-light-one",
+      "text": "split frame, warm light on one side and darkness on the other"
+    },
+    {
+      "id": "figures-ringed-by-circle-torches",
+      "text": "figures ringed by a circle of torches"
+    },
+    {
+      "id": "long-diagonal-leading-eye-one",
+      "text": "a long diagonal leading the eye to one small figure"
+    },
+    {
+      "id": "vast-empty-sky-filling-two",
+      "text": "vast empty sky filling two thirds of the frame"
+    },
+    {
+      "id": "intimate-eye-level-faces-filling",
+      "text": "intimate eye level, faces filling the frame"
+    },
+    {
+      "id": "high-angle-through-drifting-smoke",
+      "text": "high angle through drifting smoke"
+    },
+    {
+      "id": "foreground-silhouette-spectator-watching-event",
+      "text": "foreground silhouette of a spectator watching the event"
+    }
+  ]
+}

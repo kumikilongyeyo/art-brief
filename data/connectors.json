@@ -1,0 +1,15 @@
+{
+  "id": "shared.connectors",
+  "category": "shared",
+  "slot": "connectors",
+  "entries": [
+    { "id": "set-in", "text": "set in" },
+    { "id": "fused-with", "text": "fused with" },
+    { "id": "woven-through", "text": "woven through" },
+    { "id": "veined-with", "text": "veined with" },
+    { "id": "grown-around", "text": "grown around" },
+    { "id": "cast-inside", "text": "cast inside" },
+    { "id": "stitched-to", "text": "stitched to" },
+    { "id": "inlaid-with", "text": "inlaid with" }
+  ]
+}

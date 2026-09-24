@@ -1,0 +1,418 @@
+{
+  "id": "scene.actors",
+  "category": "scene",
+  "slot": "actors",
+  "entries": [
+    {
+      "id": "hag",
+      "text": "hag",
+      "tags": [
+        "cursed",
+        "fey"
+      ],
+      "themes": [
+        "fey",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "young-squire",
+      "text": "young squire"
+    },
+    {
+      "id": "armoured-owlbear",
+      "text": "armoured owlbear",
+      "tags": [
+        "beast"
+      ]
+    },
+    {
+      "id": "drow-envoy",
+      "text": "drow envoy",
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "tiefling-bard",
+      "text": "tiefling bard",
+      "tags": [
+        "tiefling",
+        "performer"
+      ]
+    },
+    {
+      "id": "soot-streaked-dwarven-smith",
+      "text": "soot-streaked dwarven smith",
+      "tags": [
+        "dwarf",
+        "forge"
+      ]
+    },
+    {
+      "id": "halfling-pickpocket",
+      "text": "halfling pickpocket",
+      "tags": [
+        "halfling",
+        "stealth"
+      ]
+    },
+    {
+      "id": "mind-flayer",
+      "text": "mind flayer",
+      "tags": [
+        "aberration"
+      ],
+      "themes": [
+        "underdark",
+        "planar"
+      ]
+    },
+    {
+      "id": "beholder",
+      "text": "beholder",
+      "tags": [
+        "aberration"
+      ],
+      "themes": [
+        "underdark",
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "lich-rotting-finery",
+      "text": "lich in rotting finery",
+      "tags": [
+        "necrotic",
+        "undead"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy",
+        "arcane"
+      ]
+    },
+    {
+      "id": "paladin-dented-plate",
+      "text": "paladin in dented plate",
+      "tags": [
+        "divine",
+        "heroic"
+      ]
+    },
+    {
+      "id": "kenku-courier",
+      "text": "kenku courier",
+      "tags": [
+        "birdfolk"
+      ]
+    },
+    {
+      "id": "goblin-scavenger",
+      "text": "goblin scavenger",
+      "tags": [
+        "goblinoid"
+      ]
+    },
+    {
+      "id": "moss-bearded-firbolg-hermit",
+      "text": "moss-bearded firbolg hermit",
+      "tags": [
+        "giantkin",
+        "druidic"
+      ]
+    },
+    {
+      "id": "winged-aasimar-knight",
+      "text": "winged aasimar knight",
+      "tags": [
+        "aasimar",
+        "radiant"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "elf-ranger",
+      "text": "elf ranger",
+      "tags": [
+        "elf",
+        "primal"
+      ]
+    },
+    {
+      "id": "scarred-orc-warchief",
+      "text": "scarred orc warchief",
+      "tags": [
+        "orc",
+        "martial"
+      ]
+    },
+    {
+      "id": "gnome-tinkerer",
+      "text": "gnome tinkerer",
+      "tags": [
+        "gnome",
+        "tinker"
+      ]
+    },
+    {
+      "id": "warforged-sentinel",
+      "text": "warforged sentinel",
+      "tags": [
+        "construct"
+      ]
+    },
+    {
+      "id": "red-dragon-wyrmling",
+      "text": "red dragon wyrmling",
+      "tags": [
+        "dragon",
+        "fire"
+      ]
+    },
+    {
+      "id": "vampire-noble",
+      "text": "vampire noble",
+      "tags": [
+        "undead",
+        "gothic",
+        "blood"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "one-eyed-pirate-captain",
+      "text": "one-eyed pirate captain",
+      "tags": [
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "frost-giant",
+      "text": "frost giant",
+      "tags": [
+        "giant",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "weeping-ghost",
+      "text": "weeping ghost",
+      "tags": [
+        "undead",
+        "shadow"
+      ]
+    },
+    {
+      "id": "wizard-s-apprentice",
+      "text": "wizard's apprentice"
+    },
+    {
+      "id": "blind-oracle",
+      "text": "blind oracle"
+    },
+    {
+      "id": "masked-assassin",
+      "text": "masked assassin",
+      "tags": [
+        "stealth"
+      ]
+    },
+    {
+      "id": "satyr-piper",
+      "text": "satyr piper",
+      "tags": [
+        "fey",
+        "performer"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "erinyes-chain-whip",
+      "text": "erinyes with a chain whip",
+      "tags": [
+        "fiend",
+        "chains"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "six-winged-deva",
+      "text": "six-winged deva",
+      "tags": [
+        "celestial",
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "tabaxi-merchant",
+      "text": "tabaxi merchant",
+      "tags": [
+        "catfolk"
+      ]
+    },
+    {
+      "id": "dragonborn-gladiator",
+      "text": "dragonborn gladiator",
+      "tags": [
+        "dragonborn",
+        "martial"
+      ]
+    },
+    {
+      "id": "mimic-posing-as-treasure-chest",
+      "text": "mimic posing as a treasure chest",
+      "weight": 3,
+      "tags": [
+        "monstrosity",
+        "comic"
+      ]
+    },
+    {
+      "id": "ancient-treant",
+      "text": "ancient treant",
+      "tags": [
+        "plant",
+        "druidic"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "grinning-imp",
+      "text": "grinning imp",
+      "tags": [
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "triton-scout",
+      "text": "triton scout",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "goliath-wrestler",
+      "text": "goliath wrestler",
+      "tags": [
+        "giantkin",
+        "martial"
+      ]
+    },
+    {
+      "id": "necromancer",
+      "text": "necromancer",
+      "tags": [
+        "necrotic",
+        "caster"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "pixie",
+      "text": "pixie",
+      "tags": [
+        "fey",
+        "whimsical"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "gelatinous-cube",
+      "text": "gelatinous cube",
+      "tags": [
+        "ooze"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "fire-genasi",
+      "text": "fire genasi",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "salamander",
+      "text": "salamander",
+      "tags": [
+        "fire",
+        "elemental"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "githyanki-raider",
+      "text": "githyanki raider",
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "wild-haired-druid",
+      "text": "wild-haired druid",
+      "tags": [
+        "druidic",
+        "primal"
+      ]
+    },
+    {
+      "id": "ice-mephit",
+      "text": "ice mephit",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    }
+  ]
+}

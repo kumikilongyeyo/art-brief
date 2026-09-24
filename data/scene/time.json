@@ -1,0 +1,218 @@
+{
+  "id": "scene.time",
+  "category": "scene",
+  "slot": "time",
+  "entries": [
+    {
+      "id": "twilight-pollen-falling-like-snow",
+      "text": "twilight, pollen falling like snow",
+      "tags": [
+        "dusk",
+        "twilight"
+      ]
+    },
+    {
+      "id": "high-noon-heat-haze-warping",
+      "text": "high noon, heat haze warping the horizon",
+      "tags": [
+        "day",
+        "sunlit"
+      ]
+    },
+    {
+      "id": "midnight-under-blood-red-moon",
+      "text": "midnight under a blood-red moon",
+      "tags": [
+        "night",
+        "moonlit",
+        "blood"
+      ]
+    },
+    {
+      "id": "dawn-fog-pooling-every-hollow",
+      "text": "dawn, fog pooling in every hollow",
+      "tags": [
+        "dawn"
+      ]
+    },
+    {
+      "id": "dusk-thunderstorm-lightning-every-few",
+      "text": "dusk thunderstorm, lightning every few breaths",
+      "tags": [
+        "dusk",
+        "storm"
+      ]
+    },
+    {
+      "id": "deep-winter-night-snow-driving",
+      "text": "deep winter night, snow driving sideways",
+      "tags": [
+        "night",
+        "frost"
+      ]
+    },
+    {
+      "id": "late-afternoon-long-honey-gold",
+      "text": "late afternoon, long honey-gold shadows",
+      "tags": [
+        "day",
+        "sunlit"
+      ]
+    },
+    {
+      "id": "hour-before-dawn-last-stars",
+      "text": "the hour before dawn, last stars fading",
+      "tags": [
+        "dawn"
+      ]
+    },
+    {
+      "id": "midday-monsoon-rain-hammering-like",
+      "text": "midday monsoon, rain hammering like gravel",
+      "tags": [
+        "day",
+        "storm"
+      ]
+    },
+    {
+      "id": "total-eclipse-sky-gone-bruise",
+      "text": "total eclipse, the sky gone bruise-purple",
+      "tags": [
+        "dark"
+      ]
+    },
+    {
+      "id": "autumn-evening-leaves-spinning-wind",
+      "text": "autumn evening, leaves spinning on the wind",
+      "tags": [
+        "dusk"
+      ]
+    },
+    {
+      "id": "first-light-after-blizzard-all",
+      "text": "first light after a blizzard, all blue and white",
+      "tags": [
+        "dawn",
+        "frost"
+      ]
+    },
+    {
+      "id": "moonless-night-lit-only-by",
+      "text": "moonless night lit only by fireflies",
+      "tags": [
+        "night",
+        "dark"
+      ]
+    },
+    {
+      "id": "grey-morning-drizzle-beading-everything",
+      "text": "grey morning drizzle beading on everything",
+      "tags": [
+        "day",
+        "muted"
+      ]
+    },
+    {
+      "id": "sunset-through-sky-drifting-ash",
+      "text": "sunset through a sky of drifting ash and embers",
+      "tags": [
+        "dusk",
+        "ash",
+        "fire"
+      ]
+    },
+    {
+      "id": "clear-night-aurora-rippling-green",
+      "text": "clear night, aurora rippling green overhead",
+      "tags": [
+        "night",
+        "north"
+      ]
+    },
+    {
+      "id": "spring-morning-blossom-drifting-through",
+      "text": "spring morning, blossom drifting through shafts of light",
+      "tags": [
+        "day",
+        "sunlit",
+        "pastoral"
+      ]
+    },
+    {
+      "id": "sandstorm-sun-reduced-pale-coin",
+      "text": "sandstorm, the sun reduced to a pale coin",
+      "tags": [
+        "day",
+        "desert"
+      ]
+    },
+    {
+      "id": "midwinter-solstice-torches-everywhere",
+      "text": "midwinter solstice, torches everywhere",
+      "tags": [
+        "night",
+        "festive"
+      ]
+    },
+    {
+      "id": "timeless-dark-lit-only-by",
+      "text": "timeless dark, lit only by fungus glow",
+      "tags": [
+        "dark",
+        "fungal",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "slack-tide-sea-sky-same",
+      "text": "slack tide, sea and sky the same pearl grey",
+      "tags": [
+        "day",
+        "water"
+      ]
+    },
+    {
+      "id": "golden-hour-after-rain-puddles",
+      "text": "golden hour after rain, puddles like mirrors",
+      "tags": [
+        "dusk",
+        "sunlit"
+      ]
+    },
+    {
+      "id": "dead-night-sea-fog-rolling",
+      "text": "dead of night, sea fog rolling in thick",
+      "tags": [
+        "night"
+      ]
+    },
+    {
+      "id": "harvest-moon-rising-huge-orange",
+      "text": "harvest moon rising huge and orange",
+      "tags": [
+        "dusk",
+        "moonlit"
+      ]
+    },
+    {
+      "id": "blue-hour-first-lamps-just",
+      "text": "blue hour, the first lamps just catching",
+      "tags": [
+        "dusk"
+      ]
+    },
+    {
+      "id": "noon-under-twin-suns-every",
+      "text": "noon under twin suns, every figure casting two shadows",
+      "weight": 3,
+      "tags": [
+        "day",
+        "planar"
+      ],
+      "surreal": true
+    }
+  ]
+}

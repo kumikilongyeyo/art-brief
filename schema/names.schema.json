@@ -1,0 +1,13 @@
+{
+  "$id": "names.schema.json",
+  "type": "object",
+  "required": ["id", "culture", "prefixes", "suffixes", "family"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z]+$" },
+    "culture": { "type": "string", "pattern": "^culture-[a-z]+$" },
+    "prefixes": { "type": "array", "minItems": 20, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][a-z']*$" } },
+    "suffixes": { "type": "array", "minItems": 20, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z']+$" } },
+    "family": { "type": "array", "minItems": 20, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Za-z' -]*[a-z]$" } }
+  }
+}

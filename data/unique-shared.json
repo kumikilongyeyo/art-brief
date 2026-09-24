@@ -1,0 +1,736 @@
+{
+  "id": "shared.unique",
+  "category": "shared",
+  "slot": "unique",
+  "entries": [
+    {
+      "id": "smells-faintly-of-rain-on-hot-stone",
+      "text": "smells faintly of rain on hot stone",
+      "tier": "minor"
+    },
+    {
+      "id": "every-candle-nearby-gutters-and-burns-blue",
+      "text": "every candle nearby gutters and burns blue",
+      "tier": "minor"
+    },
+    {
+      "id": "moths-gather-in-impossible-numbers-after-dark",
+      "text": "moths gather in impossible numbers after dark",
+      "tier": "minor",
+      "tags": [
+        "night"
+      ]
+    },
+    {
+      "id": "compasses-spin-lazily-within-a-few-paces",
+      "text": "compasses spin lazily within a few paces",
+      "tier": "minor"
+    },
+    {
+      "id": "birdsong-falls-silent-whenever-anyone-draws-near",
+      "text": "birdsong falls silent whenever anyone draws near",
+      "tier": "minor",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "snow-falls-upward-within-a-stone-s-throw",
+      "text": "snow falls upward within a stone's throw",
+      "tier": "notable",
+      "tags": [
+        "frost"
+      ]
+    },
+    {
+      "id": "sounds-arrive-a-heartbeat-after-whatever-made-th",
+      "text": "sounds arrive a heartbeat after whatever made them",
+      "tier": "notable",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "nearby-shadows-lean-the-wrong-way-toward-the-lig",
+      "text": "nearby shadows lean the wrong way, toward the light",
+      "tier": "notable",
+      "tags": [
+        "shadow"
+      ]
+    },
+    {
+      "id": "every-mirror-nearby-shows-the-same-stranger-s-fa",
+      "text": "every mirror nearby shows the same stranger's face",
+      "tier": "notable",
+      "tags": [
+        "mysterious"
+      ]
+    },
+    {
+      "id": "time-slows-enough-nearby-to-watch-raindrops-fall",
+      "text": "time slows enough nearby to watch raindrops fall",
+      "tier": "legendary"
+    },
+    {
+      "id": "the-stars-overhead-slowly-gather-into-a-watching",
+      "text": "the stars overhead slowly gather into a watching eye",
+      "tier": "legendary",
+      "tags": [
+        "astral"
+      ]
+    },
+    {
+      "id": "breathes-out-faint-curls-of-silver-smoke",
+      "text": "breathes out faint curls of silver smoke",
+      "tier": "minor",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-halo-of-midges-orbits-in-perfect-formation",
+      "text": "a halo of midges orbits in perfect formation",
+      "tier": "minor",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "footprints-fill-slowly-with-clear-water",
+      "text": "footprints fill slowly with clear water",
+      "tier": "minor",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "eyes-catch-the-light-like-a-cat-s-green-gold",
+      "text": "eyes catch the light like a cat's, green-gold",
+      "tier": "minor",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "has-a-heartbeat-audible-from-across-a-quiet-room",
+      "text": "has a heartbeat audible from across a quiet room",
+      "tier": "minor",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-faint-breeze-follows-everywhere-stirring-the-d",
+      "text": "a faint breeze follows everywhere, stirring the dust",
+      "tier": "minor",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "leaves-frost-fern-patterns-on-anything-touched",
+      "text": "leaves frost-fern patterns on anything touched",
+      "tier": "minor",
+      "tags": [
+        "frost"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "casts-two-shadows-one-far-larger-than-it-should",
+      "text": "casts two shadows, one far larger than it should be",
+      "tier": "notable",
+      "tags": [
+        "shadow"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "flowers-open-as-they-pass-and-close-behind-them",
+      "text": "flowers open as they pass and close behind them",
+      "tier": "notable",
+      "tags": [
+        "flora"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "every-sound-they-make-echoes-from-somewhere-far",
+      "text": "every sound they make echoes from somewhere far below",
+      "tier": "notable",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-second-smaller-heartbeat-beats-somewhere-insid",
+      "text": "a second, smaller heartbeat beats somewhere inside",
+      "tier": "notable",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "wounds-close-with-a-sound-like-pages-turning",
+      "text": "wounds close with a sound like pages turning",
+      "tier": "notable",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "their-reflection-moves-a-moment-before-they-do",
+      "text": "their reflection moves a moment before they do",
+      "tier": "notable",
+      "tags": [
+        "eerie"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-private-storm-cloud-drifts-overhead-raining-on",
+      "text": "a private storm cloud drifts overhead, raining only on them",
+      "tier": "notable",
+      "tags": [
+        "storm"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "their-shadow-is-a-different-creature-entirely-an",
+      "text": "their shadow is a different creature entirely, and it hunts",
+      "tier": "legendary",
+      "tags": [
+        "shadow"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "wherever-they-sleep-a-ring-of-standing-stones-ri",
+      "text": "wherever they sleep, a ring of standing stones rises by dawn",
+      "tier": "legendary",
+      "tags": [
+        "druidic"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "ancient-dragons-lower-their-heads-when-they-pass",
+      "text": "ancient dragons lower their heads when they pass",
+      "tier": "legendary",
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "fell-to-earth-as-a-star-once-and-still-glows-at",
+      "text": "fell to earth as a star once, and still glows at midnight",
+      "tier": "legendary",
+      "tags": [
+        "astral",
+        "luminous"
+      ],
+      "requires": [
+        "animate"
+      ]
+    },
+    {
+      "id": "hums-a-tune-no-bard-has-ever-been-able-to-name",
+      "text": "hums a tune no bard has ever been able to name",
+      "tier": "minor",
+      "tags": [
+        "performer"
+      ],
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "always-smells-of-fresh-bread-even-after-weeks-on",
+      "text": "always smells of fresh bread, even after weeks on the road",
+      "tier": "minor",
+      "tags": [
+        "comic"
+      ],
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "ink-stains-on-their-fingers-drift-into-the-shape",
+      "text": "ink stains on their fingers drift into the shape of maps",
+      "tier": "notable",
+      "tags": [
+        "scholar"
+      ],
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "can-read-any-script-except-their-own-name",
+      "text": "can read any script except their own name",
+      "tier": "notable",
+      "tags": [
+        "cursed"
+      ],
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "a-demon-lord-is-personally-waiting-to-collect-th",
+      "text": "a demon lord is personally waiting to collect their debt",
+      "tier": "legendary",
+      "tags": [
+        "contract"
+      ],
+      "requires": [
+        "cat-character"
+      ]
+    },
+    {
+      "id": "leaves-tracks-that-glow-softly-for-an-hour",
+      "text": "leaves tracks that glow softly for an hour",
+      "tier": "minor",
+      "tags": [
+        "luminous"
+      ],
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "its-call-sounds-exactly-like-a-child-laughing",
+      "text": "its call sounds exactly like a child laughing",
+      "tier": "minor",
+      "tags": [
+        "eerie"
+      ],
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "migrates-along-ley-lines-leaving-a-glowing-trail",
+      "text": "migrates along ley lines, leaving a glowing trail seen from the air",
+      "tier": "notable",
+      "tags": [
+        "arcane"
+      ],
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "its-lair-appears-on-no-map-because-the-land-itse",
+      "text": "its lair appears on no map because the land itself forgets it",
+      "tier": "legendary",
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "whole-villages-dream-of-it-the-night-before-it-a",
+      "text": "whole villages dream of it the night before it arrives",
+      "tier": "legendary",
+      "tags": [
+        "mysterious"
+      ],
+      "requires": [
+        "cat-creature"
+      ]
+    },
+    {
+      "id": "is-always-cool-to-the-touch-even-in-full-sun",
+      "text": "is always cool to the touch, even in full sun",
+      "tier": "minor",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "hums-a-low-note-whenever-a-storm-approaches",
+      "text": "hums a low note whenever a storm approaches",
+      "tier": "minor",
+      "tags": [
+        "storm"
+      ],
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "dust-never-settles-on-it",
+      "text": "dust never settles on it",
+      "tier": "minor",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "smells-of-cedar-and-old-incense-however-often-it",
+      "text": "smells of cedar and old incense however often it is scrubbed",
+      "tier": "minor",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "any-rust-on-it-forms-in-neat-deliberate-spirals",
+      "text": "any rust on it forms in neat, deliberate spirals",
+      "tier": "minor",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "grows-warm-when-a-lie-is-spoken-nearby",
+      "text": "grows warm when a lie is spoken nearby",
+      "tier": "notable",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "throws-no-shadow-at-noon",
+      "text": "throws no shadow at noon",
+      "tier": "notable",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "mends-its-own-cracks-overnight-leaving-seams-of",
+      "text": "mends its own cracks overnight, leaving seams of gold",
+      "tier": "notable",
+      "tags": [
+        "gold"
+      ],
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "anyone-who-touches-it-hears-the-voice-of-its-mak",
+      "text": "anyone who touches it hears the voice of its maker",
+      "tier": "notable",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "cannot-be-harmed-by-anything-made-after-it",
+      "text": "cannot be harmed by anything made after it",
+      "tier": "legendary",
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "flickers-between-the-feywild-and-here-like-a-gut",
+      "text": "flickers between the Feywild and here like a guttering candle",
+      "tier": "legendary",
+      "tags": [
+        "planar"
+      ],
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "a-god-once-swore-an-oath-upon-it-and-the-oath-st",
+      "text": "a god once swore an oath upon it, and the oath still binds",
+      "tier": "legendary",
+      "tags": [
+        "holy"
+      ],
+      "requires": [
+        "inanimate"
+      ]
+    },
+    {
+      "id": "rattles-faintly-when-carried-toward-water",
+      "text": "rattles faintly when carried toward water",
+      "tier": "minor",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "leaves-the-scent-of-cloves-on-any-hand-that-hold",
+      "text": "leaves the scent of cloves on any hand that holds it",
+      "tier": "minor",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "always-turns-up-in-the-last-pack-it-was-stowed-i",
+      "text": "always turns up in the last pack it was stowed in",
+      "tier": "notable",
+      "tags": [
+        "trickster"
+      ],
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "grows-heavier-in-the-hands-of-a-coward",
+      "text": "grows heavier in the hands of a coward",
+      "tier": "notable",
+      "tags": [
+        "heroic"
+      ],
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "whoever-carries-it-is-recognised-by-every-ghost",
+      "text": "whoever carries it is recognised by every ghost they meet",
+      "tier": "legendary",
+      "tags": [
+        "grave"
+      ],
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "splits-into-two-identical-copies-once-a-century",
+      "text": "splits into two identical copies once a century",
+      "tier": "legendary",
+      "requires": [
+        "cat-prop"
+      ]
+    },
+    {
+      "id": "crows-perch-in-exactly-thirteen-places-never-mor",
+      "text": "crows perch in exactly thirteen places, never more",
+      "tier": "minor",
+      "tags": [
+        "eerie"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "the-ground-is-always-warm-underfoot-even-in-snow",
+      "text": "the ground is always warm underfoot, even in snow",
+      "tier": "minor",
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "lanterns-burn-without-oil-pale-and-perfectly-ste",
+      "text": "lanterns burn without oil, pale and perfectly steady",
+      "tier": "minor",
+      "tags": [
+        "luminous"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "a-distant-bell-tolls-the-hour-though-no-bell-is",
+      "text": "a distant bell tolls the hour, though no bell is ever found",
+      "tier": "minor",
+      "tags": [
+        "mysterious"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "footsteps-echo-back-in-a-different-rhythm",
+      "text": "footsteps echo back in a different rhythm",
+      "tier": "minor",
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "rain-falls-in-slow-motion-each-drop-hanging-like",
+      "text": "rain falls in slow motion, each drop hanging like glass",
+      "tier": "notable",
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "maps-drawn-here-quietly-redraw-themselves-by-mor",
+      "text": "maps drawn here quietly redraw themselves by morning",
+      "tier": "notable",
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "the-dead-stand-at-every-window-for-a-moment-at-d",
+      "text": "the dead stand at every window for a moment at dusk",
+      "tier": "notable",
+      "tags": [
+        "grave",
+        "dusk"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "every-doorway-frames-a-slightly-different-sky",
+      "text": "every doorway frames a slightly different sky",
+      "tier": "notable",
+      "tags": [
+        "portal"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "overlaps-three-planes-which-merge-completely-at",
+      "text": "overlaps three planes, which merge completely at midnight",
+      "tier": "legendary",
+      "tags": [
+        "planar"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "whoever-sleeps-here-wakes-a-year-later-unaged",
+      "text": "whoever sleeps here wakes a year later, unaged",
+      "tier": "legendary",
+      "tags": [
+        "fey"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "the-horizon-ends-in-a-wall-of-slowly-turning-sta",
+      "text": "the horizon ends in a wall of slowly turning stars",
+      "tier": "legendary",
+      "tags": [
+        "astral"
+      ],
+      "requires": [
+        "place"
+      ]
+    },
+    {
+      "id": "chimney-smoke-rises-in-perfect-unbroken-rings",
+      "text": "chimney smoke rises in perfect, unbroken rings",
+      "tier": "minor",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "the-front-door-is-noticeably-smaller-from-the-in",
+      "text": "the front door is noticeably smaller from the inside",
+      "tier": "minor",
+      "tags": [
+        "comic"
+      ],
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "ivy-climbs-the-walls-only-in-the-shapes-of-lette",
+      "text": "ivy climbs the walls only in the shapes of letters",
+      "tier": "notable",
+      "tags": [
+        "flora"
+      ],
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "rooms-rearrange-themselves-whenever-no-one-is-lo",
+      "text": "rooms rearrange themselves whenever no one is looking",
+      "tier": "notable",
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "each-door-opens-onto-a-different-city-at-dawn",
+      "text": "each door opens onto a different city at dawn",
+      "tier": "legendary",
+      "tags": [
+        "portal"
+      ],
+      "requires": [
+        "cat-building"
+      ]
+    },
+    {
+      "id": "every-banner-in-view-hangs-limp-despite-the-wind",
+      "text": "every banner in view hangs limp despite the wind",
+      "tier": "minor",
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "petals-drift-across-everything-from-no-visible-t",
+      "text": "petals drift across everything from no visible tree",
+      "tier": "minor",
+      "tags": [
+        "flora"
+      ],
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "every-shadow-points-toward-the-smallest-figure-p",
+      "text": "every shadow points toward the smallest figure present",
+      "tier": "notable",
+      "tags": [
+        "shadow"
+      ],
+      "requires": [
+        "cat-scene"
+      ]
+    },
+    {
+      "id": "the-sky-is-cracked-like-porcelain-light-leaking",
+      "text": "the sky is cracked like porcelain, light leaking through",
+      "tier": "legendary",
+      "requires": [
+        "cat-scene"
+      ]
+    }
+  ]
+}

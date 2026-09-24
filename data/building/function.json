@@ -1,0 +1,317 @@
+{
+  "id": "building.function",
+  "category": "building",
+  "slot": "function",
+  "entries": [
+    {
+      "id": "archive",
+      "text": "archive",
+      "label": "Library",
+      "weight": 6,
+      "tags": [
+        "library"
+      ]
+    },
+    {
+      "id": "lich-tower",
+      "text": "lich tower",
+      "label": "Spire",
+      "tags": [
+        "necrotic",
+        "arcane"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "tavern",
+      "text": "tavern",
+      "label": "Tavern",
+      "weight": 7
+    },
+    {
+      "id": "temple",
+      "text": "temple",
+      "label": "Temple",
+      "weight": 6,
+      "tags": [
+        "temple"
+      ]
+    },
+    {
+      "id": "watchtower",
+      "text": "watchtower",
+      "label": "Tower"
+    },
+    {
+      "id": "market-hall",
+      "text": "market hall",
+      "label": "Market",
+      "tags": [
+        "market"
+      ]
+    },
+    {
+      "id": "apothecary",
+      "text": "apothecary",
+      "label": "Apothecary"
+    },
+    {
+      "id": "smithy",
+      "text": "smithy",
+      "label": "Forge",
+      "tags": [
+        "forge"
+      ]
+    },
+    {
+      "id": "thieves-guildhouse",
+      "text": "thieves' guildhouse",
+      "label": "Den",
+      "tags": [
+        "guild",
+        "urban"
+      ]
+    },
+    {
+      "id": "wizards-academy",
+      "text": "wizard's academy",
+      "label": "Academy",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "lighthouse",
+      "text": "lighthouse",
+      "label": "Lighthouse",
+      "tags": [
+        "coast"
+      ]
+    },
+    {
+      "id": "mountain-monastery",
+      "text": "mountain monastery",
+      "label": "Monastery",
+      "tags": [
+        "mountain"
+      ]
+    },
+    {
+      "id": "mausoleum",
+      "text": "mausoleum",
+      "label": "Mausoleum",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "public-bathhouse",
+      "text": "public bathhouse",
+      "label": "Baths"
+    },
+    {
+      "id": "observatory",
+      "text": "observatory",
+      "label": "Observatory",
+      "tags": [
+        "astral"
+      ]
+    },
+    {
+      "id": "prison",
+      "text": "prison",
+      "label": "Gaol",
+      "tags": [
+        "chains",
+        "grim"
+      ]
+    },
+    {
+      "id": "throne-hall",
+      "text": "throne hall",
+      "label": "Hall",
+      "tags": [
+        "noble",
+        "court"
+      ]
+    },
+    {
+      "id": "fortress-keep",
+      "text": "fortress keep",
+      "label": "Keep",
+      "weight": 6
+    },
+    {
+      "id": "water-mill",
+      "text": "water mill",
+      "label": "Mill",
+      "tags": [
+        "pastoral",
+        "river"
+      ]
+    },
+    {
+      "id": "wayside-shrine",
+      "text": "wayside shrine",
+      "label": "Shrine"
+    },
+    {
+      "id": "crossroads-inn",
+      "text": "crossroads inn",
+      "label": "Inn",
+      "weight": 6,
+      "tags": [
+        "road"
+      ]
+    },
+    {
+      "id": "menagerie",
+      "text": "menagerie",
+      "label": "Menagerie",
+      "tags": [
+        "beast"
+      ]
+    },
+    {
+      "id": "playhouse",
+      "text": "playhouse",
+      "label": "Playhouse",
+      "tags": [
+        "performer"
+      ]
+    },
+    {
+      "id": "fortified-bridge",
+      "text": "fortified bridge",
+      "label": "Bridge",
+      "tags": [
+        "river"
+      ]
+    },
+    {
+      "id": "dockside-warehouse",
+      "text": "dockside warehouse",
+      "label": "Warehouse",
+      "tags": [
+        "coast"
+      ]
+    },
+    {
+      "id": "mine-head",
+      "text": "mine head",
+      "label": "Mine",
+      "tags": [
+        "subterranean"
+      ]
+    },
+    {
+      "id": "fighting-arena",
+      "text": "fighting arena",
+      "label": "Arena",
+      "tags": [
+        "martial"
+      ]
+    },
+    {
+      "id": "embassy",
+      "text": "embassy",
+      "label": "Embassy",
+      "tags": [
+        "court"
+      ]
+    },
+    {
+      "id": "orphanage",
+      "text": "orphanage",
+      "label": "Orphanage",
+      "weight": 3
+    },
+    {
+      "id": "alchemists-laboratory",
+      "text": "alchemist's laboratory",
+      "label": "Laboratory",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "gatehouse",
+      "text": "gatehouse",
+      "label": "Gate"
+    },
+    {
+      "id": "bank-vault",
+      "text": "bank vault",
+      "label": "Vault",
+      "tags": [
+        "gold"
+      ]
+    },
+    {
+      "id": "hunting-lodge",
+      "text": "hunting lodge",
+      "label": "Lodge",
+      "tags": [
+        "wilderness"
+      ]
+    },
+    {
+      "id": "gate-town-waystation",
+      "text": "gate-town waystation",
+      "label": "Waystation",
+      "tags": [
+        "portal",
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "courthouse",
+      "text": "courthouse",
+      "label": "Court",
+      "tags": [
+        "court"
+      ]
+    },
+    {
+      "id": "druids-grove-house",
+      "text": "druid's grove-house",
+      "label": "Grove",
+      "tags": [
+        "druidic",
+        "flora"
+      ],
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "brewery",
+      "text": "brewery",
+      "label": "Brewery"
+    },
+    {
+      "id": "cathedral",
+      "text": "cathedral",
+      "label": "Cathedral",
+      "tags": [
+        "holy"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy",
+        "dark-fantasy"
+      ]
+    }
+  ]
+}

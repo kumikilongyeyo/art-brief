@@ -1,0 +1,518 @@
+{
+  "id": "shared.scene-word",
+  "category": "shared",
+  "slot": "scene-word",
+  "entries": [
+    {
+      "id": "name",
+      "text": "Name"
+    },
+    {
+      "id": "lantern",
+      "text": "Lantern"
+    },
+    {
+      "id": "mirror",
+      "text": "Mirror"
+    },
+    {
+      "id": "salt",
+      "text": "Salt"
+    },
+    {
+      "id": "thread",
+      "text": "Thread"
+    },
+    {
+      "id": "candle",
+      "text": "Candle"
+    },
+    {
+      "id": "bell",
+      "text": "Bell"
+    },
+    {
+      "id": "key",
+      "text": "Key"
+    },
+    {
+      "id": "glass",
+      "text": "Glass"
+    },
+    {
+      "id": "ribbon",
+      "text": "Ribbon"
+    },
+    {
+      "id": "hour",
+      "text": "Hour"
+    },
+    {
+      "id": "promise",
+      "text": "Promise"
+    },
+    {
+      "id": "secret",
+      "text": "Secret"
+    },
+    {
+      "id": "last",
+      "text": "Last"
+    },
+    {
+      "id": "silent",
+      "text": "Silent"
+    },
+    {
+      "id": "crooked",
+      "text": "Crooked"
+    },
+    {
+      "id": "hollow",
+      "text": "Hollow"
+    },
+    {
+      "id": "paper",
+      "text": "Paper"
+    },
+    {
+      "id": "wax",
+      "text": "Wax"
+    },
+    {
+      "id": "ink",
+      "text": "Ink"
+    },
+    {
+      "id": "echo",
+      "text": "Echo"
+    },
+    {
+      "id": "second",
+      "text": "Second"
+    },
+    {
+      "id": "feather",
+      "text": "Feather"
+    },
+    {
+      "id": "lost",
+      "text": "Lost"
+    },
+    {
+      "id": "quiet",
+      "text": "Quiet"
+    },
+    {
+      "id": "borrowed",
+      "text": "Borrowed"
+    },
+    {
+      "id": "crow",
+      "text": "Crow"
+    },
+    {
+      "id": "masked",
+      "text": "Masked"
+    },
+    {
+      "id": "banner",
+      "text": "Banner",
+      "tags": [
+        "heroic"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "crown",
+      "text": "Crown",
+      "tags": [
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "oath",
+      "text": "Oath",
+      "tags": [
+        "heroic"
+      ],
+      "themes": [
+        "high-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "gallows",
+      "text": "Gallows",
+      "tags": [
+        "grim"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "widow",
+      "text": "Widow",
+      "tags": [
+        "gothic"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "crimson",
+      "text": "Crimson",
+      "tags": [
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "brimstone",
+      "text": "Brimstone",
+      "tags": [
+        "brimstone"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "contract",
+      "text": "Contract",
+      "tags": [
+        "contract"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "chain",
+      "text": "Chain",
+      "tags": [
+        "chains"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "halo",
+      "text": "Halo",
+      "tags": [
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "gilded",
+      "text": "Gilded",
+      "tags": [
+        "gold"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "choir",
+      "text": "Choir",
+      "tags": [
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "thistle",
+      "text": "Thistle",
+      "tags": [
+        "flora"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "glamour",
+      "text": "Glamour",
+      "tags": [
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "riddle",
+      "text": "Riddle",
+      "tags": [
+        "trickster"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "moth",
+      "text": "Moth",
+      "tags": [
+        "twilight"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "bone",
+      "text": "Bone",
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "grave",
+      "text": "Grave",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "shroud",
+      "text": "Shroud",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "ember",
+      "text": "Ember",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "cinder",
+      "text": "Cinder",
+      "tags": [
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "forge",
+      "text": "Forge",
+      "tags": [
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "rime",
+      "text": "Rime",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "wolf",
+      "text": "Wolf",
+      "tags": [
+        "north",
+        "beast"
+      ],
+      "themes": [
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "rune",
+      "text": "Rune",
+      "tags": [
+        "rune"
+      ],
+      "themes": [
+        "frost",
+        "arcane"
+      ]
+    },
+    {
+      "id": "tide",
+      "text": "Tide",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "brine",
+      "text": "Brine",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "wreck",
+      "text": "Wreck",
+      "tags": [
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "spore",
+      "text": "Spore",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "spider",
+      "text": "Spider",
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "crystal",
+      "text": "Crystal",
+      "tags": [
+        "crystal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "orrery",
+      "text": "Orrery",
+      "tags": [
+        "clockwork",
+        "astral"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "tome",
+      "text": "Tome",
+      "tags": [
+        "library"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "antler",
+      "text": "Antler",
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "thunder",
+      "text": "Thunder",
+      "tags": [
+        "storm"
+      ],
+      "themes": [
+        "wild-primal",
+        "nautical"
+      ]
+    },
+    {
+      "id": "totem",
+      "text": "Totem",
+      "tags": [
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "threshold",
+      "text": "Threshold",
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "paradox",
+      "text": "Paradox",
+      "tags": [
+        "surreal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "guild",
+      "text": "Guild",
+      "tags": [
+        "guild"
+      ],
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-a
+dist-b
+test-results
+playwright-report
+data/_drafts
+.DS_Store

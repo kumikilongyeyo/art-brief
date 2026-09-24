@@ -1,0 +1,497 @@
+{
+  "id": "shared.creature-first",
+  "category": "shared",
+  "slot": "creature-first",
+  "entries": [
+    {
+      "id": "gloom",
+      "text": "Gloom"
+    },
+    {
+      "id": "lichen",
+      "text": "Lichen"
+    },
+    {
+      "id": "stone",
+      "text": "Stone"
+    },
+    {
+      "id": "hook",
+      "text": "Hook"
+    },
+    {
+      "id": "tangle",
+      "text": "Tangle"
+    },
+    {
+      "id": "mire",
+      "text": "Mire"
+    },
+    {
+      "id": "thorn",
+      "text": "Thorn"
+    },
+    {
+      "id": "dusk",
+      "text": "Dusk"
+    },
+    {
+      "id": "grey",
+      "text": "Grey"
+    },
+    {
+      "id": "fen",
+      "text": "Fen"
+    },
+    {
+      "id": "cairn",
+      "text": "Cairn"
+    },
+    {
+      "id": "hush",
+      "text": "Hush"
+    },
+    {
+      "id": "murk",
+      "text": "Murk"
+    },
+    {
+      "id": "scree",
+      "text": "Scree"
+    },
+    {
+      "id": "mud",
+      "text": "Mud"
+    },
+    {
+      "id": "sludge",
+      "text": "Sludge"
+    },
+    {
+      "id": "pale",
+      "text": "Pale"
+    },
+    {
+      "id": "needle",
+      "text": "Needle"
+    },
+    {
+      "id": "lank",
+      "text": "Lank"
+    },
+    {
+      "id": "tatter",
+      "text": "Tatter"
+    },
+    {
+      "id": "crook",
+      "text": "Crook"
+    },
+    {
+      "id": "slate",
+      "text": "Slate"
+    },
+    {
+      "id": "dirge",
+      "text": "Dirge"
+    },
+    {
+      "id": "knell",
+      "text": "Knell"
+    },
+    {
+      "id": "ash",
+      "text": "Ash",
+      "tags": [
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire",
+        "undead"
+      ]
+    },
+    {
+      "id": "cinder",
+      "text": "Cinder",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "ember",
+      "text": "Ember",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "pyre",
+      "text": "Pyre",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "infernal",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "chain",
+      "text": "Chain",
+      "tags": [
+        "chains"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "hex",
+      "text": "Hex",
+      "tags": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "infernal"
+      ]
+    },
+    {
+      "id": "blood",
+      "text": "Blood",
+      "tags": [
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "grave",
+      "text": "Grave",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "bone",
+      "text": "Bone",
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "shade",
+      "text": "Shade",
+      "tags": [
+        "shadow"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "rime",
+      "text": "Rime",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "ice",
+      "text": "Ice",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "brine",
+      "text": "Brine",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "tide",
+      "text": "Tide",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "pearl",
+      "text": "Pearl",
+      "tags": [
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "gale",
+      "text": "Gale",
+      "tags": [
+        "storm"
+      ],
+      "themes": [
+        "nautical",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "spore",
+      "text": "Spore",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "under",
+      "text": "Under",
+      "tags": [
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "opal",
+      "text": "Opal",
+      "tags": [
+        "crystal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "star",
+      "text": "Star",
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "celestial",
+        "arcane"
+      ]
+    },
+    {
+      "id": "dawn",
+      "text": "Dawn",
+      "tags": [
+        "radiant",
+        "dawn"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "gild",
+      "text": "Gild",
+      "tags": [
+        "gold"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "glimmer",
+      "text": "Glimmer",
+      "tags": [
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "bramble",
+      "text": "Bramble",
+      "tags": [
+        "flora"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "moth",
+      "text": "Moth",
+      "tags": [
+        "twilight"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "rune",
+      "text": "Rune",
+      "tags": [
+        "rune"
+      ],
+      "themes": [
+        "arcane",
+        "frost"
+      ]
+    },
+    {
+      "id": "clock",
+      "text": "Clock",
+      "tags": [
+        "clockwork"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "horn",
+      "text": "Horn",
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "thunder",
+      "text": "Thunder",
+      "tags": [
+        "storm"
+      ],
+      "themes": [
+        "wild-primal",
+        "nautical"
+      ]
+    },
+    {
+      "id": "void",
+      "text": "Void",
+      "tags": [
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "aether",
+      "text": "Aether",
+      "tags": [
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "gate",
+      "text": "Gate",
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "crown",
+      "text": "Crown",
+      "tags": [
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "glade",
+      "text": "Glade",
+      "tags": [
+        "pastoral"
+      ],
+      "themes": [
+        "high-fantasy",
+        "fey"
+      ]
+    },
+    {
+      "id": "halo",
+      "text": "Halo",
+      "tags": [
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "sigil",
+      "text": "Sigil",
+      "tags": [
+        "rune"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "floe",
+      "text": "Floe",
+      "tags": [
+        "glacier"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "wretch",
+      "text": "Wretch",
+      "tags": [
+        "grim"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    }
+  ]
+}

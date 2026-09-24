@@ -1,0 +1,1105 @@
+{
+  "palettes": [
+    {
+      "id": "old-parchment",
+      "name": "Old Parchment",
+      "hex": [
+        "#2B2118",
+        "#5C4631",
+        "#8F7250",
+        "#C4A77D",
+        "#EDE0C4"
+      ],
+      "tags": [
+        "earthy",
+        "warm",
+        "muted"
+      ]
+    },
+    {
+      "id": "stormglass",
+      "name": "Stormglass",
+      "hex": [
+        "#121A21",
+        "#2C3E4C",
+        "#4F6F82",
+        "#86A6B5",
+        "#D4E2E6"
+      ],
+      "tags": [
+        "cool",
+        "muted"
+      ]
+    },
+    {
+      "id": "moss-and-stone",
+      "name": "Moss and Stone",
+      "hex": [
+        "#1C211A",
+        "#3D4735",
+        "#6B7A58",
+        "#A3AD8C",
+        "#DCE0CB"
+      ],
+      "tags": [
+        "earthy",
+        "muted",
+        "serene"
+      ]
+    },
+    {
+      "id": "tavern-hearth",
+      "name": "Tavern Hearth",
+      "hex": [
+        "#1F1410",
+        "#4A2C1E",
+        "#8A4F2B",
+        "#C98B4B",
+        "#F2D49B"
+      ],
+      "tags": [
+        "warm",
+        "earthy",
+        "festive"
+      ]
+    },
+    {
+      "id": "dusk-road",
+      "name": "Dusk Road",
+      "hex": [
+        "#1B1726",
+        "#3E3452",
+        "#6E5A7A",
+        "#B08A8F",
+        "#EBC9A8"
+      ],
+      "tags": [
+        "dusk",
+        "muted",
+        "melancholy"
+      ]
+    },
+    {
+      "id": "pewter-morning",
+      "name": "Pewter Morning",
+      "hex": [
+        "#1A1D21",
+        "#3A4048",
+        "#6A727C",
+        "#A7ADB3",
+        "#E8D9A8"
+      ],
+      "tags": [
+        "cool",
+        "metallic",
+        "day"
+      ]
+    },
+    {
+      "id": "verdigris",
+      "name": "Verdigris",
+      "hex": [
+        "#101816",
+        "#1F3A34",
+        "#3E6E62",
+        "#C07A4A",
+        "#E9DCC4"
+      ],
+      "tags": [
+        "cool",
+        "metallic"
+      ]
+    },
+    {
+      "id": "plum-wine",
+      "name": "Plum Wine",
+      "hex": [
+        "#170D14",
+        "#3E1A33",
+        "#6E2E55",
+        "#B0628A",
+        "#F1D8DE"
+      ],
+      "tags": [
+        "jewel",
+        "romantic"
+      ]
+    },
+    {
+      "id": "slate-and-saffron",
+      "name": "Slate and Saffron",
+      "hex": [
+        "#15171A",
+        "#33383E",
+        "#5C636B",
+        "#E3A626",
+        "#E6E8EA"
+      ],
+      "tags": [
+        "cool",
+        "monochrome"
+      ]
+    },
+    {
+      "id": "rose-quartz",
+      "name": "Rose Quartz",
+      "hex": [
+        "#241A1F",
+        "#5A3F4A",
+        "#A7788A",
+        "#E0B7C2",
+        "#FAF0EE"
+      ],
+      "tags": [
+        "pastel",
+        "romantic",
+        "serene"
+      ]
+    },
+    {
+      "id": "midnight-ink",
+      "name": "Midnight Ink",
+      "hex": [
+        "#070A14",
+        "#141C33",
+        "#26365E",
+        "#4C6AA0",
+        "#C9D6EA"
+      ],
+      "tags": [
+        "night",
+        "cool",
+        "mysterious"
+      ]
+    },
+    {
+      "id": "olive-grove",
+      "name": "Olive Grove",
+      "hex": [
+        "#191A0F",
+        "#3C3E21",
+        "#6C6E3A",
+        "#A8A462",
+        "#EDE8C8"
+      ],
+      "tags": [
+        "earthy",
+        "day"
+      ]
+    },
+    {
+      "id": "harvest-moon",
+      "name": "Harvest Moon",
+      "hex": [
+        "#12141C",
+        "#2D2F3E",
+        "#5C556A",
+        "#E0A04A",
+        "#F7E6BE"
+      ],
+      "tags": [
+        "moonlit",
+        "night",
+        "warm"
+      ]
+    },
+    {
+      "id": "heraldic-crimson",
+      "name": "Heraldic Crimson",
+      "hex": [
+        "#1E0E10",
+        "#5A1A1F",
+        "#9C2A2E",
+        "#D4A24C",
+        "#F3E6CC"
+      ],
+      "tags": [
+        "noble",
+        "heroic",
+        "jewel"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "royal-lapis",
+      "name": "Royal Lapis",
+      "hex": [
+        "#0E1433",
+        "#213A7A",
+        "#3F66B8",
+        "#D9B45A",
+        "#F4EEDC"
+      ],
+      "tags": [
+        "noble",
+        "jewel"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "elven-spring",
+      "name": "Elven Spring",
+      "hex": [
+        "#14241C",
+        "#2E5A3F",
+        "#5E9463",
+        "#A9CF8A",
+        "#F4F1D6"
+      ],
+      "tags": [
+        "pastoral",
+        "serene",
+        "day"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "shire-meadow",
+      "name": "Shire Meadow",
+      "hex": [
+        "#1F2414",
+        "#4A5A26",
+        "#8C9A3E",
+        "#D8C27A",
+        "#F6EFD2"
+      ],
+      "tags": [
+        "pastoral",
+        "warm",
+        "sunlit"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "bloodmoon",
+      "name": "Bloodmoon",
+      "hex": [
+        "#120709",
+        "#3B0D12",
+        "#7A1620",
+        "#B8433A",
+        "#E8C3A4"
+      ],
+      "tags": [
+        "blood",
+        "violent"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "gallows-fog",
+      "name": "Gallows Fog",
+      "hex": [
+        "#111214",
+        "#2E3032",
+        "#555956",
+        "#A8A060",
+        "#C9CCBF"
+      ],
+      "tags": [
+        "grim",
+        "muted",
+        "eerie"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "cathedral-rot",
+      "name": "Cathedral Rot",
+      "hex": [
+        "#16121A",
+        "#372A3D",
+        "#5E4A5E",
+        "#8F7A6E",
+        "#D0C2A0"
+      ],
+      "tags": [
+        "gothic",
+        "muted"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "brimstone",
+      "name": "Brimstone",
+      "hex": [
+        "#1A0F08",
+        "#4A2410",
+        "#8C3B12",
+        "#D9761E",
+        "#F7D35A"
+      ],
+      "tags": [
+        "brimstone",
+        "fire",
+        "vivid"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "nine-hells",
+      "name": "Nine Hells",
+      "hex": [
+        "#0D0606",
+        "#330A0A",
+        "#6E1010",
+        "#C4281A",
+        "#F9B27A"
+      ],
+      "tags": [
+        "fiend",
+        "violent",
+        "warm"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "sealed-in-blood",
+      "name": "Sealed in Blood",
+      "hex": [
+        "#120E0C",
+        "#2E1A1A",
+        "#5C1E24",
+        "#A0283A",
+        "#E9D8BC"
+      ],
+      "tags": [
+        "contract",
+        "chains"
+      ],
+      "themes": [
+        "infernal",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "seraph-gold",
+      "name": "Seraph Gold",
+      "hex": [
+        "#2A1F0C",
+        "#6B4E1A",
+        "#B08A34",
+        "#E6C66A",
+        "#FFF6DA"
+      ],
+      "tags": [
+        "gold",
+        "radiant",
+        "warm"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "mount-celestia",
+      "name": "Mount Celestia",
+      "hex": [
+        "#1C2233",
+        "#3F5480",
+        "#7D9CCB",
+        "#C7D8EE",
+        "#FFF4DC"
+      ],
+      "tags": [
+        "holy",
+        "cool",
+        "serene"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "dawn-choir",
+      "name": "Dawn Choir",
+      "hex": [
+        "#2B1A26",
+        "#6E4458",
+        "#C27E7E",
+        "#F0B88A",
+        "#FFF0D6"
+      ],
+      "tags": [
+        "dawn",
+        "radiant",
+        "pastel"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "archon-white",
+      "name": "Archon White",
+      "hex": [
+        "#22242B",
+        "#545A66",
+        "#9AA0AA",
+        "#D8C58A",
+        "#FAF7EE"
+      ],
+      "tags": [
+        "holy",
+        "feathered"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "feywild-twilight",
+      "name": "Feywild Twilight",
+      "hex": [
+        "#1A1030",
+        "#45276B",
+        "#8A4FA8",
+        "#E07FB0",
+        "#F9D9E8"
+      ],
+      "tags": [
+        "fey",
+        "twilight",
+        "vivid"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "faerie-ring",
+      "name": "Faerie Ring",
+      "hex": [
+        "#10201A",
+        "#1F4A3A",
+        "#3F8A5E",
+        "#B9E36A",
+        "#F2F9D0"
+      ],
+      "tags": [
+        "flora",
+        "vivid"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "glamour-court",
+      "name": "Glamour Court",
+      "hex": [
+        "#1E1028",
+        "#4A2A5E",
+        "#9A6BB0",
+        "#7FD1C0",
+        "#F7EEDC"
+      ],
+      "tags": [
+        "glamour",
+        "jewel"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "thornbloom",
+      "name": "Thornbloom",
+      "hex": [
+        "#1A1414",
+        "#3A2A2A",
+        "#6B3A4A",
+        "#C66A7E",
+        "#F2D3C8"
+      ],
+      "tags": [
+        "flora",
+        "romantic"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "shadowfell",
+      "name": "Shadowfell",
+      "hex": [
+        "#0C0D10",
+        "#1F2228",
+        "#3A3F48",
+        "#6A707A",
+        "#C4D9B0"
+      ],
+      "tags": [
+        "shadow",
+        "monochrome",
+        "melancholy"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "grave-moss",
+      "name": "Grave Moss",
+      "hex": [
+        "#121410",
+        "#2A2F24",
+        "#4F5A40",
+        "#8A9A6A",
+        "#D6DDB8"
+      ],
+      "tags": [
+        "grave",
+        "muted"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "necrotic-bloom",
+      "name": "Necrotic Bloom",
+      "hex": [
+        "#0A120E",
+        "#133226",
+        "#1F6B48",
+        "#4FD18B",
+        "#CFF7DC"
+      ],
+      "tags": [
+        "necrotic",
+        "luminous",
+        "eerie"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "forge-heart",
+      "name": "Forge Heart",
+      "hex": [
+        "#121418",
+        "#2E3440",
+        "#5A4A48",
+        "#F07A1E",
+        "#FFF2C8"
+      ],
+      "tags": [
+        "forge",
+        "fire",
+        "vivid"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "ashfall",
+      "name": "Ashfall",
+      "hex": [
+        "#141312",
+        "#36322E",
+        "#625B54",
+        "#C2552A",
+        "#D9D1C7"
+      ],
+      "tags": [
+        "ash",
+        "muted"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "magma-vein",
+      "name": "Magma Vein",
+      "hex": [
+        "#0E0806",
+        "#2E120A",
+        "#6E1E0C",
+        "#D9480F",
+        "#FFB347"
+      ],
+      "tags": [
+        "magma",
+        "fire",
+        "violent"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "salamander",
+      "name": "Salamander",
+      "hex": [
+        "#1A1208",
+        "#4E3310",
+        "#9C6A18",
+        "#E8A838",
+        "#FFF0B8"
+      ],
+      "tags": [
+        "fire",
+        "warm",
+        "luminous"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "glacier-heart",
+      "name": "Glacier Heart",
+      "hex": [
+        "#0B1824",
+        "#1F4460",
+        "#4D86A8",
+        "#9CCBE0",
+        "#EAF6FA"
+      ],
+      "tags": [
+        "glacier",
+        "frost",
+        "cool"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "northern-lights",
+      "name": "Northern Lights",
+      "hex": [
+        "#0A1220",
+        "#163A48",
+        "#1F7A6E",
+        "#6BD9A8",
+        "#E6F2FF"
+      ],
+      "tags": [
+        "north",
+        "night",
+        "luminous"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "hoarfrost-pine",
+      "name": "Hoarfrost Pine",
+      "hex": [
+        "#0F1A17",
+        "#24403A",
+        "#4F7A70",
+        "#A9C4BE",
+        "#F2F7F5"
+      ],
+      "tags": [
+        "frost",
+        "serene"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "abyssal-trench",
+      "name": "Abyssal Trench",
+      "hex": [
+        "#04090F",
+        "#0A1E33",
+        "#10405F",
+        "#1F7A8C",
+        "#7FE0D0"
+      ],
+      "tags": [
+        "abyssal",
+        "water",
+        "dark"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "coral-reef",
+      "name": "Coral Reef",
+      "hex": [
+        "#0E2230",
+        "#1C5A6E",
+        "#2FA3A0",
+        "#F28A6E",
+        "#FCE3C8"
+      ],
+      "tags": [
+        "coral",
+        "water",
+        "vivid"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "pirate-s-cove",
+      "name": "Pirate's Cove",
+      "hex": [
+        "#0E1218",
+        "#22303F",
+        "#7A2A22",
+        "#C8A050",
+        "#EFE3C4"
+      ],
+      "tags": [
+        "pirate",
+        "earthy"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "squall-line",
+      "name": "Squall Line",
+      "hex": [
+        "#0C1414",
+        "#1E3332",
+        "#3E5E5A",
+        "#7E9E96",
+        "#E8F07A"
+      ],
+      "tags": [
+        "storm",
+        "cool"
+      ],
+      "themes": [
+        "nautical",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "faerzress",
+      "name": "Faerzress",
+      "hex": [
+        "#0C0814",
+        "#22143A",
+        "#4A2A7A",
+        "#9A5CE0",
+        "#E0C8FF"
+      ],
+      "tags": [
+        "drow",
+        "luminous",
+        "dark"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "fungal-glow",
+      "name": "Fungal Glow",
+      "hex": [
+        "#0A0F0C",
+        "#16261E",
+        "#2E4A36",
+        "#6FB84A",
+        "#D8F08A"
+      ],
+      "tags": [
+        "fungal",
+        "luminous"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "crystal-grotto",
+      "name": "Crystal Grotto",
+      "hex": [
+        "#0A0E18",
+        "#1A2A44",
+        "#2E5A7A",
+        "#5FC4C8",
+        "#D6F6F2"
+      ],
+      "tags": [
+        "crystal",
+        "cool",
+        "jewel"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "mind-flayer",
+      "name": "Mind Flayer",
+      "hex": [
+        "#120A14",
+        "#2E1834",
+        "#5A3A5E",
+        "#5FB8A8",
+        "#E8D0D8"
+      ],
+      "tags": [
+        "aberration",
+        "eerie"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "deep-road",
+      "name": "Deep Road",
+      "hex": [
+        "#12100E",
+        "#2C2622",
+        "#524840",
+        "#8A7A68",
+        "#EBC48A"
+      ],
+      "tags": [
+        "subterranean",
+        "earthy"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "arcane-ink",
+      "name": "Arcane Ink",
+      "hex": [
+        "#0E0E1E",
+        "#1E2250",
+        "#3A48A0",
+        "#7E8CE0",
+        "#E6E0FF"
+      ],
+      "tags": [
+        "arcane",
+        "cool"
+      ],
+      "themes": [
+        "arcane",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "candlelit-library",
+      "name": "Candlelit Library",
+      "hex": [
+        "#0E1410",
+        "#1E3326",
+        "#3E5A3A",
+        "#C9A050",
+        "#F5EAC8"
+      ],
+      "tags": [
+        "library",
+        "warm"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "brass-orrery",
+      "name": "Brass Orrery",
+      "hex": [
+        "#10110E",
+        "#2E2A1E",
+        "#5E4C2A",
+        "#4F9A88",
+        "#E8D8A8"
+      ],
+      "tags": [
+        "clockwork",
+        "metallic"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "astral-sea",
+      "name": "Astral Sea",
+      "hex": [
+        "#0B0A1C",
+        "#262050",
+        "#4E3E8A",
+        "#B89AD8",
+        "#FFF1C2"
+      ],
+      "tags": [
+        "astral",
+        "night"
+      ],
+      "themes": [
+        "arcane",
+        "planar",
+        "celestial"
+      ]
+    },
+    {
+      "id": "jungle-canopy",
+      "name": "Jungle Canopy",
+      "hex": [
+        "#0C1A0E",
+        "#1E3E1C",
+        "#3E7030",
+        "#8CB84A",
+        "#E8F0A0"
+      ],
+      "tags": [
+        "jungle",
+        "vivid"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "ochre-war-paint",
+      "name": "Ochre War Paint",
+      "hex": [
+        "#1E120C",
+        "#4E2A18",
+        "#9A4A22",
+        "#D9912E",
+        "#F2DEB8"
+      ],
+      "tags": [
+        "tribal",
+        "earthy",
+        "warm"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "druid-s-grove",
+      "name": "Druid's Grove",
+      "hex": [
+        "#121810",
+        "#2A3A22",
+        "#4E6A36",
+        "#C07A3A",
+        "#EDE2BC"
+      ],
+      "tags": [
+        "druidic",
+        "earthy"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "owlbear-den",
+      "name": "Owlbear Den",
+      "hex": [
+        "#17120E",
+        "#3A2A20",
+        "#6E4E36",
+        "#E0A030",
+        "#F1E6D2"
+      ],
+      "tags": [
+        "beast",
+        "earthy"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "sigil-rust",
+      "name": "Sigil Rust",
+      "hex": [
+        "#1A0F0C",
+        "#432016",
+        "#83391F",
+        "#C9663A",
+        "#F0DCC6"
+      ],
+      "tags": [
+        "planar",
+        "guild",
+        "muted"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "portal-flux",
+      "name": "Portal Flux",
+      "hex": [
+        "#0A0A1A",
+        "#1E1450",
+        "#1F6A9A",
+        "#3FE0C8",
+        "#F0FFF6"
+      ],
+      "tags": [
+        "portal",
+        "vivid",
+        "luminous"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "limbo-chaos",
+      "name": "Limbo Chaos",
+      "hex": [
+        "#1A0C24",
+        "#5A1A4A",
+        "#D0402A",
+        "#F0B030",
+        "#FAF4D0"
+      ],
+      "tags": [
+        "planar",
+        "surreal",
+        "vivid"
+      ],
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

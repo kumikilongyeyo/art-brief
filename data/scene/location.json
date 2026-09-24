@@ -1,0 +1,498 @@
+{
+  "id": "scene.location",
+  "category": "scene",
+  "slot": "location",
+  "entries": [
+    {
+      "id": "rope-bridge-market-strung-across",
+      "text": "rope-bridge market strung across a moonlit fey gorge",
+      "label": "Market",
+      "tags": [
+        "market",
+        "fey",
+        "moonlit"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "flooded-throne-room-drowned-king",
+      "text": "flooded throne room, a drowned king still seated",
+      "label": "Throne",
+      "tags": [
+        "court",
+        "ruins",
+        "water"
+      ],
+      "themes": [
+        "nautical",
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "lantern-lit-dock-ward-pirate",
+      "text": "lantern-lit dock ward of a pirate free port",
+      "label": "Docks",
+      "tags": [
+        "coast",
+        "city",
+        "pirate"
+      ]
+    },
+    {
+      "id": "shattered-stone-bridge-over-bottomless",
+      "text": "shattered stone bridge over a bottomless chasm",
+      "label": "Bridge",
+      "tags": [
+        "mountain",
+        "ruins"
+      ]
+    },
+    {
+      "id": "crossroads-shrine-beneath-lone-lightning",
+      "text": "crossroads shrine beneath a lone lightning-struck oak",
+      "label": "Crossroads",
+      "tags": [
+        "road",
+        "temple"
+      ]
+    },
+    {
+      "id": "crystal-rimmed-cavern-lake-deep",
+      "text": "crystal-rimmed cavern lake deep in the Underdark",
+      "label": "Lake",
+      "tags": [
+        "cavern",
+        "crystal",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "obsidian-stair-spiralling-into-volcano",
+      "text": "obsidian stair spiralling into a volcano's throat",
+      "label": "Stair",
+      "tags": [
+        "volcanic",
+        "magma",
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "frozen-battlefield-fallen-still-upright",
+      "text": "frozen battlefield, the fallen still upright in the ice",
+      "label": "Field",
+      "tags": [
+        "arctic",
+        "frost",
+        "glacier",
+        "grave"
+      ],
+      "themes": [
+        "frost",
+        "undead"
+      ]
+    },
+    {
+      "id": "candlelit-scriptorium-arcane-university",
+      "text": "candlelit scriptorium of an arcane university",
+      "label": "Scriptorium",
+      "tags": [
+        "library",
+        "arcane",
+        "city"
+      ],
+      "themes": [
+        "arcane",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "elven-ruins-swallowed-by-silver",
+      "text": "elven ruins swallowed by silver-barked roots",
+      "label": "Ruins",
+      "tags": [
+        "forest",
+        "ruins",
+        "flora"
+      ]
+    },
+    {
+      "id": "brass-gate-market-hive-ward",
+      "text": "brass gate-market in the Hive ward of Sigil",
+      "label": "Gate",
+      "tags": [
+        "city",
+        "planar",
+        "portal",
+        "guild",
+        "urban"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "storm-beaten-graveyard-sea-cliff",
+      "text": "storm-beaten graveyard on a sea cliff",
+      "label": "Graveyard",
+      "tags": [
+        "coast",
+        "grave",
+        "storm",
+        "gothic"
+      ]
+    },
+    {
+      "id": "gilded-cathedral-beneath-shattered-rose",
+      "text": "gilded cathedral beneath a shattered rose window",
+      "label": "Cathedral",
+      "tags": [
+        "temple",
+        "holy",
+        "radiant",
+        "gold"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "drow-outpost-carved-into-hanging",
+      "text": "drow outpost carved into a hanging stalactite",
+      "label": "Outpost",
+      "tags": [
+        "cavern",
+        "drow",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "rain-lashed-galleon-deck-sea",
+      "text": "rain-lashed galleon deck in a sea of storms",
+      "label": "Deck",
+      "tags": [
+        "ocean",
+        "pirate",
+        "storm",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "burning-village-at-edge-pine",
+      "text": "burning village at the edge of a pine forest",
+      "label": "Village",
+      "tags": [
+        "village",
+        "forest",
+        "fire",
+        "violent"
+      ]
+    },
+    {
+      "id": "hill-country-harvest-fair-strung",
+      "text": "hill-country harvest fair strung with bunting",
+      "label": "Fair",
+      "tags": [
+        "village",
+        "pastoral",
+        "festive"
+      ]
+    },
+    {
+      "id": "avernus-battlefield-rusted-infernal-war",
+      "text": "Avernus battlefield of rusted infernal war machines",
+      "label": "Wastes",
+      "tags": [
+        "volcanic",
+        "fiend",
+        "brimstone",
+        "infernal"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "silver-bridges-citadel-adrift-astral",
+      "text": "silver bridges of a citadel adrift in the Astral Sea",
+      "label": "Citadel",
+      "tags": [
+        "astral",
+        "planar"
+      ],
+      "themes": [
+        "planar",
+        "arcane",
+        "celestial"
+      ]
+    },
+    {
+      "id": "shadowfell-manor-where-every-mirror",
+      "text": "Shadowfell manor where every mirror has gone black",
+      "label": "Manor",
+      "tags": [
+        "gothic",
+        "shadow",
+        "ruin"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "river-ford-beneath-broken-toll",
+      "text": "river ford beneath a broken toll-tower",
+      "label": "Ford",
+      "tags": [
+        "river",
+        "road",
+        "ruins"
+      ]
+    },
+    {
+      "id": "desert-bazaar-under-sun-bleached",
+      "text": "desert bazaar under sun-bleached striped awnings",
+      "label": "Bazaar",
+      "tags": [
+        "desert",
+        "market",
+        "sunlit"
+      ]
+    },
+    {
+      "id": "dwarven-forge-hall-crossed-by",
+      "text": "dwarven forge-hall crossed by channels of molten gold",
+      "label": "Forge",
+      "tags": [
+        "forge",
+        "mountain",
+        "magma",
+        "gold"
+      ],
+      "themes": [
+        "elemental-fire",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "sunken-temple-drowned-god-kelp",
+      "text": "sunken temple of a drowned god in a kelp forest",
+      "label": "Temple",
+      "tags": [
+        "ocean",
+        "temple",
+        "coral",
+        "abyssal",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "smoky-feast-hall-frost-giant",
+      "text": "smoky feast hall of a frost giant jarl",
+      "label": "Hall",
+      "tags": [
+        "mountain",
+        "north",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "mist-choked-bog-studded-leaning",
+      "text": "mist-choked bog studded with leaning standing stones",
+      "label": "Bog",
+      "tags": [
+        "swamp",
+        "druidic"
+      ]
+    },
+    {
+      "id": "gnomish-observatory-brass-rings-lenses",
+      "text": "gnomish observatory of brass rings and lenses",
+      "label": "Observatory",
+      "tags": [
+        "clockwork",
+        "arcane",
+        "city"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "jungle-ziggurat-half-eaten-by",
+      "text": "jungle ziggurat half-eaten by flowering vines",
+      "label": "Ziggurat",
+      "tags": [
+        "jungle",
+        "temple",
+        "ruins",
+        "tropical"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "low-beamed-tavern-cellar-lit",
+      "text": "low-beamed tavern cellar lit by a single swinging lamp",
+      "label": "Cellar",
+      "tags": [
+        "city"
+      ]
+    },
+    {
+      "id": "hilltop-ring-stones-under-green",
+      "text": "hilltop ring of stones under a green comet",
+      "label": "Ring",
+      "tags": [
+        "plains",
+        "druidic"
+      ]
+    },
+    {
+      "id": "bandit-camp-inside-hollow-skull",
+      "text": "bandit camp inside the hollow skull of a giant",
+      "label": "Skull",
+      "tags": [
+        "ruins",
+        "bone"
+      ]
+    },
+    {
+      "id": "besieged-castle-rampart-lit-by",
+      "text": "besieged castle rampart lit by trebuchet fire",
+      "label": "Rampart",
+      "tags": [
+        "court",
+        "heroic",
+        "violent"
+      ]
+    },
+    {
+      "id": "frozen-waterfall-hermit-s-hut",
+      "text": "frozen waterfall with a hermit's hut behind the ice",
+      "label": "Falls",
+      "tags": [
+        "mountain",
+        "frost",
+        "arctic"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "elder-brain-pool-at-heart",
+      "text": "elder brain pool at the heart of an illithid colony",
+      "label": "Pool",
+      "tags": [
+        "cavern",
+        "aberration",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark",
+        "planar"
+      ]
+    },
+    {
+      "id": "moonlit-wheat-field-around-lone",
+      "text": "moonlit wheat field around a lone scarecrow",
+      "label": "Harvest",
+      "tags": [
+        "plains",
+        "village",
+        "pastoral",
+        "moonlit"
+      ]
+    },
+    {
+      "id": "candle-bright-ballroom-at-height",
+      "text": "candle-bright ballroom at the height of a masquerade",
+      "label": "Ballroom",
+      "tags": [
+        "court",
+        "noble",
+        "glamour"
+      ]
+    },
+    {
+      "id": "lighthouse-reef-wrecked-ships",
+      "text": "lighthouse on a reef of wrecked ships",
+      "label": "Lighthouse",
+      "tags": [
+        "coast",
+        "pirate"
+      ]
+    },
+    {
+      "id": "hag-s-cottage-briar-choked",
+      "text": "hag's cottage in a briar-choked hollow",
+      "label": "Cottage",
+      "tags": [
+        "forest",
+        "cursed",
+        "fey"
+      ],
+      "themes": [
+        "fey",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "forest-road-where-merchant-wagon",
+      "text": "forest road where a merchant wagon lies overturned",
+      "label": "Road",
+      "tags": [
+        "road",
+        "forest"
+      ]
+    },
+    {
+      "id": "staircase-floating-doors-above-sea",
+      "text": "staircase of floating doors above a sea of clouds",
+      "label": "Doors",
+      "weight": 3,
+      "tags": [
+        "portal",
+        "planar",
+        "sky"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "city-built-back-sleeping-titan",
+      "text": "city built on the back of a sleeping titan",
+      "label": "Titan",
+      "weight": 3,
+      "tags": [
+        "city",
+        "giant"
+      ],
+      "surreal": true
+    }
+  ]
+}

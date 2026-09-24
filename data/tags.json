@@ -1,0 +1,19 @@
+{
+  "groups": {
+    "theme": ["noble", "heroic", "arcane", "radiant", "pastoral", "necrotic", "grotesque", "grim", "cursed", "gothic", "blood", "ruin", "whimsical", "fire", "fiend", "contract", "brimstone", "chains", "celestial", "holy", "feathered", "gold", "astral", "fey", "glamour", "flora", "trickster", "twilight", "infernal", "industrial", "bone", "grave", "shadow", "ash", "magma", "forge", "frost", "water", "glacier", "north", "rune", "tropical", "coral", "pirate", "abyssal", "storm", "desert", "subterranean", "fungal", "drow", "aberration", "crystal", "sky", "clockwork", "library", "beast", "tribal", "jungle", "druidic", "urban", "planar", "portal", "surreal", "guild"],
+    "environment": ["swamp", "forest", "mountain", "plains", "ocean", "coast", "island", "volcanic", "arctic", "cavern", "city", "village", "wilderness", "river", "ruins", "temple", "court", "market", "road"],
+    "light": ["night", "day", "dawn", "dusk", "moonlit", "sunlit", "dark", "luminous"],
+    "palette": ["warm", "cool", "muted", "vivid", "pastel", "earthy", "metallic", "monochrome", "jewel"],
+    "mood": ["serene", "eerie", "festive", "melancholy", "violent", "mysterious", "romantic", "comic"],
+    "body": ["winged", "legged", "limbless", "multi-limbed", "amorphous", "tentacled", "shelled", "furred", "scaled", "horned", "tusked", "construct", "plant", "gaseous", "aquatic", "quadruped", "biped", "serpentine", "insectoid"],
+    "size": ["tiny", "small", "medium", "large", "huge"],
+    "species": ["humanoid", "elf", "dwarf", "halfling", "gnome", "orc", "dragonborn", "tiefling", "aasimar", "goblinoid", "giantkin", "birdfolk", "catfolk", "reptilian"],
+    "culture": ["culture-elven", "culture-dwarven", "culture-infernal", "culture-orcish", "culture-fey", "culture-human", "culture-draconic", "culture-gnomish"],
+    "role": ["martial", "divine", "primal", "stealth", "performer", "tinker", "scholar", "caster"],
+    "class": ["class-artificer", "class-barbarian", "class-bard", "class-cleric", "class-druid", "class-fighter", "class-monk", "class-paladin", "class-ranger", "class-rogue", "class-sorcerer", "class-warlock", "class-wizard"],
+    "object": ["weapon", "instrument", "relic", "tool", "container", "jewellery", "book", "worn", "held", "armour"],
+    "creature-type": ["dragon", "elemental", "giant", "monstrosity", "ooze", "undead"],
+    "material": ["metal", "wood", "stone", "cloth", "leather", "glass", "organic", "gem", "liquid", "ethereal"],
+    "category": ["cat-character", "cat-prop", "cat-creature", "cat-building", "cat-scene", "animate", "inanimate", "place"]
+  }
+}

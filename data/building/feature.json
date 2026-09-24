@@ -1,0 +1,298 @@
+{
+  "id": "building.feature",
+  "category": "building",
+  "slot": "feature",
+  "entries": [
+    {
+      "id": "reading-rooms-inside-giant",
+      "text": "reading rooms inside giant air bubbles",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-bell-tower-with",
+      "text": "a bell tower with no bell, only a hanging anchor"
+    },
+    {
+      "id": "spiral-staircase-winding-around",
+      "text": "spiral staircase winding around a living tree",
+      "tags": [
+        "druidic"
+      ]
+    },
+    {
+      "id": "gargoyles-that-change-position",
+      "text": "gargoyles that change position overnight",
+      "tags": [
+        "gothic"
+      ]
+    },
+    {
+      "id": "waterwheel-driving-a-hall",
+      "text": "waterwheel driving a hall of clattering looms"
+    },
+    {
+      "id": "stained-glass-dome-showing",
+      "text": "stained-glass dome showing a war that never happened"
+    },
+    {
+      "id": "rooftop-garden-of-carnivorous",
+      "text": "rooftop garden of carnivorous flowers",
+      "tags": [
+        "flora"
+      ]
+    },
+    {
+      "id": "moat-of-slow-moving",
+      "text": "moat of slow-moving quicksilver"
+    },
+    {
+      "id": "chimneys-carved-as-roaring",
+      "text": "chimneys carved as roaring dragon heads"
+    },
+    {
+      "id": "giant-sized-doors-with",
+      "text": "giant-sized doors with ordinary doors cut into them"
+    },
+    {
+      "id": "orrery-ceiling-tracking-the",
+      "text": "orrery ceiling tracking the real stars",
+      "tags": [
+        "astral",
+        "clockwork"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "balconies-hung-with-drying",
+      "text": "balconies hung with drying fishing nets",
+      "tags": [
+        "coast"
+      ]
+    },
+    {
+      "id": "lanterns-hung-from-chains",
+      "text": "lanterns hung from chains of vertebrae",
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "twin-gate-statues-gripping",
+      "text": "twin gate statues gripping real swords"
+    },
+    {
+      "id": "walls-of-tiny-labelled",
+      "text": "walls of tiny labelled drawers climbing out of sight",
+      "tags": [
+        "library"
+      ]
+    },
+    {
+      "id": "great-hearth-where-a",
+      "text": "great hearth where a salamander sleeps",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "portal-arch-humming-in",
+      "text": "portal arch humming in the central courtyard",
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "silk-bridges-strung-between",
+      "text": "silk bridges strung between upper floors",
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "buttresses-shaped-like-frozen",
+      "text": "buttresses shaped like frozen breaking waves"
+    },
+    {
+      "id": "crypt-entrance-hidden-under",
+      "text": "crypt entrance hidden under the bar",
+      "tags": [
+        "grave"
+      ]
+    },
+    {
+      "id": "mosaic-floor-that-rearranges",
+      "text": "mosaic floor that rearranges itself each season",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "weathervane-shaped-like-a",
+      "text": "weathervane shaped like a leaping stag"
+    },
+    {
+      "id": "ice-sculpture-halls-recarved",
+      "text": "ice-sculpture halls recarved every winter",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "one-tower-leaning-hard",
+      "text": "one tower leaning hard, propped by a colossal beam"
+    },
+    {
+      "id": "a-river-diverted-straight",
+      "text": "a river diverted straight through the ground floor",
+      "tags": [
+        "river"
+      ]
+    },
+    {
+      "id": "fighting-pit-sunk-into",
+      "text": "fighting pit sunk into the main hall",
+      "tags": [
+        "violent"
+      ]
+    },
+    {
+      "id": "glowing-mushroom-groves-in",
+      "text": "glowing mushroom groves in the cellars",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "coloured-windows-painting-the",
+      "text": "coloured windows painting the floor in drifting light"
+    },
+    {
+      "id": "gibbet-cages-swinging-from",
+      "text": "gibbet cages swinging from the eaves",
+      "tags": [
+        "chains",
+        "grim"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "infernal"
+      ]
+    },
+    {
+      "id": "golden-sunburst-window-above",
+      "text": "golden sunburst window above the altar",
+      "tags": [
+        "holy",
+        "radiant",
+        "gold"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "brass-lectern-where-visitors",
+      "text": "brass lectern where visitors sign away small debts",
+      "tags": [
+        "contract"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "roof-built-from-the",
+      "text": "roof built from the ribcage of a dead dragon",
+      "tags": [
+        "bone"
+      ]
+    },
+    {
+      "id": "cogwheel-lift-rattling-up",
+      "text": "cogwheel lift rattling up the outer wall",
+      "tags": [
+        "clockwork"
+      ]
+    },
+    {
+      "id": "cargo-cranes-jutting-from",
+      "text": "cargo cranes jutting from every floor"
+    },
+    {
+      "id": "ancestor-totems-carved-with",
+      "text": "ancestor totems carved with open mouths",
+      "tags": [
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "pool-of-still-ink",
+      "text": "pool of still ink reflecting a different sky",
+      "surreal": true
+    },
+    {
+      "id": "thorn-hedges-clipped-into",
+      "text": "thorn hedges clipped into a living maze",
+      "tags": [
+        "fey",
+        "flora"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "heroes-statues-heaped-with",
+      "text": "heroes' statues heaped with offerings",
+      "tags": [
+        "heroic"
+      ]
+    },
+    {
+      "id": "pipe-organ-breathing-on",
+      "text": "pipe organ breathing on volcanic vents",
+      "tags": [
+        "magma"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "storm-rods-crackling-along",
+      "text": "storm-rods crackling along the roof ridge",
+      "tags": [
+        "storm"
+      ]
+    }
+  ]
+}

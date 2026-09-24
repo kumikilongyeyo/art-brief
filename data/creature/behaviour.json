@@ -1,0 +1,154 @@
+{
+  "id": "creature.behaviour",
+  "category": "creature",
+  "slot": "behaviour",
+  "entries": [
+    {
+      "id": "moves-silent-single-file-herds",
+      "text": "moves in silent single-file herds at dusk"
+    },
+    {
+      "id": "hoards-polished-bones-arranged-spirals",
+      "text": "hoards polished bones arranged in spirals"
+    },
+    {
+      "id": "follows-travellers-for-days-always",
+      "text": "follows travellers for days, always just out of sight",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "sings-eerie-harmony-kin-before",
+      "text": "sings in eerie harmony with its kin before a storm"
+    },
+    {
+      "id": "buries-kills-returns-for-them",
+      "text": "buries its kills and returns for them at the new moon",
+      "tags": [
+        "grim"
+      ]
+    },
+    {
+      "id": "basks-motionless-warm-stone-until",
+      "text": "basks motionless on warm stone until touched"
+    },
+    {
+      "id": "stalks-lantern-light-mistaking-it",
+      "text": "stalks lantern light, mistaking it for prey",
+      "tags": [
+        "night"
+      ]
+    },
+    {
+      "id": "trades-shiny-trinkets-anyone-who",
+      "text": "trades shiny trinkets with anyone who leaves an offering",
+      "tags": [
+        "trickster"
+      ]
+    },
+    {
+      "id": "sleeps-coiled-around-hoard-rusted",
+      "text": "sleeps coiled around a hoard of rusted crowns"
+    },
+    {
+      "id": "guards-single-egg-total-ferocity",
+      "text": "guards a single egg with total ferocity"
+    },
+    {
+      "id": "migrates-across-sky-vast-slow",
+      "text": "migrates across the sky in vast slow spirals"
+    },
+    {
+      "id": "decorates-lair-flowers-stolen-from",
+      "text": "decorates its lair with flowers stolen from graves",
+      "tags": [
+        "grave"
+      ]
+    },
+    {
+      "id": "dances-rings-beneath-full-moon",
+      "text": "dances in rings beneath the full moon",
+      "tags": [
+        "fey",
+        "moonlit"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "rides-backs-larger-beasts-as",
+      "text": "rides the backs of larger beasts as a scavenger"
+    },
+    {
+      "id": "patrols-same-route-every-night",
+      "text": "patrols the same route every night, never late"
+    },
+    {
+      "id": "plays-dead-then-strikes-when",
+      "text": "plays dead, then strikes when someone kneels to look"
+    },
+    {
+      "id": "tends-wounded-any-species-it",
+      "text": "tends the wounded of any species it finds",
+      "tags": [
+        "serene"
+      ]
+    },
+    {
+      "id": "builds-cairns-stacked-stones-along",
+      "text": "builds cairns of stacked stones along old roads"
+    },
+    {
+      "id": "nests-ribcages-fallen-giants",
+      "text": "nests in the ribcages of fallen giants",
+      "tags": [
+        "bone"
+      ]
+    },
+    {
+      "id": "hunts-pairs-one-herding-while",
+      "text": "hunts in pairs, one herding while the other waits"
+    },
+    {
+      "id": "bows-head-anyone-bearing-holy",
+      "text": "bows its head to anyone bearing a holy symbol",
+      "tags": [
+        "holy"
+      ]
+    },
+    {
+      "id": "drinks-only-from-still-water",
+      "text": "drinks only from still water under moonlight"
+    },
+    {
+      "id": "sniffs-out-spent-spells-feeds",
+      "text": "sniffs out spent spells and feeds on the residue",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "gnaws-iron-leaves-trails-red",
+      "text": "gnaws on iron and leaves trails of red rust"
+    },
+    {
+      "id": "sheds-skin-into-hollow-decoys",
+      "text": "sheds its skin into hollow decoys that fool hunters"
+    },
+    {
+      "id": "collects-voices-drowned-hums-them",
+      "text": "collects the voices of the drowned and hums them back",
+      "tags": [
+        "water",
+        "melancholy"
+      ],
+      "themes": [
+        "nautical",
+        "undead"
+      ]
+    }
+  ]
+}

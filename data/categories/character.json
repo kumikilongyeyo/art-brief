@@ -1,0 +1,27 @@
+{
+  "id": "character",
+  "name": "Character",
+  "primarySlot": "species",
+  "baseTags": ["cat-character", "animate"],
+  "slots": [
+    { "id": "species", "kind": "table", "table": "character.species" },
+    { "id": "class", "kind": "table", "table": "character.class" },
+    { "id": "subclass", "kind": "table", "table": "character.subclass" },
+    { "id": "background", "kind": "table", "table": "character.background" },
+    { "id": "look", "kind": "table", "table": "character.look" },
+    { "id": "outfit", "kind": "table", "table": "character.outfit" },
+    { "id": "material", "kind": "material" },
+    { "id": "pose", "kind": "table", "table": "character.pose" },
+    { "id": "palette", "kind": "palette" },
+    { "id": "traits", "kind": "table", "table": "character.traits", "count": 2 },
+    { "id": "unique", "kind": "unique", "table": "character.unique" },
+    { "id": "name", "kind": "name" }
+  ],
+  "optionalSlots": ["pose", "unique"],
+  "dependencies": {
+    "species": ["name", "look"],
+    "class": ["subclass", "outfit", "material", "pose"]
+  },
+  "dropOrder": ["pose", "traits", "background"],
+  "template": "character.default"
+}

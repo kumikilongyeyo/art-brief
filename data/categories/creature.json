@@ -1,0 +1,25 @@
+{
+  "id": "creature",
+  "name": "Creature",
+  "primarySlot": "creatureType",
+  "baseTags": ["cat-creature", "animate"],
+  "slots": [
+    { "id": "creatureType", "kind": "table", "table": "creature.type" },
+    { "id": "bodyPlan", "kind": "table", "table": "creature.body" },
+    { "id": "habitat", "kind": "table", "table": "creature.habitat" },
+    { "id": "adaptation", "kind": "table", "table": "creature.adaptation" },
+    { "id": "behaviour", "kind": "table", "table": "creature.behaviour" },
+    { "id": "scale", "kind": "table", "table": "creature.scale" },
+    { "id": "palette", "kind": "palette" },
+    { "id": "unique", "kind": "unique", "table": "creature.unique" },
+    { "id": "name", "kind": "name" }
+  ],
+  "optionalSlots": ["behaviour", "unique"],
+  "dependencies": {
+    "creatureType": ["name", "adaptation"],
+    "bodyPlan": ["name", "adaptation"],
+    "habitat": ["adaptation"]
+  },
+  "dropOrder": ["behaviour", "scale"],
+  "template": "creature.default"
+}

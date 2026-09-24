@@ -1,0 +1,33 @@
+{
+  "id": "character.background",
+  "category": "character",
+  "slot": "background",
+  "entries": [
+    {"id": "exiled-grave-tender", "text": "exiled grave-tender", "tags": ["grave"], "themes": ["undead", "dark-fantasy"]},
+    {"id": "disgraced-court-astronomer", "text": "disgraced court astronomer", "tags": ["court", "astral"]},
+    {"id": "retired-pit-fighter-with-a", "text": "retired pit fighter with a famous broken nose", "tags": ["martial"]},
+    {"id": "runaway-temple-novice", "text": "runaway temple novice", "tags": ["temple"]},
+    {"id": "heir-to-a-bankrupt-noble", "text": "heir to a bankrupt noble house", "tags": ["noble"]},
+    {"id": "village-midwife-turned-monster-hunter", "text": "village midwife turned monster hunter", "tags": ["village"]},
+    {"id": "travelling-puppeteer-with-a-cart", "text": "travelling puppeteer with a cart of marionettes", "tags": ["performer", "comic"]},
+    {"id": "bounty-hunter-keeping-a-ledger", "text": "bounty hunter keeping a ledger of names", "tags": ["road"]},
+    {"id": "lamplighter-from-a-city-of", "text": "lamplighter from a city of permanent fog", "tags": ["city"]},
+    {"id": "shipwrecked-cartographer", "text": "shipwrecked cartographer", "tags": ["coast", "water"], "themes": ["nautical"]},
+    {"id": "harpooner-from-the-northern-whaling", "text": "harpooner from the northern whaling fleets", "tags": ["north"], "themes": ["frost", "nautical"]},
+    {"id": "ex-cultist-of-a-drowned", "text": "ex-cultist of a drowned god", "tags": ["abyssal", "cursed"], "themes": ["nautical", "dark-fantasy"]},
+    {"id": "smuggler-of-sealed-infernal-contracts", "text": "smuggler of sealed infernal contracts", "tags": ["contract"], "themes": ["infernal"]},
+    {"id": "gladiator-freed-by-a-devil", "text": "gladiator freed by a devil's bargain", "tags": ["chains", "contract"], "themes": ["infernal"]},
+    {"id": "hermit-who-lived-inside-a", "text": "hermit who lived inside a hollow oak", "tags": ["druidic", "forest"], "themes": ["fey", "wild-primal"]},
+    {"id": "forgotten-child-of-a-feywild", "text": "forgotten child of a Feywild bargain", "tags": ["fey", "trickster"], "themes": ["fey"]},
+    {"id": "mushroom-farmer-from-an-underdark", "text": "mushroom farmer from an Underdark cavern town", "tags": ["fungal", "subterranean"], "themes": ["underdark"]},
+    {"id": "escaped-thrall-of-a-mind", "text": "escaped thrall of a mind flayer colony", "tags": ["aberration", "subterranean"], "themes": ["underdark", "dark-fantasy"]},
+    {"id": "apprentice-who-burned-down-the", "text": "apprentice who burned down the academy", "tags": ["library", "fire"], "themes": ["arcane", "elemental-fire"]},
+    {"id": "bellows-hand-in-a-fire", "text": "bellows-hand in a fire giant forge", "tags": ["forge", "ash"], "themes": ["elemental-fire"]},
+    {"id": "glacier-hermit-who-counts-snowflakes", "text": "glacier hermit who counts snowflakes", "tags": ["glacier"], "themes": ["frost"]},
+    {"id": "sigil-doorwarden-who-lost-the", "text": "Sigil doorwarden who lost the keys", "tags": ["portal", "guild"], "themes": ["planar"]},
+    {"id": "choir-orphan-raised-in-a", "text": "choir orphan raised in a sun cathedral", "tags": ["holy", "radiant"], "themes": ["celestial", "high-fantasy"]},
+    {"id": "body-snatcher-for-a-university", "text": "body-snatcher for a university anatomist", "tags": ["grave"], "themes": ["undead", "dark-fantasy"]},
+    {"id": "jungle-guide-paid-in-teeth", "text": "jungle guide paid in teeth", "tags": ["jungle", "tribal"], "themes": ["wild-primal"]},
+    {"id": "last-squire-of-a-fallen", "text": "last squire of a fallen order", "tags": ["heroic", "ruin"], "themes": ["high-fantasy", "dark-fantasy"]}
+  ]
+}

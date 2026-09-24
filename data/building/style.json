@@ -1,0 +1,250 @@
+{
+  "id": "building.style",
+  "category": "building",
+  "slot": "style",
+  "entries": [
+    {
+      "id": "drowned-baroque",
+      "text": "drowned-baroque",
+      "tags": [
+        "water",
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "dwarven-brutalist",
+      "text": "dwarven brutalist",
+      "tags": [
+        "culture-dwarven"
+      ]
+    },
+    {
+      "id": "elven-art-nouveau",
+      "text": "elven art-nouveau",
+      "tags": [
+        "culture-elven",
+        "noble"
+      ]
+    },
+    {
+      "id": "spike-crowned-gothic",
+      "text": "spike-crowned gothic",
+      "tags": [
+        "gothic"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "ossuary-baroque",
+      "text": "ossuary-baroque",
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "gnomish-clockwork-rococo",
+      "text": "gnomish clockwork-rococo",
+      "tags": [
+        "culture-gnomish",
+        "clockwork",
+        "whimsical"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "drow-spider-lattice",
+      "text": "drow spider-lattice",
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "infernal-foundry-industrial",
+      "text": "infernal foundry-industrial",
+      "tags": [
+        "infernal",
+        "industrial",
+        "brimstone"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "sun-temple-celestial",
+      "text": "sun-temple celestial",
+      "tags": [
+        "holy",
+        "radiant",
+        "gold"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "feywild-toadstool-cottage",
+      "text": "Feywild toadstool-cottage",
+      "tags": [
+        "fey",
+        "fungal"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "nomadic-hide-and-pole",
+      "text": "nomadic hide-and-pole",
+      "tags": [
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "rune-carved-longhouse",
+      "text": "rune-carved longhouse",
+      "tags": [
+        "north",
+        "rune"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "obsidian-ziggurat",
+      "text": "obsidian ziggurat",
+      "tags": [
+        "magma",
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "half-timbered-market-town",
+      "text": "half-timbered market-town",
+      "tags": [
+        "pastoral"
+      ]
+    },
+    {
+      "id": "calishite-onion-domed",
+      "text": "Calishite onion-domed",
+      "tags": [
+        "desert"
+      ]
+    },
+    {
+      "id": "orcish-palisade-and-totem",
+      "text": "orcish palisade-and-totem",
+      "tags": [
+        "culture-orcish",
+        "tribal"
+      ]
+    },
+    {
+      "id": "draconic-tiered-pagoda",
+      "text": "draconic tiered-pagoda",
+      "tags": [
+        "culture-draconic"
+      ]
+    },
+    {
+      "id": "sigil-razorvine-tangled",
+      "text": "Sigil razorvine-tangled",
+      "tags": [
+        "planar",
+        "urban"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "imperial-marble-colonnade",
+      "text": "imperial marble-colonnade",
+      "tags": [
+        "noble"
+      ]
+    },
+    {
+      "id": "giant-scaled-megalithic",
+      "text": "giant-scaled megalithic",
+      "tags": [
+        "giantkin"
+      ]
+    },
+    {
+      "id": "astral-crystal-geometric",
+      "text": "astral crystal-geometric",
+      "tags": [
+        "astral",
+        "crystal"
+      ],
+      "themes": [
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "ramshackle-stilt-and-plank",
+      "text": "ramshackle stilt-and-plank"
+    },
+    {
+      "id": "illithid-fleshy-vaulted",
+      "text": "illithid fleshy-vaulted",
+      "tags": [
+        "aberration",
+        "grotesque"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "salt-bleached-fishing-village",
+      "text": "salt-bleached fishing-village",
+      "tags": [
+        "coast"
+      ]
+    },
+    {
+      "id": "glacier-hewn",
+      "text": "glacier-hewn",
+      "tags": [
+        "glacier",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "netherese-floating-arcane",
+      "text": "Netherese floating-arcane",
+      "tags": [
+        "arcane",
+        "sky"
+      ]
+    }
+  ]
+}

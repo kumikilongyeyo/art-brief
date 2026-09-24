@@ -1,0 +1,575 @@
+{
+  "id": "shared.item-adjective",
+  "category": "shared",
+  "slot": "item-adjective",
+  "entries": [
+    {
+      "id": "quiet",
+      "text": "Quiet"
+    },
+    {
+      "id": "hollow",
+      "text": "Hollow"
+    },
+    {
+      "id": "last",
+      "text": "Last"
+    },
+    {
+      "id": "silent",
+      "text": "Silent"
+    },
+    {
+      "id": "broken",
+      "text": "Broken"
+    },
+    {
+      "id": "patient",
+      "text": "Patient"
+    },
+    {
+      "id": "forgotten",
+      "text": "Forgotten"
+    },
+    {
+      "id": "wandering",
+      "text": "Wandering"
+    },
+    {
+      "id": "crooked",
+      "text": "Crooked"
+    },
+    {
+      "id": "sleeping",
+      "text": "Sleeping"
+    },
+    {
+      "id": "hungry",
+      "text": "Hungry"
+    },
+    {
+      "id": "lonely",
+      "text": "Lonely"
+    },
+    {
+      "id": "borrowed",
+      "text": "Borrowed"
+    },
+    {
+      "id": "stolen",
+      "text": "Stolen"
+    },
+    {
+      "id": "unspoken",
+      "text": "Unspoken"
+    },
+    {
+      "id": "second",
+      "text": "Second"
+    },
+    {
+      "id": "weeping",
+      "text": "Weeping"
+    },
+    {
+      "id": "restless",
+      "text": "Restless"
+    },
+    {
+      "id": "nameless",
+      "text": "Nameless"
+    },
+    {
+      "id": "faithful",
+      "text": "Faithful"
+    },
+    {
+      "id": "humble",
+      "text": "Humble"
+    },
+    {
+      "id": "errant",
+      "text": "Errant"
+    },
+    {
+      "id": "faded",
+      "text": "Faded"
+    },
+    {
+      "id": "gentle",
+      "text": "Gentle"
+    },
+    {
+      "id": "weary",
+      "text": "Weary"
+    },
+    {
+      "id": "ninth",
+      "text": "Ninth"
+    },
+    {
+      "id": "mended",
+      "text": "Mended"
+    },
+    {
+      "id": "honest",
+      "text": "Honest"
+    },
+    {
+      "id": "gilded",
+      "text": "Gilded",
+      "tags": [
+        "gold"
+      ],
+      "themes": [
+        "high-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "radiant",
+      "text": "Radiant",
+      "tags": [
+        "radiant"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "sovereign",
+      "text": "Sovereign",
+      "tags": [
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "valiant",
+      "text": "Valiant",
+      "tags": [
+        "heroic"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "grim",
+      "text": "Grim",
+      "tags": [
+        "grim"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "blighted",
+      "text": "Blighted",
+      "tags": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "crimson",
+      "text": "Crimson",
+      "tags": [
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "infernal"
+      ]
+    },
+    {
+      "id": "sundered",
+      "text": "Sundered",
+      "tags": [
+        "ruin"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "smouldering",
+      "text": "Smouldering",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "infernal",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "sworn",
+      "text": "Sworn",
+      "tags": [
+        "contract"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "shackled",
+      "text": "Shackled",
+      "tags": [
+        "chains"
+      ],
+      "themes": [
+        "infernal",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sulphurous",
+      "text": "Sulphurous",
+      "tags": [
+        "brimstone"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "haloed",
+      "text": "Haloed",
+      "tags": [
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "starbound",
+      "text": "Starbound",
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "celestial",
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "glamoured",
+      "text": "Glamoured",
+      "tags": [
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "moonlit",
+      "text": "Moonlit",
+      "tags": [
+        "twilight",
+        "moonlit"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "laughing",
+      "text": "Laughing",
+      "tags": [
+        "trickster"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "blooming",
+      "text": "Blooming",
+      "tags": [
+        "flora"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "deathless",
+      "text": "Deathless",
+      "tags": [
+        "necrotic"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "pale",
+      "text": "Pale",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "shrouded",
+      "text": "Shrouded",
+      "tags": [
+        "shadow"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "molten",
+      "text": "Molten",
+      "tags": [
+        "magma"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "ashen",
+      "text": "Ashen",
+      "tags": [
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire",
+        "undead"
+      ]
+    },
+    {
+      "id": "forgeborn",
+      "text": "Forgeborn",
+      "tags": [
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "rimebound",
+      "text": "Rimebound",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "glacial",
+      "text": "Glacial",
+      "tags": [
+        "glacier"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "runed",
+      "text": "Runed",
+      "tags": [
+        "rune"
+      ],
+      "themes": [
+        "frost",
+        "arcane"
+      ]
+    },
+    {
+      "id": "drowned",
+      "text": "Drowned",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical",
+        "undead"
+      ]
+    },
+    {
+      "id": "tidebound",
+      "text": "Tidebound",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "stormborn",
+      "text": "Stormborn",
+      "tags": [
+        "storm"
+      ],
+      "themes": [
+        "nautical",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "barnacled",
+      "text": "Barnacled",
+      "tags": [
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "lightless",
+      "text": "Lightless",
+      "tags": [
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "veined",
+      "text": "Veined",
+      "tags": [
+        "crystal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "eyeless",
+      "text": "Eyeless",
+      "tags": [
+        "aberration"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "clockwork",
+      "text": "Clockwork",
+      "tags": [
+        "clockwork"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "inscribed",
+      "text": "Inscribed",
+      "tags": [
+        "library"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "unbound",
+      "text": "Unbound",
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "feral",
+      "text": "Feral",
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "totemic",
+      "text": "Totemic",
+      "tags": [
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "verdant",
+      "text": "Verdant",
+      "tags": [
+        "druidic"
+      ],
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "shifting",
+      "text": "Shifting",
+      "tags": [
+        "surreal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "liminal",
+      "text": "Liminal",
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "spidersilk",
+      "text": "Spidersilk",
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "northern",
+      "text": "Northern",
+      "tags": [
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ]
+    }
+  ]
+}

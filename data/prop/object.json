@@ -1,0 +1,514 @@
+{
+  "id": "prop.object",
+  "category": "prop",
+  "slot": "object",
+  "entries": [
+    {
+      "id": "circlet",
+      "text": "circlet",
+      "label": "Circlet",
+      "weight": 6,
+      "tags": [
+        "jewellery",
+        "worn"
+      ]
+    },
+    {
+      "id": "tall-spired-crown",
+      "text": "tall spired crown",
+      "label": "Crown",
+      "tags": [
+        "jewellery",
+        "worn",
+        "relic"
+      ]
+    },
+    {
+      "id": "long-hafted-glaive",
+      "text": "long-hafted glaive",
+      "label": "Glaive",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "hand-drum",
+      "text": "hand drum",
+      "label": "Drum",
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "id": "reliquary-box",
+      "text": "reliquary box",
+      "label": "Reliquary",
+      "tags": [
+        "relic",
+        "container"
+      ]
+    },
+    {
+      "id": "crescent-bladed-sickle",
+      "text": "crescent-bladed sickle",
+      "label": "Sickle",
+      "tags": [
+        "weapon",
+        "tool"
+      ]
+    },
+    {
+      "id": "hooded-lantern",
+      "text": "hooded lantern",
+      "label": "Lantern",
+      "weight": 6,
+      "tags": [
+        "tool",
+        "held"
+      ]
+    },
+    {
+      "id": "signet-ring",
+      "text": "signet ring",
+      "label": "Signet",
+      "tags": [
+        "jewellery",
+        "worn"
+      ]
+    },
+    {
+      "id": "chained-grimoire",
+      "text": "chained grimoire",
+      "label": "Grimoire",
+      "weight": 6,
+      "tags": [
+        "book"
+      ]
+    },
+    {
+      "id": "tower-shield",
+      "text": "tower shield",
+      "label": "Bulwark",
+      "tags": [
+        "armour",
+        "held"
+      ]
+    },
+    {
+      "id": "sand-hourglass",
+      "text": "sand hourglass",
+      "label": "Hourglass",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "clawed-gauntlet",
+      "text": "clawed gauntlet",
+      "label": "Gauntlet",
+      "tags": [
+        "armour",
+        "worn"
+      ]
+    },
+    {
+      "id": "wavy-bladed-dagger",
+      "text": "wavy-bladed dagger",
+      "label": "Fang",
+      "weight": 6,
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "two-handed-maul",
+      "text": "two-handed maul",
+      "label": "Maul",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "recurve-longbow",
+      "text": "recurve longbow",
+      "label": "Longbow",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "round-bellied-lute",
+      "text": "round-bellied lute",
+      "label": "Lute",
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "id": "double-reed-pipes",
+      "text": "double-reed pipes",
+      "label": "Pipes",
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "id": "curled-war-horn",
+      "text": "curled war horn",
+      "label": "Horn",
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "id": "crook-headed-staff",
+      "text": "crook-headed staff",
+      "label": "Staff",
+      "weight": 6,
+      "tags": [
+        "held",
+        "tool"
+      ]
+    },
+    {
+      "id": "ceremonial-sceptre",
+      "text": "ceremonial sceptre",
+      "label": "Sceptre",
+      "tags": [
+        "held",
+        "relic"
+      ]
+    },
+    {
+      "id": "pendant-amulet",
+      "text": "pendant amulet",
+      "label": "Amulet",
+      "tags": [
+        "jewellery",
+        "worn"
+      ]
+    },
+    {
+      "id": "mask-with-sealed-eyes",
+      "text": "mask {m} with sealed eyes",
+      "label": "Mask",
+      "tags": [
+        "worn"
+      ]
+    },
+    {
+      "id": "winged-helm",
+      "text": "winged helm",
+      "label": "Helm",
+      "tags": [
+        "armour",
+        "worn"
+      ]
+    },
+    {
+      "id": "censer-on-a-long",
+      "text": "censer {m} on a long chain",
+      "label": "Censer",
+      "tags": [
+        "relic",
+        "held"
+      ]
+    },
+    {
+      "id": "scroll-case",
+      "text": "scroll case",
+      "label": "Scrollcase",
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "id": "collapsible-spyglass",
+      "text": "collapsible spyglass",
+      "label": "Spyglass",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "star-reading-astrolabe",
+      "text": "star-reading astrolabe",
+      "label": "Astrolabe",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "wind-up-music-box",
+      "text": "wind-up music box",
+      "label": "Music Box",
+      "weight": 4,
+      "tags": [
+        "instrument",
+        "container"
+      ]
+    },
+    {
+      "id": "apothecary-chest",
+      "text": "apothecary chest",
+      "label": "Coffer",
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "id": "long-necked-flask",
+      "text": "long-necked flask",
+      "label": "Flask",
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "id": "chalice",
+      "text": "chalice",
+      "label": "Chalice",
+      "tags": [
+        "relic",
+        "container"
+      ]
+    },
+    {
+      "id": "skeleton-key-on-a",
+      "text": "skeleton key {m} on a heavy ring",
+      "label": "Key",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "hand-mirror",
+      "text": "hand mirror",
+      "label": "Mirror",
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "swept-hilt-rapier",
+      "text": "swept-hilt rapier",
+      "label": "Rapier",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "hand-crossbow",
+      "text": "hand crossbow",
+      "label": "Crossbow",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "barbed-trident",
+      "text": "barbed trident",
+      "label": "Trident",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "throwing-axe",
+      "text": "throwing axe",
+      "label": "Hatchet",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "hand-bell",
+      "text": "hand bell",
+      "label": "Bell",
+      "tags": [
+        "instrument",
+        "relic"
+      ]
+    },
+    {
+      "id": "lap-harp",
+      "text": "lap harp",
+      "label": "Harp",
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "id": "deck-of-fortune-cards",
+      "text": "fortune-card deck",
+      "label": "Deck",
+      "weight": 4,
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "scrying-orb",
+      "text": "scrying orb",
+      "label": "Orb",
+      "tags": [
+        "held",
+        "relic"
+      ]
+    },
+    {
+      "id": "slender-wand",
+      "text": "slender wand",
+      "label": "Wand",
+      "weight": 6,
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "clasp-bound-tome",
+      "text": "clasp-bound tome",
+      "label": "Tome",
+      "tags": [
+        "book"
+      ]
+    },
+    {
+      "id": "flanged-mace",
+      "text": "flanged mace",
+      "label": "Mace",
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "laced-bracer",
+      "text": "laced bracer",
+      "label": "Bracer",
+      "tags": [
+        "worn",
+        "armour"
+      ]
+    },
+    {
+      "id": "brooch",
+      "text": "brooch",
+      "label": "Brooch",
+      "tags": [
+        "jewellery",
+        "worn"
+      ]
+    },
+    {
+      "id": "strongbox-with-three-locks",
+      "text": "strongbox {m} with three locks",
+      "label": "Strongbox",
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "id": "chakram",
+      "text": "chakram",
+      "label": "Chakram",
+      "weight": 3,
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "folding-ledger-of-contracts",
+      "text": "folding contract ledger",
+      "label": "Ledger",
+      "tags": [
+        "book",
+        "contract"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "phylactery",
+      "text": "phylactery",
+      "label": "Phylactery",
+      "tags": [
+        "relic",
+        "container",
+        "necrotic"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "funeral-urn",
+      "text": "funeral urn",
+      "label": "Urn",
+      "tags": [
+        "container",
+        "relic",
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sunburst-holy-symbol",
+      "text": "sunburst holy symbol",
+      "label": "Sunburst",
+      "tags": [
+        "relic",
+        "worn",
+        "holy",
+        "radiant"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "geared-orrery",
+      "text": "geared orrery",
+      "label": "Orrery",
+      "tags": [
+        "tool",
+        "clockwork"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "totem-staff",
+      "text": "totem staff",
+      "label": "Totem",
+      "tags": [
+        "held",
+        "relic",
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "reaping-scythe",
+      "text": "reaping scythe",
+      "label": "Scythe",
+      "tags": [
+        "weapon",
+        "tool",
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1067 @@
+{
+  "id": "shared.materials",
+  "category": "shared",
+  "slot": "materials",
+  "entries": [
+    {
+      "id": "blackened-steel",
+      "text": "blackened steel",
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "weathered-oak",
+      "text": "weathered oak",
+      "tags": [
+        "wood"
+      ]
+    },
+    {
+      "id": "hammered-bronze",
+      "text": "hammered bronze",
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "oiled-walnut",
+      "text": "oiled walnut",
+      "tags": [
+        "wood"
+      ]
+    },
+    {
+      "id": "river-worn-granite",
+      "text": "river-worn granite",
+      "tags": [
+        "stone"
+      ]
+    },
+    {
+      "id": "boiled-leather",
+      "text": "boiled leather",
+      "tags": [
+        "leather"
+      ]
+    },
+    {
+      "id": "tarnished-silver",
+      "text": "tarnished silver",
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "waxed-canvas",
+      "text": "waxed canvas",
+      "tags": [
+        "cloth"
+      ]
+    },
+    {
+      "id": "smoked-glass",
+      "text": "smoked glass",
+      "tags": [
+        "glass"
+      ]
+    },
+    {
+      "id": "undyed-wool",
+      "text": "undyed wool",
+      "tags": [
+        "cloth"
+      ]
+    },
+    {
+      "id": "rough-cut-basalt",
+      "text": "rough-cut basalt",
+      "tags": [
+        "stone"
+      ]
+    },
+    {
+      "id": "cold-forged-iron",
+      "text": "cold-forged iron",
+      "tags": [
+        "metal"
+      ]
+    },
+    {
+      "id": "veined-marble",
+      "text": "veined marble",
+      "tags": [
+        "stone"
+      ]
+    },
+    {
+      "id": "polished-jet",
+      "text": "polished jet",
+      "tags": [
+        "gem"
+      ]
+    },
+    {
+      "id": "banded-agate",
+      "text": "banded agate",
+      "tags": [
+        "gem"
+      ]
+    },
+    {
+      "id": "braided-rawhide",
+      "text": "braided rawhide",
+      "tags": [
+        "leather"
+      ]
+    },
+    {
+      "id": "mithral-filigree",
+      "text": "mithral filigree",
+      "tags": [
+        "metal",
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "enamelled-heraldic-steel",
+      "text": "enamelled heraldic steel",
+      "tags": [
+        "metal",
+        "heroic",
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "white-gold-leaf",
+      "text": "white-gold leaf",
+      "tags": [
+        "metal",
+        "gold"
+      ],
+      "themes": [
+        "high-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "pitted-grave-iron",
+      "text": "pitted grave-iron",
+      "tags": [
+        "metal",
+        "grim",
+        "grave"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "bloodstained-leather",
+      "text": "bloodstained leather",
+      "tags": [
+        "leather",
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "scorched-black-oak",
+      "text": "scorched black oak",
+      "tags": [
+        "wood",
+        "ruin"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "brimstone-crusted-iron",
+      "text": "brimstone-crusted iron",
+      "tags": [
+        "metal",
+        "brimstone"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "fiend-hide-leather",
+      "text": "fiend-hide leather",
+      "tags": [
+        "leather",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "soot-black-chain",
+      "text": "soot-black chain",
+      "tags": [
+        "metal",
+        "chains"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "sunforged-gold",
+      "text": "sunforged gold",
+      "tags": [
+        "metal",
+        "gold",
+        "radiant"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "temple-white-alabaster",
+      "text": "temple-white alabaster",
+      "tags": [
+        "stone",
+        "holy"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "gilded-swan-feathers",
+      "text": "gilded swan feathers",
+      "tags": [
+        "organic",
+        "feathered"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "living-willow",
+      "text": "living willow",
+      "tags": [
+        "wood",
+        "flora"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "moth-wing-silk",
+      "text": "moth-wing silk",
+      "tags": [
+        "cloth",
+        "fey"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "briar-wrapped-birch",
+      "text": "briar-wrapped birch",
+      "tags": [
+        "wood",
+        "flora"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "yellowed-bone",
+      "text": "yellowed bone",
+      "tags": [
+        "organic",
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "funeral-crepe",
+      "text": "funeral crepe",
+      "tags": [
+        "cloth",
+        "gothic"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "volcanic-glass",
+      "text": "volcanic glass",
+      "tags": [
+        "glass",
+        "magma"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "forge-blued-steel",
+      "text": "forge-blued steel",
+      "tags": [
+        "metal",
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "ash-grey-pumice",
+      "text": "ash-grey pumice",
+      "tags": [
+        "stone",
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "glacier-ice",
+      "text": "glacier ice",
+      "tags": [
+        "glass",
+        "glacier",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "rune-cut-walrus-ivory",
+      "text": "rune-cut walrus ivory",
+      "tags": [
+        "organic",
+        "north",
+        "rune"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "white-bearskin",
+      "text": "white bearskin",
+      "tags": [
+        "leather",
+        "north"
+      ],
+      "themes": [
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "barnacled-driftwood",
+      "text": "barnacled driftwood",
+      "tags": [
+        "wood",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "red-coral",
+      "text": "red coral",
+      "tags": [
+        "stone",
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "tarred-hemp-rope",
+      "text": "tarred hemp rope",
+      "tags": [
+        "cloth",
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "sharkskin",
+      "text": "sharkskin",
+      "tags": [
+        "leather",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "drow-spider-silk",
+      "text": "drow spider-silk",
+      "tags": [
+        "cloth",
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "cave-grown-fungus-leather",
+      "text": "cave-grown fungus leather",
+      "tags": [
+        "leather",
+        "fungal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "raw-amethyst",
+      "text": "raw amethyst",
+      "tags": [
+        "gem",
+        "crystal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "inked-vellum",
+      "text": "inked vellum",
+      "tags": [
+        "leather",
+        "library"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "geared-brass",
+      "text": "geared brass",
+      "tags": [
+        "metal",
+        "clockwork"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "star-chart-lapis",
+      "text": "star-chart lapis",
+      "tags": [
+        "gem",
+        "astral"
+      ],
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "wolf-pelt",
+      "text": "wolf pelt",
+      "tags": [
+        "leather",
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "knotted-sinew",
+      "text": "knotted sinew",
+      "tags": [
+        "organic",
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "shed-antler",
+      "text": "shed antler",
+      "tags": [
+        "organic",
+        "beast",
+        "druidic"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "sigil-street-iron",
+      "text": "Sigil street-iron",
+      "tags": [
+        "metal",
+        "planar",
+        "guild"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "portal-worn-flagstone",
+      "text": "portal-worn flagstone",
+      "tags": [
+        "stone",
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "githyanki-silver",
+      "text": "githyanki silver",
+      "tags": [
+        "metal",
+        "astral"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "frozen-lightning",
+      "text": "frozen lightning",
+      "tags": [
+        "ethereal",
+        "storm"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "petrified-song",
+      "text": "petrified song",
+      "tags": [
+        "stone",
+        "ethereal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "woven-moonlight",
+      "text": "woven moonlight",
+      "tags": [
+        "cloth",
+        "ethereal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "candle-wax-bone",
+      "text": "candle-wax bone",
+      "tags": [
+        "organic",
+        "bone"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "liquid-obsidian",
+      "text": "liquid obsidian",
+      "tags": [
+        "liquid",
+        "stone"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "glass-that-bleeds",
+      "text": "glass that bleeds",
+      "tags": [
+        "glass",
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "blooming-rust",
+      "text": "blooming rust",
+      "tags": [
+        "metal",
+        "flora"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "stitched-shadow",
+      "text": "stitched shadow",
+      "tags": [
+        "cloth",
+        "shadow"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "honeyed-iron",
+      "text": "honeyed iron",
+      "tags": [
+        "metal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "fossilised-smoke",
+      "text": "fossilised smoke",
+      "tags": [
+        "stone",
+        "ethereal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "solid-echo",
+      "text": "solid echo",
+      "tags": [
+        "ethereal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "dragon-sweat-amber",
+      "text": "dragon-sweat amber",
+      "tags": [
+        "gem",
+        "organic"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "starlight-lacquer",
+      "text": "starlight lacquer",
+      "tags": [
+        "ethereal",
+        "astral"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "weeping-marble",
+      "text": "weeping marble",
+      "tags": [
+        "stone",
+        "liquid"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "cloud-felt",
+      "text": "cloud felt",
+      "tags": [
+        "cloth",
+        "ethereal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "chained-fire",
+      "text": "chained fire",
+      "tags": [
+        "ethereal",
+        "fire",
+        "chains"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "dreaming-clay",
+      "text": "dreaming clay",
+      "tags": [
+        "stone"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "bottled-dusk",
+      "text": "bottled dusk",
+      "tags": [
+        "glass",
+        "twilight"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "silver-rain-wire",
+      "text": "silver rain wire",
+      "tags": [
+        "metal",
+        "liquid"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "memory-silk",
+      "text": "memory silk",
+      "tags": [
+        "cloth",
+        "ethereal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "braided-sunrise",
+      "text": "braided sunrise",
+      "tags": [
+        "ethereal",
+        "radiant"
+      ],
+      "themes": [
+        "celestial"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "pressed-thunder",
+      "text": "pressed thunder",
+      "tags": [
+        "ethereal",
+        "storm"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "crystallised-laughter",
+      "text": "crystallised laughter",
+      "tags": [
+        "gem",
+        "trickster"
+      ],
+      "themes": [
+        "fey"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "moth-dust-velvet",
+      "text": "moth-dust velvet",
+      "tags": [
+        "cloth"
+      ],
+      "themes": [
+        "fey"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "bottled-heartbeat",
+      "text": "bottled heartbeat",
+      "tags": [
+        "glass",
+        "organic"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "tempered-nightmare",
+      "text": "tempered nightmare",
+      "tags": [
+        "metal",
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "salt-of-old-tears",
+      "text": "salt of old tears",
+      "tags": [
+        "gem",
+        "liquid"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "gilded-silence",
+      "text": "gilded silence",
+      "tags": [
+        "metal",
+        "gold"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "folded-twilight",
+      "text": "folded twilight",
+      "tags": [
+        "cloth",
+        "twilight"
+      ],
+      "themes": [
+        "fey"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "molten-snow",
+      "text": "molten snow",
+      "tags": [
+        "liquid",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "drowned-bell-bronze",
+      "text": "drowned bell-bronze",
+      "tags": [
+        "metal",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "cold-flame",
+      "text": "cold flame",
+      "tags": [
+        "ethereal",
+        "fire"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "carved-fog",
+      "text": "carved fog",
+      "tags": [
+        "ethereal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "breathing-stone",
+      "text": "breathing stone",
+      "tags": [
+        "stone",
+        "organic"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "feathered-steel",
+      "text": "feathered steel",
+      "tags": [
+        "metal",
+        "feathered"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "unspooled-hours",
+      "text": "unspooled hours",
+      "tags": [
+        "cloth",
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "void-velvet",
+      "text": "void velvet",
+      "tags": [
+        "cloth",
+        "astral"
+      ],
+      "themes": [
+        "planar"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "dead-star-heartwood",
+      "text": "dead-star heartwood",
+      "tags": [
+        "wood",
+        "astral"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "ghost-pewter",
+      "text": "ghost-pewter",
+      "tags": [
+        "metal",
+        "necrotic"
+      ],
+      "themes": [
+        "undead"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "living-ink",
+      "text": "living ink",
+      "tags": [
+        "liquid",
+        "library"
+      ],
+      "themes": [
+        "arcane"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "lichlight-porcelain",
+      "text": "lichlight porcelain",
+      "tags": [
+        "glass",
+        "necrotic"
+      ],
+      "themes": [
+        "undead"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "kraken-ink-glass",
+      "text": "kraken-ink glass",
+      "tags": [
+        "glass",
+        "abyssal"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "hellfire-enamel",
+      "text": "hellfire enamel",
+      "tags": [
+        "glass",
+        "fire",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "grave-frost-silk",
+      "text": "grave-frost silk",
+      "tags": [
+        "cloth",
+        "grave",
+        "frost"
+      ],
+      "themes": [
+        "undead"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "choir-bronze",
+      "text": "choir bronze",
+      "tags": [
+        "metal",
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "sunless-moonstone",
+      "text": "sunless moonstone",
+      "tags": [
+        "gem",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "thinking-crystal",
+      "text": "thinking crystal",
+      "tags": [
+        "gem",
+        "aberration"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "cooled-dragonfire",
+      "text": "cooled dragonfire",
+      "tags": [
+        "glass",
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "aurora-glass",
+      "text": "aurora glass",
+      "tags": [
+        "glass",
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "surreal": true
+    }
+  ]
+}

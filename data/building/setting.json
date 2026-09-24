@@ -1,0 +1,272 @@
+{
+  "id": "building.setting",
+  "category": "building",
+  "slot": "setting",
+  "entries": [
+    {
+      "id": "island-in-an-underdark",
+      "text": "island in an Underdark cavern lake",
+      "tags": [
+        "subterranean",
+        "cavern",
+        "island"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "cliff-edge-above-a",
+      "text": "cliff edge above a roaring sea",
+      "tags": [
+        "coast",
+        "storm"
+      ]
+    },
+    {
+      "id": "crossroads-in-rolling-farmland",
+      "text": "crossroads in rolling farmland",
+      "tags": [
+        "pastoral",
+        "plains",
+        "road"
+      ]
+    },
+    {
+      "id": "inside-the-hollow-trunk",
+      "text": "inside the hollow trunk of an ancient tree",
+      "tags": [
+        "forest",
+        "druidic"
+      ],
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "on-the-back-of",
+      "text": "on the back of a sleeping dragon turtle",
+      "tags": [
+        "ocean",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "floating-rock-chained-above",
+      "text": "floating rock chained above the clouds",
+      "tags": [
+        "sky",
+        "chains"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "on-stilts-deep-in",
+      "text": "on stilts deep in a misty swamp",
+      "tags": [
+        "swamp"
+      ]
+    },
+    {
+      "id": "rim-of-an-active",
+      "text": "rim of an active volcano",
+      "tags": [
+        "volcanic",
+        "magma"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "high-in-a-frozen",
+      "text": "high in a frozen mountain pass",
+      "tags": [
+        "mountain",
+        "arctic",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "canal-district-of-a",
+      "text": "canal district of a crowded city",
+      "tags": [
+        "city",
+        "water"
+      ]
+    },
+    {
+      "id": "sunken-ruin-reachable-only",
+      "text": "sunken ruin reachable only at low tide",
+      "tags": [
+        "coast",
+        "ruins",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "sigils-twisting-streets-under",
+      "text": "Sigil's twisting streets under the Lady's gaze",
+      "tags": [
+        "planar",
+        "urban",
+        "city"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-feywild-glade-stuck",
+      "text": "a Feywild glade stuck in eternal twilight",
+      "tags": [
+        "fey",
+        "twilight",
+        "forest"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "blasted-plains-of-avernus",
+      "text": "blasted plains of Avernus beneath a burning sky",
+      "tags": [
+        "infernal",
+        "fiend",
+        "brimstone"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "shadowfell-moor-under-a",
+      "text": "Shadowfell moor under a dead grey sky",
+      "tags": [
+        "shadow",
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "riverbank-of-a-sleepy",
+      "text": "riverbank of a sleepy village",
+      "tags": [
+        "village",
+        "river",
+        "pastoral"
+      ]
+    },
+    {
+      "id": "mountain-peak-above-the",
+      "text": "mountain peak above the snowline",
+      "tags": [
+        "mountain",
+        "north"
+      ]
+    },
+    {
+      "id": "jungle-canopy-strung-with",
+      "text": "jungle canopy strung with rope bridges",
+      "tags": [
+        "jungle",
+        "tropical"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "desert-oasis-ringed-with",
+      "text": "desert oasis ringed with date palms",
+      "tags": [
+        "desert"
+      ]
+    },
+    {
+      "id": "gorge-between-two-thundering",
+      "text": "gorge between two thundering waterfalls",
+      "tags": [
+        "river",
+        "wilderness"
+      ]
+    },
+    {
+      "id": "anchored-to-a-gods",
+      "text": "anchored to a god's corpse drifting in the Astral Sea",
+      "tags": [
+        "astral",
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "lowest-terrace-of-mount",
+      "text": "lowest terrace of Mount Celestia",
+      "tags": [
+        "celestial",
+        "holy",
+        "sky"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "battlefield-littered-with-rusting",
+      "text": "battlefield littered with rusting siege engines",
+      "tags": [
+        "ruin",
+        "grim"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "middle-of-a-busy",
+      "text": "middle of a busy market square",
+      "tags": [
+        "city",
+        "market"
+      ]
+    },
+    {
+      "id": "crater-lake-left-by",
+      "text": "crater lake left by a fallen star",
+      "tags": [
+        "astral",
+        "crystal"
+      ]
+    },
+    {
+      "id": "edge-of-a-glowing",
+      "text": "edge of a glowing fungus forest in the Underdark",
+      "tags": [
+        "fungal",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    }
+  ]
+}

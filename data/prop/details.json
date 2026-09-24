@@ -1,0 +1,261 @@
+{
+  "id": "prop.details",
+  "category": "prop",
+  "slot": "details",
+  "entries": [
+    {
+      "id": "hairline-cracks-that-glow",
+      "text": "hairline cracks that glow when someone nearby lies"
+    },
+    {
+      "id": "grip-wrapped-in-faded",
+      "text": "grip wrapped in faded prayer ribbons",
+      "tags": [
+        "held"
+      ]
+    },
+    {
+      "id": "a-notch-filed-for",
+      "text": "a notch filed for every life it has taken",
+      "tags": [
+        "weapon",
+        "grim"
+      ]
+    },
+    {
+      "id": "inlaid-with-a-spiral",
+      "text": "inlaid with a spiral of tiny human teeth",
+      "tags": [
+        "bone",
+        "grotesque"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "gilding-worn-to-bare",
+      "text": "gilding worn to bare metal where thumbs rest"
+    },
+    {
+      "id": "tassels-of-dyed-horsehair",
+      "text": "tassels of dyed horsehair knotted with bells"
+    },
+    {
+      "id": "a-crest-scratched-out",
+      "text": "a crest scratched out and re-carved by a clumsy hand"
+    },
+    {
+      "id": "scorch-marks-shaped-like",
+      "text": "scorch marks shaped like grasping fingers",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "infernal",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "crusted-with-barnacles-and",
+      "text": "crusted with barnacles and dried kelp",
+      "tags": [
+        "water",
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "beaded-with-frost-that",
+      "text": "beaded with frost that never melts",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-dented-edge-hammered",
+      "text": "a dented edge hammered back into shape many times"
+    },
+    {
+      "id": "green-verdigris-creeping-along",
+      "text": "green verdigris creeping along every seam"
+    },
+    {
+      "id": "tiny-runes-crawling-slowly",
+      "text": "tiny runes crawling slowly across the surface",
+      "tags": [
+        "rune",
+        "arcane"
+      ],
+      "themes": [
+        "arcane",
+        "frost"
+      ]
+    },
+    {
+      "id": "mismatched-gems-one-clearly",
+      "text": "mismatched gems, one clearly a later replacement",
+      "tags": [
+        "jewellery"
+      ]
+    },
+    {
+      "id": "a-childs-name-scratched",
+      "text": "a child's name scratched faintly near the base"
+    },
+    {
+      "id": "a-wax-seal-still",
+      "text": "a wax seal still clinging, half broken",
+      "tags": [
+        "contract"
+      ]
+    },
+    {
+      "id": "feathers-and-beads-woven",
+      "text": "feathers and beads woven into the lashing",
+      "tags": [
+        "feathered",
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal",
+        "celestial"
+      ]
+    },
+    {
+      "id": "soot-packed-into-every",
+      "text": "soot packed into every crevice"
+    },
+    {
+      "id": "a-shelf-of-fungus",
+      "text": "a shelf of fungus blooming from a crack",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "polished-to-a-mirror",
+      "text": "polished to a mirror sheen on one face only"
+    },
+    {
+      "id": "wound-with-chain-that",
+      "text": "wound with chain that was cut and reforged",
+      "tags": [
+        "chains"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "filigree-that-pulses-like",
+      "text": "filigree that pulses like a slow heartbeat"
+    },
+    {
+      "id": "a-faded-map-painted",
+      "text": "a faded map painted on the inside surface"
+    },
+    {
+      "id": "moss-and-lichen-softening",
+      "text": "moss and lichen softening every edge",
+      "tags": [
+        "flora",
+        "druidic"
+      ],
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "a-stitched-leather-patch",
+      "text": "a stitched leather patch over an old burn"
+    },
+    {
+      "id": "a-counterweight-shaped-like",
+      "text": "a counterweight shaped like a sleeping cat",
+      "tags": [
+        "whimsical"
+      ]
+    },
+    {
+      "id": "thin-red-streaks-of",
+      "text": "thin red streaks of rust bleeding downward"
+    },
+    {
+      "id": "gold-leaf-peeling-back",
+      "text": "gold leaf peeling back like birch bark",
+      "tags": [
+        "gold"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "charms-of-knucklebone-and",
+      "text": "charms of knucklebone and coin dangling from a cord",
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "a-pale-handprint-seared",
+      "text": "a pale handprint seared into one side",
+      "tags": [
+        "cursed"
+      ]
+    },
+    {
+      "id": "a-gemstone-eye-that",
+      "text": "a gemstone eye that seems to follow the viewer"
+    },
+    {
+      "id": "a-battle-scene-engraved",
+      "text": "a battle scene engraved and worn almost smooth",
+      "tags": [
+        "heroic"
+      ]
+    },
+    {
+      "id": "spider-silk-threaded-through",
+      "text": "spider silk threaded through every hinge",
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "tiny-gears-ticking-behind",
+      "text": "tiny gears ticking behind a glass window",
+      "tags": [
+        "clockwork"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "velvet-lining-gone-grey",
+      "text": "velvet lining gone grey and cobwebbed",
+      "tags": [
+        "gothic"
+      ]
+    }
+  ]
+}

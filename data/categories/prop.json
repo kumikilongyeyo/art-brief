@@ -1,0 +1,23 @@
+{
+  "id": "prop",
+  "name": "Prop",
+  "primarySlot": "objectType",
+  "baseTags": ["cat-prop", "inanimate"],
+  "slots": [
+    { "id": "objectType", "kind": "table", "table": "prop.object" },
+    { "id": "material", "kind": "material" },
+    { "id": "origin", "kind": "table", "table": "prop.origin" },
+    { "id": "function", "kind": "table", "table": "prop.function" },
+    { "id": "details", "kind": "table", "table": "prop.details" },
+    { "id": "palette", "kind": "palette" },
+    { "id": "unique", "kind": "unique", "table": "prop.unique" },
+    { "id": "name", "kind": "name" }
+  ],
+  "optionalSlots": ["details", "unique"],
+  "dependencies": {
+    "objectType": ["name", "function"],
+    "origin": ["name"]
+  },
+  "dropOrder": ["details", "origin"],
+  "template": "prop.default"
+}

@@ -1,0 +1,100 @@
+{
+  "id": "building.condition",
+  "category": "building",
+  "slot": "condition",
+  "entries": [
+    {
+      "id": "half-flooded-still-in",
+      "text": "half-flooded, still in use",
+      "tags": [
+        "water"
+      ]
+    },
+    {
+      "id": "freshly-built-scaffolding-still",
+      "text": "freshly built, scaffolding still up",
+      "weight": 6
+    },
+    {
+      "id": "abandoned-mid-meal-a",
+      "text": "abandoned mid-meal a century ago",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "partly-collapsed-patched-with",
+      "text": "partly collapsed, patched with salvaged doors"
+    },
+    {
+      "id": "meticulously-kept-not-a",
+      "text": "meticulously kept, not a speck of dust"
+    },
+    {
+      "id": "burned-out-blackened-beams",
+      "text": "burned out, blackened beams still standing",
+      "tags": [
+        "ruin",
+        "ash"
+      ]
+    },
+    {
+      "id": "overgrown-roots-splitting-the",
+      "text": "overgrown, roots splitting the floors",
+      "tags": [
+        "flora",
+        "ruin"
+      ]
+    },
+    {
+      "id": "sinking-slowly-into-the",
+      "text": "sinking slowly into the mud"
+    },
+    {
+      "id": "under-siege-barricades-at",
+      "text": "under siege, barricades at every window",
+      "tags": [
+        "violent"
+      ]
+    },
+    {
+      "id": "recently-looted-doors-hanging",
+      "text": "recently looted, doors hanging open"
+    },
+    {
+      "id": "restored-twice-each-eras",
+      "text": "restored twice, each era's repairs plainly visible"
+    },
+    {
+      "id": "frozen-solid-inside-a",
+      "text": "frozen solid inside a skin of ice",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "occupied-by-squatters-who",
+      "text": "occupied by squatters who worship the old owners",
+      "tags": [
+        "grim"
+      ]
+    },
+    {
+      "id": "crumbling-held-up-by",
+      "text": "crumbling, held up by magic alone",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "quarantined-windows-painted-with",
+      "text": "quarantined, windows painted with warning glyphs",
+      "tags": [
+        "cursed"
+      ]
+    }
+  ]
+}

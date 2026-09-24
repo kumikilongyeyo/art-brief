@@ -1,0 +1,288 @@
+{
+  "id": "prop.origin",
+  "category": "prop",
+  "slot": "origin",
+  "entries": [
+    {
+      "id": "storm-giant-court",
+      "text": "storm-giant court",
+      "tags": [
+        "storm",
+        "giantkin"
+      ]
+    },
+    {
+      "id": "drow-matriarchy",
+      "text": "drow matriarchy",
+      "tags": [
+        "culture-elven",
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "gnomish-tinker-guild",
+      "text": "gnomish tinker guild",
+      "tags": [
+        "culture-gnomish",
+        "guild",
+        "clockwork"
+      ],
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "dwarven-deep-forge-hold",
+      "text": "dwarven deep-forge hold",
+      "tags": [
+        "culture-dwarven",
+        "forge"
+      ]
+    },
+    {
+      "id": "high-elven-star-college",
+      "text": "high-elven star college",
+      "tags": [
+        "culture-elven",
+        "arcane",
+        "astral"
+      ]
+    },
+    {
+      "id": "nine-hells-contract-bureau",
+      "text": "Nine Hells contract bureau",
+      "tags": [
+        "culture-infernal",
+        "contract",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "seelie-summer-court",
+      "text": "Seelie summer court",
+      "tags": [
+        "culture-fey",
+        "fey",
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "unseelie-winter-court",
+      "text": "Unseelie winter court",
+      "tags": [
+        "culture-fey",
+        "fey",
+        "frost"
+      ],
+      "themes": [
+        "fey",
+        "frost"
+      ]
+    },
+    {
+      "id": "orc-war-camp-smithy",
+      "text": "orc war-camp smithy",
+      "tags": [
+        "culture-orcish",
+        "tribal"
+      ]
+    },
+    {
+      "id": "dragonborn-clan-hall",
+      "text": "dragonborn clan hall",
+      "tags": [
+        "culture-draconic"
+      ]
+    },
+    {
+      "id": "red-dragons-hoard",
+      "text": "red dragon's hoard",
+      "tags": [
+        "culture-draconic",
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "shadowfell-mourning-cult",
+      "text": "Shadowfell mourning cult",
+      "tags": [
+        "culture-human",
+        "shadow",
+        "grave"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sunken-sahuagin-temple",
+      "text": "sunken sahuagin temple",
+      "tags": [
+        "water",
+        "abyssal",
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "sigils-great-bazaar",
+      "text": "Sigil's Great Bazaar",
+      "tags": [
+        "planar",
+        "guild",
+        "urban"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "human-crusader-order",
+      "text": "human crusader order",
+      "tags": [
+        "culture-human",
+        "heroic",
+        "noble"
+      ]
+    },
+    {
+      "id": "fallen-netherese-sky-city",
+      "text": "fallen Netherese sky-city",
+      "tags": [
+        "culture-human",
+        "arcane",
+        "ruin",
+        "sky"
+      ]
+    },
+    {
+      "id": "mind-flayer-vat-works",
+      "text": "mind flayer vat-works",
+      "tags": [
+        "aberration",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "halfling-river-barge-peddlers",
+      "text": "halfling river-barge peddlers",
+      "tags": [
+        "pastoral",
+        "river"
+      ]
+    },
+    {
+      "id": "frost-giant-jarls-hall",
+      "text": "frost giant jarl's hall",
+      "tags": [
+        "frost",
+        "north",
+        "giantkin"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "mount-celestia-choir-forge",
+      "text": "Mount Celestia choir-forge",
+      "tags": [
+        "celestial",
+        "holy",
+        "radiant"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "firbolg-druid-circle",
+      "text": "firbolg druid circle",
+      "tags": [
+        "druidic",
+        "flora"
+      ],
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "tiefling-smugglers-quarter",
+      "text": "tiefling smugglers' quarter",
+      "tags": [
+        "culture-infernal",
+        "urban"
+      ]
+    },
+    {
+      "id": "thayan-necromancer-enclave",
+      "text": "Thayan necromancer enclave",
+      "tags": [
+        "culture-human",
+        "necrotic",
+        "arcane"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "efreeti-city-of-brass",
+      "text": "efreeti City of Brass",
+      "tags": [
+        "fire",
+        "brimstone",
+        "planar"
+      ],
+      "themes": [
+        "elemental-fire",
+        "planar"
+      ]
+    },
+    {
+      "id": "githyanki-astral-fortress",
+      "text": "githyanki astral fortress",
+      "tags": [
+        "astral",
+        "planar"
+      ],
+      "themes": [
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "pirate-queens-flagship",
+      "text": "pirate-queen's flagship",
+      "tags": [
+        "culture-human",
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    }
+  ]
+}

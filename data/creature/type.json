@@ -1,0 +1,150 @@
+{
+  "id": "creature.type",
+  "category": "creature",
+  "slot": "type",
+  "entries": [
+    {
+      "id": "aberration",
+      "text": "aberration",
+      "label": "Aberration",
+      "tags": [
+        "aberration"
+      ],
+      "themes": [
+        "underdark",
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "beast",
+      "text": "beast",
+      "label": "Beast",
+      "weight": 7,
+      "tags": [
+        "beast"
+      ]
+    },
+    {
+      "id": "celestial",
+      "text": "celestial",
+      "label": "Celestial",
+      "tags": [
+        "celestial",
+        "holy",
+        "radiant"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "construct",
+      "text": "construct",
+      "label": "Construct",
+      "tags": [
+        "construct"
+      ]
+    },
+    {
+      "id": "dragon",
+      "text": "dragon",
+      "label": "Dragon",
+      "tags": [
+        "dragon"
+      ]
+    },
+    {
+      "id": "elemental",
+      "text": "elemental",
+      "label": "Elemental",
+      "tags": [
+        "elemental"
+      ]
+    },
+    {
+      "id": "fey",
+      "text": "fey",
+      "label": "Fey",
+      "tags": [
+        "fey",
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "fiend",
+      "text": "fiend",
+      "label": "Fiend",
+      "tags": [
+        "fiend",
+        "infernal"
+      ],
+      "themes": [
+        "infernal",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "giant",
+      "text": "giant",
+      "label": "Giant",
+      "tags": [
+        "giant",
+        "giantkin"
+      ]
+    },
+    {
+      "id": "humanoid",
+      "text": "humanoid",
+      "label": "Humanoid",
+      "weight": 4,
+      "tags": [
+        "humanoid"
+      ]
+    },
+    {
+      "id": "monstrosity",
+      "text": "monstrosity",
+      "label": "Monstrosity",
+      "weight": 7,
+      "tags": [
+        "monstrosity"
+      ]
+    },
+    {
+      "id": "ooze",
+      "text": "ooze",
+      "label": "Ooze",
+      "weight": 4,
+      "tags": [
+        "ooze"
+      ]
+    },
+    {
+      "id": "plant",
+      "text": "plant",
+      "label": "Plant",
+      "tags": [
+        "plant",
+        "flora"
+      ]
+    },
+    {
+      "id": "undead",
+      "text": "undead",
+      "label": "Undead",
+      "tags": [
+        "undead",
+        "necrotic"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    }
+  ]
+}

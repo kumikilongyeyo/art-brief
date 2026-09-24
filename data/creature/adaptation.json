@@ -1,0 +1,450 @@
+{
+  "id": "creature.adaptation",
+  "category": "creature",
+  "slot": "adaptation",
+  "entries": [
+    {
+      "id": "eyes-that-shine-like-wet",
+      "text": "eyes that shine like wet coins in any light"
+    },
+    {
+      "id": "chorus-small-mouths-opening-along",
+      "text": "a chorus of small mouths opening along its flank"
+    },
+    {
+      "id": "hide-that-shifts-colour-match",
+      "text": "hide that shifts colour to match whatever it touches",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "bioluminescent-freckles-that-pulse-heartbeat",
+      "text": "bioluminescent freckles that pulse with its heartbeat",
+      "excludes": [
+        "construct"
+      ]
+    },
+    {
+      "id": "crown-translucent-quills-that-rattle",
+      "text": "a crown of translucent quills that rattle as a warning",
+      "excludes": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "flesh-that-hardens-into-bark",
+      "text": "flesh that hardens into bark where it is wounded",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "second-smaller-face-hidden-beneath",
+      "text": "a second, smaller face hidden beneath the jaw",
+      "excludes": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "mirror-polished-plates-that-throw",
+      "text": "mirror-polished plates that throw blinding glare",
+      "tags": [
+        "metallic"
+      ],
+      "excludes": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "mane-slow-burning-embers",
+      "text": "a mane of slow-burning embers",
+      "tags": [
+        "fire"
+      ]
+    },
+    {
+      "id": "translucent-skin-over-glowing-lattice",
+      "text": "translucent skin over a glowing lattice of organs",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "long-prehensile-tongue-tipped-hook",
+      "text": "a long prehensile tongue tipped with a hook",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "rows-vestigial-eyes-that-open",
+      "text": "rows of vestigial eyes that open one by one in darkness"
+    },
+    {
+      "id": "barnacle-like-crystal-growths-studding",
+      "text": "barnacle-like crystal growths studding its back",
+      "tags": [
+        "crystal"
+      ],
+      "excludes": [
+        "gaseous"
+      ]
+    },
+    {
+      "id": "throat-sac-that-inflates-into",
+      "text": "a throat sac that inflates into a booming drum",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "sigils-that-surface-under-skin",
+      "text": "sigils that surface under its skin when angered",
+      "tags": [
+        "rune",
+        "arcane"
+      ]
+    },
+    {
+      "id": "ridge-hollow-bones-that-whistles",
+      "text": "a ridge of hollow bones that whistles as it moves",
+      "tags": [
+        "bone"
+      ],
+      "excludes": [
+        "gaseous",
+        "amorphous",
+        "construct"
+      ]
+    },
+    {
+      "id": "fan-iridescent-frills-around-neck",
+      "text": "a fan of iridescent frills around the neck",
+      "excludes": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "oily-black-coat-that-sheds",
+      "text": "an oily black coat that sheds water and blades alike",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "heat-shimmer-haze-rising-off",
+      "text": "heat-shimmer haze rising off its back"
+    },
+    {
+      "id": "jaw-that-unhinges-swallow-prey",
+      "text": "a jaw that unhinges to swallow prey twice its size",
+      "excludes": [
+        "gaseous"
+      ]
+    },
+    {
+      "id": "clusters-tiny-eyes-like-beads",
+      "text": "clusters of tiny eyes like beads of black glass"
+    },
+    {
+      "id": "sweet-smelling-venom-that-numbs",
+      "text": "sweet-smelling venom that numbs on contact",
+      "excludes": [
+        "construct"
+      ]
+    },
+    {
+      "id": "burst-glittering-spores-whenever-it",
+      "text": "a burst of glittering spores whenever it is startled",
+      "tags": [
+        "fungal"
+      ]
+    },
+    {
+      "id": "body-that-dims-near-invisibility",
+      "text": "a body that dims to near-invisibility in shadow",
+      "tags": [
+        "shadow"
+      ]
+    },
+    {
+      "id": "spray-spines-it-can-loose",
+      "text": "a spray of spines it can loose like darts",
+      "excludes": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "skin-that-weeps-shimmering-poisonous",
+      "text": "skin that weeps a shimmering, poisonous oil",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "pulsing-lantern-lure-dangling-before",
+      "text": "a pulsing lantern-lure dangling before its face"
+    },
+    {
+      "id": "crackling-coat-static-that-flickers",
+      "text": "a crackling coat of static that flickers blue",
+      "tags": [
+        "storm"
+      ]
+    },
+    {
+      "id": "magnetised-hide-that-gathers-iron",
+      "text": "magnetised hide that gathers iron filings into spikes",
+      "tags": [
+        "metallic"
+      ],
+      "excludes": [
+        "gaseous"
+      ]
+    },
+    {
+      "id": "seams-molten-light-between-armour",
+      "text": "seams of molten light between its armour plates",
+      "excludes": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "faint-halo-drifting-light-motes",
+      "text": "a faint halo of drifting light motes",
+      "tags": [
+        "radiant"
+      ]
+    },
+    {
+      "id": "old-brand-still-smouldering-seared",
+      "text": "an old brand, still smouldering, seared into its flank",
+      "tags": [
+        "contract"
+      ],
+      "excludes": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "hide-overlapping-plates-like-pangolin",
+      "text": "a hide of overlapping plates like a pangolin",
+      "excludes": [
+        "construct",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "lichen-tiny-ferns-rooted-cracks",
+      "text": "lichen and tiny ferns rooted in the cracks of its back",
+      "tags": [
+        "flora"
+      ],
+      "excludes": [
+        "gaseous"
+      ]
+    },
+    {
+      "id": "wounds-that-leak-moonlight-instead",
+      "text": "wounds that leak moonlight instead of blood",
+      "weight": 3,
+      "surreal": true
+    },
+    {
+      "id": "tiny-thunderstorm-trapped-inside-ribcage",
+      "text": "a tiny thunderstorm trapped inside its ribcage",
+      "weight": 3,
+      "tags": [
+        "storm"
+      ],
+      "excludes": [
+        "gaseous"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "wing-membranes-veined-glowing-capillaries",
+      "text": "wing membranes veined with glowing capillaries",
+      "requires": [
+        "winged"
+      ]
+    },
+    {
+      "id": "flight-feathers-edged-like-knives",
+      "text": "flight feathers edged like knives",
+      "tags": [
+        "feathered"
+      ],
+      "requires": [
+        "winged"
+      ],
+      "excludes": [
+        "construct"
+      ]
+    },
+    {
+      "id": "feet-cooled-glass-that-ring",
+      "text": "feet of cooled glass that ring on hot ground",
+      "tags": [
+        "glass"
+      ],
+      "requires": [
+        "legged",
+        "quadruped",
+        "biped"
+      ]
+    },
+    {
+      "id": "splayed-webbed-feet-for-striding",
+      "text": "splayed, webbed feet for striding over mud",
+      "requires": [
+        "legged"
+      ],
+      "excludes": [
+        "construct"
+      ]
+    },
+    {
+      "id": "belly-scales-that-grip-sheer",
+      "text": "belly scales that grip sheer rock like hooks",
+      "requires": [
+        "serpentine",
+        "limbless"
+      ]
+    },
+    {
+      "id": "tentacles-lined-hooked-clicking-suckers",
+      "text": "tentacles lined with hooked, clicking suckers",
+      "requires": [
+        "tentacled"
+      ]
+    },
+    {
+      "id": "tendrils-that-taste-air-like",
+      "text": "tendrils that taste the air like forked tongues",
+      "requires": [
+        "tentacled"
+      ]
+    },
+    {
+      "id": "shell-grown-whorls-mother-pearl",
+      "text": "a shell grown in whorls of mother-of-pearl",
+      "requires": [
+        "shelled"
+      ]
+    },
+    {
+      "id": "gill-frills-that-glow-when",
+      "text": "gill frills that glow when it surfaces",
+      "tags": [
+        "water"
+      ],
+      "requires": [
+        "aquatic"
+      ]
+    },
+    {
+      "id": "body-that-splits-rejoins-around",
+      "text": "a body that splits and rejoins around every blow",
+      "requires": [
+        "amorphous",
+        "ooze"
+      ]
+    },
+    {
+      "id": "swallowed-trinkets-suspended-visibly-jelly",
+      "text": "swallowed trinkets suspended visibly in its jelly",
+      "requires": [
+        "amorphous",
+        "ooze"
+      ],
+      "excludes": [
+        "gaseous"
+      ]
+    },
+    {
+      "id": "core-trapped-lightning-flickering-vapour",
+      "text": "a core of trapped lightning flickering in its vapour",
+      "tags": [
+        "storm"
+      ],
+      "requires": [
+        "gaseous"
+      ]
+    },
+    {
+      "id": "furnace-heart-glowing-through-cracked",
+      "text": "a furnace heart glowing through cracked plating",
+      "tags": [
+        "forge"
+      ],
+      "requires": [
+        "construct"
+      ]
+    },
+    {
+      "id": "runes-binding-carved-into-every",
+      "text": "runes of binding carved into every joint",
+      "tags": [
+        "rune"
+      ],
+      "requires": [
+        "construct"
+      ]
+    },
+    {
+      "id": "roots-that-burrow-into-soil",
+      "text": "roots that burrow into the soil whenever it rests",
+      "tags": [
+        "flora"
+      ],
+      "requires": [
+        "plant"
+      ]
+    },
+    {
+      "id": "mandibles-that-click-out-warning",
+      "text": "mandibles that click out a warning rhythm",
+      "requires": [
+        "insectoid"
+      ]
+    },
+    {
+      "id": "each-limb-ending-different-tool",
+      "text": "each limb ending in a different tool-like claw",
+      "requires": [
+        "multi-limbed"
+      ]
+    },
+    {
+      "id": "horns-or-tusks-carved-tally",
+      "text": "horns or tusks carved with tally marks",
+      "requires": [
+        "horned",
+        "tusked"
+      ]
+    },
+    {
+      "id": "shaggy-pelt-matted-burrs-old",
+      "text": "a shaggy pelt matted with burrs and old arrowheads",
+      "requires": [
+        "furred"
+      ]
+    }
+  ]
+}

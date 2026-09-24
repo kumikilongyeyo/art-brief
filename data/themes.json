@@ -1,0 +1,17 @@
+{
+  "themes": [
+    { "id": "high-fantasy", "name": "High Fantasy", "allowTags": ["noble", "heroic", "arcane", "radiant", "pastoral"], "blockTags": ["necrotic", "grotesque"] },
+    { "id": "dark-fantasy", "name": "Dark Fantasy", "allowTags": ["grim", "cursed", "gothic", "blood", "ruin"], "blockTags": ["whimsical"] },
+    { "id": "infernal", "name": "Infernal", "allowTags": ["fire", "fiend", "contract", "brimstone", "chains"], "blockTags": ["celestial", "fey"] },
+    { "id": "celestial", "name": "Celestial", "allowTags": ["radiant", "holy", "feathered", "gold", "astral"], "blockTags": ["necrotic", "fiend"] },
+    { "id": "fey", "name": "Fey / Feywild", "allowTags": ["fey", "glamour", "flora", "trickster", "twilight"], "blockTags": ["infernal", "industrial"] },
+    { "id": "undead", "name": "Undead / Shadowfell", "allowTags": ["necrotic", "bone", "grave", "shadow", "gothic"], "blockTags": ["radiant", "holy"] },
+    { "id": "elemental-fire", "name": "Elemental Fire", "allowTags": ["fire", "ash", "magma", "forge"], "blockTags": ["frost", "water"] },
+    { "id": "frost", "name": "Frost", "allowTags": ["frost", "glacier", "north", "rune"], "blockTags": ["fire", "tropical"] },
+    { "id": "nautical", "name": "Nautical / Deep Sea", "allowTags": ["water", "coral", "pirate", "abyssal", "storm"], "blockTags": ["desert"] },
+    { "id": "underdark", "name": "Underdark", "allowTags": ["subterranean", "fungal", "drow", "aberration", "crystal"], "blockTags": ["sky", "radiant"] },
+    { "id": "arcane", "name": "Arcane / Scholarly", "allowTags": ["arcane", "clockwork", "library", "astral", "rune"], "blockTags": [] },
+    { "id": "wild-primal", "name": "Wild / Primal", "allowTags": ["beast", "tribal", "storm", "jungle", "druidic"], "blockTags": ["urban", "clockwork"] },
+    { "id": "planar", "name": "Planar / Sigil", "allowTags": ["planar", "portal", "surreal", "astral", "guild"], "blockTags": [] }
+  ]
+}

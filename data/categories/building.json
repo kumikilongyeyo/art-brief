@@ -1,0 +1,24 @@
+{
+  "id": "building",
+  "name": "Building",
+  "primarySlot": "function",
+  "baseTags": ["cat-building", "inanimate", "place"],
+  "slots": [
+    { "id": "function", "kind": "table", "table": "building.function" },
+    { "id": "style", "kind": "table", "table": "building.style" },
+    { "id": "material", "kind": "material" },
+    { "id": "condition", "kind": "table", "table": "building.condition" },
+    { "id": "setting", "kind": "table", "table": "building.setting" },
+    { "id": "feature", "kind": "table", "table": "building.feature" },
+    { "id": "light", "kind": "table", "table": "building.light" },
+    { "id": "palette", "kind": "palette" },
+    { "id": "unique", "kind": "unique", "table": "building.unique" },
+    { "id": "name", "kind": "name" }
+  ],
+  "optionalSlots": ["light", "unique"],
+  "dependencies": {
+    "function": ["name", "feature"]
+  },
+  "dropOrder": ["light", "condition"],
+  "template": "building.default"
+}

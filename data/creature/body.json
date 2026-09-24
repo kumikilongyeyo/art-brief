@@ -1,0 +1,222 @@
+{
+  "id": "creature.body",
+  "category": "creature",
+  "slot": "body",
+  "entries": [
+    {
+      "id": "long-necked-quadruped",
+      "text": "long-necked quadruped",
+      "label": "Wader",
+      "tags": [
+        "quadruped",
+        "legged"
+      ]
+    },
+    {
+      "id": "limbless-serpent",
+      "text": "limbless serpent",
+      "label": "Serpent",
+      "tags": [
+        "limbless",
+        "serpentine",
+        "scaled"
+      ]
+    },
+    {
+      "id": "six-legged-insectoid",
+      "text": "six-legged insectoid",
+      "label": "Crawler",
+      "tags": [
+        "insectoid",
+        "legged",
+        "multi-limbed"
+      ]
+    },
+    {
+      "id": "drifting-jellyfish-bell",
+      "text": "drifting jellyfish bell",
+      "label": "Drifter",
+      "tags": [
+        "tentacled",
+        "gaseous"
+      ]
+    },
+    {
+      "id": "hunched-knuckle-walking-biped",
+      "text": "hunched, knuckle-walking biped",
+      "label": "Stalker",
+      "tags": [
+        "biped",
+        "legged",
+        "furred"
+      ]
+    },
+    {
+      "id": "barrel-chested-winged-quadruped",
+      "text": "barrel-chested winged quadruped",
+      "label": "Soarer",
+      "tags": [
+        "winged",
+        "quadruped",
+        "legged"
+      ]
+    },
+    {
+      "id": "domed-shell-stumpy-legs",
+      "text": "domed shell on stumpy legs",
+      "label": "Shellback",
+      "tags": [
+        "shelled",
+        "quadruped",
+        "legged"
+      ]
+    },
+    {
+      "id": "shapeless-mass-shifting-jelly",
+      "text": "shapeless mass of shifting jelly",
+      "label": "Mire",
+      "tags": [
+        "amorphous"
+      ]
+    },
+    {
+      "id": "floating-orb-ringed-eyestalks",
+      "text": "floating orb ringed with eyestalks",
+      "label": "Watcher",
+      "tags": [
+        "tentacled",
+        "aberration"
+      ]
+    },
+    {
+      "id": "finned-eel-bodied-swimmer",
+      "text": "finned, eel-bodied swimmer",
+      "label": "Eel",
+      "tags": [
+        "aquatic",
+        "serpentine",
+        "limbless"
+      ]
+    },
+    {
+      "id": "rooted-tree-form-that-lurches",
+      "text": "rooted tree-form that lurches upright",
+      "label": "Treader",
+      "tags": [
+        "plant",
+        "biped",
+        "legged"
+      ]
+    },
+    {
+      "id": "hulking-tusked-quadruped",
+      "text": "hulking tusked quadruped",
+      "label": "Tusker",
+      "tags": [
+        "quadruped",
+        "legged",
+        "tusked",
+        "furred"
+      ]
+    },
+    {
+      "id": "crested-horned-raptor-two-legs",
+      "text": "crested, horned raptor on two legs",
+      "label": "Strider",
+      "tags": [
+        "biped",
+        "legged",
+        "scaled",
+        "horned"
+      ]
+    },
+    {
+      "id": "eight-legged-arachnid",
+      "text": "eight-legged arachnid",
+      "label": "Spinner",
+      "tags": [
+        "multi-limbed",
+        "legged",
+        "insectoid"
+      ]
+    },
+    {
+      "id": "coiling-wisp-living-vapour",
+      "text": "coiling wisp of living vapour",
+      "label": "Wisp",
+      "tags": [
+        "gaseous",
+        "amorphous"
+      ]
+    },
+    {
+      "id": "crab-shelled-scuttler-great-pincers",
+      "text": "crab-shelled scuttler with great pincers",
+      "label": "Scuttler",
+      "tags": [
+        "shelled",
+        "multi-limbed",
+        "legged",
+        "aquatic"
+      ]
+    },
+    {
+      "id": "four-armed-torso-serpent-tail",
+      "text": "four-armed torso on a serpent tail",
+      "label": "Coil",
+      "tags": [
+        "serpentine",
+        "multi-limbed"
+      ]
+    },
+    {
+      "id": "jointed-stone-plated-walker",
+      "text": "jointed, stone-plated walker",
+      "label": "Golem",
+      "tags": [
+        "construct",
+        "biped",
+        "legged"
+      ]
+    },
+    {
+      "id": "bat-winged-crouching-biped",
+      "text": "bat-winged, crouching biped",
+      "label": "Gargoyle",
+      "tags": [
+        "winged",
+        "biped",
+        "legged"
+      ]
+    },
+    {
+      "id": "long-tailed-feathered-flier",
+      "text": "long-tailed feathered flier",
+      "label": "Plume",
+      "tags": [
+        "winged",
+        "feathered"
+      ]
+    },
+    {
+      "id": "cloud-hovering-teeth-held-formation",
+      "text": "cloud of hovering teeth held in formation",
+      "label": "Swarm",
+      "weight": 3,
+      "tags": [
+        "amorphous"
+      ],
+      "surreal": true
+    },
+    {
+      "id": "shape-mirrored-glass-seen-only",
+      "text": "shape of mirrored glass seen only in reflections",
+      "label": "Glint",
+      "weight": 3,
+      "tags": [
+        "amorphous"
+      ],
+      "surreal": true
+    }
+  ]
+}

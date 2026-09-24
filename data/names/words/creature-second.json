@@ -1,0 +1,469 @@
+{
+  "id": "shared.creature-second",
+  "category": "shared",
+  "slot": "creature-second",
+  "entries": [
+    {
+      "id": "maw",
+      "text": "maw"
+    },
+    {
+      "id": "fang",
+      "text": "fang"
+    },
+    {
+      "id": "claw",
+      "text": "claw"
+    },
+    {
+      "id": "back",
+      "text": "back"
+    },
+    {
+      "id": "pelt",
+      "text": "pelt"
+    },
+    {
+      "id": "prong",
+      "text": "prong"
+    },
+    {
+      "id": "jaw",
+      "text": "jaw"
+    },
+    {
+      "id": "spine",
+      "text": "spine"
+    },
+    {
+      "id": "tail",
+      "text": "tail"
+    },
+    {
+      "id": "tooth",
+      "text": "tooth"
+    },
+    {
+      "id": "snout",
+      "text": "snout"
+    },
+    {
+      "id": "gullet",
+      "text": "gullet"
+    },
+    {
+      "id": "grin",
+      "text": "grin"
+    },
+    {
+      "id": "gut",
+      "text": "gut"
+    },
+    {
+      "id": "coil",
+      "text": "coil"
+    },
+    {
+      "id": "whip",
+      "text": "whip"
+    },
+    {
+      "id": "bite",
+      "text": "bite"
+    },
+    {
+      "id": "tongue",
+      "text": "tongue"
+    },
+    {
+      "id": "grip",
+      "text": "grip"
+    },
+    {
+      "id": "belly",
+      "text": "belly"
+    },
+    {
+      "id": "shank",
+      "text": "shank"
+    },
+    {
+      "id": "brow",
+      "text": "brow"
+    },
+    {
+      "id": "craw",
+      "text": "craw"
+    },
+    {
+      "id": "snarl",
+      "text": "snarl"
+    },
+    {
+      "id": "flare",
+      "text": "flare",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "scorch",
+      "text": "scorch",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "brand",
+      "text": "brand",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "sting",
+      "text": "sting",
+      "tags": [
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "gore",
+      "text": "gore",
+      "tags": [
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "blight",
+      "text": "blight",
+      "tags": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "wither",
+      "text": "wither",
+      "tags": [
+        "necrotic"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "shroud",
+      "text": "shroud",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "skull",
+      "text": "skull",
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "chill",
+      "text": "chill",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "tusk",
+      "text": "tusk",
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "fin",
+      "text": "fin",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "gill",
+      "text": "gill",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "cap",
+      "text": "cap",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark",
+        "fey"
+      ]
+    },
+    {
+      "id": "shard",
+      "text": "shard",
+      "tags": [
+        "crystal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "stalk",
+      "text": "stalk",
+      "tags": [
+        "aberration"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "wing",
+      "text": "wing",
+      "tags": [
+        "feathered"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "plume",
+      "text": "plume",
+      "tags": [
+        "feathered"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "gleam",
+      "text": "gleam",
+      "tags": [
+        "radiant"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "wisp",
+      "text": "wisp",
+      "tags": [
+        "twilight"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "bloom",
+      "text": "bloom",
+      "tags": [
+        "flora"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "whisker",
+      "text": "whisker",
+      "tags": [
+        "trickster"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "quill",
+      "text": "quill",
+      "tags": [
+        "library"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "glyph",
+      "text": "glyph",
+      "tags": [
+        "rune"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "gear",
+      "text": "gear",
+      "tags": [
+        "clockwork"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "bristle",
+      "text": "bristle",
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "bellow",
+      "text": "bellow",
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "veil",
+      "text": "veil",
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "shimmer",
+      "text": "shimmer",
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "talon",
+      "text": "talon",
+      "tags": [
+        "feathered"
+      ],
+      "themes": [
+        "high-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "crest",
+      "text": "crest",
+      "tags": [
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "gash",
+      "text": "gash",
+      "tags": [
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "spout",
+      "text": "spout",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "coral",
+      "text": "coral",
+      "tags": [
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "gyre",
+      "text": "gyre",
+      "tags": [
+        "surreal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "phase",
+      "text": "phase",
+      "tags": [
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

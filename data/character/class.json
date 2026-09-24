@@ -1,0 +1,20 @@
+{
+  "id": "character.class",
+  "category": "character",
+  "slot": "class",
+  "entries": [
+    {"id": "artificer", "text": "goggled tinkerer bristling with tools and vials", "label": "Artificer", "tags": ["class-artificer", "tinker", "caster"]},
+    {"id": "barbarian", "text": "scarred brawler steaming with battle fury", "label": "Barbarian", "tags": ["class-barbarian", "martial", "primal"]},
+    {"id": "bard", "text": "silver-tongued showman with a battered lute", "label": "Bard", "tags": ["class-bard", "performer", "caster"]},
+    {"id": "cleric", "text": "symbol-bearer in blessed mail, mace at the hip", "label": "Cleric", "tags": ["class-cleric", "divine", "caster"]},
+    {"id": "druid", "text": "wild-haired shapeshifter crowned in antlers", "label": "Druid", "tags": ["class-druid", "primal", "caster"]},
+    {"id": "fighter", "text": "battle-worn soldier with a notched blade", "label": "Fighter", "tags": ["class-fighter", "martial"]},
+    {"id": "monk", "text": "barefoot ascetic with wrapped fists", "label": "Monk", "tags": ["class-monk", "martial", "divine"]},
+    {"id": "paladin", "text": "oathsworn knight behind a sigil-bright shield", "label": "Paladin", "tags": ["class-paladin", "martial", "divine"]},
+    {"id": "ranger", "text": "hooded tracker, longbow slung, eyes on the treeline", "label": "Ranger", "tags": ["class-ranger", "martial", "primal", "stealth"]},
+    {"id": "rogue", "text": "shadow-cloaked cutpurse with twin daggers", "label": "Rogue", "tags": ["class-rogue", "stealth"]},
+    {"id": "sorcerer", "text": "born spellcaster, magic crackling under the skin", "label": "Sorcerer", "tags": ["class-sorcerer", "caster"]},
+    {"id": "warlock", "text": "pact-bound mystic trailing an eldritch glow", "label": "Warlock", "tags": ["class-warlock", "caster"]},
+    {"id": "wizard", "text": "robed scholar with a fat spellbook and staff", "label": "Wizard", "tags": ["class-wizard", "scholar", "caster"]}
+  ]
+}

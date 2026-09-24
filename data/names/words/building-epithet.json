@@ -1,0 +1,565 @@
+{
+  "id": "shared.building-epithet",
+  "category": "shared",
+  "slot": "building-epithet",
+  "entries": [
+    {
+      "id": "hollow-crown",
+      "text": "Hollow Crown"
+    },
+    {
+      "id": "ninth-bell",
+      "text": "Ninth Bell"
+    },
+    {
+      "id": "quiet-hour",
+      "text": "Quiet Hour"
+    },
+    {
+      "id": "seven-doors",
+      "text": "Seven Doors"
+    },
+    {
+      "id": "silent-choir",
+      "text": "Silent Choir"
+    },
+    {
+      "id": "last-lantern",
+      "text": "Last Lantern"
+    },
+    {
+      "id": "long-stair",
+      "text": "Long Stair"
+    },
+    {
+      "id": "unwritten-name",
+      "text": "Unwritten Name"
+    },
+    {
+      "id": "open-hand",
+      "text": "Open Hand"
+    },
+    {
+      "id": "forgotten-key",
+      "text": "Forgotten Key"
+    },
+    {
+      "id": "crooked-mile",
+      "text": "Crooked Mile"
+    },
+    {
+      "id": "weeping-stone",
+      "text": "Weeping Stone"
+    },
+    {
+      "id": "low-road",
+      "text": "Low Road"
+    },
+    {
+      "id": "waning-moon",
+      "text": "Waning Moon"
+    },
+    {
+      "id": "third-gate",
+      "text": "Third Gate"
+    },
+    {
+      "id": "iron-lamp",
+      "text": "Iron Lamp"
+    },
+    {
+      "id": "patient-well",
+      "text": "Patient Well"
+    },
+    {
+      "id": "lost-pilgrim",
+      "text": "Lost Pilgrim"
+    },
+    {
+      "id": "salt-road",
+      "text": "Salt Road"
+    },
+    {
+      "id": "thousand-steps",
+      "text": "Thousand Steps"
+    },
+    {
+      "id": "red-door",
+      "text": "Red Door"
+    },
+    {
+      "id": "sleeping-king",
+      "text": "Sleeping King"
+    },
+    {
+      "id": "borrowed-hour",
+      "text": "Borrowed Hour"
+    },
+    {
+      "id": "empty-chair",
+      "text": "Empty Chair"
+    },
+    {
+      "id": "twin-keys",
+      "text": "Twin Keys"
+    },
+    {
+      "id": "broken-compass",
+      "text": "Broken Compass"
+    },
+    {
+      "id": "silver-standard",
+      "text": "Silver Standard",
+      "tags": [
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "gilded-throne",
+      "text": "Gilded Throne",
+      "tags": [
+        "gold",
+        "noble"
+      ],
+      "themes": [
+        "high-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "unbroken-shield",
+      "text": "Unbroken Shield",
+      "tags": [
+        "heroic"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "twelve-banners",
+      "text": "Twelve Banners",
+      "tags": [
+        "heroic"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "blackened-heart",
+      "text": "Blackened Heart",
+      "tags": [
+        "grim"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "hanged-saint",
+      "text": "Hanged Saint",
+      "tags": [
+        "gothic"
+      ],
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "blood-moon",
+      "text": "Blood Moon",
+      "tags": [
+        "blood"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "burning-contract",
+      "text": "Burning Contract",
+      "tags": [
+        "contract",
+        "fire"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "ninth-circle",
+      "text": "Ninth Circle",
+      "tags": [
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "brass-chains",
+      "text": "Brass Chains",
+      "tags": [
+        "chains"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "sulphur-gate",
+      "text": "Sulphur Gate",
+      "tags": [
+        "brimstone"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "seventh-choir",
+      "text": "Seventh Choir",
+      "tags": [
+        "holy"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "golden-wing",
+      "text": "Golden Wing",
+      "tags": [
+        "feathered",
+        "gold"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "undimmed-star",
+      "text": "Undimmed Star",
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "celestial",
+        "arcane"
+      ]
+    },
+    {
+      "id": "twilight-court",
+      "text": "Twilight Court",
+      "tags": [
+        "twilight"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "thorned-rose",
+      "text": "Thorned Rose",
+      "tags": [
+        "flora"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "stolen-hour",
+      "text": "Stolen Hour",
+      "tags": [
+        "trickster",
+        "glamour"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "mushroom-ring",
+      "text": "Mushroom Ring",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "fey",
+        "underdark"
+      ]
+    },
+    {
+      "id": "bone-choir",
+      "text": "Bone Choir",
+      "tags": [
+        "bone"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "last-rites",
+      "text": "Last Rites",
+      "tags": [
+        "grave"
+      ],
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "long-night",
+      "text": "Long Night",
+      "tags": [
+        "shadow"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "eternal-forge",
+      "text": "Eternal Forge",
+      "tags": [
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "cinder-king",
+      "text": "Cinder King",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "molten-heart",
+      "text": "Molten Heart",
+      "tags": [
+        "magma"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "rime-crown",
+      "text": "Rime Crown",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "long-winter",
+      "text": "Long Winter",
+      "tags": [
+        "frost",
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "sleeping-glacier",
+      "text": "Sleeping Glacier",
+      "tags": [
+        "glacier"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "last-tide",
+      "text": "Last Tide",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "drowned-bell",
+      "text": "Drowned Bell",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "coral-throne",
+      "text": "Coral Throne",
+      "tags": [
+        "coral"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "black-sail",
+      "text": "Black Sail",
+      "tags": [
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "lightless-deep",
+      "text": "Lightless Deep",
+      "tags": [
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "spider-queen",
+      "text": "Spider Queen",
+      "tags": [
+        "drow"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "crystal-vein",
+      "text": "Crystal Vein",
+      "tags": [
+        "crystal"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "many-eyes",
+      "text": "Many Eyes",
+      "tags": [
+        "aberration"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "open-tome",
+      "text": "Open Tome",
+      "tags": [
+        "library"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "brass-orrery",
+      "text": "Brass Orrery",
+      "tags": [
+        "clockwork",
+        "astral"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "ninth-sigil",
+      "text": "Ninth Sigil",
+      "tags": [
+        "rune"
+      ],
+      "themes": [
+        "arcane",
+        "frost"
+      ]
+    },
+    {
+      "id": "antlered-king",
+      "text": "Antlered King",
+      "tags": [
+        "beast",
+        "druidic"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "thunder-drum",
+      "text": "Thunder Drum",
+      "tags": [
+        "tribal",
+        "storm"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "howling-moon",
+      "text": "Howling Moon",
+      "tags": [
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "turning-door",
+      "text": "Turning Door",
+      "tags": [
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "thousand-planes",
+      "text": "Thousand Planes",
+      "tags": [
+        "planar"
+      ],
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "wandering-guild",
+      "text": "Wandering Guild",
+      "tags": [
+        "guild"
+      ],
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$id": "themes.schema.json",
+  "type": "object",
+  "required": ["themes"],
+  "additionalProperties": false,
+  "properties": {
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "allowTags", "blockTags"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z]+(-[a-z]+)*$" },
+          "name": { "type": "string" },
+          "allowTags": { "type": "array", "items": { "type": "string" } },
+          "blockTags": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

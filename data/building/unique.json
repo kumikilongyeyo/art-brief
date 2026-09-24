@@ -1,0 +1,165 @@
+{
+  "id": "building.unique",
+  "category": "building",
+  "slot": "unique",
+  "entries": [
+    {
+      "id": "its-doors-open-onto",
+      "text": "its doors open onto a different street each dawn",
+      "tier": "notable"
+    },
+    {
+      "id": "its-stairs-have-one",
+      "text": "its stairs have one more step going down than going up",
+      "tier": "minor"
+    },
+    {
+      "id": "rain-never-falls-on",
+      "text": "rain never falls on its roof",
+      "tier": "minor"
+    },
+    {
+      "id": "every-clock-inside-runs",
+      "text": "every clock inside runs a little slow",
+      "tier": "minor"
+    },
+    {
+      "id": "visitors-all-dream-of",
+      "text": "visitors all dream of the same room afterward",
+      "tier": "notable"
+    },
+    {
+      "id": "birds-nest-only-on",
+      "text": "birds nest only on its north side",
+      "tier": "minor"
+    },
+    {
+      "id": "is-larger-inside-than",
+      "text": "is larger inside than out by a whole wing",
+      "tags": [
+        "planar"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "repairs-any-damage-to",
+      "text": "repairs any damage to itself by morning",
+      "tier": "notable"
+    },
+    {
+      "id": "grows-a-new-room",
+      "text": "grows a new room each time a child is born inside",
+      "tier": "legendary"
+    },
+    {
+      "id": "its-bell-tolls-on",
+      "text": "its bell tolls on its own before every death in town",
+      "tags": [
+        "grave"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "hums-a-low-chord",
+      "text": "hums a low chord at midnight",
+      "tier": "minor"
+    },
+    {
+      "id": "casts-its-shadow-upward",
+      "text": "casts its shadow upward onto the clouds",
+      "surreal": true,
+      "tier": "legendary"
+    },
+    {
+      "id": "creeps-a-few-feet",
+      "text": "creeps a few feet each century, leaving furrows",
+      "surreal": true,
+      "tier": "legendary"
+    },
+    {
+      "id": "sits-on-the-sealed",
+      "text": "sits on the sealed door of an ancient prison",
+      "tier": "legendary"
+    },
+    {
+      "id": "was-raised-in-a",
+      "text": "was raised in a single night by fey labourers",
+      "tags": [
+        "fey"
+      ],
+      "themes": [
+        "fey"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "rests-on-a-sleeping",
+      "text": "rests on a sleeping earth elemental as its cornerstone",
+      "tier": "legendary"
+    },
+    {
+      "id": "anyone-who-sleeps-in",
+      "text": "anyone who sleeps in the attic wakes speaking Abyssal",
+      "tier": "notable"
+    },
+    {
+      "id": "its-portraits-age-while",
+      "text": "its portraits age while the residents do not",
+      "tags": [
+        "cursed"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "snow-gathers-indoors-even",
+      "text": "snow gathers indoors even in high summer",
+      "tier": "minor"
+    },
+    {
+      "id": "appears-on-no-map",
+      "text": "appears on no map, magical or mundane",
+      "tier": "notable"
+    },
+    {
+      "id": "its-walls-are-warm",
+      "text": "its walls are warm to the touch, like skin",
+      "tier": "minor"
+    },
+    {
+      "id": "its-cellars-go-down",
+      "text": "its cellars go down into a demiplane of endless vaults",
+      "tags": [
+        "planar"
+      ],
+      "tier": "legendary"
+    },
+    {
+      "id": "a-devil-holds-the",
+      "text": "a devil holds the deed and collects the rent in years",
+      "tags": [
+        "contract",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ],
+      "tier": "legendary"
+    },
+    {
+      "id": "candles-lit-inside-burn",
+      "text": "candles lit inside burn without smoke",
+      "tier": "minor"
+    },
+    {
+      "id": "each-window-shows-a",
+      "text": "each window shows a slightly different season",
+      "surreal": true,
+      "tier": "notable"
+    },
+    {
+      "id": "its-well-answers-questions",
+      "text": "its well answers questions in a drowned voice",
+      "tier": "legendary"
+    }
+  ]
+}

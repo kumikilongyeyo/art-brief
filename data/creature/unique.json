@@ -1,0 +1,159 @@
+{
+  "id": "creature.unique",
+  "category": "creature",
+  "slot": "unique",
+  "entries": [
+    {
+      "id": "flowers-wilt-ring-wherever-it",
+      "text": "flowers wilt in a ring wherever it sleeps",
+      "tier": "minor"
+    },
+    {
+      "id": "it-smells-faintly-rain-hot",
+      "text": "it smells faintly of rain on hot stone",
+      "tier": "minor"
+    },
+    {
+      "id": "footprints-slowly-fill-clear-water",
+      "text": "its footprints slowly fill with clear water",
+      "tier": "minor"
+    },
+    {
+      "id": "birds-fall-silent-while-it",
+      "text": "birds fall silent while it passes",
+      "tier": "minor"
+    },
+    {
+      "id": "blood-runs-cold-blue-faintly",
+      "text": "its blood runs cold, blue and faintly glowing",
+      "tier": "minor"
+    },
+    {
+      "id": "it-purrs-like-distant-rockslide",
+      "text": "it purrs like a distant rockslide",
+      "tier": "minor"
+    },
+    {
+      "id": "moths-gather-it-patient-velvet",
+      "text": "moths gather on it in patient, velvet crowds",
+      "tier": "minor"
+    },
+    {
+      "id": "eyes-reflect-starless-night-sky",
+      "text": "its eyes reflect a starless night sky",
+      "tier": "minor"
+    },
+    {
+      "id": "it-hums-lullaby-no-one",
+      "text": "it hums a lullaby no one taught it",
+      "tier": "minor"
+    },
+    {
+      "id": "frost-feathers-across-any-metal",
+      "text": "frost feathers across any metal it brushes",
+      "tags": [
+        "frost"
+      ],
+      "tier": "minor"
+    },
+    {
+      "id": "shadow-always-points-toward-sun",
+      "text": "its shadow always points toward the sun",
+      "tier": "notable"
+    },
+    {
+      "id": "wounds-heal-into-seams-gold",
+      "text": "its wounds heal into seams of gold",
+      "tags": [
+        "gold"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "every-scale-or-plate-bears",
+      "text": "every scale or plate bears a tiny, perfect rune",
+      "tags": [
+        "rune"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "howl-is-heard-only-by",
+      "text": "its howl is heard only by the dead",
+      "tags": [
+        "necrotic"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "it-casts-two-shadows-one",
+      "text": "it casts two shadows, and one lags behind",
+      "tags": [
+        "shadow"
+      ],
+      "tier": "notable"
+    },
+    {
+      "id": "compass-needles-spin-wildly-presence",
+      "text": "compass needles spin wildly in its presence",
+      "tier": "notable"
+    },
+    {
+      "id": "it-will-not-cross-running",
+      "text": "it will not cross running water",
+      "tier": "notable"
+    },
+    {
+      "id": "reflection-shows-far-older-larger",
+      "text": "its reflection shows a far older, larger beast",
+      "tier": "notable"
+    },
+    {
+      "id": "breath-smells-stranger-s-childhood",
+      "text": "its breath smells of a stranger's childhood home",
+      "tier": "notable"
+    },
+    {
+      "id": "heartbeat-can-be-felt-through",
+      "text": "its heartbeat can be felt through the ground a mile away",
+      "tier": "legendary"
+    },
+    {
+      "id": "tiny-star-orbits-head",
+      "text": "a tiny star orbits its head",
+      "tags": [
+        "astral"
+      ],
+      "tier": "legendary"
+    },
+    {
+      "id": "it-is-last-kind-it",
+      "text": "it is the last of its kind, and it knows",
+      "tags": [
+        "melancholy"
+      ],
+      "tier": "legendary"
+    },
+    {
+      "id": "ruined-walls-briefly-rebuild-themselves",
+      "text": "ruined walls briefly rebuild themselves in its wake",
+      "tags": [
+        "ruin"
+      ],
+      "tier": "legendary"
+    },
+    {
+      "id": "where-it-dies-forest-grows",
+      "text": "where it dies, a forest grows overnight",
+      "tags": [
+        "flora"
+      ],
+      "tier": "legendary"
+    },
+    {
+      "id": "whole-valley-shares-dreams-while",
+      "text": "the whole valley shares its dreams while it sleeps",
+      "tier": "legendary"
+    }
+  ]
+}

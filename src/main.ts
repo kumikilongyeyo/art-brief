@@ -1,0 +1,594 @@
+import './styles.css';
+import { registerSW } from 'virtual:pwa-register';
+import { chatText } from './chat';
+import { copyText } from './clipboard';
+import { loadData } from './data';
+import { countCombinations, formatCount } from './engine/count';
+import { generateBatch, generateVariation, lockedMap, rerollSlots, rollTheme, setLocked, type Pin } from './engine/generate';
+import { chooseFreshBatch, pushRecent } from './engine/recent';
+import { CATEGORY_IDS, WEIRDNESS, type Brief, type CategoryId, type SlotId, type ThemeId, type Weirdness } from './engine/types';
+import { decodeShare, encodeShare, type ShareState } from './share';
+import {
+  addToHistory,
+  clearKey,
+  exportFileName,
+  exportSaved,
+  importSaved,
+  loadHistory,
+  loadRecent,
+  loadSaved,
+  loadSettings,
+  saveHistory,
+  saveRecent,
+  saveSaved,
+  saveSettings,
+  storageAvailable,
+  type Settings,
+} from './storage';
+import { renderCard, type CardHandlers } from './ui/card';
+import { h, icon } from './ui/dom';
+import { renderLists as buildLists } from './ui/history';
+import { openSettings } from './ui/settings';
+import { toast } from './ui/toast';
+
+declare const __APP_VERSION__: string;
+
+const data = loadData();
+const storageOk = storageAvailable();
+let settings: Settings = loadSettings();
+let historyList: Brief[] = loadHistory();
+let saved: Record<string, Brief> = loadSaved();
+let recent: Record<string, string[]> = loadRecent();
+
+const WEIRD_LABEL: Record<Weirdness, string> = { grounded: 'Grounded', mixed: 'Mixed', wild: 'Wild' };
+const SAMPLE_BASE = 'K7Q2PX';
+
+const state = {
+  category: (CATEGORY_IDS.includes(settings.last.category) ? settings.last.category : 'character') as CategoryId,
+  themeChoice: (settings.last.themeChoice === 'any' || data.themeById[settings.last.themeChoice] ? settings.last.themeChoice : 'any') as
+    ThemeId | 'any',
+  count: Math.min(4, Math.max(1, settings.last.count || 2)),
+  weirdness: (WEIRDNESS.includes(settings.last.weirdness) ? settings.last.weirdness : 'mixed') as Weirdness,
+  results: [] as Brief[],
+  sample: null as Brief | null,
+  notice: null as string | null,
+  listsOpen: { history: false, saved: false },
+};
+
+// ---------- helpers ----------
+
+function entropy(): string {
+  const b = new Uint8Array(16);
+  crypto.getRandomValues(b);
+  return Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('');
+}
+
+function persistLast() {
+  settings = {
+    ...settings,
+    last: { category: state.category, themeChoice: state.themeChoice, count: state.count, weirdness: state.weirdness },
+  };
+  saveSettings(settings);
+}
+
+function applyColorScheme() {
+  const root = document.documentElement;
+  if (settings.colorScheme === 'system') delete root.dataset.theme;
+  else root.dataset.theme = settings.colorScheme;
+}
+
+async function doCopy(text: string, okMsg = 'Copied') {
+  const ok = await copyText(text);
+  toast(ok ? okMsg : 'Copy failed — select the text and copy manually');
+  return ok;
+}
+
+function shareUrl(s: ShareState): string {
+  return `${location.origin}${location.pathname}${encodeShare(s)}`;
+}
+
+function replaceInHistory(oldId: string, next: Brief) {
+  historyList = historyList.some((b) => b.id === oldId)
+    ? historyList.map((b) => (b.id === oldId ? next : b))
+    : addToHistory(historyList, [next]);
+  historyList = historyList.filter((b, i, arr) => arr.findIndex((x) => x.id === b.id) === i);
+  saveHistory(historyList);
+}
+
+// ---------- skeleton ----------
+
+const app = document.getElementById('app')!;
+const settingsBtn = h(
+  'button',
+  { class: 'icon-btn', type: 'button', 'aria-label': 'Settings', onclick: () => showSettings() },
+  icon('gear'),
+);
+const pillsEl = h('div', { class: 'pills', role: 'group', 'aria-label': 'Category' });
+const themeSelect = h('select', { class: 'theme', id: 'theme', 'aria-label': 'Theme' });
+const countSeg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Variations' });
+const weirdSeg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Weirdness' });
+const generateBtn = h('button', { class: 'generate', type: 'button', id: 'generate', onclick: () => generate() }, 'Generate');
+const noticesEl = h('div', { 'aria-live': 'polite' });
+const resultsEl = h('section', { class: 'results', 'aria-label': 'Results', id: 'results' });
+const listsEl = h('div');
+const footEl = h('footer', { class: 'foot' });
+
+app.append(
+  h(
+    'div',
+    { class: 'wrap' },
+    h(
+      'header',
+      { class: 'top' },
+      h('div', { class: 'brand' }, h('span', { class: 'brand-mark', 'aria-hidden': 'true' }), 'Art Brief'),
+      settingsBtn,
+    ),
+    h(
+      'main',
+      {},
+      h('h1', { class: 'ask' }, 'What do you want to create?'),
+      pillsEl,
+      h('div', { class: 'field-row' }, h('label', { class: 'label', for: 'theme' }, 'Theme'), themeSelect),
+      h('div', { class: 'field-row' }, h('span', { class: 'label' }, 'Variations'), countSeg),
+      h('div', { class: 'field-row' }, h('span', { class: 'label' }, 'Weirdness'), weirdSeg),
+      generateBtn,
+      h('p', { class: 'hint' }, 'Enter or Space to generate · lock a line to keep it'),
+      noticesEl,
+      resultsEl,
+      listsEl,
+    ),
+    footEl,
+  ),
+);
+
+themeSelect.append(h('option', { value: 'any' }, 'Any (surprise me)'), ...data.themes.map((t) => h('option', { value: t.id }, t.name)));
+themeSelect.addEventListener('change', () => {
+  state.themeChoice = themeSelect.value as ThemeId | 'any';
+  persistLast();
+});
+
+function renderControls() {
+  pillsEl.replaceChildren(
+    ...CATEGORY_IDS.map((c) =>
+      h(
+        'button',
+        {
+          class: 'pill',
+          type: 'button',
+          'aria-pressed': String(state.category === c),
+          'data-category': c,
+          onclick: () => {
+            state.category = c;
+            persistLast();
+            renderControls();
+            renderFooter();
+            (pillsEl.querySelector(`[data-category="${c}"]`) as HTMLElement | null)?.focus();
+          },
+        },
+        data.categories[c].name,
+      ),
+    ),
+  );
+  themeSelect.value = state.themeChoice;
+  const seg = (el: HTMLElement, items: { v: string; label: string; aria: string }[], current: string, set: (v: string) => void) => {
+    el.replaceChildren(
+      ...items.map((it) =>
+        h(
+          'button',
+          {
+            type: 'button',
+            'aria-pressed': String(it.v === current),
+            'aria-label': it.aria,
+            'data-value': it.v,
+            onclick: () => {
+              set(it.v);
+              persistLast();
+              renderControls();
+              (el.querySelector(`[data-value="${it.v}"]`) as HTMLElement | null)?.focus();
+            },
+          },
+          it.label,
+        ),
+      ),
+    );
+  };
+  seg(
+    countSeg,
+    [1, 2, 3, 4].map((n) => ({ v: String(n), label: String(n), aria: `${n} variation${n > 1 ? 's' : ''}` })),
+    String(state.count),
+    (v) => (state.count = Number(v)),
+  );
+  seg(
+    weirdSeg,
+    WEIRDNESS.map((w) => ({ v: w, label: WEIRD_LABEL[w], aria: `Weirdness ${WEIRD_LABEL[w]}` })),
+    state.weirdness,
+    (v) => (state.weirdness = v as Weirdness),
+  );
+}
+
+function renderNotices() {
+  const items: HTMLElement[] = [];
+  if (!storageOk)
+    items.push(
+      h(
+        'p',
+        { class: 'notice', id: 'storage-notice' },
+        'Saving is off in this browser mode — briefs will not be kept after you close the page.',
+      ),
+    );
+  if (state.notice) items.push(h('p', { class: 'notice', id: 'data-notice' }, state.notice));
+  noticesEl.replaceChildren(...items);
+}
+
+function renderFooter() {
+  const n = countCombinations(data, state.category);
+  footEl.replaceChildren(
+    h('p', { id: 'combo-count' }, `${formatCount(n)} ${data.categories[state.category].name} briefs possible`),
+    h('p', {}, `app ${__APP_VERSION__} · data ${data.version}`),
+  );
+}
+
+const cardHandlers: CardHandlers = {
+  toggleLock(i, slots) {
+    const b = state.results[i];
+    if (!b) return;
+    const locked = slots.every((s) => b.fields[s]?.locked);
+    state.results[i] = setLocked(b, slots, !locked);
+    replaceInHistory(b.id, state.results[i]);
+    rerenderCard(i);
+  },
+  reroll(i, slots) {
+    const b = state.results[i];
+    if (!b) return;
+    const next = rerollSlots(data, b, slots, settings.uniqueFrequency);
+    next.createdAt = Date.now();
+    state.results[i] = next;
+    replaceInHistory(b.id, next);
+    rerenderCard(i);
+    renderLists();
+  },
+  copy(i) {
+    const b = state.results[i];
+    if (b) void doCopy(b.plainText);
+  },
+  copyChat(i) {
+    const b = state.results[i];
+    if (!b) return;
+    void doCopy(chatText([b], settings.instruction), 'Copied for ChatGPT');
+    if (settings.openChatGPT) window.open('https://chatgpt.com/', '_blank', 'noopener');
+  },
+  save(i) {
+    const b = state.results[i];
+    if (!b) return;
+    if (saved[b.id]) delete saved[b.id];
+    else saved[b.id] = b;
+    saved = { ...saved };
+    saveSaved(saved);
+    toast(saved[b.id] ? 'Saved' : 'Removed from saved');
+    rerenderCard(i);
+    renderLists();
+  },
+  link(i) {
+    const b = state.results[i];
+    if (!b) return;
+    const fields: Record<SlotId, string> = {};
+    for (const [s, f] of Object.entries(b.fields)) fields[s] = f.entryId;
+    const url = shareUrl({
+      category: b.category,
+      themeChoice: b.theme,
+      weirdness: b.weirdness,
+      count: 1,
+      base: b.base,
+      version: b.dataVersion,
+      uniqueFrequency: settings.uniqueFrequency,
+      index: b.index,
+      seed: b.seed,
+      fields,
+      locked: lockedMap(b),
+    });
+    void doCopy(url, 'Link copied');
+  },
+  swatch(hex) {
+    void doCopy(hex, `Copied ${hex}`);
+  },
+};
+
+function cardFor(b: Brief, i: number): HTMLElement {
+  return renderCard(b, { index: i, saved: !!saved[b.id], showChatGPT: settings.showChatGPT, data }, cardHandlers);
+}
+
+function rerenderCard(i: number) {
+  const focusKey = (document.activeElement as HTMLElement | null)?.dataset?.focus;
+  const old = resultsEl.querySelectorAll('.card')[i];
+  const b = state.results[i];
+  if (!old || !b) return renderResults();
+  const next = cardFor(b, i);
+  next.style.animation = 'none';
+  old.replaceWith(next);
+  if (focusKey) (next.querySelector(`[data-focus="${focusKey}"]`) as HTMLElement | null)?.focus();
+}
+
+function renderResults() {
+  const kids: HTMLElement[] = [];
+  if (state.results.length >= 2) {
+    kids.push(
+      h(
+        'div',
+        { class: 'results-bar' },
+        h(
+          'button',
+          {
+            class: 'btn',
+            type: 'button',
+            id: 'copy-all',
+            onclick: () => void doCopy(state.results.map((b) => b.plainText).join('\n\n---\n\n'), 'Copied all'),
+          },
+          icon('copy'),
+          'Copy all',
+        ),
+        settings.showChatGPT
+          ? h(
+              'button',
+              {
+                class: 'btn',
+                type: 'button',
+                id: 'copy-all-chat',
+                onclick: () => {
+                  void doCopy(chatText(state.results, settings.instruction), 'Copied all for ChatGPT');
+                  if (settings.openChatGPT) window.open('https://chatgpt.com/', '_blank', 'noopener');
+                },
+              },
+              icon('chat'),
+              'Copy all for ChatGPT',
+            )
+          : null,
+      ),
+    );
+  }
+  const cards = h('div', { class: 'cards' });
+  if (state.sample && !state.results.length) {
+    cards.append(renderCard(state.sample, { index: -1, saved: false, showChatGPT: false, sample: true, data }, cardHandlers));
+  }
+  state.results.forEach((b, i) => cards.append(cardFor(b, i)));
+  kids.push(cards);
+  resultsEl.replaceChildren(...kids);
+  resultsEl.hidden = !state.results.length && !state.sample;
+}
+
+function renderLists() {
+  const savedList = Object.values(saved).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  const el = buildLists(historyList, savedList, data, state.listsOpen, {
+    restore(b) {
+      state.results = [b];
+      state.sample = null;
+      state.category = b.category;
+      persistLast();
+      renderControls();
+      renderFooter();
+      renderResults();
+      resultsEl.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    },
+    toggle(which, open) {
+      state.listsOpen[which] = open;
+    },
+  });
+  listsEl.replaceChildren(el);
+}
+
+// ---------- actions ----------
+
+let busy = false;
+
+function generate() {
+  if (busy) return;
+  busy = true;
+  generateBtn.setAttribute('aria-disabled', 'true');
+  window.setTimeout(() => {
+    busy = false;
+    generateBtn.removeAttribute('aria-disabled');
+  }, 150);
+
+  const cat = data.categories[state.category];
+  const locks = state.results.map((b) => (b.category === state.category ? lockedMap(b) : undefined));
+  const { briefs } = chooseFreshBatch(
+    data,
+    {
+      category: state.category,
+      themeChoice: state.themeChoice,
+      weirdness: state.weirdness,
+      count: state.count,
+      uniqueFrequency: settings.uniqueFrequency,
+      locks,
+      createdAt: Date.now(),
+    },
+    entropy(),
+    recent[state.category] ?? [],
+  );
+  state.results = briefs;
+  state.sample = null;
+  state.notice = null;
+  historyList = addToHistory(historyList, briefs);
+  saveHistory(historyList);
+  recent = {
+    ...recent,
+    [state.category]: pushRecent(
+      recent[state.category] ?? [],
+      briefs.map((b) => b.fields[cat.primarySlot].entryId),
+    ),
+  };
+  saveRecent(recent);
+  renderNotices();
+  renderResults();
+  renderLists();
+}
+
+function applyShare(s: ShareState) {
+  state.category = s.category;
+  state.themeChoice = s.themeChoice;
+  state.weirdness = s.weirdness;
+  state.count = s.count;
+  let briefs: Brief[];
+  if (s.index !== undefined && s.fields) {
+    const pins: Record<SlotId, Pin> = {};
+    for (const [slot, entryId] of Object.entries(s.fields)) pins[slot] = { entryId, locked: s.locked?.[slot] === entryId };
+    for (const [slot, entryId] of Object.entries(s.locked ?? {})) if (!pins[slot]) pins[slot] = { entryId, locked: true };
+    const theme = s.themeChoice === 'any' ? rollTheme(data, s.base, s.index) : s.themeChoice;
+    briefs = [
+      generateVariation(data, {
+        category: s.category,
+        theme,
+        themeChoice: s.themeChoice,
+        weirdness: s.weirdness,
+        base: s.base,
+        index: s.index,
+        seed: s.seed ?? `${s.base}-${s.index}`,
+        uniqueFrequency: s.uniqueFrequency,
+        pins,
+        createdAt: Date.now(),
+      }),
+    ];
+  } else {
+    briefs = generateBatch(data, {
+      category: s.category,
+      themeChoice: s.themeChoice,
+      weirdness: s.weirdness,
+      count: s.count,
+      base: s.base,
+      uniqueFrequency: s.uniqueFrequency,
+      locks: s.locked ? Array.from({ length: s.count }, () => s.locked) : undefined,
+      createdAt: Date.now(),
+    });
+  }
+  state.results = briefs;
+  state.sample = null;
+  state.notice = s.version && s.version !== data.version ? 'Made with older data; some lines may differ.' : null;
+  historyList = addToHistory(historyList, briefs);
+  saveHistory(historyList);
+  persistLast();
+}
+
+function showSettings() {
+  openSettings(
+    settings,
+    {
+      appVersion: __APP_VERSION__,
+      dataVersion: data.version,
+      savedCount: Object.keys(saved).length,
+      historyCount: historyList.length,
+      storageOk,
+    },
+    {
+      change(patch) {
+        const chatChanged = patch.showChatGPT !== undefined && patch.showChatGPT !== settings.showChatGPT;
+        settings = { ...settings, ...patch };
+        saveSettings(settings);
+        applyColorScheme();
+        if (chatChanged) renderResults();
+      },
+      exportSaved() {
+        const blob = new Blob([exportSaved(saved)], { type: 'application/json' });
+        const a = h('a', { href: URL.createObjectURL(blob), download: exportFileName() });
+        document.body.append(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        toast(`Exported ${Object.keys(saved).length} saved`);
+      },
+      async importSaved(file) {
+        try {
+          const r = importSaved(saved, await file.text());
+          saved = r.saved;
+          saveSaved(saved);
+          toast(`Imported ${r.added} new`);
+          renderResults();
+          renderLists();
+        } catch {
+          toast('That file is not an Art Brief export');
+        }
+      },
+      clearHistory() {
+        historyList = [];
+        clearKey('history');
+        renderLists();
+        toast('History cleared');
+      },
+      clearSaved() {
+        saved = {};
+        clearKey('saved');
+        renderResults();
+        renderLists();
+        toast('Saved cleared');
+      },
+    },
+    settingsBtn,
+  );
+}
+
+// Enter / Space generate unless focus is in something that handles those keys itself.
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
+  const t = e.target as HTMLElement | null;
+  if (t && t.closest('input, textarea, select, button, a, summary, [contenteditable], [role="dialog"]')) return;
+  e.preventDefault();
+  generate();
+});
+
+// ---------- boot ----------
+
+applyColorScheme();
+const shared = decodeShare(location.hash, data);
+if (shared) {
+  applyShare(shared);
+  history.replaceState(null, '', location.pathname + location.search);
+} else if (!historyList.length) {
+  state.sample = generateBatch(data, {
+    category: 'character',
+    themeChoice: 'fey',
+    weirdness: 'mixed',
+    count: 1,
+    base: SAMPLE_BASE,
+    uniqueFrequency: 'sometimes',
+  })[0];
+}
+renderControls();
+renderNotices();
+renderResults();
+renderLists();
+renderFooter();
+
+// A share link opened while the app is already showing in this tab only changes the hash.
+window.addEventListener('hashchange', () => {
+  const s = decodeShare(location.hash, data);
+  if (!s) return;
+  applyShare(s);
+  history.replaceState(null, '', location.pathname + location.search);
+  renderControls();
+  renderNotices();
+  renderResults();
+  renderLists();
+  renderFooter();
+});
+
+// ---------- service worker / update pill ----------
+
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  const updateSW = registerSW({
+    onNeedRefresh() {
+      if (document.getElementById('update-pill')) return;
+      const pill = h(
+        'button',
+        { class: 'update-pill', id: 'update-pill', type: 'button', onclick: () => void updateSW(true) },
+        'New version — Refresh',
+      );
+      document.body.append(pill);
+    },
+    onRegisteredSW(_url, reg) {
+      if (!reg) return;
+      setInterval(() => void reg.update(), 60 * 60 * 1000);
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') void reg.update();
+      });
+    },
+  });
+}

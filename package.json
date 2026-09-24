@@ -1,0 +1,35 @@
+{
+  "name": "art-brief",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fantasy Art Brief Generator — static PWA",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "validate": "tsx scripts/validate-data.ts",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "ci": "npm run validate && npm run test && npm run build",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2",
+    "ajv": "^8.20.0",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.9",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vite": "^8.3.0",
+    "vite-plugin-pwa": "^1.3.0",
+    "vitest": "^5.0.1",
+    "workbox-window": "^7.4.1"
+  }
+}

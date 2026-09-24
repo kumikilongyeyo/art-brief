@@ -1,0 +1,94 @@
+{
+  "id": "creature.scale",
+  "category": "creature",
+  "slot": "scale",
+  "entries": [
+    {
+      "id": "mouse-sized",
+      "text": "mouse-sized",
+      "weight": 3,
+      "tags": [
+        "tiny"
+      ]
+    },
+    {
+      "id": "cat-sized",
+      "text": "cat-sized",
+      "tags": [
+        "tiny"
+      ]
+    },
+    {
+      "id": "fox-sized",
+      "text": "fox-sized",
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "wolf-sized",
+      "text": "wolf-sized",
+      "tags": [
+        "small"
+      ]
+    },
+    {
+      "id": "human-sized",
+      "text": "human-sized",
+      "tags": [
+        "medium"
+      ]
+    },
+    {
+      "id": "bear-sized",
+      "text": "bear-sized",
+      "tags": [
+        "medium"
+      ]
+    },
+    {
+      "id": "horse-sized",
+      "text": "horse-sized",
+      "tags": [
+        "large"
+      ]
+    },
+    {
+      "id": "elephant-sized",
+      "text": "elephant-sized",
+      "tags": [
+        "large"
+      ]
+    },
+    {
+      "id": "house-sized",
+      "text": "house-sized",
+      "tags": [
+        "huge"
+      ]
+    },
+    {
+      "id": "long-as-war-galley",
+      "text": "long as a war galley",
+      "tags": [
+        "huge"
+      ]
+    },
+    {
+      "id": "whale-sized",
+      "text": "whale-sized",
+      "weight": 3,
+      "tags": [
+        "huge"
+      ]
+    },
+    {
+      "id": "cathedral-sized",
+      "text": "cathedral-sized",
+      "weight": 2,
+      "tags": [
+        "huge"
+      ]
+    }
+  ]
+}

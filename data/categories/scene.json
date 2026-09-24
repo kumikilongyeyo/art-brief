@@ -1,0 +1,22 @@
+{
+  "id": "scene",
+  "name": "Scene",
+  "primarySlot": "location",
+  "baseTags": ["cat-scene", "place"],
+  "slots": [
+    { "id": "location", "kind": "table", "table": "scene.location" },
+    { "id": "time", "kind": "table", "table": "scene.time" },
+    { "id": "event", "kind": "event", "table": "scene.event", "actors": "scene.actors" },
+    { "id": "composition", "kind": "table", "table": "scene.composition" },
+    { "id": "mood", "kind": "table", "table": "scene.mood" },
+    { "id": "palette", "kind": "palette" },
+    { "id": "unique", "kind": "unique", "table": "scene.unique" },
+    { "id": "name", "kind": "name" }
+  ],
+  "optionalSlots": ["composition", "unique"],
+  "dependencies": {
+    "location": ["name", "composition"]
+  },
+  "dropOrder": ["composition", "mood"],
+  "template": "scene.default"
+}

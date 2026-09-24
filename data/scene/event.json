@@ -1,0 +1,238 @@
+{
+  "id": "scene.event",
+  "category": "scene",
+  "slot": "event",
+  "entries": [
+    {
+      "id": "haggles-b-over-jar-stolen",
+      "text": "{a} haggles with {b} over a jar of stolen names",
+      "tags": [
+        "trickster"
+      ]
+    },
+    {
+      "id": "duels-b-collapsing-bridge",
+      "text": "{a} duels {b} on a collapsing bridge",
+      "tags": [
+        "violent"
+      ]
+    },
+    {
+      "id": "kneels-be-knighted-by-b",
+      "text": "{a} kneels to be knighted by {b}",
+      "tags": [
+        "noble",
+        "heroic"
+      ]
+    },
+    {
+      "id": "drags-b-out-churning-water",
+      "text": "{a} drags {b} out of the churning water"
+    },
+    {
+      "id": "reads-forbidden-scroll-aloud-as",
+      "text": "{a} reads a forbidden scroll aloud as {b} lunges to stop it",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "b-share-campfire-wary-silence",
+      "text": "{a} and {b} share a campfire in wary silence"
+    },
+    {
+      "id": "offers-b-contract-written-smouldering",
+      "text": "{a} offers {b} a contract written in smouldering ink",
+      "tags": [
+        "contract",
+        "fiend"
+      ]
+    },
+    {
+      "id": "steals-glowing-egg-from-nest",
+      "text": "{a} steals a glowing egg from the nest of {b}"
+    },
+    {
+      "id": "leads-candlelit-funeral-procession-for",
+      "text": "{a} leads a candlelit funeral procession for {b}",
+      "tags": [
+        "grave",
+        "melancholy"
+      ]
+    },
+    {
+      "id": "is-ambushed-by-b-midway",
+      "text": "{a} is ambushed by {b} midway across a ford",
+      "tags": [
+        "violent"
+      ]
+    },
+    {
+      "id": "unmasks-b-at-height-revel",
+      "text": "{a} unmasks {b} at the height of the revel",
+      "tags": [
+        "glamour"
+      ]
+    },
+    {
+      "id": "teaches-b-read-by-candlelight",
+      "text": "{a} teaches {b} to read by candlelight"
+    },
+    {
+      "id": "crowns-b-wreath-thorns",
+      "text": "{a} crowns {b} with a wreath of thorns",
+      "tags": [
+        "flora"
+      ]
+    },
+    {
+      "id": "chalks-warding-rune-while-b",
+      "text": "{a} chalks a warding rune while {b} keeps watch",
+      "tags": [
+        "rune"
+      ]
+    },
+    {
+      "id": "flees-across-rooftops-b-close",
+      "text": "{a} flees across the rooftops with {b} close behind"
+    },
+    {
+      "id": "offers-sword-hilt-first-b",
+      "text": "{a} offers a sword hilt-first to {b}",
+      "tags": [
+        "noble"
+      ]
+    },
+    {
+      "id": "binds-wounds-b-after-battle",
+      "text": "{a} binds the wounds of {b} after the battle"
+    },
+    {
+      "id": "b-race-catch-falling-star",
+      "text": "{a} and {b} race to catch a falling star",
+      "tags": [
+        "astral"
+      ]
+    },
+    {
+      "id": "summons-b-inside-circle-salt",
+      "text": "{a} summons {b} inside a circle of salt and candles",
+      "tags": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "rows-b-across-black-river",
+      "text": "{a} rows {b} across a black river for a single coin",
+      "tags": [
+        "grave"
+      ]
+    },
+    {
+      "id": "gambles-b-for-fate-village",
+      "text": "{a} gambles with {b} for the fate of a village"
+    },
+    {
+      "id": "wakes-chains-before-b",
+      "text": "{a} wakes in chains before {b}"
+    },
+    {
+      "id": "hides-from-b-beneath-overturned",
+      "text": "{a} hides from {b} beneath an overturned cart"
+    },
+    {
+      "id": "paints-portrait-b-who-will",
+      "text": "{a} paints a portrait of {b}, who will not sit still",
+      "tags": [
+        "comic"
+      ]
+    },
+    {
+      "id": "is-arrested-by-b-for",
+      "text": "{a} is arrested by {b} for a crime not yet committed"
+    },
+    {
+      "id": "dances-b-while-hall-burns",
+      "text": "{a} dances with {b} while the hall burns",
+      "tags": [
+        "romantic"
+      ]
+    },
+    {
+      "id": "tears-open-portal-b-leaps",
+      "text": "{a} tears open a portal and {b} leaps through",
+      "tags": [
+        "portal",
+        "planar"
+      ]
+    },
+    {
+      "id": "holds-lantern-high-as-b",
+      "text": "{a} holds a lantern high as {b} claws free of a grave",
+      "tags": [
+        "grave"
+      ]
+    },
+    {
+      "id": "returns-stolen-crown-b",
+      "text": "{a} returns a stolen crown to {b}"
+    },
+    {
+      "id": "spars-b-using-wooden-swords",
+      "text": "{a} spars with {b} using wooden swords in the rain",
+      "tags": [
+        "martial"
+      ]
+    },
+    {
+      "id": "performs-for-crowd-while-b",
+      "text": "{a} performs for a crowd while {b} picks pockets",
+      "tags": [
+        "performer",
+        "comic"
+      ]
+    },
+    {
+      "id": "stands-alone-against-charging-horde",
+      "text": "{a} stands alone against a charging horde",
+      "tags": [
+        "heroic"
+      ]
+    },
+    {
+      "id": "kneels-weeping-over-shattered-relic",
+      "text": "{a} kneels weeping over a shattered relic",
+      "tags": [
+        "melancholy"
+      ]
+    },
+    {
+      "id": "tames-b-single-outstretched-hand",
+      "text": "{a} tames {b} with a single outstretched hand"
+    },
+    {
+      "id": "hands-b-sealed-letter-which",
+      "text": "{a} hands {b} a sealed letter, which is burned unread"
+    },
+    {
+      "id": "bargains-b-through-bars-cage",
+      "text": "{a} bargains with {b} through the bars of a cage",
+      "tags": [
+        "chains"
+      ]
+    },
+    {
+      "id": "carries-b-piggyback-out-collapsing",
+      "text": "{a} carries {b} piggyback out of a collapsing mine",
+      "tags": [
+        "subterranean"
+      ]
+    },
+    {
+      "id": "b-play-chess-pieces-that",
+      "text": "{a} and {b} play chess with pieces that bleed",
+      "weight": 3,
+      "surreal": true
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "scene.mood",
+  "category": "scene",
+  "slot": "mood",
+  "entries": [
+    {
+      "id": "whimsical-but-wrong",
+      "text": "whimsical but wrong",
+      "tags": [
+        "whimsical",
+        "eerie"
+      ],
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "quietly-triumphant",
+      "text": "quietly triumphant",
+      "tags": [
+        "heroic"
+      ]
+    },
+    {
+      "id": "dread-beneath-calm",
+      "text": "dread beneath the calm",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "tender-exhausted",
+      "text": "tender and exhausted",
+      "tags": [
+        "melancholy"
+      ]
+    },
+    {
+      "id": "feverish-celebration",
+      "text": "feverish celebration",
+      "tags": [
+        "festive"
+      ]
+    },
+    {
+      "id": "hushed-reverence",
+      "text": "hushed reverence",
+      "tags": [
+        "serene",
+        "holy"
+      ]
+    },
+    {
+      "id": "bitter-victory",
+      "text": "a bitter victory",
+      "tags": [
+        "melancholy",
+        "grim"
+      ]
+    },
+    {
+      "id": "playful-menace",
+      "text": "playful menace",
+      "tags": [
+        "trickster"
+      ]
+    },
+    {
+      "id": "grief-hardening-into-resolve",
+      "text": "grief hardening into resolve"
+    },
+    {
+      "id": "sacred-terror",
+      "text": "sacred terror",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "cosy-dangerous-place",
+      "text": "cosy in a dangerous place",
+      "tags": [
+        "serene"
+      ]
+    },
+    {
+      "id": "awe-at-impossible-scale",
+      "text": "awe at an impossible scale",
+      "tags": [
+        "mysterious"
+      ]
+    },
+    {
+      "id": "simmering-betrayal",
+      "text": "simmering betrayal",
+      "tags": [
+        "mysterious"
+      ]
+    },
+    {
+      "id": "desperate-stubborn-hope",
+      "text": "desperate, stubborn hope"
+    },
+    {
+      "id": "lonely-serene",
+      "text": "lonely and serene",
+      "tags": [
+        "serene",
+        "melancholy"
+      ]
+    },
+    {
+      "id": "frantic-joyful-chaos",
+      "text": "frantic, joyful chaos",
+      "tags": [
+        "festive",
+        "comic"
+      ]
+    },
+    {
+      "id": "uncanny-stillness",
+      "text": "uncanny stillness",
+      "tags": [
+        "eerie"
+      ]
+    },
+    {
+      "id": "romantic-doomed",
+      "text": "romantic and doomed",
+      "tags": [
+        "romantic",
+        "gothic"
+      ]
+    },
+    {
+      "id": "gallows-humour",
+      "text": "gallows humour",
+      "tags": [
+        "comic",
+        "grim"
+      ]
+    }
+  ]
+}
