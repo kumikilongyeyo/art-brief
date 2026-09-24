@@ -1,0 +1,223 @@
+{
+  "id": "character.lore-purpose",
+  "category": "character",
+  "slot": "lore-purpose",
+  "entries": [
+    {
+      "id": "trained-them-as-harder-than",
+      "text": "{npc} trained them as {al:subclass} {l:class}, harder than was kind",
+      "weight": 3
+    },
+    {
+      "id": "the-road-made-one-hard",
+      "text": "The road made {first} {al:subclass} {l:class}, one hard lesson at a time",
+      "weight": 3
+    },
+    {
+      "id": "then-came-the-calling-became",
+      "text": "Then came the calling: {first} became {a:class}",
+      "weight": 3
+    },
+    {
+      "id": "it-took-one-bad-year",
+      "text": "It took {npc} one bad year to make {al:class} of them",
+      "weight": 3
+    },
+    {
+      "id": "nobody-chose-it-for-them",
+      "text": "Nobody chose it for them; {first} simply woke up {a:class}",
+      "weight": 2
+    },
+    {
+      "id": "became-the-hard-way-by",
+      "text": "{first} became {al:subclass} {l:class} the hard way, by surviving",
+      "weight": 3
+    },
+    {
+      "id": "saw-the-spark-and-made",
+      "text": "{npc} saw the spark and made {first} {al:class}",
+      "weight": 3
+    },
+    {
+      "id": "grief-made-nothing-else-would",
+      "text": "Grief made {first} {al:subclass} {l:class}; nothing else would have",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "taught-them-to-walk-among",
+      "text": "{npc} taught them to walk among graves as {al:class}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-contract-made-paid-for",
+      "text": "The contract made {first} {al:subclass} {l:class}, paid for in instalments",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "an-archfey-made-on-a",
+      "text": "An archfey made {first} {al:class} on a whim, then forgot why",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-voice-from-above-named",
+      "text": "A voice from above named {first} {al:subclass} {l:class}, like it or not",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "signed-them-aboard-and-the",
+      "text": "{npc} signed them aboard, and the sea made {al:class} of them",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "in-the-lightless-deep-learned",
+      "text": "In the lightless deep, {first} learned to survive as {a:class}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "one-failed-spell-later-was",
+      "text": "One failed spell later, {first} was {al:subclass} {l:class}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-clans-tested-in-the",
+      "text": "The clans tested {first} in the wild and named them {al:class}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "nine-winters-on-the-ice",
+      "text": "Nine winters on the ice turned {first} into {a:class}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "hammered-them-into-like-hot",
+      "text": "{npc} hammered them into {al:subclass} {l:class} like hot iron",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-dragon-s-shadow-over",
+      "text": "A dragon's shadow over the village made {first} {al:subclass} {l:class}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "dragged-them-across-a-dozen",
+      "text": "{npc} dragged them across a dozen planes, and they came back {a:class}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-funeral-made-and-they",
+      "text": "A funeral made {first} {al:subclass} {l:class}, and they never went home",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "brokered-the-deal-that-made",
+      "text": "{npc} brokered the deal that made them {al:class}",
+      "weight": 8,
+      "themes": [
+        "infernal",
+        "planar"
+      ]
+    },
+    {
+      "id": "a-hag-s-riddle-answered",
+      "text": "A hag's riddle, answered wrong, made {first} {al:class}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "knighted-them-on-the-temple",
+      "text": "{npc} knighted them on the temple steps: {al:subclass} {l:class}",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "years-of-storm-and-tide",
+      "text": "Years of storm and tide made {first} {a:class}",
+      "weight": 8,
+      "themes": [
+        "nautical",
+        "frost"
+      ]
+    },
+    {
+      "id": "led-them-out-of-the",
+      "text": "{npc} led them out of the deep roads as {al:class}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "took-them-on-and-one",
+      "text": "{npc} took them on, and one scorched workshop later they were {al:class}",
+      "weight": 8,
+      "themes": [
+        "arcane",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "an-old-beast-spirit-chose",
+      "text": "An old beast-spirit chose {first} to be {al:subclass} {l:class}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "found-them-half-frozen-and",
+      "text": "{npc} found them half-frozen and made {al:class} of them",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    }
+  ]
+}

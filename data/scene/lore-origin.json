@@ -1,0 +1,255 @@
+{
+  "id": "scene.lore-origin",
+  "category": "scene",
+  "slot": "lore-origin",
+  "entries": [
+    {
+      "id": "swore-never-to-go-back",
+      "text": "{npc} swore never to go back to {the:location}",
+      "weight": 4
+    },
+    {
+      "id": "nothing-good-ever-happened-at",
+      "text": "Nothing good ever happened at {the:location}, {era} or since",
+      "weight": 4
+    },
+    {
+      "id": "found-and-never-quite-left",
+      "text": "{npc} found {the:location} {era}, and never quite left",
+      "weight": 3
+    },
+    {
+      "id": "everyone-knew-the-story-of",
+      "text": "Everyone knew the story of {the:location}, and {npc} told it best",
+      "weight": 3
+    },
+    {
+      "id": "it-began-at-with-a",
+      "text": "It began at {the:location}, with a promise {npc} could not keep",
+      "weight": 4
+    },
+    {
+      "id": "locals-still-call-it-after",
+      "text": "Locals still call it {name}, after something {npc} did {era}",
+      "weight": 4
+    },
+    {
+      "id": "hid-a-secret-at-and",
+      "text": "{npc} hid a secret at {the:location} and never came back for it",
+      "weight": 4
+    },
+    {
+      "id": "before-it-went-wrong-tended",
+      "text": "Before it went wrong, {npc} tended {the:location}",
+      "weight": 4
+    },
+    {
+      "id": "a-massacre-at-left-only",
+      "text": "A massacre at {the:location} left only {npc} alive",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "hanged-the-wrong-traitor-at",
+      "text": "{npc} hanged the wrong traitor at {the:location}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sold-to-a-devil-and",
+      "text": "{npc} sold {the:location} to a devil, and skimmed the fine print",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-devils-contract-was-sealed",
+      "text": "A devil's contract was sealed at {the:location}, witnessed by {npc}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "an-angel-came-down-at",
+      "text": "{era}, an angel came down at {the:location}, and {npc} saw it land",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "raised-a-shrine-at-and",
+      "text": "{npc} raised a shrine at {the:location}, and the gods noticed",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "an-archfey-won-from-in",
+      "text": "An archfey won {the:location} from {npc} in a riddle game",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "ate-one-fey-fruit-at",
+      "text": "{npc} ate one fey fruit at {the:location} and lost a decade",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "dug-the-first-graves-at",
+      "text": "{npc} dug the first graves at {the:location}, {era}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "died-at-and-did-not",
+      "text": "{npc} died at {the:location}, and did not stay down",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "washed-up-at-the-only",
+      "text": "{npc} washed up at {the:location}, the only survivor of a wreck",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "smugglers-once-used-and-kept",
+      "text": "Smugglers once used {the:location}, and {npc} kept the tide-charts",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "first-heard-the-deep-drums",
+      "text": "{npc} first heard the deep drums at {the:location}, {era}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "when-the-drow-claimed-was",
+      "text": "When the drow claimed {the:location}, {npc} was their hostage",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-spell-cast-by-went",
+      "text": "{era}, a spell cast by {npc} went badly wrong at {the:location}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "mapped-every-ley-line-through",
+      "text": "{npc} mapped every ley line through {the:location}, and found one too many",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "marked-as-clan-ground-in",
+      "text": "{npc} marked {the:location} as clan ground, in blood and ochre",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-great-beast-died-at",
+      "text": "A great beast died at {the:location}, and {npc} ate its heart",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "froze-and-only-walked-out",
+      "text": "{the:location} froze {era}, and only {npc} walked out",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-long-winter-took-and",
+      "text": "The long winter took {the:location}, and {npc} counted the dead",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "lit-a-fire-at-and",
+      "text": "{npc} lit a fire at {the:location}, and it never quite went out",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "tempered-a-blade-at-and",
+      "text": "{npc} tempered a blade at {the:location}, and the ground still smokes",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-dragon-was-slain-at",
+      "text": "A dragon was slain at {the:location}, and {npc} took the credit",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "heroes-once-rallied-at-and",
+      "text": "Heroes once rallied at {the:location}, and {npc} carried their banner",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-portal-tore-open-at",
+      "text": "A portal tore open at {the:location}, and {npc} stepped out",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "won-in-a-card-game",
+      "text": "{npc} won {the:location} in a card game in Sigil",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

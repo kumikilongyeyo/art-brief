@@ -454,6 +454,39 @@ select.theme {
   font-size: 12px;
 }
 
+.lore {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+}
+.lore-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lore-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lore-actions {
+  display: flex;
+}
+.lore-text {
+  margin: 4px 0 10px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.btn-small {
+  min-height: 44px;
+  font-size: 13px;
+}
+
 /* History / saved */
 .lists {
   margin-top: 28px;
@@ -591,6 +624,9 @@ select.theme {
   align-items: center;
   gap: 10px;
   min-height: 44px;
+}
+.lore-check {
+  font-size: 15px;
 }
 .check input {
   width: 20px;

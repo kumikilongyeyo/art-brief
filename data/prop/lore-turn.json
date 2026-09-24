@@ -1,0 +1,122 @@
+{
+  "id": "prop.lore-turn",
+  "category": "prop",
+  "slot": "lore-turn",
+  "entries": [
+    {
+      "id": "then-vanished-and-it-turned",
+      "text": "Then {npcname} vanished, and it turned up weeks later, {f:details}",
+      "weight": 4
+    },
+    {
+      "id": "it-was-stolen-three-times",
+      "text": "It was stolen three times and came back stranger, {f:details}",
+      "weight": 4
+    },
+    {
+      "id": "its-last-journey-changed-it",
+      "text": "Its last journey changed it, {f:details}",
+      "weight": 4
+    },
+    {
+      "id": "a-rival-tried-to-destroy",
+      "text": "A rival tried to destroy it; it survived, {f:details}",
+      "weight": 3
+    },
+    {
+      "id": "every-owner-died-young-and",
+      "text": "Every owner died young, and each left it the same way, {f:details}",
+      "weight": 2
+    },
+    {
+      "id": "it-was-buried-with-and",
+      "text": "It was buried with {npcname} and clawed back up, {f:details}",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-devil-collected-on-the",
+      "text": "A devil collected on the bargain and left a signature, {f:details}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "an-archfey-borrowed-it-for",
+      "text": "An archfey borrowed it for one dance and returned it a century later, {f:details}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-storm-took-the-ship",
+      "text": "A storm took the ship, but it washed ashore whole, {f:details}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "it-went-into-a-dragon",
+      "text": "It went into a dragon's lair with a hero and came out alone, {f:details}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-century-in-the-ice",
+      "text": "A century in the ice changed it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "an-angel-judged-its-owner",
+      "text": "An angel judged its owner and left the verdict on it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-mind-flayer-studied-it",
+      "text": "A mind flayer studied it for a year, then let it go, {f:details}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "an-apprentice-tried-to-copy",
+      "text": "An apprentice tried to copy it, and the backlash marked it, {f:details}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "it-fell-through-a-portal",
+      "text": "It fell through a portal and came back, {f:details}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-beast-dragged-it-into",
+      "text": "A beast dragged it into the wilds; it was found years later, {f:details}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    }
+  ]
+}

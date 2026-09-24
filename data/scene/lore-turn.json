@@ -1,0 +1,250 @@
+{
+  "id": "scene.lore-turn",
+  "category": "scene",
+  "slot": "lore-turn",
+  "entries": [
+    {
+      "id": "this-is-the-moment",
+      "text": "This is the moment: {f:event}",
+      "weight": 4
+    },
+    {
+      "id": "and-now-at-last",
+      "text": "And now, at last, {f:event}",
+      "weight": 4
+    },
+    {
+      "id": "then-it-happens-faster-than",
+      "text": "Then it happens, faster than anyone planned: {f:event}",
+      "weight": 4
+    },
+    {
+      "id": "no-one-is-where-they",
+      "text": "No one is where they should be, and {f:event}",
+      "weight": 4
+    },
+    {
+      "id": "everyone-holds-their-breath",
+      "text": "Everyone holds their breath: {f:event}",
+      "weight": 4
+    },
+    {
+      "id": "nobody-planned-it-this-way",
+      "text": "Nobody planned it this way, but {f:event}",
+      "weight": 4
+    },
+    {
+      "id": "it-all-comes-down-to",
+      "text": "It all comes down to this: {f:event}",
+      "weight": 4
+    },
+    {
+      "id": "the-crows-go-quiet-and",
+      "text": "The crows go quiet, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "hope-is-the-first-casualty",
+      "text": "Hope is the first casualty as {f:event}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "somewhere-a-devil-smiles-because",
+      "text": "Somewhere a devil smiles, because {f:event}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "brimstone-hangs-in-the-air",
+      "text": "Brimstone hangs in the air as {f:event}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "light-breaks-through-for-one",
+      "text": "Light breaks through for one heartbeat, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "an-unseen-choir-holds-one",
+      "text": "An unseen choir holds one note as {f:event}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-music-changes-key-and",
+      "text": "The music changes key, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "laughter-comes-from-nowhere-as",
+      "text": "Laughter comes from nowhere as {f:event}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "the-dead-lean-closer-to",
+      "text": "The dead lean closer to watch: {f:event}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "every-candle-gutters-at-once",
+      "text": "Every candle gutters at once, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-wind-turns-the-timbers",
+      "text": "The wind turns, the timbers groan, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "thunder-rolls-in-off-the",
+      "text": "Thunder rolls in off the water, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "something-vast-stirs-below-and",
+      "text": "Something vast stirs below, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "faerzress-glimmers-in-the-dark",
+      "text": "Faerzress glimmers in the dark, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-wards-flicker-and",
+      "text": "The wards flicker, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "somewhere-a-spell-misfires-and",
+      "text": "Somewhere a spell misfires, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "every-beast-for-a-mile",
+      "text": "Every beast for a mile falls silent as {f:event}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-horn-calls-the-hunt",
+      "text": "A horn calls the hunt, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "breath-freezes-in-the-air",
+      "text": "Breath freezes in the air, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-ice-cracks-like-a",
+      "text": "The ice cracks like a whip, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "sparks-rise-like-a-warning",
+      "text": "Sparks rise like a warning, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-heat-becomes-unbearable-and",
+      "text": "The heat becomes unbearable, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "horns-sound-in-the-distance",
+      "text": "Horns sound in the distance, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-dragons-shadow-crosses-the",
+      "text": "A dragon's shadow crosses the sky, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "reality-thins-like-cheap-cloth",
+      "text": "Reality thins like cheap cloth, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "the-sky-briefly-shows-another",
+      "text": "The sky briefly shows another plane, and {f:event}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "id": "shared.lore-era",
+  "category": "shared",
+  "slot": "lore-era",
+  "entries": [
+    {
+      "id": "three-hundred-winters-ago",
+      "text": "three hundred winters ago",
+      "weight": 4
+    },
+    {
+      "id": "long-before-the-spellplague",
+      "text": "long before the Spellplague",
+      "weight": 7,
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "in-the-last-days-of",
+      "text": "in the last days of the old empire",
+      "weight": 7,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-year-the-sun-failed",
+      "text": "the year the sun failed to rise",
+      "weight": 7,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "before-the-gods-went-quiet",
+      "text": "before the gods went quiet",
+      "weight": 7,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "when-the-feywild-still-touched",
+      "text": "when the Feywild still touched the world",
+      "weight": 7,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-lifetime-ago",
+      "text": "a lifetime ago",
+      "weight": 4
+    },
+    {
+      "id": "in-the-reign-of-a",
+      "text": "in the reign of a forgotten dragon-king",
+      "weight": 7,
+      "themes": [
+        "high-fantasy",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-winter-the-sea-froze",
+      "text": "the winter the sea froze",
+      "weight": 7,
+      "themes": [
+        "frost",
+        "nautical"
+      ]
+    },
+    {
+      "id": "when-the-blood-war-spilled",
+      "text": "when the Blood War spilled into the mortal world",
+      "weight": 7,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "before-the-underdark-had-a",
+      "text": "before the Underdark had a name",
+      "weight": 7,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-night-the-weave-tore",
+      "text": "the night the Weave tore",
+      "weight": 7,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "in-the-age-of-the",
+      "text": "in the age of the giant kings",
+      "weight": 7,
+      "themes": [
+        "frost",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "during-the-plague-of-grey",
+      "text": "during the plague of grey sleep",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "in-a-summer-that-lasted",
+      "text": "in a summer that lasted ten years",
+      "weight": 7,
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "long-ago",
+      "text": "long ago",
+      "weight": 4
+    },
+    {
+      "id": "two-generations-back",
+      "text": "two generations back",
+      "weight": 4
+    },
+    {
+      "id": "in-the-time-of-the",
+      "text": "in the time of the great storms",
+      "weight": 7,
+      "themes": [
+        "nautical",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-year-the-stars-went",
+      "text": "the year the stars went out",
+      "weight": 7,
+      "themes": [
+        "planar",
+        "celestial"
+      ]
+    },
+    {
+      "id": "when-the-first-forges-were",
+      "text": "when the first forges were lit",
+      "weight": 7,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "before-the-last-dragon-slept",
+      "text": "before the last dragon slept",
+      "weight": 4
+    },
+    {
+      "id": "in-the-century-of-burning",
+      "text": "in the century of burning libraries",
+      "weight": 7,
+      "themes": [
+        "arcane",
+        "dark-fantasy"
+      ]
+    }
+  ]
+}

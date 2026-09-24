@@ -1,0 +1,210 @@
+{
+  "id": "building.lore-turn",
+  "category": "building",
+  "slot": "lore-turn",
+  "entries": [
+    {
+      "id": "a-mob-came-for-with",
+      "text": "A mob came for {npcname} with torches; the building paid, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "hellfire-rose-through-the-floor",
+      "text": "Hellfire rose through the floor one night, leaving it {f:condition}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-paladin-died-defending-its",
+      "text": "A paladin died defending its door; it bears the memory, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-hag-lodged-there-one",
+      "text": "A hag lodged there one summer and left it odd, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "the-forest-reached-for-it",
+      "text": "The forest reached for it and took what it could, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "pack-ice-crushed-against-it",
+      "text": "Pack ice crushed against it one winter, leaving it {f:condition}",
+      "weight": 8,
+      "themes": [
+        "nautical",
+        "frost"
+      ]
+    },
+    {
+      "id": "drow-raiders-came-up-through",
+      "text": "Drow raiders came up through the cellars; it survived, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "its-wards-failed-one-midnight",
+      "text": "Its wards failed one midnight, and it has flickered since, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "then-locked-the-doors-from",
+      "text": "Then {npcname} locked the doors from inside, and it was left {f:condition}",
+      "weight": 4
+    },
+    {
+      "id": "a-war-rolled-over-it",
+      "text": "A war rolled over it, and it came through, {f:condition}",
+      "weight": 3
+    },
+    {
+      "id": "owners-came-and-went-and",
+      "text": "Owners came and went, and it outlasted every one, {f:condition}",
+      "weight": 3
+    },
+    {
+      "id": "s-heirs-sued-over-it",
+      "text": "{npcname}'s heirs sued over it for forty years; it endured, {f:condition}",
+      "weight": 4
+    },
+    {
+      "id": "the-trouble-began-with-it",
+      "text": "The trouble began with {its:feature}. It was never the same after, {f:condition}",
+      "weight": 4
+    },
+    {
+      "id": "every-owner-after-died-there",
+      "text": "Every owner after {npcname} died there, and the place looks it, {f:condition}",
+      "weight": 2
+    },
+    {
+      "id": "plague-came-they-nailed-the",
+      "text": "Plague came; they nailed the doors shut and forgot it, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-devil-collected-on-the",
+      "text": "A devil collected on the deed, and left it marked, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "an-angel-judged-and-the",
+      "text": "An angel judged {npcname}, and the building bore the verdict, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "it-spent-one-night-in",
+      "text": "It spent one night in the Feywild and returned changed, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "was-buried-under-the-floor",
+      "text": "{npcname} was buried under the floor; it has not slept since, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-great-storm-came-and",
+      "text": "The great storm came, and it rode out the night, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "something-climbed-up-from-below",
+      "text": "Something climbed up from below and nested in it, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "s-final-experiment-went-wrong",
+      "text": "{npcname}'s final experiment went wrong, and it took the blast, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-great-beast-denned-there",
+      "text": "A great beast denned there one winter, and it shows, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "snow-buried-it-for-ten",
+      "text": "Snow buried it for ten years; the thaw found it {f:condition}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "fire-took-it-one-summer",
+      "text": "Fire took it one summer night, and it rose again, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-dragon-besieged-it-for",
+      "text": "A dragon besieged it for a season, and it held, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-portal-tore-open-in",
+      "text": "A portal tore open in the cellar and half-swallowed it, {f:condition}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

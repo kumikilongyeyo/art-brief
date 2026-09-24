@@ -1,0 +1,261 @@
+{
+  "id": "character.lore-turn",
+  "category": "character",
+  "slot": "lore-turn",
+  "entries": [
+    {
+      "id": "a-job-went-wrong-and",
+      "text": "A job went wrong and left its mark, {f:look}",
+      "weight": 3
+    },
+    {
+      "id": "they-survived-what-killed-and",
+      "text": "They survived what killed {npcname} and carry the proof, {f:look}",
+      "weight": 3
+    },
+    {
+      "id": "s-betrayal-marked-them-for",
+      "text": "{npcname}'s betrayal marked them for life, {f:look}",
+      "weight": 3
+    },
+    {
+      "id": "they-walked-away-with-nothing",
+      "text": "They walked away with nothing but their {wearing}",
+      "weight": 3
+    },
+    {
+      "id": "they-won-the-fight-and",
+      "text": "They won the fight and paid for it, {f:look}",
+      "weight": 3
+    },
+    {
+      "id": "they-lost-a-friend-and",
+      "text": "They lost a friend and a fight in one night, {f:look}",
+      "weight": 3
+    },
+    {
+      "id": "a-tavern-brawl-in-the",
+      "text": "A tavern brawl in the wrong town went badly, {f:look}",
+      "weight": 3
+    },
+    {
+      "id": "something-in-the-dark-took",
+      "text": "Something in the dark took a taste and let go, {f:look}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "they-died-once-briefly-and",
+      "text": "They died once, briefly, and came back marked, {f:look}",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "they-buried-and-wore-their",
+      "text": "They buried {npcname} and wore their {wearing} ever after",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "a-devil-collected-the-first",
+      "text": "A devil collected the first instalment and signed it, {f:look}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-fey-revel-stole-a",
+      "text": "A fey revel stole a year and left a souvenir, {f:look}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "they-were-judged-unworthy-once",
+      "text": "They were judged unworthy once, and bear the proof, {f:look}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-storm-took-the-ship",
+      "text": "A storm took the ship and spat them ashore, {f:look}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-season-as-a-mind",
+      "text": "A season as a mind flayer's thrall left its mark, {f:look}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-spell-went-off-in",
+      "text": "A spell went off in their face, and it shows, {f:look}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-beast-they-hunted-hunted",
+      "text": "A beast they hunted hunted them back, {f:look}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-winter-alone-on-the",
+      "text": "A winter alone on the ice took its toll, {f:look}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "they-walked-out-of-a",
+      "text": "They walked out of a burning forge-hall with a reminder, {f:look}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "they-faced-a-dragon-and",
+      "text": "They faced a dragon and walked away, {f:look}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-portal-closed-on-them",
+      "text": "A portal closed on them halfway through, {f:look}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-friend-sold-them-to",
+      "text": "A friend sold them to worse things, and it shows, {f:look}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "they-broke-a-contract-once",
+      "text": "They broke a contract once and paid in flesh, {f:look}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "they-beat-an-archfey-at",
+      "text": "They beat an archfey at riddles and were marked, {f:look}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "they-held-a-gate-alone",
+      "text": "They held a gate alone until dawn, {f:look}",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "they-swore-vows-at-dawn",
+      "text": "They swore vows at dawn and took up their {wearing}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-season-aboard-a-ghost",
+      "text": "A season aboard a ghost ship left a souvenir, {f:look}",
+      "weight": 8,
+      "themes": [
+        "nautical",
+        "undead"
+      ]
+    },
+    {
+      "id": "a-year-lost-in-the",
+      "text": "A year lost in the Underdark changed them, {f:look}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "they-read-one-page-too",
+      "text": "They read one page too many, {f:look}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-blood-rite-with-the",
+      "text": "A blood rite with the clans left them marked, {f:look}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "they-crossed-the-ice-to",
+      "text": "They crossed the ice to find {npcname} and came back alone, {f:look}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "tested-them-in-the-forge",
+      "text": "{npc} tested them in the forge-fire, {f:look}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-grateful-king-gave-them",
+      "text": "A grateful king gave them their {wearing}, and a debt",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "they-spent-a-night-in",
+      "text": "They spent a night in Sigil that lasted a year, {f:look}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

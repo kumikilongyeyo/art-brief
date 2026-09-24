@@ -1,3 +1,4 @@
+import { DEFAULT_STORY_INSTRUCTION } from '../chat';
 import { DEFAULT_INSTRUCTION, type Settings } from '../storage';
 import { h, icon } from './dom';
 
@@ -32,6 +33,10 @@ export function openSettings(settings: Settings, info: SettingsInfo, hd: Setting
   const textarea = h('textarea', { id: 'instruction', 'aria-label': 'ChatGPT instruction', spellcheck: 'false' });
   textarea.value = settings.instruction;
   textarea.addEventListener('change', () => hd.change({ instruction: textarea.value.trim() ? textarea.value : DEFAULT_INSTRUCTION }));
+
+  const story = h('textarea', { id: 'story-instruction', 'aria-label': 'Story instruction', spellcheck: 'false' });
+  story.value = settings.storyInstruction;
+  story.addEventListener('change', () => hd.change({ storyInstruction: story.value.trim() ? story.value : DEFAULT_STORY_INSTRUCTION }));
 
   const fileInput = h('input', { type: 'file', accept: 'application/json,.json', class: 'sr-only', tabindex: '-1', 'aria-hidden': 'true' });
   fileInput.addEventListener('change', () => {
@@ -87,6 +92,29 @@ export function openSettings(settings: Settings, info: SettingsInfo, hd: Setting
             onclick: () => {
               textarea.value = DEFAULT_INSTRUCTION;
               hd.change({ instruction: DEFAULT_INSTRUCTION });
+            },
+          },
+          'Reset to default',
+        ),
+      ),
+    ),
+    h(
+      'section',
+      {},
+      h('h3', {}, 'Story refine prompt'),
+      h('label', { for: 'story-instruction', class: 'small' }, 'Used by “Refine story in ChatGPT” ({{brief}} and {{lore}} are filled in)'),
+      story,
+      h(
+        'div',
+        { class: 'btns' },
+        h(
+          'button',
+          {
+            class: 'btn',
+            type: 'button',
+            onclick: () => {
+              story.value = DEFAULT_STORY_INSTRUCTION;
+              hd.change({ storyInstruction: DEFAULT_STORY_INSTRUCTION });
             },
           },
           'Reset to default',

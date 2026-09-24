@@ -1,0 +1,245 @@
+{
+  "id": "scene.lore-purpose",
+  "category": "scene",
+  "slot": "lore-purpose",
+  "entries": [
+    {
+      "id": "arranged-a-meeting-there-and",
+      "text": "{npcname} arranged a meeting there, and chose the time badly: {f:time}",
+      "weight": 4
+    },
+    {
+      "id": "no-one-sane-went-there",
+      "text": "No one sane went there at such a time: {f:time}",
+      "weight": 4
+    },
+    {
+      "id": "the-signs-all-pointed-to",
+      "text": "The signs all pointed to one moment: {f:time}",
+      "weight": 4
+    },
+    {
+      "id": "had-dreamed-of-this-exact",
+      "text": "{npcname} had dreamed of this exact moment: {f:time}",
+      "weight": 4
+    },
+    {
+      "id": "an-old-debt-came-due",
+      "text": "An old debt came due at the worst moment: {f:time}",
+      "weight": 4
+    },
+    {
+      "id": "a-letter-with-no-signature",
+      "text": "A letter with no signature named the time: {f:time}",
+      "weight": 4
+    },
+    {
+      "id": "someone-had-to-die-and",
+      "text": "Someone had to die, and the date was set: {f:time}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-executioner-kept-strict-hours",
+      "text": "The executioner kept strict hours: {f:time}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-contract-named-the-moment",
+      "text": "The contract named the moment, to the minute: {f:time}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-devil-came-to-collect",
+      "text": "A devil came to collect a soul: {f:time}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "heaven-chose-the-moment-of",
+      "text": "Heaven chose the moment of judgement: {f:time}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-temple-bells-rang-unbidden",
+      "text": "The temple bells rang unbidden to mark the time: {f:time}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-fey-riddle-set-the",
+      "text": "A fey riddle set the time; the answer: {f:time}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "an-invitation-sealed-in-honey",
+      "text": "An invitation sealed in honey named the time: {f:time}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "the-graves-would-open-only",
+      "text": "The graves would open only once: {f:time}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-ghosts-would-speak-only",
+      "text": "The ghosts would speak only once, and only then: {f:time}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-tide-tables-allowed-one",
+      "text": "The tide tables allowed one crossing: {f:time}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-ship-could-wait-one",
+      "text": "The ship could wait one hour, and no longer: {f:time}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-drow-messenger-set-the",
+      "text": "A drow messenger set the hour, and nobody dared refuse: {f:time}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "down-there-hours-were-guesswork",
+      "text": "Down there hours were guesswork, and this one was {f:time}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "s-calculations-fixed-the-moment",
+      "text": "{npcname}'s calculations fixed the moment exactly: {f:time}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-ritual-would-only-work",
+      "text": "The ritual would only work at one moment: {f:time}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-clans-gathered-when-the",
+      "text": "The clans gathered when the hunt was called: {f:time}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-elders-read-the-signs",
+      "text": "The elders read the signs and chose the time: {f:time}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-ice-road-would-hold",
+      "text": "The ice road would hold only briefly: {f:time}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-cold-gave-them-one",
+      "text": "The cold gave them one chance and no more: {f:time}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-forges-banked-their-fires",
+      "text": "The forges banked their fires at the agreed time: {f:time}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-volcanos-pulse-set-the",
+      "text": "The volcano's pulse set the time: {f:time}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-prophecy-promised-heroes-and",
+      "text": "A prophecy promised heroes, and named the moment: {f:time}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-dragon-was-due-and",
+      "text": "A dragon was due, and dragons are never late: {f:time}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-planes-aligned-for-one",
+      "text": "The planes aligned for one brief moment: {f:time}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-sigil-fortuneteller-sold-them",
+      "text": "A Sigil fortune-teller sold them the moment: {f:time}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "id": "building.lore-now",
+  "category": "building",
+  "slot": "lore-now",
+  "entries": [
+    {
+      "id": "now-and-the-graveyard-behind",
+      "text": "Now {unique}, and the graveyard behind it keeps growing",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "now-and-pilgrims-camp-outside",
+      "text": "Now {unique}, and pilgrims camp outside waiting for a miracle",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "now-and-an-archfey-wants",
+      "text": "Now {unique}, and an archfey wants it as a birthday gift",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "a-map-of-its-vaults",
+      "text": "A map of its vaults is in {place}; the map lies",
+      "weight": 8,
+      "themes": [
+        "underdark",
+        "arcane"
+      ]
+    },
+    {
+      "id": "someone-is-singing-inside-it",
+      "text": "Someone is singing inside it again, under {f:light}",
+      "weight": 3
+    },
+    {
+      "id": "now-and-s-old-rivals",
+      "text": "Now {unique}, and {npcname}'s old rivals want it razed",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "someone-is-paying-well-to",
+      "text": "Someone is paying well to learn why {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "even-now-as-though-expecting",
+      "text": "Even now {unique}, as though expecting company",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "locals-give-it-a-wide",
+      "text": "Locals give it a wide berth, because {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "its-deed-was-last-seen",
+      "text": "Its deed was last seen in {place}; three parties want it",
+      "weight": 4
+    },
+    {
+      "id": "s-will-was-found-in",
+      "text": "{npcname}'s will was found in {place}, and it names a stranger",
+      "weight": 4
+    },
+    {
+      "id": "the-front-door-stands-unlocked",
+      "text": "The front door stands unlocked; inside there is {f:light}",
+      "weight": 3
+    },
+    {
+      "id": "its-only-key-cursed-and",
+      "text": "Its only key, cursed and unclaimed, is in {place}",
+      "weight": 3
+    },
+    {
+      "id": "to-this-day-and-the",
+      "text": "To this day {unique}, and the curious never come back",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-stands-under-and-the",
+      "text": "It stands under {f:light}, and the town pretends it does not",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "now-and-the-rent-is",
+      "text": "Now {unique}, and the rent is due in Avernus",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "its-deed-turned-up-in",
+      "text": "Its deed turned up in {place}; a devil holds the copy",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "since-then-and-the-faithful",
+      "text": "Since then {unique}, and the faithful call it a sign",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-waits-under-for-someone",
+      "text": "It waits under {f:light}, for someone worthy to open its doors",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "lately-the-fey-call-this",
+      "text": "Lately {unique}; the fey call this hospitality",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-walks-to-a-new",
+      "text": "It walks to a new valley each spring, trailing fey",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "s-will-turned-up-in",
+      "text": "{npcname}'s will turned up in {place}, leaving it to a fox",
+      "weight": 8,
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "now-and-the-dead-queue",
+      "text": "Now {unique}, and the dead queue at its door each night",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "s-bones-are-in-and",
+      "text": "{npcname}'s bones are in {place}, and they want to come home",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "these-days-and-sailors-steer",
+      "text": "These days {unique}, and sailors steer wide of it",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "its-old-bell-turned-up",
+      "text": "Its old bell turned up in {place}, ringing at high tide",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "now-and-something-beneath-it",
+      "text": "Now {unique}, and something beneath it grows louder",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "its-keystone-now-sits-in",
+      "text": "Its keystone now sits in {place}; something below has begun knocking",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "no-scholar-can-explain-why",
+      "text": "No scholar can explain why {unique}, though three academies have tried",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "s-notes-surfaced-in-half",
+      "text": "{npcname}'s notes surfaced in {place}, half of them in cipher",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "now-and-the-clans-leave",
+      "text": "Now {unique}, and the clans leave offerings at the threshold",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "its-door-bears-a-clan",
+      "text": "Its door bears a clan hunt-mark; the prey is inside",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "now-and-the-ice-creeps",
+      "text": "Now {unique}, and the ice creeps closer each winter",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "its-doors-are-frozen-shut",
+      "text": "Its doors are frozen shut, and something inside is scratching",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "now-and-the-ash-around",
+      "text": "Now {unique}, and the ash around it is still warm",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-glows-under-and-the",
+      "text": "It glows under {f:light}, and the fire-priests want it back",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "today-and-a-young-hero",
+      "text": "Today {unique}, and a young hero has sworn to reclaim it",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "s-sword-is-in-whoever",
+      "text": "{npcname}'s sword is in {place}; whoever claims it claims the building",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "now-and-three-factions-in",
+      "text": "Now {unique}, and three factions in Sigil claim it",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "its-back-door-now-opens",
+      "text": "Its back door now opens in {place}; traffic is picking up",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

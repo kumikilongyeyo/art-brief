@@ -6,32 +6,38 @@
     {
       "id": "its-doors-open-onto",
       "text": "its doors open onto a different street each dawn",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "its-stairs-have-one",
       "text": "its stairs have one more step going down than going up",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "rain-never-falls-on",
       "text": "rain never falls on its roof",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "every-clock-inside-runs",
       "text": "every clock inside runs a little slow",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "visitors-all-dream-of",
       "text": "visitors all dream of the same room afterward",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "birds-nest-only-on",
       "text": "birds nest only on its north side",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "is-larger-inside-than",
@@ -39,17 +45,20 @@
       "tags": [
         "planar"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "repairs-any-damage-to",
       "text": "repairs any damage to itself by morning",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "grows-a-new-room",
       "text": "grows a new room each time a child is born inside",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "its-bell-tolls-on",
@@ -57,29 +66,34 @@
       "tags": [
         "grave"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "hums-a-low-chord",
       "text": "hums a low chord at midnight",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "casts-its-shadow-upward",
       "text": "casts its shadow upward onto the clouds",
       "surreal": true,
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "creeps-a-few-feet",
       "text": "creeps a few feet each century, leaving furrows",
       "surreal": true,
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "sits-on-the-sealed",
       "text": "sits on the sealed door of an ancient prison",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "was-raised-in-a",
@@ -90,17 +104,20 @@
       "themes": [
         "fey"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "rests-on-a-sleeping",
       "text": "rests on a sleeping earth elemental as its cornerstone",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "anyone-who-sleeps-in",
       "text": "anyone who sleeps in the attic wakes speaking Abyssal",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "its-portraits-age-while",
@@ -108,22 +125,26 @@
       "tags": [
         "cursed"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "snow-gathers-indoors-even",
       "text": "snow gathers indoors even in high summer",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "appears-on-no-map",
       "text": "appears on no map, magical or mundane",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "its-walls-are-warm",
       "text": "its walls are warm to the touch, like skin",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "its-cellars-go-down",
@@ -131,7 +152,8 @@
       "tags": [
         "planar"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "a-devil-holds-the",
@@ -143,23 +165,27 @@
       "themes": [
         "infernal"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "candles-lit-inside-burn",
       "text": "candles lit inside burn without smoke",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "each-window-shows-a",
       "text": "each window shows a slightly different season",
       "surreal": true,
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "its-well-answers-questions",
       "text": "its well answers questions in a drowned voice",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     }
   ]
 }

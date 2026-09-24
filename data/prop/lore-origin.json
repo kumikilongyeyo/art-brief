@@ -1,0 +1,122 @@
+{
+  "id": "prop.lore-origin",
+  "category": "prop",
+  "slot": "lore-origin",
+  "entries": [
+    {
+      "id": "of-shaped-it-from",
+      "text": "{era}, {npc} of {the:origin} shaped it from {f:material}",
+      "weight": 4
+    },
+    {
+      "id": "it-began-in-where-first",
+      "text": "It began in {the:origin}, where {npc} first worked {f:material}",
+      "weight": 4
+    },
+    {
+      "id": "ordered-it-from",
+      "text": "{npc} ordered it from {the:origin}, {era}",
+      "weight": 4
+    },
+    {
+      "id": "made-it-for",
+      "text": "{the:origin} made it {era}, for {npc}",
+      "weight": 3
+    },
+    {
+      "id": "no-one-asked-for-it",
+      "text": "No one asked for it; {npc} simply carried it home from {the:origin}",
+      "weight": 3
+    },
+    {
+      "id": "traded-a-soul-to-for",
+      "text": "{npc} traded a soul to {the:origin} for it, {era}",
+      "weight": 8,
+      "themes": [
+        "infernal",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sang-it-out-of-on",
+      "text": "{npc} sang it out of {f:material} on a night the Feywild leaned close",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "it-was-forged-in-a",
+      "text": "It was forged in a dying volcano, {era}, for {the:origin}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "carved-it-in-a-glacier",
+      "text": "{npc} carved it in a glacier-hall, {era}, to outlast the winter",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "blessed-it-at-dawn-and",
+      "text": "{npc} blessed it at dawn and carried it from {the:origin} in procession",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "it-came-up-in-a",
+      "text": "It came up in a fisherman's net, already old when {the:origin} claimed it",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "pieced-it-together-in-the",
+      "text": "{npc} pieced it together in the dark, for {the:origin}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "built-it-from-a-stolen",
+      "text": "{npc} built it from a stolen formula, {era}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "it-was-dug-from-a",
+      "text": "It was dug from a barrow {era}; the grave-list names {npc} of {the:origin}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "of-first-sold-it-in",
+      "text": "{npc} of {the:origin} first sold it in a market between the planes",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-hunter-of-bound-it",
+      "text": "{npc}, a hunter of {the:origin}, bound it from {f:material}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    }
+  ]
+}

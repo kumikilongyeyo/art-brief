@@ -1,0 +1,231 @@
+{
+  "id": "building.lore-purpose",
+  "category": "building",
+  "slot": "lore-purpose",
+  "entries": [
+    {
+      "id": "it-was-but-its-true",
+      "text": "It was {a:function}, but its true work was hiding the dead",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "it-was-guests-signed-something",
+      "text": "It was {a:function}; guests signed something before seeing {its:feature}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "it-was-and-a-sanctuary",
+      "text": "It was {a:function} and a sanctuary; no blade was drawn near {its:feature}",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "it-was-for-mortals-the",
+      "text": "It was {a:function} for mortals; the rest danced around {its:feature}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "it-was-to-the-clans",
+      "text": "It was {a:function} to the clans, and they swore truces beneath {its:feature}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "it-was-for-smugglers-who",
+      "text": "It was {a:function} for smugglers, who loved {its:feature}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "it-was-the-only-warm",
+      "text": "It was {a:function}, the only warm roof for three days' travel",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "it-was-for-things-that",
+      "text": "It was {a:function} for things that were not people, drawn by {its:feature}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "it-was-and-tested-forbidden",
+      "text": "It was {a:function}, and {npcname} tested forbidden spells on {its:feature}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "it-was-with-doors-to",
+      "text": "It was {a:function} with doors to four planes, one always locked",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "it-was-built-of-and",
+      "text": "It was {a:function}, built of {f:material}, and its hearth never went out",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "it-served-as-famed-for",
+      "text": "It served as {a:function}, famed for {its:feature}",
+      "weight": 4
+    },
+    {
+      "id": "built-of-it-did-honest",
+      "text": "Built of {f:material}, it did honest work as {a:function} for a century",
+      "weight": 4
+    },
+    {
+      "id": "it-was-and-folk-travelled",
+      "text": "It was {a:function}, and folk travelled far to see {its:feature}",
+      "weight": 4
+    },
+    {
+      "id": "wanted-no-rival-could-copy",
+      "text": "{npcname} wanted {a:function} no rival could copy, down to {its:feature}",
+      "weight": 4
+    },
+    {
+      "id": "for-years-it-was-simply",
+      "text": "For years it was simply {a:function}, known for walls of {f:material}",
+      "weight": 4
+    },
+    {
+      "id": "it-was-in-name-only",
+      "text": "It was {a:function} in name only; the real business was {its:feature}",
+      "weight": 3
+    },
+    {
+      "id": "officially-it-was-its-cellars",
+      "text": "Officially it was {a:function}; its cellars told a different story",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "it-was-by-contract-and",
+      "text": "It was {a:function} by contract, and the devil's clause demanded {its:feature}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "it-was-blessed-as-and",
+      "text": "It was blessed as {a:function}, and pilgrims wept before {its:feature}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "it-was-officially-the-fey",
+      "text": "It was {a:function}, officially; the fey only ever cared about {its:feature}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "it-was-by-day-by",
+      "text": "It was {a:function} by day; by night the dead came for {its:feature}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "sailors-knew-it-as-and",
+      "text": "Sailors knew it as {a:function} and steered home by {its:feature}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "drow-and-duergar-shared-it",
+      "text": "Drow and duergar shared it as {a:function}, and both feared {its:feature}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "scholars-ran-it-as-and",
+      "text": "Scholars ran it as {a:function}, and wrote whole treatises on {its:feature}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-clans-held-it-as",
+      "text": "The clans held it as {a:function} and carved their hunts into {f:material}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "walls-of-kept-it-running",
+      "text": "Walls of {f:material} kept it running as {a:function} through the long winters",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "it-ran-hot-as-and",
+      "text": "It ran hot as {a:function}, and fire-priests came to bless {its:feature}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "it-was-where-heroes-gathered",
+      "text": "It was {a:function} where heroes gathered, and bards sang of {its:feature}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "envoys-of-a-dozen-planes",
+      "text": "Envoys of a dozen planes used it as {a:function}, arguing over {its:feature}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

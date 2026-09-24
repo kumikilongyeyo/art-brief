@@ -1,3 +1,4 @@
+import { DEFAULT_STORY_INSTRUCTION } from './chat';
 import type { Brief, CategoryId, ThemeId, UniqueFrequency, Weirdness } from './engine/types';
 
 export const STORAGE_SCHEMA = 1;
@@ -18,10 +19,11 @@ export interface Settings {
   schemaVersion: number;
   showChatGPT: boolean;
   instruction: string;
+  storyInstruction: string;
   openChatGPT: boolean;
   uniqueFrequency: UniqueFrequency;
   colorScheme: 'system' | 'light' | 'dark';
-  last: { category: CategoryId; themeChoice: ThemeId | 'any'; count: number; weirdness: Weirdness };
+  last: { category: CategoryId; themeChoice: ThemeId | 'any'; count: number; weirdness: Weirdness; lore: boolean };
   seenSample: boolean;
 }
 
@@ -29,10 +31,11 @@ export const DEFAULT_SETTINGS: Settings = {
   schemaVersion: STORAGE_SCHEMA,
   showChatGPT: true,
   instruction: DEFAULT_INSTRUCTION,
+  storyInstruction: DEFAULT_STORY_INSTRUCTION,
   openChatGPT: false,
   uniqueFrequency: 'sometimes',
   colorScheme: 'system',
-  last: { category: 'character', themeChoice: 'any', count: 2, weirdness: 'mixed' },
+  last: { category: 'character', themeChoice: 'any', count: 2, weirdness: 'mixed', lore: false },
   seenSample: false,
 };
 

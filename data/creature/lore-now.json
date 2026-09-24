@@ -1,0 +1,304 @@
+{
+  "id": "creature.lore-now",
+  "category": "creature",
+  "slot": "lore-now",
+  "entries": [
+    {
+      "id": "one-was-last-seen-in",
+      "text": "One was last seen in {place}, and the bounty keeps rising",
+      "weight": 3
+    },
+    {
+      "id": "its-tracks-end-in-which",
+      "text": "Its tracks end in {place}, which should be impossible",
+      "weight": 4
+    },
+    {
+      "id": "word-is-a-young-one",
+      "text": "Word is a young one hides in {place}, waiting to grow",
+      "weight": 3
+    },
+    {
+      "id": "s-heirs-swear-one-still",
+      "text": "{npcname}'s heirs swear one still lurks in {place}, and are hiring",
+      "weight": 4
+    },
+    {
+      "id": "its-lair-is-in-and",
+      "text": "Its lair is in {place}, and nobody who finds it leaves",
+      "weight": 4
+    },
+    {
+      "id": "now-and-someone-is-paying",
+      "text": "Now {unique}, and someone is paying well to learn why",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "even-now-and-the-locals",
+      "text": "Even now {unique}, and the locals keep their distance",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "these-days-follow-that-sign",
+      "text": "These days {unique}; follow that sign and you will find it",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "now-one-lairs-in-and",
+      "text": "Now one lairs in {place}, and the missing are piling up",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "now-and-the-elders-bar",
+      "text": "Now {unique}, and the elders bar their doors at dusk",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "a-devil-holds-the-last",
+      "text": "A devil holds the last one's deed, filed in {place}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "now-and-a-devil-wants",
+      "text": "Now {unique}, and a devil wants it on a leash",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "each-full-moon-it-holds",
+      "text": "Each full moon it holds court in {place}, and expects gifts",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "now-which-the-fey-find",
+      "text": "Now {unique}, which the fey find adorable",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "pilgrims-seek-it-in-hoping",
+      "text": "Pilgrims seek it in {place}, hoping to be judged kindly",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "now-and-the-faithful-call",
+      "text": "Now {unique}, and the faithful call it a sign",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "after-dark-it-prowls-in",
+      "text": "After dark it prowls in {place}, trailed by the dead",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "now-and-the-dead-seem",
+      "text": "Now {unique}, and the dead seem to be waiting for it",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "sailors-swear-it-lurks-in",
+      "text": "Sailors swear it lurks in {place}, waiting on the tide",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "now-and-sailors-read-it",
+      "text": "Now {unique}, and sailors read it like a storm warning",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "now-it-lurks-in-and",
+      "text": "Now it lurks in {place}, and the dark around it listens",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "now-and-the-drow-have",
+      "text": "Now {unique}, and the drow have started to worship it",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "one-was-caught-alive-in",
+      "text": "One was caught alive in {place}, and a wizard wants it",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "no-sage-knows-why-several",
+      "text": "No sage knows why {unique}; several would kill to find out",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "each-spring-the-clans-hunt",
+      "text": "Each spring the clans hunt it in {place}; it always escapes",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "now-the-clans-call-it",
+      "text": "Now {unique}; the clans call it a hunt-spirit",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "until-the-long-winter-returns",
+      "text": "Until the long winter returns, it sleeps in {place}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "now-and-every-winter-it",
+      "text": "Now {unique}, and every winter it ranges further south",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-nests-in-and-everything",
+      "text": "It nests in {place}, and everything near it smoulders",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "now-and-the-firepriests-want",
+      "text": "Now {unique}, and the fire-priests want it for their altar",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-last-one-waits-in",
+      "text": "The last one waits in {place}, hungry for a hero",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "now-and-a-young-hero",
+      "text": "Now {unique}, and a young hero has sworn to find it",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-drifts-between-the-planes",
+      "text": "It drifts between the planes, last seen in {place}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "now-and-three-planes-claim",
+      "text": "Now {unique}, and three planes claim it as their own",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    }
+  ]
+}

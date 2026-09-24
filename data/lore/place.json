@@ -1,0 +1,251 @@
+{
+  "id": "shared.lore-place",
+  "category": "shared",
+  "slot": "lore-place",
+  "entries": [
+    {
+      "id": "a-pawnshop-in-baldur-s",
+      "text": "a pawnshop in Baldur's Gate",
+      "weight": 4
+    },
+    {
+      "id": "the-vaults-beneath-waterdeep",
+      "text": "the vaults beneath Waterdeep",
+      "weight": 4
+    },
+    {
+      "id": "a-smugglers-cave-on-the",
+      "text": "a smugglers' cave on the Sword Coast",
+      "weight": 7,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-frozen-shrine-above-icewind",
+      "text": "a frozen shrine above Icewind Dale",
+      "weight": 7,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "a-bazaar-stall-in-sigil",
+      "text": "a bazaar stall in Sigil",
+      "weight": 7,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-drow-noble-house-in",
+      "text": "a drow noble house in Menzoberranzan",
+      "weight": 7,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-bottom-of-the-sea",
+      "text": "the bottom of the Sea of Fallen Stars",
+      "weight": 7,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-crypt-in-the-shadowfell",
+      "text": "a crypt in the Shadowfell",
+      "weight": 7,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "a-toll-bridge-troll-s",
+      "text": "a toll-bridge troll's hoard",
+      "weight": 7,
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-devil-s-ledger-house",
+      "text": "a devil's ledger-house in Avernus",
+      "weight": 7,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "the-feywild-court-of-a",
+      "text": "the Feywild court of a bored archfey",
+      "weight": 7,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-wizard-s-tower-that",
+      "text": "a wizard's tower that no longer stands",
+      "weight": 7,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-temple-on-mount-celestia",
+      "text": "a temple on Mount Celestia",
+      "weight": 7,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-salamander-market-in-the",
+      "text": "a salamander market in the City of Brass",
+      "weight": 7,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-stomach-of-a-purple",
+      "text": "the stomach of a purple worm",
+      "weight": 7,
+      "themes": [
+        "underdark",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-museum-that-pretends-it",
+      "text": "a museum that pretends it is a copy",
+      "weight": 4
+    },
+    {
+      "id": "a-noble-s-locked-study",
+      "text": "a noble's locked study",
+      "weight": 4
+    },
+    {
+      "id": "a-tavern-s-trophy-room",
+      "text": "a tavern's trophy room",
+      "weight": 4
+    },
+    {
+      "id": "a-monastery-library-high-in",
+      "text": "a monastery library high in the mountains",
+      "weight": 7,
+      "themes": [
+        "arcane",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-dragon-s-hoard-in",
+      "text": "a dragon's hoard in the Spine of the World",
+      "weight": 7,
+      "themes": [
+        "frost",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-sunken-temple-swallowed-by",
+      "text": "a sunken temple swallowed by the jungle",
+      "weight": 7,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-lost-property-room-of",
+      "text": "the lost-property room of a city watch",
+      "weight": 4
+    },
+    {
+      "id": "a-ghost-ship-s-hold",
+      "text": "a ghost ship's hold",
+      "weight": 7,
+      "themes": [
+        "nautical",
+        "undead"
+      ]
+    },
+    {
+      "id": "a-crossroads-shrine-no-map",
+      "text": "a crossroads shrine no map agrees on",
+      "weight": 7,
+      "themes": [
+        "fey",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-forge-that-has-not",
+      "text": "a forge that has not cooled in a thousand years",
+      "weight": 7,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "an-auction-house-in-neverwinter",
+      "text": "an auction house in Neverwinter",
+      "weight": 4
+    },
+    {
+      "id": "the-reliquary-of-a-cathedral",
+      "text": "the reliquary of a cathedral that burned",
+      "weight": 7,
+      "themes": [
+        "celestial",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-mind-flayer-s-trophy",
+      "text": "a mind flayer's trophy vat",
+      "weight": 7,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-beholder-s-collection-of",
+      "text": "a beholder's collection of pretty things",
+      "weight": 7,
+      "themes": [
+        "underdark",
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-elemental-chaos-drifting",
+      "text": "the Elemental Chaos, drifting",
+      "weight": 7,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "a-barrow-on-the-edge",
+      "text": "a barrow on the edge of the moors",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "an-astral-dreadnought-s-wreck",
+      "text": "an astral dreadnought's wreck",
+      "weight": 7,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

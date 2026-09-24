@@ -6,6 +6,7 @@ import { buildDataSet } from '../src/engine/dataset';
 import { generateBatch } from '../src/engine/generate';
 import { seedFromString } from '../src/engine/rng';
 import { countWords } from '../src/engine/templates';
+import { loreWords } from '../src/engine/lore';
 import { CATEGORY_IDS, WEIRDNESS, type CategoryId } from '../src/engine/types';
 
 const DATA = join(fileURLToPath(import.meta.url), '..', '..', 'data');
@@ -21,8 +22,18 @@ for (const c of only ? [only] : CATEGORY_IDS) {
   for (const w of WEIRDNESS) {
     for (let i = 0; i < n; i++) {
       const base = seedFromString(`${Date.now()}-${c}-${w}-${i}`);
-      const b = generateBatch(data, { category: c, themeChoice: 'any', weirdness: w, count: 1, base, uniqueFrequency: 'sometimes' })[0];
-      console.log(`[${c} · ${w} · ${b.theme} · ${countWords(b.title, b.lines)} words]\n${b.plainText}\n`);
+      const b = generateBatch(data, {
+        category: c,
+        themeChoice: 'any',
+        weirdness: w,
+        count: 1,
+        base,
+        uniqueFrequency: 'sometimes',
+        lore: true,
+      })[0];
+      console.log(
+        `[${c} · ${w} · ${b.theme} · ${countWords(b.title, b.lines)} words · lore ${loreWords(b.lore?.text ?? '')}]\n${b.plainText}\nLORE: ${b.lore?.text ?? ''}\n`,
+      );
     }
   }
 }

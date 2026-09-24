@@ -1,0 +1,245 @@
+{
+  "id": "creature.lore-purpose",
+  "category": "creature",
+  "slot": "lore-purpose",
+  "entries": [
+    {
+      "id": "to-survive-there-its-kind",
+      "text": "To survive there, its kind took on {f:adaptation}",
+      "weight": 4
+    },
+    {
+      "id": "nothing-hunted-it-twice-thanks",
+      "text": "Nothing hunted it twice, thanks to {f:adaptation}",
+      "weight": 4
+    },
+    {
+      "id": "it-grew-and-learned-to",
+      "text": "It grew {f:adaptation}, and learned to strike first",
+      "weight": 3
+    },
+    {
+      "id": "every-hunter-who-met-one",
+      "text": "Every hunter who met one remembered {f:adaptation}",
+      "weight": 4
+    },
+    {
+      "id": "its-best-defence-was-also",
+      "text": "Its best defence was also its strangest: {f:adaptation}",
+      "weight": 4
+    },
+    {
+      "id": "trappers-argued-for-years-over",
+      "text": "Trappers argued for years over the point of {f:adaptation}",
+      "weight": 3
+    },
+    {
+      "id": "everything-there-wanted-it-dead",
+      "text": "Everything there wanted it dead, so it grew {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "it-fed-on-the-dying",
+      "text": "It fed on the dying and grew {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "every-part-of-it-came",
+      "text": "Every part of it came at a price, even {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "hells-breeders-charged-a-soul",
+      "text": "Hell's breeders charged a soul extra for {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "the-fey-gave-it-and",
+      "text": "The fey gave it {f:adaptation} and called it a gift",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "it-was-meant-to-be",
+      "text": "It was meant to be charming, and then it grew {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "its-kind-was-blessed-with",
+      "text": "Its kind was blessed with {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-heavens-gave-it-to",
+      "text": "The heavens gave it {f:adaptation}, to mark it as theirs",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "it-fed-on-gravedirt-and",
+      "text": "It fed on grave-dirt and grew {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "even-in-death-it-kept",
+      "text": "Even in death it kept growing {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "sailors-learned-to-watch-for",
+      "text": "Sailors learned to watch for {f:adaptation}, and to steer wide",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-deep-gave-it-and",
+      "text": "The deep gave it {f:adaptation}, and the storms gave it patience",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "in-the-lightless-dark-it",
+      "text": "In the lightless dark it grew {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "something-in-the-deep-dark",
+      "text": "Something in the deep dark taught it to grow {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "wizards-paid-fortunes-just-to",
+      "text": "Wizards paid fortunes just to study {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "stray-magic-soaked-into-it",
+      "text": "Stray magic soaked into it and came out as {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-clans-prized-it-for",
+      "text": "The clans prized it for {f:adaptation}, and paid in blood",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "hunting-it-became-a-rite",
+      "text": "Hunting it became a rite, all because of {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-long-winters-gave-it",
+      "text": "The long winters gave it {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "through-winters-that-lasted-years",
+      "text": "Through winters that lasted years, it grew {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "the-heat-hardened-it-and",
+      "text": "The heat hardened it and gave it {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "forgepriests-prized-it-for",
+      "text": "Forge-priests prized it for {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "knights-who-hunted-it-learned",
+      "text": "Knights who hunted it learned to respect {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "bards-made-songs-about-most",
+      "text": "Bards made songs about {f:adaptation}, most of them rude",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "on-a-dozen-planes-it",
+      "text": "On a dozen planes it survived thanks to {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "sigils-collectors-paid-double-for",
+      "text": "Sigil's collectors paid double for {f:adaptation}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,357 @@
+{
+  "id": "shared.lore-npc",
+  "category": "shared",
+  "slot": "lore-npc",
+  "entries": [
+    {
+      "id": "disgraced-court-wizard",
+      "text": "disgraced court wizard",
+      "weight": 4
+    },
+    {
+      "id": "river-witch",
+      "text": "river witch",
+      "weight": 7,
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "dwarven-runesmith",
+      "text": "dwarven runesmith",
+      "weight": 7,
+      "themes": [
+        "frost",
+        "high-fantasy",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "drow-matron-s-youngest-daughter",
+      "text": "drow matron's daughter",
+      "weight": 7,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "one-eyed-pirate-queen",
+      "text": "one-eyed pirate queen",
+      "weight": 7,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "penitent-paladin",
+      "text": "penitent paladin",
+      "weight": 7,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "tiefling-contract-broker",
+      "text": "tiefling contract-broker",
+      "weight": 7,
+      "themes": [
+        "infernal",
+        "planar"
+      ]
+    },
+    {
+      "id": "grave-robbing-scholar",
+      "text": "grave-robbing scholar",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "clockwork-obsessed-gnome",
+      "text": "clockwork gnome",
+      "weight": 7,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "exiled-elven-prince",
+      "text": "exiled elven prince",
+      "weight": 7,
+      "themes": [
+        "high-fantasy",
+        "fey"
+      ]
+    },
+    {
+      "id": "hedge-druid",
+      "text": "hedge druid",
+      "weight": 7,
+      "themes": [
+        "wild-primal",
+        "fey"
+      ]
+    },
+    {
+      "id": "warlock-bound-to-something-patient",
+      "text": "pact-bound warlock",
+      "weight": 7,
+      "themes": [
+        "dark-fantasy",
+        "infernal",
+        "underdark"
+      ]
+    },
+    {
+      "id": "travelling-tinker",
+      "text": "travelling tinker",
+      "weight": 4
+    },
+    {
+      "id": "temple-bell-ringer",
+      "text": "temple bell-ringer",
+      "weight": 7,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "lich-s-reluctant-apprentice",
+      "text": "lich's apprentice",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "arcane"
+      ]
+    },
+    {
+      "id": "frost-giant-s-jarl",
+      "text": "frost giant jarl",
+      "weight": 7,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "fire-genasi-forge-master",
+      "text": "fire genasi smith",
+      "weight": 7,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "sigil-portal-merchant",
+      "text": "Sigil portal-merchant",
+      "weight": 7,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "githyanki-knight",
+      "text": "githyanki knight",
+      "weight": 7,
+      "themes": [
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "storm-herald-of-the-sea",
+      "text": "sea elf storm-herald",
+      "weight": 7,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "half-mad-cartographer",
+      "text": "half-mad cartographer",
+      "weight": 4
+    },
+    {
+      "id": "hag-who-collected-debts-in",
+      "text": "memory-hoarding hag",
+      "weight": 7,
+      "themes": [
+        "fey",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "fallen-aasimar",
+      "text": "fallen aasimar",
+      "weight": 7,
+      "themes": [
+        "celestial",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "orc-war-chanter",
+      "text": "orc war-chanter",
+      "weight": 7,
+      "themes": [
+        "wild-primal",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "lighthouse-keeper",
+      "text": "lighthouse keeper",
+      "weight": 7,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "mind-flayer-defector",
+      "text": "mind flayer defector",
+      "weight": 7,
+      "themes": [
+        "underdark",
+        "planar"
+      ]
+    },
+    {
+      "id": "bone-carver-of-the-shadowfell",
+      "text": "bone-carver of the Shadowfell",
+      "weight": 7,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "bard-with-a-price-on",
+      "text": "wanted bard",
+      "weight": 4
+    },
+    {
+      "id": "retired-adventurer",
+      "text": "retired adventurer",
+      "weight": 4
+    },
+    {
+      "id": "ash-caked-salamander-priest",
+      "text": "salamander fire-priest",
+      "weight": 7,
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "keeper-of-a-drowned-library",
+      "text": "drowned-library keeper",
+      "weight": 7,
+      "themes": [
+        "nautical",
+        "arcane"
+      ]
+    },
+    {
+      "id": "child-who-talked-to-dragons",
+      "text": "dragon-speaking child",
+      "weight": 4
+    },
+    {
+      "id": "halfling-smuggler",
+      "text": "halfling smuggler",
+      "weight": 4
+    },
+    {
+      "id": "cleric-of-a-forgotten-god",
+      "text": "forgotten god's cleric",
+      "weight": 7,
+      "themes": [
+        "dark-fantasy",
+        "celestial"
+      ]
+    },
+    {
+      "id": "glacier-hermit",
+      "text": "glacier-hermit",
+      "weight": 7,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "fungal-shaman",
+      "text": "fungal shaman",
+      "weight": 7,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "devil-in-a-borrowed-body",
+      "text": "body-thief devil",
+      "weight": 7,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "eladrin-courtier",
+      "text": "eladrin courtier",
+      "weight": 7,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "necromancer-who-only-wanted-company",
+      "text": "lonely necromancer",
+      "weight": 7,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "wandering-monk",
+      "text": "wandering monk",
+      "weight": 4
+    },
+    {
+      "id": "guildmaster-of-a-dying-trade",
+      "text": "failing guildmaster",
+      "weight": 7,
+      "themes": [
+        "planar",
+        "arcane"
+      ]
+    },
+    {
+      "id": "beast-tamer-from-the-jungle",
+      "text": "jungle beast-tamer",
+      "weight": 7,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "vampire-who-hated-the-taste",
+      "text": "blood-shy vampire",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "celestial-archivist",
+      "text": "celestial archivist",
+      "weight": 7,
+      "themes": [
+        "celestial",
+        "arcane"
+      ]
+    }
+  ]
+}

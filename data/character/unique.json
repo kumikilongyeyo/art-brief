@@ -3,33 +3,307 @@
   "category": "character",
   "slot": "unique",
   "entries": [
-    {"id": "candle-flames-lean-toward-them", "text": "candle flames lean toward them when they speak", "tier": "minor"},
-    {"id": "small-birds-land-on-them", "text": "small birds land on them without fear", "tags": ["beast"], "tier": "minor"},
-    {"id": "their-shadow-is-a-shade", "text": "their shadow is a shade darker than anyone else's", "tags": ["shadow"], "tier": "minor"},
-    {"id": "frost-ferns-bloom-on-any", "text": "frost ferns bloom on any glass they breathe on", "tags": ["frost"], "themes": ["frost"], "tier": "minor"},
-    {"id": "their-footprints-fill-with-warm", "text": "their footprints fill with warm grey ash", "tags": ["ash"], "themes": ["elemental-fire", "infernal"], "tier": "minor"},
-    {"id": "salt-crystals-form-in-their", "text": "salt crystals form in their hair overnight", "tags": ["water"], "themes": ["nautical"], "tier": "minor"},
-    {"id": "flowers-close-up-as-they", "text": "flowers close up as they walk past", "tags": ["flora"], "themes": ["fey", "dark-fantasy"], "tier": "minor"},
-    {"id": "their-eyes-glow-faintly-in", "text": "their eyes glow faintly in total darkness", "tags": ["dark"], "tier": "minor"},
-    {"id": "coins-flip-heads-up-wherever", "text": "coins flip heads-up wherever they sit", "tier": "minor"},
-    {"id": "cats-follow-them-down-every", "text": "cats follow them down every street", "tags": ["comic"], "tier": "minor"},
-    {"id": "their-breath-smokes-even-in", "text": "their breath smokes even in summer", "tags": ["eerie"], "tier": "minor"},
-    {"id": "spores-drift-upward-from-their", "text": "spores drift upward from their footprints", "tags": ["fungal"], "themes": ["underdark", "fey"], "tier": "notable"},
-    {"id": "their-reflection-is-always-a", "text": "their reflection is always a few years older", "tags": ["eerie"], "tier": "notable"},
-    {"id": "a-tiny-storm-cloud-gathers", "text": "a tiny storm cloud gathers overhead when they sulk", "tags": ["storm", "comic"], "tier": "notable"},
-    {"id": "gold-leaf-flakes-from-their", "text": "gold leaf flakes from their skin when they lie", "tags": ["gold"], "tier": "notable"},
-    {"id": "moths-gather-into-a-cloak", "text": "moths gather into a cloak around them at night", "tags": ["twilight"], "themes": ["fey", "dark-fantasy", "undead"], "tier": "notable"},
-    {"id": "their-tattoos-slowly-redraw-themselves", "text": "their tattoos slowly redraw themselves into maps", "tags": ["arcane"], "themes": ["arcane", "planar"], "tier": "notable"},
-    {"id": "threads-of-light-tie-them", "text": "threads of light tie them to everyone they owe", "tags": ["contract"], "tier": "notable"},
-    {"id": "their-blood-runs-silver-and", "text": "their blood runs silver and smells of lightning", "tags": ["storm"], "tier": "notable"},
-    {"id": "they-speak-shadowfell-whispers-aloud", "text": "they speak Shadowfell whispers aloud in their sleep", "tags": ["shadow"], "themes": ["undead", "dark-fantasy"], "tier": "notable"},
-    {"id": "their-pulse-glows-through-the", "text": "their pulse glows through the skin like forge light", "tags": ["forge"], "themes": ["elemental-fire"], "tier": "notable"},
-    {"id": "spectral-wings-unfurl-behind-them", "text": "spectral wings unfurl behind them when they pray", "tags": ["feathered", "holy"], "themes": ["celestial", "high-fantasy"], "tier": "legendary"},
-    {"id": "meadow-grass-heals-over-the", "text": "meadow grass heals over the ground where they rest", "tags": ["druidic", "flora"], "themes": ["fey", "wild-primal"], "tier": "legendary"},
-    {"id": "a-sliver-of-the-nine", "text": "a sliver of the Nine Hells burns visibly in their chest", "tags": ["fiend", "fire"], "themes": ["infernal"], "tier": "legendary"},
-    {"id": "a-drowned-cathedral-bell-tolls", "text": "a drowned cathedral bell tolls whenever they near death", "tags": ["abyssal"], "themes": ["nautical", "dark-fantasy"], "tier": "legendary"},
-    {"id": "stars-prick-into-view-in", "text": "stars prick into view in their open palms at noon", "tags": ["astral"], "themes": ["arcane", "celestial", "planar"], "tier": "legendary"},
-    {"id": "the-world-lags-a-single", "text": "the world lags a single frame behind them when they run", "surreal": true, "tier": "legendary"},
-    {"id": "their-heartbeat-carries-across-an", "text": "their heartbeat carries across an entire battlefield", "tags": ["heroic"], "tier": "legendary"}
+    {
+      "id": "candle-flames-lean-toward-them",
+      "text": "candle flames lean toward them when they speak",
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "small-birds-land-on-them",
+      "text": "small birds land on them without fear",
+      "tags": [
+        "beast"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "their-shadow-is-a-shade",
+      "text": "their shadow is a shade darker than anyone else's",
+      "tags": [
+        "shadow"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "frost-ferns-bloom-on-any",
+      "text": "frost ferns bloom on any glass they breathe on",
+      "tags": [
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "their-footprints-fill-with-warm",
+      "text": "their footprints fill with warm grey ash",
+      "tags": [
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "salt-crystals-form-in-their",
+      "text": "salt crystals form in their hair overnight",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "flowers-close-up-as-they",
+      "text": "flowers close up as they walk past",
+      "tags": [
+        "flora"
+      ],
+      "themes": [
+        "fey",
+        "dark-fantasy"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "their-eyes-glow-faintly-in",
+      "text": "their eyes glow faintly in total darkness",
+      "tags": [
+        "dark"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "coins-flip-heads-up-wherever",
+      "text": "coins flip heads-up wherever they sit",
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "cats-follow-them-down-every",
+      "text": "cats follow them down every street",
+      "tags": [
+        "comic"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "their-breath-smokes-even-in",
+      "text": "their breath smokes even in summer",
+      "tags": [
+        "eerie"
+      ],
+      "tier": "minor",
+      "form": "clause"
+    },
+    {
+      "id": "spores-drift-upward-from-their",
+      "text": "spores drift upward from their footprints",
+      "tags": [
+        "fungal"
+      ],
+      "themes": [
+        "underdark",
+        "fey"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "their-reflection-is-always-a",
+      "text": "their reflection is always a few years older",
+      "tags": [
+        "eerie"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "a-tiny-storm-cloud-gathers",
+      "text": "a tiny storm cloud gathers overhead when they sulk",
+      "tags": [
+        "storm",
+        "comic"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "gold-leaf-flakes-from-their",
+      "text": "gold leaf flakes from their skin when they lie",
+      "tags": [
+        "gold"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "moths-gather-into-a-cloak",
+      "text": "moths gather into a cloak around them at night",
+      "tags": [
+        "twilight"
+      ],
+      "themes": [
+        "fey",
+        "dark-fantasy",
+        "undead"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "their-tattoos-slowly-redraw-themselves",
+      "text": "their tattoos slowly redraw themselves into maps",
+      "tags": [
+        "arcane"
+      ],
+      "themes": [
+        "arcane",
+        "planar"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "threads-of-light-tie-them",
+      "text": "threads of light tie them to everyone they owe",
+      "tags": [
+        "contract"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "their-blood-runs-silver-and",
+      "text": "their blood runs silver and smells of lightning",
+      "tags": [
+        "storm"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "they-speak-shadowfell-whispers-aloud",
+      "text": "they speak Shadowfell whispers aloud in their sleep",
+      "tags": [
+        "shadow"
+      ],
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "their-pulse-glows-through-the",
+      "text": "their pulse glows through the skin like forge light",
+      "tags": [
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "tier": "notable",
+      "form": "clause"
+    },
+    {
+      "id": "spectral-wings-unfurl-behind-them",
+      "text": "spectral wings unfurl behind them when they pray",
+      "tags": [
+        "feathered",
+        "holy"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ],
+      "tier": "legendary",
+      "form": "clause"
+    },
+    {
+      "id": "meadow-grass-heals-over-the",
+      "text": "meadow grass heals over the ground where they rest",
+      "tags": [
+        "druidic",
+        "flora"
+      ],
+      "themes": [
+        "fey",
+        "wild-primal"
+      ],
+      "tier": "legendary",
+      "form": "clause"
+    },
+    {
+      "id": "a-sliver-of-the-nine",
+      "text": "a sliver of the Nine Hells burns visibly in their chest",
+      "tags": [
+        "fiend",
+        "fire"
+      ],
+      "themes": [
+        "infernal"
+      ],
+      "tier": "legendary",
+      "form": "clause"
+    },
+    {
+      "id": "a-drowned-cathedral-bell-tolls",
+      "text": "a drowned cathedral bell tolls whenever they near death",
+      "tags": [
+        "abyssal"
+      ],
+      "themes": [
+        "nautical",
+        "dark-fantasy"
+      ],
+      "tier": "legendary",
+      "form": "clause"
+    },
+    {
+      "id": "stars-prick-into-view-in",
+      "text": "stars prick into view in their open palms at noon",
+      "tags": [
+        "astral"
+      ],
+      "themes": [
+        "arcane",
+        "celestial",
+        "planar"
+      ],
+      "tier": "legendary",
+      "form": "clause"
+    },
+    {
+      "id": "the-world-lags-a-single",
+      "text": "the world lags a single frame behind them when they run",
+      "surreal": true,
+      "tier": "legendary",
+      "form": "clause"
+    },
+    {
+      "id": "their-heartbeat-carries-across-an",
+      "text": "their heartbeat carries across an entire battlefield",
+      "tags": [
+        "heroic"
+      ],
+      "tier": "legendary",
+      "form": "clause"
+    }
   ]
 }

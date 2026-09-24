@@ -1,10 +1,11 @@
 import './styles.css';
 import { registerSW } from 'virtual:pwa-register';
-import { chatText } from './chat';
+import { chatText, storyText } from './chat';
 import { copyText } from './clipboard';
 import { loadData } from './data';
 import { countCombinations, formatCount } from './engine/count';
 import { generateBatch, generateVariation, lockedMap, rerollSlots, rollTheme, setLocked, type Pin } from './engine/generate';
+import { fullText, withLore, withoutLore } from './engine/lore';
 import { chooseFreshBatch, pushRecent } from './engine/recent';
 import { CATEGORY_IDS, WEIRDNESS, type Brief, type CategoryId, type SlotId, type ThemeId, type Weirdness } from './engine/types';
 import { decodeShare, encodeShare, type ShareState } from './share';
@@ -49,6 +50,7 @@ const state = {
     ThemeId | 'any',
   count: Math.min(4, Math.max(1, settings.last.count || 2)),
   weirdness: (WEIRDNESS.includes(settings.last.weirdness) ? settings.last.weirdness : 'mixed') as Weirdness,
+  lore: !!settings.last.lore,
   results: [] as Brief[],
   sample: null as Brief | null,
   notice: null as string | null,
@@ -66,7 +68,7 @@ function entropy(): string {
 function persistLast() {
   settings = {
     ...settings,
-    last: { category: state.category, themeChoice: state.themeChoice, count: state.count, weirdness: state.weirdness },
+    last: { category: state.category, themeChoice: state.themeChoice, count: state.count, weirdness: state.weirdness, lore: state.lore },
   };
   saveSettings(settings);
 }
@@ -107,6 +109,12 @@ const pillsEl = h('div', { class: 'pills', role: 'group', 'aria-label': 'Categor
 const themeSelect = h('select', { class: 'theme', id: 'theme', 'aria-label': 'Theme' });
 const countSeg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Variations' });
 const weirdSeg = h('div', { class: 'seg', role: 'group', 'aria-label': 'Weirdness' });
+const loreBox = h('input', { type: 'checkbox', id: 'lore-toggle' });
+loreBox.checked = state.lore;
+loreBox.addEventListener('change', () => {
+  state.lore = loreBox.checked;
+  persistLast();
+});
 const generateBtn = h('button', { class: 'generate', type: 'button', id: 'generate', onclick: () => generate() }, 'Generate');
 const noticesEl = h('div', { 'aria-live': 'polite' });
 const resultsEl = h('section', { class: 'results', 'aria-label': 'Results', id: 'results' });
@@ -131,6 +139,12 @@ app.append(
       h('div', { class: 'field-row' }, h('label', { class: 'label', for: 'theme' }, 'Theme'), themeSelect),
       h('div', { class: 'field-row' }, h('span', { class: 'label' }, 'Variations'), countSeg),
       h('div', { class: 'field-row' }, h('span', { class: 'label' }, 'Weirdness'), weirdSeg),
+      h(
+        'div',
+        { class: 'field-row' },
+        h('span', { class: 'label' }, 'Lore'),
+        h('label', { class: 'check lore-check', for: 'lore-toggle' }, loreBox, 'Add a short story to each card'),
+      ),
       generateBtn,
       h('p', { class: 'hint' }, 'Enter or Space to generate · lock a line to keep it'),
       noticesEl,
@@ -249,7 +263,7 @@ const cardHandlers: CardHandlers = {
   },
   copy(i) {
     const b = state.results[i];
-    if (b) void doCopy(b.plainText);
+    if (b) void doCopy(fullText(b));
   },
   copyChat(i) {
     const b = state.results[i];
@@ -285,13 +299,45 @@ const cardHandlers: CardHandlers = {
       seed: b.seed,
       fields,
       locked: lockedMap(b),
+      lore: b.lore?.roll,
     });
     void doCopy(url, 'Link copied');
   },
   swatch(hex) {
     void doCopy(hex, `Copied ${hex}`);
   },
+  addLore(i) {
+    updateCard(i, (b) => withLore(data, b, 0), 'lore-reroll');
+  },
+  rerollLore(i) {
+    updateCard(i, (b) => withLore(data, b, (b.lore?.roll ?? 0) + 1), 'lore-reroll');
+  },
+  hideLore(i) {
+    updateCard(i, (b) => withoutLore(b), 'lore-add');
+  },
+  refineLore(i) {
+    const b = state.results[i];
+    if (!b?.lore) return;
+    void doCopy(storyText(b, settings.storyInstruction), 'Story copied for ChatGPT');
+    if (settings.openChatGPT) window.open('https://chatgpt.com/', '_blank', 'noopener');
+  },
 };
+
+/** Replace one card's brief (keeping history and saved in step) and move focus to a control on the new card. */
+function updateCard(i: number, fn: (b: Brief) => Brief, focusPrefix?: string) {
+  const b = state.results[i];
+  if (!b) return;
+  const next = fn(b);
+  state.results[i] = next;
+  replaceInHistory(b.id, next);
+  if (saved[b.id]) {
+    saved = { ...saved, [b.id]: next };
+    saveSaved(saved);
+  }
+  rerenderCard(i);
+  if (focusPrefix)
+    (resultsEl.querySelectorAll('.card')[i]?.querySelector(`[data-focus="${focusPrefix}:${i}"]`) as HTMLElement | null)?.focus();
+}
 
 function cardFor(b: Brief, i: number): HTMLElement {
   return renderCard(b, { index: i, saved: !!saved[b.id], showChatGPT: settings.showChatGPT, data }, cardHandlers);
@@ -321,7 +367,7 @@ function renderResults() {
             class: 'btn',
             type: 'button',
             id: 'copy-all',
-            onclick: () => void doCopy(state.results.map((b) => b.plainText).join('\n\n---\n\n'), 'Copied all'),
+            onclick: () => void doCopy(state.results.map((b) => fullText(b)).join('\n\n---\n\n'), 'Copied all'),
           },
           icon('copy'),
           'Copy all',
@@ -399,6 +445,7 @@ function generate() {
       count: state.count,
       uniqueFrequency: settings.uniqueFrequency,
       locks,
+      lore: state.lore,
       createdAt: Date.now(),
     },
     entropy(),
@@ -459,6 +506,7 @@ function applyShare(s: ShareState) {
       createdAt: Date.now(),
     });
   }
+  if (s.lore !== undefined) briefs = briefs.map((b) => withLore(data, b, s.lore));
   state.results = briefs;
   state.sample = null;
   state.notice = s.version && s.version !== data.version ? 'Made with older data; some lines may differ.' : null;
@@ -549,6 +597,7 @@ if (shared) {
     count: 1,
     base: SAMPLE_BASE,
     uniqueFrequency: 'sometimes',
+    lore: true,
   })[0];
 }
 renderControls();

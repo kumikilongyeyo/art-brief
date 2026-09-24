@@ -1,0 +1,323 @@
+{
+  "id": "scene.lore-now",
+  "category": "scene",
+  "slot": "lore-now",
+  "entries": [
+    {
+      "id": "whatever-happens-next-everyone-present",
+      "text": "Whatever happens next, everyone present will remember it as {f:mood}",
+      "weight": 2
+    },
+    {
+      "id": "the-survivors-will-remember-it",
+      "text": "The survivors will remember it as {f:mood}, and argue the rest",
+      "weight": 4
+    },
+    {
+      "id": "should-be-here-and-is",
+      "text": "{npcname} should be here and is not; the trail leads to {place}",
+      "weight": 4
+    },
+    {
+      "id": "it-ends-as-and-the",
+      "text": "It ends as {f:mood}, and the proof is hidden in {place}",
+      "weight": 4
+    },
+    {
+      "id": "soon-the-tale-reaches-told",
+      "text": "Soon the tale reaches {place}, told as {f:mood}",
+      "weight": 3
+    },
+    {
+      "id": "it-will-go-down-in",
+      "text": "It will go down in song as {f:mood}",
+      "weight": 2
+    },
+    {
+      "id": "stranger-still-and-knows-why",
+      "text": "Stranger still, {unique}, and {npcname} knows why",
+      "weight": 3,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "nobody-mentions-that-it-will",
+      "text": "Nobody mentions that {unique}; it will matter by morning",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "even-now-and-someone-will",
+      "text": "Even now, {unique}, and someone will pay to know why",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-will-be-remembered-as",
+      "text": "It will be remembered as {f:mood}, if anyone survives to remember",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "someone-here-will-not-see",
+      "text": "Someone here will not see morning, and {npcname} knows who",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "a-devil-in-is-already",
+      "text": "A devil in {place} is already drafting the bill",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "and-the-first-clause-coming",
+      "text": "And {unique}: the first clause, coming due",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-heavens-will-record-it",
+      "text": "The heavens will record it as {f:mood}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "an-angel-will-ask-about",
+      "text": "An angel will ask about this; lying will not help",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "and-the-faithful-are-already",
+      "text": "{unique}, and the faithful are already calling it a sign",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-fey-will-retell-it",
+      "text": "The fey will retell it as {f:mood}, getting every detail wrong",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "an-archfey-in-has-already",
+      "text": "An archfey in {place} has already bet on the ending",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "worse-which-the-fey-find",
+      "text": "Worse, {unique}, which the fey find hilarious",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-dead-will-remember-it",
+      "text": "The dead will remember it for a century as {f:mood}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "whoever-falls-here-will-rise",
+      "text": "Whoever falls here will rise again, and walk toward {place}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "and-as-it-has-since",
+      "text": "And {unique}, as it has since the first burial",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "every-tavern-on-the-coast",
+      "text": "Every tavern on the coast will tell it as {f:mood}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-tide-will-carry-the",
+      "text": "The tide will carry the evidence to {place}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "something-below-heard-it-all",
+      "text": "Something below heard it all, and it is climbing",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "and-something-below-is-coming",
+      "text": "And {unique}: something below is coming",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "a-wizard-in-felt-the",
+      "text": "A wizard in {place} felt the ripple and is already coming",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-wizards-cannot-explain-why",
+      "text": "The wizards cannot explain why {unique}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-clans-will-sing-it",
+      "text": "The clans will sing it as {f:mood}, then hunt the guilty",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "and-the-beasts-have-already",
+      "text": "And {unique}; the beasts have already fled",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-story-will-outlast-the",
+      "text": "The story will outlast the winter, remembered as {f:mood}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "and-even-as-the-cold",
+      "text": "And {unique}, even as the cold closes in",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-will-be-sung-at",
+      "text": "It will be sung at every forge as {f:mood}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "and-while-the-ashes-are",
+      "text": "And {unique}, while the ashes are still warm",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "bards-will-sing-it-as",
+      "text": "Bards will sing it as {f:mood}, and a dragon will hear",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "heroes-will-be-needed-and",
+      "text": "Heroes will be needed, and the trail starts in {place}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "word-will-reach-sigil-within",
+      "text": "Word will reach Sigil within the hour, told as {f:mood}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "and-which-in-sigil-counts",
+      "text": "And {unique}, which in Sigil counts as a warning",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    }
+  ]
+}

@@ -10,6 +10,10 @@ export interface CardHandlers {
   save: (index: number) => void;
   link: (index: number) => void;
   swatch: (hex: string) => void;
+  addLore: (index: number) => void;
+  rerollLore: (index: number) => void;
+  hideLore: (index: number) => void;
+  refineLore: (index: number) => void;
 }
 
 export interface CardOptions {
@@ -114,6 +118,52 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
     );
   }
   card.append(dl);
+
+  if (brief.lore?.text) {
+    card.append(
+      h(
+        'section',
+        { class: 'lore', 'aria-label': 'Lore' },
+        h(
+          'div',
+          { class: 'lore-head' },
+          h('h3', { class: 'lore-title' }, 'Lore'),
+          o.sample
+            ? null
+            : h(
+                'div',
+                { class: 'lore-actions' },
+                h(
+                  'button',
+                  {
+                    class: 'mini',
+                    type: 'button',
+                    'aria-label': 'Reroll lore',
+                    title: 'Tell it differently',
+                    'data-focus': `lore-reroll:${o.index}`,
+                    onclick: () => hd.rerollLore(o.index),
+                  },
+                  icon('reroll'),
+                ),
+                h(
+                  'button',
+                  { class: 'mini', type: 'button', 'aria-label': 'Hide lore', title: 'Hide lore', onclick: () => hd.hideLore(o.index) },
+                  icon('close'),
+                ),
+              ),
+        ),
+        h('p', { class: 'lore-text' }, brief.lore.text),
+        o.sample
+          ? null
+          : h(
+              'button',
+              { class: 'btn btn-small', type: 'button', 'data-focus': `lore-refine:${o.index}`, onclick: () => hd.refineLore(o.index) },
+              icon('chat'),
+              'Refine story in ChatGPT',
+            ),
+      ),
+    );
+  }
 
   if (!o.sample) {
     card.append(

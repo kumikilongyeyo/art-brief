@@ -6,47 +6,56 @@
     {
       "id": "flowers-wilt-ring-wherever-it",
       "text": "flowers wilt in a ring wherever it sleeps",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "it-smells-faintly-rain-hot",
       "text": "it smells faintly of rain on hot stone",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "footprints-slowly-fill-clear-water",
       "text": "its footprints slowly fill with clear water",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "birds-fall-silent-while-it",
       "text": "birds fall silent while it passes",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "blood-runs-cold-blue-faintly",
       "text": "its blood runs cold, blue and faintly glowing",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "it-purrs-like-distant-rockslide",
       "text": "it purrs like a distant rockslide",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "moths-gather-it-patient-velvet",
       "text": "moths gather on it in patient, velvet crowds",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "eyes-reflect-starless-night-sky",
       "text": "its eyes reflect a starless night sky",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "it-hums-lullaby-no-one",
       "text": "it hums a lullaby no one taught it",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "frost-feathers-across-any-metal",
@@ -54,12 +63,14 @@
       "tags": [
         "frost"
       ],
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "shadow-always-points-toward-sun",
       "text": "its shadow always points toward the sun",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "wounds-heal-into-seams-gold",
@@ -67,7 +78,8 @@
       "tags": [
         "gold"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "every-scale-or-plate-bears",
@@ -75,7 +87,8 @@
       "tags": [
         "rune"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "howl-is-heard-only-by",
@@ -83,7 +96,8 @@
       "tags": [
         "necrotic"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "it-casts-two-shadows-one",
@@ -91,32 +105,38 @@
       "tags": [
         "shadow"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "compass-needles-spin-wildly-presence",
       "text": "compass needles spin wildly in its presence",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "it-will-not-cross-running",
       "text": "it will not cross running water",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "reflection-shows-far-older-larger",
       "text": "its reflection shows a far older, larger beast",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "breath-smells-stranger-s-childhood",
       "text": "its breath smells of a stranger's childhood home",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "heartbeat-can-be-felt-through",
       "text": "its heartbeat can be felt through the ground a mile away",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "tiny-star-orbits-head",
@@ -124,7 +144,8 @@
       "tags": [
         "astral"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "it-is-last-kind-it",
@@ -132,7 +153,8 @@
       "tags": [
         "melancholy"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "ruined-walls-briefly-rebuild-themselves",
@@ -140,7 +162,8 @@
       "tags": [
         "ruin"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "where-it-dies-forest-grows",
@@ -148,12 +171,14 @@
       "tags": [
         "flora"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "whole-valley-shares-dreams-while",
       "text": "the whole valley shares its dreams while it sleeps",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     }
   ]
 }

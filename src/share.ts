@@ -23,6 +23,8 @@ export interface ShareState {
   seed?: string;
   fields?: Record<SlotId, string>;
   locked?: Record<SlotId, string>;
+  /** Story shown, with this telling (roll). */
+  lore?: number;
 }
 
 const FREQ: UniqueFrequency[] = ['never', 'sometimes', 'often'];
@@ -62,6 +64,7 @@ export function encodeShare(s: ShareState): string {
   if (s.seed && s.seed !== `${s.base}-${s.index ?? 0}`) p.push(`r=${encodeURIComponent(s.seed)}`);
   if (s.fields && Object.keys(s.fields).length) p.push(`f=${encodePairs(s.fields)}`);
   if (s.locked && Object.keys(s.locked).length) p.push(`l=${encodePairs(s.locked)}`);
+  if (s.lore !== undefined) p.push(`lo=${s.lore}`);
   return `#${p.join('&')}`;
 }
 
@@ -97,6 +100,8 @@ export function decodeShare(hash: string, data: DataSet): ShareState | null {
   }
   const fields = decodePairs(params.get('f'), slots);
   const locked = decodePairs(params.get('l'), slots);
+  const lo = parseInt(params.get('lo') ?? '', 10);
+  if (Number.isFinite(lo) && lo >= 0 && lo < 10000) state.lore = lo;
   if (Object.keys(fields).length) state.fields = fields;
   if (Object.keys(locked).length) state.locked = locked;
   return state;

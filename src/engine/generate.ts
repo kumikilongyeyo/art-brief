@@ -1,4 +1,5 @@
 import { withArticle } from './grammar';
+import { makeLore } from './lore';
 import { buildName } from './names';
 import { FUSION_CHANCE, pickEntry, type PickContext } from './pick';
 import { cyrb128, rngFrom, type Rng } from './rng';
@@ -42,6 +43,8 @@ export interface BatchOptions {
   uniqueFrequency: UniqueFrequency;
   /** Locked fields per variation index (slot → entryId). */
   locks?: (Record<SlotId, string> | undefined)[];
+  /** Attach a story to every brief. */
+  lore?: boolean;
   createdAt?: number;
 }
 
@@ -368,7 +371,7 @@ export function generateBatch(data: DataSet, opts: BatchOptions, diag?: Diagnost
     if (diag) generateVariation(data, kept, diag);
     usedPrimary.add(brief.fields[cat.primarySlot].entryId);
     usedPalettes.add(brief.fields.palette.entryId);
-    briefs.push(brief);
+    briefs.push(opts.lore ? { ...brief, lore: makeLore(data, brief, 0) } : brief);
   }
   return briefs;
 }
@@ -391,7 +394,7 @@ export function rerollSlots(data: DataSet, brief: Brief, slots: SlotId[], unique
   for (const s of cat.slots) {
     if (!targets.has(s.id)) pins[s.id] = { entryId: brief.fields[s.id].entryId, locked: brief.fields[s.id].locked };
   }
-  return generateVariation(
+  const next = generateVariation(
     data,
     {
       category: brief.category,
@@ -409,6 +412,8 @@ export function rerollSlots(data: DataSet, brief: Brief, slots: SlotId[], unique
     },
     diag,
   );
+  // The story is built from the fields, so it is rebuilt (same telling) when they change.
+  return brief.lore ? { ...next, lore: makeLore(data, next, brief.lore.roll) } : next;
 }
 
 /** Rebuild a brief from pinned values (share links, lock toggles). Unknown ids are regenerated. */

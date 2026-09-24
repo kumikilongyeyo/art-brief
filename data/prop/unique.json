@@ -6,32 +6,38 @@
     {
       "id": "grows-warm-when-pointed",
       "text": "grows warm when pointed toward treasure",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "smells-faintly-of-a",
       "text": "smells faintly of a place no one can name",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "casts-no-reflection-in",
       "text": "casts no reflection in still water",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "hums-a-lullaby-when",
       "text": "hums a lullaby when left alone in the dark",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "frosts-over-whenever-a",
       "text": "frosts over whenever a ghost is near",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "cats-refuse-to-stay",
       "text": "cats refuse to stay in the same room as it",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "weighs-nothing-at-all",
@@ -39,7 +45,8 @@
       "tags": [
         "moonlit"
       ],
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "leaves-a-ring-of",
@@ -47,12 +54,14 @@
       "tags": [
         "flora"
       ],
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "chimes-in-harmony-with",
       "text": "chimes in harmony with any other piece from its set",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "sheds-a-single-white",
@@ -60,33 +69,39 @@
       "tags": [
         "feathered"
       ],
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "turns-up-in-its",
       "text": "turns up in its owner's pack no matter how far it is thrown",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "casts-the-shadow-of",
       "text": "casts the shadow of a different, much larger object",
       "surreal": true,
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "bleeds-one-drop-of",
       "text": "bleeds one drop of ink whenever someone dies nearby",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "names-every-hand-that",
       "text": "names every hand that ever held it, in its owner's dreams",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "refuses-to-be-carried",
       "text": "refuses to be carried across running water",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "still-glows-faintly-from",
@@ -94,18 +109,21 @@
       "tags": [
         "astral"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "slowly-turns-its-owners",
       "text": "slowly turns its owner's hair silver",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "looks-a-little-newer",
       "text": "looks a little newer every year, as if ageing backward",
       "surreal": true,
-      "tier": "notable"
+      "tier": "notable",
+      "form": "predicate"
     },
     {
       "id": "is-still-legally-owned",
@@ -117,13 +135,15 @@
       "themes": [
         "infernal"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "holds-the-last-dream",
       "text": "holds the last dream of a dead god",
       "surreal": true,
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "once-served-a-lich",
@@ -135,7 +155,8 @@
         "undead",
         "dark-fantasy"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "draws-the-feywild-a",
@@ -146,12 +167,14 @@
       "themes": [
         "fey"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "can-be-unmade-only",
       "text": "can be unmade only in the forge where it was born",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "has-outlived-every-owner",
@@ -159,12 +182,14 @@
       "tags": [
         "cursed"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     },
     {
       "id": "is-the-one-treasure",
       "text": "is the one treasure a beholder ever gave up",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "predicate"
     }
   ]
 }

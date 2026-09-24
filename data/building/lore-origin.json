@@ -1,0 +1,211 @@
+{
+  "id": "building.lore-origin",
+  "category": "building",
+  "slot": "lore-origin",
+  "entries": [
+    {
+      "id": "built-it-as-a-lid",
+      "text": "{era}, {npc} built it as a lid on something buried deep",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "raised-it-on-ground-that",
+      "text": "{era}, {npc} raised it on ground that was still smoking",
+      "weight": 8,
+      "themes": [
+        "infernal",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "raised-it-where-a-saint",
+      "text": "{era}, {npc} raised it where a saint once turned back a dragon",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "traded-a-true-name-to",
+      "text": "{npc} traded a true name to the land for the site, {f:setting}",
+      "weight": 8,
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "built-it-to-thank-the",
+      "text": "{npc} built it to thank the sea for sparing them, {era}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "raised-it-and-the-first",
+      "text": "{npc} raised it {era}, and the first frost killed half the builders",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "raised-it-to-plans-whispered",
+      "text": "{npc} raised it to plans whispered from the dark, {era}",
+      "weight": 8,
+      "themes": [
+        "underdark",
+        "arcane"
+      ]
+    },
+    {
+      "id": "anchored-it-to-a-crack",
+      "text": "{era}, {npc} anchored it to a crack between the planes",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "was-founded-by",
+      "text": "{name} was founded by {npc}, {era}",
+      "weight": 4
+    },
+    {
+      "id": "raised-it-in-the-style",
+      "text": "{npc} raised it {era}, in the {f:style} style",
+      "weight": 4
+    },
+    {
+      "id": "it-was-built-on-a",
+      "text": "It was built {era} on a site nobody else wanted, {f:setting}",
+      "weight": 4
+    },
+    {
+      "id": "won-a-bet-by-building",
+      "text": "{npc} won a bet by building it where nobody could, {f:setting}",
+      "weight": 4
+    },
+    {
+      "id": "laid-its-first-stone-and",
+      "text": "{npc} laid its first stone {era}, and swore never to leave it",
+      "weight": 4
+    },
+    {
+      "id": "nobody-recalls-who-built-it",
+      "text": "Nobody recalls who built it; the oldest ledger names {npc}, {era}",
+      "weight": 3
+    },
+    {
+      "id": "paid-for-it-with-a",
+      "text": "{era}, {npc} paid for it with a fortune made in blood",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "signed-for-it-in-blood",
+      "text": "{npc} signed for it in blood; devils laid every block of {f:material}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "was-shown-the-site-by",
+      "text": "{npc} was shown the site by an angel in a dream, {f:setting}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "fey-masons-built-it-overnight",
+      "text": "Fey masons built it overnight for {npc}, then named their price",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "raised-it-over-a-field",
+      "text": "{era}, {npc} raised it over a field of unmarked graves",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "built-it-with-a-drowned",
+      "text": "{npc} built it with a drowned pirate's hoard, {era}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "something-in-the-deep-dark",
+      "text": "Something in the deep dark told {npc} where to build it, {f:setting}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "designed-it-to-prove-a",
+      "text": "{era}, {npc} designed it to prove a theory, in the {f:style} style",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "raised-it-where-the-clans",
+      "text": "{npc} raised it where the clans once held their hunt-moots, {era}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "raised-it-to-outlast-the",
+      "text": "{npc} raised it to outlast the long night of the north, {era}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "raised-it-from-the-ash",
+      "text": "{era}, {npc} raised it from the ash of an older hall",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "built-it-with-a-dragons",
+      "text": "{npc} built it with a dragon's ransom, {era}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "bought-the-site-sight-unseen",
+      "text": "{npc} bought the site sight unseen from a portal-broker: {f:setting}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

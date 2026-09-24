@@ -1,0 +1,124 @@
+{
+  "id": "prop.lore-purpose",
+  "category": "prop",
+  "slot": "lore-purpose",
+  "entries": [
+    {
+      "id": "it-was-made-for-one",
+      "text": "It was made for one thing: it {f:function}",
+      "weight": 4
+    },
+    {
+      "id": "needed-something-that",
+      "text": "{npcname} needed something that {f:function}",
+      "weight": 4
+    },
+    {
+      "id": "its-gift-was-simple-and",
+      "text": "Its gift was simple, and priceless: it {f:function}",
+      "weight": 4
+    },
+    {
+      "id": "no-one-believed-it-until",
+      "text": "No one believed it until they saw it: it truly {f:function}",
+      "weight": 3
+    },
+    {
+      "id": "it-cost-a-life-to",
+      "text": "It cost a life to make, and it {f:function}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "the-contract-promised-it-and",
+      "text": "The contract promised it {f:function}, and the devil kept every word",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "it-was-meant-as-a",
+      "text": "It was meant as a joke, but it really {f:function}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "priests-called-it-a-mercy",
+      "text": "Priests called it a mercy: it {f:function}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "sailors-called-it-worth-a",
+      "text": "Sailors called it worth a ship, because it {f:function}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "it-served-a-hero-well",
+      "text": "It served a hero well, because it {f:function}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "scholars-still-argue-how-it",
+      "text": "Scholars still argue how it {f:function}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "in-the-deep-roads-a",
+      "text": "In the deep roads, a thing that {f:function} meant survival",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "it-went-to-war-in",
+      "text": "It went to war in the ice, because it {f:function}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "every-forge-priest-wanted-it",
+      "text": "Every forge-priest wanted it, because it {f:function}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "the-clans-guarded-it-because",
+      "text": "The clans guarded it, because it {f:function}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "on-a-dozen-planes-it",
+      "text": "On a dozen planes it fetched a fortune, because it {f:function}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

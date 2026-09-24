@@ -1,0 +1,254 @@
+{
+  "id": "creature.lore-turn",
+  "category": "creature",
+  "slot": "lore-turn",
+  "entries": [
+    {
+      "id": "met-the-oldest-of-them",
+      "text": "{npc} met the oldest of them, {f:scale}, and came home grey-haired",
+      "weight": 4
+    },
+    {
+      "id": "one-of-them-followed-home",
+      "text": "One of them, {f:scale}, followed {npc} home and would not leave",
+      "weight": 4
+    },
+    {
+      "id": "tried-to-tame-one-and",
+      "text": "{npc} tried to tame one, {f:scale}, and lost a hand for it",
+      "weight": 2
+    },
+    {
+      "id": "spent-a-lifetime-tracking-one",
+      "text": "{npc} spent a lifetime tracking one, {f:scale}, and saw it only once",
+      "weight": 3
+    },
+    {
+      "id": "ever-since-wronged-its-kind",
+      "text": "Ever since {npc} wronged its kind, it {f:behaviour}",
+      "weight": 4
+    },
+    {
+      "id": "learned-why-it-and-never",
+      "text": "{npc} learned why it {f:behaviour}, and never told a soul",
+      "weight": 3
+    },
+    {
+      "id": "hunted-one-for-years-only",
+      "text": "{npc} hunted one for years; only their boots came back",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "it-killed-and-since-that",
+      "text": "It killed {npc}, and since that night it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "sold-one-to-a-devil",
+      "text": "{npc} sold one to a devil; the devil wants a refund",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-devils-contract-binds-its",
+      "text": "A devil's contract binds its kind, which is why it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "an-archfey-kept-one-as",
+      "text": "An archfey kept one as a lapdog, {f:scale}, and adored it",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "it-lost-a-bet-to",
+      "text": "It lost a bet to an archfey; as forfeit, it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "an-angel-judged-one-and",
+      "text": "An angel judged one, {f:scale}, and found it without sin",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "an-angel-set-its-kind",
+      "text": "An angel set its kind a penance: it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "buried-one-and-it-dug",
+      "text": "{npc} buried one, {f:scale}, and it dug itself out by dawn",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "was-buried-beside-its-lair",
+      "text": "{npc} was buried beside its lair, and ever since it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "the-last-one-killed-took",
+      "text": "The last one killed took {npc} with it; neither stayed dead",
+      "weight": 8,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "saw-one-rise-out-of",
+      "text": "{npc} saw one, {f:scale}, rise out of a storm at sea",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "it-dragged-under-the-waves",
+      "text": "It dragged {npc} under the waves, and since then it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-drow-patrol-followed-one",
+      "text": "A drow patrol followed one down; only their lanterns returned",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "watched-it-in-the-dark",
+      "text": "{npc} watched it in the dark for a year: it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "tried-to-bind-one-and",
+      "text": "{npc} tried to bind one, {f:scale}, and the circle broke",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "botched-a-charm-on-the",
+      "text": "{npc} botched a charm on the first one, so it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "hunted-one-for-three-days",
+      "text": "{npc} hunted one, {f:scale}, for three days, then let it go",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "spared-one-in-a-hunt",
+      "text": "{npc} spared one in a hunt; in thanks, it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "one-was-found-frozen-solid",
+      "text": "One was found frozen solid, {f:scale}, and thawed out hungry",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "one-spent-a-century-in",
+      "text": "One spent a century in the ice; since thawing, it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "watched-one-come-unburned-out",
+      "text": "{npc} watched one, {f:scale}, come unburned out of a forge fire",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "tried-to-smelt-one-down",
+      "text": "{npc} tried to smelt one down, which is why it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "rode-out-to-slay-one",
+      "text": "{npc} rode out to slay one, {f:scale}, and came home its friend",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-hero-spared-its-life",
+      "text": "A hero spared its life once; to this day it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "chased-one-through-three-portals",
+      "text": "{npc} chased one through three portals, then lost it",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "after-a-century-lost-in",
+      "text": "After a century lost in Sigil, it {f:behaviour}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

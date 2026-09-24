@@ -10,6 +10,7 @@ import Ajv from 'ajv';
 import { buildDataSet } from '../src/engine/dataset';
 import { isBlocked, isOnTheme } from '../src/engine/theme';
 import { findArticleErrors } from '../src/engine/grammar';
+import { LORE_BEATS, LORE_PLACEHOLDER } from '../src/engine/lore';
 import type { CategoryDef, DataSet, Entry, Table } from '../src/engine/types';
 
 const ROOT = join(fileURLToPath(import.meta.url), '..', '..');
@@ -59,6 +60,14 @@ export const MIN_ENTRIES: Record<string, number> = {
   'shared.creature-second': 30,
   'shared.building-epithet': 40,
   'shared.scene-word': 40,
+  'shared.lore-npc': 40,
+  'shared.lore-place': 30,
+  'shared.lore-era': 20,
+  ...Object.fromEntries(
+    ['character', 'prop', 'creature', 'building', 'scene'].flatMap((c) =>
+      ['origin', 'purpose', 'turn', 'now'].map((b) => [`${c}.lore-${b}`, 14]),
+    ),
+  ),
 };
 
 /** Tables whose entries feed a title and therefore need a short `label`. */
@@ -102,8 +111,8 @@ function schemaFor(rel: string): string | null {
   return 'table.schema.json';
 }
 
-export function checkText(where: string, text: string, errors: string[]) {
-  if (text.length > 90) errors.push(`${where}: text is ${text.length} chars (max 90): "${text}"`);
+export function checkText(where: string, text: string, errors: string[], max = 90) {
+  if (text.length > max) errors.push(`${where}: text is ${text.length} chars (max 90): "${text}"`);
   if (/[.,;:!?]$/.test(text)) errors.push(`${where}: trailing punctuation: "${text}"`);
   if (/\s{2,}/.test(text)) errors.push(`${where}: double space: "${text}"`);
   if (text !== text.trim()) errors.push(`${where}: leading/trailing whitespace`);
@@ -140,7 +149,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
     files[rel] = json;
     if (schema === 'table.schema.json') {
       const t = json as Table;
-      const expected = rel.replace(/^names\/words\//, 'shared/').replace(/\.json$/, '');
+      const expected = rel.replace(/^(names\/words|lore)\//, 'shared/').replace(/\.json$/, '');
       const [cat, slot] = expected.includes('/') ? expected.split('/') : ['shared', expected];
       if (t.id !== `${t.category}.${t.slot}`) errors.push(`${rel}: id "${t.id}" must equal "<category>.<slot>"`);
       if (cat !== t.category && !(cat === 'shared' && t.category === 'shared'))
@@ -178,11 +187,14 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       tagOk(`${w} requires`, e.requires);
       tagOk(`${w} excludes`, e.excludes);
       themeOk(w, e.themes);
-      checkText(w, e.text, errors);
+      const isLoreBeat = /\.lore-(origin|purpose|turn|now)$/.test(t.id);
+      checkText(w, e.text, errors, isLoreBeat ? 170 : 90);
       if (e.label) checkText(`${w} label`, e.label, errors);
       for (const x of e.excludes ?? []) if (e.tags?.includes(x)) errors.push(`${w}: both has and excludes tag "${x}"`);
       const placeholders = e.text.match(/\{[^}]*\}/g) ?? [];
-      if (t.id === 'scene.event') {
+      if (isLoreBeat) {
+        validateLoreEntry(t, e, data, errors);
+      } else if (t.id === 'scene.event') {
         if (!e.text.includes('{a}')) errors.push(`${w}: event text must contain {a}`);
         for (const p of placeholders) if (p !== '{a}' && p !== '{b}') errors.push(`${w}: unknown placeholder ${p}`);
       } else if (t.id === 'character.outfit' || t.id === 'prop.object') {
@@ -195,6 +207,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       }
       if (NEEDS_LABEL.includes(t.id) && !e.label) errors.push(`${w}: needs a short "label" (used in the title)`);
       if (UNIQUE_TABLES.includes(t.id) && !e.tier) errors.push(`${w}: unique trait needs "tier"`);
+      if (UNIQUE_TABLES.includes(t.id) && !e.form) errors.push(`${w}: unique trait needs "form" (predicate or clause)`);
       if (!UNIQUE_TABLES.includes(t.id) && e.tier) errors.push(`${w}: "tier" only belongs in unique tables`);
       if (t.id === 'shared.materials' && (e.requires?.length || e.excludes?.length))
         errors.push(`${w}: materials are never hard-excluded (no requires/excludes)`);
@@ -239,6 +252,29 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
     }
   }
 
+  // Lore: every beat has enough on-theme phrasings for every theme (and enough without a unique trait).
+  for (const cat of Object.values(data.categories)) {
+    for (const beat of LORE_BEATS) {
+      const t = data.tables[`${cat.id}.lore-${beat}`];
+      if (!t) continue;
+      for (const theme of data.themes) {
+        const ok = t.entries.filter((e) => isOnTheme(e, theme) && !isBlocked(e, theme) && !e.surreal);
+        if (ok.length < 4) errors.push(`${t.id}: only ${ok.length} grounded on-theme phrasings for theme "${theme.id}" (need 4)`);
+        const noUnique = ok.filter((e) => !(e.requires ?? []).includes('has-unique'));
+        if (noUnique.length < 3)
+          errors.push(`${t.id}: only ${noUnique.length} phrasings usable without a unique trait for "${theme.id}" (need 3)`);
+      }
+    }
+  }
+  for (const id of ['shared.lore-npc', 'shared.lore-place', 'shared.lore-era']) {
+    const t = data.tables[id];
+    if (!t) continue;
+    for (const theme of data.themes) {
+      const ok = t.entries.filter((e) => isOnTheme(e, theme) && !isBlocked(e, theme) && !e.surreal);
+      if (ok.length < 3) errors.push(`${id}: only ${ok.length} grounded on-theme entries for "${theme.id}" (need 3)`);
+    }
+  }
+
   // Categories
   const uniqueTags: Set<string>[] = [];
   for (const cat of Object.values(data.categories)) validateCategory(cat, data, errors, tagOk, uniqueTags);
@@ -250,6 +286,29 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
   }
 
   return { errors, data };
+}
+
+const CHARACTER_ONLY = new Set(['first', 'wearing', 'traits']);
+
+function validateLoreEntry(t: Table, e: Entry, data: DataSet, errors: string[]) {
+  const w = `${t.id}#${e.id}`;
+  const cat = data.categories[t.category as keyof typeof data.categories];
+  if (!cat) return errors.push(`${w}: lore tables must belong to a category`);
+  const slots = new Set(cat.slots.map((s) => s.id));
+  const known = new Set<string>();
+  for (const m of e.text.matchAll(LORE_PLACEHOLDER)) {
+    known.add(m[0]);
+    if (m[2] && !slots.has(m[2]) && !(m[2] === 'wearing' && cat.id === 'character'))
+      errors.push(`${w}: ${m[0]} — "${m[2]}" is not a ${cat.id} slot`);
+    if (m[3] && CHARACTER_ONLY.has(m[3]) && cat.id !== 'character') errors.push(`${w}: ${m[0]} is only for characters`);
+  }
+  for (const p of e.text.match(/\{[^}]*\}/g) ?? []) if (!known.has(p)) errors.push(`${w}: unknown placeholder ${p}`);
+  if (e.text.includes("{npc}'s"))
+    errors.push(`${w}: {npc}'s reads badly on first use ("a witch named Vharn's"); rephrase or use {npcname}'s after {npc}`);
+  const usesUnique = e.text.includes('{unique}');
+  const needsUnique = (e.requires ?? []).includes('has-unique');
+  if (usesUnique !== needsUnique) errors.push(`${w}: entries using {unique} must have requires ["has-unique"] (and only those)`);
+  if (/(^|[^{])\b(he|she|his|her|him)\b/i.test(e.text.replace(LORE_PLACEHOLDER, ''))) errors.push(`${w}: gendered pronoun`);
 }
 
 function poolFor(slot: CategoryDef['slots'][number], data: DataSet): Entry[] | null {

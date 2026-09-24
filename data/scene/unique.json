@@ -6,42 +6,50 @@
     {
       "id": "every-candle-burns-green-flame",
       "text": "every candle burns with a green flame",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "single-crow-watches-from-every",
       "text": "a single crow watches from every high ledge",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "ground-is-carpeted-pressed-flower",
       "text": "the ground is carpeted in pressed flower petals",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "one-window-glows-building-long",
       "text": "one window glows in a building long abandoned",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "faint-melody-seems-rise-from",
       "text": "a faint melody seems to rise from the stones",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "all-metal-view-is-quietly",
       "text": "all the metal in view is quietly rusting",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "each-lantern-holds-fluttering-moth",
       "text": "each lantern holds a fluttering moth of light",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "distant-tower-burns-no-one",
       "text": "a distant tower burns and no one notices",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "tiny-figures-rafters-are-betting",
@@ -49,42 +57,50 @@
       "tags": [
         "comic"
       ],
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "blossom-falls-from-tree-that",
       "text": "blossom falls from a tree that died years ago",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "every-shadow-scene-points-at",
       "text": "every shadow in the scene points at the same figure",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "rain-falls-upward-around-one",
       "text": "rain falls upward around one figure",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "statues-background-have-turned-watch",
       "text": "statues in the background have turned to watch",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "footprints-form-dust-no-one",
       "text": "footprints form in the dust with no one making them",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "snow-falls-only-indoors",
       "text": "snow falls only indoors",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "all-water-sight-flows-uphill",
       "text": "all the water in sight flows uphill",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "lone-door-stands-upright-open",
@@ -92,27 +108,32 @@
       "tags": [
         "portal"
       ],
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "colour-drains-from-anything-touching",
       "text": "colour drains from anything touching the ground",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "reflections-lag-heartbeat-behind",
       "text": "reflections lag a heartbeat behind",
-      "tier": "notable"
+      "tier": "notable",
+      "form": "clause"
     },
     {
       "id": "time-has-stopped-for-everything",
       "text": "time has stopped for everything but the main figures",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "two-moons-hang-overhead-one",
       "text": "two moons hang overhead, one of them cracked",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "every-face-crowd-is-same",
@@ -120,7 +141,8 @@
       "tags": [
         "eerie"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "stars-overhead-spell-out-legible",
@@ -128,12 +150,14 @@
       "tags": [
         "astral"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "vast-eye-watches-through-gap",
       "text": "a vast eye watches through a gap in the clouds",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "horizon-curves-upward-like-inside",
@@ -141,7 +165,8 @@
       "tags": [
         "planar"
       ],
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     }
   ]
 }

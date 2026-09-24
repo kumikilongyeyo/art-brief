@@ -6,12 +6,14 @@
     {
       "id": "smells-faintly-of-rain-on-hot-stone",
       "text": "smells faintly of rain on hot stone",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "predicate"
     },
     {
       "id": "every-candle-nearby-gutters-and-burns-blue",
       "text": "every candle nearby gutters and burns blue",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "moths-gather-in-impossible-numbers-after-dark",
@@ -19,12 +21,14 @@
       "tier": "minor",
       "tags": [
         "night"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "compasses-spin-lazily-within-a-few-paces",
       "text": "compasses spin lazily within a few paces",
-      "tier": "minor"
+      "tier": "minor",
+      "form": "clause"
     },
     {
       "id": "birdsong-falls-silent-whenever-anyone-draws-near",
@@ -32,7 +36,8 @@
       "tier": "minor",
       "tags": [
         "eerie"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "snow-falls-upward-within-a-stone-s-throw",
@@ -40,7 +45,8 @@
       "tier": "notable",
       "tags": [
         "frost"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "sounds-arrive-a-heartbeat-after-whatever-made-th",
@@ -48,7 +54,8 @@
       "tier": "notable",
       "tags": [
         "eerie"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "nearby-shadows-lean-the-wrong-way-toward-the-lig",
@@ -56,7 +63,8 @@
       "tier": "notable",
       "tags": [
         "shadow"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "every-mirror-nearby-shows-the-same-stranger-s-fa",
@@ -64,12 +72,14 @@
       "tier": "notable",
       "tags": [
         "mysterious"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "time-slows-enough-nearby-to-watch-raindrops-fall",
       "text": "time slows enough nearby to watch raindrops fall",
-      "tier": "legendary"
+      "tier": "legendary",
+      "form": "clause"
     },
     {
       "id": "the-stars-overhead-slowly-gather-into-a-watching",
@@ -77,7 +87,8 @@
       "tier": "legendary",
       "tags": [
         "astral"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "breathes-out-faint-curls-of-silver-smoke",
@@ -85,7 +96,8 @@
       "tier": "minor",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "a-halo-of-midges-orbits-in-perfect-formation",
@@ -93,7 +105,8 @@
       "tier": "minor",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "footprints-fill-slowly-with-clear-water",
@@ -101,7 +114,8 @@
       "tier": "minor",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "eyes-catch-the-light-like-a-cat-s-green-gold",
@@ -109,7 +123,8 @@
       "tier": "minor",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "has-a-heartbeat-audible-from-across-a-quiet-room",
@@ -117,7 +132,8 @@
       "tier": "minor",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "a-faint-breeze-follows-everywhere-stirring-the-d",
@@ -125,7 +141,8 @@
       "tier": "minor",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "leaves-frost-fern-patterns-on-anything-touched",
@@ -136,7 +153,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "casts-two-shadows-one-far-larger-than-it-should",
@@ -147,7 +165,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "flowers-open-as-they-pass-and-close-behind-them",
@@ -158,7 +177,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "every-sound-they-make-echoes-from-somewhere-far",
@@ -166,7 +186,8 @@
       "tier": "notable",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "a-second-smaller-heartbeat-beats-somewhere-insid",
@@ -174,7 +195,8 @@
       "tier": "notable",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "wounds-close-with-a-sound-like-pages-turning",
@@ -182,7 +204,8 @@
       "tier": "notable",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "their-reflection-moves-a-moment-before-they-do",
@@ -193,7 +216,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "a-private-storm-cloud-drifts-overhead-raining-on",
@@ -204,7 +228,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "their-shadow-is-a-different-creature-entirely-an",
@@ -215,7 +240,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "wherever-they-sleep-a-ring-of-standing-stones-ri",
@@ -226,7 +252,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "ancient-dragons-lower-their-heads-when-they-pass",
@@ -234,7 +261,8 @@
       "tier": "legendary",
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "fell-to-earth-as-a-star-once-and-still-glows-at",
@@ -246,7 +274,8 @@
       ],
       "requires": [
         "animate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "hums-a-tune-no-bard-has-ever-been-able-to-name",
@@ -257,7 +286,8 @@
       ],
       "requires": [
         "cat-character"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "always-smells-of-fresh-bread-even-after-weeks-on",
@@ -268,7 +298,8 @@
       ],
       "requires": [
         "cat-character"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "ink-stains-on-their-fingers-drift-into-the-shape",
@@ -279,7 +310,8 @@
       ],
       "requires": [
         "cat-character"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "can-read-any-script-except-their-own-name",
@@ -290,7 +322,8 @@
       ],
       "requires": [
         "cat-character"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "a-demon-lord-is-personally-waiting-to-collect-th",
@@ -301,7 +334,8 @@
       ],
       "requires": [
         "cat-character"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "leaves-tracks-that-glow-softly-for-an-hour",
@@ -312,7 +346,8 @@
       ],
       "requires": [
         "cat-creature"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "its-call-sounds-exactly-like-a-child-laughing",
@@ -323,7 +358,8 @@
       ],
       "requires": [
         "cat-creature"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "migrates-along-ley-lines-leaving-a-glowing-trail",
@@ -334,7 +370,8 @@
       ],
       "requires": [
         "cat-creature"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "its-lair-appears-on-no-map-because-the-land-itse",
@@ -342,7 +379,8 @@
       "tier": "legendary",
       "requires": [
         "cat-creature"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "whole-villages-dream-of-it-the-night-before-it-a",
@@ -353,7 +391,8 @@
       ],
       "requires": [
         "cat-creature"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "is-always-cool-to-the-touch-even-in-full-sun",
@@ -361,7 +400,8 @@
       "tier": "minor",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "hums-a-low-note-whenever-a-storm-approaches",
@@ -372,7 +412,8 @@
       ],
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "dust-never-settles-on-it",
@@ -380,7 +421,8 @@
       "tier": "minor",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "smells-of-cedar-and-old-incense-however-often-it",
@@ -388,7 +430,8 @@
       "tier": "minor",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "any-rust-on-it-forms-in-neat-deliberate-spirals",
@@ -396,7 +439,8 @@
       "tier": "minor",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "grows-warm-when-a-lie-is-spoken-nearby",
@@ -404,7 +448,8 @@
       "tier": "notable",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "throws-no-shadow-at-noon",
@@ -412,7 +457,8 @@
       "tier": "notable",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "mends-its-own-cracks-overnight-leaving-seams-of",
@@ -423,7 +469,8 @@
       ],
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "anyone-who-touches-it-hears-the-voice-of-its-mak",
@@ -431,7 +478,8 @@
       "tier": "notable",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "cannot-be-harmed-by-anything-made-after-it",
@@ -439,7 +487,8 @@
       "tier": "legendary",
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "flickers-between-the-feywild-and-here-like-a-gut",
@@ -450,7 +499,8 @@
       ],
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "a-god-once-swore-an-oath-upon-it-and-the-oath-st",
@@ -461,7 +511,8 @@
       ],
       "requires": [
         "inanimate"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "rattles-faintly-when-carried-toward-water",
@@ -469,7 +520,8 @@
       "tier": "minor",
       "requires": [
         "cat-prop"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "leaves-the-scent-of-cloves-on-any-hand-that-hold",
@@ -477,7 +529,8 @@
       "tier": "minor",
       "requires": [
         "cat-prop"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "always-turns-up-in-the-last-pack-it-was-stowed-i",
@@ -488,7 +541,8 @@
       ],
       "requires": [
         "cat-prop"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "grows-heavier-in-the-hands-of-a-coward",
@@ -499,7 +553,8 @@
       ],
       "requires": [
         "cat-prop"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "whoever-carries-it-is-recognised-by-every-ghost",
@@ -510,7 +565,8 @@
       ],
       "requires": [
         "cat-prop"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "splits-into-two-identical-copies-once-a-century",
@@ -518,7 +574,8 @@
       "tier": "legendary",
       "requires": [
         "cat-prop"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "crows-perch-in-exactly-thirteen-places-never-mor",
@@ -529,7 +586,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "the-ground-is-always-warm-underfoot-even-in-snow",
@@ -537,7 +595,8 @@
       "tier": "minor",
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "lanterns-burn-without-oil-pale-and-perfectly-ste",
@@ -548,7 +607,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "a-distant-bell-tolls-the-hour-though-no-bell-is",
@@ -559,7 +619,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "footsteps-echo-back-in-a-different-rhythm",
@@ -567,7 +628,8 @@
       "tier": "minor",
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "rain-falls-in-slow-motion-each-drop-hanging-like",
@@ -575,7 +637,8 @@
       "tier": "notable",
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "maps-drawn-here-quietly-redraw-themselves-by-mor",
@@ -583,7 +646,8 @@
       "tier": "notable",
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "the-dead-stand-at-every-window-for-a-moment-at-d",
@@ -599,7 +663,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "every-doorway-frames-a-slightly-different-sky",
@@ -610,7 +675,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "overlaps-three-planes-which-merge-completely-at",
@@ -621,7 +687,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "predicate"
     },
     {
       "id": "whoever-sleeps-here-wakes-a-year-later-unaged",
@@ -632,7 +699,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "the-horizon-ends-in-a-wall-of-slowly-turning-sta",
@@ -643,7 +711,8 @@
       ],
       "requires": [
         "place"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "chimney-smoke-rises-in-perfect-unbroken-rings",
@@ -651,7 +720,8 @@
       "tier": "minor",
       "requires": [
         "cat-building"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "the-front-door-is-noticeably-smaller-from-the-in",
@@ -662,7 +732,8 @@
       ],
       "requires": [
         "cat-building"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "ivy-climbs-the-walls-only-in-the-shapes-of-lette",
@@ -673,7 +744,8 @@
       ],
       "requires": [
         "cat-building"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "rooms-rearrange-themselves-whenever-no-one-is-lo",
@@ -681,7 +753,8 @@
       "tier": "notable",
       "requires": [
         "cat-building"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "each-door-opens-onto-a-different-city-at-dawn",
@@ -692,7 +765,8 @@
       ],
       "requires": [
         "cat-building"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "every-banner-in-view-hangs-limp-despite-the-wind",
@@ -700,7 +774,8 @@
       "tier": "minor",
       "requires": [
         "cat-scene"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "petals-drift-across-everything-from-no-visible-t",
@@ -711,7 +786,8 @@
       ],
       "requires": [
         "cat-scene"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "every-shadow-points-toward-the-smallest-figure-p",
@@ -722,7 +798,8 @@
       ],
       "requires": [
         "cat-scene"
-      ]
+      ],
+      "form": "clause"
     },
     {
       "id": "the-sky-is-cracked-like-porcelain-light-leaking",
@@ -730,7 +807,8 @@
       "tier": "legendary",
       "requires": [
         "cat-scene"
-      ]
+      ],
+      "form": "clause"
     }
   ]
 }

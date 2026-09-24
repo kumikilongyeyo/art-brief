@@ -1,0 +1,180 @@
+{
+  "id": "prop.lore-now",
+  "category": "prop",
+  "slot": "lore-now",
+  "entries": [
+    {
+      "id": "now-and-s-heirs-want",
+      "text": "Now {unique}, and {npcname}'s heirs want it back",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "these-days-return-it-to",
+      "text": "These days {unique}. Return it to {the:origin} and name your price",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "even-now-as-if-waiting",
+      "text": "Even now {unique}, as if waiting for its maker",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "whoever-holds-it-keeps-quiet",
+      "text": "Whoever holds it keeps quiet, because {unique}",
+      "weight": 5,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-was-last-seen-in",
+      "text": "It was last seen in {place}, and three parties are hunting it",
+      "weight": 4
+    },
+    {
+      "id": "it-sits-forgotten-in-waiting",
+      "text": "It sits forgotten in {place}, waiting for a fool",
+      "weight": 4
+    },
+    {
+      "id": "rumour-puts-it-in-and",
+      "text": "Rumour puts it in {place}, and the rumour is spreading",
+      "weight": 4
+    },
+    {
+      "id": "a-collector-in-claims-to",
+      "text": "A collector in {place} claims to own it; the real one keeps turning up elsewhere",
+      "weight": 3
+    },
+    {
+      "id": "it-is-somewhere-in-and",
+      "text": "It is somewhere in {place}, and whoever goes looking does not come back",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "it-sits-in-and-a",
+      "text": "It sits in {place}, and a devil keeps the receipt",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "now-and-somewhere-a-devil",
+      "text": "Now {unique}, and somewhere a devil is counting the days",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-turns-up-in-whenever",
+      "text": "It turns up in {place} whenever it is least wanted, which the fey adore",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "now-the-fey-call-this",
+      "text": "Now {unique}. The fey call this a compliment",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-is-enshrined-in-humming",
+      "text": "It is enshrined in {place}, humming when the righteous pass",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "it-lies-in-and-every",
+      "text": "It lies in {place}, and it still smells of salt and deep water",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "now-the-dead-at-least",
+      "text": "Now {unique}. The dead, at least, recognise it",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-waits-in-with-every",
+      "text": "It waits in {place}, with every enemy its makers ever made",
+      "weight": 8,
+      "themes": [
+        "high-fantasy",
+        "planar"
+      ]
+    },
+    {
+      "id": "it-sits-under-glass-in",
+      "text": "It sits under glass in {place}; no scholar can say why {unique}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "it-is-buried-in-and",
+      "text": "It waits in {place}, still cold enough to frost the glass around it",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "it-glows-in-and-something",
+      "text": "It glows in {place}, and something below has noticed",
+      "weight": 8,
+      "themes": [
+        "underdark",
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "it-is-locked-in-the",
+      "text": "It is locked in {place}; the lock is the least of its guards",
+      "weight": 8,
+      "themes": [
+        "arcane",
+        "wild-primal"
+      ]
+    }
+  ]
+}

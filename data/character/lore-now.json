@@ -1,0 +1,410 @@
+{
+  "id": "character.lore-now",
+  "category": "character",
+  "slot": "lore-now",
+  "entries": [
+    {
+      "id": "now-is-and-hunting-whoever",
+      "text": "Now {first} is {traits}, and hunting whoever sold out {npcname}",
+      "weight": 3
+    },
+    {
+      "id": "as-ever-they-want-the",
+      "text": "{traits} as ever, they want the relic {npcname} hid in {place}",
+      "weight": 3
+    },
+    {
+      "id": "they-are-these-days-and",
+      "text": "They are {traits} these days, and owe {npcname} one last favour",
+      "weight": 3
+    },
+    {
+      "id": "hire-if-you-dare-and",
+      "text": "Hire {first} if you dare: {traits}, and hunted by {npcname}'s people",
+      "weight": 3
+    },
+    {
+      "id": "something-of-theirs-sits-in",
+      "text": "Something of theirs sits in {place}, and {first}, {traits}, wants it back",
+      "weight": 3
+    },
+    {
+      "id": "now-and-wants-to-know",
+      "text": "Now {unique}, and {npcname}'s old rivals want to know why",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "these-days-and-they-would",
+      "text": "These days {unique}, and they would pay well to learn why",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "innkeepers-charge-them-double-because",
+      "text": "Innkeepers charge them double, because {unique}",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "they-are-and-hide-the",
+      "text": "They are {traits}, and hide the worst of it: {unique}",
+      "weight": 4,
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "buy-a-drink-broke-and",
+      "text": "Buy {first} a drink: {traits}, broke, and carrying a secret about {place}",
+      "weight": 3
+    },
+    {
+      "id": "left-a-debt-and-a",
+      "text": "{npcname} left {first} a debt and a key; both lead to {place}",
+      "weight": 3
+    },
+    {
+      "id": "what-marked-them-still-hunts",
+      "text": "What marked them still hunts, and {first} has stopped running",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "and-every-priest-they-meet",
+      "text": "{unique}, and every priest they meet reaches for a weapon",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "to-a-fault-walks-the",
+      "text": "{traits} to a fault, {first} walks the barrows, settling the dead's debts",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "since-then-and-gravediggers-leave",
+      "text": "Since then {unique}, and gravediggers leave when they arrive",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "their-contract-sits-in-steal",
+      "text": "Their contract sits in {place}; steal it back and {first} is free",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "now-and-the-interest-keeps",
+      "text": "Now {unique}, and the interest keeps compounding",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "being-never-helped-owes-the",
+      "text": "Being {traits} never helped: {first} owes the fey a forgotten name",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "now-the-fey-insist-it",
+      "text": "Now {unique}. The fey insist it is a gift",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "a-relic-that-could-redeem",
+      "text": "A relic that could redeem {first} sits in {place}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "pilgrims-follow-from-town-to",
+      "text": "Pilgrims follow them from town to town, because {unique}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "wants-a-ship-a-crew",
+      "text": "{first} wants a ship, a crew and one more storm",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "no-captain-will-take-aboard",
+      "text": "No captain will take them aboard, because {unique}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "something-below-is-following-s",
+      "text": "Something below is following {first}'s scent, and closing",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "down-in-the-dark-and",
+      "text": "Down in the dark, {unique}, and the drow have noticed",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-spellbook-that-did-this",
+      "text": "The spellbook that did this sits in {place}, and {first} wants it",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "no-scholar-can-explain-why",
+      "text": "No scholar can explain why {unique}, and several want to dissect them",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "one-beast-is-left-on",
+      "text": "One beast is left on {first}'s list, and it knows",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "the-clans-call-omen-touched",
+      "text": "The clans call them omen-touched, because {unique}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "is-heading-north-where-the",
+      "text": "{first} is heading north, where the ice keeps what it took",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "ever-since-and-the-winter",
+      "text": "Ever since, {unique}, and the winter seems to follow them",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "the-forge-lord-who-burned",
+      "text": "The forge-lord who burned their home still lives; {first} is coming",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "now-and-the-salamanders-call",
+      "text": "Now {unique}, and the salamanders call them kin",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "somewhere-a-dragon-has-learned",
+      "text": "Somewhere a dragon has learned {first}'s name, and waits",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "bards-sing-that-the-song",
+      "text": "Bards sing that {unique}; the song still needs an ending",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "their-way-home-sits-in",
+      "text": "Their way home sits in {place}, and rivals want it too",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "now-and-a-sigil-guild",
+      "text": "Now {unique}, and a Sigil guild will pay for the reason",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ],
+      "requires": [
+        "has-unique"
+      ]
+    },
+    {
+      "id": "keeps-a-list-of-names",
+      "text": "{first} keeps a list of names; yours may be on it",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "or-not-is-three-payments",
+      "text": "{traits} or not, {first} is three payments behind to a devil",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "is-and-a-small-fey",
+      "text": "{first} is {traits}, and a small fey follows them, taking notes",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "rides-on-a-quest-they",
+      "text": "{first} rides on a quest they refuse to explain",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "the-last-page-of-s",
+      "text": "The last page of {npcname}'s logbook points to {place}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-underdark-wants-back-and",
+      "text": "The Underdark wants {first} back, and has sent something",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "is-one-spell-short-of",
+      "text": "{first} is one spell short of undoing it all",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-clans-have-called-a",
+      "text": "The clans have called a hunt, and {first} is the quarry",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "owes-a-frost-giant-a",
+      "text": "{first} owes a frost giant a favour, due at first snow",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "wants-back-the-ember-stole",
+      "text": "{first} wants back the ember {npcname} stole from them",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "holds-a-sigil-key-that",
+      "text": "{first} holds a Sigil key that three factions want",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

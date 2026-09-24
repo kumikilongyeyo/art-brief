@@ -20,6 +20,8 @@ export interface Entry {
   surreal?: boolean;
   tier?: Tier;
   group?: string;
+  /** Unique traits: 'predicate' needs a subject ("grows warm…"), 'clause' stands alone ("its eyes glow…"). */
+  form?: 'predicate' | 'clause';
 }
 
 export interface Table {
@@ -118,4 +120,6 @@ export interface Brief {
   dataVersion: string;
   createdAt: number;
   rerolls: Record<SlotId, number>;
+  /** Optional story built from the fields (src/engine/lore.ts). */
+  lore?: { roll: number; text: string };
 }

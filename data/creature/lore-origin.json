@@ -1,0 +1,245 @@
+{
+  "id": "creature.lore-origin",
+  "category": "creature",
+  "slot": "lore-origin",
+  "entries": [
+    {
+      "id": "the-first-came-out-of",
+      "text": "{era}, the first {name} came out of {the:habitat}",
+      "weight": 4
+    },
+    {
+      "id": "sages-class-it-as-but",
+      "text": "Sages class it as {a:creatureType}, but {the:habitat} made it what it is",
+      "weight": 4
+    },
+    {
+      "id": "it-was-once-before-changed",
+      "text": "It was {a:creatureType} once, before {the:habitat} changed it",
+      "weight": 4
+    },
+    {
+      "id": "found-the-first-one-in",
+      "text": "{npc} found the first one in {the:habitat}, {era}",
+      "weight": 4
+    },
+    {
+      "id": "its-kind-began-in-where",
+      "text": "Its kind began in {the:habitat}, where nothing else could live",
+      "weight": 4
+    },
+    {
+      "id": "nobody-meant-to-make-the",
+      "text": "Nobody meant to make the {name}; {the:habitat} did it anyway",
+      "weight": 3
+    },
+    {
+      "id": "a-curse-fell-on-the",
+      "text": "{era}, a curse fell on {the:habitat}; the first {l:bodyPlan} was its child",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "it-was-before-starved-it",
+      "text": "It was {a:creatureType} before {the:habitat} starved it into something worse",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "its-kind-began-as-a",
+      "text": "Its kind began as a devil's wager, settled in {the:habitat} {era}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "bought-the-first-one-in",
+      "text": "{npc} bought the first one in Avernus, then loosed it in {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "an-archfey-invented-it-as",
+      "text": "An archfey invented it as a joke, and {the:habitat} kept it",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "a-fey-child-wished-for",
+      "text": "A fey child wished for it, {era}, and {the:habitat} obliged",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "it-was-sent-to-watch",
+      "text": "It was {a:creatureType} sent to watch over {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "it-fell-from-the-heavens",
+      "text": "It fell from the heavens as {a:creatureType}, {era}, into {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-first-of-its-kind",
+      "text": "The first of its kind rose from a grave in {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "raised-the-first-one-from",
+      "text": "{npc} raised the first one from bones found in {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "a-great-storm-carried-the",
+      "text": "A great storm carried the first one to {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "it-was-of-the-deep",
+      "text": "It was {a:creatureType} of the deep sea before {the:habitat} claimed it",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "it-came-from-somewhere-deeper",
+      "text": "It came from somewhere deeper than {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "found-it-in-the-dark",
+      "text": "{npc} found it in the dark places of {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-failed-summoning-left-stranded",
+      "text": "A failed summoning left {a:creatureType} stranded in {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "made-the-first-one-by",
+      "text": "{npc} made the first one by accident, in {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "clans-in-say-the-first",
+      "text": "Clans in {the:habitat} say the first hunt birthed it",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "first-tracked-it-through",
+      "text": "{npc} first tracked it through {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "it-woke-from-a-block",
+      "text": "It woke from a block of ancient ice in {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "it-was-until-the-long",
+      "text": "It was {a:creatureType} until the long winter locked {the:habitat} in ice",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "it-hatched-from-a-living",
+      "text": "It hatched from a living coal in {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "pulled-the-first-one-from",
+      "text": "{npc} pulled the first one from the ashes of {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "ancient-dragons-bred-it-for",
+      "text": "Ancient dragons bred it for the hunt in {the:habitat}, {era}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "it-was-in-a-dragons",
+      "text": "It was {a:creatureType} in a dragon's service before it fled to {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "brought-the-first-one-through",
+      "text": "{npc} brought the first one through a portal to {the:habitat}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "it-strayed-through-a-planar",
+      "text": "It strayed through a planar rift into {the:habitat}, {era}, and stayed",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    }
+  ]
+}

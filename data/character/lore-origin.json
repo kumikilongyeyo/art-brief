@@ -1,0 +1,234 @@
+{
+  "id": "character.lore-origin",
+  "category": "character",
+  "slot": "lore-origin",
+  "entries": [
+    {
+      "id": "started-out-as-the-only",
+      "text": "{first} started out as {a:background}, the only {l:species} for miles",
+      "weight": 3
+    },
+    {
+      "id": "was-just-nobody-in-particular",
+      "text": "{era}, {first} was just {a:background}, nobody in particular",
+      "weight": 3
+    },
+    {
+      "id": "before-any-of-this-was",
+      "text": "Before any of this, {first} was {a:background}, and nobody's hero",
+      "weight": 3
+    },
+    {
+      "id": "was-with-a-past",
+      "text": "{name} was {al:species} with a past: {a:background}",
+      "weight": 3
+    },
+    {
+      "id": "was-when-came-knocking",
+      "text": "{first} was {a:background} when {npc} came knocking",
+      "weight": 3
+    },
+    {
+      "id": "came-from-nowhere-much-and",
+      "text": "{first} came from nowhere much: {a:background}, and proud of it",
+      "weight": 3
+    },
+    {
+      "id": "nobody-expected-much-of-and",
+      "text": "Nobody expected much of {name}, {a:background} and {al:species} besides",
+      "weight": 3
+    },
+    {
+      "id": "was-from-a-town-that",
+      "text": "{era}, {name} was {a:background}, from a town that no longer exists",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "was-until-the-night-the",
+      "text": "{name} was {a:background} until the night the dead got up",
+      "weight": 8,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "hell-held-s-soul-in",
+      "text": "Hell held {name}'s soul in escrow while they lived as {a:background}",
+      "weight": 8,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "swapped-at-birth-by-the",
+      "text": "Swapped at birth by the fey, {name} ended up {a:background}",
+      "weight": 8,
+      "themes": [
+        "fey"
+      ]
+    },
+    {
+      "id": "priests-read-s-stars-and",
+      "text": "Priests read {name}'s stars and swore greatness; they got {a:background}",
+      "weight": 8,
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "the-tide-coughed-up-who",
+      "text": "{era}, the tide coughed up {name}, later {a:background}",
+      "weight": 8,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "was-and-had-never-once",
+      "text": "{name} was {a:background}, and had never once seen the sun",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "the-first-spell-ever-read",
+      "text": "The first spell {name} ever read was stolen; they were {a:background} then",
+      "weight": 8,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "was-raised-by-a-clan",
+      "text": "{name} was {a:background}, raised by a clan that hunted by moonlight",
+      "weight": 8,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "was-in-a-winter-that",
+      "text": "{name} was {a:background} in a winter that never really ended",
+      "weight": 8,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "was-born-beside-a-forge",
+      "text": "{name} was born beside a forge that never cooled, and became {a:background}",
+      "weight": 8,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "was-dreaming-of-dragons",
+      "text": "{era}, {name} was {a:background}, dreaming of dragons",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "born-in-a-doorway-between",
+      "text": "Born in a doorway between planes, {name} ended up {a:background}",
+      "weight": 8,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "buried-a-whole-family-and",
+      "text": "{era}, {first} buried a whole family and carried on as {a:background}",
+      "weight": 8,
+      "themes": [
+        "dark-fantasy",
+        "undead"
+      ]
+    },
+    {
+      "id": "was-sold-to-a-devil",
+      "text": "{name} was {a:background}, sold to a devil before they could talk",
+      "weight": 8,
+      "themes": [
+        "infernal",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "forest-spirits-found-asleep-in",
+      "text": "Forest spirits found {name} asleep in the moss and made them {a:background}",
+      "weight": 8,
+      "themes": [
+        "fey",
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "was-blessed-at-birth-by",
+      "text": "{name} was {a:background}, blessed at birth by a passing angel",
+      "weight": 8,
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "was-raised-in-a-harbour",
+      "text": "{name} was {a:background}, raised in a harbour that froze each winter",
+      "weight": 8,
+      "themes": [
+        "nautical",
+        "frost"
+      ]
+    },
+    {
+      "id": "grew-up-in-the-dark",
+      "text": "{name} grew up in the dark, and ended up {a:background}",
+      "weight": 8,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "was-and-far-too-curious",
+      "text": "{era}, {name} was {a:background}, and far too curious about magic",
+      "weight": 8,
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "was-and-the-wolves-knew",
+      "text": "{name} was {a:background}, and the wolves knew their scent",
+      "weight": 8,
+      "themes": [
+        "wild-primal",
+        "frost"
+      ]
+    },
+    {
+      "id": "was-and-fire-never-quite",
+      "text": "{name} was {a:background}, and fire never quite burned them",
+      "weight": 8,
+      "themes": [
+        "elemental-fire",
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-prophecy-picked-out-then",
+      "text": "{era}, a prophecy picked out {name}, then only {a:background}",
+      "weight": 8,
+      "themes": [
+        "high-fantasy"
+      ]
+    }
+  ]
+}
