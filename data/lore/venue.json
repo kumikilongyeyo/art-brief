@@ -1,0 +1,271 @@
+{
+  "id": "shared.lore-venue",
+  "category": "shared",
+  "slot": "lore-venue",
+  "entries": [
+    {
+      "id": "a-pawnshop",
+      "text": "a pawnshop",
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
+    },
+    {
+      "id": "the-back-room-of-a-tavern",
+      "text": "the back room of a tavern",
+      "weight": 4
+    },
+    {
+      "id": "a-moneylender-s-strongroom",
+      "text": "a moneylender's strongroom",
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-temple-crypt",
+      "text": "a temple crypt",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "celestial",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-harbour-customs-house",
+      "text": "the harbour customs house",
+      "weight": 7,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "a-collector-s-glass-cabinet",
+      "text": "a collector's glass cabinet",
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-gambling-den",
+      "text": "a gambling den",
+      "weight": 4
+    },
+    {
+      "id": "a-noble-s-winter-house",
+      "text": "a noble's winter house",
+      "weight": 7,
+      "themes": [
+        "high-fantasy",
+        "frost"
+      ]
+    },
+    {
+      "id": "the-city-watch-s-evidence-room",
+      "text": "the city watch's evidence room",
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
+    },
+    {
+      "id": "an-alchemist-s-cellar",
+      "text": "an alchemist's cellar",
+      "weight": 7,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-street-shrine",
+      "text": "a street shrine",
+      "weight": 7,
+      "themes": [
+        "celestial",
+        "fey"
+      ]
+    },
+    {
+      "id": "a-smugglers-warehouse",
+      "text": "a smugglers' warehouse",
+      "weight": 7,
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "the-cartographers-guildhall",
+      "text": "the cartographers' guildhall",
+      "weight": 7,
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "the-old-sewers",
+      "text": "the old sewers",
+      "weight": 7,
+      "themes": [
+        "dark-fantasy",
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-bathhouse",
+      "text": "a bathhouse",
+      "weight": 4
+    },
+    {
+      "id": "a-debtors-prison",
+      "text": "a debtors' prison",
+      "weight": 7,
+      "themes": [
+        "infernal",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "an-embassy",
+      "text": "an embassy",
+      "weight": 7,
+      "themes": [
+        "planar",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "a-dusty-bookshop",
+      "text": "a dusty bookshop",
+      "weight": 7,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "a-fighting-pit",
+      "text": "a fighting pit",
+      "weight": 7,
+      "themes": [
+        "wild-primal",
+        "infernal"
+      ]
+    },
+    {
+      "id": "a-flophouse",
+      "text": "a flophouse",
+      "weight": 4
+    },
+    {
+      "id": "the-opera-house",
+      "text": "the opera house",
+      "weight": 7,
+      "themes": [
+        "high-fantasy",
+        "fey"
+      ]
+    },
+    {
+      "id": "a-haunted-manor",
+      "text": "a haunted manor",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "the-catacombs",
+      "text": "the catacombs",
+      "weight": 7,
+      "themes": [
+        "undead"
+      ]
+    },
+    {
+      "id": "a-fishmonger-s-ice-house",
+      "text": "a fishmonger's ice-house",
+      "weight": 7,
+      "themes": [
+        "frost",
+        "nautical"
+      ],
+      "excludes": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-foundry",
+      "text": "a foundry",
+      "weight": 7,
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "a-fungus-farm",
+      "text": "a fungus-farm",
+      "weight": 7,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "a-menagerie",
+      "text": "a menagerie",
+      "weight": 7,
+      "themes": [
+        "wild-primal"
+      ]
+    },
+    {
+      "id": "a-lord-s-trophy-hall",
+      "text": "a lord's trophy hall",
+      "weight": 7,
+      "themes": [
+        "high-fantasy",
+        "wild-primal"
+      ],
+      "excludes": [
+        "animate"
+      ]
+    },
+    {
+      "id": "an-auction-house",
+      "text": "an auction house",
+      "weight": 4
+    },
+    {
+      "id": "a-thieves-guild-fence",
+      "text": "a thieves' guild fence",
+      "weight": 4,
+      "excludes": [
+        "animate"
+      ]
+    },
+    {
+      "id": "a-monastery-library",
+      "text": "a monastery library",
+      "weight": 7,
+      "themes": [
+        "arcane",
+        "celestial"
+      ]
+    },
+    {
+      "id": "a-devil-s-counting-house",
+      "text": "a devil's counting-house",
+      "weight": 7,
+      "themes": [
+        "infernal"
+      ],
+      "excludes": [
+        "animate"
+      ]
+    }
+  ]
+}

@@ -24,6 +24,8 @@ export interface Entry {
   form?: 'predicate' | 'clause';
   /** Story lines that belong to particular plot spines (turn, now, rumour, job, twist). */
   spines?: string[];
+  /** Scene events: which actor placeholders must be a person (can talk, hold things). */
+  people?: ('a' | 'b')[];
 }
 
 export interface Table {
@@ -119,6 +121,8 @@ export interface Brief {
   title: string;
   lines: BriefLine[];
   plainText: string;
+  /** D&D stat tag ("Weapon, rare (requires attunement)", "Large fiend, lawful evil · CR 7"…). */
+  stat?: string;
   dataVersion: string;
   createdAt: number;
   rerolls: Record<SlotId, number>;

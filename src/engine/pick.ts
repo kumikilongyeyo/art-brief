@@ -17,6 +17,8 @@ export interface PickContext {
   excludes: Set<string>;
   /** Materials are never removed by blockTags. */
   applyBlock: boolean;
+  /** Weight multiplier per tag shared with the brief so far (default 2). */
+  affinity?: number;
 }
 
 export interface PickResult<T extends Entry> {
@@ -40,7 +42,11 @@ export function entryWeight(e: Entry, ctx: PickContext, depth: number): number {
     if (ctx.weirdness !== 'wild') return 0;
     w *= WILD_BLOCK;
   }
-  if (e.tags?.some((t) => ctx.tags.has(t))) w *= AFFINITY;
+  if (ctx.affinity !== undefined) {
+    // Stronger, cumulative pull (palettes): each shared tag multiplies, capped at three.
+    const shared = Math.min(3, (e.tags ?? []).filter((t) => ctx.tags.has(t)).length);
+    w *= Math.pow(ctx.affinity, shared);
+  } else if (e.tags?.some((t) => ctx.tags.has(t))) w *= AFFINITY;
   return w;
 }
 

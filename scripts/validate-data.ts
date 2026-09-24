@@ -64,6 +64,8 @@ export const MIN_ENTRIES: Record<string, number> = {
   'shared.lore-place': 30,
   'shared.lore-era': 20,
   'shared.lore-spine': 8,
+  'shared.lore-venue': 24,
+  'shared.lore-city': 24,
   'shared.lore-job': 40,
   'shared.lore-faction': 30,
   'shared.lore-reward': 30,
@@ -197,6 +199,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       const isHookLine = /^shared\.lore-(job|twist)$/.test(t.id);
       checkText(w, e.text, errors, isLoreBeat ? 170 : isHookLine ? 130 : 90);
       if (SPINE_TABLES.test(t.id) && !e.spines?.length) errors.push(`${w}: needs "spines" (which plots this line belongs to)`);
+      if (t.id !== 'scene.event' && e.people) errors.push(`${w}: "people" only belongs in scene.event`);
       if (!SPINE_TABLES.test(t.id) && e.spines) errors.push(`${w}: "spines" only belongs in turn/now/rumour/job/twist tables`);
       if (e.label) checkText(`${w} label`, e.label, errors);
       for (const x of e.excludes ?? []) if (e.tags?.includes(x)) errors.push(`${w}: both has and excludes tag "${x}"`);
@@ -208,6 +211,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       } else if (t.id === 'scene.event') {
         if (!e.text.includes('{a}')) errors.push(`${w}: event text must contain {a}`);
         for (const p of placeholders) if (p !== '{a}' && p !== '{b}') errors.push(`${w}: unknown placeholder ${p}`);
+        for (const who of e.people ?? []) if (!e.text.includes(`{${who}}`)) errors.push(`${w}: "people" lists ${who} but the text has no {${who}}`);
       } else if (t.id === 'character.outfit' || t.id === 'prop.object') {
         // Optional {m} marks where "of <material>" goes when the phrase has a trailing clause.
         if (placeholders.some((p) => p !== '{m}') || placeholders.length > 1) errors.push(`${w}: only one {m} placeholder allowed`);
@@ -308,7 +312,7 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
     }
   }
 
-  for (const id of ['shared.lore-npc', 'shared.lore-place', 'shared.lore-era', 'shared.lore-faction', 'shared.lore-reward']) {
+  for (const id of ['shared.lore-npc', 'shared.lore-place', 'shared.lore-era', 'shared.lore-faction', 'shared.lore-reward', 'shared.lore-venue', 'shared.lore-city']) {
     const t = data.tables[id];
     if (!t) continue;
     for (const theme of data.themes) {

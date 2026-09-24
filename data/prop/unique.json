@@ -13,7 +13,8 @@
       "id": "smells-faintly-of-a",
       "text": "smells faintly of a place no one can name",
       "tier": "minor",
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "casts-no-reflection-in",
@@ -25,7 +26,8 @@
       "id": "hums-a-lullaby-when",
       "text": "hums a lullaby when left alone in the dark",
       "tier": "minor",
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "frosts-over-whenever-a",
@@ -61,7 +63,8 @@
       "id": "chimes-in-harmony-with",
       "text": "chimes in harmony with any other piece from its set",
       "tier": "minor",
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "sheds-a-single-white",

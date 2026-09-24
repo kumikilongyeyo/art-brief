@@ -11,7 +11,11 @@ Rewrite the art brief below into one vivid paragraph of 60–90 words.
 Keep every element listed. Do not add new characters, objects or colours.
 Impossible or surreal materials are intentional: describe how they
 could look, do not correct or explain them away.
-Then give 3 thumbnail composition ideas, one short line each.
+Then give:
+- Silhouette: the shape language in one line (e.g. top-heavy, spiky, round and soft)
+- Focal point: where the eye should land first
+- Value plan: light, mid and dark areas, using the palette
+- 3 thumbnail composition ideas, one short line each
 
 BRIEF:
 {{brief}}`;
@@ -125,9 +129,24 @@ export function isBrief(v: unknown): v is Brief {
   );
 }
 
+/** Earlier default prompts: people who never edited them get the improved ones automatically. */
+const OLD_DEFAULT_INSTRUCTIONS = [
+  `You are an art director writing for a fantasy concept artist.
+Rewrite the art brief below into one vivid paragraph of 60–90 words.
+Keep every element listed. Do not add new characters, objects or colours.
+Impossible or surreal materials are intentional: describe how they
+could look, do not correct or explain them away.
+Then give 3 thumbnail composition ideas, one short line each.
+
+BRIEF:
+{{brief}}`,
+];
+
 export function loadSettings(): Settings {
   const s = read<Partial<Settings>>(K.settings, {}, isObj);
-  return { ...DEFAULT_SETTINGS, ...s, last: { ...DEFAULT_SETTINGS.last, ...(s.last ?? {}) } };
+  const merged = { ...DEFAULT_SETTINGS, ...s, last: { ...DEFAULT_SETTINGS.last, ...(s.last ?? {}) } };
+  if (OLD_DEFAULT_INSTRUCTIONS.includes(merged.instruction)) merged.instruction = DEFAULT_INSTRUCTION;
+  return merged;
 }
 export const saveSettings = (s: Settings) => write(K.settings, s);
 

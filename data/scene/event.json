@@ -8,6 +8,10 @@
       "text": "{a} haggles with {b} over a jar of stolen names",
       "tags": [
         "trickster"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
@@ -15,6 +19,9 @@
       "text": "{a} duels {b} on a collapsing bridge",
       "tags": [
         "violent"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
@@ -23,22 +30,35 @@
       "tags": [
         "noble",
         "heroic"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
       "id": "drags-b-out-churning-water",
-      "text": "{a} drags {b} out of the churning water"
+      "text": "{a} drags {b} out of the churning water",
+      "people": [
+        "a"
+      ]
     },
     {
       "id": "reads-forbidden-scroll-aloud-as",
       "text": "{a} reads a forbidden scroll aloud as {b} lunges to stop it",
       "tags": [
         "arcane"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
       "id": "b-share-campfire-wary-silence",
-      "text": "{a} and {b} share a campfire in wary silence"
+      "text": "{a} and {b} share a campfire in wary silence",
+      "people": [
+        "a"
+      ]
     },
     {
       "id": "offers-b-contract-written-smouldering",
@@ -46,11 +66,18 @@
       "tags": [
         "contract",
         "fiend"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
       "id": "steals-glowing-egg-from-nest",
-      "text": "{a} steals a glowing egg from the nest of {b}"
+      "text": "{a} steals a glowing egg from the nest of {b}",
+      "people": [
+        "a"
+      ]
     },
     {
       "id": "leads-candlelit-funeral-procession-for",
@@ -58,6 +85,9 @@
       "tags": [
         "grave",
         "melancholy"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
@@ -72,17 +102,28 @@
       "text": "{a} unmasks {b} at the height of the revel",
       "tags": [
         "glamour"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
       "id": "teaches-b-read-by-candlelight",
-      "text": "{a} teaches {b} to read by candlelight"
+      "text": "{a} teaches {b} to read by candlelight",
+      "people": [
+        "a",
+        "b"
+      ]
     },
     {
       "id": "crowns-b-wreath-thorns",
       "text": "{a} crowns {b} with a wreath of thorns",
       "tags": [
         "flora"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
@@ -90,6 +131,9 @@
       "text": "{a} chalks a warding rune while {b} keeps watch",
       "tags": [
         "rune"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
@@ -101,11 +145,18 @@
       "text": "{a} offers a sword hilt-first to {b}",
       "tags": [
         "noble"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
       "id": "binds-wounds-b-after-battle",
-      "text": "{a} binds the wounds of {b} after the battle"
+      "text": "{a} binds the wounds of {b} after the battle",
+      "people": [
+        "a"
+      ]
     },
     {
       "id": "b-race-catch-falling-star",
@@ -119,6 +170,9 @@
       "text": "{a} summons {b} inside a circle of salt and candles",
       "tags": [
         "arcane"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
@@ -126,11 +180,18 @@
       "text": "{a} rows {b} across a black river for a single coin",
       "tags": [
         "grave"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
       "id": "gambles-b-for-fate-village",
-      "text": "{a} gambles with {b} for the fate of a village"
+      "text": "{a} gambles with {b} for the fate of a village",
+      "people": [
+        "a",
+        "b"
+      ]
     },
     {
       "id": "wakes-chains-before-b",
@@ -145,17 +206,27 @@
       "text": "{a} paints a portrait of {b}, who will not sit still",
       "tags": [
         "comic"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
       "id": "is-arrested-by-b-for",
-      "text": "{a} is arrested by {b} for a crime not yet committed"
+      "text": "{a} is arrested by {b} for a crime not yet committed",
+      "people": [
+        "b"
+      ]
     },
     {
       "id": "dances-b-while-hall-burns",
       "text": "{a} dances with {b} while the hall burns",
       "tags": [
         "romantic"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
@@ -164,6 +235,9 @@
       "tags": [
         "portal",
         "planar"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
@@ -171,17 +245,28 @@
       "text": "{a} holds a lantern high as {b} claws free of a grave",
       "tags": [
         "grave"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
       "id": "returns-stolen-crown-b",
-      "text": "{a} returns a stolen crown to {b}"
+      "text": "{a} returns a stolen crown to {b}",
+      "people": [
+        "a",
+        "b"
+      ]
     },
     {
       "id": "spars-b-using-wooden-swords",
       "text": "{a} spars with {b} using wooden swords in the rain",
       "tags": [
         "martial"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
@@ -190,6 +275,10 @@
       "tags": [
         "performer",
         "comic"
+      ],
+      "people": [
+        "a",
+        "b"
       ]
     },
     {
@@ -204,21 +293,34 @@
       "text": "{a} kneels weeping over a shattered relic",
       "tags": [
         "melancholy"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
       "id": "tames-b-single-outstretched-hand",
-      "text": "{a} tames {b} with a single outstretched hand"
+      "text": "{a} tames {b} with a single outstretched hand",
+      "people": [
+        "a"
+      ]
     },
     {
       "id": "hands-b-sealed-letter-which",
-      "text": "{a} hands {b} a sealed letter, which is burned unread"
+      "text": "{a} hands {b} a sealed letter, which is burned unread",
+      "people": [
+        "a",
+        "b"
+      ]
     },
     {
       "id": "bargains-b-through-bars-cage",
       "text": "{a} bargains with {b} through the bars of a cage",
       "tags": [
         "chains"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
@@ -226,13 +328,20 @@
       "text": "{a} carries {b} piggyback out of a collapsing mine",
       "tags": [
         "subterranean"
+      ],
+      "people": [
+        "a"
       ]
     },
     {
       "id": "b-play-chess-pieces-that",
       "text": "{a} and {b} play chess with pieces that bleed",
       "weight": 3,
-      "surreal": true
+      "surreal": true,
+      "people": [
+        "a",
+        "b"
+      ]
     }
   ]
 }

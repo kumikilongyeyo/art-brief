@@ -7,7 +7,8 @@
       "id": "smells-faintly-of-rain-on-hot-stone",
       "text": "smells faintly of rain on hot stone",
       "tier": "minor",
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "every-candle-nearby-gutters-and-burns-blue",
@@ -37,7 +38,8 @@
       "tags": [
         "eerie"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "snow-falls-upward-within-a-stone-s-throw",
@@ -55,7 +57,8 @@
       "tags": [
         "eerie"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "nearby-shadows-lean-the-wrong-way-toward-the-lig",
@@ -187,7 +190,8 @@
       "requires": [
         "cat-character"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "a-second-smaller-heartbeat-beats-somewhere-insid",
@@ -205,7 +209,8 @@
       "requires": [
         "animate"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "their-reflection-moves-a-moment-before-they-do",
@@ -287,7 +292,8 @@
       "requires": [
         "cat-character"
       ],
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "always-smells-of-fresh-bread-even-after-weeks-on",
@@ -299,7 +305,8 @@
       "requires": [
         "cat-character"
       ],
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "ink-stains-on-their-fingers-drift-into-the-shape",
@@ -359,7 +366,8 @@
       "requires": [
         "cat-creature"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "migrates-along-ley-lines-leaving-a-glowing-trail",
@@ -401,7 +409,8 @@
       "requires": [
         "inanimate"
       ],
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "hums-a-low-note-whenever-a-storm-approaches",
@@ -413,7 +422,8 @@
       "requires": [
         "inanimate"
       ],
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "dust-never-settles-on-it",
@@ -431,7 +441,8 @@
       "requires": [
         "inanimate"
       ],
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "any-rust-on-it-forms-in-neat-deliberate-spirals",
@@ -479,7 +490,8 @@
       "requires": [
         "inanimate"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "cannot-be-harmed-by-anything-made-after-it",
@@ -530,7 +542,8 @@
       "requires": [
         "cat-prop"
       ],
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "always-turns-up-in-the-last-pack-it-was-stowed-i",
@@ -620,7 +633,8 @@
       "requires": [
         "place"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "footsteps-echo-back-in-a-different-rhythm",
@@ -629,7 +643,8 @@
       "requires": [
         "place"
       ],
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "rain-falls-in-slow-motion-each-drop-hanging-like",

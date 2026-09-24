@@ -67,13 +67,15 @@
         "grave"
       ],
       "tier": "notable",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "hums-a-low-chord",
       "text": "hums a low chord at midnight",
       "tier": "minor",
-      "form": "predicate"
+      "form": "predicate",
+      "weight": 1
     },
     {
       "id": "casts-its-shadow-upward",
@@ -144,7 +146,8 @@
       "id": "its-walls-are-warm",
       "text": "its walls are warm to the touch, like skin",
       "tier": "minor",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "its-cellars-go-down",
@@ -185,7 +188,8 @@
       "id": "its-well-answers-questions",
       "text": "its well answers questions in a drowned voice",
       "tier": "legendary",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     }
   ]
 }

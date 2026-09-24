@@ -3,6 +3,7 @@ import { makeLore } from './lore';
 import { buildName } from './names';
 import { FUSION_CHANCE, pickEntry, type PickContext } from './pick';
 import { cyrb128, rngFrom, type Rng } from './rng';
+import { makeStat } from './stat';
 import { renderBrief } from './templates';
 import { rollTier } from './unique';
 import type {
@@ -205,7 +206,13 @@ function pickSlot(
       );
     }
     case 'palette': {
-      const p = pickEntry(paletteEntries(data), ctx, rng, new Set([...(spec.avoidPalettes ?? []), ...(avoidPrev ?? [])]));
+      // Palettes lean hard toward the brief's element/material/mood tags (fire → warm, frost → cool…).
+      const p = pickEntry(
+        paletteEntries(data),
+        { ...ctx, affinity: 2.5 },
+        rng,
+        new Set([...(spec.avoidPalettes ?? []), ...(avoidPrev ?? [])]),
+      );
       return { ...fromEntry(p.entry, p.depth), hex: p.entry.hex };
     }
     case 'unique': {
@@ -223,12 +230,15 @@ function pickSlot(
       const all = tableEntries(data, slot.actors);
       const fresh = all.filter((x) => !contentWords(x.text).some((w) => eventWords.has(w)));
       const actors = fresh.length >= 2 ? fresh : all;
-      const a = pickEntry(actors, ctx, rng);
+      // "{a} holds a lantern high" needs someone with hands; owlbears and gelatinous cubes can't.
+      const personOnly = (list: Entry[]) => list.filter((x) => x.tags?.includes('humanoid'));
+      const poolFor = (who: 'a' | 'b') => (ev.entry.people?.includes(who) && personOnly(actors).length ? personOnly(actors) : actors);
+      const a = pickEntry(poolFor('a'), ctx, rng);
       const parts = [fromEntry(ev.entry, ev.depth), fromEntry(a.entry, a.depth)];
       let id = `${ev.entry.id}~${a.entry.id}`;
       let text = ev.entry.text.replace('{a}', withArticle(a.entry.text));
       if (ev.entry.text.includes('{b}')) {
-        const b = pickEntry(actors, ctx, rng, new Set([a.entry.id]));
+        const b = pickEntry(poolFor('b'), ctx, rng, new Set([a.entry.id]));
         parts.push(fromEntry(b.entry, b.depth));
         id += `~${b.entry.id}`;
         text = text.replace('{b}', withArticle(b.entry.text));
@@ -241,7 +251,11 @@ function pickSlot(
       const text = buildName(
         cat.id,
         data,
-        { label: fields[labelSlot]?.label ?? 'Thing', cultureTags: cultureSlot ? (fields[cultureSlot]?.tags ?? []) : [] },
+        {
+          label: fields[labelSlot]?.label ?? 'Thing',
+          labelTags: fields[labelSlot]?.tags ?? [],
+          cultureTags: cultureSlot ? (fields[cultureSlot]?.tags ?? []) : [],
+        },
         ctx,
         rng,
       );
@@ -315,6 +329,9 @@ function assemble(
   const pal = resolved.palette;
   const palette = { name: pal.text, hex: pal.hex ?? [] };
   const rendered = renderBrief({ category: cat, fields, palette, labelOf: (s) => resolved[s]?.label ?? '' });
+  const stat = makeStat(data, cat, spec.seed, resolved, Object.fromEntries(cat.slots.map((sl) => [sl.id, resolved[sl.id]?.text ?? ''])));
+  const [titleLine, ...rest] = rendered.plainText.split('\n');
+  const plainText = [titleLine, `D&D: ${stat}`, ...rest].join('\n');
   const rerolls = { ...(spec.rerolls ?? {}) };
   const changed = Object.values(rerolls).some((n) => n > 0) || spec.seed !== `${spec.base}-${spec.index}`;
   const baseId = `${spec.base}-${spec.index}`;
@@ -332,7 +349,8 @@ function assemble(
     palette,
     title: rendered.title,
     lines: rendered.lines,
-    plainText: rendered.plainText,
+    plainText,
+    stat,
     dataVersion: data.version,
     createdAt: spec.createdAt ?? 0,
     rerolls,

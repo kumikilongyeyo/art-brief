@@ -135,7 +135,7 @@ test('copy buttons put the expected text on the clipboard', async ({ page }) => 
   const first = cards(page).first();
   const title = await first.locator('.title').innerText();
   await first.getByRole('button', { name: 'Copy', exact: true }).click();
-  expect(await lastCopied(page)).toMatch(new RegExp(`^${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\nBackground: `));
+  expect(await lastCopied(page)).toMatch(new RegExp(`^${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\nD&D: [^\\n]+\\nBackground: `));
   await expect(page.locator('.toast')).toHaveText('Copied');
   await first.getByRole('button', { name: 'Copy for ChatGPT' }).click();
   const chat = await lastCopied(page);

@@ -560,6 +560,339 @@
       "themes": [
         "planar"
       ]
+    },
+    {
+      "id": "cold-anvil",
+      "text": "Cold Anvil",
+      "tags": [
+        "forge"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "last-bellows",
+      "text": "Last Bellows",
+      "tags": [
+        "forge"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "ember-tongs",
+      "text": "Ember Tongs",
+      "tags": [
+        "forge"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "unread-page",
+      "text": "Unread Page",
+      "tags": [
+        "library"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "chained-book",
+      "text": "Chained Book",
+      "tags": [
+        "library"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "ninth-index",
+      "text": "Ninth Index",
+      "tags": [
+        "library"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "silent-bell",
+      "text": "Silent Bell",
+      "tags": [
+        "temple",
+        "holy"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "kneeling-saint",
+      "text": "Kneeling Saint",
+      "tags": [
+        "temple",
+        "holy"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "dawn-altar",
+      "text": "Dawn Altar",
+      "tags": [
+        "temple",
+        "holy"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "honest-scale",
+      "text": "Honest Scale",
+      "tags": [
+        "market"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "crooked-coin",
+      "text": "Crooked Coin",
+      "tags": [
+        "market",
+        "guild"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "copper-stall",
+      "text": "Copper Stall",
+      "tags": [
+        "market"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "last-breath",
+      "text": "Last Breath",
+      "tags": [
+        "grave"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "sealed-tomb",
+      "text": "Sealed Tomb",
+      "tags": [
+        "grave",
+        "necrotic"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "quiet-dead",
+      "text": "Quiet Dead",
+      "tags": [
+        "grave"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "drowned-lamp",
+      "text": "Drowned Lamp",
+      "tags": [
+        "coast"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "tidebell",
+      "text": "Tidebell",
+      "tags": [
+        "coast",
+        "water"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "salt-beacon",
+      "text": "Salt Beacon",
+      "tags": [
+        "coast"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "turning-star",
+      "text": "Turning Star",
+      "tags": [
+        "astral",
+        "arcane"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "split-wand",
+      "text": "Split Wand",
+      "tags": [
+        "arcane"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "burning-quill",
+      "text": "Burning Quill",
+      "tags": [
+        "arcane"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "foaming-tankard",
+      "text": "Foaming Tankard",
+      "tags": [
+        "festive"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "spilled-ale",
+      "text": "Spilled Ale",
+      "tags": [
+        "festive"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "sleeping-barrel",
+      "text": "Sleeping Barrel",
+      "tags": [
+        "festive"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "iron-watch",
+      "text": "Iron Watch",
+      "tags": [
+        "martial"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "broken-shield",
+      "text": "Broken Shield",
+      "tags": [
+        "martial"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "red-sand",
+      "text": "Red Sand",
+      "tags": [
+        "martial"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "knotted-rope",
+      "text": "Knotted Rope",
+      "tags": [
+        "guild",
+        "urban"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "open-window",
+      "text": "Open Window",
+      "tags": [
+        "guild",
+        "urban"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "iron-key",
+      "text": "Iron Key",
+      "tags": [
+        "chains",
+        "grim"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "long-sentence",
+      "text": "Long Sentence",
+      "tags": [
+        "chains",
+        "grim"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "mossy-wheel",
+      "text": "Mossy Wheel",
+      "tags": [
+        "river",
+        "pastoral"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "warm-spring",
+      "text": "Warm Spring",
+      "tags": [
+        "water"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "green-mortar",
+      "text": "Green Mortar",
+      "tags": [
+        "flora"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "velvet-curtain",
+      "text": "Velvet Curtain",
+      "tags": [
+        "performer"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "caged-roar",
+      "text": "Caged Roar",
+      "tags": [
+        "beast"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "deep-seam",
+      "text": "Deep Seam",
+      "tags": [
+        "subterranean"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "gilded-lock",
+      "text": "Gilded Lock",
+      "tags": [
+        "gold"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "wandering-door",
+      "text": "Wandering Door",
+      "tags": [
+        "portal",
+        "planar"
+      ],
+      "weight": 6
+    },
+    {
+      "id": "high-snow",
+      "text": "High Snow",
+      "tags": [
+        "mountain"
+      ],
+      "weight": 6
     }
   ]
 }

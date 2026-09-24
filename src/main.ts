@@ -152,7 +152,12 @@ loreBox.addEventListener('change', () => {
   state.lore = loreBox.checked;
   persistLast();
 });
-const generateBtn = h('button', { class: 'generate', type: 'button', id: 'generate', onclick: () => generate() }, 'Generate');
+const generateBtn = h(
+  'button',
+  { class: 'generate', type: 'button', id: 'generate', onclick: () => generate() },
+  h('span', { class: 'die', 'aria-hidden': 'true' }, icon('d20')),
+  'Generate',
+);
 const noticesEl = h('div', { 'aria-live': 'polite' });
 const resultsEl = h('section', { class: 'results', 'aria-label': 'Results', id: 'results' });
 const listsEl = h('div');
@@ -658,6 +663,9 @@ function generate() {
   if (busy) return;
   busy = true;
   generateBtn.setAttribute('aria-disabled', 'true');
+  generateBtn.classList.remove('rolling');
+  void generateBtn.offsetWidth; // restart the roll animation
+  generateBtn.classList.add('rolling');
   window.setTimeout(() => {
     busy = false;
     generateBtn.removeAttribute('aria-disabled');

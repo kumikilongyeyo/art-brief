@@ -29,7 +29,11 @@
       "id": "tavern",
       "text": "tavern",
       "label": "Tavern",
-      "weight": 7
+      "weight": 7,
+      "tags": [
+        "festive",
+        "road"
+      ]
     },
     {
       "id": "temple",
@@ -43,7 +47,10 @@
     {
       "id": "watchtower",
       "text": "watchtower",
-      "label": "Tower"
+      "label": "Tower",
+      "tags": [
+        "martial"
+      ]
     },
     {
       "id": "market-hall",
@@ -56,7 +63,10 @@
     {
       "id": "apothecary",
       "text": "apothecary",
-      "label": "Apothecary"
+      "label": "Apothecary",
+      "tags": [
+        "flora"
+      ]
     },
     {
       "id": "smithy",
@@ -114,7 +124,10 @@
     {
       "id": "public-bathhouse",
       "text": "public bathhouse",
-      "label": "Baths"
+      "label": "Baths",
+      "tags": [
+        "water"
+      ]
     },
     {
       "id": "observatory",
@@ -146,7 +159,11 @@
       "id": "fortress-keep",
       "text": "fortress keep",
       "label": "Keep",
-      "weight": 6
+      "weight": 6,
+      "tags": [
+        "martial",
+        "noble"
+      ]
     },
     {
       "id": "water-mill",
@@ -160,7 +177,11 @@
     {
       "id": "wayside-shrine",
       "text": "wayside shrine",
-      "label": "Shrine"
+      "label": "Shrine",
+      "tags": [
+        "holy",
+        "road"
+      ]
     },
     {
       "id": "crossroads-inn",
@@ -231,7 +252,10 @@
       "id": "orphanage",
       "text": "orphanage",
       "label": "Orphanage",
-      "weight": 3
+      "weight": 3,
+      "tags": [
+        "village"
+      ]
     },
     {
       "id": "alchemists-laboratory",
@@ -244,7 +268,10 @@
     {
       "id": "gatehouse",
       "text": "gatehouse",
-      "label": "Gate"
+      "label": "Gate",
+      "tags": [
+        "martial"
+      ]
     },
     {
       "id": "bank-vault",
@@ -298,7 +325,10 @@
     {
       "id": "brewery",
       "text": "brewery",
-      "label": "Brewery"
+      "label": "Brewery",
+      "tags": [
+        "festive"
+      ]
     },
     {
       "id": "cathedral",

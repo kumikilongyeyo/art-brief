@@ -7,6 +7,9 @@ One-screen tool that answers “What do you want to create?” with short, dense
 
 ## Use
 - Pick a category, theme, variations (1–4) and weirdness → **Generate** (or press Enter / Space).
+- Each card gets a **D&D stat tag** that agrees with it ("Weapon, very rare (requires attunement by a paladin)",
+  "Large fiend, lawful evil · CR 7", "Level 12 · chaotic good", "Adventure site · Tier 2", "Encounter · Hard"), and
+  every line shows the d100 roll it came from, DMG-table style.
 - 🔒 lock a line to keep it on the next Generate; ↻ rerolls just that line (and lines that depend on it).
 - **Lore** (tickbox, or *Add lore* on a card): a 50–80 word story built from the card's own lines. It rolls a
   D&D plot first (Stolen, Cursed, Bargain, Betrayed, Lost, Awakened, Guardian, Prophecy) and builds to it, with a

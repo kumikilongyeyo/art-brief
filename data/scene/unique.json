@@ -31,7 +31,8 @@
       "id": "faint-melody-seems-rise-from",
       "text": "a faint melody seems to rise from the stones",
       "tier": "minor",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "all-metal-view-is-quietly",

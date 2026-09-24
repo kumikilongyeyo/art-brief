@@ -13,7 +13,8 @@
       "id": "it-smells-faintly-rain-hot",
       "text": "it smells faintly of rain on hot stone",
       "tier": "minor",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "footprints-slowly-fill-clear-water",
@@ -25,7 +26,8 @@
       "id": "birds-fall-silent-while-it",
       "text": "birds fall silent while it passes",
       "tier": "minor",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "blood-runs-cold-blue-faintly",
@@ -55,7 +57,8 @@
       "id": "it-hums-lullaby-no-one",
       "text": "it hums a lullaby no one taught it",
       "tier": "minor",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "frost-feathers-across-any-metal",
@@ -130,7 +133,8 @@
       "id": "breath-smells-stranger-s-childhood",
       "text": "its breath smells of a stranger's childhood home",
       "tier": "notable",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "heartbeat-can-be-felt-through",

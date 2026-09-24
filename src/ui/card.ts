@@ -1,3 +1,4 @@
+import { rollFor } from '../engine/dice';
 import { TEMPLATES } from '../engine/templates';
 import type { Brief, DataSet, SlotId } from '../engine/types';
 import { h, icon, inkFor } from './dom';
@@ -66,6 +67,13 @@ function lineActions(brief: Brief, label: string, lockSlots: SlotId[], rerollSlo
   );
 }
 
+/** Small "d100 · 37" chip: the table roll this line came from. */
+function rollChip(brief: Brief, slot: SlotId, o: CardOptions): HTMLElement | null {
+  const cat = o.data.categories[brief.category];
+  const roll = cat && brief.fields[slot] ? rollFor(o.data, cat, slot, brief.fields[slot].entryId, brief.seed) : null;
+  return roll ? h('span', { class: 'roll', title: `Rolled ${roll} on d100`, 'aria-label': `d100 roll ${roll}` }, String(roll)) : null;
+}
+
 /** D&D job-board lines under the story; the twist stays hidden until revealed. */
 function hookCard(brief: Brief): HTMLElement | null {
   const l = brief.lore;
@@ -106,7 +114,12 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
     h(
       'div',
       { class: `row title-row${titleLocked ? ' locked' : ''}` },
-      h('h2', { class: 'title' }, brief.title),
+      h(
+        'div',
+        { class: 'title-block' },
+        h('h2', { class: 'title' }, brief.title),
+        brief.stat ? h('p', { class: 'stat' }, icon('d20'), brief.stat) : null,
+      ),
       o.sample ? null : lineActions(brief, 'Title', tpl.titleLock, tpl.titleReroll, o, hd),
     ),
   );
@@ -143,7 +156,7 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
       h(
         'div',
         { class: `row line${locked ? ' locked' : ''}`, 'data-slot': line.slot },
-        h('dt', {}, line.label),
+        h('dt', {}, line.label, rollChip(brief, line.slot, o)),
         h('dd', {}, h('span', { class: 'value' }, value), o.sample ? null : lineActions(brief, line.label, slots, slots, o, hd)),
       ),
     );

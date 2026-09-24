@@ -1,0 +1,234 @@
+{
+  "id": "shared.lore-city",
+  "category": "shared",
+  "slot": "lore-city",
+  "entries": [
+    {
+      "id": "waterdeep",
+      "text": "Waterdeep",
+      "weight": 4
+    },
+    {
+      "id": "baldur-s-gate",
+      "text": "Baldur's Gate",
+      "weight": 4
+    },
+    {
+      "id": "neverwinter",
+      "text": "Neverwinter",
+      "weight": 4
+    },
+    {
+      "id": "luskan",
+      "text": "Luskan",
+      "weight": 7,
+      "themes": [
+        "nautical",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "mulmaster",
+      "text": "Mulmaster",
+      "weight": 7,
+      "themes": [
+        "dark-fantasy",
+        "nautical"
+      ]
+    },
+    {
+      "id": "silverymoon",
+      "text": "Silverymoon",
+      "weight": 7,
+      "themes": [
+        "high-fantasy",
+        "fey",
+        "arcane"
+      ]
+    },
+    {
+      "id": "calimport",
+      "text": "Calimport",
+      "weight": 7,
+      "themes": [
+        "elemental-fire",
+        "planar"
+      ]
+    },
+    {
+      "id": "athkatla",
+      "text": "Athkatla",
+      "weight": 7,
+      "themes": [
+        "arcane",
+        "planar"
+      ]
+    },
+    {
+      "id": "menzoberranzan",
+      "text": "Menzoberranzan",
+      "weight": 7,
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "sigil",
+      "text": "Sigil",
+      "weight": 7,
+      "themes": [
+        "planar"
+      ]
+    },
+    {
+      "id": "bryn-shander",
+      "text": "Bryn Shander",
+      "weight": 7,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "candlekeep",
+      "text": "Candlekeep",
+      "weight": 7,
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "the-city-of-brass",
+      "text": "the City of Brass",
+      "weight": 7,
+      "themes": [
+        "elemental-fire",
+        "planar"
+      ]
+    },
+    {
+      "id": "dis",
+      "text": "Dis",
+      "weight": 7,
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "eltabbar-in-thay",
+      "text": "Eltabbar in Thay",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "arcane",
+        "infernal"
+      ]
+    },
+    {
+      "id": "skullport",
+      "text": "Skullport",
+      "weight": 7,
+      "themes": [
+        "underdark",
+        "nautical",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "daggerford",
+      "text": "Daggerford",
+      "weight": 7,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "elturel",
+      "text": "Elturel",
+      "weight": 7,
+      "themes": [
+        "celestial",
+        "infernal"
+      ]
+    },
+    {
+      "id": "gauntlgrym",
+      "text": "Gauntlgrym",
+      "weight": 7,
+      "themes": [
+        "elemental-fire",
+        "underdark"
+      ]
+    },
+    {
+      "id": "evereska",
+      "text": "Evereska",
+      "weight": 7,
+      "themes": [
+        "fey",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "port-nyanzaru",
+      "text": "Port Nyanzaru",
+      "weight": 7,
+      "themes": [
+        "wild-primal",
+        "nautical"
+      ]
+    },
+    {
+      "id": "suzail",
+      "text": "Suzail",
+      "weight": 7,
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "hillsfar",
+      "text": "Hillsfar",
+      "weight": 7,
+      "themes": [
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "vallaki-in-barovia",
+      "text": "Vallaki in Barovia",
+      "weight": 7,
+      "themes": [
+        "undead",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "mirabar",
+      "text": "Mirabar",
+      "weight": 7,
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "myth-drannor",
+      "text": "Myth Drannor",
+      "weight": 7,
+      "themes": [
+        "fey",
+        "arcane",
+        "celestial"
+      ]
+    },
+    {
+      "id": "phlan",
+      "text": "Phlan",
+      "weight": 4
+    },
+    {
+      "id": "a-nameless-port-on-the-moonsea",
+      "text": "a nameless port on the Moonsea",
+      "weight": 4
+    }
+  ]
+}

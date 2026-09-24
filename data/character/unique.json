@@ -194,7 +194,8 @@
         "storm"
       ],
       "tier": "notable",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "they-speak-shadowfell-whispers-aloud",
@@ -207,7 +208,8 @@
         "dark-fantasy"
       ],
       "tier": "notable",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "their-pulse-glows-through-the",
@@ -273,7 +275,8 @@
         "dark-fantasy"
       ],
       "tier": "legendary",
-      "form": "clause"
+      "form": "clause",
+      "weight": 1
     },
     {
       "id": "stars-prick-into-view-in",

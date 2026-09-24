@@ -175,9 +175,16 @@ function render(tpl: string, data: DataSet, cat: CategoryDef, brief: Brief, st: 
         return cat.id === 'character' ? 'them' : 'it';
       case 'poss':
         return cat.id === 'character' ? 'their' : 'its';
-      case 'place':
+      case 'place': {
+        // Half the time build "{venue} in {city}" (hundreds of D&D places); otherwise a hand-written one.
+        const venues = tableEntries(data, 'shared.lore-venue');
+        const cities = tableEntries(data, 'shared.lore-city');
+        if (!st.place && venues.length && cities.length && rng() < 0.55) {
+          st.place = `${pickEntry(venues, ctx, rng).entry.text} in ${pickEntry(cities, ctx, rng).entry.text}`;
+        }
         st.place ??= pickEntry(tableEntries(data, 'shared.lore-place'), ctx, rng).entry.text;
         return st.place;
+      }
       case 'era':
         st.era ??= pickEntry(tableEntries(data, 'shared.lore-era'), ctx, rng).entry.text;
         return st.era;

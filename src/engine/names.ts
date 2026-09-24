@@ -7,6 +7,8 @@ export interface NameSources {
   cultureTags: string[];
   /** Title-case noun label from the primary entry (e.g. "Crown", "Wader", "Library", "Market"). */
   label: string;
+  /** Tags of the entry the label came from (building function → forge, library…). */
+  labelTags?: string[];
 }
 
 function cultureFor(data: DataSet, tags: string[], rng: Rng): Culture {
@@ -58,7 +60,11 @@ export function buildName(category: CategoryId, data: DataSet, src: NameSources,
       return `${joinParts(first, second)} ${src.label}`;
     }
     case 'building': {
-      if (rng() < 0.6) return `${src.label} of the ${word(data, 'shared.building-epithet', ctx, rng)}`;
+      // Epithets tagged like the building's function get a strong pull ("Forge of the Cold Anvil").
+      if (rng() < 0.6) {
+        const own = { ...ctx, tags: new Set(src.labelTags ?? []), excludes: new Set<string>(), affinity: 5 };
+        return `${src.label} of the ${word(data, 'shared.building-epithet', own, rng)}`;
+      }
       return `The ${word(data, 'shared.item-adjective', ctx, rng)} ${src.label}`;
     }
     case 'scene':

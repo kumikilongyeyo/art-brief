@@ -336,6 +336,45 @@ select.theme {
     background 0.15s,
     transform 0.1s;
 }
+.generate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.generate .die svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  stroke-width: 1.8;
+}
+.generate.rolling .die {
+  animation: roll 450ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+@keyframes roll {
+  from {
+    transform: rotate(-200deg) scale(0.7);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .generate.rolling .die {
+    animation: none;
+  }
+}
+.roll {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font: 11px/16px var(--mono);
+  vertical-align: 1px;
+}
+.roll::before {
+  content: 'd%\2009';
+  opacity: 0.7;
+}
 .generate:hover {
   background: var(--accent-hover);
 }
@@ -420,6 +459,22 @@ select.theme {
 }
 .row.locked {
   background: var(--lock-tint);
+}
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: -2px 0 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+.stat svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--accent);
+  stroke-width: 1.6;
 }
 .title-row .title {
   font-weight: 700;
