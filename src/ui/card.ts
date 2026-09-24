@@ -8,6 +8,7 @@ export interface CardHandlers {
   copy: (index: number) => void;
   copyChat: (index: number) => void;
   save: (index: number) => void;
+  moveFolder: (index: number, anchor: HTMLElement) => void;
   link: (index: number) => void;
   swatch: (hex: string) => void;
   addLore: (index: number) => void;
@@ -19,6 +20,8 @@ export interface CardHandlers {
 export interface CardOptions {
   index: number;
   saved: boolean;
+  /** Folder name when saved, shown on the folder button. */
+  folderName?: string;
   showChatGPT: boolean;
   sample?: boolean;
   data: DataSet;
@@ -203,6 +206,24 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
           icon('star', o.saved),
           o.saved ? 'Saved' : 'Save',
         ),
+        o.saved
+          ? h(
+              'button',
+              {
+                class: 'btn btn-folder',
+                type: 'button',
+                'aria-label': `Move to folder (now: ${o.folderName ?? 'Unsorted'})`,
+                title: 'Move to folder',
+                'aria-haspopup': 'menu',
+                'aria-expanded': 'false',
+                'data-focus': `folder:${o.index}`,
+                onclick: (e: Event) => hd.moveFolder(o.index, e.currentTarget as HTMLElement),
+              },
+              icon('folder'),
+              h('span', { class: 'btn-folder-name' }, o.folderName ?? 'Unsorted'),
+              icon('chevron'),
+            )
+          : null,
         h(
           'button',
           { class: 'btn', type: 'button', 'data-focus': `link:${o.index}`, onclick: () => hd.link(o.index) },

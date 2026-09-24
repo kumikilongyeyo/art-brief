@@ -122,4 +122,7 @@ export interface Brief {
   rerolls: Record<SlotId, number>;
   /** Optional story built from the fields (src/engine/lore.ts). */
   lore?: { roll: number; text: string };
+  /** Saved briefs only: folder id (none = Unsorted) and when it was saved. */
+  folder?: string;
+  savedAt?: number;
 }

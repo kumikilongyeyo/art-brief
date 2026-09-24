@@ -14,6 +14,8 @@ import {
   clearKey,
   exportFileName,
   exportSaved,
+  loadFolders,
+  saveFolders,
   importSaved,
   loadHistory,
   loadRecent,
@@ -29,6 +31,20 @@ import {
 import { renderCard, type CardHandlers } from './ui/card';
 import { h, icon } from './ui/dom';
 import { renderLists as buildLists } from './ui/history';
+import { openFolderMenu } from './ui/folder-menu';
+import {
+  createFolder,
+  deleteFolder,
+  folderName,
+  folderOf,
+  moveBrief,
+  removeBrief,
+  renameFolder,
+  saveBrief,
+  validFilter,
+  type Folder,
+  type LibraryFilter,
+} from './library';
 import { openSettings } from './ui/settings';
 import { toast } from './ui/toast';
 
@@ -39,6 +55,7 @@ const storageOk = storageAvailable();
 let settings: Settings = loadSettings();
 let historyList: Brief[] = loadHistory();
 let saved: Record<string, Brief> = loadSaved();
+let folders: Folder[] = loadFolders();
 let recent: Record<string, string[]> = loadRecent();
 
 const WEIRD_LABEL: Record<Weirdness, string> = { grounded: 'Grounded', mixed: 'Mixed', wild: 'Wild' };
@@ -55,6 +72,8 @@ const state = {
   sample: null as Brief | null,
   notice: null as string | null,
   listsOpen: { history: false, saved: false },
+  libraryFilter: validFilter(settings.libraryFilter ?? 'all', folders) as LibraryFilter,
+  editing: null as string | null,
 };
 
 // ---------- helpers ----------
@@ -273,14 +292,11 @@ const cardHandlers: CardHandlers = {
   },
   save(i) {
     const b = state.results[i];
-    if (!b) return;
-    if (saved[b.id]) delete saved[b.id];
-    else saved[b.id] = b;
-    saved = { ...saved };
-    saveSaved(saved);
-    toast(saved[b.id] ? 'Saved' : 'Removed from saved');
-    rerenderCard(i);
-    renderLists();
+    if (b) toggleSave(b);
+  },
+  moveFolder(i, anchor) {
+    const b = state.results[i];
+    if (b && saved[b.id]) moveMenu(saved[b.id], anchor);
   },
   link(i) {
     const b = state.results[i];
@@ -340,7 +356,18 @@ function updateCard(i: number, fn: (b: Brief) => Brief, focusPrefix?: string) {
 }
 
 function cardFor(b: Brief, i: number): HTMLElement {
-  return renderCard(b, { index: i, saved: !!saved[b.id], showChatGPT: settings.showChatGPT, data }, cardHandlers);
+  const s = saved[b.id];
+  return renderCard(
+    b,
+    {
+      index: i,
+      saved: !!s,
+      folderName: s ? folderName(folderOf(s, folders), folders) : undefined,
+      showChatGPT: settings.showChatGPT,
+      data,
+    },
+    cardHandlers,
+  );
 }
 
 function rerenderCard(i: number) {
@@ -402,23 +429,163 @@ function renderResults() {
 }
 
 function renderLists() {
-  const savedList = Object.values(saved).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-  const el = buildLists(historyList, savedList, data, state.listsOpen, {
-    restore(b) {
-      state.results = [b];
-      state.sample = null;
-      state.category = b.category;
-      persistLast();
-      renderControls();
-      renderFooter();
-      renderResults();
-      resultsEl.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  state.libraryFilter = validFilter(state.libraryFilter, folders);
+  const el = buildLists(
+    { history: historyList, saved, folders, filter: state.libraryFilter, open: state.listsOpen, editing: state.editing },
+    data,
+    {
+      restore(b) {
+        state.results = [b];
+        state.sample = null;
+        state.category = b.category;
+        persistLast();
+        renderControls();
+        renderFooter();
+        renderResults();
+        resultsEl.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      },
+      toggle(which, open) {
+        state.listsOpen[which] = open;
+      },
+      toggleSave,
+      removeHistory(b) {
+        const before = historyList;
+        historyList = historyList.filter((x) => x.id !== b.id);
+        saveHistory(historyList);
+        refresh();
+        toast('Removed from history', { action: { label: 'Undo', run: () => ((historyList = before), saveHistory(before), refresh()) } });
+      },
+      clearHistory() {
+        const before = historyList;
+        historyList = [];
+        clearKey('history');
+        refresh('chip:all');
+        toast('History cleared — saved briefs kept', {
+          action: { label: 'Undo', run: () => ((historyList = before), saveHistory(before), refresh()) },
+        });
+      },
+      setFilter(filter) {
+        state.libraryFilter = filter;
+        settings = { ...settings, libraryFilter: filter };
+        saveSettings(settings);
+        refresh();
+      },
+      moveMenu,
+      removeSaved(b) {
+        const snapshot = saved[b.id];
+        setSaved(removeBrief(saved, b.id));
+        toast('Removed from saved', { action: { label: 'Undo', run: () => setSaved({ ...saved, [b.id]: snapshot }) } });
+      },
+      moveTo(briefId, folderId) {
+        if (!saved[briefId] || folderOf(saved[briefId], folders) === folderId) return;
+        setSaved(moveBrief(saved, briefId, folderId));
+        toast(`Moved to ${folderName(folderId, folders)}`);
+      },
+      createFolder: addFolder,
+      renameFolder(id, name) {
+        const next = renameFolder(folders, id, name);
+        if (next === folders && name.trim() && folders.find((f) => f.id === id)?.name !== name.trim())
+          toast('A folder with that name already exists');
+        setFolders(next);
+        refresh(`chip:${id}`);
+      },
+      deleteFolder(id) {
+        const f = folders.find((x) => x.id === id);
+        if (!f) return;
+        const before = { folders, saved, filter: state.libraryFilter };
+        const moved = Object.values(saved).filter((b) => b.folder === id).length;
+        const r = deleteFolder(folders, saved, id);
+        state.libraryFilter = 'unsorted';
+        setFolders(r.folders);
+        setSaved(r.saved, 'chip:unsorted');
+        toast(`Deleted “${f.name}”${moved ? ` — ${moved} moved to Unsorted` : ''}`, {
+          action: {
+            label: 'Undo',
+            run: () => {
+              state.libraryFilter = before.filter;
+              setFolders(before.folders);
+              setSaved(before.saved, `chip:${id}`);
+            },
+          },
+        });
+      },
     },
-    toggle(which, open) {
-      state.listsOpen[which] = open;
+    (v) => {
+      state.editing = v;
+      refresh(v === 'new' ? undefined : v ? undefined : 'chip:new');
     },
-  });
+  );
   listsEl.replaceChildren(el);
+}
+
+// ---------- saved library ----------
+
+/** Re-render cards and lists, keeping keyboard focus on the same control (or on `fallback`). */
+function refresh(fallback?: string) {
+  const key = (document.activeElement as HTMLElement | null)?.dataset?.focus;
+  renderResults();
+  renderLists();
+  const find = (k?: string) => (k ? document.querySelector<HTMLElement>(`[data-focus="${CSS.escape(k)}"]`) : null);
+  (find(key) ?? find(fallback))?.focus();
+}
+
+function setSaved(next: Record<string, Brief>, focusFallback?: string) {
+  saved = next;
+  saveSaved(saved);
+  refresh(focusFallback);
+}
+
+function setFolders(next: Folder[]) {
+  folders = next;
+  saveFolders(folders);
+}
+
+function newFolderId(): string {
+  const b = new Uint8Array(6);
+  crypto.getRandomValues(b);
+  return `f-${Array.from(b, (x) => x.toString(36).padStart(2, '0')).join('')}`;
+}
+
+function addFolder(name: string): string | null {
+  const r = createFolder(folders, name, newFolderId(), Date.now());
+  if (!r.folder) {
+    toast('Give the folder a name');
+    return null;
+  }
+  if (r.folders !== folders) {
+    setFolders(r.folders);
+    toast(`Folder “${r.folder.name}” created`);
+  }
+  return r.folder.id;
+}
+
+/** New saves go into the folder you're looking at (Unsorted when viewing All or Unsorted). */
+function currentSaveFolder(): string | undefined {
+  return state.libraryFilter !== 'all' && state.libraryFilter !== 'unsorted' ? state.libraryFilter : undefined;
+}
+
+function toggleSave(b: Brief) {
+  if (saved[b.id]) {
+    const snapshot = saved[b.id];
+    setSaved(removeBrief(saved, b.id));
+    toast('Removed from saved', { action: { label: 'Undo', run: () => setSaved({ ...saved, [b.id]: snapshot }) } });
+    return;
+  }
+  const folder = currentSaveFolder();
+  setSaved(saveBrief(saved, b, folder, Date.now()));
+  toast(`Saved to ${folderName(folder, folders)}`);
+}
+
+function moveMenu(b: Brief, anchor: HTMLElement) {
+  openFolderMenu(anchor, {
+    folders,
+    current: folderOf(b, folders),
+    onPick: (folderId) => {
+      setSaved(moveBrief(saved, b.id, folderId));
+      toast(`Moved to ${folderName(folderId, folders)}`);
+    },
+    onCreate: addFolder,
+  });
 }
 
 // ---------- actions ----------
@@ -534,7 +701,7 @@ function showSettings() {
         if (chatChanged) renderResults();
       },
       exportSaved() {
-        const blob = new Blob([exportSaved(saved)], { type: 'application/json' });
+        const blob = new Blob([exportSaved(saved, folders)], { type: 'application/json' });
         const a = h('a', { href: URL.createObjectURL(blob), download: exportFileName() });
         document.body.append(a);
         a.click();
@@ -544,9 +711,10 @@ function showSettings() {
       },
       async importSaved(file) {
         try {
-          const r = importSaved(saved, await file.text());
+          const r = importSaved(saved, await file.text(), folders);
           saved = r.saved;
           saveSaved(saved);
+          setFolders(r.folders);
           toast(`Imported ${r.added} new`);
           renderResults();
           renderLists();

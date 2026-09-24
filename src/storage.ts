@@ -1,9 +1,10 @@
 import { DEFAULT_STORY_INSTRUCTION } from './chat';
 import type { Brief, CategoryId, ThemeId, UniqueFrequency, Weirdness } from './engine/types';
+import { mergeFolders, type Folder, type LibraryFilter } from './library';
 
 export const STORAGE_SCHEMA = 1;
 export const HISTORY_LIMIT = 100;
-const K = { settings: 'ab:settings', history: 'ab:history', saved: 'ab:saved', recent: 'ab:recent' } as const;
+const K = { settings: 'ab:settings', history: 'ab:history', saved: 'ab:saved', recent: 'ab:recent', folders: 'ab:folders' } as const;
 
 export const DEFAULT_INSTRUCTION = `You are an art director writing for a fantasy concept artist.
 Rewrite the art brief below into one vivid paragraph of 60–90 words.
@@ -25,6 +26,8 @@ export interface Settings {
   colorScheme: 'system' | 'light' | 'dark';
   last: { category: CategoryId; themeChoice: ThemeId | 'any'; count: number; weirdness: Weirdness; lore: boolean };
   seenSample: boolean;
+  /** Which folder the Saved library is showing. */
+  libraryFilter: LibraryFilter;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -37,6 +40,7 @@ export const DEFAULT_SETTINGS: Settings = {
   colorScheme: 'system',
   last: { category: 'character', themeChoice: 'any', count: 2, weirdness: 'mixed', lore: false },
   seenSample: false,
+  libraryFilter: 'all',
 };
 
 interface Wrapped<T> {
@@ -147,6 +151,13 @@ export function loadSaved(): Record<string, Brief> {
 }
 export const saveSaved = (s: Record<string, Brief>) => write(K.saved, s);
 
+const isFolder = (v: unknown): v is Folder => isObj(v) && typeof v.id === 'string' && typeof v.name === 'string';
+
+export function loadFolders(): Folder[] {
+  return read<unknown[]>(K.folders, [], Array.isArray).filter(isFolder);
+}
+export const saveFolders = (f: Folder[]) => write(K.folders, f);
+
 export function loadRecent(): Record<string, string[]> {
   return read<Record<string, string[]>>(K.recent, {}, isObj);
 }
@@ -167,16 +178,23 @@ export function exportFileName(d = new Date()): string {
   return `art-brief-saved-${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}.json`;
 }
 
-export function exportSaved(saved: Record<string, Brief>): string {
+export function exportSaved(saved: Record<string, Brief>, folders: Folder[] = []): string {
   return JSON.stringify(
-    { app: 'art-brief', schemaVersion: STORAGE_SCHEMA, exportedAt: new Date().toISOString(), saved: Object.values(saved) },
+    { app: 'art-brief', schemaVersion: STORAGE_SCHEMA, exportedAt: new Date().toISOString(), folders, saved: Object.values(saved) },
     null,
     2,
   );
 }
 
-/** Merge imported briefs by id. Returns the merged map and how many were new. Throws on unreadable files. */
-export function importSaved(current: Record<string, Brief>, text: string): { saved: Record<string, Brief>; added: number } {
+/**
+ * Merge an export into the library: briefs by id (never duplicated), folders by id or name.
+ * Throws on files that are not Art Brief exports.
+ */
+export function importSaved(
+  current: Record<string, Brief>,
+  text: string,
+  folders: Folder[] = [],
+): { saved: Record<string, Brief>; folders: Folder[]; added: number } {
   const json = JSON.parse(text) as unknown;
   const list = Array.isArray(json)
     ? json
@@ -186,12 +204,15 @@ export function importSaved(current: Record<string, Brief>, text: string): { sav
         ? Object.values(json.saved)
         : null;
   if (!list) throw new Error('Not an Art Brief export file');
+  const incoming = isObj(json) && Array.isArray(json.folders) ? (json.folders as unknown[]).filter(isFolder) : [];
+  const merged = mergeFolders(folders, incoming);
   const saved = { ...current };
   let added = 0;
   for (const b of list) {
     if (!isBrief(b)) continue;
     if (!saved[b.id]) added++;
-    saved[b.id] = b;
+    const folder = b.folder ? merged.remap[b.folder] : undefined;
+    saved[b.id] = { ...b, folder };
   }
-  return { saved, added };
+  return { saved, folders: merged.folders, added };
 }
