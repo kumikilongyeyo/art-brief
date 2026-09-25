@@ -44,6 +44,12 @@
       ],
       "spines": [
         "stolen"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -52,6 +58,12 @@
       "weight": 4,
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -98,6 +110,14 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "astral",
+        "coral",
+        "ocean",
+        "planar",
+        "sky"
       ]
     },
     {
@@ -192,6 +212,14 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "coral",
+        "fungal",
+        "ocean",
+        "subterranean"
       ]
     },
     {
@@ -200,6 +228,19 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "places": [
+        "arctic",
+        "cavern",
+        "coast",
+        "desert",
+        "fungal",
+        "glacier",
+        "mountain",
+        "ruins",
+        "subterranean",
+        "volcanic",
+        "wilderness"
       ]
     },
     {
@@ -208,6 +249,13 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "places": [
+        "coral",
+        "ocean"
+      ],
+      "notPlaces": [
+        "abyssal"
       ]
     },
     {
@@ -227,6 +275,12 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "ocean",
+        "coral",
+        "abyssal",
+        "coast"
       ]
     },
     {
@@ -238,6 +292,13 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -246,6 +307,13 @@
       "weight": 4,
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -254,6 +322,19 @@
       "weight": 4,
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "arctic",
+        "cavern",
+        "coast",
+        "desert",
+        "fungal",
+        "glacier",
+        "mountain",
+        "ruins",
+        "subterranean",
+        "volcanic",
+        "wilderness"
       ]
     },
     {
@@ -270,6 +351,12 @@
       "weight": 4,
       "spines": [
         "awakened"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -281,6 +368,11 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "ash",
+        "brimstone",
+        "volcanic"
       ]
     },
     {
@@ -292,6 +384,11 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -324,6 +421,14 @@
       "weight": 4,
       "spines": [
         "guardian"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "coral",
+        "fungal",
+        "ocean",
+        "subterranean"
       ]
     },
     {
@@ -351,6 +456,19 @@
       "weight": 4,
       "spines": [
         "prophecy"
+      ],
+      "places": [
+        "arctic",
+        "cavern",
+        "coast",
+        "desert",
+        "fungal",
+        "glacier",
+        "mountain",
+        "ruins",
+        "subterranean",
+        "volcanic",
+        "wilderness"
       ]
     },
     {
@@ -359,6 +477,14 @@
       "weight": 4,
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "coral",
+        "fungal",
+        "ocean",
+        "subterranean"
       ]
     },
     {
@@ -378,6 +504,24 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "fungal",
+        "subterranean"
+      ]
+    },
+    {
+      "id": "in-the-black-of-the-trench-opens-one-eye",
+      "text": "In the black of the deep, {name} opens one eye, and a shoal of lantern-fish scatters off {f:adaptation}",
+      "weight": 4,
+      "spines": [
+        "awakened"
+      ],
+      "places": [
+        "abyssal",
+        "ocean"
       ]
     }
   ]

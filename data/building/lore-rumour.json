@@ -63,7 +63,8 @@
       ],
       "spines": [
         "stolen"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "spend-a-night-in-and",
@@ -271,6 +272,11 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -314,6 +320,12 @@
       "weight": 4,
       "spines": [
         "awakened"
+      ],
+      "notPlaces": [
+        "astral",
+        "ocean",
+        "planar",
+        "sky"
       ]
     },
     {
@@ -349,6 +361,11 @@
       "weight": 4,
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "river",
+        "swamp",
+        "water"
       ]
     },
     {
@@ -379,6 +396,20 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "cavern",
+        "desert",
+        "fiend",
+        "fungal",
+        "infernal",
+        "jungle",
+        "magma",
+        "ocean",
+        "subterranean",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -398,7 +429,8 @@
       "weight": 4,
       "spines": [
         "stolen"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "the-watch-knows-who-robbed",
@@ -414,6 +446,12 @@
       "weight": 4,
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "astral",
+        "ocean",
+        "planar",
+        "sky"
       ]
     },
     {
@@ -486,6 +524,13 @@
       "weight": 4,
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "city",
+        "market",
+        "road",
+        "urban",
+        "village"
       ]
     },
     {

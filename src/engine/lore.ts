@@ -1,7 +1,9 @@
 import { capitalise, withArticle } from './grammar';
 import { fieldEntries } from './generate';
 import { givenName } from './names';
-import { pickEntry, weightedPick, type PickContext } from './pick';
+import { fitsPlace, pickEntry, PLACE_SLOTS, weightedPick, type PickContext } from './pick';
+
+export { fitsPlace, PLACE_SLOTS };
 import { rngFrom, type Rng } from './rng';
 import { withMaterial } from './templates';
 import type { Brief, CategoryDef, CategoryId, DataSet, Entry, SlotId } from './types';
@@ -62,6 +64,17 @@ function forSpine(entries: Entry[], spine: string): Entry[] {
   if (!entries.some((e) => e.spines)) return entries;
   const hit = entries.filter((e) => e.spines?.includes(spine));
   return hit.length ? hit : entries;
+}
+
+/** Lines for this spine that fit the card's place; a table never comes back empty. */
+function forSpineAndPlace(entries: Entry[], spine: string, place: Set<string> | null): Entry[] {
+  const spined = forSpine(entries, spine).filter((e) => fitsPlace(e, place));
+  if (spined.length) return spined;
+  const anywhere = forSpine(
+    entries.filter((e) => fitsPlace(e, place)),
+    spine,
+  );
+  return anywhere.length ? anywhere : forSpine(entries, spine);
 }
 
 function tableEntries(data: DataSet, id: string): Entry[] {
@@ -217,8 +230,12 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
   for (const s of cat.slots)
     fieldEntries(data, cat, s.id, brief.fields[s.id]?.entryId ?? '').forEach((e) => (e.tags ?? []).forEach((t) => tags.add(t)));
   if (brief.fields.unique && brief.fields.unique.entryId !== 'none') tags.add('has-unique');
+  const placeSlots = PLACE_SLOTS[cat.id];
+  const place = placeSlots
+    ? new Set(placeSlots.flatMap((s) => fieldEntries(data, cat, s, brief.fields[s]?.entryId ?? '').flatMap((e) => e.tags ?? [])))
+    : null;
   // Weirdness makes the brief stranger, not the storyteller: the voice always follows the theme.
-  const ctx: PickContext = { theme, weirdness: 'grounded', tags, excludes: new Set(), applyBlock: true };
+  const ctx: PickContext = { theme, weirdness: 'grounded', tags, excludes: new Set(), applyBlock: true, place: place ?? undefined };
 
   // Don't tell the story of a line the card trimmed to fit its word budget (e.g. a dropped Mood).
   const shown = new Set(brief.lines.flatMap((l) => l.slots ?? [l.slot]));
@@ -239,7 +256,7 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
     const rng = rngFrom(`${brief.seed}-lore-${roll}-${a}`);
     const st: LoreState = {};
     const parts = LORE_BEATS.map((beat) => {
-      const all = forSpine(tableEntries(data, `${cat.id}.lore-${beat}`), spineEntry.id);
+      const all = forSpineAndPlace(tableEntries(data, `${cat.id}.lore-${beat}`), spineEntry.id, place);
       if (!all.length) return '';
       const visible = all.filter((e) => !mentionsHidden(e.text, hidden));
       const entries = visible.length ? visible : all;
@@ -255,7 +272,7 @@ export function makeLore(data: DataSet, brief: Brief, roll = 0): Lore {
 
   // Hook card: same figure/place state as the story, so names carry over into the twist.
   const line = (id: string, asSentence = true) => {
-    const spined = forSpine(tableEntries(data, id), spineEntry.id);
+    const spined = forSpineAndPlace(tableEntries(data, id), spineEntry.id, place);
     if (!spined.length) return undefined;
     // Like the story: skip lines about a card line that was trimmed, when there is another choice.
     const visible = spined.filter((e) => !mentionsHidden(e.text, hidden));

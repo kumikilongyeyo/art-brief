@@ -9,6 +9,9 @@
       "weight": 4,
       "spines": [
         "stolen"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -74,6 +77,12 @@
       ],
       "spines": [
         "stolen"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -125,7 +134,8 @@
       ],
       "spines": [
         "cursed"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "the-ones-it-kills-get",
@@ -136,6 +146,9 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -373,6 +386,20 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "ash",
+        "astral",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "ocean",
+        "sky",
+        "tropical",
+        "volcanic"
       ]
     },
     {

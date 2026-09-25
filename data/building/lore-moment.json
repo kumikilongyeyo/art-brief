@@ -9,6 +9,11 @@
       "weight": 4,
       "spines": [
         "stolen"
+      ],
+      "notPlaces": [
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -76,6 +81,11 @@
       "weight": 4,
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -95,6 +105,11 @@
       "weight": 4,
       "spines": [
         "bargain"
+      ],
+      "notPlaces": [
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -205,6 +220,12 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "places": [
+        "astral",
+        "celestial",
+        "mountain",
+        "sky"
       ]
     },
     {
@@ -227,6 +248,20 @@
       ],
       "spines": [
         "lost"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "cavern",
+        "desert",
+        "fiend",
+        "fungal",
+        "infernal",
+        "jungle",
+        "magma",
+        "ocean",
+        "subterranean",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -335,6 +370,11 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "brimstone",
+        "magma",
+        "volcanic"
       ]
     },
     {
@@ -343,6 +383,11 @@
       "weight": 4,
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -367,6 +412,11 @@
       "weight": 4,
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -389,6 +439,11 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "cavern",
+        "fungal",
+        "subterranean"
       ]
     }
   ]

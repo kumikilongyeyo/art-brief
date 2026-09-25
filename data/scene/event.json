@@ -163,6 +163,13 @@
       "text": "{a} and {b} race to catch a falling star",
       "tags": [
         "astral"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "drow",
+        "fungal",
+        "subterranean"
       ]
     },
     {

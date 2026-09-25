@@ -90,6 +90,11 @@
       ],
       "spines": [
         "stolen"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -314,6 +319,13 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean",
+        "river",
+        "swamp"
       ]
     },
     {
@@ -348,6 +360,16 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -503,6 +525,11 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -558,6 +585,13 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "places": [
+        "druidic",
+        "fey",
+        "forest",
+        "jungle",
+        "wilderness"
       ]
     },
     {
@@ -714,6 +748,11 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -799,6 +838,11 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "places": [
+        "coast",
+        "desert",
+        "island"
       ]
     },
     {
@@ -823,6 +867,13 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "places": [
+        "druidic",
+        "fey",
+        "forest",
+        "jungle",
+        "wilderness"
       ]
     },
     {
@@ -839,6 +890,14 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "notPlaces": [
+        "astral",
+        "brimstone",
+        "celestial",
+        "magma",
+        "sky",
+        "volcanic"
       ]
     },
     {
@@ -855,6 +914,11 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "places": [
+        "coast",
+        "desert",
+        "island"
       ]
     },
     {
@@ -878,6 +942,13 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "druidic",
+        "fey",
+        "forest",
+        "jungle",
+        "wilderness"
       ]
     },
     {
@@ -889,6 +960,12 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -900,6 +977,11 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -966,6 +1048,12 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "brimstone",
+        "magma",
+        "mountain",
+        "volcanic"
       ]
     },
     {
@@ -977,7 +1065,8 @@
       ],
       "spines": [
         "lost"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "a-wizard-hid-it-from",
@@ -1104,6 +1193,11 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -1115,6 +1209,16 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1271,6 +1375,11 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -1348,6 +1457,12 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "brimstone",
+        "magma",
+        "mountain",
+        "volcanic"
       ]
     },
     {
@@ -1503,6 +1618,11 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -1547,6 +1667,16 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {

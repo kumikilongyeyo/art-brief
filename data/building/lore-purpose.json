@@ -169,6 +169,11 @@
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -201,6 +206,16 @@
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "notPlaces": [
+        "desert",
+        "jungle",
+        "tropical",
+        "volcanic",
+        "magma",
+        "brimstone",
+        "fiend",
+        "infernal"
       ]
     },
     {

@@ -4,6 +4,9 @@
   "required": ["groups"],
   "additionalProperties": false,
   "properties": {
-    "groups": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string", "pattern": "^[a-z]+(-[a-z]+)*$" } } }
+    "groups": {
+      "type": "object",
+      "additionalProperties": { "type": "array", "items": { "type": "string", "pattern": "^[a-z]+(-[a-z]+)*$" } }
+    }
   }
 }

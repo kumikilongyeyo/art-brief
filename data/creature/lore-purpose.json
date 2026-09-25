@@ -16,7 +16,10 @@
     {
       "id": "it-grew-and-learned-to",
       "text": "It grew {f:adaptation}, and learned to strike first",
-      "weight": 3
+      "weight": 3,
+      "excludes": [
+        "gentle"
+      ]
     },
     {
       "id": "every-hunter-who-met-one",
@@ -119,6 +122,12 @@
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -127,6 +136,14 @@
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "places": [
+        "ocean",
+        "coral",
+        "abyssal",
+        "coast",
+        "subterranean",
+        "cavern"
       ]
     },
     {
@@ -143,7 +160,8 @@
       "weight": 8,
       "themes": [
         "underdark"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "wizards-paid-fortunes-just-to",
@@ -183,6 +201,16 @@
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "notPlaces": [
+        "desert",
+        "jungle",
+        "tropical",
+        "volcanic",
+        "brimstone",
+        "coral",
+        "ash",
+        "fiend"
       ]
     },
     {
@@ -191,6 +219,16 @@
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "notPlaces": [
+        "desert",
+        "jungle",
+        "tropical",
+        "volcanic",
+        "brimstone",
+        "coral",
+        "ash",
+        "fiend"
       ]
     },
     {

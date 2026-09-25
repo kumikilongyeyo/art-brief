@@ -155,3 +155,32 @@ lines for the rolled spine.
 - Story length rules are unchanged (50–80 words, median 60–70 via `scripts/lore-stats.ts`).
 - Keep the rest of this guide's rules: appositives for noun fields, `{place}` fits any place, no `{npc}'s`,
   no gendered pronouns, original wording.
+
+# Place and temperament (v1.8)
+
+A story line that says where the subject **is** must fit the card's place. "Blizzard snow half-buries it" is
+wrong for a creature from red sandstone canyons; "every high tide leaves drowned things on its steps" is wrong
+for a mountain monastery. Creature, building and scene story lines (all six tables, including rumour and
+moment) carry one of:
+
+- `"places": [...]`: the place (creature `habitat`, building `setting`, scene `location` + `time`) needs one of these tags.
+  Sea lines use `ocean, coast, coral, island, pirate, abyssal` (not `water`, which also means canals and flooded crypts).
+- `"notPlaces": [...]`: the place may have none of these. Winter/snow lines rule out hot places
+  (`desert, jungle, tropical, volcanic, magma, brimstone, fiend, infernal`); sky/moon/sun lines rule out
+  `subterranean, cavern, drow, fungal, abyssal`.
+- `"elsewhere": true`: the line names a place it isn't set in ("The thief went north, where the ice keeps what
+  it takes", "It was a monstrosity of the deep sea before {the:habitat} claimed it").
+
+The validator scans these tables for place words (sea, tide, ship, snow, winter, cave, forest, city, village,
+the deep, north, wreck…) and rejects a line that has none of the three. It also checks every place (every
+location × time for scenes) still has ≥ 2 lines per spine in spine tables and ≥ 4 in the others, so a
+restriction never leaves a place with nothing to say. Character and prop cards have no place line, so these
+fields are rejected there.
+
+**Temperament:** creature behaviours that are gentle carry the `gentle` tag (tends the wounded, bows to the
+holy, trades trinkets). Story lines where the creature itself kills, hunts, devours or "learned to strike first"
+carry `"excludes": ["gentle"]`. Lines where *people* hunt the creature don't need it.
+
+`tests/unit/coherence.test.ts` generates cards and keyword-checks story, moment and the card's time/light/
+behaviour against the place (after removing shared names and `elsewhere` lines). Run it bigger with
+`COHERE_N=5000 npx vitest run tests/unit/coherence.test.ts`, and `COHERE_SHOW=1` lists every clash.

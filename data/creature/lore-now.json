@@ -103,6 +103,12 @@
       ],
       "spines": [
         "stolen"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -195,6 +201,16 @@
       ],
       "spines": [
         "stolen"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -331,6 +347,9 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -427,6 +446,16 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -464,6 +493,12 @@
       "spines": [
         "cursed",
         "prophecy"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -606,6 +641,12 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -639,6 +680,9 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -672,6 +716,16 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -734,6 +788,9 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -822,6 +879,12 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -844,6 +907,9 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -855,6 +921,16 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -966,6 +1042,12 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -977,6 +1059,12 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -999,6 +1087,16 @@
       ],
       "spines": [
         "lost"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1011,6 +1109,9 @@
       "spines": [
         "lost",
         "prophecy"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1145,6 +1246,9 @@
       "weight": 4,
       "spines": [
         "awakened"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1294,6 +1398,16 @@
       "spines": [
         "awakened",
         "cursed"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1305,6 +1419,18 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "ocean",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1316,6 +1442,9 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1327,6 +1456,9 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1371,6 +1503,9 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1570,6 +1705,13 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -1712,6 +1854,12 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -1756,6 +1904,16 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1781,7 +1939,8 @@
       ],
       "spines": [
         "prophecy"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "every-timeline-converges-on-and",

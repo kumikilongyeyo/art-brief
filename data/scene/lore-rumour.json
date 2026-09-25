@@ -262,7 +262,8 @@
       "weight": 4,
       "spines": [
         "guardian"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "is-the-only-one-it",
@@ -363,6 +364,19 @@
       "spines": [
         "betrayed",
         "prophecy"
+      ],
+      "places": [
+        "city",
+        "court",
+        "guild",
+        "market",
+        "noble",
+        "road",
+        "ruin",
+        "ruins",
+        "temple",
+        "urban",
+        "village"
       ]
     },
     {
@@ -397,6 +411,14 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "river"
       ]
     },
     {
@@ -444,6 +466,13 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {

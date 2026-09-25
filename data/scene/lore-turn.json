@@ -516,6 +516,14 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "river"
       ]
     },
     {
@@ -528,6 +536,16 @@
       "spines": [
         "prophecy",
         "awakened"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "river",
+        "swamp",
+        "water"
       ]
     },
     {
@@ -561,6 +579,12 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "cavern",
+        "drow",
+        "fungal",
+        "subterranean"
       ]
     },
     {
@@ -640,6 +664,13 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -662,6 +693,18 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {

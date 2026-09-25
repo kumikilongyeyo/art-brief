@@ -5,7 +5,14 @@
   "entries": [
     {
       "id": "low-angle-figures-silhouetted-against",
-      "text": "low angle, figures silhouetted against a torn sky"
+      "text": "low angle, figures silhouetted against a torn sky",
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "drow",
+        "fungal",
+        "subterranean"
+      ]
     },
     {
       "id": "bird-s-eye-view-figures",
@@ -29,7 +36,14 @@
     },
     {
       "id": "steep-dutch-tilt-horizon-slashed",
-      "text": "steep dutch tilt, the horizon slashed diagonally"
+      "text": "steep dutch tilt, the horizon slashed diagonally",
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "drow",
+        "fungal",
+        "subterranean"
+      ]
     },
     {
       "id": "seen-reflected-still-water-image",
@@ -65,7 +79,14 @@
     },
     {
       "id": "vast-empty-sky-filling-two",
-      "text": "vast empty sky filling two thirds of the frame"
+      "text": "vast empty sky filling two thirds of the frame",
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "drow",
+        "fungal",
+        "subterranean"
+      ]
     },
     {
       "id": "intimate-eye-level-faces-filling",

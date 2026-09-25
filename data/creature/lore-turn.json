@@ -17,7 +17,8 @@
       "weight": 4,
       "spines": [
         "stolen"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "robbed-its-hoard-while-it",
@@ -74,6 +75,12 @@
       ],
       "spines": [
         "stolen"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -140,7 +147,8 @@
       ],
       "spines": [
         "stolen"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "cut-its-egg-out-of",
@@ -151,6 +159,13 @@
       ],
       "spines": [
         "stolen"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -279,6 +294,9 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -314,6 +332,15 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -347,6 +374,9 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -530,6 +560,9 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -541,6 +574,20 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "astral",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "ocean",
+        "planar",
+        "sky",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -574,6 +621,16 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -713,6 +770,12 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -746,6 +809,16 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -792,6 +865,13 @@
       "weight": 4,
       "spines": [
         "lost"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -819,7 +899,8 @@
       ],
       "spines": [
         "lost"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "chased-one-through-three-portals",
@@ -841,6 +922,13 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -1013,6 +1101,12 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -1024,6 +1118,19 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1035,6 +1142,16 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1123,6 +1240,9 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1134,6 +1254,16 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "arctic",
+        "cavern",
+        "fungal",
+        "glacier",
+        "mountain",
+        "north",
+        "subterranean",
+        "volcanic"
       ]
     },
     {
@@ -1284,6 +1414,12 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
       ]
     },
     {
@@ -1317,6 +1453,13 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -1456,6 +1599,15 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean"
+      ],
+      "excludes": [
+        "gentle"
       ]
     },
     {
@@ -1500,6 +1652,16 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1511,7 +1673,8 @@
       ],
       "spines": [
         "prophecy"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "a-githzerai-seer-saw-it",

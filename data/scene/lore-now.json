@@ -554,6 +554,14 @@
         "stolen",
         "lost",
         "betrayed"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "river"
       ]
     },
     {
@@ -565,7 +573,8 @@
       ],
       "spines": [
         "lost"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "the-sea-witchs-price-comes",
@@ -577,6 +586,13 @@
       "spines": [
         "bargain",
         "cursed"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate"
       ]
     },
     {
@@ -702,6 +718,18 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -716,6 +744,19 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "desert",
+        "jungle",
+        "tropical",
+        "volcanic",
+        "magma",
+        "brimstone",
+        "coral",
+        "ash",
+        "fiend",
+        "infernal",
+        "fire"
       ]
     },
     {

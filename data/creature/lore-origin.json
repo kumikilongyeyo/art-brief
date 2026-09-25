@@ -127,7 +127,8 @@
       "weight": 2,
       "themes": [
         "nautical"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "it-came-from-somewhere-deeper",
@@ -183,6 +184,13 @@
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -191,6 +199,16 @@
       "weight": 2,
       "themes": [
         "frost"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {

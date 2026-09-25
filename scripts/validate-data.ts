@@ -11,7 +11,10 @@ import { buildDataSet } from '../src/engine/dataset';
 import { isBlocked, isOnTheme } from '../src/engine/theme';
 import { findArticleErrors } from '../src/engine/grammar';
 import { LORE_BEATS, LORE_PLACEHOLDER } from '../src/engine/lore';
+import { fitsPlace, PLACE_SLOTS } from '../src/engine/pick';
 import type { CategoryDef, DataSet, Entry, Table } from '../src/engine/types';
+
+const spineIdsFor = (data: DataSet) => (data.tables['shared.lore-spine']?.entries ?? []).map((e) => e.id);
 
 const ROOT = join(fileURLToPath(import.meta.url), '..', '..');
 const DATA = join(ROOT, 'data');
@@ -217,7 +220,8 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       } else if (t.id === 'scene.event') {
         if (!e.text.includes('{a}')) errors.push(`${w}: event text must contain {a}`);
         for (const p of placeholders) if (p !== '{a}' && p !== '{b}') errors.push(`${w}: unknown placeholder ${p}`);
-        for (const who of e.people ?? []) if (!e.text.includes(`{${who}}`)) errors.push(`${w}: "people" lists ${who} but the text has no {${who}}`);
+        for (const who of e.people ?? [])
+          if (!e.text.includes(`{${who}}`)) errors.push(`${w}: "people" lists ${who} but the text has no {${who}}`);
       } else if (t.id === 'character.outfit' || t.id === 'prop.object') {
         // Optional {m} marks where "of <material>" goes when the phrase has a trailing clause.
         if (placeholders.some((p) => p !== '{m}') || placeholders.length > 1) errors.push(`${w}: only one {m} placeholder allowed`);
@@ -227,7 +231,8 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
         if (placeholders.some((p) => p !== '{name}')) errors.push(`${w}: purpose lines may only use {name}`);
         if (!placeholders.includes('{name}')) errors.push(`${w}: purpose lines must include {name}`);
       } else if (t.id === 'shared.art-hook') {
-        for (const p of placeholders) if (p !== '{focal}' && p !== '{counter}') errors.push(`${w}: hooks may only use {focal} and {counter}`);
+        for (const p of placeholders)
+          if (p !== '{focal}' && p !== '{counter}') errors.push(`${w}: hooks may only use {focal} and {counter}`);
       } else if (placeholders.length) {
         errors.push(`${w}: placeholders are only allowed in scene.event, character.outfit and prop.object`);
       }
@@ -292,6 +297,58 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
       }
     }
   }
+  // Places: story lines that assume a kind of place must say so, and every place keeps enough lines.
+  const PLACE_WORDS =
+    /\b(below the surface|underground|caves?|cavern|tunnels?|sewers?|avalanche|snow\w*|ice|glacier|frozen|blizzard|dunes?|sand|desert|forest|jungle|swamp|reef|tides?|tide-\w+|waves?|shore|sea|ocean|river|lake|mountain|sky|clouds?|volcan\w*|lava|magma|city|streets?|alley|rooftops?|market|village|fields?|harbou?r|docks?|ships?|thaw|winter\w*|drowned|flood\w*|sailors?|pirates?|port|north\w*|wrecks?|the deep|cold|froze|washed up|aurora|rain|ashore|salt|waterfront|canals?)\b/i;
+  for (const t of Object.values(data.tables)) {
+    const slots = t.category === 'shared' ? undefined : PLACE_SLOTS[t.category];
+    if (slots) continue;
+    for (const e of t.entries)
+      if (e.places || e.notPlaces || e.elsewhere)
+        errors.push(`${t.id}#${e.id}: ${t.category} lines have no place to check; drop places/notPlaces/elsewhere`);
+  }
+  for (const cat of Object.values(data.categories)) {
+    const slots = PLACE_SLOTS[cat.id];
+    if (!slots) continue;
+    const placeTable = (sl: string) => data.tables[`${cat.id}.${sl}`]?.entries ?? [];
+    const known = new Set(slots.flatMap((sl) => placeTable(sl)).flatMap((e) => e.tags ?? []));
+    const loreIds = new Set([...LORE_BEATS, 'rumour', 'moment'].map((b) => `${cat.id}.lore-${b}`));
+    const tables = Object.values(data.tables).filter((t) => t.category === cat.id);
+    for (const t of tables)
+      for (const e of t.entries) {
+        const w = `${t.id}#${e.id}`;
+        for (const tag of [...(e.places ?? []), ...(e.notPlaces ?? [])])
+          if (!known.has(tag)) errors.push(`${w}: place tag "${tag}" is on no ${slots.join('/')} line`);
+        if (e.elsewhere && !loreIds.has(t.id)) errors.push(`${w}: "elsewhere" only belongs in story tables`);
+        if (e.elsewhere && (e.places || e.notPlaces)) errors.push(`${w}: "elsewhere" with places/notPlaces`);
+        const m = loreIds.has(t.id) ? e.text.match(PLACE_WORDS) : null;
+        if (m && !e.places && !e.notPlaces && !e.elsewhere)
+          errors.push(`${w}: mentions "${m[0]}"; add "places"/"notPlaces" if it is set there, or "elsewhere": true`);
+      }
+    // Every place (every location x time for scenes) keeps enough lines in each table that has place rules.
+    const combosOf = (sls: string[]) =>
+      sls.reduce<Set<string>[]>(
+        (acc, sl) => acc.flatMap((a) => placeTable(sl).map((e) => new Set([...a, ...(e.tags ?? [])]))),
+        [new Set()],
+      );
+    for (const t of tables) {
+      if (!t.entries.some((e) => e.places || e.notPlaces)) continue;
+      const own = slots.find((sl) => t.id === `${cat.id}.${sl}`);
+      // A place line is only checked against the place lines picked before it (location before time).
+      const before = own ? slots.slice(0, slots.indexOf(own)) : slots;
+      const spined = loreIds.has(t.id) && t.entries.some((e) => e.spines);
+      let worst = Infinity;
+      let where = '';
+      for (const place of combosOf(before))
+        for (const spine of spined ? spineIdsFor(data) : ['-']) {
+          const n = t.entries.filter((e) => (!spined || e.spines?.includes(spine)) && fitsPlace(e, place)).length;
+          if (n < worst) [worst, where] = [n, `${spine === '-' ? '' : `${spine} @ `}${[...place].join(',')}`];
+        }
+      const need = spined ? 2 : loreIds.has(t.id) ? 4 : 3;
+      if (worst < need) errors.push(`${t.id}: only ${worst} lines fit ${where} (need ${need})`);
+    }
+  }
+
   // Spines: every plot has enough lines in every theme, for every category.
   const spineIds = (data.tables['shared.lore-spine']?.entries ?? []).map((e) => e.id);
   for (const cat of Object.values(data.categories)) {
@@ -308,7 +365,10 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
           const ok = t.entries.filter((e) => e.spines?.includes(spine) && isOnTheme(e, theme) && !isBlocked(e, theme) && !e.surreal);
           if (ok.length < need) errors.push(`${t.id}: spine "${spine}" has ${ok.length} lines for theme "${theme.id}" (need ${need})`);
           const free = ok.filter((e) => !(e.requires ?? []).includes('has-unique'));
-          if (free.length < needNoUnique) errors.push(`${t.id}: spine "${spine}" has ${free.length} lines without a unique trait for "${theme.id}" (need ${needNoUnique})`);
+          if (free.length < needNoUnique)
+            errors.push(
+              `${t.id}: spine "${spine}" has ${free.length} lines without a unique trait for "${theme.id}" (need ${needNoUnique})`,
+            );
         }
       }
     }
@@ -318,13 +378,23 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
     if (!t) continue;
     for (const spine of spineIds) {
       for (const cat of Object.values(data.categories)) {
-        const ok = t.entries.filter((e) => e.spines?.includes(spine) && !(e.excludes ?? []).some((x) => cat.baseTags.includes(x)) && !(e.requires ?? []).length);
+        const ok = t.entries.filter(
+          (e) => e.spines?.includes(spine) && !(e.excludes ?? []).some((x) => cat.baseTags.includes(x)) && !(e.requires ?? []).length,
+        );
         if (ok.length < 3) errors.push(`${id}: spine "${spine}" has ${ok.length} lines usable for ${cat.id} (need 3)`);
       }
     }
   }
 
-  for (const id of ['shared.lore-npc', 'shared.lore-place', 'shared.lore-era', 'shared.lore-faction', 'shared.lore-reward', 'shared.lore-venue', 'shared.lore-city']) {
+  for (const id of [
+    'shared.lore-npc',
+    'shared.lore-place',
+    'shared.lore-era',
+    'shared.lore-faction',
+    'shared.lore-reward',
+    'shared.lore-venue',
+    'shared.lore-city',
+  ]) {
     const t = data.tables[id];
     if (!t) continue;
     for (const theme of data.themes) {
@@ -338,7 +408,8 @@ export function validateAll(): { errors: string[]; data: DataSet | null } {
   for (const cat of Object.values(data.categories)) {
     for (const pur of purposes) {
       const fits = (e: Entry) =>
-        (!e.requires?.length || e.requires.some((r) => cat.baseTags.includes(r))) && !(e.excludes ?? []).some((x) => cat.baseTags.includes(x));
+        (!e.requires?.length || e.requires.some((r) => cat.baseTags.includes(r))) &&
+        !(e.excludes ?? []).some((x) => cat.baseTags.includes(x));
       if (!fits(pur)) continue;
       for (const id of ['shared.art-camera', 'shared.art-deliverable']) {
         const n = (data.tables[id]?.entries ?? []).filter((e) => e.purposes?.includes(pur.id) && fits(e)).length;
@@ -370,7 +441,8 @@ function validateHookEntry(t: Table, e: Entry, errors: string[]) {
   const known = new Set<string>();
   for (const m of e.text.matchAll(LORE_PLACEHOLDER)) {
     known.add(m[0]);
-    if (m[2] || !HOOK_OK.has(m[3])) errors.push(`${w}: ${m[0]} is not allowed in shared hook lines (use {name} {subj} {obj} {poss} {npc} {npcname} {place} {era})`);
+    if (m[2] || !HOOK_OK.has(m[3]))
+      errors.push(`${w}: ${m[0]} is not allowed in shared hook lines (use {name} {subj} {obj} {poss} {npc} {npcname} {place} {era})`);
   }
   for (const p of e.text.match(/\{[^}]*\}/g) ?? []) if (!known.has(p)) errors.push(`${w}: unknown placeholder ${p}`);
   if (e.text.includes("{npc}'s")) errors.push(`${w}: {npc}'s reads badly on first use`);

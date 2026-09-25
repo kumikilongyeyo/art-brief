@@ -65,7 +65,8 @@
       "spines": [
         "stolen",
         "lost"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "it-glows-under-fire-priests",
@@ -109,7 +110,8 @@
       ],
       "spines": [
         "stolen"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "what-was-taken-sits-in",
@@ -206,6 +208,16 @@
       "weight": 4,
       "spines": [
         "cursed"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -241,6 +253,13 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "places": [
+        "city",
+        "market",
+        "road",
+        "urban",
+        "village"
       ]
     },
     {
@@ -390,6 +409,12 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean",
+        "river"
       ]
     },
     {
@@ -401,6 +426,11 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -454,6 +484,12 @@
       ],
       "spines": [
         "cursed"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -655,6 +691,11 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -688,6 +729,12 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -710,6 +757,13 @@
       ],
       "spines": [
         "bargain"
+      ],
+      "places": [
+        "druidic",
+        "fey",
+        "forest",
+        "jungle",
+        "wilderness"
       ]
     },
     {
@@ -872,6 +926,12 @@
       ],
       "spines": [
         "betrayed"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean",
+        "river"
       ]
     },
     {
@@ -916,7 +976,8 @@
       ],
       "spines": [
         "betrayed"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "the-traitor-s-forge-prospers",
@@ -927,7 +988,8 @@
       ],
       "spines": [
         "betrayed"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "the-traitor-was-knighted-for",
@@ -1060,6 +1122,12 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "mountain",
+        "north"
       ]
     },
     {
@@ -1093,6 +1161,13 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "druidic",
+        "fey",
+        "forest",
+        "jungle",
+        "wilderness"
       ]
     },
     {
@@ -1267,6 +1342,16 @@
       "spines": [
         "awakened",
         "guardian"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -1300,6 +1385,12 @@
       ],
       "spines": [
         "awakened"
+      ],
+      "places": [
+        "ocean",
+        "coast",
+        "island",
+        "river"
       ]
     },
     {
@@ -1488,6 +1579,11 @@
       ],
       "spines": [
         "guardian"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -1690,6 +1786,11 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "places": [
+        "coast",
+        "island",
+        "ocean"
       ]
     },
     {
@@ -1734,6 +1835,16 @@
       ],
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {

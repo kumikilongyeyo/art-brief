@@ -1,5 +1,5 @@
 import { isBlocked, isOnTheme } from './theme';
-import type { Entry, Theme, Weirdness } from './types';
+import type { CategoryId, Entry, Theme, Weirdness } from './types';
 import type { Rng } from './rng';
 
 export const OFF_THEME: Record<Weirdness, number> = { grounded: 0, mixed: 0.15, wild: 0.5 };
@@ -19,6 +19,22 @@ export interface PickContext {
   applyBlock: boolean;
   /** Weight multiplier per tag shared with the brief so far (default 2). */
   affinity?: number;
+  /** Tags of the card's place lines picked so far (see PLACE_SLOTS); lines with places/notPlaces must fit it. */
+  place?: Set<string>;
+}
+
+/** The card lines that say where the subject is; lines with places/notPlaces are checked against their tags only. */
+export const PLACE_SLOTS: Partial<Record<CategoryId, string[]>> = {
+  creature: ['habitat'],
+  building: ['setting'],
+  scene: ['location', 'time'],
+};
+
+/** Does a line fit the card's place? No place yet (or a category without one) means no check. */
+export function fitsPlace(e: Entry, place: Set<string> | null | undefined): boolean {
+  if (!place?.size) return true;
+  if (e.places && !e.places.some((t) => place.has(t))) return false;
+  return !e.notPlaces?.some((t) => place.has(t));
 }
 
 export interface PickResult<T extends Entry> {
@@ -31,7 +47,7 @@ function passesHard(e: Entry, ctx: PickContext, ignoreRequires: boolean): boolea
   if (!ignoreRequires && e.requires?.length && !e.requires.some((r) => ctx.tags.has(r))) return false;
   if (e.excludes?.some((x) => ctx.tags.has(x))) return false;
   if (e.tags?.some((t) => ctx.excludes.has(t))) return false;
-  return true;
+  return fitsPlace(e, ctx.place);
 }
 
 export function entryWeight(e: Entry, ctx: PickContext, depth: number): number {

@@ -68,7 +68,8 @@
       "weight": 4,
       "spines": [
         "cursed"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "every-candle-gutters-blue-at-once",
@@ -227,7 +228,8 @@
       "weight": 4,
       "spines": [
         "lost"
-      ]
+      ],
+      "elsewhere": true
     },
     {
       "id": "sea-fog-swallows-the-far-side",
@@ -238,6 +240,14 @@
       ],
       "spines": [
         "lost"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "river"
       ]
     },
     {
@@ -249,6 +259,24 @@
       ],
       "spines": [
         "lost"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "ash",
+        "brimstone",
+        "cavern",
+        "coral",
+        "desert",
+        "drow",
+        "fiend",
+        "fungal",
+        "infernal",
+        "jungle",
+        "magma",
+        "ocean",
+        "subterranean",
+        "tropical",
+        "volcanic"
       ]
     },
     {
@@ -389,6 +417,13 @@
       "weight": 4,
       "spines": [
         "prophecy"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "drow",
+        "fungal",
+        "subterranean"
       ]
     },
     {

@@ -1,12 +1,7 @@
 {
   "$id": "table.schema.json",
   "type": "object",
-  "required": [
-    "id",
-    "category",
-    "slot",
-    "entries"
-  ],
+  "required": ["id", "category", "slot", "entries"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -14,14 +9,7 @@
       "pattern": "^[a-z]+\\.[a-z-]+$"
     },
     "category": {
-      "enum": [
-        "character",
-        "prop",
-        "creature",
-        "building",
-        "scene",
-        "shared"
-      ]
+      "enum": ["character", "prop", "creature", "building", "scene", "shared"]
     },
     "slot": {
       "type": "string",
@@ -32,10 +20,7 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": [
-          "id",
-          "text"
-        ],
+        "required": ["id", "text"],
         "additionalProperties": false,
         "properties": {
           "id": {
@@ -87,37 +72,21 @@
             "type": "boolean"
           },
           "tier": {
-            "enum": [
-              "minor",
-              "notable",
-              "legendary"
-            ]
+            "enum": ["minor", "notable", "legendary"]
           },
           "group": {
             "type": "string",
             "pattern": "^[a-z0-9-]+$"
           },
           "form": {
-            "enum": [
-              "predicate",
-              "clause"
-            ]
+            "enum": ["predicate", "clause"]
           },
           "spines": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
             "items": {
-              "enum": [
-                "stolen",
-                "cursed",
-                "bargain",
-                "betrayed",
-                "lost",
-                "awakened",
-                "guardian",
-                "prophecy"
-              ]
+              "enum": ["stolen", "cursed", "bargain", "betrayed", "lost", "awakened", "guardian", "prophecy"]
             }
           },
           "people": {
@@ -125,10 +94,7 @@
             "minItems": 1,
             "uniqueItems": true,
             "items": {
-              "enum": [
-                "a",
-                "b"
-              ]
+              "enum": ["a", "b"]
             }
           },
           "purposes": {
@@ -139,6 +105,28 @@
               "type": "string",
               "pattern": "^[a-z0-9-]+$"
             }
+          },
+          "places": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            }
+          },
+          "notPlaces": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            }
+          },
+          "elsewhere": {
+            "type": "boolean",
+            "const": true
           }
         }
       }

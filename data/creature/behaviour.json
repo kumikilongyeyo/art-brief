@@ -44,7 +44,8 @@
       "id": "trades-shiny-trinkets-anyone-who",
       "text": "trades shiny trinkets with anyone who leaves an offering",
       "tags": [
-        "trickster"
+        "trickster",
+        "gentle"
       ]
     },
     {
@@ -57,7 +58,14 @@
     },
     {
       "id": "migrates-across-sky-vast-slow",
-      "text": "migrates across the sky in vast slow spirals"
+      "text": "migrates across the sky in vast slow spirals",
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "coral",
+        "ocean",
+        "subterranean"
+      ]
     },
     {
       "id": "decorates-lair-flowers-stolen-from",
@@ -76,6 +84,13 @@
       "themes": [
         "fey",
         "wild-primal"
+      ],
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "coral",
+        "ocean",
+        "subterranean"
       ]
     },
     {
@@ -94,12 +109,20 @@
       "id": "tends-wounded-any-species-it",
       "text": "tends the wounded of any species it finds",
       "tags": [
-        "serene"
+        "serene",
+        "gentle"
       ]
     },
     {
       "id": "builds-cairns-stacked-stones-along",
-      "text": "builds cairns of stacked stones along old roads"
+      "text": "builds cairns of stacked stones along old roads",
+      "notPlaces": [
+        "abyssal",
+        "astral",
+        "coral",
+        "ocean",
+        "sky"
+      ]
     },
     {
       "id": "nests-ribcages-fallen-giants",
@@ -116,12 +139,20 @@
       "id": "bows-head-anyone-bearing-holy",
       "text": "bows its head to anyone bearing a holy symbol",
       "tags": [
-        "holy"
+        "holy",
+        "gentle"
       ]
     },
     {
       "id": "drinks-only-from-still-water",
-      "text": "drinks only from still water under moonlight"
+      "text": "drinks only from still water under moonlight",
+      "notPlaces": [
+        "abyssal",
+        "cavern",
+        "coral",
+        "ocean",
+        "subterranean"
+      ]
     },
     {
       "id": "sniffs-out-spent-spells-feeds",

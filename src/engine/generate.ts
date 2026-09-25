@@ -1,7 +1,7 @@
 import { withArticle } from './grammar';
 import { makeLore } from './lore';
 import { buildName } from './names';
-import { FUSION_CHANCE, pickEntry, type PickContext } from './pick';
+import { FUSION_CHANCE, pickEntry, PLACE_SLOTS, type PickContext } from './pick';
 import { cyrb128, rngFrom, type Rng } from './rng';
 import { artLines, makeArt } from './art';
 import { makeStat } from './stat';
@@ -286,7 +286,16 @@ function shortHash(s: string): string {
 export function generateVariation(data: DataSet, spec: VariationSpec, diag?: Diagnostics): Brief {
   const cat = data.categories[spec.category];
   const theme: Theme = data.themeById[spec.theme] ?? data.themes[0];
-  const ctx: PickContext = { theme, weirdness: spec.weirdness, tags: new Set(cat.baseTags), excludes: new Set(), applyBlock: true };
+  // Lines that assume a kind of place (places/notPlaces) are checked against the card's place lines only.
+  const placeSlots: string[] = PLACE_SLOTS[cat.id] ?? [];
+  const ctx: PickContext = {
+    theme,
+    weirdness: spec.weirdness,
+    tags: new Set(cat.baseTags),
+    excludes: new Set(),
+    applyBlock: true,
+    place: placeSlots.length ? new Set() : undefined,
+  };
   const fields: Record<SlotId, Resolved> = {};
   const locked: Record<SlotId, boolean> = {};
 
@@ -298,6 +307,7 @@ export function generateVariation(data: DataSet, spec: VariationSpec, diag?: Dia
     locked[slot] = pin.locked;
     r.tags.forEach((t) => ctx.tags.add(t));
     r.excludes.forEach((t) => ctx.excludes.add(t));
+    if (placeSlots.includes(slot)) r.tags.forEach((t) => ctx.place!.add(t));
   }
 
   for (const slot of cat.slots) {
@@ -306,6 +316,7 @@ export function generateVariation(data: DataSet, spec: VariationSpec, diag?: Dia
     fields[slot.id] = r;
     r.tags.forEach((t) => ctx.tags.add(t));
     r.excludes.forEach((t) => ctx.excludes.add(t));
+    if (placeSlots.includes(slot.id)) r.tags.forEach((t) => ctx.place!.add(t));
     if (diag && r.depth > 0) {
       diag.maxDepth = Math.max(diag.maxDepth, r.depth);
       diag.events.push({ category: cat.id, theme: theme.id, weirdness: spec.weirdness, slot: slot.id, depth: r.depth });

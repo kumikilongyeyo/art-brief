@@ -17,6 +17,10 @@
         "warm",
         "sunlit",
         "dusk"
+      ],
+      "notPlaces": [
+        "cavern",
+        "subterranean"
       ]
     },
     {
@@ -25,6 +29,10 @@
       "tags": [
         "moonlit",
         "night"
+      ],
+      "notPlaces": [
+        "cavern",
+        "subterranean"
       ]
     },
     {
@@ -65,6 +73,10 @@
       "text": "dawn mist lit pink and gold",
       "tags": [
         "dawn"
+      ],
+      "notPlaces": [
+        "cavern",
+        "subterranean"
       ]
     },
     {
@@ -76,6 +88,10 @@
       ],
       "themes": [
         "celestial"
+      ],
+      "notPlaces": [
+        "cavern",
+        "subterranean"
       ]
     },
     {
@@ -96,6 +112,13 @@
       ],
       "themes": [
         "nautical"
+      ],
+      "places": [
+        "coast",
+        "ocean",
+        "river",
+        "water",
+        "island"
       ]
     },
     {
@@ -107,6 +130,10 @@
       ],
       "themes": [
         "frost"
+      ],
+      "notPlaces": [
+        "cavern",
+        "subterranean"
       ]
     },
     {
@@ -148,6 +175,10 @@
       ],
       "themes": [
         "underdark"
+      ],
+      "places": [
+        "subterranean",
+        "cavern"
       ]
     },
     {
@@ -156,6 +187,10 @@
       "tags": [
         "day",
         "sunlit"
+      ],
+      "notPlaces": [
+        "cavern",
+        "subterranean"
       ]
     }
   ]

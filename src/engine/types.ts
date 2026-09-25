@@ -28,6 +28,12 @@ export interface Entry {
   people?: ('a' | 'b')[];
   /** Art camera/deliverable/note lines: which studio purposes they belong to. */
   purposes?: string[];
+  /** Story lines that assume a kind of place: the card's place (habitat, setting, location) needs one of these tags… */
+  places?: string[];
+  /** …or none of these ("every winter" can't happen in a desert). */
+  notPlaces?: string[];
+  /** Story lines that name a place but aren't set there ("the thief went north, where the ice…"). */
+  elsewhere?: true;
 }
 
 export interface Table {

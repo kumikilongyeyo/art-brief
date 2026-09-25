@@ -134,6 +134,14 @@
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "places": [
+        "ocean",
+        "coast",
+        "coral",
+        "pirate",
+        "abyssal",
+        "river"
       ]
     },
     {
@@ -142,6 +150,13 @@
       "weight": 8,
       "themes": [
         "nautical"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate"
       ]
     },
     {
@@ -150,6 +165,12 @@
       "weight": 8,
       "themes": [
         "underdark"
+      ],
+      "places": [
+        "subterranean",
+        "cavern",
+        "drow",
+        "mountain"
       ]
     },
     {
@@ -198,6 +219,19 @@
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "notPlaces": [
+        "desert",
+        "jungle",
+        "tropical",
+        "volcanic",
+        "magma",
+        "brimstone",
+        "coral",
+        "ash",
+        "fiend",
+        "infernal",
+        "fire"
       ]
     },
     {
@@ -206,6 +240,18 @@
       "weight": 8,
       "themes": [
         "frost"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "coral",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {
