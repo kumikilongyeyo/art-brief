@@ -852,6 +852,26 @@ mark.r-mark,
   font-size: 15px;
 }
 
+/* start: the feed of new work under the ideas */
+.r-feed {
+  margin-top: 30px;
+}
+.r-feed h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.r-feed h2 small {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
 /* image panel */
 .r-body {
   display: grid;

@@ -5,7 +5,7 @@
 // It runs the app's own search code (through Vite) against the files in public/, so a tile's pictures
 // are exactly what that search ranks first.
 //
-// usage: node scripts/refs/build-ideas.mjs      (after build-vocab, build-catalogs and build_index)
+// usage: node scripts/refs/build-ideas.mjs      (after build-vocab, build-catalogs, build_index and build-feed)
 import fs from 'node:fs';
 import path from 'node:path';
 import { createServer } from 'vite';
@@ -68,6 +68,8 @@ try {
   const { loadVocab, makePlan, queryVector } = await vite.ssrLoadModule('/src/refs/vocab.ts');
   const { SOURCE_BY_ID } = await vite.ssrLoadModule('/src/refs/sources.ts');
   const v = await loadVocab();
+  // start tiles show new work first, like the feed: art from 2021 on (public/refs/feed.json) leads
+  const recent = new Set(JSON.parse(fs.readFileSync(path.join(PUBLIC, 'refs', 'feed.json'), 'utf8')).map((r) => `${r[0]}:${r[3]}`));
   const out = [];
   for (const [label, q, mode, cats] of IDEAS) {
     const plan = makePlan(v, q, mode, false);
@@ -79,16 +81,18 @@ try {
       for (const c of page.items.slice(0, 12)) {
         let s = 0;
         if (c.vec && vec) for (let d = 0; d < vec.length; d++) s += c.vec[d] * vec[d];
-        found.push({ s, img: c.thumb });
+        found.push({ s, img: c.thumb, recent: recent.has(c.key) });
       }
     }
-    const imgs = found.sort((a, b) => b.s - a.s).slice(0, PER_IDEA).map((f) => f.img);
+    // of the best matches, recent ones first (a tile must still show its idea, so only the top 24 compete)
+    const best = found.sort((a, b) => b.s - a.s).slice(0, 24);
+    const imgs = [...best.filter((f) => f.recent), ...best.filter((f) => !f.recent)].slice(0, PER_IDEA).map((f) => f.img);
+    console.log(`${label}: ${best.slice(0, PER_IDEA * 3).filter((f) => f.recent).length} recent in the top ${Math.min(24, best.length)}`);
     if (imgs.length < 3) {
       console.warn(`${label}: only ${imgs.length} pictures — skipped`);
       continue;
     }
     out.push({ label, q, mode, imgs });
-    console.log(`${label}: ${imgs.length}`);
   }
   fs.writeFileSync(path.join(PUBLIC, 'refs', 'ideas.json'), JSON.stringify(out));
   console.log(`ideas: ${out.length}`);

@@ -216,6 +216,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     mode: 'auto' as Mode,
     tiles: null as Tile[] | null, // this visit's idea tiles
     visits: 0,
+    feed: null as Search | null, // the start screen's feed of new work: kept while you search, so Back returns to it
+    feedCells: [] as Hit[],
     q: '',
     ran: '',
     fix: null as { from: string; to: string } | null,
@@ -305,7 +307,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   // ---------------------------------------------------------------- bar
   function guess(): Mode | null {
-    if (S.mode !== 'auto' || !S.search) return null;
+    if (S.mode !== 'auto' || !S.search || S.search === S.feed) return null; // the feed has no query to guess from
     return S.search.modeUsed() ?? null;
   }
   function paintMode() {
@@ -579,7 +581,9 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     adult.addEventListener('change', () => {
       prefs.adult = adult.checked;
       savePrefs(prefs);
+      resetFeed();
       if (S.ran || S.bmp || S.like) run(null);
+      else paint();
     });
     const srcList = el('div', { class: 'r-srcs' });
     for (const s of SOURCES) {
@@ -634,10 +638,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       input.value = fin;
     } else S.fix = null;
     if (!S.ran && !S.bmp && !S.like) {
-      S.search?.abort();
+      if (S.search !== S.feed) S.search?.abort();
       S.search = null;
       S.cells = [];
-      paint();
+      paint(); // the start screen, which picks the feed back up
       return;
     }
     // 👍/👎 survive narrowing, mode and crop changes; new words or a new image start fresh
@@ -647,14 +651,15 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       S.prior = undefined;
       S.voteKey = key;
     }
-    const stale = text === null && S.cells.length > 0 && !o.fresh;
+    const stale = text === null && S.cells.length > 0 && !o.fresh && S.search !== S.feed; // the feed isn't a result to update
     void start(stale);
   }
 
   let startSeq = 0;
   async function start(stale: boolean) {
     const seq = ++startSeq;
-    S.search?.abort();
+    if (S.search && S.search === S.feed) S.feed.pause(); // kept for when you come back
+    else S.search?.abort();
     const words_ = [S.ran, ...S.narrow].filter(Boolean).join(' ');
     let image: ImageBitmap | Float32Array | undefined;
     if (S.bmp) image = await cropped(S.bmp);
@@ -870,7 +875,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     }
     if (showing) {
       paintStatus();
-      if (done) paintEnd();
+      if (done && s !== S.feed) paintEnd();
     }
     // keep filling while the bottom of the page is in view (next tick, never a tight loop)
     if (hits.length && !done && showing && sentinelVisible()) setTimeout(() => void loadMore(), 0);
@@ -932,6 +937,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
           return b;
         }),
       );
+    paintFeed();
     if (S.tiles) return fill(S.tiles);
     // placeholders the size of the tiles while the list (a few KB) loads, so nothing jumps
     for (let i = 0; i < 8; i++) grid.append(el('div', { class: 'r-tile', style: `background:${TONES[i % TONES.length]}`, 'aria-hidden': 'true' }));
@@ -939,6 +945,51 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       S.tiles ??= pickTiles(pool);
       if (grid.isConnected) fill(S.tiles);
     });
+  }
+
+  /** Under the ideas: an endless feed of new work (ArtStation trending, recent card art), a new mix
+   *  every visit. It's the current "search" while the start screen shows, so the grid, the viewer and
+   *  More like this work on it as on any results. */
+  function paintFeed() {
+    if (!S.feed) {
+      const feed = new Search({ text: '', mode: 'auto', adult: prefs.adult, off: prefs.off, feed: seedFromBytes(crypto.getRandomValues(new Uint8Array(6))) });
+      // some feed pictures show before the model has read them: one it then reads as adult is taken down
+      feed.onChange = () => {
+        if (S.search !== feed || !S.grid) return;
+        const els = S.grid.querySelectorAll<HTMLElement>('.r-cell');
+        S.feedCells.forEach((h, i) => {
+          if (h.why === 'adult' && els[i]) els[i].hidden = true;
+        });
+      };
+      S.feed = feed;
+      S.feedCells = [];
+    }
+    S.search = S.feed;
+    S.cells = S.feedCells;
+    S.stale = false;
+    if (import.meta.env.DEV) (globalThis as { __refsSearch?: Search }).__refsSearch = S.feed;
+    S.feed.resume();
+    const grid = el('div', { class: 'r-grid' });
+    S.grid = grid;
+    S.cells.forEach((h, i) => grid.append(cell(h, i, false)));
+    body.append(
+      el(
+        'section',
+        { class: 'r-feed', 'aria-labelledby': 'r-feedhead' },
+        el('h2', { id: 'r-feedhead' }, 'Fresh picks', el('small', {}, 'New on ArtStation and in card games · a new mix every visit')),
+        grid,
+        sentinel,
+      ),
+    );
+    io.unobserve(sentinel);
+    io.observe(sentinel);
+    if (!S.cells.length) void loadMore(true);
+  }
+  function resetFeed() {
+    if (S.search === S.feed) S.search = null;
+    S.feed?.abort();
+    S.feed = null;
+    S.feedCells = [];
   }
 
   function metaLine() {
@@ -1042,11 +1093,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     );
     up.addEventListener('click', () => vote(i, 'up'));
     down.addEventListener('click', () => vote(i, 'down'));
-    e.append(
-      open,
-      el('div', { class: 'r-votes' }, up, down),
-      el('div', { class: 'r-cap' }, el('span', {}, c.title), el('span', {}, SOURCE_BY_ID[c.src].label)),
-    );
+    const inFeed = !!S.search && S.search === S.feed; // "good match" means nothing without a query
+    e.append(open);
+    if (!inFeed) e.append(el('div', { class: 'r-votes' }, up, down));
+    e.append(el('div', { class: 'r-cap' }, el('span', {}, c.title), el('span', {}, SOURCE_BY_ID[c.src].label)));
     // one Tab stop per result; ←/→ move between the card and its two ratings
     e.addEventListener('keydown', (ev) => {
       if (ev.key !== 'ArrowRight' && ev.key !== 'ArrowLeft') return;
@@ -1501,7 +1551,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       more.addEventListener('click', () => moreLikeThis(hit));
       side.append(more);
     }
-    if (hit) {
+    const inFeed = !!S.search && S.search === S.feed;
+    if (hit && !inFeed) {
       const up = el('button', { type: 'button', 'aria-pressed': String(v === 'up') }, ic('up'), 'Good match');
       const dn = el('button', { type: 'button', 'aria-pressed': String(v === 'down') }, ic('down'), 'Not this');
       up.addEventListener('click', () => vote(S.viewer, 'up'));
@@ -1521,7 +1572,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       el('div', { class: 'r-pair' }, save, flip),
       el('a', { class: 'r-vlink', href: /^https?:\/\//.test(c.page) ? c.page : '#', target: '_blank', rel: 'noopener noreferrer' }, ic('ext'), `Open on ${SOURCE_BY_ID[c.src].label}`),
     );
-    if (hit && S.search) {
+    if (hit && S.search && !inFeed) {
       const near = S.search.similar(c.key, 6);
       if (near.length) {
         const all = el('button', { class: 'r-linkish', type: 'button' }, 'See all');
@@ -1589,7 +1640,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   function moreLikeThis(hit: Hit) {
     if (!hit.vec || !S.search) return;
-    const seed = S.search.similar(hit.c.key, 6);
+    // the feed is a random mix: its "nearest" pictures aren't similar, so there's nothing to start from
+    const seed = S.search === S.feed ? [] : S.search.similar(hit.c.key, 6);
     closeViewer();
     hist.push(snap());
     history.replaceState({ refsLike: hist.length }, '');
@@ -1772,6 +1824,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       // back on the start screen: a fresh set of ideas each visit
       if (S.visits++ && !S.ran && !S.bmp && !S.like && S.view !== 'saved') {
         S.tiles = null;
+        resetFeed();
         paint();
       }
       S.search?.resume();

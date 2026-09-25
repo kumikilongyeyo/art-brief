@@ -50,6 +50,7 @@ export interface Cand {
   vec?: Float32Array;
   poseScore?: number;
   figure?: boolean; // the index knows whether a person is in it
+  year?: number; // when it was made, where the source says (the feed shows new work first)
 }
 
 /** What the engine understood from the words, handed to every source. */

@@ -5,10 +5,11 @@
  *  finished and nothing rankable is left (then `status().exhausted` is true). It never busy-loops. */
 import { rankUrl } from './net';
 import { describePose, fromMoveNet, poseMatch, type Skeleton } from './pose';
-import { SOURCE_BY_ID, SOURCES } from './sources';
+import { feedSources, SOURCE_BY_ID, SOURCES } from './sources';
+import { hashUnit } from '../engine/rng';
 import type { Cand, EffMode, Mode, Plan, SearchCtx, Source, SourceId } from './types';
 import { embedBitmap, embedUrl, visionFailed, visionState, warmVision } from './vision';
-import { DIM, gateScorer, imageWords, loadVocab, makePlan, normalize, queryVector } from './vocab';
+import { DIM, gateScorer, imageWords, loadVocab, makePlan, normalize, queryVector, segment } from './vocab';
 
 export interface Hit {
   c: Cand;
@@ -43,6 +44,8 @@ export interface SearchInput {
   pose?: Skeleton;
   /** The image is a line drawing: search by its pose, not by how the drawing looks. */
   sketch?: boolean;
+  /** No query: the start screen's feed of new work (this seed shuffles it, so every visit differs). */
+  feed?: string;
 }
 
 export interface Status {
@@ -57,9 +60,13 @@ export interface Status {
   plan?: Plan;
 }
 
-type SrcState = { s: Source; page: number; more: boolean; busy: boolean; fails: number };
+/** `until`: a source that said "too many requests" (HTTP 429) is left alone until then, then asked again. */
+type SrcState = { s: Source; page: number; more: boolean; busy: boolean; fails: number; throttled?: number; until?: number };
 
 const BATCH = 10;
+const FEED_OLDEST = 2020;
+const FEED_WAIT = 350; // ms the feed waits for a fuller mix once it has a batch
+const FEED_MIX_WAIT = 900; // …and the first screen at most this long for every kind of source to answer // the feed's recency scale starts here (older work, if any, sorts last)
 const PER_SOURCE = 4; // at most this many from one web source in a batch of 10
 const PER_LOCAL = 2; // …and from one catalog (they answer instantly and would otherwise fill the screen)
 const LOCAL_TOTAL = 3; // all catalogs together, per batch of 10
@@ -67,6 +74,7 @@ const WEB_SOURCES = 3; // the first batch waits for this many web sources to hav
 const FIRST_WAIT = 2000; // ms the first batch waits for ranking
 const SKETCH_WAIT = 3200;
 const NEXT_WAIT = 1200;
+const MAX_THROTTLED = 5; // "too many requests" answers a source may give before it's left out
 const LOW_WATER = 40; // unseen candidates below this → ask sources for another page
 const AHEAD = 36; // keep this many ranked-or-ranking candidates ahead of the screen
 /** Stick-figure searches keep figures whose limbs point roughly the same way (0…1): at least POSE_FLOOR,
@@ -198,6 +206,19 @@ export class Search {
     void warmVision().catch(() => undefined);
     const v = await loadVocab();
     const { text, mode, adult, image, mirror, hint } = this.input;
+    if (this.input.feed) {
+      // nothing to match: new work, newest first, shuffled per visit; the model still reads every image
+      // (the adult check, near-duplicates, and More like this / Similar from the viewer)
+      this.plan = makePlan(v, '', 'concept', adult);
+      this.gate = await gateScorer(v).catch(() => undefined);
+      const off = new Set(this.input.off ?? []);
+      this.srcs = feedSources(this.input.feed)
+        .filter((s) => !off.has(s.id))
+        .map((s) => ({ s, page: 0, more: true, busy: false, fails: 0 }));
+      for (const st of this.srcs) void this.fetchPage(st);
+      this.notify();
+      return;
+    }
     let words: string[] = [];
     let eff: Mode = mode;
     if (this.input.sketch && this.input.pose) {
@@ -217,7 +238,10 @@ export class Search {
     }
     // a sketch asks the sources in a few plain words ("man running"): long queries find nothing on most
     // sites; the rest of the description ("full body") still reaches the tag-based ones through the keys
-    const said = this.input.sketch && !text.trim() && !hint ? SKETCH_QUERY[words[0]] ?? words[0] : text || hint || words.join(' ');
+    // More like this phrases the source queries with the result's title only when the title says something
+    // ("Dragon Knight"; not "守护者2" or "Sketch 3"): otherwise with the words the model reads in the picture
+    const useHint = !!hint && segment(v, hint).length > 0;
+    const said = this.input.sketch && !text.trim() && !hint ? SKETCH_QUERY[words[0]] ?? words[0] : text || (useHint ? hint : '') || words.join(' ');
     this.plan = makePlan(v, said, eff, adult, words);
     if (!this.plan.text) this.plan.text = words.slice(0, 2).join(' ');
     // only the user's own words shape the look score (hint and image words are for the sources)
@@ -291,6 +315,7 @@ export class Search {
     if (h.pose !== undefined) this.bestPose = Math.max(this.bestPose, h.pose);
   }
   private total(h: Hit): number {
+    if (this.input.feed) return h.prelim - (this.srcPenalty.get(h.c.src) ?? 0); // new work first; no query to match
     if (h.sim === undefined) return -1 + h.prelim;
     const pen = this.srcPenalty.get(h.c.src) ?? 0;
     if (this.input.sketch) return 0.7 * (h.pose ?? 0) + 0.3 * Math.max(0, 1 - (this.best - h.sim) / 0.08) - pen; // pose matches first, then look-alikes
@@ -324,17 +349,28 @@ export class Search {
   // ---------------------------------------------------------------- sources
   private async fetchPage(st: SrcState) {
     if (st.busy || !st.more || st.fails >= 3 || this.ctl.signal.aborted || this.paused || !this.plan) return;
+    if (st.until && performance.now() < st.until) return;
     st.busy = true;
     try {
       const page = await st.s.search(this.plan, st.page, this.ctl.signal, this.ctx);
       st.page++;
       st.more = page.more;
       st.fails = 0;
+      st.throttled = 0;
       for (const c of page.items) this.add(c);
-    } catch {
+    } catch (e) {
+      if (import.meta.env.DEV && !this.ctl.signal.aborted) console.warn(`[refs] ${st.s.id} page ${st.page} failed:`, e);
       if (!this.ctl.signal.aborted) {
-        st.fails++;
-        if (st.fails >= 3) st.more = false;
+        if (e instanceof Error && e.message === '429' && (st.throttled ?? 0) < MAX_THROTTLED) {
+          // busy, not broken: back off (1.5 s, 3 s, 6 s…) and ask again, rather than giving the source up
+          const wait = 1500 * 2 ** (st.throttled ?? 0);
+          st.throttled = (st.throttled ?? 0) + 1;
+          st.until = performance.now() + wait;
+          setTimeout(() => void this.fetchPage(st), wait + 20);
+        } else {
+          st.fails++;
+          if (st.fails >= 3) st.more = false;
+        }
       }
     } finally {
       st.busy = false;
@@ -350,7 +386,7 @@ export class Search {
     const ws = this.plan!.words;
     const tm = ws.length ? ws.filter((w) => tw.has(w)).length / ws.length : 0;
     const trust = SOURCE_BY_ID[c.src]?.trust[m] ?? 0.3;
-    const h: Hit = { c, prelim: 0.5 * tm + 0.35 * trust + 0.15 / (1 + c.pos / 8), state: 'cold' };
+    const h: Hit = { c, prelim: this.input.feed ? this.feedOrder(c) : 0.5 * tm + 0.35 * trust + 0.15 / (1 + c.pos / 8), state: 'cold' };
     this.hits.set(c.key, h);
     if (c.adult && !this.plan!.adult) {
       h.state = 'dropped';
@@ -365,20 +401,42 @@ export class Search {
     }
   }
 
+  /** The feed's order: newer first (2026 over 2021), ArtStation's trending work a little ahead, and a
+   *  per-visit shuffle so the same pieces don't always lead. */
+  private feedOrder(c: Cand): number {
+    const year = c.year ?? FEED_OLDEST;
+    const recency = Math.max(0, Math.min(1, (year - FEED_OLDEST) / (new Date().getFullYear() - FEED_OLDEST || 1)));
+    return 0.5 * recency + 0.4 * hashUnit(`${this.input.feed}:${c.key}`) + (c.src === 'artstation' ? 0.1 : 0);
+  }
+
+  /** A feed picture that may show before the model has read it: publisher art, or ArtStation work (which
+   *  carries its own mature flag, checked in add()), with nothing adult in its title. The model still
+   *  reads it afterwards, for More like this and near-duplicates. */
+  private feedSafe(h: Hit): boolean {
+    if (!this.input.feed || h.state === 'dropped') return false;
+    if (!(SOURCE_BY_ID[h.c.src]?.sfw || h.c.src === 'artstation')) return false;
+    return this.plan?.adult || !ADULT_WORDS.test(`${h.c.title} ${h.c.tags.join(' ')}`);
+  }
+
   /** Keeps sources paging and the ranking pipeline fed just ahead of what's on screen. */
   private topUp() {
     if (this.ctl.signal.aborted || this.paused) return;
     let unseen = 0,
       ready = 0;
-    const cold: Hit[] = [];
+    const cold: Hit[] = [],
+      shownCold: Hit[] = [];
     for (const h of this.hits.values()) {
-      if (h.shownAt !== undefined) continue;
+      if (h.shownAt !== undefined) {
+        if (h.state === 'cold') shownCold.push(h); // the feed shows some before reading them
+        continue;
+      }
       if (h.state === 'cold') cold.push(h);
       else if (h.state === 'queued') ready++;
       else if (h.state === 'ranked' && this.passes(h)) ready++;
       if (h.state !== 'dropped') unseen++;
     }
     if (unseen < LOW_WATER) for (const st of this.srcs) void this.fetchPage(st);
+    if (!visionFailed()) for (const h of shownCold) this.embed(h); // on screen already: read them first
     const ahead = this.input.sketch ? AHEAD * 2 : AHEAD; // most candidates won't match a pose: look at more
     if (ready >= ahead || !cold.length || visionFailed()) return;
     cold.sort((a, b) => b.prelim - a.prelim);
@@ -449,9 +507,23 @@ export class Search {
         } else pool.push(h);
       }
       // the instant catalogs mustn't decide the first screen alone: wait for the web to arrive too
-      const webIn = !first || web.size >= WEB_SOURCES || this.srcs.every((s) => s.s.local || !s.busy);
+      const webIn = !first || web.size >= Math.min(WEB_SOURCES, this.srcs.filter((s) => !s.s.local).length) || this.srcs.every((s) => s.s.local || !s.busy);
       const now = performance.now();
       const late = now > deadline;
+      if (this.input.feed) {
+        // no ranking to wait for: show what's safe to show as soon as a batch's worth is in
+        const ready = pool.filter((h) => h.state === 'ranked' || this.feedSafe(h));
+        // the first screen waits (briefly) until every kind of source has answered, so it's a mix and not
+        // just whichever answered first
+        const mixed = !first || now - this.t0 > FEED_MIX_WAIT || this.srcs.every((st) => st.page > 0 || !st.more || st.fails >= 3 || !!st.until);
+        if (mixed && (ready.length >= n * 2 || (ready.length >= n && now - now0 > FEED_WAIT) || (late && ready.length))) {
+          const out = this.pick(ready, n, true);
+          if (out.length) return out;
+        }
+        if (this.exhausted()) return [];
+        await this.wake(100);
+        continue;
+      }
       if (first && !ranked && this.input.sketch && !this.nearestOnly && now - this.t0 > NEAREST_AFTER) {
         this.nearestOnly = true; // a rare pose: show the nearest figures rather than nothing
         continue;
@@ -470,8 +542,9 @@ export class Search {
   }
 
   private pick(pool: Hit[], n: number, allowUnranked: boolean): Hit[] {
-    const ranked = pool.filter((h) => h.state === 'ranked').sort((a, b) => this.total(b) - this.total(a));
-    const rest = allowUnranked ? pool.filter((h) => h.state !== 'ranked').sort((a, b) => b.prelim - a.prelim) : [];
+    // the feed has one order for everything (new work first); searches put ranked results before unread ones
+    const ranked = pool.filter((h) => this.input.feed || h.state === 'ranked').sort((a, b) => this.total(b) - this.total(a));
+    const rest = allowUnranked && !this.input.feed ? pool.filter((h) => h.state !== 'ranked').sort((a, b) => b.prelim - a.prelim) : [];
     const out: Hit[] = [],
       perSrc = new Map<SourceId, number>();
     const recent = this.shown
@@ -479,7 +552,8 @@ export class Search {
       .map((h) => h.vec)
       .filter(Boolean) as Float32Array[];
     const local = (h: Hit) => !!SOURCE_BY_ID[h.c.src]?.local;
-    const cap = (h: Hit) => (local(h) ? PER_LOCAL : PER_SOURCE);
+    // the feed leans on ArtStation's trending work: it may take half a batch
+    const cap = (h: Hit) => (local(h) ? PER_LOCAL : this.input.feed && h.c.src === 'artstation' ? BATCH / 2 : PER_SOURCE);
     let locals = 0;
     const take = (h: Hit, strict: boolean) => {
       if (out.includes(h) || h.state === 'dropped') return;
@@ -502,6 +576,14 @@ export class Search {
     // only once nothing else is coming may one source fill the rest of a batch
     const moreComing = this.inflight > 0 || this.srcs.some((s) => s.busy || (s.more && s.fails < 3));
     if (!moreComing) for (const h of ranked) if (out.length < n) take(h, false);
+    // the feed interleaves its sources, so a batch doesn't show as one column of ArtStation then one of cards
+    if (this.input.feed) {
+      const bySrc = new Map<SourceId, Hit[]>();
+      for (const h of out) bySrc.set(h.c.src, [...(bySrc.get(h.c.src) ?? []), h]);
+      const lanes = [...bySrc.values()];
+      out.length = 0;
+      for (let i = 0; lanes.some((l) => i < l.length); i++) for (const l of lanes) if (i < l.length) out.push(l[i]);
+    }
     const now = performance.now();
     for (const h of out) {
       h.shownAt = now;

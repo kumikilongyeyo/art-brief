@@ -17,6 +17,9 @@ const ROUTES = {
     if (!q) return null;
     return `https://www.artstation.com/api/v2/search/projects.json?query=${encodeURIComponent(q)}&page=${clamp(p.get('page'), 1, 20, 1)}&per_page=${clamp(p.get('n'), 3, 50, 30)}`;
   },
+  // the start screen's feed: what's trending in 2D illustration right now (no query)
+  'artstation-feed': (p) =>
+    `https://www.artstation.com/api/v2/community/explore/projects/trending.json?page=${clamp(p.get('page'), 1, 30, 1)}&dimension=2d&per_page=${clamp(p.get('n'), 10, 50, 30)}`,
   wallhaven: (p) => {
     const q = p.get('q');
     if (!q) return null;
@@ -70,7 +73,7 @@ function cors(origin, env) {
 
 // Per-visitor limit, so nobody can use the relay to hammer ArtStation or Wallhaven from this Worker's
 // address (which would get it banned for everyone). Per isolate, which is plenty for one person's use.
-const LIMIT = 240; // requests per minute per IP (a scrolling session makes ~2 searches + thumbnails)
+const LIMIT = 600; // requests per minute per IP (a fast-scrolling session makes a few searches + many thumbnails)
 const seen = new Map();
 function limited(ip) {
   const now = Date.now(), w = seen.get(ip);

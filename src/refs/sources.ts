@@ -1,5 +1,6 @@
 import { byPose, figureRows, nearest, vectorOf } from './idx';
 import { catalog, getJson, qs, RELAY, showUrl } from './net';
+import { rngFrom } from '../engine/rng';
 import type { Cand, EffMode, Page, Plan, SearchCtx, Source, SourceId } from './types';
 
 /** trust per mode: pose, concept, place, prop, creature */
@@ -23,36 +24,38 @@ const clean = (s: string | undefined, fallback: string) => (s ?? '').replace(/<[
 
 // ---------------------------------------------------------------- fantasy art (relay)
 
+type ArtStationProject = {
+  hash_id: string;
+  title: string;
+  url: string;
+  smaller_square_cover_url: string;
+  hide_as_adult?: boolean;
+  is_adult_content?: boolean;
+  user?: { full_name?: string };
+};
+const artstationCand = (x: ArtStationProject, i: number): Cand => ({
+  key: `artstation:${x.hash_id}`,
+  src: 'artstation',
+  title: x.title,
+  pos: i,
+  thumb: x.smaller_square_cover_url,
+  full: x.smaller_square_cover_url.replace('/smaller_square/', '/large/'),
+  page: x.url,
+  artist: x.user?.full_name,
+  tags: words(x.title),
+  aspect: 1,
+  adult: !!(x.hide_as_adult || x.is_adult_content),
+  // image paths carry their upload time (…/20260925071734/…); covers don't, and trending work is new anyway
+  year: Number(/\/(20\d\d)\d{10}\//.exec(x.smaller_square_cover_url)?.[1]) || new Date().getFullYear(),
+});
 const artstation: Source = {
   id: 'artstation',
   label: 'ArtStation',
   trust: T(0.95, 0.95, 0.9, 0.85, 0.9),
   async search(p, page, signal) {
     if (!RELAY) return none;
-    const r = await getJson<{
-      data?: Array<{
-        hash_id: string;
-        title: string;
-        url: string;
-        smaller_square_cover_url: string;
-        hide_as_adult?: boolean;
-        is_adult_content?: boolean;
-        user?: { full_name?: string };
-      }>;
-    }>(`${RELAY}/artstation?${qs({ q: text(p), page: page + 1, n: 30 })}`, signal);
-    const items = (r.data ?? []).map((x, i): Cand => ({
-      key: `artstation:${x.hash_id}`,
-      src: 'artstation',
-      title: x.title,
-      pos: i,
-      thumb: x.smaller_square_cover_url,
-      full: x.smaller_square_cover_url.replace('/smaller_square/', '/large/'),
-      page: x.url,
-      artist: x.user?.full_name,
-      tags: words(x.title),
-      aspect: 1,
-      adult: !!(x.hide_as_adult || x.is_adult_content),
-    }));
+    const r = await getJson<{ data?: ArtStationProject[] }>(`${RELAY}/artstation?${qs({ q: text(p), page: page + 1, n: 30 })}`, signal);
+    const items = (r.data ?? []).map(artstationCand);
     return { items, more: items.length >= 25 && page < 8 };
   },
 };
@@ -624,7 +627,9 @@ const swu: Source = {
 type CatRow = [string, string, string, string?, string?, string?];
 type Urls = (row: CatRow) => { thumb: string; full: string; page: string; artist?: string; aspect: number };
 const PER_PAGE = 30;
+const CATALOG_URLS: Partial<Record<SourceId, Urls>> = {};
 function catalogSource(id: SourceId, label: string, trust: Record<EffMode, number>, urls: Urls, sfw = true): Source {
+  CATALOG_URLS[id] = urls;
   return {
     id,
     label,
@@ -685,12 +690,12 @@ const riftbound = catalogSource('riftbound', 'Riftbound', T(0.7, 0.75, 0.4, 0.5,
 }));
 const lol = catalogSource('lol', 'League of Legends', T(0.85, 0.8, 0.4, 0.45, 0.6), (r) => {
   const splash = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${r[0]}.jpg`;
-  const portrait = r[5] !== 'splash';
+  const portrait = r[4] !== 'splash'; // rows are [id, title, words, artist, 'splash' when there's no portrait art]
   return {
     thumb: portrait ? `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${r[0]}.jpg` : showUrl(splash, 480),
     full: splash,
     page: `https://www.leagueoflegends.com/en-us/champions/${r[0].replace(/_\d+$/, '').toLowerCase()}/`,
-    artist: 'Riot Games',
+    artist: r[3] || 'Riot Games',
     aspect: portrait ? 0.55 : 1.69,
   };
 });
@@ -731,6 +736,89 @@ const mtgwiki = fandom('mtgwiki', 'mtg', 'MTG Wiki', T(0.4, 0.6, 0.6, 0.4, 0.65)
 const lolwiki = fandom('lolwiki', 'leagueoflegends', 'League Wiki', T(0.55, 0.65, 0.55, 0.45, 0.55));
 const uesp = mediawiki('uesp', 'UESP', 'https://en.uesp.net/w/api.php', T(0.4, 0.55, 0.65, 0.6, 0.65), '', false, true);
 const pathfinder = mediawiki('pathfinder', 'Pathfinder Wiki', 'https://pathfinderwiki.com/w/api.php', T(0.5, 0.65, 0.7, 0.6, 0.8), '', false, true);
+
+// ---------------------------------------------------------------- the start screen's feed
+// New work first, never ranked against a query: ArtStation's trending 2D art and new MTG art (live), plus
+// recent League, Hearthstone and Riftbound art (public/refs/feed.json, scripts/refs/build-feed.mjs). A
+// fresh mix every visit — searches never use these; they rank by match.
+type FeedRow = [SourceId, number, number, ...CatRow]; // source, year, row in the catalog, catalog row
+let feedRows: Promise<FeedRow[]> | null = null;
+const loadFeedRows = () =>
+  (feedRows ??= fetch(`${import.meta.env.BASE_URL}refs/feed.json?v=${__REFS_V__}`)
+    .then((r) => (r.ok ? (r.json() as Promise<FeedRow[]>) : Promise.reject(new Error(String(r.status)))))
+    .catch((e: unknown) => {
+      feedRows = null;
+      throw e;
+    }));
+declare const __REFS_V__: string;
+
+export function feedSources(seed: string): Source[] {
+  const rnd = rngFrom(seed);
+  // trending changes daily; a random start page (and order within recent years) makes every visit different
+  const asFrom = 1 + Math.floor(rnd() * 3);
+  const scryFrom = 1 + Math.floor(rnd() * 5);
+  const recentFirst = <T,>(rows: T[], year: (r: T) => number) =>
+    rows
+      .map((r) => [year(r) + rnd() * 2.5, r] as const) // mostly newest first, neighbouring years mixed
+      .sort((a, b) => b[0] - a[0])
+      .map(([, r]) => r);
+  const trending: Source = {
+    id: 'artstation',
+    label: 'ArtStation',
+    trust: T(1, 1, 1, 1, 1),
+    async search(_p, page, signal) {
+      if (!RELAY) return none;
+      const r = await getJson<{ data?: ArtStationProject[] }>(`${RELAY}/artstation-feed?${qs({ page: asFrom + page, n: 30 })}`, signal);
+      const items = (r.data ?? []).map(artstationCand);
+      return { items, more: items.length >= 10 && page < 25 };
+    },
+  };
+  const newMtg: Source = {
+    id: 'scryfall',
+    label: 'MTG (Scryfall)',
+    sfw: true,
+    corsThumb: true,
+    trust: T(1, 1, 1, 1, 1),
+    async search(_p, page, signal) {
+      type Card = { id: string; name: string; artist?: string; released_at?: string; scryfall_uri: string; image_uris?: { art_crop?: string }; card_faces?: Array<{ image_uris?: { art_crop?: string } }> };
+      const r = await getJson<{ data?: Card[]; has_more?: boolean }>(
+        `https://api.scryfall.com/cards/search?${qs({ q: `year>=2021 -is:digital -t:basic -t:token -is:reprint`, unique: 'art', order: 'released', dir: 'desc', page: scryFrom + page })}`,
+        signal,
+      );
+      const items: Cand[] = [];
+      for (const c of recentFirst(r.data ?? [], (c) => Number(c.released_at?.slice(0, 4)) || 2021).slice(0, 60)) {
+        const art = c.image_uris?.art_crop ?? c.card_faces?.[0]?.image_uris?.art_crop;
+        if (!art) continue;
+        items.push({ key: `scryfall:${c.id}`, src: 'scryfall', title: c.name, pos: items.length, thumb: art, full: art, page: c.scryfall_uri.split('?')[0], artist: c.artist, tags: words(c.name), aspect: 1.37, year: Number(c.released_at?.slice(0, 4)) || undefined });
+      }
+      return { items, more: !!r.has_more && page < 20 };
+    },
+  };
+  const recentCards = (id: SourceId): Source => {
+    let order: FeedRow[] | null = null;
+    return {
+      id,
+      label: SOURCE_BY_ID[id].label,
+      trust: T(1, 1, 1, 1, 1),
+      local: true,
+      sfw: true,
+      async search(_p, page, signal) {
+        if (signal.aborted) return none;
+        order ??= recentFirst((await loadFeedRows()).filter((r) => r[0] === id), (r) => r[1]);
+        const urls = CATALOG_URLS[id]!;
+        const slice = order.slice(page * 20, (page + 1) * 20);
+        // the catalog's index already holds each row's vector: no model work for these
+        const vecs = await Promise.all(slice.map((r) => vectorOf(id, r[2]).catch(() => null)));
+        const items = slice.map((r, i): Cand => {
+          const row = r.slice(3) as CatRow;
+          return { key: `${id}:${row[0]}`, src: id, title: row[1], pos: page * 20 + i, tags: [], vec: vecs[i] ?? undefined, year: r[1], ...urls(row) };
+        });
+        return { items, more: (page + 1) * 20 < order.length };
+      },
+    };
+  };
+  return [trending, newMtg, recentCards('lol'), recentCards('hearthstone'), recentCards('riftbound')];
+}
 
 export const SOURCES: Source[] = [
   poses,

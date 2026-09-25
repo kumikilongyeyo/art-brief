@@ -188,6 +188,30 @@ test('the start screen shows a fresh set of ideas on every visit, and a tile run
   await expect(page.locator('.r-tiles')).toHaveCount(0);
 });
 
+test('the start screen has a feed of new work: fresh each visit, no ratings, More like this and back', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  const feed = page.locator('.r-feed .r-cell:not([hidden])');
+  await expect(feed.nth(9)).toBeVisible({ timeout: 20_000 });
+  const first = await page.locator('.r-feed .r-open').evaluateAll((els) => els.slice(0, 10).map((e) => e.getAttribute('aria-label')));
+  await expect(page.locator('.r-feed .r-votes')).toHaveCount(0); // "good match" means nothing without a query
+  await expect(page.locator('#r-modebtn')).not.toContainText('·'); // no guessed mode on the start screen
+  await page.reload();
+  await expect(feed.nth(9)).toBeVisible({ timeout: 20_000 });
+  const again = await page.locator('.r-feed .r-open').evaluateAll((els) => els.slice(0, 10).map((e) => e.getAttribute('aria-label')));
+  expect(again).not.toEqual(first); // a new mix every visit
+  await feed.first().locator('.r-open').click();
+  const viewer = page.locator('.r-viewer');
+  await expect(viewer.getByRole('button', { name: 'Good match' })).toHaveCount(0);
+  await viewer.getByRole('button', { name: 'More like this' }).click();
+  await expect(page.locator('.r-feed')).toHaveCount(0);
+  await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
+  await page.goBack();
+  await expect(page.locator('.r-feed')).toBeVisible();
+  expect(await page.locator('.r-feed .r-open').evaluateAll((els) => els.slice(0, 10).map((e) => e.getAttribute('aria-label')))).toEqual(again);
+});
+
 test('phone: References fits the screen', async ({ page }, info) => {
   test.skip(!info.project.name.startsWith('mobile'), 'phone layout');
   await fakeWeb(page);
