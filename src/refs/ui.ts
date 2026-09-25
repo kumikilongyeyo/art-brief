@@ -353,12 +353,18 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const typed = words(S.q).join(' '),
       own = resolveQuery(vocab, S.q),
       rows: Array<{ text: string; own?: boolean }> = [];
+    // what Enter searches comes first, so the hint, Tab and Enter agree ("drago" → dragon, not dragonfly)
     if (corrected(S.q, own)) rows.push({ text: own, own: true });
-    const exact = vocab.index.has(typed);
-    for (const k of completions(vocab, S.q, 8)) {
-      const t = display(vocab, k);
-      if (t !== own && t !== typed && (!exact || t.startsWith(typed + ' ')) && rows.length < 6) rows.push({ text: t });
-    }
+    else if (own !== typed) rows.push({ text: own });
+    // a whole word goes on as a phrase ("dragon skull") before it grows into another ("dragonfly"), and
+    // once finished with a space only as a phrase; a plain English word ("drag") may be half of one
+    const done = /\s$/.test(S.q),
+      next = typed + ' ',
+      whole = vocab.index.has(typed) && (done || vocab.catOf(typed) !== 'common');
+    const comps = completions(vocab, S.q, 8).map((k) => display(vocab!, k));
+    if (whole) comps.sort((a, b) => Number(!a.startsWith(next)) - Number(!b.startsWith(next)));
+    for (const t of comps)
+      if (t !== own && t !== typed && (!whole || t.startsWith(done ? next : typed)) && rows.length < 6) rows.push({ text: t });
     return rows;
   }
   function ghostText(): string {
@@ -549,9 +555,15 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       if (to && !pop.contains(to)) closePop(false);
     });
   }
+  function closeSug() {
+    S.sugOpen = false;
+    S.sug = -1;
+    refreshSug();
+  }
   modeBtn.addEventListener('click', () => {
     if (S.menu === 'mode') return closePop();
     closePop(false);
+    closeSug(); // the menu opens where the suggestions are
     S.menu = 'mode';
     modeBtn.setAttribute('aria-expanded', 'true');
     const g = guess();
@@ -567,7 +579,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       b.addEventListener('click', () => {
         S.mode = m.id;
         closePop();
-        if (S.ran || S.bmp || S.like) run(null);
+        if (S.ran || S.bmp || S.like) {
+          S.view = 'search'; // picked from Saved: show what it finds
+          run(null);
+        }
       });
       pop.append(b);
     }
@@ -582,9 +597,11 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     place(pop, modeBtn, false);
     (pop.querySelector('[aria-checked="true"]') as HTMLElement | null)?.focus();
   });
+  let srcTimer = 0;
   setBtn.addEventListener('click', () => {
     if (S.menu === 'set') return closePop();
     closePop(false);
+    closeSug();
     S.menu = 'set';
     setBtn.setAttribute('aria-expanded', 'true');
     const adult = el('input', { type: 'checkbox', class: 'r-sw', id: 'r-sw-adult' });
@@ -603,6 +620,13 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       cb.addEventListener('change', () => {
         prefs.off = cb.checked ? prefs.off.filter((x) => x !== s.id) : [...prefs.off, s.id];
         savePrefs(prefs);
+        // the results follow the new sources, once a few in a row have been ticked
+        clearTimeout(srcTimer);
+        srcTimer = window.setTimeout(() => {
+          resetFeed();
+          if (S.ran || S.bmp || S.like) run(null);
+          else paint();
+        }, 500);
       });
       srcList.append(el('label', { for: `r-src-${s.id}` }, cb, s.label));
     }
@@ -644,13 +668,28 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   /** run(text): a fresh search from the bar. run(null): same words; new crop / mode / narrowing. */
   function run(text: string | null, o: { raw?: string; exact?: boolean; fresh?: boolean } = {}) {
-    S.sugOpen = false;
-    S.sug = -1;
-    refreshSug();
+    closeSug();
+    const resolve = (t: string, exact?: boolean) => (exact || !vocab ? t.trim() : resolveQuery(vocab, t));
+    // new words start without the old narrowing; a mode, chip or crop change keeps what's on screen
+    const same = text === null;
+    if (same && S.q.trim() !== S.ran) {
+      // the box was edited but not searched: search what it says now (an emptied box goes back instead)
+      if (resolve(S.q) || (!S.q.trim() && (S.bmp || S.like))) text = S.q;
+      else S.q = S.ran;
+    }
     if (text !== null) {
       const raw = o.raw ?? text;
-      const fin = o.exact || !vocab ? text.trim() : resolveQuery(vocab, text);
+      const fin = resolve(text, o.exact);
+      if (!fin && text.trim()) {
+        // only emoji or symbols: nothing to search, so leave them in the box and say so
+        toast('Try describing it in words');
+        return;
+      }
       S.fix = !o.exact && corrected(raw, fin) ? { from: raw.trim(), to: fin } : null;
+      if (!same) {
+        if (fin !== S.ran) S.narrow = [];
+        S.view = 'search'; // searching from Saved shows the results
+      }
       S.q = fin;
       S.ran = fin;
       S.narrow = S.narrow.filter((w) => !fin.includes(w));
@@ -714,8 +753,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     s.onChange = () => {
       if (S.search === s && s.modeUsed() !== lastMode) {
         lastMode = s.modeUsed();
-        const row = body.querySelector('.r-narrow');
-        if (row && !S.narrow.length) row.replaceWith(narrowRow()); // chips follow the mode once it's known
+        const row = body.querySelector<HTMLElement>('.r-narrow');
+        if (row && row.dataset.mode !== lastMode) row.replaceWith(narrowRow()); // chips follow the mode once it's known
       }
       if (S.search === s) {
         scheduleStatus();
@@ -1060,10 +1099,11 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       st.append(x.exhausted ? `${refs}${tuned}` : `${refs} · scroll for more${tuned}${model}`);
     }
   }
+  let chipMode: Mode = 'pose'; // Auto keeps the last search's chips while a new one works out its mode
   function narrowRow() {
-    const mode = S.search?.modeUsed() ?? (S.mode === 'auto' ? 'pose' : S.mode);
+    const mode = (chipMode = (S.search !== S.feed && S.search?.modeUsed()) || (S.mode === 'auto' ? chipMode : S.mode));
     const inQ = S.ran.toLowerCase();
-    const row = el('div', { class: 'r-narrow', 'aria-label': 'Narrow results' }, el('span', { class: 'r-lbl' }, 'Narrow:'));
+    const row = el('div', { class: 'r-narrow', 'aria-label': 'Narrow results', 'data-mode': mode }, el('span', { class: 'r-lbl' }, 'Narrow:'));
     for (const w of S.narrow) {
       const b = el('button', { class: 'r-chip r-on', type: 'button', 'aria-label': `Remove ${w}` }, w, ic('x'));
       b.addEventListener('click', () => {
