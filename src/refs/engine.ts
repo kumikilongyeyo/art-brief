@@ -9,7 +9,7 @@ import { feedSources, SOURCE_BY_ID, SOURCES } from './sources';
 import { hashUnit } from '../engine/rng';
 import type { Cand, EffMode, Mode, Plan, SearchCtx, Source, SourceId } from './types';
 import { embedBitmap, embedUrl, visionFailed, visionState, warmVision } from './vision';
-import { DIM, gateScorer, imageWords, loadVocab, makePlan, normalize, queryVector, segment } from './vocab';
+import { DIM, drawingWords, gateScorer, imageWords, loadVocab, makePlan, normalize, queryVector, segment } from './vocab';
 
 export interface Hit {
   c: Cand;
@@ -44,6 +44,8 @@ export interface SearchInput {
   pose?: Skeleton;
   /** The image is a line drawing: search by its pose, not by how the drawing looks. */
   sketch?: boolean;
+  /** The image is a line drawing searched by how it looks (a house, a sword; not a pose). */
+  drawing?: boolean;
   /** No query: the start screen's feed of new work (this seed shuffles it, so every visit differs). */
   feed?: string;
 }
@@ -139,6 +141,9 @@ export class Search {
   onChange: () => void = () => {};
 
   constructor(private input: SearchInput) {
+    // a drawing is only searched as a pose when a pose (or anything) was asked for: a house drawn in
+    // Place mode is searched as a house
+    if (input.sketch && input.mode !== 'pose' && input.mode !== 'auto') this.input = { ...input, sketch: false, drawing: true };
     this.started = this.start();
     this.started.catch(() => this.notify());
   }
@@ -233,7 +238,8 @@ export class Search {
       this.qMirror = vecs[1] ?? null;
       // the picture is searched by how it looks; words read from it only phrase the source queries,
       // and never pick the mode (a castle painting isn't a "creature" search because it has a dragon in it)
-      if (!text.trim()) words = await imageWords(v, vecs[0], 4);
+      if (!text.trim())
+        words = this.input.drawing ? drawingWords(v, await imageWords(v, vecs[0], 8), mode).slice(0, 4) : await imageWords(v, vecs[0], 4);
       if (mode === 'auto') eff = this.input.pose ? 'pose' : 'concept';
     }
     // a sketch asks the sources in a few plain words ("man running"): long queries find nothing on most
@@ -241,7 +247,11 @@ export class Search {
     // More like this phrases the source queries with the result's title only when the title says something
     // ("Dragon Knight"; not "守护者2" or "Sketch 3"): otherwise with the words the model reads in the picture
     const useHint = !!hint && segment(v, hint).length > 0;
-    const said = this.input.sketch && !text.trim() && !hint ? SKETCH_QUERY[words[0]] ?? words[0] : text || (useHint ? hint : '') || words.join(' ');
+    // so does a drawing of a thing, with the one word that says what it is ("cottage", not "cottage trap")
+    const said =
+      this.input.sketch && !text.trim() && !hint
+        ? SKETCH_QUERY[words[0]] ?? words[0]
+        : text || (useHint ? hint : '') || (this.input.drawing ? words[0] ?? '' : words.join(' '));
     this.plan = makePlan(v, said, eff, adult, words);
     if (!this.plan.text) this.plan.text = words.slice(0, 2).join(' ');
     // only the user's own words shape the look score (hint and image words are for the sources)

@@ -119,7 +119,7 @@ export function normalizePaper(img: ImageData): ImageData {
 /** Is this a line drawing (dark strokes on light, mostly empty paper)? Judged after evening out the paper. */
 export function looksLikeSketch(raw: ImageData): boolean {
   const img = normalizePaper(raw);
-  const d = img.data, n = img.width * img.height;
+  const { data: d, width: W, height: H } = img, n = W * H;
   let light = 0, dark = 0, sat = 0;
   for (let i = 0; i < n; i++) {
     const r = raw.data[i * 4], g = raw.data[i * 4 + 1], b = raw.data[i * 4 + 2];
@@ -128,7 +128,19 @@ export function looksLikeSketch(raw: ImageData): boolean {
     else if (l < 130) dark++;
     if (Math.max(r, g, b) - Math.min(r, g, b) > 70) sat++;
   }
-  return light / n > 0.6 && dark / n > 0.004 && dark / n < 0.3 && sat / n < 0.12;
+  if (!(light / n > 0.6 && dark / n > 0.004 && dark / n < 0.3 && sat / n < 0.12)) return false;
+  // ink is strokes: nearly every dark pixel has paper a few pixels away. Evening out the paper makes any
+  // smooth pale area (a sky, a curtain) read as paper too, but a painting's or photo's darks are areas.
+  const L = (x: number, y: number) => { const i = (y * W + x) * 4; return (d[i] + d[i + 1] + d[i + 2]) / 3; };
+  const R = 5, near = [[-R, 0], [R, 0], [0, -R], [0, R], [-R, -R], [R, -R], [-R, R], [R, R]];
+  let ink = 0, stroke = 0;
+  for (let y = R; y < H - R; y += 2)
+    for (let x = R; x < W - R; x += 2) {
+      if (L(x, y) >= 130) continue;
+      ink++;
+      if (near.some(([dx, dy]) => L(x + dx, y + dy) > 200)) stroke++;
+    }
+  return !ink || stroke / ink > 0.7;
 }
 
 /** Where the ink is, as a fraction of the image (for placing a template figure on an unread drawing). */
@@ -296,7 +308,11 @@ export function readSketch(raw: ImageData): Skeleton | null {
 
   // head: the biggest enclosed hole in the top part of the figure; else the thickest blob; else the top end
   let head: { x: number; y: number; r: number } | null = null;
-  const hs = holes(g).filter((o) => o.cy < minY + figH * 0.6 && o.r < figH * 0.3 && o.round > 0.55);
+  const closed = holes(g);
+  // a stick figure encloses its head, and at most a hand on a hip or two: closed shapes all over are a
+  // drawing of a thing (a house's walls and windows, a sword's blade, guard and grip)
+  if (closed.length > 3) return null;
+  const hs = closed.filter((o) => o.cy < minY + figH * 0.6 && o.r < figH * 0.3 && o.round > 0.55);
   if (hs.length) head = { x: hs[0].cx, y: hs[0].cy, r: hs[0].r + 1.5 };
   if (!head) {
     // filled head: ink pixel farthest from any background pixel

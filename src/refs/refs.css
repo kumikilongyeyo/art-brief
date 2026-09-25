@@ -898,6 +898,7 @@ mark.r-mark,
   border-radius: 10px;
   background: #0d0c12;
   padding: 12px;
+  min-height: 160px; /* a very wide picture sits in a box, not a sliver */
   display: grid;
   place-items: center;
   touch-action: none;
@@ -910,6 +911,7 @@ mark.r-mark,
   display: inline-block;
   max-width: 100%;
   line-height: 0;
+  cursor: crosshair; /* dragging outside the box draws a new one */
 }
 .r-imgwrap img {
   display: block;
@@ -917,6 +919,7 @@ mark.r-mark,
   max-height: var(--r-imgmax, 60vh);
   pointer-events: none;
   border-radius: 4px;
+  background: #fff; /* line art with a transparent background is searched on white: show it that way */
 }
 .r-crop {
   position: absolute;
@@ -924,6 +927,9 @@ mark.r-mark,
   box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
   cursor: move;
   border-radius: 3px;
+}
+.r-crop.r-whole {
+  cursor: crosshair;
 }
 .r-crop:focus-visible {
   outline: 2px solid var(--focus);
@@ -960,6 +966,19 @@ mark.r-mark,
   bottom: -8px;
   right: -8px;
   cursor: nwse-resize;
+}
+/* a picture drawn as a thin strip: the handles sit off it, not over it (the box always spans the thin side) */
+.r-thin-y .r-crop i[data-h^='n'] {
+  top: -18px;
+}
+.r-thin-y .r-crop i[data-h^='s'] {
+  bottom: -18px;
+}
+.r-thin-x .r-crop i[data-h$='w'] {
+  left: -18px;
+}
+.r-thin-x .r-crop i[data-h$='e'] {
+  right: -18px;
 }
 .r-tools {
   display: flex;

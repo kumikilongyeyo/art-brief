@@ -464,6 +464,15 @@ export async function imageWords(v: Vocab, img: Float32Array, n = 4): Promise<st
   return out;
 }
 
+/** Words read from a line drawing searched by how it looks (not as a pose). Its pose and lighting/view words
+ *  describe the drawing ("stick figure", "three-quarter view"), not what it's of; and the kind of thing the
+ *  mode asks for goes first (a house drawn in Place mode is a "cottage" before it's a "trap"). */
+export function drawingWords(v: Vocab, words: string[], mode: Mode): string[] {
+  const kept = words.filter((w) => v.catOf(w) !== 'pose' && v.catOf(w) !== 'concept');
+  const i = mode === 'place' || mode === 'prop' || mode === 'creature' ? kept.findIndex((w) => v.catOf(w) === mode) : -1;
+  return i > 0 ? [kept[i], ...kept.slice(0, i), ...kept.slice(i + 1)] : kept;
+}
+
 let gateP: Promise<Rows> | null = null;
 /** > 0 means the image reads closer to the unsafe prompts than the safe ones. */
 export async function gateScorer(v: Vocab): Promise<(e: Float32Array) => number> {
