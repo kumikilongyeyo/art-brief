@@ -19,6 +19,7 @@ export async function fakeWeb(page: Page) {
       const name = url.split('/').pop()!;
       return route.fulfill({ status: 200, contentType: name.endsWith('.wasm') ? 'application/wasm' : 'text/javascript', body: readFileSync(new URL(name, ORT)) });
     }
+    if (/^https:\/\/api\.openverse\.org\/v1\/images\/[^/?]+\/thumb\//.test(url)) return route.fulfill(jpg(hash(url))); // Openverse's own thumbnails
     if (url.startsWith('https://api.openverse.org/')) {
       const u = new URL(url),
         q = u.searchParams.get('q') ?? '',

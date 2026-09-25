@@ -3,7 +3,7 @@
  *
  *  Contract of next(): it resolves with at least one result, or with [] only when every source is
  *  finished and nothing rankable is left (then `status().exhausted` is true). It never busy-loops. */
-import { rankUrl } from './net';
+import { proxyWorked, rankFallback, rankUrl } from './net';
 import { describePose, fromMoveNet, poseMatch, type Skeleton } from './pose';
 import { feedSources, SOURCE_BY_ID, SOURCES } from './sources';
 import { hashUnit } from '../engine/rng';
@@ -529,7 +529,23 @@ export class Search {
       this.fail(h);
       return;
     }
-    embedUrl(url, (nth <= 6 ? 50 : 0) + h.prelim * 100, this.ctl.signal, figures)
+    const prio = (nth <= 6 ? 50 : 0) + h.prelim * 100,
+      viaProxy = url.startsWith('https://wsrv.nl/');
+    embedUrl(url, prio, this.ctl.signal, figures)
+      .then(
+        (emb) => {
+          if (viaProxy) proxyWorked(true);
+          return emb;
+        },
+        (err: unknown) => {
+          // wsrv.nl may be refusing this address: the relay's copy, and after a few, the relay for all
+          if (!viaProxy || this.ctl.signal.aborted) throw err;
+          proxyWorked(false);
+          const fb = rankFallback(h.c.rankThumb ?? h.c.thumb);
+          if (!fb) throw err;
+          return embedUrl(fb, prio, this.ctl.signal, figures);
+        },
+      )
       .then((emb) => {
         if (this.ctl.signal.aborted) return;
         h.vec = emb.vecs[0];

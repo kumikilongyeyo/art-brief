@@ -38,8 +38,16 @@ const ROUTES = {
   },
 };
 
-// Thumbnail passthrough, only for hosts wsrv.nl blocks. Small images; cached a day.
-const IMG_HOSTS = ['th.wallhaven.cc', 'safebooru.org'];
+// Thumbnail passthrough for the sources' image hosts that don't send CORS headers: the ones wsrv.nl blocks,
+// and the rest for when wsrv.nl refuses a visitor. Pictures only, up to MAX_IMG; cached a day.
+const IMG_HOSTS = [
+  'th.wallhaven.cc', 'safebooru.org',
+  'art.hearthstonejson.com', 'cmsassets.rgpub.io', 'images.ygoprodeck.com', 'cards.lorcast.io', 'cdn.swu-db.com',
+  'static.wikia.nocookie.net', 'images.uesp.net', 'pathfinderwiki.com', 'hearthstone.wiki.gg',
+  'images.metmuseum.org', 'openaccess-cdn.clevelandart.org', '1.api.artsmia.org', '4.api.artsmia.org',
+  'api.europeana.eu', 'static.inaturalist.org',
+];
+const MAX_IMG = 6e6;
 
 async function image(url, ctx, base) {
   let u;
@@ -55,7 +63,7 @@ async function image(url, ctx, base) {
   if (!res) {
     const up = await fetch(u.toString(), { headers: { 'User-Agent': UA, Referer: `${u.origin}/` }, redirect: 'manual', cf: { cacheTtl: 86400 } });
     const type = up.headers.get('Content-Type') || '';
-    if (!up.ok || !type.startsWith('image/')) return new Response('upstream refused', { status: 502, headers: base });
+    if (!up.ok || !type.startsWith('image/') || +(up.headers.get('Content-Length') || 0) > MAX_IMG) return new Response('upstream refused', { status: 502, headers: base });
     res = new Response(up.body, { headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=86400' } });
     ctx.waitUntil(cache.put(key, res.clone()));
   }

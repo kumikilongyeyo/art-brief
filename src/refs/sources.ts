@@ -155,7 +155,7 @@ const openverse: Source = {
       title: clean(x.title, 'Openverse image'),
       pos: i,
       thumb: x.thumbnail,
-      rankThumb: x.url,
+      rankThumb: `https://api.openverse.org/v1/images/${x.id}/thumb/`, // small, and readable (CORS) as it is
       full: x.url,
       page: x.foreign_landing_url,
       artist: x.creator,

@@ -20,6 +20,7 @@ async function fakeWeb(page: Page, opts: { openverseDelay?: number; laterDelay?:
       const name = url.split('/').pop()!;
       return route.fulfill({ status: 200, contentType: name.endsWith('.wasm') ? 'application/wasm' : 'text/javascript', body: readFileSync(new URL(name, ORT)) });
     }
+    if (/^https:\/\/api\.openverse\.org\/v1\/images\/[^/?]+\/thumb\//.test(url)) return route.fulfill(jpg(hash(url))); // Openverse's own thumbnails
     if (url.startsWith('https://api.openverse.org/')) {
       const u = new URL(url), q = u.searchParams.get('q') ?? '', p = +(u.searchParams.get('page') ?? 1);
       if (opts.openverseDelay) await new Promise((r) => setTimeout(r, opts.openverseDelay));
@@ -235,7 +236,8 @@ test('narrowing belongs to its words, keeps its mode, and a mode change searches
   await fakeWeb(page);
   const asked: string[] = [];
   await page.route('https://api.openverse.org/**', (route) => {
-    asked.push(new URL(route.request().url()).searchParams.get('q') ?? '');
+    const u = new URL(route.request().url());
+    if (u.pathname === '/v1/images/') asked.push(u.searchParams.get('q') ?? ''); // searches, not its thumbnails
     return route.fallback();
   });
   await openRefs(page);

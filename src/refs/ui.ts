@@ -9,7 +9,7 @@ import { describePose, fromMoveNet, inkBox, looksLikeSketch, readSketch, templat
 import { completions, corrected, display, loadVocab, normWords, resolveQuery, V, words, type Vocab } from './vocab';
 import { hideToast, toast, toastHost } from '../ui/toast';
 import { rngFrom, seedFromBytes } from '../engine/rng';
-import { showUrl } from './net';
+import { imageAlts } from './net';
 import { openFolderMenu } from '../ui/folder-menu';
 import type { Folder } from '../library';
 
@@ -1261,12 +1261,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     });
     const img = el('img', { src: c.thumb, alt: '', loading: 'lazy', referrerpolicy: 'no-referrer', decoding: 'async' });
     img.addEventListener('load', () => e.classList.add('r-loaded'));
+    const alts = imageAlts(c.thumb);
     img.addEventListener('error', () => {
-      if (!img.dataset.retried && !c.thumb.startsWith('https://wsrv.nl/')) {
-        img.dataset.retried = '1';
-        img.src = showUrl(c.thumb);
-        return;
-      }
+      const u = alts.shift();
+      if (u) return void (img.src = u);
       e.hidden = true;
       e.classList.add('r-broken');
       S.search?.broken(c.key);
@@ -1887,7 +1885,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const big = c.full || c.thumb;
     const img = el('img', { src: big, alt: c.title, referrerpolicy: 'no-referrer' });
     // as the grid does: the thumbnail, then through wsrv.nl (hosts that refuse or rate-limit); then say so
-    const alts = [c.thumb, ...(big.startsWith('https://wsrv.nl/') ? [] : [showUrl(big, 1280)])].filter((u) => u !== big);
+    const alts = [c.thumb, ...imageAlts(big, 1280)].filter((u) => u !== big);
     img.addEventListener('error', () => {
       const u = alts.shift();
       if (u) img.src = u;
@@ -2017,11 +2015,11 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const mini = el('div', { class: 'r-mini' });
     for (const n of near) {
       const im = el('img', { src: n.c.thumb, alt: '', referrerpolicy: 'no-referrer' });
+      const alts = imageAlts(n.c.thumb);
       im.addEventListener('error', () => {
-        if (!im.dataset.retried && !n.c.thumb.startsWith('https://wsrv.nl/')) {
-          im.dataset.retried = '1';
-          im.src = showUrl(n.c.thumb);
-        } else b.hidden = true;
+        const u = alts.shift();
+        if (u) im.src = u;
+        else b.hidden = true;
       });
       const b = el('button', { type: 'button', 'aria-label': n.c.title }, im);
       b.addEventListener('click', () => {
@@ -2227,12 +2225,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       img.addEventListener('load', () => e.classList.add('r-loaded'));
       const open = el('button', { class: 'r-open', type: 'button', 'aria-label': `${r.title}. Open` }, img);
       open.addEventListener('click', () => openViewer(i, () => cands));
+      const alts = imageAlts(r.thumb);
       img.addEventListener('error', () => {
-        if (!img.dataset.retried && !r.thumb.startsWith('https://wsrv.nl/')) {
-          img.dataset.retried = '1';
-          img.src = showUrl(r.thumb);
-          return;
-        }
+        const u = alts.shift();
+        if (u) return void (img.src = u);
         // unlike a search result it isn't hidden: it's the user's pick, so say what it was
         e.classList.add('r-loaded', 'r-broken');
         open.append(el('span', { class: 'r-unavail' }, ic('image'), 'Image unavailable'));
