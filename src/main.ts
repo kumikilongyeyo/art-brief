@@ -463,6 +463,8 @@ function rerenderCard(i: number) {
 }
 
 function renderResults() {
+  // Clamp first: the cards read activeVar to decide which one shows.
+  state.activeVar = Math.max(0, Math.min(state.activeVar, state.results.length - 1));
   const kids: HTMLElement[] = [];
   if (state.results.length >= 2) {
     kids.push(
@@ -512,7 +514,6 @@ function renderResults() {
 
 /** One brief at a time: "Variation 1 / 2 / 3" tabs with each brief's name underneath. */
 function variationTabs(): HTMLElement {
-  state.activeVar = Math.min(state.activeVar, state.results.length - 1);
   const buttons = state.results.map((b, i) =>
     h(
       'button',
@@ -789,8 +790,9 @@ function generate() {
     recent[state.category] ?? [],
   );
   state.results = briefs;
-  state.cardOpen = [];
-  state.activeVar = 0;
+  // Keep the rows you had open and the variation you were on (locks are per variation, so a locked
+  // card stays in view); renderResults clamps the tab if there are fewer variations now.
+  state.cardOpen = state.cardOpen.slice(0, briefs.length);
   state.sample = null;
   state.notice = null;
   historyList = addToHistory(historyList, briefs);

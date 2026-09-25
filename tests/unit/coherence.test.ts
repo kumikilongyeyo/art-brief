@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { fieldEntries, generateBatch } from '../../src/engine/generate';
+import { fieldEntries, generateBatch, lockedMap, rerollSlots, setLocked } from '../../src/engine/generate';
 import { fitsPlace, PLACE_SLOTS } from '../../src/engine/lore';
 import { seedFromString } from '../../src/engine/rng';
 import type { Brief, CategoryId } from '../../src/engine/types';
-import { data } from './helpers';
+import { data, one, seeds } from './helpers';
 
 /**
  * Story lines, the moment to paint and the card's own time/light/behaviour must not contradict where
@@ -133,5 +133,63 @@ describe('story coherence', () => {
     expect(fitsPlace(e, new Set(['forest']))).toBe(false);
     expect(fitsPlace(e, new Set(['coast', 'desert']))).toBe(false);
     expect(fitsPlace(e, null)).toBe(true);
+  });
+
+  const allFit = (b: Brief) => {
+    const cat = data.categories[b.category];
+    const place = placeTags(b);
+    return cat.slots
+      .filter((s) => fieldEntries(data, cat, s.id, b.fields[s.id].entryId).some((e) => !fitsPlace(e, place)))
+      .map((s) => s.id);
+  };
+
+  it('rerolling the place keeps every other line fitting (and keeps them when they already fit)', () => {
+    for (const [c, slot] of [
+      ['scene', 'location'],
+      ['building', 'setting'],
+      ['creature', 'habitat'],
+    ] as [CategoryId, string][]) {
+      for (const base of seeds(150, `reroll-place-${c}`)) {
+        let b = one(c, base, { lore: true });
+        for (let k = 0; k < 4; k++) {
+          const before = b;
+          b = rerollSlots(data, b, [slot], 'sometimes');
+          expect(allFit(b), `${c} ${base} reroll ${k}`).toEqual([]);
+          expect(b.fields[slot].entryId).not.toBe(before.fields[slot].entryId);
+        }
+      }
+    }
+  });
+
+  it('a locked line that needs a kind of place steers Generate to places that suit it, even against the theme', () => {
+    const lockTime = (id: string) => {
+      const start = one('scene', 'LOCKTIME');
+      const e = data.tables['scene.time'].entries.find((x) => x.id === id)!;
+      return lockedMap(
+        setLocked({ ...start, fields: { ...start.fields, time: { ...start.fields.time, entryId: e.id, text: e.text } } }, ['time'], true),
+      );
+    };
+    const UNDER = ['subterranean', 'cavern', 'drow'];
+    const cases: [string, string, boolean][] = [
+      ['timeless-dark-lit-only-by', 'nautical', true], // needs underground, theme pulls to the sea
+      ['high-noon-heat-haze-warping', 'underdark', false], // needs open sky, theme pulls underground
+    ];
+    for (const [id, theme, underground] of cases)
+      for (const base of seeds(60, `lock-${id}`)) {
+        const [b] = generateBatch(data, {
+          category: 'scene',
+          themeChoice: theme,
+          weirdness: 'grounded',
+          count: 1,
+          base,
+          uniqueFrequency: 'sometimes',
+          locks: [lockTime(id)],
+        });
+        expect(b.fields.time.entryId).toBe(id);
+        expect(
+          [...placeTags(b)].some((t) => UNDER.includes(t)),
+          `${id}: ${b.fields.location.text}`,
+        ).toBe(underground);
+      }
   });
 });

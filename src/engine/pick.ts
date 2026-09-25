@@ -21,6 +21,8 @@ export interface PickContext {
   affinity?: number;
   /** Tags of the card's place lines picked so far (see PLACE_SLOTS); lines with places/notPlaces must fit it. */
   place?: Set<string>;
+  /** While picking a place line: lines already on the card whose places/notPlaces the new place must satisfy. */
+  placeRules?: Entry[];
 }
 
 /** The card lines that say where the subject is; lines with places/notPlaces are checked against their tags only. */
@@ -47,7 +49,12 @@ function passesHard(e: Entry, ctx: PickContext, ignoreRequires: boolean): boolea
   if (!ignoreRequires && e.requires?.length && !e.requires.some((r) => ctx.tags.has(r))) return false;
   if (e.excludes?.some((x) => ctx.tags.has(x))) return false;
   if (e.tags?.some((t) => ctx.excludes.has(t))) return false;
-  return fitsPlace(e, ctx.place);
+  if (!fitsPlace(e, ctx.place)) return false;
+  if (ctx.placeRules?.length) {
+    const place = new Set([...(ctx.place ?? []), ...(e.tags ?? [])]);
+    if (!ctx.placeRules.every((r) => fitsPlace(r, place))) return false;
+  }
+  return true;
 }
 
 export function entryWeight(e: Entry, ctx: PickContext, depth: number): number {

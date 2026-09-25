@@ -402,3 +402,21 @@ test('variations are tabs: one card at a time, arrow keys switch, open rows are 
   await generate(page);
   await expect(tabs).toHaveCount(0);
 });
+
+test('Generate keeps the variation you were on and the rows you opened', async ({ page }) => {
+  await setup(page, { count: 3 });
+  await generate(page);
+  await showVar(page, 1);
+  await openSection(cards(page).nth(1), 'details');
+  await generate(page);
+  await expect(page.locator('.var-tab').nth(1)).toHaveAttribute('aria-selected', 'true');
+  await expect(cards(page).nth(1)).toBeVisible();
+  await expect(cards(page).nth(1).locator('.acc[data-section="details"]')).toHaveAttribute('open', '');
+  await expect(cards(page).nth(1).locator('.acc[data-section="story"]')).not.toHaveAttribute('open', '');
+  // On the third tab, drop to two variations: the second one shows (never an empty page).
+  await showVar(page, 2);
+  await page.locator('.seg[aria-label="Variations"] button[data-value="2"]').click();
+  await generate(page);
+  await expect(page.locator('.card:not(.sample):visible')).toHaveCount(1);
+  await expect(page.locator('.var-tab').nth(1)).toHaveAttribute('aria-selected', 'true');
+});

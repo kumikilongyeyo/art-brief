@@ -1,7 +1,7 @@
 import { withArticle } from './grammar';
 import { makeLore } from './lore';
 import { buildName } from './names';
-import { FUSION_CHANCE, pickEntry, PLACE_SLOTS, type PickContext } from './pick';
+import { fitsPlace, FUSION_CHANCE, pickEntry, PLACE_SLOTS, type PickContext } from './pick';
 import { cyrb128, rngFrom, type Rng } from './rng';
 import { artLines, makeArt } from './art';
 import { makeStat } from './stat';
@@ -310,9 +310,15 @@ export function generateVariation(data: DataSet, spec: VariationSpec, diag?: Dia
     if (placeSlots.includes(slot)) r.tags.forEach((t) => ctx.place!.add(t));
   }
 
+  // Lines already on the card (locked, or kept by a reroll) that assume a kind of place: a new place line must suit them.
+  const placeRules = Object.keys(fields).flatMap((s) =>
+    fieldEntries(data, cat, s, fields[s].entryId).filter((e) => e.places || e.notPlaces),
+  );
+
   for (const slot of cat.slots) {
     if (fields[slot.id]) continue;
-    const r = pickSlot(data, cat, slot, ctx, rngFrom(slotSeed(spec, slot.id)), spec, fields);
+    const slotCtx = placeRules.length && placeSlots.includes(slot.id) ? { ...ctx, placeRules } : ctx;
+    const r = pickSlot(data, cat, slot, slotCtx, rngFrom(slotSeed(spec, slot.id)), spec, fields);
     fields[slot.id] = r;
     r.tags.forEach((t) => ctx.tags.add(t));
     r.excludes.forEach((t) => ctx.excludes.add(t));
@@ -424,8 +430,36 @@ export function generateBatch(data: DataSet, opts: BatchOptions, diag?: Diagnost
   return briefs;
 }
 
-/** Reroll the given slots plus their unlocked dependents; everything else stays exactly as it is. */
+/** Tags of the brief's place lines (habitat / setting / location + time); empty for characters and props. */
+function placeOf(data: DataSet, cat: CategoryDef, brief: Brief): Set<string> {
+  return new Set(
+    (PLACE_SLOTS[cat.id] ?? []).flatMap((s) => fieldEntries(data, cat, s, brief.fields[s]?.entryId ?? '').flatMap((e) => e.tags ?? [])),
+  );
+}
+
+/**
+ * Reroll the given slots plus their unlocked dependents; everything else stays exactly as it is, unless a
+ * new place makes an unlocked line impossible (a new Underdark location can't keep "sunset over the dunes"):
+ * those lines are rerolled too. Locked lines always stay.
+ */
 export function rerollSlots(data: DataSet, brief: Brief, slots: SlotId[], uniqueFrequency: UniqueFrequency, diag?: Diagnostics): Brief {
+  const cat = data.categories[brief.category];
+  let next = rerollOnce(data, brief, slots, uniqueFrequency, diag);
+  // A rerolled misfit can change the place again (a scene's time), so check twice at most.
+  for (let pass = 0; pass < 2; pass++) {
+    const place = placeOf(data, cat, next);
+    const misfits = cat.slots
+      .map((s) => s.id)
+      .filter(
+        (s) => !next.fields[s]?.locked && fieldEntries(data, cat, s, next.fields[s]?.entryId ?? '').some((e) => !fitsPlace(e, place)),
+      );
+    if (!misfits.length) break;
+    next = rerollOnce(data, next, misfits, uniqueFrequency, diag);
+  }
+  return next;
+}
+
+function rerollOnce(data: DataSet, brief: Brief, slots: SlotId[], uniqueFrequency: UniqueFrequency, diag?: Diagnostics): Brief {
   const cat = data.categories[brief.category];
   const targets = new Set<SlotId>();
   const visit = (s: SlotId) => {
