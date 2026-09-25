@@ -942,6 +942,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       paintStatus();
       if (done && s !== S.feed) paintEnd(); // nothing found at all: the empty state
     }
+    // a feed with nothing to show (every source switched off or out of reach) leaves no empty heading
+    if (s === S.feed && done && !S.cells.length) body.querySelector<HTMLElement>('.r-feed')?.setAttribute('hidden', '');
     // keep filling while the bottom of the page is in view (next tick, never a tight loop)
     if (hits.length && !done && showing && sentinelVisible()) setTimeout(() => void loadMore(), 0);
     else if (!done) {
