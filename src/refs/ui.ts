@@ -1252,6 +1252,23 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     return row;
   }
 
+  /** A picture tile's control: a real link to the picture, so right-click, middle-click and ⌘/Ctrl-click
+   *  open it in a new tab, while a plain click (or Enter / Space) opens the viewer. */
+  function openLink(href: string, attrs: Record<string, string | undefined>, onOpen: () => void, ...kids: Node[]): HTMLAnchorElement {
+    const a = el('a', { ...attrs, href: /^https?:\/\//.test(href) ? href : undefined, target: '_blank', rel: 'noopener noreferrer', referrerpolicy: 'no-referrer' }, ...kids);
+    a.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // the browser opens a tab
+      e.preventDefault();
+      onOpen();
+    });
+    a.addEventListener('keydown', (e) => {
+      if (e.key !== ' ') return;
+      e.preventDefault(); // as a button: Space opens it too
+      onOpen();
+    });
+    return a;
+  }
+
   function cell(h: Hit, i: number, animate = true): HTMLElement {
     const c = h.c,
       v = S.search?.voteOf(c.key);
@@ -1270,17 +1287,12 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       S.search?.broken(c.key);
       scheduleStatus();
     });
-    const open = el(
-      'button',
-      {
-        class: 'r-open',
-        type: 'button',
-        'aria-label': `${c.title}, ${SOURCE_BY_ID[c.src].label}. Open`,
-        'aria-describedby': COARSE ? undefined : 'r-votehint',
-      },
+    const open = openLink(
+      c.full || c.thumb,
+      { class: 'r-open', role: 'button', 'aria-label': `${c.title}, ${SOURCE_BY_ID[c.src].label}. Open`, 'aria-describedby': COARSE ? undefined : 'r-votehint' },
+      () => openViewer(i),
       img,
     );
-    open.addEventListener('click', () => openViewer(i));
     const up = el(
       'button',
       { type: 'button', tabindex: '-1', 'aria-pressed': String(v === 'up'), 'aria-label': 'Good match', 'data-tip': 'Good match' },
@@ -1810,6 +1822,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     else closeViewer();
   }
   function closeViewer() {
+    stopSimilar();
     const i = S.viewer;
     const key = viewerList()[i]?.key;
     S.viewer = -1;
@@ -1862,6 +1875,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   }
   function renderViewer() {
     document.querySelector('.r-viewer')?.remove();
+    stopSimilar(); // a new picture: its own Similar
     const list = viewerList(),
       c = S.vhit?.c ?? list[S.viewer];
     if (!c || !S.viewerOpen) {
@@ -2007,31 +2021,76 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       more.addEventListener('click', () => moreLikeThis(hit));
       side.querySelector('.r-vhead')?.after(more);
     }
-    if (!S.search || S.search === S.feed || side.querySelector('.r-mini')) return;
-    const near = S.search.similar(hit.c.key, 6);
-    if (!near.length) return;
-    const all = el('button', { class: 'r-linkish', type: 'button' }, 'See all');
-    all.addEventListener('click', () => moreLikeThis(hit));
-    const mini = el('div', { class: 'r-mini' });
-    for (const n of near) {
+    if (!hit.vec || side.querySelector('.r-mini')) return;
+    // the closest pictures this search already has (the feed's are a random mix: none), then, as you scroll
+    // to the end of them, a search by the picture itself, 10 at a time
+    const owner = simOwner.get(hit) ?? S.search;
+    const near = owner && owner !== S.feed ? owner.similar(hit.c.key, 6) : [];
+    if (!near.length && owner && owner !== S.feed && !owner.status().exhausted) return; // neighbours still being read: a later change adds them
+    const mini = el('div', { class: 'r-mini' }),
+      end = el('div', { class: 'r-mini-end', 'aria-hidden': 'true' });
+    const shown = new Set([hit.c.key]);
+    const thumb = (n: Hit) => {
+      shown.add(n.c.key);
       const im = el('img', { src: n.c.thumb, alt: '', referrerpolicy: 'no-referrer' });
       const alts = imageAlts(n.c.thumb);
-      im.addEventListener('error', () => {
-        const u = alts.shift();
-        if (u) im.src = u;
-        else b.hidden = true;
-      });
-      const b = el('button', { type: 'button', 'aria-label': n.c.title }, im);
-      b.addEventListener('click', () => {
+      const b = openLink(n.c.full || n.c.thumb, { role: 'button', 'aria-label': n.c.title }, () => {
         const j = S.cells.indexOf(n);
         S.vflip = false;
         S.vhit = j >= 0 ? null : n; // not in the grid: shown all the same; ← goes back to where you were
         if (j >= 0) S.viewer = j;
         renderViewer();
+      }, im);
+      im.addEventListener('load', () => b.classList.add('r-loaded'));
+      im.addEventListener('error', () => {
+        const u = alts.shift();
+        if (u) im.src = u;
+        else b.hidden = true;
       });
-      mini.append(b);
-    }
-    side.append(el('div', {}, el('div', { class: 'r-nearhead' }, el('span', {}, 'Similar'), all), mini));
+      return b;
+    };
+    near.forEach((n) => mini.append(thumb(n)));
+    let busy = false,
+      done = false;
+    const more = async () => {
+      if (busy || done || !side.isConnected) return;
+      busy = true;
+      const sim = (simSearch ??= new Search({ text: '', mode: 'auto', adult: prefs.adult, image: hit.vec!, hint: hit.c.title, exclude: hit.c.key, off: prefs.off }));
+      if (import.meta.env.DEV) (globalThis as { __refsSim?: Search }).__refsSim = sim; // for the dev self-tests
+      const skel = Array.from({ length: 10 }, () => el('div', { class: 'r-mini-skel', 'aria-hidden': 'true' }));
+      mini.append(...skel);
+      const got = await sim.next(10).catch(() => [] as Hit[]);
+      skel.forEach((x) => x.remove());
+      busy = false;
+      if (sim !== simSearch || !side.isConnected) return; // moved to another picture meanwhile
+      for (const n of got)
+        if (!shown.has(n.c.key)) {
+          simOwner.set(n, sim);
+          mini.append(thumb(n));
+        }
+      if (!got.length || sim.status().exhausted) {
+        done = true;
+        simIO?.disconnect();
+        return;
+      }
+      // still at the end (a tall panel, a short batch): the next ten
+      const r = end.getBoundingClientRect(),
+        box = side.scrollHeight > side.clientHeight ? side.getBoundingClientRect() : { bottom: innerHeight };
+      if (r.top < box.bottom + 400) setTimeout(() => void more(), 0);
+    };
+    side.append(el('div', { class: 'r-near' }, el('div', { class: 'r-nearhead' }, el('span', {}, 'Similar')), mini, end));
+    simIO = new IntersectionObserver((es) => es.some((x) => x.isIntersecting) && void more(), { rootMargin: '400px' });
+    simIO.observe(end);
+  }
+  /** The viewer's Similar pictures beyond the first few come from a search by the picture: one at a time. */
+  let simSearch: Search | null = null,
+    simIO: IntersectionObserver | null = null;
+  const simOwner = new WeakMap<Hit, Search>(); // Similar pictures that came from that search, not the grid's
+  function stopSimilar() {
+    simIO?.disconnect();
+    simIO = null;
+    simSearch?.abort();
+    simSearch = null;
   }
   /** The open viewer's result got ranked (the model was still loading when it opened): add what that allows. */
   function rankedLater() {
@@ -2223,8 +2282,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         'data-key': r.key,
       });
       img.addEventListener('load', () => e.classList.add('r-loaded'));
-      const open = el('button', { class: 'r-open', type: 'button', 'aria-label': `${r.title}. Open` }, img);
-      open.addEventListener('click', () => openViewer(i, () => cands));
+      const open = openLink(r.full || r.thumb, { class: 'r-open', role: 'button', 'aria-label': `${r.title}. Open` }, () => openViewer(i, () => cands), img);
       const alts = imageAlts(r.thumb);
       img.addEventListener('error', () => {
         const u = alts.shift();

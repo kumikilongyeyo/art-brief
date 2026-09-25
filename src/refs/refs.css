@@ -638,14 +638,12 @@ mark.r-mark,
   opacity: 1;
 }
 .r-cell::after {
+  /* a tile whose picture is still on its way shimmers until it arrives */
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: -35%;
-  height: 35%;
-  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--focus) 50%, transparent), transparent);
-  animation: r-scan 0.75s ease-in-out 1 forwards;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, var(--surface) 55%, transparent) 50%, transparent 70%);
+  animation: r-shine 1.2s linear infinite;
   pointer-events: none;
 }
 .r-cell.r-loaded::after {
@@ -1174,6 +1172,7 @@ html.r-noscroll body {
   flex-direction: column;
   gap: 14px;
   overflow: auto;
+  max-height: calc(100vh - 56px); /* scrolls on its own, so the Similar pictures can go on and on */
 }
 .r-vhead {
   display: flex;
@@ -1273,14 +1272,30 @@ html.r-noscroll body {
   gap: 6px;
   margin-top: 6px;
 }
-.r-mini button {
-  border: 0;
-  padding: 0;
+.r-mini > a,
+.r-mini-skel {
+  position: relative;
+  display: block;
   border-radius: 8px;
   overflow: hidden;
   aspect-ratio: 1;
   background: var(--surface-2);
-  cursor: pointer;
+  cursor: zoom-in;
+}
+.r-mini > a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+}
+.r-mini > a:not(.r-loaded)::after,
+.r-mini-skel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, var(--surface) 70%, transparent) 50%, transparent 70%);
+  animation: r-shine 1.2s linear infinite;
+}
+.r-mini-end {
+  height: 1px;
 }
 .r-mini img {
   width: 100%;
@@ -1413,7 +1428,10 @@ html.r-noscroll body {
     transition: none;
   }
   .r-cell::after,
-  .r-skel::after {
+  .r-skel::after,
+  .r-cell::after,
+  .r-mini > a::after,
+  .r-mini-skel::after {
     display: none;
   }
   .r-spin {

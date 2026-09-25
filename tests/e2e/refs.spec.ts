@@ -681,8 +681,8 @@ test('viewer: after Flip, a Similar pick opens unflipped; one that isn\u2019t in
   const inGrid = new Set(await page.locator('.r-grid .r-cell:not([hidden]) .r-cap span:first-child').allTextContents());
   const viewer = page.locator('.r-viewer'),
     title = viewer.locator('h2'),
-    strip = viewer.locator('.r-mini button'),
-    pick = (label: string) => viewer.locator(`.r-mini button[aria-label=${JSON.stringify(label)}]`).first();
+    strip = viewer.locator('.r-mini [role=button]'),
+    pick = (label: string) => viewer.locator(`.r-mini [role=button][aria-label=${JSON.stringify(label)}]`).first();
   let on: string | undefined, off: string | undefined, k = 0;
   for (; k < 6; k++) {
     await cells(page).nth(k).locator('.r-open').click();
@@ -744,7 +744,7 @@ test('More like this starts with its Similar strip; cropping it ranks afresh ins
   await search(page, 'lantern');
   await expect(cells(page).nth(5)).toBeVisible({ timeout: 30_000 });
   await cells(page).first().locator('.r-open').click();
-  const strip = page.locator('.r-viewer .r-mini button');
+  const strip = page.locator('.r-viewer .r-mini [role=button]');
   await expect(strip.first()).toBeVisible();
   const seeds = await strip.evaluateAll((els) => els.map((e) => e.getAttribute('aria-label')));
   await page.locator('.r-viewer').getByRole('button', { name: 'More like this' }).click();
@@ -796,7 +796,7 @@ test.describe(() => {
     const more = page.locator('.r-viewer').getByRole('button', { name: 'More like this' });
     await expect(more).toHaveCount(0);
     await expect(more).toBeVisible({ timeout: 30_000 });
-    await expect(page.locator('.r-viewer .r-mini button').first()).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator('.r-viewer .r-mini [role=button]').first()).toBeVisible({ timeout: 10_000 });
   });
 });
 
