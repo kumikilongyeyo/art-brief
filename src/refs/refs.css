@@ -1281,6 +1281,38 @@ html.r-noscroll body {
   flex-wrap: wrap;
   margin-bottom: 12px;
 }
+.r-saved .r-cell.r-broken img {
+  display: none;
+}
+.r-saved .r-cell.r-broken .r-cap {
+  opacity: 1;
+}
+.r-unavail {
+  position: absolute;
+  inset: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+}
+.r-unavail .r-i {
+  width: 22px;
+  height: 22px;
+}
+/* touch screens have no hover: a saved cell's Move and Remove stay on screen */
+@media (hover: none) {
+  .r-saved .r-votes {
+    display: flex;
+    opacity: 1;
+  }
+  .r-saved .r-votes button {
+    width: 40px;
+    height: 40px;
+  }
+}
 
 @media (max-width: 860px) {
   .r-body.r-has-img {
