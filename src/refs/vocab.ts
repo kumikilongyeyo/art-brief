@@ -504,7 +504,9 @@ export async function queryVector(v: Vocab, plan: Plan): Promise<Float32Array | 
 
 let conceptP: Promise<Rows> | null = null;
 /** Read an image as words: the vocabulary concepts closest to its vector, one per kind. */
-export async function imageWords(v: Vocab, img: Float32Array, n = 4): Promise<string[]> {
+/** The words a picture reads as, best first, one per kind of word (subject, place, prop, style…), with
+ *  how strongly it reads as each. */
+export async function imageTerms(v: Vocab, img: Float32Array, n = 4): Promise<Array<[string, number]>> {
   conceptP ??= loadRows(`${BASE}concepts.bin${V}`);
   const rows = await conceptP;
   const scored: Array<[number, string]> = [];
@@ -515,16 +517,30 @@ export async function imageWords(v: Vocab, img: Float32Array, n = 4): Promise<st
     scored.push([s * rows.scale[i], v.concepts[i]]);
   }
   scored.sort((a, b) => b[0] - a[0]);
-  const out: string[] = [],
+  const out: Array<[string, number]> = [],
     seen = new Set<string>();
-  for (const [, k] of scored) {
+  for (const [sc, k] of scored) {
     const c = v.catOf(k) || 'x';
     if (seen.has(c)) continue;
     seen.add(c);
-    out.push(k);
+    out.push([k, sc]);
     if (out.length >= n) break;
   }
   return out;
+}
+export async function imageWords(v: Vocab, img: Float32Array, n = 4): Promise<string[]> {
+  return (await imageTerms(v, img, n)).map(([w]) => w);
+}
+
+/** What to ask title-searching sources about a picture: what it's of, in a word or two ("palace", not
+ *  "palace three-quarter view airship golem"). View, lighting, pose and material words describe how it's
+ *  drawn, and each extra word makes most sites find less. A second subject only when it reads nearly as
+ *  strongly as the first. */
+export function subjectQuery(v: Vocab, terms: Array<[string, number]>): string {
+  const subj = terms.filter(([w]) => !['pose', 'concept', 'material'].includes(v.catOf(w)));
+  if (!subj.length) return terms[0]?.[0] ?? '';
+  const [a, b] = subj;
+  return b && b[1] > a[1] - 0.004 ? `${a[0]} ${b[0]}` : a[0];
 }
 
 /** Words read from a line drawing searched by how it looks (not as a pose). Its pose and lighting/view words

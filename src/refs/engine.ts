@@ -9,7 +9,7 @@ import { feedSources, SOURCE_BY_ID, SOURCES } from './sources';
 import { hashUnit } from '../engine/rng';
 import type { Cand, EffMode, Mode, Plan, SearchCtx, Source, SourceId } from './types';
 import { embedBitmap, embedUrl, visionFailed, visionState, warmVision } from './vision';
-import { DIM, drawingWords, gateScorer, imageWords, loadVocab, makePlan, normalize, queryVector, segment } from './vocab';
+import { DIM, drawingWords, gateScorer, imageTerms, imageWords, loadVocab, makePlan, normalize, queryVector, segment, subjectQuery } from './vocab';
 
 export interface Hit {
   c: Cand;
@@ -78,6 +78,7 @@ const WEB_SOURCES = 3; // the first batch waits for this many web sources to hav
 const FIRST_WAIT = 2000; // ms the first batch waits for ranking
 const SKETCH_WAIT = 3200;
 const NEXT_WAIT = 1200;
+const SAME_PICTURE = 0.95; // look-alike above this = the same picture again (a reprint, a repost, the pasted image)
 const MAX_THROTTLED = 5; // "too many requests" answers a source may give before it's left out
 const LOW_WATER = 40; // unseen candidates below this → ask sources for another page
 const AHEAD = 36; // keep this many ranked-or-ranking candidates ahead of the screen
@@ -133,6 +134,7 @@ export class Search {
   private best = 0;
   private bestPose = 0;
   private nearestOnly = false;
+  private like = false; // a More like this search
   private gate?: (e: Float32Array) => number;
   private votes = new Map<string, 'up' | 'down'>();
   private srcPenalty = new Map<SourceId, number>();
@@ -236,7 +238,10 @@ export class Search {
       return;
     }
     let words: string[] = [];
+    let subject = ''; // what a picture is of, in a word or two, for the sources
     let eff: Mode = mode;
+    // More like this: a result's own vector, and that result left out
+    this.like = image instanceof Float32Array && !!this.input.exclude;
     if (this.input.sketch && this.input.pose) {
       // a stick figure looks like nothing else: its pose becomes the words, and ranking goes by pose
       // "dynamic pose" says nothing about which pose, and pulls in every dramatic splash art: leave it out
@@ -249,8 +254,13 @@ export class Search {
       this.qMirror = vecs[1] ?? null;
       // the picture is searched by how it looks; words read from it only phrase the source queries,
       // and never pick the mode (a castle painting isn't a "creature" search because it has a dragon in it)
-      if (!text.trim())
-        words = this.input.drawing ? drawingWords(v, await imageWords(v, vecs[0], 8), mode).slice(0, 4) : await imageWords(v, vecs[0], 4);
+      if (this.input.drawing) {
+        if (!text.trim()) words = drawingWords(v, await imageWords(v, vecs[0], 8), mode).slice(0, 4);
+      } else {
+        const terms = await imageTerms(v, vecs[0], 4);
+        subject = subjectQuery(v, terms);
+        if (!text.trim()) words = terms.map(([w]) => w);
+      }
       if (mode === 'auto') eff = this.input.pose ? 'pose' : 'concept';
     }
     // a sketch asks the sources in a few plain words ("man running"): long queries find nothing on most
@@ -259,10 +269,14 @@ export class Search {
     // ("Dragon Knight"; not "守护者2" or "Sketch 3"): otherwise with the words the model reads in the picture
     const useHint = !!hint && segment(v, hint).length > 0;
     // so does a drawing of a thing, with the one word that says what it is ("cottage", not "cottage trap")
+    // More like this follows the picture: its title or subject asks the sources (the old search's words only
+    // nudge the ranking), so it doesn't drift back to the previous results
     const said =
       this.input.sketch && !text.trim() && !hint
         ? SKETCH_QUERY[words[0]] ?? words[0]
-        : text || (useHint ? hint : '') || (this.input.drawing ? words[0] ?? '' : words.join(' '));
+        : this.like
+          ? (useHint ? hint! : '') || subject || text
+          : text || (useHint ? hint : '') || (this.input.drawing ? words[0] ?? '' : subject || words.join(' '));
     this.plan = makePlan(v, said, eff, adult, words);
     if (!this.plan.text) this.plan.text = words.slice(0, 2).join(' ');
     // only the user's own words shape the look score (hint and image words are for the sources)
@@ -292,7 +306,7 @@ export class Search {
       if (vec) for (let d = 0; d < DIM; d++) q[d] += vec[d] * w;
     };
     add(this.qImg, 1);
-    add(this.qText, this.qImg ? 0.55 : 1);
+    add(this.qText, this.qImg ? (this.like ? 0.25 : 0.55) : 1); // More like this: the picture leads
     const { up, down } = this.priorOut();
     for (const vec of up) add(vec, 0.4 / up.length);
     for (const vec of down) add(vec, -0.25 / down.length);
@@ -332,7 +346,9 @@ export class Search {
       return;
     }
     h.state = 'ranked';
-    this.best = Math.max(this.best, h.sim);
+    // the pasted picture itself (a catalog card, a repost) matches ~1.0: it may show, but it mustn't set the
+    // bar every other result is measured against, or nothing else passes
+    if (!(this.qImg && dot(this.qImg, h.vec!) > SAME_PICTURE)) this.best = Math.max(this.best, h.sim);
     if (h.pose !== undefined) this.bestPose = Math.max(this.bestPose, h.pose);
   }
   private total(h: Hit): number {
