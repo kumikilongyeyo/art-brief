@@ -282,7 +282,13 @@ export class Search {
     // sites; the rest of the description ("full body") still reaches the tag-based ones through the keys
     // More like this phrases the source queries with the result's title only when the title says something
     // ("Dragon Knight"; not "守护者2" or "Sketch 3"): otherwise with the words the model reads in the picture
-    const useHint = !!hint && segment(v, hint).length > 0;
+    let useHint = !!hint && segment(v, hint).length > 0;
+    // …and only when it describes the picture about as well as what the model reads in it: "Blasting the
+    // Ruins" on a picture of ruins would ask for explosions
+    if (useHint && this.like && subject && this.qImg) {
+      const [byTitle, bySubject] = await Promise.all([queryVector(v, makePlan(v, hint!, mode, adult)), queryVector(v, makePlan(v, subject, mode, adult))]);
+      if (byTitle && bySubject && dot(this.qImg, byTitle) < dot(this.qImg, bySubject) - 0.01) useHint = false;
+    }
     // so does a drawing of a thing, with the one word that says what it is ("cottage", not "cottage trap")
     // More like this follows the picture: its title or subject asks the sources (the old search's words only
     // nudge the ranking), so it doesn't drift back to the previous results
@@ -493,7 +499,9 @@ export class Search {
       }
       if (h.state === 'cold') cold.push(h);
       else if (h.state === 'queued') ready++;
-      else if (h.state === 'ranked' && this.passes(h)) ready++;
+      // catalog cards arrive already read: they mustn't count as "enough ahead", or the web's pictures
+      // (ArtStation, Scryfall, Wallhaven…) never get read and only catalogs ever show
+      else if (h.state === 'ranked' && this.passes(h) && !SOURCE_BY_ID[h.c.src]?.local) ready++;
     }
     // ranked results below the floor never show, so they don't count toward what's still to come
     if (cold.length + ready < LOW_WATER) for (const st of this.srcs) void this.fetchPage(st);
