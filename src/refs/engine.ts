@@ -174,6 +174,10 @@ export class Search {
     this.ctl.abort();
     this.notify();
   }
+  /** Not aborted: Back can show it again as it was. */
+  get alive() {
+    return !this.ctl.signal.aborted;
+  }
   /** Stop asking sources and ranking while the page is hidden; resume() carries on. */
   pause() {
     this.paused = true;

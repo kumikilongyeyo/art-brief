@@ -197,6 +197,10 @@ interface Snap {
   photoPose: Skeleton | null;
   sketchEdited: boolean;
   unread: boolean;
+  /** the search as it was (paused, not thrown away), so Back shows it again where you left it */
+  search?: Search | null;
+  cells?: Hit[];
+  y?: number;
 }
 interface Like {
   title: string;
@@ -656,11 +660,25 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   // ---------------------------------------------------------------- search
   function snap(): Snap {
     const { sketch, photoPose, sketchEdited, unread } = S;
-    return { q: S.q, ran: S.ran, bmp: S.bmp, imgUrl: S.imgUrl, like: S.like, crop: { ...S.crop }, mode: S.mode, narrow: [...S.narrow], sketch: sketch && { ...sketch }, photoPose, sketchEdited, unread };
+    const search = S.search && S.search !== S.feed ? S.search : null; // the feed is kept anyway
+    // the words that were searched, not what's half-typed in the box (that's the next search, not this one)
+    return { q: S.ran, ran: S.ran, bmp: S.bmp, imgUrl: S.imgUrl, like: S.like, crop: { ...S.crop }, mode: S.mode, narrow: [...S.narrow], sketch: sketch && { ...sketch }, photoPose, sketchEdited, unread, search, cells: search ? S.cells : undefined, y: scrollY };
+  }
+  /** Searches Back can bring back as they were are kept paused; beyond this many, the oldest are let go. */
+  const KEEP_SEARCHES = 6;
+  function keep() {
+    const held = hist.filter((h) => h.search?.alive);
+    for (const h of held.slice(0, -KEEP_SEARCHES)) {
+      if (h.search !== S.search) h.search!.abort();
+      h.search = null;
+      h.cells = undefined;
+    }
   }
   function restore(s: Snap) {
     clearTimeout(cropTimer);
-    Object.assign(S, { ...s, crop: { ...s.crop }, narrow: [...s.narrow], sketch: s.sketch && { ...s.sketch } });
+    const { search, cells, y, ...state } = s;
+    Object.assign(S, { ...state, crop: { ...s.crop }, narrow: [...s.narrow], sketch: s.sketch && { ...s.sketch } });
+    input.value = S.q;
     S.cells = [];
     if (page.hidden) {
       // Back/Forward while another page shows: show() runs it
@@ -668,11 +686,46 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       S.search = null;
       return;
     }
+    if (search?.alive && cells && (S.ran || S.bmp || S.like)) {
+      // the search as you left it: same results, same place, carrying on from there
+      if (S.search && S.search !== S.feed && S.search !== search && !hist.some((h) => h.search === S.search)) S.search.abort();
+      S.search = search;
+      S.cells = cells;
+      S.stale = false;
+      if (import.meta.env.DEV) (globalThis as { __refsSearch?: Search }).__refsSearch = search;
+      search.resume();
+      paint();
+      io.unobserve(sentinel);
+      io.observe(sentinel);
+      scrollBack(y ?? 0);
+      return;
+    }
     run(null, { fresh: true });
+    if (!S.ran && !S.bmp && !S.like) scrollBack(y ?? 0); // the start screen: back to where you were in the feed
+  }
+  function pushSearch(q: string) {
+    clearTimeout(cropTimer);
+    hist[histAt] = snap();
+    hist.length = ++histAt; // a new branch: what Forward had is gone, as in the browser
+    keep();
+    history.pushState({ refsLike: histAt }, '', refsUrl(q));
+    scrollTo(0, 0); // new results start at the top
+  }
+  /** This page's address: ?view=refs, and the words of a text search (so a reload or a shared link finds them). */
+  function refsUrl(q: string): string {
+    const u = new URL(location.href);
+    u.searchParams.set('view', 'refs');
+    if (q) u.searchParams.set('q', q);
+    else u.searchParams.delete('q');
+    return u.pathname + u.search + u.hash;
+  }
+  /** Scroll once the grid has been laid out (the masonry places cells a frame later). */
+  function scrollBack(y: number) {
+    requestAnimationFrame(() => requestAnimationFrame(() => scrollTo(0, y)));
   }
 
   /** run(text): a fresh search from the bar. run(null): same words; new crop / mode / narrowing. */
-  function run(text: string | null, o: { raw?: string; exact?: boolean; fresh?: boolean } = {}) {
+  function run(text: string | null, o: { raw?: string; exact?: boolean; fresh?: boolean; push?: boolean } = {}) {
     closeSug();
     const resolve = (t: string, exact?: boolean) => (exact || !vocab ? t.trim() : resolveQuery(vocab, t));
     // new words start without the old narrowing; a mode, chip or crop change keeps what's on screen
@@ -690,6 +743,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         toast('Try describing it in words');
         return;
       }
+      // a new search is a history entry (Back returns to what you left, as it was) with its words in the address
+      if (!same && o.push !== false && (fin !== S.ran || S.bmp || S.like)) pushSearch(fin);
       S.fix = !o.exact && corrected(raw, fin) ? { from: raw.trim(), to: fin } : null;
       if (!same) {
         if (fin !== S.ran) S.narrow = [];
@@ -702,7 +757,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     } else S.fix = null;
     if (!o.fresh && S.like) S.like.seed = []; // More like this's first screen is the Similar strip; a refined search ranks afresh
     if (!S.ran && !S.bmp && !S.like) {
-      if (S.search !== S.feed) S.search?.abort();
+      if (S.search && S.search !== S.feed && !hist.some((h) => h.search === S.search)) S.search.abort();
+      else S.search?.pause(); // Forward can bring it back
       S.search = null;
       S.cells = [];
       paint(); // the start screen, which picks the feed back up
@@ -723,7 +779,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   async function start(stale: boolean) {
     const seq = ++startSeq;
     startedAt = performance.now();
-    if (S.search && S.search === S.feed) S.feed.pause(); // kept for when you come back
+    if (S.search && (S.search === S.feed || hist.some((h) => h.search === S.search))) S.search.pause(); // Back can return to it
     else S.search?.abort();
     if (S.bmp && !stale) {
       // reading the image can take seconds (the pose model's first load): show it, and that it's working
@@ -1990,11 +2046,20 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     if (S.viewer >= 0) closeViewer();
     else if (st?.refsViewer) return history.back(); // Forward onto a viewer that was closed since: step off it
     const d = st?.refsLike ?? 0;
-    if (d === histAt || !hist[d]) return;
+    if (d === histAt) return;
     hist[histAt] = snap(); // so Forward (or Back) can return to it
     histAt = d;
     hideToast(); // its Undo was for the search just left
-    restore(hist[d]);
+    if (hist[d]) return restore(hist[d]);
+    // an entry from before a reload: the address says what it was
+    const q = new URLSearchParams(location.search).get('q') ?? '';
+    Object.assign(S, { bmp: null, imgUrl: null, like: null, crop: { x: 0, y: 0, w: 1, h: 1 }, narrow: [], sketch: null, photoPose: null, sketchEdited: false, unread: false });
+    if (q) run(q, { exact: true, push: false });
+    else {
+      S.q = S.ran = '';
+      input.value = '';
+      run(null, { fresh: true });
+    }
   });
 
   function moreLikeThis(hit: Hit) {
@@ -2006,8 +2071,9 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     clearTimeout(cropTimer);
     hist[histAt] = snap();
     hist.length = ++histAt; // a new branch: what Forward had is gone, as in the browser
-    if (reuse) history.replaceState({ refsLike: histAt }, '');
-    else history.pushState({ refsLike: histAt }, '');
+    keep();
+    if (reuse) history.replaceState({ refsLike: histAt }, '', refsUrl(''));
+    else history.pushState({ refsLike: histAt }, '', refsUrl(''));
     const at = histAt;
     if (S.imgUrl) {
       /* keep the user's image alive for Back: don't revoke */
@@ -2025,6 +2091,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     S.cells = [];
     S.fix = null;
     run(null, { fresh: true });
+    scrollTo(0, 0); // a new set of results starts at the top
     const undo = () => {
       // only while this search is the one showing (after Back, a second back() would leave the app)
       const st = history.state as { refsViewer?: number; refsLike?: number } | null;
@@ -2227,7 +2294,11 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   // ---------------------------------------------------------------- page API
   onVisionState(scheduleStatus);
-  paint();
+  // a reload, or a shared link, with ?q=: that search
+  const linked = new URLSearchParams(location.search).get('q')?.trim();
+  if (linked) run(linked, { exact: true, push: false });
+  else paint();
+  let leftAt = 0; // where the page was scrolled when you switched to Briefs
   return {
     show() {
       page.hidden = false;
@@ -2238,11 +2309,13 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         paint();
       } else if (!S.search && (S.ran || S.bmp || S.like)) run(null, { fresh: true }); // Back/Forward restored it while hidden
       if (S.view === 'saved') paint(); // folders may have been renamed or deleted on Briefs
+      else if (S.ran || S.bmp || S.like) scrollBack(leftAt); // back where you were in the results
       S.search?.resume();
       void warmVision().catch(() => undefined); // background download of the ranking model
       if (!S.ran && !S.bmp && !S.like && !COARSE) setTimeout(() => input.focus(), 0);
     },
     hide() {
+      leftAt = scrollY;
       page.hidden = true;
       closePop(false);
       if (S.viewerOpen) requestClose(); // also pops the viewer's history entry

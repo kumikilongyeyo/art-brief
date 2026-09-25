@@ -46,6 +46,8 @@ async function search(page: Page, q: string) {
   await box.press('Enter');
 }
 const cells = (page: Page) => page.locator('.r-grid .r-cell:not([hidden])');
+/** The ranking model has loaded (a busy machine can take a while): tests that need pictures read wait for it. */
+const modelReady = (page: Page) => expect(page.locator('#r-status')).not.toContainText('matching model', { timeout: 60_000 });
 const onlyDesktopChromium = (name: string) => name !== 'chromium';
 
 test.describe.configure({ timeout: 90_000 });
@@ -646,6 +648,7 @@ test('viewer: skips pictures the grid hid and counts like the grid; closing land
   await openRefs(page);
   await search(page, 'lantern');
   await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
+  await modelReady(page);
   await expect(page.locator('.r-grid .r-cell[hidden]').first()).toBeAttached({ timeout: 30_000 });
   const s = await page.evaluate(() => {
     const cs = [...document.querySelectorAll<HTMLElement>('.r-grid .r-cell')];
@@ -672,6 +675,7 @@ test('viewer: after Flip, a Similar pick opens unflipped; one that isn\u2019t in
   await openRefs(page);
   await search(page, 'lantern');
   await expect(cells(page).nth(5)).toBeVisible({ timeout: 30_000 });
+  await modelReady(page); // the Similar strip needs the pictures read
   const inGrid = new Set(await page.locator('.r-grid .r-cell:not([hidden]) .r-cap span:first-child').allTextContents());
   const viewer = page.locator('.r-viewer'),
     title = viewer.locator('h2'),
@@ -835,6 +839,32 @@ test('the start screen has a feed of new work: fresh each visit, no ratings, Mor
   await page.goBack();
   await expect(page.locator('.r-feed')).toBeVisible();
   expect(await page.locator('.r-feed .r-open').evaluateAll((els) => els.slice(0, 10).map((e) => e.getAttribute('aria-label')))).toEqual(again);
+});
+
+test('each search is a history entry: Back shows the last one as it was, and its words are in the address', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'lantern');
+  await expect(cells(page).nth(9)).toBeVisible({ timeout: 30_000 });
+  await expect(page).toHaveURL(/[?&]q=lantern/);
+  await page.mouse.wheel(0, 1500);
+  await page.waitForTimeout(600);
+  const was = await page.evaluate(() => ({ y: scrollY, first: document.querySelector('.r-grid .r-open')?.getAttribute('aria-label') }));
+  await search(page, 'dragon');
+  await expect(page).toHaveURL(/[?&]q=dragon/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0); // new results start at the top
+  await page.goBack();
+  await expect(page.locator('#r-q')).toHaveValue('lantern');
+  await expect(page.locator('.r-grid .r-open').first()).toHaveAttribute('aria-label', was.first!); // the same results, not a new search
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(was.y - 120); // where you were (the header above may differ a line)
+  await page.goBack();
+  await expect(page.locator('.r-feed')).toBeVisible(); // the start screen
+  await page.goForward();
+  await expect(page.locator('#r-q')).toHaveValue('lantern');
+  await page.reload();
+  await expect(page.locator('#r-q')).toHaveValue('lantern'); // the address brings it back
+  await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
 });
 
 test('phone: References fits the screen', async ({ page }, info) => {
