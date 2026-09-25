@@ -7,7 +7,7 @@ import type { Cand, Mode } from './types';
 import { embedBitmap, onVisionState, visionState, warmVision } from './vision';
 import { describePose, fromMoveNet, inkBox, looksLikeSketch, readSketch, templatePose, type Pt, type Skeleton } from './pose';
 import { completions, corrected, display, loadVocab, normWords, resolveQuery, V, words, type Vocab } from './vocab';
-import { toast } from '../ui/toast';
+import { hideToast, toast, toastHost } from '../ui/toast';
 import { rngFrom, seedFromBytes } from '../engine/rng';
 import { showUrl } from './net';
 import { openFolderMenu } from '../ui/folder-menu';
@@ -191,6 +191,10 @@ interface Snap {
   crop: Crop;
   mode: Mode;
   narrow: string[];
+  sketch: Skeleton | null;
+  photoPose: Skeleton | null;
+  sketchEdited: boolean;
+  unread: boolean;
 }
 interface Like {
   title: string;
@@ -236,6 +240,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     menu: null as null | 'mode' | 'set',
     viewer: -1,
     viewerOpen: false,
+    vhit: null as Hit | null, // a Similar pick the viewer shows that isn't in the grid
     vflip: false,
     view: 'search' as 'search' | 'saved',
     savedFilter: 'all' as string,
@@ -247,7 +252,9 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     unread: false, // a drawing we couldn't read as a stick figure (joints start on a template)
     sketchEdited: false, // the user dragged a joint: keep their joints, don't re-read
   };
+  // each More like this is a history entry: hist[d] is the search at depth d (history.state.refsLike), for Back and Forward
   const hist: Snap[] = [];
+  let histAt = (history.state as { refsLike?: number } | null)?.refsLike ?? 0;
 
   // ---- static skeleton
   const input = el('input', {
@@ -305,6 +312,9 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     file,
   );
   root.append(page);
+  // the sticky bar's height, for refs.css's scroll-padding (it wraps to two rows on phones)
+  const barrow = sb.parentElement!;
+  new ResizeObserver(() => document.documentElement.style.setProperty('--r-barrow-h', `${barrow.offsetHeight}px`)).observe(barrow);
 
   // ---------------------------------------------------------------- bar
   function guess(): Mode | null {
@@ -616,11 +626,19 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   // ---------------------------------------------------------------- search
   function snap(): Snap {
-    return { q: S.q, ran: S.ran, bmp: S.bmp, imgUrl: S.imgUrl, like: S.like, crop: { ...S.crop }, mode: S.mode, narrow: [...S.narrow] };
+    const { sketch, photoPose, sketchEdited, unread } = S;
+    return { q: S.q, ran: S.ran, bmp: S.bmp, imgUrl: S.imgUrl, like: S.like, crop: { ...S.crop }, mode: S.mode, narrow: [...S.narrow], sketch: sketch && { ...sketch }, photoPose, sketchEdited, unread };
   }
   function restore(s: Snap) {
-    Object.assign(S, { ...s, crop: { ...s.crop }, narrow: [...s.narrow] });
+    clearTimeout(cropTimer);
+    Object.assign(S, { ...s, crop: { ...s.crop }, narrow: [...s.narrow], sketch: s.sketch && { ...s.sketch } });
     S.cells = [];
+    if (page.hidden) {
+      // Back/Forward while another page shows: show() runs it
+      if (S.search !== S.feed) S.search?.abort();
+      S.search = null;
+      return;
+    }
     run(null, { fresh: true });
   }
 
@@ -638,6 +656,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       S.narrow = S.narrow.filter((w) => !fin.includes(w));
       input.value = fin;
     } else S.fix = null;
+    if (!o.fresh && S.like) S.like.seed = []; // More like this's first screen is the Similar strip; a refined search ranks afresh
     if (!S.ran && !S.bmp && !S.like) {
       if (S.search !== S.feed) S.search?.abort();
       S.search = null;
@@ -698,7 +717,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         const row = body.querySelector('.r-narrow');
         if (row && !S.narrow.length) row.replaceWith(narrowRow()); // chips follow the mode once it's known
       }
-      if (S.search === s) scheduleStatus();
+      if (S.search === s) {
+        scheduleStatus();
+        rankedLater();
+      }
     };
     paint();
     // the sentinel may already be in view: re-observe so its callback fires for the new search
@@ -844,11 +866,16 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   /** Loads the next batch for the current search. One load per search at a time; a new search
    *  never waits on the old one's load. Results always go into S.cells; the grid shows them when visible. */
   let loadingFor: Search | null = null;
-  async function loadMore(first = false) {
+  let loading: Promise<void> = Promise.resolve();
+  function loadMore(first = false): Promise<void> {
     const s = S.search;
-    if (!s || loadingFor === s) return;
-    if (!first && s.status().exhausted) return;
+    if (!s) return Promise.resolve();
+    if (loadingFor === s) return loading; // one at a time: wait for the one already loading (the viewer's Next)
+    if (!first && s.status().exhausted) return Promise.resolve();
     loadingFor = s;
+    return (loading = loadBatch(s));
+  }
+  async function loadBatch(s: Search) {
     if (!S.stale && S.grid?.isConnected) addSkeletons(S.grid);
     let hits: Hit[];
     try {
@@ -964,6 +991,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         S.feedCells.forEach((h, i) => {
           if (h.why === 'adult' && els[i]) els[i].hidden = true;
         });
+        rankedLater();
       };
       S.feed = feed;
       S.feedCells = [];
@@ -1073,6 +1101,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       e.hidden = true;
       e.classList.add('r-broken');
       S.search?.broken(c.key);
+      scheduleStatus();
     });
     const open = el(
       'button',
@@ -1352,15 +1381,19 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   async function cropChanged() {
     // a crop of a "More like this" image needs its pixels: fetch it once through wsrv.nl
     if (S.like && !S.bmp) {
+      const key = S.like.key;
+      let bmp: ImageBitmap;
       try {
         const r = await fetch(
           `https://wsrv.nl/?url=${encodeURIComponent(S.like.url.replace(/^https?:\/\//, ''))}&w=1024&h=1024&fit=inside&output=jpg`,
         );
-        S.bmp = await createImageBitmap(await r.blob());
+        bmp = await createImageBitmap(await r.blob());
       } catch {
-        toast('Couldn’t load that image to crop it');
+        if (S.like?.key === key) toast('Couldn’t load that image to crop it');
         return;
       }
+      if (S.like?.key !== key || S.bmp) return bmp.close(); // went Back (or elsewhere) while it loaded
+      S.bmp = bmp;
     }
     run(null);
   }
@@ -1501,13 +1534,19 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   // ---------------------------------------------------------------- viewer
   let viewerList: () => Cand[] = () => S.cells.map((h) => h.c);
+  /** Grid positions it hides (a picture that won't load, a feed picture read as adult): the viewer skips them too. */
+  function hiddenCells(): boolean[] {
+    return S.view === 'search' && S.grid ? [...S.grid.querySelectorAll<HTMLElement>('.r-cell')].map((e) => !!e.hidden) : [];
+  }
   function openViewer(i: number, list?: () => Cand[]) {
     viewerList = list ?? (() => S.cells.map((h) => h.c));
     S.viewer = i;
+    S.vhit = null;
     S.vflip = false;
     if (!S.viewerOpen) {
       S.viewerOpen = true;
-      history.pushState({ refsViewer: 1 }, '');
+      history.scrollRestoration = 'manual'; // closing focuses the result you ended on: don't scroll back to where you opened
+      history.pushState({ refsViewer: 1, refsLike: histAt }, '');
     }
     document.documentElement.classList.add('r-noscroll');
     renderViewer();
@@ -1519,27 +1558,42 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   function closeViewer() {
     const i = S.viewer;
     S.viewer = -1;
+    S.vhit = null;
     S.viewerOpen = false;
     document.documentElement.classList.remove('r-noscroll');
     document.querySelector('.r-viewer')?.remove();
+    toastHost(null);
     (document.getElementById('app') as HTMLElement).inert = false;
-    (S.view === 'saved'
-      ? body.querySelectorAll<HTMLElement>('.r-open')[i]
-      : body.querySelectorAll<HTMLElement>('.r-grid .r-open')[i]
-    )?.focus();
+    if (i < 0) return;
+    // back to the result you ended on, or the nearest one the grid still shows
+    const opens = [...body.querySelectorAll<HTMLElement>(S.view === 'saved' ? '.r-open' : '.r-grid .r-open')],
+      shown = (o: HTMLElement) => o.offsetParent !== null;
+    (opens.slice(i).find(shown) ?? opens.slice(0, i).reverse().find(shown))?.focus();
   }
   function moveViewer(n: number) {
     const list = viewerList(),
-      i = S.viewer + n;
+      off = hiddenCells();
+    let i = S.viewer + (S.vhit && n < 0 ? 0 : n); // from a Similar pick, ← goes back to the result you came from
+    while (off[i]) i += n < 0 ? -1 : 1;
     if (i < 0) return;
     if (i >= list.length) {
-      if (S.view === 'search' && S.search && !S.search.status().exhausted)
-        void loadMore().then(() => {
-          if (S.viewer + n < viewerList().length) moveViewer(n);
-        });
+      if (S.view === 'search' && S.search && !S.search.status().exhausted) {
+        const at = S.viewer,
+          from = S.vhit,
+          next = document.getElementById('r-vnext');
+        next?.setAttribute('aria-busy', 'true');
+        void loadMore()
+          .catch(() => undefined)
+          .then(() => {
+            next?.removeAttribute('aria-busy');
+            // closed, or moved elsewhere, while the batch loaded: stay put
+            if (S.viewerOpen && S.viewer === at && S.vhit === from && i < viewerList().length) moveViewer(n);
+          });
+      }
       return;
     }
     S.viewer = i;
+    S.vhit = null;
     S.vflip = false;
     const id = (document.activeElement as HTMLElement | null)?.id;
     renderViewer();
@@ -1552,28 +1606,33 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   function renderViewer() {
     document.querySelector('.r-viewer')?.remove();
     const list = viewerList(),
-      c = list[S.viewer];
-    if (!c) {
-      S.viewer = -1;
+      c = S.vhit?.c ?? list[S.viewer];
+    if (!c || !S.viewerOpen) {
+      S.viewer = -1; // closed meanwhile (e.g. while a batch loaded): never reopen without its history entry
       return;
     }
     const inSearch = S.view === 'search';
-    const hit = inSearch ? S.cells[S.viewer] : undefined;
-    const total = inSearch
-      ? `${S.viewer + 1} of ${S.cells.length}${S.search && !S.search.status().exhausted ? '+' : ''}`
-      : `${S.viewer + 1} of ${list.length}`;
+    const hit = inSearch ? S.vhit ?? S.cells[S.viewer] : undefined;
+    // counted as the grid shows them: without the ones it hid
+    const off = hiddenCells(),
+      pos = S.viewer + 1 - off.slice(0, S.viewer).filter(Boolean).length,
+      after = list.some((_, k) => k > S.viewer && !off[k]);
+    const total = S.vhit
+      ? 'Similar'
+      : `${pos} of ${list.length - off.filter(Boolean).length}${inSearch && S.search && !S.search.status().exhausted ? '+' : ''}`;
     const v = hit ? S.search?.voteOf(c.key) : undefined;
-    const img = el('img', { src: c.full || c.thumb, alt: c.title, referrerpolicy: 'no-referrer' });
-    img.addEventListener(
-      'error',
-      () => {
-        if (img.src !== c.thumb) img.src = c.thumb;
-      },
-      { once: true },
-    );
+    const big = c.full || c.thumb;
+    const img = el('img', { src: big, alt: c.title, referrerpolicy: 'no-referrer' });
+    // as the grid does: the thumbnail, then through wsrv.nl (hosts that refuse or rate-limit); then say so
+    const alts = [c.thumb, ...(big.startsWith('https://wsrv.nl/') ? [] : [showUrl(big, 1280)])].filter((u) => u !== big);
+    img.addEventListener('error', () => {
+      const u = alts.shift();
+      if (u) img.src = u;
+      else img.replaceWith(el('p', { class: 'r-vfail' }, 'Couldn’t load this picture'));
+    });
     const prev = el(
       'button',
-      { class: 'r-vnav r-prev', id: 'r-vprev', type: 'button', 'aria-label': 'Previous', disabled: S.viewer === 0 },
+      { class: 'r-vnav r-prev', id: 'r-vprev', type: 'button', 'aria-label': 'Previous', disabled: !S.vhit && pos === 1 },
       ic('left'),
     );
     const next = el(
@@ -1583,7 +1642,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         id: 'r-vnext',
         type: 'button',
         'aria-label': 'Next',
-        disabled: inSearch ? S.viewer >= S.cells.length - 1 && !!S.search?.status().exhausted : S.viewer >= list.length - 1,
+        disabled: !after && (!inSearch || !!S.search?.status().exhausted),
       },
       ic('right'),
     );
@@ -1619,13 +1678,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         close,
       ),
     );
-    if (hit?.vec) {
-      const more = el('button', { class: 'r-primary', type: 'button' }, ic('layers'), 'More like this');
-      more.addEventListener('click', () => moreLikeThis(hit));
-      side.append(more);
-    }
     const inFeed = !!S.search && S.search === S.feed;
-    if (hit && !inFeed) {
+    if (hit && !inFeed && !S.vhit) {
       const up = el('button', { type: 'button', 'aria-pressed': String(v === 'up') }, ic('up'), 'Good match');
       const dn = el('button', { type: 'button', 'aria-pressed': String(v === 'down') }, ic('down'), 'Not this');
       up.addEventListener('click', () => vote(S.viewer, 'up'));
@@ -1645,30 +1699,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       el('div', { class: 'r-pair' }, save, flip),
       el('a', { class: 'r-vlink', href: /^https?:\/\//.test(c.page) ? c.page : '#', target: '_blank', rel: 'noopener noreferrer' }, ic('ext'), `Open on ${SOURCE_BY_ID[c.src].label}`),
     );
-    if (hit && S.search && !inFeed) {
-      const near = S.search.similar(c.key, 6);
-      if (near.length) {
-        const all = el('button', { class: 'r-linkish', type: 'button' }, 'See all');
-        all.addEventListener('click', () => moreLikeThis(hit));
-        const mini = el('div', { class: 'r-mini' });
-        for (const n of near) {
-          const b = el(
-            'button',
-            { type: 'button', 'aria-label': n.c.title },
-            el('img', { src: n.c.thumb, alt: '', referrerpolicy: 'no-referrer' }),
-          );
-          b.addEventListener('click', () => {
-            const j = S.cells.indexOf(n);
-            if (j >= 0) {
-              S.viewer = j;
-              renderViewer();
-            } else moreLikeThis(hit);
-          });
-          mini.append(b);
-        }
-        side.append(el('div', {}, el('div', { class: 'r-nearhead' }, el('span', {}, 'Similar'), all), mini));
-      }
-    }
+    if (hit) viewerRanked(side, hit);
     const card = el(
       'div',
       { class: 'r-vcard', id: 'r-vcard', tabindex: '-1' },
@@ -1677,8 +1708,13 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       side,
     );
     const ov = el('div', { class: 'r-viewer', role: 'dialog', 'aria-modal': 'true', 'aria-label': c.title }, card);
+    let downOn: EventTarget | null = null;
+    ov.addEventListener('pointerdown', (e) => (downOn = e.target));
     ov.addEventListener('click', (e) => {
-      if (e.target === ov) requestClose();
+      if (e.target !== ov) return;
+      // a press that began on the backdrop, and not the second click of the double-click that opened this
+      if (downOn === ov && e.detail < 2) requestClose();
+      else card.focus(); // the press took focus out of the dialog: Esc and arrows must still work
     });
     ov.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -1699,25 +1735,73 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       }
     });
     document.body.append(ov);
+    toastHost(ov);
     (document.getElementById('app') as HTMLElement).inert = true;
     card.focus();
   }
-  addEventListener('popstate', () => {
-    if (S.viewer >= 0) {
-      closeViewer();
-      return;
+  /** More like this and the Similar strip need the result's vector, which can arrive after the viewer opened. */
+  function viewerRanked(side: HTMLElement, hit: Hit) {
+    if (hit.vec && !side.querySelector('.r-primary')) {
+      const more = el('button', { class: 'r-primary', type: 'button' }, ic('layers'), 'More like this');
+      more.addEventListener('click', () => moreLikeThis(hit));
+      side.querySelector('.r-vhead')?.after(more);
     }
-    const s = hist.pop();
-    if (s) restore(s);
+    if (!S.search || S.search === S.feed || side.querySelector('.r-mini')) return;
+    const near = S.search.similar(hit.c.key, 6);
+    if (!near.length) return;
+    const all = el('button', { class: 'r-linkish', type: 'button' }, 'See all');
+    all.addEventListener('click', () => moreLikeThis(hit));
+    const mini = el('div', { class: 'r-mini' });
+    for (const n of near) {
+      const im = el('img', { src: n.c.thumb, alt: '', referrerpolicy: 'no-referrer' });
+      im.addEventListener('error', () => {
+        if (!im.dataset.retried && !n.c.thumb.startsWith('https://wsrv.nl/')) {
+          im.dataset.retried = '1';
+          im.src = showUrl(n.c.thumb);
+        } else b.hidden = true;
+      });
+      const b = el('button', { type: 'button', 'aria-label': n.c.title }, im);
+      b.addEventListener('click', () => {
+        const j = S.cells.indexOf(n);
+        S.vflip = false;
+        S.vhit = j >= 0 ? null : n; // not in the grid: shown all the same; ← goes back to where you were
+        if (j >= 0) S.viewer = j;
+        renderViewer();
+      });
+      mini.append(b);
+    }
+    side.append(el('div', {}, el('div', { class: 'r-nearhead' }, el('span', {}, 'Similar'), all), mini));
+  }
+  /** The open viewer's result got ranked (the model was still loading when it opened): add what that allows. */
+  function rankedLater() {
+    const side = document.querySelector<HTMLElement>('.r-viewer .r-vside'),
+      hit = S.vhit ?? S.cells[S.viewer];
+    if (side && S.viewerOpen && S.view === 'search' && hit) viewerRanked(side, hit);
+  }
+  addEventListener('popstate', () => {
+    const st = history.state as { refsViewer?: number; refsLike?: number } | null;
+    if (S.viewer >= 0) closeViewer();
+    else if (st?.refsViewer) return history.back(); // Forward onto a viewer that was closed since: step off it
+    const d = st?.refsLike ?? 0;
+    if (d === histAt || !hist[d]) return;
+    hist[histAt] = snap(); // so Forward (or Back) can return to it
+    histAt = d;
+    hideToast(); // its Undo was for the search just left
+    restore(hist[d]);
   });
 
   function moreLikeThis(hit: Hit) {
     if (!hit.vec || !S.search) return;
     // the feed is a random mix: its "nearest" pictures aren't similar, so there's nothing to start from
     const seed = S.search === S.feed ? [] : S.search.similar(hit.c.key, 6);
+    const reuse = S.viewerOpen; // the viewer's history entry becomes this search's
     closeViewer();
-    hist.push(snap());
-    history.replaceState({ refsLike: hist.length }, '');
+    clearTimeout(cropTimer);
+    hist[histAt] = snap();
+    hist.length = ++histAt; // a new branch: what Forward had is gone, as in the browser
+    if (reuse) history.replaceState({ refsLike: histAt }, '');
+    else history.pushState({ refsLike: histAt }, '');
+    const at = histAt;
     if (S.imgUrl) {
       /* keep the user's image alive for Back: don't revoke */
     }
@@ -1726,13 +1810,24 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     S.like = { title: hit.c.title, key: hit.c.key, vec: hit.vec, url: hit.c.full || hit.c.thumb, seed, down: S.search.priorOut().down };
     S.crop = { x: 0, y: 0, w: 1, h: 1 };
     S.narrow = [];
+    // not a drawing's pose: this searches by how the result looks
+    S.sketch = null;
+    S.photoPose = null;
+    S.sketchEdited = false;
+    S.unread = false;
     S.cells = [];
     S.fix = null;
     run(null, { fresh: true });
-    toast(COARSE ? 'Searching like this' : `Searching like “${hit.c.title}”`, { action: { label: 'Undo', run: () => history.back() } });
+    const undo = () => {
+      // only while this search is the one showing (after Back, a second back() would leave the app)
+      const st = history.state as { refsViewer?: number; refsLike?: number } | null;
+      if (st?.refsLike === at) history.go(st.refsViewer ? -2 : -1);
+    };
+    toast(COARSE ? 'Searching like this' : `Searching like “${hit.c.title}”`, { action: { label: 'Undo', run: undo } });
   }
 
   // ---------------------------------------------------------------- saved references
+  const removed: Record<string, SavedRef> = {}; // Save again after Remove puts it back in its folder
   function toggleSave(c: Cand, btn?: HTMLElement) {
     if (saved[c.key]) {
       const was = saved[c.key];
@@ -1741,6 +1836,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         saved[c.key] = was;
         return;
       }
+      removed[c.key] = was;
       btn?.setAttribute('aria-pressed', 'false');
       btn?.replaceChildren(ic('star'), 'Save');
       toast('Removed from Saved', {
@@ -1749,12 +1845,14 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
           run: () => {
             saved[was.key] = was;
             persistSaved();
+            btn?.setAttribute('aria-pressed', 'true'); // the viewer's Save button, when it was pressed there
+            btn?.replaceChildren(ic('star'), 'Saved');
             if (S.view === 'saved') paint();
           },
         },
       });
     } else {
-      saved[c.key] = refFrom(c, undefined); // into Unsorted; move it from Saved
+      saved[c.key] = removed[c.key] ?? refFrom(c, undefined); // into Unsorted; move it from Saved
       if (!persistSaved()) {
         delete saved[c.key];
         return;
@@ -1899,7 +1997,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         S.tiles = null;
         resetFeed();
         paint();
-      }
+      } else if (!S.search && (S.ran || S.bmp || S.like)) run(null, { fresh: true }); // Back/Forward restored it while hidden
       S.search?.resume();
       void warmVision().catch(() => undefined); // background download of the ranking model
       if (!S.ran && !S.bmp && !S.like && !COARSE) setTimeout(() => input.focus(), 0);

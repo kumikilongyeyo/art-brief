@@ -91,6 +91,10 @@ mark.r-mark,
   background: var(--bg);
   padding: 4px 0 10px;
 }
+/* focus scrolling (Tab, Shift+Tab, closing the viewer) stops below the sticky bar, not under it */
+:root:has(.r-page:not([hidden])) {
+  scroll-padding-top: calc(env(safe-area-inset-top, 0px) + var(--r-barrow-h, 76px) + 8px);
+}
 .r-sb {
   position: relative;
   min-width: 0;
@@ -1130,6 +1134,17 @@ html.r-noscroll body {
 .r-vnav:disabled {
   opacity: 0.3;
   cursor: default;
+}
+.r-vnav[aria-busy='true'] {
+  opacity: 0.55;
+  cursor: progress;
+}
+.r-vfail {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  margin: 0;
+  padding: 0 64px;
+  text-align: center;
 }
 .r-vside {
   padding: 18px 18px 20px;
