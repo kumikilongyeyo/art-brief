@@ -189,6 +189,21 @@ function showSavedCount(n: number, what: 'briefs' | 'references') {
   savedCount.textContent = String(n);
   savedBtn.setAttribute('aria-label', `Saved ${what} (${n})`);
 }
+/** On Briefs the Saved button opens a dialog; on References it toggles that page's Saved view in place. */
+function savedBtnRole(v: View) {
+  if (v === 'refs') {
+    savedBtn.removeAttribute('aria-haspopup');
+    savedBtn.removeAttribute('aria-controls');
+    savedBtn.removeAttribute('aria-expanded');
+    savedBtn.setAttribute('aria-pressed', String(refsSavedOpen));
+  } else {
+    savedBtn.setAttribute('aria-haspopup', 'dialog');
+    savedBtn.setAttribute('aria-controls', 'saved-panel');
+    savedBtn.setAttribute('aria-expanded', String(state.savedOpen));
+    savedBtn.removeAttribute('aria-pressed');
+  }
+}
+let refsSavedOpen = false;
 let refsPage: import('./refs/ui').RefsPage | null = null;
 const refsRoot = h('div', { class: 'refs-root' });
 const viewTab = (v: View, label: string) =>
@@ -216,6 +231,10 @@ async function setView(v: View) {
       onSavedChange: (n) => {
         if (view === 'refs') showSavedCount(n, 'references');
       },
+      onSavedView: (open) => {
+        refsSavedOpen = open;
+        if (view === 'refs') savedBtnRole('refs');
+      },
     });
   }
   view = v;
@@ -234,6 +253,7 @@ async function setView(v: View) {
     refsPage?.hide();
     showSavedCount(Object.keys(saved).length, 'briefs');
   }
+  savedBtnRole(v);
   const url = new URL(location.href);
   if (v === 'refs') url.searchParams.set('view', 'refs');
   else url.searchParams.delete('view');
@@ -783,7 +803,12 @@ function addFolder(name: string): string | null {
     return null;
   }
   if (r.folders !== folders) {
-    setFolders(r.folders);
+    // written first: a folder the browser refused to store would vanish on reload, taking its items' filing with it
+    if (!saveFolders(r.folders)) {
+      toast('Couldn’t save: this browser is blocking storage (private window, or storage full)');
+      return null;
+    }
+    folders = r.folders;
     toast(`Folder “${r.folder.name}” created`);
   }
   return r.folder.id;

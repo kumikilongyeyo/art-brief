@@ -17,6 +17,8 @@ export interface RefsHost {
   folders(): Folder[];
   addFolder(name: string): string | null;
   onSavedChange(count: number): void;
+  /** The Saved view opened or closed (the header's Saved button reflects it). */
+  onSavedView(open: boolean): void;
 }
 export interface RefsPage {
   show(): void;
@@ -890,6 +892,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   // ---------------------------------------------------------------- painting
   function paint() {
+    host.onSavedView(S.view === 'saved');
     paintBar();
     body.replaceChildren();
     if (S.view === 'saved') return paintSaved();
@@ -1445,15 +1448,15 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   }
   function closeViewer() {
     const i = S.viewer;
+    const key = viewerList()[i]?.key;
     S.viewer = -1;
     S.viewerOpen = false;
     document.documentElement.classList.remove('r-noscroll');
     document.querySelector('.r-viewer')?.remove();
     (document.getElementById('app') as HTMLElement).inert = false;
-    (S.view === 'saved'
-      ? body.querySelectorAll<HTMLElement>('.r-open')[i]
-      : body.querySelectorAll<HTMLElement>('.r-grid .r-open')[i]
-    )?.focus();
+    // by key: the Saved grid may have repainted while the viewer was open
+    if (S.view === 'saved') focusSaved(key, i);
+    else body.querySelectorAll<HTMLElement>('.r-grid .r-open')[i]?.focus();
   }
   function moveViewer(n: number) {
     const list = viewerList(),
@@ -1660,34 +1663,16 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   }
 
   // ---------------------------------------------------------------- saved references
+  const removed: Record<string, SavedRef> = {}; // un-saved this visit: saving again puts it back in its folder
   function toggleSave(c: Cand, btn?: HTMLElement) {
     if (saved[c.key]) {
-      const was = saved[c.key];
-      delete saved[c.key];
-      if (!persistSaved()) {
-        saved[c.key] = was;
-        return;
-      }
-      btn?.setAttribute('aria-pressed', 'false');
-      btn?.replaceChildren(ic('star'), 'Save');
-      toast('Removed from Saved', {
-        action: {
-          label: 'Undo',
-          run: () => {
-            saved[was.key] = was;
-            persistSaved();
-            if (S.view === 'saved') paint();
-          },
-        },
-      });
-    } else {
-      saved[c.key] = refFrom(c, undefined); // into Unsorted; move it from Saved
-      if (!persistSaved()) {
-        delete saved[c.key];
-        return;
-      }
-      btn?.setAttribute('aria-pressed', 'true');
-      btn?.replaceChildren(ic('star'), 'Saved');
+      const undone = () => {
+        if (btn?.isConnected) paintSaveBtn(btn, true);
+      };
+      if (removeSaved(c.key, undone)) paintSaveBtn(btn, false);
+    } else if (putSaved(c.key, removed[c.key] ?? refFrom(c, undefined))) {
+      delete removed[c.key];
+      paintSaveBtn(btn, true);
       toast('Saved', {
         action: {
           label: 'View',
@@ -1699,12 +1684,55 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       });
     }
   }
+  function paintSaveBtn(btn: HTMLElement | undefined, on: boolean) {
+    btn?.setAttribute('aria-pressed', String(on));
+    btn?.replaceChildren(ic('star'), on ? 'Saved' : 'Save');
+  }
+  /** Removes a saved reference, with Undo. Only ever removes: false when it isn't saved or the write is refused. */
+  function removeSaved(key: string, onUndo?: () => void): boolean {
+    const was = saved[key];
+    if (!was || !putSaved(key, undefined)) return false;
+    removed[key] = was;
+    toast('Removed from Saved', {
+      action: {
+        label: 'Undo',
+        run: () => {
+          if (saved[key] || !putSaved(key, was)) return;
+          delete removed[key];
+          onUndo?.();
+        },
+      },
+    });
+    return true;
+  }
+  /** Sets (or, with undefined, removes) one saved reference. A refused write changes nothing. */
+  function putSaved(key: string, ref: SavedRef | undefined): boolean {
+    const was = saved[key];
+    if (ref) saved[key] = ref;
+    else delete saved[key];
+    if (!persistSaved()) {
+      if (was) saved[key] = was;
+      else delete saved[key];
+      return false;
+    }
+    if (S.view === 'saved') paint(); // also under the viewer, so closing it never shows a stale grid
+    return true;
+  }
   /** Writes the saved list; false (with a message) when the browser refuses — nothing is claimed saved then. */
   function persistSaved(): boolean {
     const ok = saveRefs(saved);
-    if (!ok) toast('Couldn’t save: this browser is blocking storage (private window, or storage full)');
-    host.onSavedChange(Object.keys(saved).length);
+    if (ok) host.onSavedChange(Object.keys(saved).length);
+    else toast('Couldn’t save: this browser is blocking storage (private window, or storage full)');
     return ok;
+  }
+  /** Focus after the Saved grid repaints: the item's own control, else the cell now in its place, else its folder chip. */
+  function focusSaved(key: string | undefined, i: number, sel = '.r-open') {
+    const cells = [...body.querySelectorAll<HTMLElement>('.r-saved .r-cell')];
+    (
+      cells.find((x) => x.dataset.key === key)?.querySelector<HTMLElement>(sel) ??
+      (cells[i] ?? cells[i - 1])?.querySelector<HTMLElement>('.r-open') ??
+      body.querySelector<HTMLElement>('.r-saved .r-chip.r-on')
+    )?.focus();
   }
   function showSaved(on: boolean) {
     S.view = on ? 'saved' : 'search';
@@ -1756,15 +1784,27 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       const e = el('div', {
         class: 'r-cell r-in',
         style: `--c:${TONES[i % TONES.length]};aspect-ratio:${Math.min(Math.max(r.aspect ?? 1, 0.6), 1.6)}`,
+        'data-key': r.key,
       });
       img.addEventListener('load', () => e.classList.add('r-loaded'));
-      img.addEventListener('error', () => e.classList.add('r-loaded'));
       const open = el('button', { class: 'r-open', type: 'button', 'aria-label': `${r.title}. Open` }, img);
       open.addEventListener('click', () => openViewer(i, () => cands));
+      img.addEventListener('error', () => {
+        if (!img.dataset.retried && !r.thumb.startsWith('https://wsrv.nl/')) {
+          img.dataset.retried = '1';
+          img.src = showUrl(r.thumb);
+          return;
+        }
+        // unlike a search result it isn't hidden: it's the user's pick, so say what it was
+        e.classList.add('r-loaded', 'r-broken');
+        open.append(el('span', { class: 'r-unavail' }, ic('image'), 'Image unavailable'));
+        open.setAttribute('aria-label', `${r.title}, image unavailable. Open`);
+      });
       const move = el(
         'button',
         {
           type: 'button',
+          class: 'r-move',
           'aria-label': `Move ${r.title} to a folder`,
           'aria-haspopup': 'menu',
           'aria-expanded': 'false',
@@ -1772,26 +1812,25 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         },
         ic('folder'),
       );
-      move.addEventListener('click', () =>
+      move.addEventListener('click', () => {
+        const fs = host.folders();
         openFolderMenu(move, {
-          folders: host.folders(),
-          current: r.folder,
+          folders: fs,
+          current: fs.some((f) => f.id === r.folder) ? r.folder : undefined, // a deleted folder's items are Unsorted
           onPick: (id) => {
-            saved[r.key] = { ...saved[r.key], folder: id };
-            persistSaved();
-            paint();
+            const cur = saved[r.key];
+            if (cur && putSaved(r.key, { ...cur, folder: id })) focusSaved(r.key, i, '.r-move');
           },
           onCreate: (name) => host.addFolder(name),
-        }),
-      );
+        });
+      });
       const del = el(
         'button',
         { type: 'button', 'aria-label': `Remove ${r.title}`, 'data-tip': 'Remove', class: 'r-tip-end' },
         ic('trash'),
       );
       del.addEventListener('click', () => {
-        toggleSave(cands[i]);
-        paint();
+        if (removeSaved(r.key, () => focusSaved(r.key, i))) focusSaved(r.key, i);
       });
       e.append(
         open,
@@ -1827,6 +1866,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         resetFeed();
         paint();
       }
+      if (S.view === 'saved') paint(); // folders may have been renamed or deleted on Briefs
       S.search?.resume();
       void warmVision().catch(() => undefined); // background download of the ranking model
       if (!S.ran && !S.bmp && !S.like && !COARSE) setTimeout(() => input.focus(), 0);

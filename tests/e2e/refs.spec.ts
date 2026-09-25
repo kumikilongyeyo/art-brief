@@ -142,6 +142,7 @@ test('a save the browser refuses says so and is not marked saved', async ({ page
   await page.locator('.r-viewer').getByRole('button', { name: 'Save' }).click();
   await expect(page.locator('.toast')).toContainText('Couldn’t save');
   await expect(page.locator('.r-viewer').getByRole('button', { name: 'Save' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('#saved-toggle .badge')).toHaveText('0'); // the count isn't claimed either
 });
 
 test('search results never leak into the Saved view', async ({ page }, info) => {
@@ -219,4 +220,244 @@ test('phone: References fits the screen', async ({ page }, info) => {
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
   await page.locator('#r-q').fill('dragon');
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+});
+
+// ---- Saved references: seeded straight into storage, so these need no search (and no model)
+type Seed = { title: string; folder?: string; thumb?: string };
+async function seedSaved(page: Page, refs: Seed[], folders: Array<{ id: string; name: string }> = []) {
+  const saved = Object.fromEntries(
+    refs.map((r, i) => {
+      const key = `openverse:${r.title}`,
+        thumb = r.thumb ?? `https://img.test/${i}.jpg`;
+      return [
+        key,
+        {
+          key,
+          src: 'openverse',
+          title: r.title,
+          thumb,
+          full: thumb,
+          page: `https://example.org/${i}`,
+          folder: r.folder,
+          savedAt: 1000 - i,
+        },
+      ];
+    }),
+  );
+  await page.goto('./');
+  await page.evaluate(
+    ([refs, folders]) => {
+      localStorage.setItem('ab:refs-saved', refs);
+      localStorage.setItem('ab:folders', folders);
+    },
+    [JSON.stringify({ v: 1, value: saved }), JSON.stringify({ schemaVersion: 1, value: folders.map((f) => ({ ...f, createdAt: 1 })) })],
+  );
+  await openRefs(page);
+  await page.locator('#saved-toggle').click();
+  await expect(page.locator('.r-saved h2')).toHaveText(`Saved references · ${refs.length}`);
+}
+type Stored = Record<string, { title: string; folder?: string; savedAt: number }>;
+/** What's stored, newest first (the Saved grid's order), as "title@folder". */
+const storedTitles = (page: Page) =>
+  page.evaluate(() =>
+    Object.values(JSON.parse(localStorage.getItem('ab:refs-saved')!).value as Stored)
+      .sort((a, b) => b.savedAt - a.savedAt)
+      .map((r) => `${r.title}${r.folder ? `@${r.folder}` : ''}`),
+  );
+const blockStorage = (page: Page) =>
+  page.evaluate(() => {
+    Storage.prototype.setItem = () => {
+      throw new DOMException('full', 'QuotaExceededError');
+    };
+  });
+
+test('un-saving in the viewer updates the Saved grid, and Remove never saves again', async ({ page }) => {
+  await fakeWeb(page);
+  await seedSaved(page, [{ title: 'Alpha' }, { title: 'Bravo' }, { title: 'Charlie' }]);
+  const saved = page.locator('.r-saved');
+  await saved.getByRole('button', { name: 'Bravo. Open' }).click();
+  await page.locator('.r-viewer').getByRole('button', { name: 'Saved' }).click();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.r-viewer')).toHaveCount(0);
+  await expect(saved.locator('h2')).toHaveText('Saved references · 2');
+  await expect(saved.locator('.r-chip')).toHaveText(['All · 2', 'Unsorted · 2']);
+  await expect(page.locator('#saved-toggle .badge')).toHaveText('2');
+  await expect(saved.locator('.r-open')).toHaveCount(2);
+  await expect(page.locator(':focus')).toHaveAccessibleName('Charlie. Open'); // the cell now in its place
+  await saved.getByRole('button', { name: 'Remove Alpha' }).click();
+  await expect(page.locator('.toast')).toContainText('Removed from Saved');
+  await expect(saved.locator('h2')).toHaveText('Saved references · 1');
+  expect(await storedTitles(page)).toEqual(['Charlie']);
+});
+
+test('saving again in the viewer puts a reference back in its folder', async ({ page }) => {
+  await fakeWeb(page);
+  await seedSaved(page, [{ title: 'Alpha', folder: 'f-m' }, { title: 'Bravo' }], [{ id: 'f-m', name: 'Mechs' }]);
+  const saved = page.locator('.r-saved');
+  await saved.getByRole('button', { name: 'Mechs · 1' }).click();
+  await saved.getByRole('button', { name: 'Alpha. Open' }).click();
+  const star = page.locator('.r-viewer').getByRole('button', { name: /^Saved?$/ });
+  await star.click();
+  await expect(star).toHaveText('Save');
+  await expect(saved.getByRole('button', { name: 'Mechs · 0' })).toHaveCount(1); // the grid under the viewer follows
+  await page.locator('.toast').getByRole('button', { name: 'Undo' }).dispatchEvent('click'); // the toast may sit under the viewer
+  await expect(star).toHaveText('Saved');
+  await expect(saved.getByRole('button', { name: 'Mechs · 1' })).toHaveCount(1);
+  await star.click();
+  await expect(star).toHaveText('Save');
+  await star.click();
+  await expect(star).toHaveText('Saved');
+  await page.keyboard.press('Escape');
+  await expect(saved.locator('.r-chip')).toHaveText(['All · 2', 'Unsorted · 1', 'Mechs · 1']);
+  await expect(page.locator(':focus')).toHaveAccessibleName('Alpha. Open');
+  expect(await storedTitles(page)).toEqual(['Alpha@f-m', 'Bravo']); // same folder, same place in the list
+});
+
+test('touch: saved cells keep Move and Remove on screen, and filing into a new folder works', async ({ page }, info) => {
+  test.skip(!info.project.name.startsWith('mobile'), 'touch screens');
+  await fakeWeb(page);
+  await seedSaved(page, [{ title: 'Alpha' }, { title: 'Bravo' }]);
+  expect(await page.evaluate(() => matchMedia('(hover: none)').matches)).toBe(true);
+  const move = page.getByRole('button', { name: 'Move Alpha to a folder' });
+  const remove = page.getByRole('button', { name: 'Remove Bravo' });
+  for (const b of [move, remove]) {
+    await expect(b).toBeVisible();
+    await expect(b.locator('..')).toHaveCSS('opacity', '1');
+  }
+  await move.tap();
+  await page.getByRole('menuitem', { name: 'New folder…' }).tap();
+  await page.getByRole('textbox', { name: 'New folder name' }).fill('Mechs');
+  await page.getByRole('button', { name: 'Create folder' }).tap();
+  await expect(page.locator('.r-saved .r-chip')).toHaveText(['All · 2', 'Unsorted · 1', 'Mechs · 1']);
+  await remove.tap();
+  await expect(page.locator('.r-saved h2')).toHaveText('Saved references · 1');
+});
+
+test('with storage blocked, Saved keeps the real count and refuses removes, moves and new folders', async ({ page }) => {
+  await fakeWeb(page);
+  await seedSaved(page, [{ title: 'Alpha' }, { title: 'Bravo' }], [{ id: 'f-m', name: 'Mechs' }]);
+  await blockStorage(page);
+  const saved = page.locator('.r-saved');
+  const badge = page.locator('#saved-toggle .badge');
+  await saved.getByRole('button', { name: 'Remove Alpha' }).click();
+  await expect(page.locator('.toast')).toContainText('Couldn’t save');
+  await expect(saved.locator('h2')).toHaveText('Saved references · 2');
+  await expect(badge).toHaveText('2');
+  await saved.getByRole('button', { name: 'Move Alpha to a folder' }).click();
+  await page.getByRole('menuitemradio', { name: 'Mechs' }).click();
+  await expect(saved.locator('.r-chip')).toHaveText(['All · 2', 'Unsorted · 2', 'Mechs · 0']);
+  await saved.getByRole('button', { name: 'Move Alpha to a folder' }).click();
+  await page.getByRole('menuitem', { name: 'New folder…' }).click();
+  await page.getByRole('textbox', { name: 'New folder name' }).fill('Vehicles');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.toast')).toContainText('Couldn’t save');
+  await page.keyboard.press('Escape');
+  await expect(saved.locator('.r-chip')).toHaveText(['All · 2', 'Unsorted · 2', 'Mechs · 0']);
+  await saved.getByRole('button', { name: 'Bravo. Open' }).click();
+  await page.locator('.r-viewer').getByRole('button', { name: 'Saved' }).click();
+  await expect(page.locator('.r-viewer').getByRole('button', { name: 'Saved' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(badge).toHaveText('2');
+  await expect(page.locator('#saved-toggle')).toHaveAttribute('aria-label', 'Saved references (2)');
+});
+
+test('Saved follows folders renamed or deleted on Briefs', async ({ page }) => {
+  await fakeWeb(page);
+  await seedSaved(
+    page,
+    [
+      { title: 'Alpha', folder: 'f-h' },
+      { title: 'Bravo', folder: 'f-m' },
+    ],
+    [
+      { id: 'f-h', name: 'Heroes' },
+      { id: 'f-m', name: 'Mechs' },
+    ],
+  );
+  await page.locator('.r-saved').getByRole('button', { name: 'Mechs · 1' }).click();
+  await page.locator('[data-view=briefs]').click();
+  await page.locator('#saved-toggle').click();
+  const panel = page.locator('#saved-panel');
+  await panel.locator('.chip[data-filter="f-m"]').click();
+  await panel.getByRole('button', { name: 'Delete folder Mechs' }).click();
+  await panel.locator('.chip[data-filter="f-h"]').click();
+  await panel.getByRole('button', { name: 'Rename folder Heroes' }).click();
+  await panel.getByRole('textbox', { name: 'Rename folder' }).fill('Champions');
+  await page.keyboard.press('Enter');
+  await page.locator('[data-view=refs]').click();
+  const saved = page.locator('.r-saved');
+  await expect(saved.locator('.r-chip')).toHaveText(['All · 2', 'Unsorted · 1', 'Champions · 1']);
+  await expect(saved.locator('.r-chip.r-on')).toHaveText('All · 2');
+  await saved.getByRole('button', { name: 'Move Bravo to a folder' }).click();
+  await expect(page.getByRole('menuitemradio', { name: 'Unsorted' })).toHaveAttribute('aria-checked', 'true');
+});
+
+test('a saved reference whose picture is gone keeps its title and says so; a moved one comes back through the proxy', async ({ page }) => {
+  await fakeWeb(page);
+  // gone.test is gone everywhere; moved.test only answers through the image proxy
+  await page.route(/gone\.test|moved\.test/, (r) => {
+    const url = r.request().url();
+    return url.startsWith('https://wsrv.nl/') && url.includes('moved.test') ? r.fallback() : r.fulfill({ status: 404, body: '' });
+  });
+  await seedSaved(page, [
+    { title: 'Gone', thumb: 'https://gone.test/a.jpg' },
+    { title: 'Moved', thumb: 'https://moved.test/b.jpg' },
+  ]);
+  const gone = page.locator('.r-saved .r-cell').first();
+  await expect(gone).toHaveClass(/r-broken/);
+  await expect(gone).toContainText('Image unavailable');
+  await expect(gone.locator('.r-cap')).toHaveCSS('opacity', '1');
+  await expect(gone.locator('.r-cap')).toContainText('Gone');
+  await expect(gone.locator('.r-open')).toHaveAccessibleName('Gone, image unavailable. Open');
+  const moved = page.locator('.r-saved .r-cell').nth(1);
+  await expect(moved).toHaveClass(/r-loaded/);
+  await expect(moved).not.toHaveClass(/r-broken/);
+  await expect(moved.locator('img')).toHaveAttribute('src', /^https:\/\/wsrv\.nl\//);
+  expect(await moved.locator('img').evaluate((i: HTMLImageElement) => i.naturalWidth)).toBeGreaterThan(0);
+});
+
+test('keyboard focus stays in the Saved grid after Remove and Move', async ({ page }) => {
+  await fakeWeb(page);
+  await seedSaved(page, [{ title: 'Alpha' }, { title: 'Bravo' }, { title: 'Charlie' }]);
+  const saved = page.locator('.r-saved');
+  const focused = page.locator(':focus');
+  await saved.getByRole('button', { name: 'Remove Bravo' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(focused).toHaveAccessibleName('Charlie. Open');
+  await saved.getByRole('button', { name: 'Move Alpha to a folder' }).focus();
+  await page.keyboard.press('Enter');
+  await page.keyboard.press('End');
+  await page.keyboard.press('Enter');
+  await page.keyboard.type('Archers');
+  await page.keyboard.press('Enter');
+  await expect(saved.locator('.r-chip')).toHaveText(['All · 2', 'Unsorted · 1', 'Archers · 1']);
+  await expect(focused).toHaveAccessibleName('Move Alpha to a folder'); // still in view: its own button
+  await saved.getByRole('button', { name: 'Unsorted · 1' }).click();
+  await saved.getByRole('button', { name: 'Move Charlie to a folder' }).focus();
+  await page.keyboard.press('Enter');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('Enter');
+  await expect(saved.locator('.r-chip.r-on')).toHaveText('Unsorted · 0');
+  await expect(focused).toHaveAccessibleName('Unsorted · 0'); // the folder is empty now: its chip
+});
+
+test('on References the Saved button toggles the Saved view and says so', async ({ page }) => {
+  await fakeWeb(page);
+  await openRefs(page);
+  const btn = page.locator('#saved-toggle');
+  await expect(btn).toHaveAttribute('aria-pressed', 'false');
+  for (const a of ['aria-haspopup', 'aria-controls', 'aria-expanded']) await expect(btn).not.toHaveAttribute(a);
+  await btn.click();
+  await expect(btn).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: '← Back to search' }).click();
+  await expect(btn).toHaveAttribute('aria-pressed', 'false');
+  await btn.click();
+  await page.locator('[data-view=briefs]').click();
+  await expect(btn).not.toHaveAttribute('aria-pressed');
+  await expect(btn).toHaveAttribute('aria-haspopup', 'dialog');
+  await expect(btn).toHaveAttribute('aria-controls', 'saved-panel');
+  await expect(btn).toHaveAttribute('aria-expanded', 'false');
+  await btn.click();
+  await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  await page.locator('[data-view=refs]').click();
+  await expect(btn).toHaveAttribute('aria-pressed', 'true'); // References kept its Saved view
 });
