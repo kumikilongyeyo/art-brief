@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 const isMobile = (name: string) => name.startsWith('mobile');
 
@@ -30,7 +30,19 @@ async function captureClipboard(page: Page) {
 const lastCopied = (page: Page) => page.evaluate(() => (window as unknown as { __copied: string[] }).__copied.at(-1) ?? '');
 
 const cards = (page: Page) => page.locator('.card:not(.sample)');
-const lineText = (page: Page, slot: string, card = 0) => cards(page).nth(card).locator(`.row[data-slot="${slot}"] dd`).innerText();
+const lineText = async (page: Page, slot: string, card = 0) =>
+  (await cards(page).nth(card).locator(`.row[data-slot="${slot}"] dd`).textContent()) ?? '';
+/** Open one of a card's collapsed rows (Every detail / Story / Direction) if it is closed. */
+async function openSection(card: Locator, section: 'details' | 'story' | 'direction') {
+  const d = card.locator(`.acc[data-section="${section}"]`);
+  if ((await d.getAttribute('open')) === null) await d.locator('> summary').click();
+  await expect(d).toHaveAttribute('open', '');
+}
+/** With 2+ variations only one card shows at a time; pick it by its tab. */
+async function showVar(page: Page, i: number) {
+  await page.locator('.var-tab').nth(i).click();
+  await expect(page.locator('.var-tab').nth(i)).toHaveAttribute('aria-selected', 'true');
+}
 
 async function setup(page: Page, opts: { category?: string; count?: number; weirdness?: string } = {}) {
   await captureClipboard(page);
@@ -90,12 +102,14 @@ test('a locked line survives Generate; unlocking lets it change', async ({ page 
   await setup(page, { count: 1 });
   await generate(page);
   const text = await lineText(page, 'background');
+  await openSection(cards(page).first(), 'details');
   await cards(page).first().getByRole('button', { name: 'Lock Background' }).click();
   await expect(cards(page).first().locator('.row[data-slot="background"]')).toHaveClass(/locked/);
   for (let i = 0; i < 5; i++) {
     await generate(page);
     expect(await lineText(page, 'background')).toBe(text);
   }
+  await openSection(cards(page).first(), 'details');
   await cards(page).first().getByRole('button', { name: 'Unlock Background' }).click();
   const seen = new Set<string>();
   for (let i = 0; i < 5; i++) {
@@ -117,6 +131,7 @@ test('reroll changes only that line (and its dependents)', async ({ page }) => {
     );
   const before = await read();
   const title = await cards(page).first().locator('.title').innerText();
+  await openSection(cards(page).first(), 'details');
   await cards(page).first().getByRole('button', { name: 'Reroll Scale' }).click();
   const after = await read();
   expect(after.scale).not.toBe(before.scale);
@@ -133,7 +148,7 @@ test('copy buttons put the expected text on the clipboard', async ({ page }) => 
   await setup(page, { count: 2 });
   await generate(page);
   const first = cards(page).first();
-  const title = await first.locator('.title').innerText();
+  const title = (await first.locator('.title-full').textContent())!;
   await first.getByRole('button', { name: 'Copy', exact: true }).click();
   expect(await lastCopied(page)).toMatch(new RegExp(`^${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\nBackground: `));
   await expect(page.locator('.toast')).toHaveText('Copied');
@@ -146,9 +161,9 @@ test('copy buttons put the expected text on the clipboard', async ({ page }) => 
   expect(all.split('\n\n---\n\n')).toHaveLength(2);
   await page.locator('#copy-all-chat').click();
   expect(await lastCopied(page)).toContain('There are 2 briefs below');
-  const swatch = first.locator('.swatch').first();
-  const hex = (await swatch.innerText()).trim();
-  await swatch.click();
+  const dot = first.locator('.dot').first();
+  const hex = (await dot.getAttribute('aria-label'))!.replace('Copy ', '');
+  await dot.click();
   expect((await lastCopied(page)).toUpperCase()).toBe(hex.toUpperCase());
 });
 
@@ -204,6 +219,8 @@ test('a share link recreates the exact brief in a fresh context', async ({ page,
   await setup(page, { category: 'scene', count: 3, weirdness: 'wild' });
   await generate(page);
   const card = cards(page).nth(1);
+  await showVar(page, 1);
+  await openSection(card, 'details');
   await card.getByRole('button', { name: 'Reroll Mood' }).click();
   await card.getByRole('button', { name: 'Lock Palette' }).click();
   const expected = await card.innerText();
@@ -214,6 +231,7 @@ test('a share link recreates the exact brief in a fresh context', async ({ page,
   const p2 = await ctx.newPage();
   await p2.goto(url);
   await expect(p2.locator('.card')).toHaveCount(1);
+  await openSection(p2.locator('.card'), 'details');
   expect(await p2.locator('.card').innerText()).toBe(expected);
   await expect(p2.locator('.card .row[data-slot="palette"]')).toHaveClass(/locked/);
   await ctx.close();
@@ -272,6 +290,7 @@ test('mobile: no horizontal scroll, controls visible, lock/reroll visible withou
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     for (const sel of ['#generate', '.pill[data-category="scene"]', '#theme', '.seg[aria-label="Weirdness"]'])
       await expect(page.locator(sel)).toBeInViewport({ ratio: 0.9 });
+    await openSection(cards(page).first(), 'details');
     const lock = cards(page).first().getByRole('button', { name: 'Lock Setting' });
     expect(await lock.evaluate((el) => getComputedStyle(el.parentElement!).opacity)).toBe('1');
     const box = await lock.boundingBox();
@@ -327,6 +346,12 @@ test('keyboard-only walkthrough with visible focus', async ({ page }, info) => {
   for (let i = 0; i < 15 && !(await page.evaluate(() => document.activeElement?.id === 'generate')); i++) await page.keyboard.press('Tab');
   await page.keyboard.press('Enter');
   await expect(cards(page).first()).toBeVisible();
+  // Tab to the card's "Every detail" row and open it with Enter.
+  for (let i = 0; i < 15 && !(await page.evaluate(() => document.activeElement?.matches('.acc[data-section="details"] > summary'))); i++)
+    await page.keyboard.press('Tab');
+  expect(await focusVisible()).toBe(true);
+  await page.keyboard.press('Enter');
+  await expect(cards(page).first().locator('.acc[data-section="details"]')).toHaveAttribute('open', '');
   for (
     let i = 0;
     i < 10 && !(await page.evaluate(() => (document.activeElement as HTMLElement)?.getAttribute('aria-label')?.startsWith('Lock')));
@@ -337,4 +362,43 @@ test('keyboard-only walkthrough with visible focus', async ({ page }, info) => {
   await page.keyboard.press(' ');
   await expect(page.locator(':focus')).toHaveAttribute('aria-pressed', 'true');
   await expect(cards(page).first().locator('.row.locked')).toHaveCount(1);
+});
+
+test('variations are tabs: one card at a time, arrow keys switch, open rows are remembered', async ({ page }, info) => {
+  await setup(page, { count: 3 });
+  await generate(page);
+  const tabs = page.locator('.var-tab');
+  await expect(tabs).toHaveCount(3);
+  await expect(page.locator('.card:not(.sample):visible')).toHaveCount(1);
+  await expect(tabs.nth(0)).toHaveAttribute('aria-selected', 'true');
+  // Each tab shows its card's name.
+  await expect(tabs.nth(1).locator('small')).toHaveText((await cards(page).nth(1).locator('.title').textContent())!);
+  await tabs.nth(1).click();
+  await expect(cards(page).nth(1)).toBeVisible();
+  await expect(cards(page).nth(0)).toBeHidden();
+  await openSection(cards(page).nth(1), 'story');
+  if (!isMobile(info.project.name)) {
+    await tabs.nth(1).focus();
+    await page.keyboard.press('ArrowRight');
+    await expect(tabs.nth(2)).toBeFocused();
+    await expect(cards(page).nth(2)).toBeVisible();
+    await page.keyboard.press('Home');
+    await expect(cards(page).nth(0)).toBeVisible();
+    await page.keyboard.press('End');
+    await expect(tabs.nth(2)).toHaveAttribute('aria-selected', 'true');
+  }
+  // Coming back keeps the row that was opened on that variation.
+  await tabs.nth(1).click();
+  await expect(cards(page).nth(1).locator('.acc[data-section="story"]')).toHaveAttribute('open', '');
+  // All three tabs fit on screen (phones included).
+  const vw = page.viewportSize()!.width;
+  for (let i = 0; i < 3; i++) {
+    const box = (await tabs.nth(i).boundingBox())!;
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.x + box.width).toBeLessThanOrEqual(vw);
+  }
+  // One variation: no tabs.
+  await page.locator('.seg[aria-label="Variations"] button[data-value="1"]').click();
+  await generate(page);
+  await expect(tabs).toHaveCount(0);
 });

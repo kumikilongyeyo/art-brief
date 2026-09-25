@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 async function captureClipboard(page: Page) {
   await page.addInitScript(() => {
@@ -12,6 +12,12 @@ async function captureClipboard(page: Page) {
 }
 const lastCopied = (page: Page) => page.evaluate(() => (window as unknown as { __copied: string[] }).__copied.at(-1) ?? '');
 const card = (page: Page) => page.locator('.card:not(.sample)').first();
+/** Open one of a card's collapsed rows (Every detail / Story / Direction) if it is closed. */
+async function openSection(card: Locator, section: 'details' | 'story' | 'direction') {
+  const d = card.locator(`.acc[data-section="${section}"]`);
+  if ((await d.getAttribute('open')) === null) await d.locator('> summary').click();
+  await expect(d).toHaveAttribute('open', '');
+}
 
 test('cards read like a studio assignment; D&D extras are off by default', async ({ page }) => {
   await captureClipboard(page);
@@ -19,14 +25,23 @@ test('cards read like a studio assignment; D&D extras are off by default', async
   await page.locator('.pill[data-category="creature"]').click();
   await page.getByLabel('Add a short story to each card').check();
   await page.locator('#generate').click();
-  await expect(card(page).locator('.overline')).toHaveText(/ · Creature · #[0-9A-Z]{6}-\d$/i);
-  // General info first: the ask and the story are visible, technical direction is folded.
-  await expect(card(page).locator('.ask-line')).toContainText('The ask');
+  // Read it like a note: job + deadline chips, name, a plain summary, palette and the moment to paint.
+  await expect(card(page).locator('.job-chip')).not.toBeEmpty();
+  await expect(card(page).locator('.due-chip')).toContainText(/Due in \d+ (day|days|week|weeks)/);
+  await expect(card(page).locator('.note')).toContainText(' is ');
+  await expect(card(page).locator('.dot').first()).toBeVisible();
+  await expect(card(page).locator('.moment')).toBeVisible();
+  // Everything else is folded into three rows.
+  for (const s of ['details', 'story', 'direction'])
+    await expect(card(page).locator(`.acc[data-section="${s}"]`)).not.toHaveAttribute('open', '');
+  await expect(card(page).locator('.lore-text')).toBeHidden();
+  await openSection(card(page), 'story');
   await expect(card(page).locator('.lore-text')).toBeVisible();
-  const art = card(page).locator('.art');
-  await expect(art).not.toHaveAttribute('open', '');
-  await expect(art.locator('.art-title')).toHaveText('Technical direction');
-  await art.locator('summary').click();
+  await openSection(card(page), 'details');
+  await expect(card(page).locator('.ask-line')).toContainText('The ask');
+  const art = card(page).locator('.acc[data-section="direction"]');
+  await expect(art.locator('summary b')).toHaveText('Direction');
+  await openSection(card(page), 'direction');
   for (const label of ['Shape', 'Focal point', 'Light & value', 'Camera'])
     await expect(art.locator('dt', { hasText: label })).toHaveCount(1);
   await expect(art.locator('.deliverable')).toContainText(/about \d+ (hours|minutes)/);
@@ -48,22 +63,21 @@ test('cards read like a studio assignment; D&D extras are off by default', async
   let changed = false;
   for (let i = 0; i < 4 && !changed; i++) {
     await card(page).getByRole('button', { name: 'Reroll art direction' }).click();
-    // The card re-renders with the fold closed; open it again to read the new take.
-    if ((await card(page).locator('.art').getAttribute('open')) === null) await card(page).locator('.art summary').click();
-    changed = (await card(page).locator('.art .art-lines').innerText()) !== before;
+    // The re-rendered card keeps the row open.
+    await expect(art).toHaveAttribute('open', '');
+    changed = (await art.locator('.art-lines').innerText()) !== before;
   }
   expect(changed).toBe(true);
   await expect(card(page).locator('.title')).toHaveText(title);
   // A share link keeps that take on the direction.
-  const direction = await card(page).locator('.art .art-lines').innerText();
+  const direction = await art.locator('.art-lines').innerText();
   await card(page).getByRole('button', { name: 'Link' }).click();
   const url = await lastCopied(page);
   expect(url).toContain('ar=');
   const p2 = await page.context().browser()!.newPage();
   await p2.goto(url);
-  await p2.locator('.card .art summary').click();
-  await expect(p2.locator('.card .art .art-lines')).toBeVisible();
-  expect(await p2.locator('.card .art .art-lines').innerText()).toBe(direction);
+  await openSection(p2.locator('.card'), 'direction');
+  expect(await p2.locator('.card .art-lines').innerText()).toBe(direction);
   await p2.close();
 });
 
@@ -76,7 +90,9 @@ test('the D&D details switch brings back stat line, dice and DM notes', async ({
   await page.keyboard.press('Escape');
   await page.locator('#generate').click();
   await expect(card(page).locator('.stat')).toBeVisible();
+  await openSection(card(page), 'details');
   await expect(card(page).locator('.roll').first()).toBeVisible();
+  await openSection(card(page), 'story');
   const notes = card(page).locator('.hook');
   const notesSummary = card(page).locator('.hook > summary');
   await expect(notesSummary).toHaveText('DM notes');
@@ -93,10 +109,10 @@ test('Job selector: chosen job on every card, unfitting jobs greyed, falls back 
   await page.locator('.seg[aria-label="Variations"] button[data-value="3"]').click();
   await page.locator('#job').selectOption('tcg');
   await page.locator('#generate').click();
-  const overlines = page.locator('.card:not(.sample) .overline');
-  await expect(overlines).toHaveCount(3);
-  for (const t of await overlines.allInnerTexts()) expect(t.toLowerCase()).toContain('tcg card art');
-  await expect(page.locator('.card:not(.sample) .deadline').first()).toContainText(/Due in \d+ (day|days|week|weeks)/);
+  const jobs = page.locator('.card:not(.sample) .job-chip');
+  await expect(jobs).toHaveCount(3);
+  for (const t of await jobs.allTextContents()) expect(t.toLowerCase()).toContain('tcg card art');
+  await expect(page.locator('.card:not(.sample) .due-chip').first()).toContainText(/Due in \d+ (day|days|week|weeks)/);
 
   // Remembered across reloads.
   await page.reload();

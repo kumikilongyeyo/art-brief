@@ -29,7 +29,7 @@ import {
   storageAvailable,
   type Settings,
 } from './storage';
-import { renderCard, type CardHandlers } from './ui/card';
+import { renderCard, type CardHandlers, type CardSection } from './ui/card';
 import { h, icon } from './ui/dom';
 import { renderHistory, renderSaved, type ListsHandlers } from './ui/history';
 import { openFolderMenu } from './ui/folder-menu';
@@ -77,6 +77,10 @@ const state = {
   libraryFilter: validFilter(settings.libraryFilter ?? 'all', folders) as LibraryFilter,
   editing: null as string | null,
   savedOpen: false,
+  /** Which collapsed rows each result card has open. */
+  cardOpen: [] as CardSection[][],
+  /** Which variation tab is showing. */
+  activeVar: 0,
 };
 
 // ---------- helpers ----------
@@ -383,7 +387,14 @@ const cardHandlers: CardHandlers = {
   swatch(hex) {
     void doCopy(hex, `Copied ${hex}`);
   },
+  setOpen(i, section, open) {
+    const now = new Set(state.cardOpen[i] ?? []);
+    if (open) now.add(section);
+    else now.delete(section);
+    state.cardOpen[i] = [...now];
+  },
   addLore(i) {
+    state.cardOpen[i] = [...new Set([...(state.cardOpen[i] ?? []), 'story' as CardSection])];
     updateCard(i, (b) => withLore(data, b, 0), 'lore-reroll');
   },
   rerollLore(i) {
@@ -421,7 +432,7 @@ function updateCard(i: number, fn: (b: Brief) => Brief, focusPrefix?: string) {
 
 function cardFor(b: Brief, i: number): HTMLElement {
   const s = saved[b.id];
-  return renderCard(
+  const el = renderCard(
     b,
     {
       index: i,
@@ -429,10 +440,15 @@ function cardFor(b: Brief, i: number): HTMLElement {
       folderName: s ? folderName(folderOf(s, folders), folders) : undefined,
       showChatGPT: settings.showChatGPT,
       showDnd: settings.showDnd,
+      open: state.cardOpen[i],
       data,
     },
     cardHandlers,
   );
+  el.hidden = state.results.length >= 2 && i !== state.activeVar;
+  el.setAttribute('role', state.results.length >= 2 ? 'tabpanel' : 'article');
+  if (state.results.length >= 2) el.setAttribute('aria-labelledby', `var-tab-${i}`);
+  return el;
 }
 
 function rerenderCard(i: number) {
@@ -488,9 +504,51 @@ function renderResults() {
     cards.append(renderCard(state.sample, { index: -1, saved: false, showChatGPT: false, sample: true, data }, cardHandlers));
   }
   state.results.forEach((b, i) => cards.append(cardFor(b, i)));
+  if (state.results.length >= 2) kids.push(variationTabs());
   kids.push(cards);
   resultsEl.replaceChildren(...kids);
   resultsEl.hidden = !state.results.length && !state.sample;
+}
+
+/** One brief at a time: "Variation 1 / 2 / 3" tabs with each brief's name underneath. */
+function variationTabs(): HTMLElement {
+  state.activeVar = Math.min(state.activeVar, state.results.length - 1);
+  const buttons = state.results.map((b, i) =>
+    h(
+      'button',
+      {
+        class: 'var-tab',
+        type: 'button',
+        role: 'tab',
+        id: `var-tab-${i}`,
+        'aria-selected': String(i === state.activeVar),
+        tabindex: i === state.activeVar ? '0' : '-1',
+        'data-focus': `var:${i}`,
+        onclick: () => showVariation(i),
+      },
+      `Variation ${i + 1}`,
+      h('small', {}, b.fields.name?.text ?? ''),
+    ),
+  );
+  const list = h('div', { class: 'var-tabs', role: 'tablist', 'aria-label': 'Variations' }, ...buttons);
+  list.addEventListener('keydown', (e) => {
+    const n = state.results.length;
+    const to = { ArrowRight: state.activeVar + 1, ArrowLeft: state.activeVar - 1, Home: 0, End: n - 1 }[e.key];
+    if (to === undefined) return;
+    e.preventDefault();
+    showVariation((to + n) % n, true);
+  });
+  return list;
+}
+
+function showVariation(i: number, focus = false) {
+  state.activeVar = i;
+  resultsEl.querySelectorAll<HTMLElement>('.var-tab').forEach((t, k) => {
+    t.setAttribute('aria-selected', String(k === i));
+    t.tabIndex = k === i ? 0 : -1;
+    if (k === i && focus) t.focus();
+  });
+  resultsEl.querySelectorAll<HTMLElement>('.cards > .card').forEach((c, k) => (c.hidden = state.results.length >= 2 && k !== i));
 }
 
 function renderLists() {
@@ -731,6 +789,8 @@ function generate() {
     recent[state.category] ?? [],
   );
   state.results = briefs;
+  state.cardOpen = [];
+  state.activeVar = 0;
   state.sample = null;
   state.notice = null;
   historyList = addToHistory(historyList, briefs);

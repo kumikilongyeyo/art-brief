@@ -8,6 +8,7 @@ async function openSaved(page: Page) {
   await expect(page.locator('#saved-panel')).toBeVisible();
 }
 const history = (page: Page) => page.locator('#list-history');
+const showVar = (page: Page, i: number) => page.locator('.var-tab').nth(i).click();
 
 async function start(page: Page, n = 3) {
   await page.goto('./');
@@ -44,6 +45,7 @@ test('save into folders, move with the folder menu, filter by chip', async ({ pa
 
   // Viewing a folder makes it the save target.
   await saved(page).locator('.chip', { hasText: 'Villains' }).click();
+  await showVar(page, 1);
   await cards(page).nth(1).getByRole('button', { name: 'Save', exact: true }).click();
   await expect(page.locator('.toast')).toContainText('Saved to Villains');
   await expect(page.locator('#saved-panel')).toBeHidden(); // clicking outside closed the dropdown
@@ -111,6 +113,7 @@ test('rename and delete a folder (briefs move to Unsorted, undo restores)', asyn
   await saved(page).getByLabel('New folder name', { exact: true }).press('Enter');
   await expect(saved(page).locator('.chip[aria-pressed="true"]')).toContainText('Props');
   await cards(page).nth(0).getByRole('button', { name: 'Save', exact: true }).click();
+  await showVar(page, 1);
   await cards(page).nth(1).getByRole('button', { name: 'Save', exact: true }).click();
   await openSaved(page);
   await expect(saved(page).locator('.item')).toHaveCount(2);

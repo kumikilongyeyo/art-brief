@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 async function captureClipboard(page: Page) {
   await page.addInitScript(() => {
@@ -12,6 +12,12 @@ async function captureClipboard(page: Page) {
 }
 const lastCopied = (page: Page) => page.evaluate(() => (window as unknown as { __copied: string[] }).__copied.at(-1) ?? '');
 const cards = (page: Page) => page.locator('.card:not(.sample)');
+/** Open one of a card's collapsed rows (Every detail / Story / Direction) if it is closed. */
+async function openSection(card: Locator, section: 'details' | 'story' | 'direction') {
+  const d = card.locator(`.acc[data-section="${section}"]`);
+  if ((await d.getAttribute('open')) === null) await d.locator('> summary').click();
+  await expect(d).toHaveAttribute('open', '');
+}
 
 test('Lore tickbox adds a story to every card and is remembered', async ({ page }) => {
   await captureClipboard(page);
@@ -21,7 +27,7 @@ test('Lore tickbox adds a story to every card and is remembered', async ({ page 
   await page.locator('#generate').click();
   await expect(cards(page)).toHaveCount(3);
   await expect(cards(page).locator('.lore-text')).toHaveCount(3);
-  const words = (await cards(page).first().locator('.lore-text').innerText()).split(/\s+/).length;
+  const words = (await cards(page).first().locator('.lore-text').textContent())!.trim().split(/\s+/).length;
   expect(words).toBeGreaterThanOrEqual(50);
   expect(words).toBeLessThanOrEqual(80);
   await page.reload();
@@ -36,6 +42,7 @@ test('per-card lore: add, reroll, hide, copy, refine, share', async ({ page, bro
   await page.locator('#generate').click();
   const card = cards(page).first();
   await expect(card.locator('.lore')).toHaveCount(0);
+  await openSection(card, 'story');
   await card.getByRole('button', { name: 'Add lore' }).click();
   const first = await card.locator('.lore-text').innerText();
   expect(first.length).toBeGreaterThan(100);
@@ -46,6 +53,7 @@ test('per-card lore: add, reroll, hide, copy, refine, share', async ({ page, bro
   const story = await card.locator('.lore-text').innerText();
 
   // Rerolling a line keeps the story on the card.
+  await openSection(card, 'details');
   await card.getByRole('button', { name: 'Reroll Function' }).click();
   await expect(card.locator('.lore-text')).toHaveCount(1);
   const afterReroll = await card.locator('.lore-text').innerText();
