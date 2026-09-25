@@ -721,18 +721,26 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const seq = ++startSeq;
     if (S.search && S.search === S.feed) S.feed.pause(); // kept for when you come back
     else S.search?.abort();
+    if (S.bmp && !stale) {
+      // reading the image can take seconds (the pose model's first load): show it, and that it's working
+      S.search = null;
+      S.cells = [];
+      paint();
+      if (S.grid) addSkeletons(S.grid);
+    }
     const words_ = [S.ran, ...S.narrow].filter(Boolean).join(' ');
     let image: ImageBitmap | Float32Array | undefined;
     if (S.bmp) image = await cropped(S.bmp);
     else if (S.like) image = S.like.vec;
+    if (seq !== startSeq) return; // a newer search started while this one was reading the image
     let pose: Skeleton | undefined,
       sketch = false;
     if (S.bmp && image instanceof ImageBitmap) {
-      const read = await readPose(image);
+      const read = await readPose(image, seq);
       pose = read.pose ?? undefined;
       sketch = read.sketch;
     }
-    if (seq !== startSeq) return; // a newer search started while this one was reading the image
+    if (seq !== startSeq) return;
     const s = new Search({
       text: words_,
       mode: S.mode,
@@ -746,6 +754,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       off: prefs.off,
       pose,
       sketch,
+      drawing: !sketch && isDrawing(),
     });
     S.search = s;
     if (import.meta.env.DEV) (globalThis as { __refsSearch?: Search }).__refsSearch = s; // for the dev self-tests
@@ -782,30 +791,42 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const c = S.crop, m = (p: Pt): Pt => ({ x: c.x + p.x * c.w, y: c.y + p.y * c.h, c: p.c });
     return { ...(Object.fromEntries(JOINTS.map((j) => [j, m(sk[j])])) as Record<(typeof JOINTS)[number], Pt>), from: 'sketch', aspect: (S.bmp?.width ?? 1) / (S.bmp?.height ?? 1) };
   };
-  /** A drawing is read as a stick figure; a photo is read by MoveNet when searching for poses. */
-  async function readPose(b: ImageBitmap): Promise<{ pose: Skeleton | null; sketch: boolean }> {
-    if (S.sketchEdited && S.sketch) return { pose: toCrop(S.sketch), sketch: true };
+  /** The image at up to 512px, as pixels. */
+  function pixels(b: ImageBitmap): ImageData {
     const sc = Math.min(1, 512 / Math.max(b.width, b.height));
     const cv = new OffscreenCanvas(Math.max(1, Math.round(b.width * sc)), Math.max(1, Math.round(b.height * sc)));
     const cx = cv.getContext('2d', { willReadFrequently: true })!;
     cx.drawImage(b, 0, 0, cv.width, cv.height);
-    const data = cx.getImageData(0, 0, cv.width, cv.height);
+    return cx.getImageData(0, 0, cv.width, cv.height);
+  }
+  // Whether an image is a line drawing is judged once, on all of it: a pale corner of a painting can
+  // look like paper, and cropping to it mustn't turn the painting into a stick figure.
+  const drawing = new WeakMap<ImageBitmap, boolean>();
+  const isDrawing = () => !!S.bmp && drawing.get(S.bmp) === true;
+  /** A drawing is read as a stick figure (only when a pose is what's wanted: a house drawn in Place mode is
+   *  searched as a house); a photo is read by MoveNet when searching for poses. */
+  async function readPose(b: ImageBitmap, seq: number): Promise<{ pose: Skeleton | null; sketch: boolean }> {
+    const figure = S.mode === 'pose' || S.mode === 'auto';
+    if (figure && S.sketchEdited && S.sketch) return { pose: toCrop(S.sketch), sketch: true };
+    if (S.bmp && !drawing.has(S.bmp)) drawing.set(S.bmp, looksLikeSketch(pixels(S.bmp)));
+    const data = pixels(b);
     S.unread = false;
-    if (looksLikeSketch(data)) {
+    let sk = figure && isDrawing() ? readSketch(data) : null;
+    if (!sk && S.mode === 'pose' && isDrawing()) {
+      // couldn't read it: start from a standing figure over the drawing; the user drags the dots into place
+      const box = inkBox(data) ?? { x0: 0.3, y0: 0.1, x1: 0.7, y1: 0.9 };
+      sk = templatePose(box, data.width / data.height);
+      S.unread = true;
+    }
+    if (sk) {
       S.photoPose = null;
-      let sk = readSketch(data);
-      if (!sk) {
-        // couldn't read it: start from a standing figure over the drawing; the user drags the dots into place
-        const box = inkBox(data) ?? { x0: 0.3, y0: 0.1, x1: 0.7, y1: 0.9 };
-        sk = templatePose(box, cv.width / cv.height);
-        S.unread = true;
-      }
       S.sketch = toFull(sk);
       paintJoints();
       paintReading();
       return { pose: sk, sketch: true };
     }
     S.sketch = null;
+    S.sketchEdited = false;
     paintJoints();
     const posey = S.mode === 'pose' || (S.mode === 'auto' && /pose|holding|stance|running|jump|kneel|lunge|sitting|fighting/.test(S.ran));
     if (!posey) {
@@ -813,12 +834,15 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       paintReading();
       return { pose: null, sketch: false };
     }
+    let photoPose: Skeleton | null = null;
     try {
       const e = await embedBitmap(await createImageBitmap(b), false, 1e9, true);
-      S.photoPose = e.kps && e.pad ? fromMoveNet(e.kps, e.pad) : null;
+      photoPose = e.kps && e.pad ? fromMoveNet(e.kps, e.pad) : null;
     } catch {
-      S.photoPose = null;
+      /* no figure read */
     }
+    if (seq !== startSeq) return { pose: null, sketch: false }; // a newer search read the image meanwhile
+    S.photoPose = photoPose;
     paintReading();
     return { pose: S.photoPose, sketch: false };
   }
@@ -832,6 +856,11 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     else if (S.sketch)
       pnl.append(el('p', { class: 'r-reading' }, `Searching by this pose (${describePose(toCrop(S.sketch))[0]}) · drag a dot if a joint is off`));
     else if (S.photoPose) pnl.append(el('p', { class: 'r-reading' }, 'Matching the pose of the figure in your image'));
+    else if (isDrawing()) {
+      // a line drawing looks like few photos: words say what it's of
+      const tip = S.mode !== 'auto' ? (S.ran ? '' : 'add a word or two to say what it is') : S.ran ? 'pick Pose to match a figure’s pose instead' : 'add a word or two to say what it is, or pick Pose for a figure’s pose';
+      pnl.append(el('p', { class: 'r-reading' }, `Searching by how this drawing looks${tip ? ` · ${tip}` : ''}`));
+    }
   }
 
   /** The sketch's joints as draggable dots over the image (arrow keys move the focused one). */
@@ -856,24 +885,41 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     };
     lines();
     layer.append(svg);
+    const dots = {} as Record<(typeof JOINTS)[number], HTMLButtonElement>;
+    const place = (j: (typeof JOINTS)[number], x: number, y: number) => {
+      sk[j] = { x: Math.min(1, Math.max(0, x)), y: Math.min(1, Math.max(0, y)), c: 1 };
+      dots[j].style.left = `${sk[j].x * 100}%`; dots[j].style.top = `${sk[j].y * 100}%`;
+      lines();
+    };
+    let drag: { j: (typeof JOINTS)[number]; sx: number; sy: number; dx: number; dy: number; moved: boolean } | null = null;
     for (const j of JOINTS) {
       const dot = el('button', { class: 'r-joint', type: 'button', 'aria-label': `${JOINT_LABEL[j]} — drag, or use arrow keys`, style: `left:${sk[j].x * 100}%;top:${sk[j].y * 100}%` });
-      const place = (x: number, y: number) => {
-        sk[j] = { x: Math.min(1, Math.max(0, x)), y: Math.min(1, Math.max(0, y)), c: 1 };
-        dot.style.left = `${sk[j].x * 100}%`; dot.style.top = `${sk[j].y * 100}%`;
-        lines();
-      };
-      let dragging = false;
-      dot.addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); dot.setPointerCapture(e.pointerId); dragging = true; clearTimeout(cropTimer); });
-      dot.addEventListener('pointermove', (e) => { if (!dragging) return; const r = wrap.getBoundingClientRect(); place((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); });
-      const end = () => { if (!dragging) return; dragging = false; S.sketchEdited = true; S.unread = false; paintReading(); searchSoon(250); };
+      dots[j] = dot;
+      dot.addEventListener('pointerdown', (e) => {
+        e.preventDefault(); e.stopPropagation(); dot.setPointerCapture(e.pointerId);
+        // the dots' grab areas overlap (the head sits just above the neck): take the joint nearest the press,
+        // not the one drawn on top; of dots on the same spot, the top one, so they peel off in turn
+        const r = wrap.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        const far = (k: (typeof JOINTS)[number]) => Math.hypot((sk[k].x - px) * r.width, (sk[k].y - py) * r.height);
+        const k = JOINTS.reduce((a, b) => (far(b) <= far(a) ? b : a));
+        drag = { j: k, sx: e.clientX, sy: e.clientY, dx: sk[k].x - px, dy: sk[k].y - py, moved: false };
+        dots[k].focus({ preventScroll: true });
+      });
+      dot.addEventListener('pointermove', (e) => {
+        if (!drag || (!drag.moved && e.clientX === drag.sx && e.clientY === drag.sy)) return;
+        const r = wrap.getBoundingClientRect();
+        place(drag.j, (e.clientX - r.left) / r.width + drag.dx, (e.clientY - r.top) / r.height + drag.dy);
+        // edited from the first move, so a search already on its way keeps these joints instead of re-reading
+        if (!drag.moved) { drag.moved = true; S.sketchEdited = true; clearTimeout(cropTimer); }
+      });
+      const end = () => { if (!drag) return; const moved = drag.moved; drag = null; if (!moved) return; S.unread = false; paintReading(); searchSoon(250); };
       dot.addEventListener('pointerup', end);
       dot.addEventListener('pointercancel', end);
       dot.addEventListener('keydown', (e) => {
         const k = ({ ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] } as Record<string, number[]>)[e.key];
         if (!k) return;
         e.preventDefault(); e.stopPropagation();
-        place(sk[j].x + k[0] * 0.015, sk[j].y + k[1] * 0.015);
+        place(j, sk[j].x + k[0] * 0.015, sk[j].y + k[1] * 0.015);
         S.sketchEdited = true; S.unread = false; paintReading(); searchSoon(600);
       });
       layer.append(dot);
@@ -965,13 +1011,20 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   function paint() {
     host.onSavedView(S.view === 'saved');
     paintBar();
-    body.replaceChildren();
+    const src = S.imgUrl ?? S.like?.url;
+    const kept = S.view === 'search' && !!src && shownPanel?.src === src && shownPanel.el.parentElement?.parentElement === body ? shownPanel : null;
+    // all but the kept panel goes (taking it out, even to put it straight back, would drop its focus and drags)
+    if (kept) [...body.children].forEach((n) => n !== kept.el.parentElement && n.remove());
+    else body.replaceChildren();
     if (S.view === 'saved') return paintSaved();
     const hasSearch = !!(S.ran || S.bmp || S.like);
     if (!hasSearch) return paintStart();
-    const wrap = el('div', { class: `r-body ${S.bmp || S.like ? 'r-has-img' : ''}` });
-    wrap.append(el('h1', { class: 'r-sr' }, `References${S.ran ? ` for ${S.ran}` : ''}`));
-    if (S.bmp || S.like) wrap.append(panel());
+    const wrap = kept?.el.parentElement ?? el('div');
+    wrap.className = `r-body ${S.bmp || S.like ? 'r-has-img' : ''}`;
+    [...wrap.children].forEach((n) => n !== kept?.el && n.remove());
+    wrap.prepend(el('h1', { class: 'r-sr' }, `References${S.ran ? ` for ${S.ran}` : ''}`));
+    if (kept) kept.sync();
+    else if (S.bmp || S.like) wrap.append(panel());
     const col = el('div', { style: 'min-width:0' });
     col.append(metaLine(), narrowRow());
     const grid = masonry(el('div', { class: `r-grid${S.stale ? ' r-stale' : ''}` }));
@@ -979,7 +1032,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     S.cells.forEach((h, i) => grid.append(cell(h, i, false)));
     col.append(grid, sentinel);
     wrap.append(col);
-    body.append(wrap);
+    if (!kept) body.append(wrap);
     if (S.search && S.search !== S.feed && !S.stale && S.search.status().exhausted) paintEnd(); // e.g. back from Saved
   }
 
@@ -1082,6 +1135,12 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   function paintStatus() {
     const st = body.querySelector('#r-status');
     const s = S.search;
+    if (st && !s && S.bmp) {
+      // the image is still being read (see start); on a first visit the matching model may be downloading
+      const vs = visionState();
+      st.replaceChildren(el('span', { class: 'r-spin' }), `Reading your image…${vs.phase === 'loading' && vs.total ? ` · getting the matching model ready (${Math.min(99, Math.round((vs.loaded / vs.total) * 100))}%)` : ''}`);
+      return;
+    }
     if (!st || !s) return;
     const x = s.status(),
       n = s.picks();
@@ -1364,10 +1423,21 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       el('i', { 'data-h': 'se' }),
     );
     const wrap = el('div', { class: 'r-imgwrap' }, img, crop);
+    // a small picture is drawn bigger (160px on its short side, as far as the stage allows), so the
+    // handles don't cover it. The box is sized and the picture fills it, so the crop box (sized by the box)
+    // always lies exactly over the picture; the width is capped so the height fits too, keeping its shape.
+    const fit = (w: number, h: number) => {
+      if (!w || !h) return;
+      wrap.style.width = `min(${Math.round(w * Math.max(1, 160 / Math.min(w, h)))}px, 100%, calc(var(--r-imgmax, 60vh) * ${w / h}))`;
+      img.style.width = '100%';
+    };
+    if (S.bmp) fit(S.bmp.width, S.bmp.height);
+    else img.addEventListener('load', () => fit(img.naturalWidth, img.naturalHeight), { once: true });
     const applyCrop = () => {
       const c = S.crop;
       Object.assign(crop.style, { left: `${c.x * 100}%`, top: `${c.y * 100}%`, width: `${c.w * 100}%`, height: `${c.h * 100}%` });
       whole.setAttribute('aria-pressed', String(isWhole()));
+      crop.classList.toggle('r-whole', isWhole()); // dragging on it draws a box, it doesn't move it
     };
     const isWhole = () => S.crop.w >= 0.999 && S.crop.h >= 0.999;
     const mirror = el('button', { class: 'r-toggle', type: 'button', 'aria-pressed': String(prefs.mirror) }, ic('mirror'), 'Mirrored too');
@@ -1383,6 +1453,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       ic('whole'),
     );
     whole.addEventListener('click', () => {
+      if (isWhole()) return; // already searching all of it: a new search would only throw the results away
       S.crop = { x: 0, y: 0, w: 1, h: 1 };
       applyCrop();
       run(null);
@@ -1415,8 +1486,19 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     bindCrop(crop, wrap, applyCrop);
     const pnl = el('div', { class: 'r-panel' }, el('div', { class: 'r-stage' }, wrap), tools);
     queueMicrotask(() => { paintJoints(); paintReading(); });
+    shownPanel = {
+      src,
+      el: pnl,
+      sync: () => {
+        applyCrop();
+        if (S.bmp && !mirror.isConnected) whole.before(mirror); // a "More like this" picture fetched for cropping
+      },
+    };
     return pnl;
   }
+  /** The image panel on screen. A new search of the same image keeps it in place rather than drawing a new
+   *  one, so a drag on it, or keyboard focus on its crop box or a joint, carries on through the search. */
+  let shownPanel: { src: string; el: HTMLElement; sync: () => void } | null = null;
 
   let cropTimer = 0;
   const searchSoon = (ms = 320) => {
@@ -1442,29 +1524,51 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     }
     run(null);
   }
+  // from where a new box was started toward the pointer: at least `min` long, inside the picture
+  const span = (a: number, d: number, min: number): [number, number] => {
+    const lo = d < 0 ? Math.min(Math.max(a, min) - min, Math.max(0, a + d)) : Math.min(a, 1 - min);
+    return [lo, (d < 0 ? Math.max(a, min) : Math.max(lo + min, Math.min(1, a + d))) - lo];
+  };
+  // a side drawn under 40px (a 4000x120 banner is an 11px strip) can't be cropped: the box always spans it
+  const spanThin = (c: Crop, W: number, H: number): Crop => ({ ...c, ...(W < 40 ? { x: 0, w: 1 } : {}), ...(H < 40 ? { y: 0, h: 1 } : {}) });
   function bindCrop(crop: HTMLElement, wrap: HTMLElement, apply: () => void) {
-    let drag: { h: string; sx: number; sy: number; c: Crop; W: number; H: number } | null = null;
-    crop.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      crop.setPointerCapture(e.pointerId);
+    // …and its handles sit off the strip rather than covering it
+    new ResizeObserver(() => {
       const r = wrap.getBoundingClientRect();
+      wrap.classList.toggle('r-thin-x', r.width > 0 && r.width < 40);
+      wrap.classList.toggle('r-thin-y', r.height > 0 && r.height < 40);
+    }).observe(wrap);
+    let drag: { h: string; sx: number; sy: number; c: Crop; W: number; H: number; ax: number; ay: number; moved: boolean } | null = null;
+    // a press anywhere on the picture: a handle resizes the box, inside it moves it, anywhere else (or on
+    // a box that's still the whole picture) draws a new one
+    wrap.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      wrap.setPointerCapture(e.pointerId);
+      const r = wrap.getBoundingClientRect(),
+        t = e.target as HTMLElement;
       drag = {
-        h: (e.target as HTMLElement).closest('i')?.dataset.h ?? 'move',
+        h: t.closest('i')?.dataset.h ?? (crop.contains(t) && !(S.crop.w >= 0.999 && S.crop.h >= 0.999) ? 'move' : 'draw'),
         sx: e.clientX,
         sy: e.clientY,
         c: { ...S.crop },
         W: r.width,
         H: r.height,
+        ax: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)),
+        ay: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)),
+        moved: false,
       };
-      clearTimeout(cropTimer);
     });
-    crop.addEventListener('pointermove', (e) => {
+    wrap.addEventListener('pointermove', (e) => {
       if (!drag) return;
       const dx = (e.clientX - drag.sx) / drag.W,
         dy = (e.clientY - drag.sy) / drag.H,
         min = 0.12;
       let { x, y, w, h } = drag.c;
-      if (drag.h === 'move') {
+      if (drag.h === 'draw') {
+        if (!drag.moved && Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy) < 4) return; // a click isn't a box
+        [x, w] = span(drag.ax, dx, min);
+        [y, h] = span(drag.ay, dy, min);
+      } else if (drag.h === 'move') {
         x = Math.min(Math.max(0, x + dx), 1 - w);
         y = Math.min(Math.max(0, y + dy), 1 - h);
       } else {
@@ -1481,22 +1585,27 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         }
         if (drag.h.includes('s')) h = Math.min(Math.max(min, h + dy), 1 - y);
       }
+      ({ x, y, w, h } = spanThin({ x, y, w, h }, drag.W, drag.H));
+      if (JSON.stringify({ x, y, w, h }) === JSON.stringify(S.crop)) return;
+      // a search still due from the last change waits for this one (a press that changes nothing leaves it be)
+      if (!drag.moved) clearTimeout(cropTimer);
+      drag.moved = true;
       S.crop = { x, y, w, h };
       apply();
     });
     const end = () => {
       if (!drag) return;
-      const moved = JSON.stringify(drag.c) !== JSON.stringify(S.crop);
+      const moved = drag.moved;
       drag = null;
       if (moved) searchSoon();
     };
-    crop.addEventListener('pointerup', end);
-    crop.addEventListener('pointercancel', end);
+    wrap.addEventListener('pointerup', end);
+    wrap.addEventListener('pointercancel', end);
     crop.addEventListener('keydown', (e) => {
       const k = ({ ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] } as Record<string, number[]>)[e.key];
       if (!k) return;
       e.preventDefault();
-      const c = S.crop,
+      const c = { ...S.crop },
         st = 0.02;
       if (e.shiftKey) {
         c.w = Math.min(Math.max(0.12, c.w + k[0] * st), 1 - c.x);
@@ -1505,6 +1614,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         c.x = Math.min(Math.max(0, c.x + k[0] * st), 1 - c.w);
         c.y = Math.min(Math.max(0, c.y + k[1] * st), 1 - c.h);
       }
+      const r = wrap.getBoundingClientRect(),
+        next = spanThin(c, r.width, r.height);
+      if (JSON.stringify(next) === JSON.stringify(S.crop)) return; // at the edge already: nothing to search again
+      S.crop = next;
       apply();
       searchSoon(600);
     });
@@ -1522,15 +1635,41 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     S.sketchEdited = false;
     S.unread = false;
   }
+  /** Transparent parts as white paper: line art saved without a background is dark strokes on nothing,
+   *  which the drawing check, the pose reader and the model would all see as black on black. */
+  async function onPaper(b: ImageBitmap): Promise<ImageBitmap> {
+    const probe = new OffscreenCanvas(64, 64).getContext('2d', { willReadFrequently: true })!;
+    probe.drawImage(b, 0, 0, 64, 64);
+    const a = probe.getImageData(0, 0, 64, 64).data;
+    let clear = false;
+    for (let i = 3; i < a.length && !clear; i += 4) clear = a[i] < 250;
+    if (!clear) return b;
+    const cv = new OffscreenCanvas(b.width, b.height), cx = cv.getContext('2d')!;
+    cx.fillStyle = '#fff';
+    cx.fillRect(0, 0, cv.width, cv.height);
+    cx.drawImage(b, 0, 0);
+    b.close();
+    return createImageBitmap(cv);
+  }
+  let imgSeq = 0;
   async function setImageFile(f: File) {
-    if (!f.type.startsWith('image/')) return;
-    let bmp: ImageBitmap;
-    try {
-      bmp = await createImageBitmap(f);
-    } catch {
-      toast('That file isn’t an image this browser can read');
+    if (f.type && !f.type.startsWith('image/')) {
+      toast('That isn’t an image: use a PNG, JPG or WebP');
       return;
     }
+    const my = ++imgSeq;
+    let bmp: ImageBitmap;
+    try {
+      bmp = await onPaper(await createImageBitmap(f));
+    } catch {
+      if (my === imgSeq) toast('That file isn’t an image this browser can read');
+      return;
+    }
+    if (my !== imgSeq) {
+      bmp.close(); // another image came in while this one decoded: the last one in wins
+      return;
+    }
+    if (S.viewerOpen) requestClose(); // its picture, count and ratings belong to the results being replaced
     hist.length = 0;
     clearImage();
     S.bmp = bmp;
@@ -1554,8 +1693,13 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     }
   });
   let depth = 0;
+  // the "drop to search" overlay only for an image (a file's type is known before the drop; its name isn't)
+  const imageDrag = (dt: DataTransfer | null) => {
+    const fs = [...(dt?.items ?? [])].filter((x) => x.kind === 'file');
+    return fs.length ? fs.some((x) => !x.type || x.type.startsWith('image/')) : [...(dt?.types ?? [])].includes('Files');
+  };
   document.addEventListener('dragenter', (e) => {
-    if (page.hidden || ![...(e.dataTransfer?.types ?? [])].includes('Files')) return;
+    if (page.hidden || !imageDrag(e.dataTransfer)) return;
     depth++;
     document.body.classList.add('r-dropping');
   });
@@ -1573,7 +1717,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     e.preventDefault();
     depth = 0;
     document.body.classList.remove('r-dropping');
-    const f = [...(e.dataTransfer?.files ?? [])].find((x) => x.type.startsWith('image/'));
+    const fs = [...(e.dataTransfer?.files ?? [])];
+    const f = fs.find((x) => x.type.startsWith('image/')) ?? fs[0]; // not an image: it says so
     if (f) void setImageFile(f);
   });
 
@@ -1584,6 +1729,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     return S.view === 'search' && S.grid ? [...S.grid.querySelectorAll<HTMLElement>('.r-cell')].map((e) => !!e.hidden) : [];
   }
   function openViewer(i: number, list?: () => Cand[]) {
+    if (!(list ?? (() => S.cells))()[i]) return; // a cell of results already replaced: nothing to show, so no history entry or scroll lock
     viewerList = list ?? (() => S.cells.map((h) => h.c));
     S.viewer = i;
     S.vhit = null;
@@ -1656,7 +1802,11 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const list = viewerList(),
       c = S.vhit?.c ?? list[S.viewer];
     if (!c || !S.viewerOpen) {
-      S.viewer = -1; // closed meanwhile (e.g. while a batch loaded): never reopen without its history entry
+      // closed meanwhile (e.g. while a batch loaded): never reopen without its history entry. Open with
+      // nothing left to show: close it properly (its history entry, the scroll lock); S.viewer stays set so
+      // the popstate closes the viewer instead of going back a search
+      if (S.viewerOpen) requestClose();
+      else S.viewer = -1;
       return;
     }
     const inSearch = S.view === 'search';
