@@ -717,7 +717,7 @@ test('viewer: closed while Next is still loading more, it stays closed when the 
   // walk to the end of what's loaded: there, Next has to wait for the next batch
   const next = page.locator('#r-vnext');
   let busy = false;
-  for (let k = 0; k < 80 && !busy; k++) {
+  for (let k = 0; k < 400 && !busy; k++) { // the grid keeps prefetching behind the viewer: it may take a while to catch up
     await page.keyboard.press('ArrowRight');
     busy = (await next.getAttribute('aria-busy')) === 'true';
   }

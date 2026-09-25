@@ -599,7 +599,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     place(pop, modeBtn, false);
     (pop.querySelector('[aria-checked="true"]') as HTMLElement | null)?.focus();
   });
-  let srcTimer = 0;
+  let srcTimer = 0,
+    startedAt = 0; // when the current search started: one started after a source change already has it
   setBtn.addEventListener('click', () => {
     if (S.menu === 'set') return closePop();
     closePop(false);
@@ -624,8 +625,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         savePrefs(prefs);
         // the results follow the new sources, once a few in a row have been ticked
         clearTimeout(srcTimer);
+        const at = performance.now();
         srcTimer = window.setTimeout(() => {
           resetFeed();
+          if (startedAt > at) return; // a search started since then already asks the new sources
           if (S.ran || S.bmp || S.like) run(null);
           else paint();
         }, 500);
@@ -719,6 +722,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   let startSeq = 0;
   async function start(stale: boolean) {
     const seq = ++startSeq;
+    startedAt = performance.now();
     if (S.search && S.search === S.feed) S.feed.pause(); // kept for when you come back
     else S.search?.abort();
     if (S.bmp && !stale) {
