@@ -41,46 +41,43 @@ const save = (id, rows) => {
   console.log(id, rows.length, `${(fs.statSync(path.join(OUT, `${id}.json`)).size / 1e3).toFixed(0)}KB`);
 };
 
-// League of Legends: every skin's splash art, words from champion name/title/tags/blurb.
+// League of Legends: every skin's art. Words = champion name, title, class tags and the skin's own name
+// (lore blurbs made every Vi skin match "woman"). Skins without portrait ("loading") art are marked
+// so the app shows the splash instead of a 404.
 {
   const [ver] = await get('https://ddragon.leagueoflegends.com/api/versions.json');
   const full = await get(`https://ddragon.leagueoflegends.com/cdn/${ver}/data/en_US/championFull.json`);
   const rows = [];
   for (const c of Object.values(full.data)) {
     for (const s of c.skins) {
+      if ('parentSkin' in s) continue; // chroma recolours: listed as skins but have no art of their own
       const skin = s.num === 0 ? c.name : s.name;
-      rows.push([`${c.id}_${s.num}`, skin === 'default' ? c.name : skin, W(c.name, c.title, c.tags.join(' '), skin, KEY(c.blurb))]);
+      rows.push([`${c.id}_${s.num}`, skin === 'default' ? c.name : skin, W(c.name, c.title, c.tags.join(' '), skin)]);
     }
   }
+  const ok = async (id) => { for (let a = 0; a < 3; a++) { try { const r = await fetch(`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${id}.jpg`, { method: 'HEAD', headers: UA }); return r.ok; } catch { /* retry */ } } return false; };
+  for (let i = 0; i < rows.length; i += 48) {
+    const chunk = rows.slice(i, i + 48);
+    const res = await Promise.all(chunk.map((r) => ok(r[0])));
+    res.forEach((good, j) => { if (!good) chunk[j].push('', 'splash'); });
+  }
+  console.log('lol skins without portrait art:', rows.filter((r) => r[4] === 'splash').length);
   save('lol', rows);
 }
-// Riftbound: the public card gallery page embeds every card.
+// Riftbound: the public card gallery page embeds every card. Only human labels are indexed
+// (name, champion tags, type, domain) — the rest of the record is image metadata.
 {
   const html = await get('https://playriftbound.com/en-us/card-gallery/', false);
   const nd = JSON.parse(html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1]);
   const cards = [];
-  (function walk(x) {
-    if (Array.isArray(x)) x.forEach(walk);
-    else if (x && typeof x === 'object') {
-      if (x.cardImage?.url && typeof x.name === 'string') cards.push(x);
-      Object.values(x).forEach(walk);
-    }
-  })(nd);
-  const seen = new Set();
-  const rows = [];
+  (function walk(x) { if (Array.isArray(x)) x.forEach(walk); else if (x && typeof x === 'object') { if (x.cardImage?.url && typeof x.name === 'string') cards.push(x); Object.values(x).forEach(walk); } })(nd);
+  const seen = new Set(); const rows = [];
   for (const c of cards) {
     const url = c.cardImage.url.split('?')[0];
-    if (seen.has(url)) continue;
-    seen.add(url);
-    const tags = JSON.stringify(c.tags ?? '') + ' ' + JSON.stringify(c.cardType ?? '') + ' ' + JSON.stringify(c.domain ?? '');
+    if (seen.has(url)) continue; seen.add(url);
+    const labels = [...(c.tags?.tags ?? []), ...(c.cardType?.type ?? []).map((x) => x.label), ...(c.domain?.values ?? []).map((x) => x.label)];
     const artist = c.illustrator?.values?.[0]?.label;
-    rows.push([
-      c.id ?? url.split('/').pop(),
-      c.name,
-      W(c.name, tags.replace(/"label"|"id"|"values"|"icon"|"type"|"image"|"url"|"provider"|https?:[^"]*/g, ' ')),
-      artist ?? '',
-      url.replace('https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/', ''),
-    ]);
+    rows.push([c.id ?? url.split('/').pop(), c.name, W(c.name, labels.join(' ')), artist ?? '', url.replace('https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/', '')]);
   }
   save('riftbound', rows);
 }

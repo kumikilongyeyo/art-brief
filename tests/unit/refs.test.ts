@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { completions, corrected, makePlan, resolveQuery, segment, vocabFrom, type VocabFile } from '../../src/refs/vocab';
-import { describePose, poseSimilarity, readSketch, type Skeleton } from '../../src/refs/pose';
+import { describePose, fromIndex, looksLikeSketch, poseSimilarity, readSketch, type Skeleton } from '../../src/refs/pose';
 
 const v = vocabFrom(JSON.parse(readFileSync(new URL('../../public/refs/vocab.json', import.meta.url), 'utf8')) as VocabFile);
 
@@ -32,9 +32,22 @@ describe('typo repair', () => {
   ])('%s → %s', (typed, want) => {
     expect(resolveQuery(v, typed)).toBe(want);
   });
-  it('leaves correct words and unknown words alone', () => {
+  // typos the TYPO table doesn't list: these go through the edit-distance repair
+  it.each([
+    ['knihgt', 'knight'],
+    ['sheld', 'shield'],
+    ['lantren', 'lantern'],
+    ['mountian', 'mountain'],
+    ['spaer', 'spear'],
+    ['draogn', 'dragon'],
+    ['wolfs howling', 'wolf howling'],
+  ])('fixes %s → %s by distance', (typed, want) => {
+    expect(resolveQuery(v, typed)).toBe(want);
+  });
+  it('leaves correct words and words it doesn’t know alone', () => {
     expect(resolveQuery(v, 'knight holding sword')).toBe('knight holding sword');
     expect(resolveQuery(v, 'glorptastic zweihander')).toBe('glorptastic zweihander');
+    for (const q of ['totoro', 'geralt of rivia', 'hobbit house', 'bikini', 'cyberpunk city', 'umbrella in the rain']) expect(resolveQuery(v, q)).toBe(q);
   });
   it('tells a typo fix from a completion', () => {
     expect(corrected('man holding sow', 'man holding sword')).toBe(true);
@@ -66,85 +79,7 @@ describe('suggestions and plans', () => {
   });
 });
 
-// ---- stick figures drawn straight into pixels
-type J = Record<'neck' | 'hip' | 'le' | 'lw' | 're' | 'rw' | 'lk' | 'la' | 'rk' | 'ra', [number, number]>;
-const POSES: Record<string, J> = {
-  standing: {
-    neck: [0, -60],
-    hip: [0, 20],
-    le: [-25, -20],
-    lw: [-30, 15],
-    re: [25, -20],
-    rw: [30, 15],
-    lk: [-12, 65],
-    la: [-15, 110],
-    rk: [12, 65],
-    ra: [15, 110],
-  },
-  arms_up: {
-    neck: [0, -60],
-    hip: [0, 20],
-    le: [-30, -90],
-    lw: [-35, -125],
-    re: [30, -90],
-    rw: [35, -125],
-    lk: [-12, 65],
-    la: [-15, 110],
-    rk: [12, 65],
-    ra: [15, 110],
-  },
-  lunge: {
-    neck: [10, -55],
-    hip: [0, 20],
-    le: [45, -45],
-    lw: [85, -40],
-    re: [-30, -30],
-    rw: [-55, -10],
-    lk: [50, 55],
-    la: [60, 110],
-    rk: [-45, 55],
-    ra: [-85, 95],
-  },
-  kneeling: {
-    neck: [0, -40],
-    hip: [0, 35],
-    le: [-25, 0],
-    lw: [-30, 30],
-    re: [25, 0],
-    rw: [30, 30],
-    lk: [-20, 75],
-    la: [-60, 80],
-    rk: [25, 70],
-    ra: [25, 110],
-  },
-};
-function draw(j: J, mirror = false): ImageData {
-  const S = 256,
-    data = new Uint8ClampedArray(S * S * 4).fill(255);
-  const dot = (x: number, y: number) => {
-    for (let dy = -2; dy <= 2; dy++)
-      for (let dx = -2; dx <= 2; dx++) {
-        const px = Math.round(x + dx),
-          py = Math.round(y + dy);
-        if (px < 0 || py < 0 || px >= S || py >= S) continue;
-        const i = (py * S + px) * 4;
-        data[i] = data[i + 1] = data[i + 2] = 0;
-      }
-  };
-  const P = (k: keyof J) => [S / 2 + (mirror ? -1 : 1) * j[k][0], S / 2 + j[k][1]];
-  const line = (a: keyof J, b: keyof J) => {
-    const [x0, y0] = P(a),
-      [x1, y1] = P(b),
-      n = Math.ceil(Math.hypot(x1 - x0, y1 - y0));
-    for (let i = 0; i <= n; i++) dot(x0 + ((x1 - x0) * i) / n, y0 + ((y1 - y0) * i) / n);
-  };
-  const [hx, hy] = P('neck');
-  for (let a = 0; a < 360; a += 2) dot(hx + 16 * Math.cos((a * Math.PI) / 180), hy - 18 + 16 * Math.sin((a * Math.PI) / 180));
-  (
-    ['neck', 'hip', 'neck', 'le', 'le', 'lw', 'neck', 're', 're', 'rw', 'hip', 'lk', 'lk', 'la', 'hip', 'rk', 'rk', 'ra'] as Array<keyof J>
-  ).forEach((k, i, a) => i % 2 === 0 && line(k, a[i + 1]));
-  return { width: S, height: S, data, colorSpace: 'srgb' } as ImageData;
-}
+import { draw, POSES } from './refs-draw';
 
 describe('stick-figure poses', () => {
   const read: Record<string, Skeleton> = {};
@@ -159,6 +94,48 @@ describe('stick-figure poses', () => {
       const ranked = Object.keys(POSES).sort((a, b) => poseSimilarity(mirrored, read[b]) - poseSimilarity(mirrored, read[a]));
       expect(ranked[0], `mirrored ${name}`).toBe(name);
     }
+  });
+  it('tells different poses apart and keeps mirrored ones together', () => {
+    const names = Object.keys(POSES);
+    for (const a of names) {
+      expect(poseSimilarity(readSketch(draw(POSES[a], true))!, read[a]), `${a} vs its mirror`).toBeGreaterThan(0.8);
+      for (const b of names) if (a !== b) expect(poseSimilarity(read[a], read[b]), `${a} vs ${b}`).toBeLessThan(0.7);
+    }
+  });
+  it.each(Object.keys(POSES))('reads %s when its strokes do not quite touch', (name) => {
+    const s = readSketch(draw(POSES[name], false, 8));
+    expect(s).not.toBeNull();
+    for (const j of ['elbowA', 'wristA', 'elbowB', 'wristB'] as const) expect(s![j].c, `${name} ${j}`).toBeGreaterThan(0);
+    expect(poseSimilarity(s!, read[name]), name).toBeGreaterThan(0.85);
+  });
+  it('a sketch with an arm left out still matches its pose', () => {
+    const s = readSketch(draw(POSES.lunge))!;
+    const oneArm = { ...s, elbowB: { ...s.neck, c: 0 }, wristB: { ...s.neck, c: 0 } };
+    expect(poseSimilarity(oneArm, s)).toBeGreaterThan(0.9);
+  });
+  it('reads a drawing photographed on grey, unevenly lit paper', () => {
+    const img = draw(POSES.arms_up);
+    for (let y = 0; y < img.height; y++)
+      for (let x = 0; x < img.width; x++) {
+        const i = (y * img.width + x) * 4, shade = 0.55 + 0.35 * (x / img.width); // shadow across the page
+        for (let c = 0; c < 3; c++) img.data[i + c] = Math.round(img.data[i + c] * shade * (c === 2 ? 0.9 : 1));
+      }
+    expect(looksLikeSketch(img)).toBe(true);
+    const s = readSketch(img)!;
+    expect(s).not.toBeNull();
+    expect(poseSimilarity(s, read.arms_up)).toBeGreaterThan(0.8);
+  });
+  it('reads the pose index rows the build writes', () => {
+    // one row: 17 joints [x, y, conf] u8 + aspect × 64, from a skeleton standing upright
+    const b = new Uint8Array(52);
+    const put = (j: number, x: number, y: number) => b.set([x * 255, y * 255, 230], j * 3);
+    put(0, 0.5, 0.1); put(5, 0.45, 0.2); put(6, 0.55, 0.2); put(7, 0.42, 0.35); put(8, 0.58, 0.35); put(9, 0.41, 0.5); put(10, 0.59, 0.5);
+    put(11, 0.46, 0.55); put(12, 0.54, 0.55); put(13, 0.46, 0.75); put(14, 0.54, 0.75); put(15, 0.46, 0.95); put(16, 0.54, 0.95);
+    b[51] = 64;
+    const s = fromIndex(b, 0)!;
+    expect(s).not.toBeNull();
+    expect(poseSimilarity(read.standing, s)).toBeGreaterThan(poseSimilarity(read.arms_up, s));
+    expect(fromIndex(new Uint8Array(52), 0)).toBeNull();
   });
   it('describes poses in search words', () => {
     expect(describePose(read.arms_up)[0]).toBe('arms raised');

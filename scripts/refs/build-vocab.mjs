@@ -70,6 +70,12 @@ for (const p of L.PLACES.slice(0, 80))
     add(`${p} ${t}`, 'place');
 L.LOOK.forEach((p) => add(p, 'concept'));
 L.MATERIALS.forEach((p) => add(p, 'material'));
+L.EXTRA.forEach((p) => add(p, 'concept'));
+// ~9k plain English words: they make unknown-but-ordinary words count in ranking and stop the typo
+// fixer from "correcting" them. Kept out of suggestions (category 'common').
+const STOPWORDS = new Set('the of and to in for is on that by this with you it not or be are from at as your all have was we will can us about if my has but our one other do no they he up may what which their out use any there see only so his when who also now get would how were me some these its like than had just over into two them should her such then most after where well been those being because through each she very did own does could might must shall while both either neither whether though although unless until upon within without around among between during before above below under again once here more less much many few same other another every per via yet thus hence mine yours hers ours theirs'.split(' '));
+const COMMON = fs.readFileSync(new URL('./common-words.txt', import.meta.url), 'utf8').split('\n').map((w) => w.trim()).filter((w) => /^[a-z]{3,}$/.test(w) && !STOPWORDS.has(w));
+COMMON.forEach((w) => add(w, 'common'));
 
 const keys = [...cat.keys()];
 console.log('phrases', keys.length);
@@ -79,9 +85,15 @@ const CONCEPTS = [
   ...new Set([...L.SUBJECTS, ...L.CREATURES, ...L.PROPS, ...L.PLACES, ...L.POSE_WORDS, ...L.ACTIONS, ...L.LOOK.slice(0, 80)].map(keyOf)),
 ];
 // Gate prompts: first half = unsafe, second half = safe. The gate compares the two groups.
-const GATE_BAD = ['nudity', 'naked body', 'explicit sexual content', 'pornography', 'gore', 'graphic violence and blood'];
+// Battle scenes are everyday reference material, so only gore counts as unsafe, not fighting; athletes
+// and dancers show skin without being adult, so they get safe prompts of their own.
+const GATE_BAD = ['nudity', 'naked body', 'explicit sexual content', 'pornography', 'gore'];
 const GATE_OK = [
   'a fully clothed person',
+  'an athlete in sportswear',
+  'a sports photograph',
+  'a dancer performing',
+  'a battle scene',
   'a fantasy illustration',
   'a photograph of an object',
   'a landscape',
@@ -105,20 +117,42 @@ async function embed(texts) {
   return out;
 }
 // A phrase's vector = mean of two framings, so it matches both photos and artwork.
+// Phrase vectors are cached in .cache/ (keyed by phrase), so a rebuild only embeds new phrases.
+const CACHE_FILE = path.join(ROOT, '.cache', 'vocab-vectors.bin');
+const CACHE_KEYS = path.join(ROOT, '.cache', 'vocab-vectors.json');
+const cached = new Map();
+try {
+  const keys = JSON.parse(fs.readFileSync(CACHE_KEYS, 'utf8'));
+  const buf = fs.readFileSync(CACHE_FILE);
+  const all = new Float32Array(buf.buffer, buf.byteOffset, buf.byteLength / 4);
+  keys.forEach((k, i) => cached.set(k, all.slice(i * DIM, (i + 1) * DIM)));
+} catch {
+  /* no cache yet */
+}
 async function phraseVecs(list) {
-  const a = await embed(list.map((k) => `a photo of ${k}`));
-  const b = await embed(list.map((k) => `fantasy art of ${k}`));
-  return a.map((v, i) => {
-    const m = new Float32Array(DIM);
-    let n = 0;
-    for (let d = 0; d < DIM; d++) {
-      m[d] = v[d] + b[i][d];
-      n += m[d] * m[d];
-    }
-    n = Math.sqrt(n);
-    for (let d = 0; d < DIM; d++) m[d] /= n;
-    return m;
-  });
+  const todo = list.filter((k) => !cached.has(k));
+  if (todo.length) {
+    const a = await embed(todo.map((k) => `a photo of ${k}`));
+    const b = await embed(todo.map((k) => `fantasy art of ${k}`));
+    todo.forEach((k, i) => {
+      const m = new Float32Array(DIM);
+      let n = 0;
+      for (let d = 0; d < DIM; d++) {
+        m[d] = a[i][d] + b[i][d];
+        n += m[d] * m[d];
+      }
+      n = Math.sqrt(n);
+      for (let d = 0; d < DIM; d++) m[d] /= n;
+      cached.set(k, m);
+    });
+    fs.mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
+    const keys = [...cached.keys()], all = new Float32Array(keys.length * DIM);
+    keys.forEach((k, i) => all.set(cached.get(k), i * DIM));
+    fs.writeFileSync(CACHE_FILE, Buffer.from(all.buffer));
+    fs.writeFileSync(CACHE_KEYS, JSON.stringify(keys));
+  }
+  console.log(`  ${list.length - todo.length} cached, ${todo.length} embedded`);
+  return list.map((k) => cached.get(k));
 }
 function pack(rows) {
   const n = rows.length,
@@ -148,7 +182,7 @@ fs.writeFileSync(path.join(OUT, 'gate.bin'), pack(await embed([...GATE_BAD, ...G
 
 // Keys are stored grouped by shard, in the same order as the rows of that shard's file.
 const ordered = [...shards.values()].flat().map((i) => keys[i]);
-const CATS = ['pose', 'figure', 'creature', 'prop', 'place', 'concept', 'material'];
+const CATS = ['pose', 'figure', 'creature', 'prop', 'place', 'concept', 'material', 'common'];
 const booru = Object.fromEntries(Object.entries(L.BOORU).map(([k, v]) => [keyOf(k), v]));
 fs.writeFileSync(
   path.join(OUT, 'vocab.json'),
@@ -172,5 +206,5 @@ console.log(
 );
 
 export function shardOf(k) {
-  return k.split(' ')[0].replace(/[^a-z0-9-]/g, '_');
+  return k.split(' ')[0].slice(0, 3).replace(/[^a-z0-9-]/g, '_'); // first 3 letters: a few hundred shards of ~30 rows
 }

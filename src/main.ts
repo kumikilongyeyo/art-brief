@@ -184,6 +184,11 @@ const footEl = h('footer', { class: 'foot' });
 // ---------- sections: Briefs | References ----------
 type View = 'briefs' | 'refs';
 let view: View = 'briefs';
+/** The Saved button's badge and its spoken label follow the page it opens. */
+function showSavedCount(n: number, what: 'briefs' | 'references') {
+  savedCount.textContent = String(n);
+  savedBtn.setAttribute('aria-label', `Saved ${what} (${n})`);
+}
 let refsPage: import('./refs/ui').RefsPage | null = null;
 const refsRoot = h('div', { class: 'refs-root' });
 const viewTab = (v: View, label: string) =>
@@ -196,12 +201,20 @@ const viewNav = h('nav', { class: 'view-nav', 'aria-label': 'Sections' }, viewTa
 
 async function setView(v: View) {
   if (v === 'refs' && !refsPage) {
-    const { mountRefs } = await import('./refs/ui');
+    let mod: typeof import('./refs/ui');
+    try {
+      mod = await import('./refs/ui');
+    } catch {
+      // offline, or a new version replaced this one's files: say so instead of doing nothing
+      toast('References couldn’t load — check your connection, then reload the page');
+      return;
+    }
+    const { mountRefs } = mod;
     refsPage = mountRefs(refsRoot, {
       folders: () => folders,
       addFolder: (name) => addFolder(name),
       onSavedChange: (n) => {
-        if (view === 'refs') savedCount.textContent = String(n);
+        if (view === 'refs') showSavedCount(n, 'references');
       },
     });
   }
@@ -216,10 +229,10 @@ async function setView(v: View) {
   if (v === 'refs') {
     toggleSavedPanel(false);
     refsPage!.show();
-    savedCount.textContent = String(refsPage!.savedCount());
+    showSavedCount(refsPage!.savedCount(), 'references');
   } else {
     refsPage?.hide();
-    savedCount.textContent = String(Object.keys(saved).length);
+    showSavedCount(Object.keys(saved).length, 'briefs');
   }
   const url = new URL(location.href);
   if (v === 'refs') url.searchParams.set('view', 'refs');
@@ -692,8 +705,7 @@ function renderLists() {
     refresh(v === 'new' ? undefined : v ? undefined : 'chip:new');
   };
   listsEl.replaceChildren(renderHistory(st, data, handlers));
-  savedCount.textContent = String(Object.keys(saved).length);
-  savedBtn.setAttribute('aria-label', `Saved briefs (${Object.keys(saved).length})`);
+  if (view === 'briefs') showSavedCount(Object.keys(saved).length, 'briefs');
   if (state.savedOpen) savedPanel.replaceChildren(savedHead(), renderSaved(st, data, handlers, setEditing));
 }
 

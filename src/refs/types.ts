@@ -1,3 +1,5 @@
+import type { Skeleton } from './pose';
+
 export type Mode = 'auto' | 'pose' | 'concept' | 'place' | 'prop' | 'creature';
 export type EffMode = Exclude<Mode, 'auto'>;
 
@@ -11,7 +13,6 @@ export type SourceId =
   | 'met'
   | 'cleveland'
   | 'artsmia'
-  | 'smithsonian'
   | 'europeana'
   | 'scryfall'
   | 'riftbound'
@@ -21,6 +22,7 @@ export type SourceId =
   | 'lorcana'
   | 'swu'
   | 'dnd'
+  | 'poses'
   | 'forgottenrealms'
   | 'criticalrole'
   | 'pathfinder'
@@ -44,6 +46,10 @@ export interface Cand {
   aspect?: number; // width / height
   adult?: boolean; // the source itself flagged it
   pos: number; // position in that source's own results (0 = its best)
+  /** Pre-analysed catalogs hand over the image's vector (and pose match) so it needs no ranking fetch. */
+  vec?: Float32Array;
+  poseScore?: number;
+  figure?: boolean; // the index knows whether a person is in it
 }
 
 /** What the engine understood from the words, handed to every source. */
@@ -58,6 +64,13 @@ export interface Plan {
   adult: boolean;
 }
 
+/** What the engine knows that sources may use: the query as a vector, and the pose to match. */
+export interface SearchCtx {
+  q: Float32Array | null;
+  pose?: Skeleton;
+  memo: Map<string, unknown>; // per-search scratch space (e.g. a catalog's ranked rows)
+}
+
 export interface Page {
   items: Cand[];
   more: boolean; // another page exists
@@ -68,7 +81,11 @@ export interface Source {
   label: string;
   /** How much this source is worth in each mode (0 = don't ask it). */
   trust: Record<EffMode, number>;
-  /** The thumbnail can be read by the ranking model directly (CORS allowed). */
+  /** The thumbnail can be read by the ranking model directly (it sends CORS headers and is small). */
   corsThumb?: boolean;
-  search(plan: Plan, page: number, signal: AbortSignal): Promise<Page>;
+  /** Answers from files shipped with the app (instant): capped per batch so it can't crowd out the web. */
+  local?: boolean;
+  /** Only publisher-approved art (official card and game art): the adult check is skipped. */
+  sfw?: boolean;
+  search(plan: Plan, page: number, signal: AbortSignal, ctx: SearchCtx): Promise<Page>;
 }

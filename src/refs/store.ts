@@ -22,7 +22,6 @@ export interface RefPrefs {
 
 const K_SAVED = 'ab:refs-saved';
 const K_PREFS = 'ab:refs-prefs';
-const DEFAULT_PREFS: RefPrefs = { adult: false, mirror: true, off: [] };
 
 function read<T>(k: string, fallback: T): T {
   try {
@@ -71,4 +70,3 @@ export function loadPrefs(): RefPrefs {
   return { adult: !!p.adult, mirror: p.mirror !== false, off: Array.isArray(p.off) ? p.off : [] };
 }
 export const savePrefs = (p: RefPrefs) => write(K_PREFS, p);
-export { DEFAULT_PREFS };

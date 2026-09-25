@@ -50,7 +50,7 @@ async function image(url, ctx, base) {
     key = new Request(u.toString());
   let res = await cache.match(key);
   if (!res) {
-    const up = await fetch(u.toString(), { headers: { 'User-Agent': UA, Referer: `${u.origin}/` }, cf: { cacheTtl: 86400 } });
+    const up = await fetch(u.toString(), { headers: { 'User-Agent': UA, Referer: `${u.origin}/` }, redirect: 'manual', cf: { cacheTtl: 86400 } });
     const type = up.headers.get('Content-Type') || '';
     if (!up.ok || !type.startsWith('image/')) return new Response('upstream refused', { status: 502, headers: base });
     res = new Response(up.body, { headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=86400' } });
@@ -68,12 +68,27 @@ function cors(origin, env) {
   return h;
 }
 
+// Per-visitor limit, so nobody can use the relay to hammer ArtStation or Wallhaven from this Worker's
+// address (which would get it banned for everyone). Per isolate, which is plenty for one person's use.
+const LIMIT = 240; // requests per minute per IP (a scrolling session makes ~2 searches + thumbnails)
+const seen = new Map();
+function limited(ip) {
+  const now = Date.now(), w = seen.get(ip);
+  if (!w || now - w.t > 60000) {
+    seen.set(ip, { t: now, n: 1 });
+    if (seen.size > 5000) seen.clear();
+    return false;
+  }
+  return ++w.n > LIMIT;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin');
     const base = cors(origin, env);
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: base });
+    if (limited(request.headers.get('CF-Connecting-IP') || 'local')) return new Response('slow down', { status: 429, headers: base });
     if (request.method !== 'GET') return new Response('GET only', { status: 405, headers: base });
 
     const name = url.pathname.replace(/^\/+|\/+$/g, '');

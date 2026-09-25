@@ -3,11 +3,13 @@ import './refs.css';
 import { Search, type Hit } from './engine';
 import { SOURCES, SOURCE_BY_ID } from './sources';
 import { loadPrefs, loadRefs, refFrom, savePrefs, saveRefs, type SavedRef } from './store';
-import type { Cand, Mode, SourceId } from './types';
-import { embedBitmap, warmVision } from './vision';
-import { describePose, fromMoveNet, looksLikeSketch, readSketch, type Skeleton } from './pose';
-import { completions, corrected, display, loadVocab, normWords, resolveQuery, words, type Vocab } from './vocab';
+import type { Cand, Mode } from './types';
+import { embedBitmap, onVisionState, visionState, warmVision } from './vision';
+import { describePose, fromMoveNet, inkBox, looksLikeSketch, readSketch, templatePose, type Pt, type Skeleton } from './pose';
+import { completions, corrected, display, loadVocab, normWords, resolveQuery, V, words, type Vocab } from './vocab';
 import { toast } from '../ui/toast';
+import { rngFrom, seedFromBytes } from '../engine/rng';
+import { showUrl } from './net';
 import { openFolderMenu } from '../ui/folder-menu';
 import type { Folder } from '../library';
 
@@ -123,12 +125,57 @@ const NARROW: Record<string, string[]> = {
   prop: ['ornate', 'worn', 'close-up', 'on display', 'engraved'],
   creature: ['in flight', 'roaring', 'side view', 'close-up', 'in water'],
 };
+const JOINTS = ['head', 'neck', 'hip', 'elbowA', 'wristA', 'elbowB', 'wristB', 'kneeA', 'ankleA', 'kneeB', 'ankleB'] as const;
+const JOINT_LABEL: Record<(typeof JOINTS)[number], string> = { head: 'Head', neck: 'Neck', hip: 'Hips', elbowA: 'Elbow', wristA: 'Hand', elbowB: 'Other elbow', wristB: 'Other hand', kneeA: 'Knee', ankleA: 'Foot', kneeB: 'Other knee', ankleB: 'Other foot' };
+const BONES: Array<[(typeof JOINTS)[number], (typeof JOINTS)[number]]> = [['head', 'neck'], ['neck', 'hip'], ['neck', 'elbowA'], ['elbowA', 'wristA'], ['neck', 'elbowB'], ['elbowB', 'wristB'], ['hip', 'kneeA'], ['kneeA', 'ankleA'], ['hip', 'kneeB'], ['kneeB', 'ankleB']];
 const IDEAS: Array<[string, string]> = [
   ['Sword fighters', 'pose'],
   ['Dragons', 'dragon'],
   ['Castles & ruins', 'castle'],
   ['Champion art', 'champion'],
 ];
+/** The start screen's idea tiles (public/refs/ideas.json, from scripts/refs/build-ideas.mjs): a different
+ *  8, each with a different picture, every time the page is opened. The four built-in tiles stand in
+ *  when the list can't load. */
+type Idea = { label: string; q: string; imgs: string[] };
+type Tile = { idea: Idea; img: string };
+let ideaPool: Promise<Idea[]> | null = null;
+function loadIdeas(): Promise<Idea[]> {
+  const fallback = (): Idea[] => IDEAS.map(([label, img]) => ({ label, q: label.replace('&', 'and'), imgs: [`${BASE}refs/tiles/${img}.jpg`] }));
+  ideaPool ??= fetch(`${BASE}refs/ideas.json${V}`)
+    .then((r) => (r.ok ? (r.json() as Promise<Idea[]>) : Promise.reject(new Error(String(r.status)))))
+    .then((x) => (x.length >= 4 ? x : fallback()))
+    .catch(() => {
+      ideaPool = null; // try again next visit
+      return fallback();
+    });
+  return ideaPool;
+}
+const LAST_IDEAS = 'ab:refs-ideas';
+function pickTiles(pool: Idea[], n = 8): Tile[] {
+  let last: string[] = [];
+  try {
+    last = JSON.parse(localStorage.getItem(LAST_IDEAS) ?? '[]') as string[];
+  } catch {
+    /* storage blocked: any 8 will do */
+  }
+  const rnd = rngFrom(seedFromBytes(crypto.getRandomValues(new Uint8Array(6)))); // a new draw every visit
+  const shuffle = <T,>(a: T[]) => {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(rnd() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  // ideas not shown last time first, so consecutive visits don't repeat
+  const picked = [...shuffle(pool.filter((x) => !last.includes(x.label))), ...shuffle(pool.filter((x) => last.includes(x.label)))].slice(0, n);
+  try {
+    localStorage.setItem(LAST_IDEAS, JSON.stringify(picked.map((x) => x.label)));
+  } catch {
+    /* not remembered: fine */
+  }
+  return picked.map((idea) => ({ idea, img: idea.imgs[Math.floor(rnd() * idea.imgs.length)] }));
+}
 const TONES = ['#2d2a33', '#4a3b2e', '#39424e', '#5b4636', '#2f3b35', '#4b3a4f', '#6b5a44', '#384a5c'];
 const COARSE = matchMedia('(pointer: coarse)').matches;
 const IS_MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
@@ -167,6 +214,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
 
   const S = {
     mode: 'auto' as Mode,
+    tiles: null as Tile[] | null, // this visit's idea tiles
+    visits: 0,
     q: '',
     ran: '',
     fix: null as { from: string; to: string } | null,
@@ -191,7 +240,9 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     prior: undefined as { up: Float32Array[]; down: Float32Array[] } | undefined,
     sketch: null as Skeleton | null, // the user's image read as a stick figure
     photoPose: null as Skeleton | null, // the user's photo read by MoveNet (Pose searches)
-    unread: false, // a drawing we couldn't read as a stick figure
+    grid: null as HTMLElement | null, // the results grid of the current search view
+    unread: false, // a drawing we couldn't read as a stick figure (joints start on a template)
+    sketchEdited: false, // the user dragged a joint: keep their joints, don't re-read
   };
   const hist: Snap[] = [];
 
@@ -600,7 +651,9 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     void start(stale);
   }
 
+  let startSeq = 0;
   async function start(stale: boolean) {
+    const seq = ++startSeq;
     S.search?.abort();
     const words_ = [S.ran, ...S.narrow].filter(Boolean).join(' ');
     let image: ImageBitmap | Float32Array | undefined;
@@ -613,6 +666,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       pose = read.pose ?? undefined;
       sketch = read.sketch;
     }
+    if (seq !== startSeq) return; // a newer search started while this one was reading the image
     const s = new Search({
       text: words_,
       mode: S.mode,
@@ -628,17 +682,40 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       sketch,
     });
     S.search = s;
+    if (import.meta.env.DEV) (globalThis as { __refsSearch?: Search }).__refsSearch = s; // for the dev self-tests
     S.stale = stale;
     if (!stale) S.cells = [];
+    let lastMode = s.modeUsed();
     s.onChange = () => {
+      if (S.search === s && s.modeUsed() !== lastMode) {
+        lastMode = s.modeUsed();
+        const row = body.querySelector('.r-narrow');
+        if (row && !S.narrow.length) row.replaceWith(narrowRow()); // chips follow the mode once it's known
+      }
       if (S.search === s) scheduleStatus();
     };
     paint();
+    // the sentinel may already be in view: re-observe so its callback fires for the new search
+    io.unobserve(sentinel);
+    io.observe(sentinel);
     void loadMore(true);
   }
 
   /** A drawing is read as a stick figure; a photo is read by MoveNet when searching for poses. */
+  // Sketch joints are kept in whole-image coordinates (so the dots stay put when the crop changes)
+  // and converted to the crop for searching.
+  const toCrop = (sk: Skeleton): Skeleton => {
+    const c = S.crop, m = (p: Pt): Pt => ({ x: (p.x - c.x) / c.w, y: (p.y - c.y) / c.h, c: p.c });
+    const W = S.bmp?.width ?? 1, H = S.bmp?.height ?? 1;
+    return { ...(Object.fromEntries(JOINTS.map((j) => [j, m(sk[j])])) as Record<(typeof JOINTS)[number], Pt>), from: 'sketch', aspect: (c.w * W) / (c.h * H) };
+  };
+  const toFull = (sk: Skeleton): Skeleton => {
+    const c = S.crop, m = (p: Pt): Pt => ({ x: c.x + p.x * c.w, y: c.y + p.y * c.h, c: p.c });
+    return { ...(Object.fromEntries(JOINTS.map((j) => [j, m(sk[j])])) as Record<(typeof JOINTS)[number], Pt>), from: 'sketch', aspect: (S.bmp?.width ?? 1) / (S.bmp?.height ?? 1) };
+  };
+  /** A drawing is read as a stick figure; a photo is read by MoveNet when searching for poses. */
   async function readPose(b: ImageBitmap): Promise<{ pose: Skeleton | null; sketch: boolean }> {
+    if (S.sketchEdited && S.sketch) return { pose: toCrop(S.sketch), sketch: true };
     const sc = Math.min(1, 512 / Math.max(b.width, b.height));
     const cv = new OffscreenCanvas(Math.max(1, Math.round(b.width * sc)), Math.max(1, Math.round(b.height * sc)));
     const cx = cv.getContext('2d', { willReadFrequently: true })!;
@@ -646,13 +723,21 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const data = cx.getImageData(0, 0, cv.width, cv.height);
     S.unread = false;
     if (looksLikeSketch(data)) {
-      const sk = readSketch(data);
-      S.sketch = sk;
       S.photoPose = null;
-      S.unread = !sk;
+      let sk = readSketch(data);
+      if (!sk) {
+        // couldn't read it: start from a standing figure over the drawing; the user drags the dots into place
+        const box = inkBox(data) ?? { x0: 0.3, y0: 0.1, x1: 0.7, y1: 0.9 };
+        sk = templatePose(box, cv.width / cv.height);
+        S.unread = true;
+      }
+      S.sketch = toFull(sk);
+      paintJoints();
       paintReading();
-      if (sk) return { pose: sk, sketch: true };
-    } else S.sketch = null;
+      return { pose: sk, sketch: true };
+    }
+    S.sketch = null;
+    paintJoints();
     const posey = S.mode === 'pose' || (S.mode === 'auto' && /pose|holding|stance|running|jump|kneel|lunge|sitting|fighting/.test(S.ran));
     if (!posey) {
       S.photoPose = null;
@@ -673,13 +758,58 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const pnl = body.querySelector('.r-panel');
     if (!pnl) return;
     pnl.querySelector('.r-reading')?.remove();
-    if (S.sketch)
-      pnl.append(el('p', { class: 'r-reading' }, `Read as a stick figure — searching by its pose (${describePose(S.sketch)[0]})`));
+    if (S.sketch && S.unread && !S.sketchEdited)
+      pnl.append(el('p', { class: 'r-reading' }, 'Couldn’t read this drawing by itself — drag the dots onto its head, joints, hands and feet'));
+    else if (S.sketch)
+      pnl.append(el('p', { class: 'r-reading' }, `Searching by this pose (${describePose(toCrop(S.sketch))[0]}) · drag a dot if a joint is off`));
     else if (S.photoPose) pnl.append(el('p', { class: 'r-reading' }, 'Matching the pose of the figure in your image'));
-    else if (S.unread)
-      pnl.append(
-        el('p', { class: 'r-reading' }, 'Couldn’t read a pose from this drawing — a circle head and one line per limb works best'),
-      );
+  }
+
+  /** The sketch's joints as draggable dots over the image (arrow keys move the focused one). */
+  function paintJoints() {
+    const wrap = body.querySelector<HTMLElement>('.r-imgwrap');
+    wrap?.querySelector('.r-joints')?.remove();
+    if (!wrap || !S.sketch) return;
+    const sk = S.sketch;
+    const layer = el('div', { class: 'r-joints' });
+    const svg = document.createElementNS(SVG, 'svg');
+    svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    const lines = () => {
+      svg.replaceChildren();
+      for (const [a, b] of BONES) {
+        const l = document.createElementNS(SVG, 'line');
+        l.setAttribute('x1', String(sk[a].x * 100)); l.setAttribute('y1', String(sk[a].y * 100));
+        l.setAttribute('x2', String(sk[b].x * 100)); l.setAttribute('y2', String(sk[b].y * 100));
+        svg.append(l);
+      }
+    };
+    lines();
+    layer.append(svg);
+    for (const j of JOINTS) {
+      const dot = el('button', { class: 'r-joint', type: 'button', 'aria-label': `${JOINT_LABEL[j]} — drag, or use arrow keys`, style: `left:${sk[j].x * 100}%;top:${sk[j].y * 100}%` });
+      const place = (x: number, y: number) => {
+        sk[j] = { x: Math.min(1, Math.max(0, x)), y: Math.min(1, Math.max(0, y)), c: 1 };
+        dot.style.left = `${sk[j].x * 100}%`; dot.style.top = `${sk[j].y * 100}%`;
+        lines();
+      };
+      let dragging = false;
+      dot.addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); dot.setPointerCapture(e.pointerId); dragging = true; clearTimeout(cropTimer); });
+      dot.addEventListener('pointermove', (e) => { if (!dragging) return; const r = wrap.getBoundingClientRect(); place((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); });
+      const end = () => { if (!dragging) return; dragging = false; S.sketchEdited = true; S.unread = false; paintReading(); searchSoon(250); };
+      dot.addEventListener('pointerup', end);
+      dot.addEventListener('pointercancel', end);
+      dot.addEventListener('keydown', (e) => {
+        const k = ({ ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] } as Record<string, number[]>)[e.key];
+        if (!k) return;
+        e.preventDefault(); e.stopPropagation();
+        place(sk[j].x + k[0] * 0.015, sk[j].y + k[1] * 0.015);
+        S.sketchEdited = true; S.unread = false; paintReading(); searchSoon(600);
+      });
+      layer.append(dot);
+    }
+    wrap.append(layer);
   }
 
   async function cropped(b: ImageBitmap): Promise<ImageBitmap> {
@@ -705,32 +835,45 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     });
   }
 
+  /** Loads the next batch for the current search. One load per search at a time; a new search
+   *  never waits on the old one's load. Results always go into S.cells; the grid shows them when visible. */
+  let loadingFor: Search | null = null;
   async function loadMore(first = false) {
     const s = S.search;
-    if (!s || S.loading) return;
+    if (!s || loadingFor === s) return;
     if (!first && s.status().exhausted) return;
-    S.loading = true;
-    const grid = body.querySelector<HTMLElement>('.r-grid');
-    if (!S.stale && grid) addSkeletons(grid);
-    const hits = await s.next();
-    S.loading = false;
-    if (S.search !== s) return;
+    loadingFor = s;
+    if (!S.stale && S.grid?.isConnected) addSkeletons(S.grid);
+    let hits: Hit[];
+    try {
+      hits = await s.next();
+    } finally {
+      if (loadingFor === s) loadingFor = null;
+    }
+    if (S.search !== s) return; // superseded while waiting
     if (S.stale) {
       S.stale = false;
       S.cells = [];
-      body.querySelector('.r-grid')?.replaceChildren();
-      body.querySelector('.r-grid')?.classList.remove('r-stale');
+      S.grid?.replaceChildren();
+      S.grid?.classList.remove('r-stale');
     }
-    const g = body.querySelector<HTMLElement>('.r-grid');
-    g?.querySelectorAll('.r-skel').forEach((x) => x.remove());
-    if (!hits.length && !S.cells.length && s.status().exhausted) {
-      paint();
+    S.grid?.querySelectorAll('.r-skel').forEach((x) => x.remove());
+    const showing = S.view === 'search' && !!S.grid?.isConnected;
+    for (const h of hits) {
+      const i = S.cells.push(h) - 1;
+      if (showing) S.grid!.append(cell(h, i));
+    }
+    const done = s.status().exhausted;
+    if (!hits.length && !S.cells.length && done) {
+      if (showing) paint();
       return;
     }
-    if (g) for (const h of hits) g.append(cell(h, S.cells.push(h) - 1));
-    paintStatus();
-    if (s.status().exhausted) paintEnd();
-    else if (sentinelVisible()) void loadMore();
+    if (showing) {
+      paintStatus();
+      if (done) paintEnd();
+    }
+    // keep filling while the bottom of the page is in view (next tick, never a tight loop)
+    if (hits.length && !done && showing && sentinelVisible()) setTimeout(() => void loadMore(), 0);
   }
 
   function addSkeletons(g: HTMLElement) {
@@ -753,6 +896,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const col = el('div', { style: 'min-width:0' });
     col.append(metaLine(), narrowRow());
     const grid = el('div', { class: `r-grid${S.stale ? ' r-stale' : ''}` });
+    S.grid = grid;
     S.cells.forEach((h, i) => grid.append(cell(h, i, false)));
     col.append(grid, sentinel);
     wrap.append(col);
@@ -760,25 +904,41 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   }
 
   function paintStart() {
-    const tiles = el('div', { class: 'r-tiles' });
-    IDEAS.forEach(([label, img], i) => {
-      const im = el('img', { src: `${BASE}refs/tiles/${img}.jpg`, alt: '' });
-      im.addEventListener('load', () => im.classList.add('r-ok'));
-      const b = el('button', { class: 'r-tile', type: 'button', style: `background:${TONES[i]}` }, im, el('span', {}, label));
-      b.addEventListener('click', () => {
-        S.mode = 'auto';
-        run(label.replace('&', 'and'), { exact: true });
-      });
-      tiles.append(b);
-    });
+    const grid = el('div', { class: 'r-tiles' });
     body.append(
       el(
         'div',
         { class: 'r-ideas' },
         el('h1', {}, `Start with an idea — or ${COARSE ? 'add a photo' : `paste an image anywhere (${IS_MAC ? '⌘' : 'Ctrl'} V)`}`),
-        tiles,
+        grid,
       ),
     );
+    const fill = (list: Tile[]) =>
+      grid.replaceChildren(
+        ...list.map(({ idea, img }, i) => {
+          const im = el('img', { src: img, alt: '' });
+          let next = 0;
+          im.addEventListener('load', () => im.classList.add('r-ok'));
+          im.addEventListener('error', () => {
+            // a dead picture: show another of this idea's
+            const alt = idea.imgs.filter((u) => u !== img)[next++];
+            if (alt) im.src = alt;
+          });
+          const b = el('button', { class: 'r-tile', type: 'button', style: `background:${TONES[i % TONES.length]}` }, im, el('span', {}, idea.label));
+          b.addEventListener('click', () => {
+            S.mode = 'auto';
+            run(idea.q, { exact: true });
+          });
+          return b;
+        }),
+      );
+    if (S.tiles) return fill(S.tiles);
+    // placeholders the size of the tiles while the list (a few KB) loads, so nothing jumps
+    for (let i = 0; i < 8; i++) grid.append(el('div', { class: 'r-tile', style: `background:${TONES[i % TONES.length]}`, 'aria-hidden': 'true' }));
+    void loadIdeas().then((pool) => {
+      S.tiles ??= pickTiles(pool);
+      if (grid.isConnected) fill(S.tiles);
+    });
   }
 
   function metaLine() {
@@ -799,11 +959,15 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const x = s.status(),
       n = s.picks();
     const tuned = n ? ` · tuned by ${n} pick${n > 1 ? 's' : ''}` : '';
-    const srcs = new Set(S.cells.map((h) => h.c.src)).size;
+    const srcs = new Set(S.cells.filter((h) => h.state !== 'dropped').map((h) => h.c.src)).size;
+    const vs = visionState();
+    // first visit only: say the matching model is downloading instead of looking stuck
+    const model = vs.phase === 'loading' && vs.total ? ` · getting the matching model ready (${Math.min(99, Math.round((vs.loaded / vs.total) * 100))}%)` : '';
     st.replaceChildren();
     if (S.stale) st.append(el('span', { class: 'r-spin' }), 'Updating…');
-    else if (!S.cells.length) st.append(el('span', { class: 'r-spin' }), `Searching ${x.sourcesAsked || ''} sources…`.replace('  ', ' '));
-    else if (!x.exhausted) st.append(`${S.cells.length} references from ${srcs} source${srcs > 1 ? 's' : ''} · scroll for more${tuned}`);
+    else if (!S.cells.length) st.append(el('span', { class: 'r-spin' }), `Searching ${x.sourcesAsked || ''} sources…`.replace('  ', ' ') + model);
+    else if (x.nearest) st.append(`No close match for this pose · ${S.cells.length} nearest from ${srcs} source${srcs > 1 ? 's' : ''} · drag a dot or add words to steer it`);
+    else if (!x.exhausted) st.append(`${S.cells.length} references from ${srcs} source${srcs > 1 ? 's' : ''} · scroll for more${tuned}${model}`);
     else st.append(`${S.cells.length} references from ${srcs} source${srcs > 1 ? 's' : ''}${tuned}`);
   }
   function narrowRow() {
@@ -838,7 +1002,16 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     });
     const img = el('img', { src: c.thumb, alt: '', loading: 'lazy', referrerpolicy: 'no-referrer', decoding: 'async' });
     img.addEventListener('load', () => e.classList.add('r-loaded'));
-    img.addEventListener('error', () => e.remove());
+    img.addEventListener('error', () => {
+      if (!img.dataset.retried && !c.thumb.startsWith('https://wsrv.nl/')) {
+        img.dataset.retried = '1';
+        img.src = showUrl(c.thumb);
+        return;
+      }
+      e.hidden = true;
+      e.classList.add('r-broken');
+      S.search?.broken(c.key);
+    });
     const open = el(
       'button',
       {
@@ -1044,7 +1217,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     applyCrop();
     bindCrop(crop, wrap, applyCrop);
     const pnl = el('div', { class: 'r-panel' }, el('div', { class: 'r-stage' }, wrap), tools);
-    queueMicrotask(paintReading);
+    queueMicrotask(() => { paintJoints(); paintReading(); });
     return pnl;
   }
 
@@ -1145,6 +1318,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     S.narrow = [];
     S.sketch = null;
     S.photoPose = null;
+    S.sketchEdited = false;
+    S.unread = false;
   }
   async function setImageFile(f: File) {
     if (!f.type.startsWith('image/')) return;
@@ -1344,7 +1519,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     });
     side.append(
       el('div', { class: 'r-pair' }, save, flip),
-      el('a', { class: 'r-vlink', href: c.page, target: '_blank', rel: 'noopener' }, ic('ext'), `Open on ${SOURCE_BY_ID[c.src].label}`),
+      el('a', { class: 'r-vlink', href: /^https?:\/\//.test(c.page) ? c.page : '#', target: '_blank', rel: 'noopener noreferrer' }, ic('ext'), `Open on ${SOURCE_BY_ID[c.src].label}`),
     );
     if (hit && S.search) {
       const near = S.search.similar(c.key, 6);
@@ -1437,7 +1612,10 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     if (saved[c.key]) {
       const was = saved[c.key];
       delete saved[c.key];
-      persistSaved();
+      if (!persistSaved()) {
+        saved[c.key] = was;
+        return;
+      }
       btn?.setAttribute('aria-pressed', 'false');
       btn?.replaceChildren(ic('star'), 'Save');
       toast('Removed from Saved', {
@@ -1451,9 +1629,11 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
         },
       });
     } else {
-      const folder = S.savedFilter !== 'all' && S.savedFilter !== 'unsorted' ? S.savedFilter : undefined;
-      saved[c.key] = refFrom(c, folder);
-      persistSaved();
+      saved[c.key] = refFrom(c, undefined); // into Unsorted; move it from Saved
+      if (!persistSaved()) {
+        delete saved[c.key];
+        return;
+      }
       btn?.setAttribute('aria-pressed', 'true');
       btn?.replaceChildren(ic('star'), 'Saved');
       toast('Saved', {
@@ -1467,9 +1647,12 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       });
     }
   }
-  function persistSaved() {
-    if (!saveRefs(saved)) toast('Couldn’t save — this browser is blocking storage');
+  /** Writes the saved list; false (with a message) when the browser refuses — nothing is claimed saved then. */
+  function persistSaved(): boolean {
+    const ok = saveRefs(saved);
+    if (!ok) toast('Couldn’t save: this browser is blocking storage (private window, or storage full)');
     host.onSavedChange(Object.keys(saved).length);
+    return ok;
   }
   function showSaved(on: boolean) {
     S.view = on ? 'saved' : 'search';
@@ -1581,17 +1764,25 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   }
 
   // ---------------------------------------------------------------- page API
+  onVisionState(scheduleStatus);
   paint();
   return {
     show() {
       page.hidden = false;
-      void warmVision().catch(() => undefined); // silent background download of the ranking model
+      // back on the start screen: a fresh set of ideas each visit
+      if (S.visits++ && !S.ran && !S.bmp && !S.like && S.view !== 'saved') {
+        S.tiles = null;
+        paint();
+      }
+      S.search?.resume();
+      void warmVision().catch(() => undefined); // background download of the ranking model
       if (!S.ran && !S.bmp && !S.like && !COARSE) setTimeout(() => input.focus(), 0);
     },
     hide() {
       page.hidden = true;
       closePop(false);
-      if (S.viewerOpen) closeViewer();
+      if (S.viewerOpen) requestClose(); // also pops the viewer's history entry
+      S.search?.pause();
     },
     toggleSaved() {
       showSaved(S.view !== 'saved');
@@ -1600,4 +1791,3 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   };
 }
 
-export type { SourceId };

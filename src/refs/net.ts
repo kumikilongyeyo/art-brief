@@ -32,17 +32,23 @@ export function rankUrl(thumb: string, whole = false): string {
   return `https://wsrv.nl/?url=${encodeURIComponent(thumb.replace(/^https?:\/\//, ''))}&${fit}&output=jpg&q=75`;
 }
 
+/** A display image through wsrv.nl: for hosts that serve huge originals or refuse to be shown on other sites. */
+export function showUrl(src: string, w = 480): string {
+  return `https://wsrv.nl/?url=${encodeURIComponent(src.replace(/^https?:\/\//, ''))}&w=${w}&output=webp&q=80`;
+}
+
 export const qs = (o: Record<string, string | number | boolean | undefined>) =>
   Object.entries(o)
     .filter(([, v]) => v !== undefined && v !== '')
     .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
     .join('&');
 
+declare const __REFS_V__: string;
 /** Loaded once per session: small static catalogs shipped with the app. */
 const catalogCache = new Map<string, Promise<unknown>>();
 export function catalog<T>(name: string): Promise<T> {
   if (!catalogCache.has(name)) {
-    const p = fetch(`${import.meta.env.BASE_URL}refs/catalogs/${name}.json`).then((r) => {
+    const p = fetch(`${import.meta.env.BASE_URL}refs/catalogs/${name}.json?v=${__REFS_V__}`).then((r) => {
       if (!r.ok) throw new Error(`catalog ${name}: ${r.status}`);
       return r.json();
     });

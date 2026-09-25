@@ -1,5 +1,6 @@
-import { catalog, getJson, qs, RELAY } from './net';
-import type { Cand, EffMode, Page, Plan, Source, SourceId } from './types';
+import { byPose, figureRows, nearest, vectorOf } from './idx';
+import { catalog, getJson, qs, RELAY, showUrl } from './net';
+import type { Cand, EffMode, Page, Plan, SearchCtx, Source, SourceId } from './types';
 
 /** trust per mode: pose, concept, place, prop, creature */
 const T = (pose: number, concept: number, place: number, prop: number, creature: number): Record<EffMode, number> => ({
@@ -17,6 +18,8 @@ const words = (s: string) =>
 const text = (p: Plan) => p.text;
 const nounText = (p: Plan) => (p.nouns.length ? p.nouns.join(' ') : p.words.slice(0, 3).join(' '));
 const none: Page = { items: [], more: false };
+/** Remote titles can carry markup ("<div class='fn'>…"): keep the text only. */
+const clean = (s: string | undefined, fallback: string) => (s ?? '').replace(/<[^>]*>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim() || fallback;
 
 // ---------------------------------------------------------------- fantasy art (relay)
 
@@ -123,7 +126,6 @@ const safebooru: Source = {
 const openverse: Source = {
   id: 'openverse',
   label: 'Openverse',
-  corsThumb: true,
   trust: T(0.75, 0.8, 0.85, 0.75, 0.75),
   async search(p, page, signal) {
     const r = await getJson<{
@@ -147,7 +149,7 @@ const openverse: Source = {
     const items = (r.results ?? []).map((x, i): Cand => ({
       key: `openverse:${x.id}`,
       src: 'openverse',
-      title: x.title || 'Openverse image',
+      title: clean(x.title, 'Openverse image'),
       pos: i,
       thumb: x.thumbnail,
       rankThumb: x.url,
@@ -158,7 +160,7 @@ const openverse: Source = {
       aspect: x.width && x.height ? x.width / x.height : undefined,
       adult: !!x.mature,
     }));
-    return { items, more: (r.page_count ?? 0) > page + 1 && page < 8 };
+    return { items, more: (r.page_count ?? 0) > page + 1 && page < 2 }; // anonymous limit is 200 calls a day
   },
 };
 
@@ -168,7 +170,9 @@ type MwPage = {
   imageinfo?: Array<{ thumburl?: string; url: string; descriptionurl: string; width: number; height: number; mime?: string }>;
 };
 /** Any MediaWiki: Commons, Fandom wikis, UESP, Pathfinder — file search with thumbnails. */
-function mediawiki(id: SourceId, label: string, api: string, trust: Record<EffMode, number>, extra = '', corsThumb = false): Source {
+/** `proxied`: the wiki's image host refuses to be shown on other sites (Fandom sends a same-origin
+ *  resource policy), so its thumbnails are shown through wsrv.nl. */
+function mediawiki(id: SourceId, label: string, api: string, trust: Record<EffMode, number>, extra = '', corsThumb = false, proxied = false): Source {
   return {
     id,
     label,
@@ -194,8 +198,9 @@ function mediawiki(id: SourceId, label: string, api: string, trust: Record<EffMo
           src: id,
           title: name,
           pos: i,
-          thumb: ii.thumburl ?? ii.url,
-          full: ii.url,
+          thumb: proxied ? showUrl(ii.thumburl ?? ii.url) : (ii.thumburl ?? ii.url),
+          rankThumb: ii.thumburl ?? ii.url, // the ranking fetch adds its own wsrv.nl step
+          full: proxied ? showUrl(ii.url, 1200) : ii.url,
           page: ii.descriptionurl,
           tags: words(name),
           aspect: ii.width / ii.height,
@@ -218,7 +223,6 @@ const commons = mediawiki(
 const inat: Source = {
   id: 'inat',
   label: 'iNaturalist',
-  corsThumb: true,
   trust: T(0, 0.2, 0.1, 0, 0.95),
   async search(p, page, signal) {
     const animal = p.nouns.find((n) => !FANTASY.has(n));
@@ -425,46 +429,6 @@ const artsmia: Source = {
   },
 };
 
-const smithsonian: Source = {
-  id: 'smithsonian',
-  label: 'Smithsonian',
-  trust: T(0.15, 0.4, 0.3, 0.7, 0.4),
-  async search(p, page, signal) {
-    const q = nounText(p);
-    if (!q || page > 1) return none; // shared demo key: keep calls rare
-    type Row = {
-      id: string;
-      title: string;
-      content?: {
-        descriptiveNonRepeating?: {
-          record_link?: string;
-          online_media?: { media?: Array<{ thumbnail?: string; content?: string; type?: string }> };
-        };
-      };
-    };
-    const r = await getJson<{ response?: { rows?: Row[] } }>(
-      `https://api.si.edu/openaccess/api/v1.0/search?${qs({ q: `${q} AND online_media_type:Images`, api_key: 'DEMO_KEY', rows: 20, start: page * 20 })}`,
-      signal,
-    );
-    const items: Cand[] = [];
-    (r.response?.rows ?? []).forEach((x, i) => {
-      const m = x.content?.descriptiveNonRepeating?.online_media?.media?.find((mm) => mm.type === 'Images');
-      if (!m?.thumbnail) return;
-      items.push({
-        key: `smithsonian:${x.id}`,
-        src: 'smithsonian',
-        title: x.title,
-        pos: i,
-        thumb: m.thumbnail,
-        full: m.content || m.thumbnail,
-        page: x.content?.descriptiveNonRepeating?.record_link || 'https://collections.si.edu/',
-        tags: words(x.title),
-      });
-    });
-    return { items, more: page === 0 && items.length >= 15 };
-  },
-};
-
 const europeana: Source = {
   id: 'europeana',
   label: 'Europeana',
@@ -504,6 +468,7 @@ const europeana: Source = {
 const scryfall: Source = {
   id: 'scryfall',
   label: 'MTG (Scryfall)',
+  sfw: true,
   corsThumb: true,
   trust: T(0.9, 0.9, 0.9, 0.85, 0.95),
   async search(p, page, signal) {
@@ -555,6 +520,7 @@ const scryfall: Source = {
 const ygo: Source = {
   id: 'ygo',
   label: 'Yu-Gi-Oh!',
+  sfw: true,
   trust: T(0.35, 0.6, 0.3, 0.4, 0.75),
   async search(p, page, signal) {
     const q = p.nouns[0];
@@ -590,6 +556,7 @@ const ygo: Source = {
 const lorcana: Source = {
   id: 'lorcana',
   label: 'Disney Lorcana',
+  sfw: true,
   trust: T(0.3, 0.45, 0.2, 0.2, 0.35),
   async search(p, page, signal) {
     const q = p.nouns[0];
@@ -626,6 +593,7 @@ const lorcana: Source = {
 const swu: Source = {
   id: 'swu',
   label: 'Star Wars Unlimited',
+  sfw: true,
   trust: T(0.3, 0.35, 0.2, 0.2, 0.25),
   async search(p, page, signal) {
     const q = p.nouns[0];
@@ -649,61 +617,83 @@ const swu: Source = {
   },
 };
 
-// Static catalogs (built by scripts/refs/build-catalogs.mjs): searched locally by word overlap.
-// Row: [id, title, words, artist?, img?]; URLs are rebuilt here so the files stay small.
-type CatRow = [string, string, string, string?, string?];
+// Static catalogs (scripts/refs/build-catalogs.mjs + build_index.py). With a query vector they're
+// searched by look over the pre-analysed index (no downloads to rank them); with a pose, by pose over
+// every figure; with neither, by the words attached to each card.
+// Row: [id, title, words, artist?, img?, 'splash'?]; URLs are rebuilt here so the files stay small.
+type CatRow = [string, string, string, string?, string?, string?];
 type Urls = (row: CatRow) => { thumb: string; full: string; page: string; artist?: string; aspect: number };
-function catalogSource(id: SourceId, label: string, trust: Record<EffMode, number>, urls: Urls, corsThumb = false): Source {
+const PER_PAGE = 30;
+function catalogSource(id: SourceId, label: string, trust: Record<EffMode, number>, urls: Urls, sfw = true): Source {
   return {
     id,
     label,
     trust,
-    corsThumb,
-    async search(p, page, signal) {
+    local: true,
+    sfw,
+    async search(p, page, signal, ctx) {
       if (signal.aborted) return none;
-      const want = new Set([...p.words, ...p.nouns]);
-      if (!want.size) return none;
       const rows = await catalog<CatRow[]>(id);
-      const scored: Array<[number, CatRow]> = [];
-      for (const row of rows) {
-        let s = 0;
-        for (const w of row[2].split(' ')) if (want.has(w)) s += row[1].toLowerCase().includes(w) ? 2 : 1;
-        if (s) scored.push([s, row]);
-      }
-      scored.sort((a, b) => b[0] - a[0]);
-      const items = scored
-        .slice(page * 30, page * 30 + 30)
-        .map(([, x], i): Cand => ({ key: `${id}:${x[0]}`, src: id, title: x[1], pos: i, tags: x[2].split(' '), ...urls(x) }));
-      return { items, more: scored.length > (page + 1) * 30 && page < 3 };
+      const ranked = await rankedRows(id, rows, p, ctx);
+      // Pose searches: the index already knows which cards show a figure (a lone sword card doesn't)
+      const fig = p.mode === 'pose' ? await figureRows(id).catch(() => null) : null;
+      const items = ranked.slice(page * PER_PAGE, (page + 1) * PER_PAGE).map(({ row, vec, pose }, i): Cand => {
+        const x = rows[row];
+        return { key: `${id}:${x[0]}`, src: id, title: x[1], pos: page * PER_PAGE + i, tags: x[2].split(' '), vec, poseScore: pose, figure: fig ? fig(row) : undefined, ...urls(x) };
+      });
+      return { items, more: ranked.length > (page + 1) * PER_PAGE && page < 5 };
     },
   };
 }
-const riftbound = catalogSource('riftbound', 'Riftbound', T(0.7, 0.75, 0.4, 0.5, 0.55), (r) => {
-  const u = `https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/${r[4]}`;
+type Ranked = Array<{ row: number; vec?: Float32Array; pose?: number }>;
+/** Computed once per search (kept in ctx.memo) and paged from. */
+async function rankedRows(id: SourceId, rows: CatRow[], p: Plan, ctx: SearchCtx): Promise<Ranked> {
+  const key = `cat:${id}`;
+  if (ctx.memo.has(key)) return ctx.memo.get(key) as Ranked;
+  let out: Ranked = [];
+  try {
+    if (ctx.pose) {
+      // every figure in the catalog, by pose; their vectors come along for the look score
+      const hits = await byPose(id, ctx.pose, 90);
+      out = await Promise.all(hits.map(async (h) => ({ row: h.row, pose: h.pose, vec: (await vectorOf(id, h.row)) ?? undefined })));
+    } else if (ctx.q) {
+      out = (await nearest(id, ctx.q, 180)).map((h) => ({ row: h.row, vec: h.vec }));
+    }
+  } catch {
+    out = []; // index missing or unreadable: fall back to the words below
+  }
+  if (!out.length) {
+    const want = new Set([...p.words, ...p.nouns]);
+    const scored: Array<[number, number]> = [];
+    rows.forEach((row, i) => {
+      let s = 0;
+      for (const w of row[2].split(' ')) if (want.has(w)) s += row[1].toLowerCase().includes(w) ? 2 : 1;
+      if (s) scored.push([s, i]);
+    });
+    out = scored.sort((a, b) => b[0] - a[0]).map(([, row]) => ({ row }));
+  }
+  ctx.memo.set(key, out);
+  return out;
+}
+const RB = 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/';
+const riftbound = catalogSource('riftbound', 'Riftbound', T(0.7, 0.75, 0.4, 0.5, 0.55), (r) => ({
+  thumb: showUrl(`${RB}${r[4]}`, 400), // the source serves the full card (~450 KB) whatever size is asked for
+  full: showUrl(`${RB}${r[4]}`, 1000),
+  page: 'https://playriftbound.com/en-us/card-gallery/',
+  artist: r[3] || undefined,
+  aspect: /-(\d+)x(\d+)\./.test(r[4] ?? '') ? +RegExp.$1 / +RegExp.$2 : 0.72,
+}));
+const lol = catalogSource('lol', 'League of Legends', T(0.85, 0.8, 0.4, 0.45, 0.6), (r) => {
+  const splash = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${r[0]}.jpg`;
+  const portrait = r[5] !== 'splash';
   return {
-    thumb: `${u}?w=400`,
-    full: `${u}?w=900`,
-    page: 'https://playriftbound.com/en-us/card-gallery/',
-    artist: r[3] || undefined,
-    aspect: /-(\d+)x(\d+)\./.test(u) ? +RegExp.$1 / +RegExp.$2 : 0.72,
+    thumb: portrait ? `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${r[0]}.jpg` : showUrl(splash, 480),
+    full: splash,
+    page: `https://www.leagueoflegends.com/en-us/champions/${r[0].replace(/_\d+$/, '').toLowerCase()}/`,
+    artist: 'Riot Games',
+    aspect: portrait ? 0.55 : 1.69,
   };
 });
-const lol = catalogSource(
-  'lol',
-  'League of Legends',
-  T(0.85, 0.8, 0.4, 0.45, 0.6),
-  (r) => {
-    const champ = r[0].replace(/_\d+$/, '');
-    return {
-      thumb: `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${r[0]}.jpg`,
-      full: `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${r[0]}.jpg`,
-      page: `https://www.leagueoflegends.com/en-us/champions/${champ.toLowerCase()}/`,
-      artist: 'Riot Games',
-      aspect: 0.55,
-    };
-  },
-  true,
-);
 const hearthstone = catalogSource('hearthstone', 'Hearthstone', T(0.55, 0.7, 0.35, 0.45, 0.75), (r) => ({
   thumb: `https://art.hearthstonejson.com/v1/256x/${r[0]}.jpg`,
   full: `https://art.hearthstonejson.com/v1/512x/${r[0]}.jpg`,
@@ -711,33 +701,39 @@ const hearthstone = catalogSource('hearthstone', 'Hearthstone', T(0.55, 0.7, 0.3
   artist: r[3] || undefined,
   aspect: 1,
 }));
-const dnd = catalogSource(
-  'dnd',
-  'D&D 5e',
-  T(0.2, 0.4, 0.1, 0.2, 0.9),
-  (r) => ({
-    thumb: `https://www.dnd5eapi.co/api/images/monsters/${r[0]}.png`,
-    full: `https://www.dnd5eapi.co/api/images/monsters/${r[0]}.png`,
-    page: `https://www.dnd5eapi.co/api/2014/monsters/${r[0]}`,
-    artist: 'Wizards of the Coast (SRD)',
-    aspect: 1,
-  }),
-  true,
-);
+const dnd = catalogSource('dnd', 'D&D 5e', T(0.2, 0.4, 0.1, 0.2, 0.9), (r) => ({
+  thumb: showUrl(`https://www.dnd5eapi.co/api/images/monsters/${r[0]}.png`, 400), // originals are 1.5–2 MB PNGs
+  full: showUrl(`https://www.dnd5eapi.co/api/images/monsters/${r[0]}.png`, 1000),
+  page: `https://www.dnd5eapi.co/api/2014/monsters/${r[0]}`,
+  artist: 'Wizards of the Coast (SRD)',
+  aspect: 1,
+}));
+
+// Pose library (scripts/refs/build_poselib.py): Wikimedia Commons photos of people in clear full-body
+// poses — athletes, dancers, fencers, martial artists, reenactors. Stick-figure searches match these first.
+const poses = catalogSource('poses', 'Pose library (Wikimedia)', T(0.95, 0.35, 0.1, 0.15, 0.1), (r) => ({
+  thumb: `https://upload.wikimedia.org/wikipedia/commons/${r[4]}`,
+  // the size the index build fetched is the one Wikimedia has already rendered; other sizes get rate-limited
+  full: `https://upload.wikimedia.org/wikipedia/commons/${r[4]}`,
+  page: `https://commons.wikimedia.org/?curid=${r[0]}`,
+  artist: r[3] || undefined,
+  aspect: 0.75,
+}), false); // Commons photos: the adult check still applies
 
 // ---------------------------------------------------------------- game-world wikis
 const fandom = (id: SourceId, sub: string, label: string, trust: Record<EffMode, number>) =>
-  mediawiki(id, label, `https://${sub}.fandom.com/api.php`, trust);
+  mediawiki(id, label, `https://${sub}.fandom.com/api.php`, trust, '', false, true);
 const forgottenrealms = fandom('forgottenrealms', 'forgottenrealms', 'Forgotten Realms Wiki', T(0.55, 0.7, 0.75, 0.65, 0.85));
 const criticalrole = fandom('criticalrole', 'criticalrole', 'Critical Role Wiki', T(0.5, 0.6, 0.55, 0.45, 0.6));
 const warhammer = fandom('warhammer', 'warhammerfantasy', 'Warhammer Fantasy Wiki', T(0.5, 0.6, 0.6, 0.55, 0.7));
 const elderscrolls = fandom('elderscrolls', 'elderscrolls', 'Elder Scrolls Wiki', T(0.45, 0.6, 0.7, 0.6, 0.7));
 const mtgwiki = fandom('mtgwiki', 'mtg', 'MTG Wiki', T(0.4, 0.6, 0.6, 0.4, 0.65));
 const lolwiki = fandom('lolwiki', 'leagueoflegends', 'League Wiki', T(0.55, 0.65, 0.55, 0.45, 0.55));
-const uesp = mediawiki('uesp', 'UESP', 'https://en.uesp.net/w/api.php', T(0.4, 0.55, 0.65, 0.6, 0.65));
-const pathfinder = mediawiki('pathfinder', 'Pathfinder Wiki', 'https://pathfinderwiki.com/w/api.php', T(0.5, 0.65, 0.7, 0.6, 0.8));
+const uesp = mediawiki('uesp', 'UESP', 'https://en.uesp.net/w/api.php', T(0.4, 0.55, 0.65, 0.6, 0.65), '', false, true);
+const pathfinder = mediawiki('pathfinder', 'Pathfinder Wiki', 'https://pathfinderwiki.com/w/api.php', T(0.5, 0.65, 0.7, 0.6, 0.8), '', false, true);
 
 export const SOURCES: Source[] = [
+  poses,
   artstation,
   scryfall,
   openverse,
@@ -760,7 +756,6 @@ export const SOURCES: Source[] = [
   met,
   cleveland,
   artsmia,
-  smithsonian,
   europeana,
   ygo,
   lorcana,

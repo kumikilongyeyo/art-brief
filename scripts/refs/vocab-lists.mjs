@@ -765,6 +765,17 @@ export const LOOK = [
   'marble statue',
 ];
 
+// Styles, genres and everyday things people ask for that the lists above miss.
+export const EXTRA = [
+  'cyberpunk', 'steampunk', 'solarpunk', 'dieselpunk', 'biopunk', 'gothic', 'victorian', 'art deco', 'film noir', 'post-apocalyptic',
+  'sci-fi', 'science fiction', 'space opera', 'western', 'wuxia', 'xianxia', 'shonen', 'chibi', 'kawaii', 'mecha', 'kaiju',
+  'umbrella', 'chair', 'table', 'bench', 'ladder', 'bucket', 'basket', 'barrel', 'crate', 'bottle', 'mirror', 'door', 'window',
+  'stairs', 'bed', 'desk', 'bookshelf', 'fireplace', 'carpet', 'curtain', 'vase', 'teapot', 'kimono', 'hanbok', 'sari', 'hoodie',
+  'jacket', 'coat', 'dress', 'gown', 'uniform', 'armor set', 'punch', 'uppercut', 'foreshortened', 'foreshortening pose',
+  'horseback', 'hobbit', 'hobbit house', 'gnome', 'kobold', 'tabaxi', 'aarakocra', 'genasi', 'warforged', 'drow', 'dark elf',
+  'high elf', 'wood elf', 'half-orc', 'lizardfolk', 'kenku', 'goliath', 'firbolg', 'yuan-ti', 'githyanki', 'aasimar',
+]
+
 export const MATERIALS = [
   'steel',
   'iron',

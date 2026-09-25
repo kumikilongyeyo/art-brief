@@ -1,0 +1,198 @@
+import { readFileSync } from 'node:fs';
+import { expect, test, type Page, type Route } from '@playwright/test';
+
+// References, end to end, with every outside site faked: source APIs answer with fixture results whose
+// images are small local JPEGs, wsrv.nl and the image CDNs serve those JPEGs, and the onnxruntime wasm
+// comes from node_modules. The ranking model itself is real (served by the preview build).
+
+const FIX = new URL('./fixtures/refs/', import.meta.url);
+const IMGS = Array.from({ length: 12 }, (_, i) => readFileSync(new URL(`${i}.jpg`, FIX)));
+const ORT = new URL('../../node_modules/onnxruntime-web/dist/', import.meta.url);
+const jpg = (n: number) => ({ status: 200, contentType: 'image/jpeg', body: IMGS[Math.abs(n) % IMGS.length] });
+const hash = (s: string) => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
+
+/** Openverse: 20 results a page, 3 pages; everything else answers "no results". */
+async function fakeWeb(page: Page, opts: { openverseDelay?: number } = {}) {
+  await page.route(/^https:\/\/(?!localhost)/, async (route: Route) => {
+    const url = route.request().url();
+    if (url.includes('cdn.jsdelivr.net/npm/onnxruntime-web')) {
+      const name = url.split('/').pop()!;
+      return route.fulfill({ status: 200, contentType: name.endsWith('.wasm') ? 'application/wasm' : 'text/javascript', body: readFileSync(new URL(name, ORT)) });
+    }
+    if (url.startsWith('https://api.openverse.org/')) {
+      const u = new URL(url), q = u.searchParams.get('q') ?? '', p = +(u.searchParams.get('page') ?? 1);
+      if (opts.openverseDelay) await new Promise((r) => setTimeout(r, opts.openverseDelay));
+      const results = Array.from({ length: 20 }, (_, i) => {
+        const id = `${hash(q)}-${p}-${i}`;
+        return { id, title: `${q} ${p}-${i}`, thumbnail: `https://img.test/${hash(id) % 12}.jpg?${id}`, url: `https://img.test/${hash(id) % 12}.jpg?${id}`, foreign_landing_url: `https://example.org/${id}`, tags: q.split(' ').map((name) => ({ name })), width: 400, height: 300 };
+      });
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ results, page_count: 3 }) });
+    }
+    if (url.startsWith('https://img.test/') || /wsrv\.nl|ddragon|hearthstonejson|cmsassets|dnd5eapi|scryfall\.io/.test(url)) return route.fulfill(jpg(hash(url)));
+    if (/\.(jpe?g|png|webp)(\?|$)/.test(url)) return route.fulfill(jpg(hash(url)));
+    return route.fulfill({ status: 404, contentType: 'application/json', body: '{}' });
+  });
+}
+
+async function openRefs(page: Page) {
+  await page.goto('./?view=refs');
+  await expect(page.locator('.r-page')).toBeVisible();
+}
+async function search(page: Page, q: string) {
+  const box = page.locator('#r-q');
+  await box.fill(q);
+  await box.press('Enter');
+}
+const cells = (page: Page) => page.locator('.r-grid .r-cell:not([hidden])');
+const onlyDesktopChromium = (name: string) => name !== 'chromium';
+
+test.describe.configure({ timeout: 90_000 });
+
+test('a text search shows results, and scrolling keeps loading more without duplicates', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'castle on a cliff');
+  await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
+  const first = await cells(page).count();
+  for (let i = 0; i < 12 && (await cells(page).count()) <= first; i++) {
+    await page.mouse.wheel(0, 4000);
+    await page.waitForTimeout(700);
+  }
+  expect(await cells(page).count()).toBeGreaterThan(first);
+  const keys = await page.locator('.r-grid .r-open').evaluateAll((els) => els.map((e) => e.getAttribute('aria-label')));
+  expect(new Set(keys).size).toBe(keys.length);
+});
+
+test('a second search while the first is still loading gets its own results', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page, { openverseDelay: 600 });
+  await openRefs(page);
+  await search(page, 'dragon');
+  await page.waitForTimeout(300);
+  await search(page, 'lantern');
+  await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
+  // the fixture titles say which search they came from: nothing from the first search may appear
+  const labels = await page.locator('.r-grid .r-open').evaluateAll((els) => els.map((e) => e.getAttribute('aria-label') ?? ''));
+  expect(labels.some((l) => /^dragon \d-/.test(l))).toBe(false);
+});
+
+test('a pose search never freezes the page and still delivers', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'knight holding a sword');
+  // the page must stay responsive while it works: every probe answers within a second
+  for (let i = 0; i < 8; i++) {
+    const t = Date.now();
+    await page.evaluate(() => 1);
+    expect(Date.now() - t).toBeLessThan(1000);
+    await page.waitForTimeout(400);
+  }
+  await expect(page.locator('#r-status')).not.toHaveText(/^$/);
+});
+
+test('a stick figure is read into joints you can drag', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await page.setInputFiles('#r-file', new URL('stick-arms-up.png', FIX).pathname);
+  await expect(page.locator('.r-joint')).toHaveCount(11, { timeout: 20_000 });
+  await expect(page.locator('.r-reading')).toContainText(/pose/i);
+  const dot = page.locator('.r-joint').nth(4);
+  const box = (await dot.boundingBox())!;
+  await page.mouse.move(box.x + 8, box.y + 8);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 40, box.y + 60, { steps: 5 });
+  await page.mouse.up();
+  await expect(page.locator('.r-reading')).toContainText(/drag a dot/i);
+});
+
+test('save a reference, find it in Saved after a reload, remove it with undo', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'lantern');
+  await cells(page).first().locator('.r-open').click();
+  await page.locator('.r-viewer').getByRole('button', { name: 'Save' }).click();
+  await expect(page.locator('.toast')).toContainText('Saved');
+  await page.keyboard.press('Escape');
+  await page.reload();
+  await expect(page.locator('.r-page')).toBeVisible();
+  await page.locator('#saved-toggle').click();
+  await expect(page.locator('.r-saved h2')).toContainText('Saved references · 1');
+  await page.locator('.r-saved .r-cell').first().hover();
+  await page.getByRole('button', { name: /^Remove / }).click();
+  await expect(page.locator('.r-saved h2')).toContainText('· 0');
+  await page.locator('.toast').getByRole('button', { name: 'Undo' }).click();
+  await expect(page.locator('.r-saved h2')).toContainText('· 1');
+});
+
+test('a save the browser refuses says so and is not marked saved', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'lantern');
+  await cells(page).first().locator('.r-open').click();
+  await page.evaluate(() => {
+    Storage.prototype.setItem = () => {
+      throw new DOMException('full', 'QuotaExceededError');
+    };
+  });
+  await page.locator('.r-viewer').getByRole('button', { name: 'Save' }).click();
+  await expect(page.locator('.toast')).toContainText('Couldn’t save');
+  await expect(page.locator('.r-viewer').getByRole('button', { name: 'Save' })).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('search results never leak into the Saved view', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page, { openverseDelay: 800 });
+  await openRefs(page);
+  await search(page, 'dragon');
+  await page.locator('#saved-toggle').click();
+  await page.waitForTimeout(4000);
+  await expect(page.locator('.r-saved .r-cell')).toHaveCount(0);
+});
+
+test('viewer: normal-size icons, Esc closes, Back closes', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'lantern');
+  await cells(page).first().locator('.r-open').click();
+  const sizes = await page.locator('.r-viewer svg.r-i').evaluateAll((els) => els.map((e) => e.getBoundingClientRect().width));
+  expect(Math.max(...sizes)).toBeLessThanOrEqual(24);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.r-viewer')).toHaveCount(0);
+  await cells(page).first().locator('.r-open').click();
+  await page.goBack();
+  await expect(page.locator('.r-viewer')).toHaveCount(0);
+});
+
+test('the start screen shows a fresh set of ideas on every visit, and a tile runs its search', async ({ page }) => {
+  await fakeWeb(page);
+  await openRefs(page);
+  const tiles = page.locator('button.r-tile');
+  await expect(tiles).toHaveCount(8);
+  const first = await tiles.allTextContents();
+  await page.reload();
+  await expect(tiles).toHaveCount(8);
+  const second = await tiles.allTextContents();
+  expect(second.filter((t) => first.includes(t))).toEqual([]); // nothing repeats from the last visit
+  await page.locator('[data-view=briefs]').click();
+  await page.locator('[data-view=refs]').click();
+  await expect(tiles).toHaveCount(8);
+  expect((await tiles.allTextContents()).filter((t) => second.includes(t))).toEqual([]);
+  await tiles.first().click();
+  await expect(page.locator('#r-q')).not.toHaveValue('');
+  await expect(page.locator('.r-tiles')).toHaveCount(0);
+});
+
+test('phone: References fits the screen', async ({ page }, info) => {
+  test.skip(!info.project.name.startsWith('mobile'), 'phone layout');
+  await fakeWeb(page);
+  await openRefs(page);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  await page.locator('#r-q').fill('dragon');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+});

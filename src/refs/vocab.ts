@@ -15,7 +15,10 @@ export interface VocabFile {
 }
 
 export const DIM = 512;
+declare const __REFS_V__: string;
 const BASE = `${import.meta.env.BASE_URL}refs/`;
+/** Every data URL carries the build's data fingerprint (see vite.config.ts), so caches never mix versions. */
+export const V = `?v=${__REFS_V__}`;
 const STOP = new Set(['a', 'an', 'the']);
 const FILLER = new Set([
   'a',
@@ -87,7 +90,6 @@ const TYPO: Record<string, string> = {
   hors: 'horse',
   stikman: 'stickman',
   stickmen: 'stickman',
-  stick: 'stick',
   refernce: 'reference',
   refrence: 'reference',
   charcter: 'character',
@@ -128,7 +130,7 @@ export interface Vocab {
 
 let vocabP: Promise<Vocab> | null = null;
 export function loadVocab(): Promise<Vocab> {
-  vocabP ??= fetch(`${BASE}vocab.json`)
+  vocabP ??= fetch(`${BASE}vocab.json${V}`)
     .then((r) => {
       if (!r.ok) throw new Error(`vocab ${r.status}`);
       return r.json() as Promise<VocabFile>;
@@ -166,7 +168,7 @@ export function vocabFrom(f: VocabFile): Vocab {
   };
 }
 
-export const shardOf = (k: string) => k.split(' ')[0].replace(/[^a-z0-9-]/g, '_');
+export const shardOf = (k: string) => k.split(' ')[0].slice(0, 3).replace(/[^a-z0-9-]/g, '_'); // same as build-vocab.mjs
 export const keyOf = (p: string) =>
   p
     .toLowerCase()
@@ -203,23 +205,33 @@ const shared = (a: string, b: string) => {
 };
 const fixCache = new Map<string, string>();
 /** Closest vocabulary word: fewest edits → swapped letters (fast typing) → longest shared start → subject nouns. */
+/** Closest vocabulary word, only when confident — a word it doesn't know is otherwise left alone
+ *  ("totoro" stays "totoro"). One edit is enough for words of 4+ letters; two edits only for 7+ letters
+ *  that start the same. The first letter must match unless the typo swapped the first two letters.
+ *  Ties: swapped letters (fast typing) → longest shared start → subject nouns. */
 export function fixWord(v: Vocab, w: string, partial: boolean): string {
   if (TYPO[w]) return TYPO[w];
   if (v.tokens.has(w) || FILLER.has(w)) return w;
   if (partial) for (const t of v.tokens) if (t.startsWith(w)) return w;
-  if (w.length < 3 || /\d/.test(w)) return w;
+  if (w.length < (partial ? 3 : 4) || /\d/.test(w)) return w;
   const ck = `${w}|${partial}`;
   const hit = fixCache.get(ck);
   if (hit) return hit;
-  const lim = w.length <= 5 ? 1 : 2;
   let best = '',
     bs = 1e9;
   for (const t of v.tokens) {
-    if (Math.abs(t.length - w.length) > lim + (partial ? 99 : 0)) continue;
+    if (!partial && Math.abs(t.length - w.length) > 2) continue;
+    if (partial && t.length < w.length) continue;
     const tt = partial ? t.slice(0, w.length) : t;
     const d = osa(w, tt);
+    const swapped = d < osa(w, tt, false);
+    const lim = partial ? 1 : w.length >= 7 && w.slice(0, 2) === t.slice(0, 2) ? 2 : 1;
     if (d > lim) continue;
-    const s = d * 10 - shared(w, t) - (NOUN_CATS.has(v.catOf(t)) ? 2 : 0) - (d < osa(w, tt, false) ? 3 : 0);
+    if (w[0] !== t[0] && !(swapped && w[0] === t[1] && w[1] === t[0])) continue;
+    // plain English words only fix obvious slips — a missing, extra or swapped letter, not a different
+    // letter ("geralt" is a name, not "gerald")
+    if (v.catOf(t) === 'common' && (d > 1 || (!swapped && !partial && t.length === w.length))) continue;
+    const s = d * 10 - shared(w, t) - (NOUN_CATS.has(v.catOf(t)) ? 2 : 0) - (swapped ? 3 : 0);
     if (s < bs) {
       bs = s;
       best = t;
@@ -246,9 +258,15 @@ export function completions(v: Vocab, raw: string, limit = 6): string[] {
     loose: string[] = [];
   const last = ws[ws.length - 1];
   for (const k of v.keys) {
+    if (v.catOf(k) === 'common') continue; // plain English words help matching, not suggestions
     if (k.startsWith(qq)) starts.push(k);
     else if (ws.every((w) => k.split(' ').some((t) => t.startsWith(w)))) contains.push(k);
     else if (starts.length + contains.length < limit && k.split(' ').some((t) => t.startsWith(last))) loose.push(k);
+  }
+  if (!starts.length && !contains.length && ws.length > 3) {
+    // a long query: suggest completions of its last few words, keeping the start as typed
+    const head = ws.slice(0, -3).join(' '), tail = completions(v, ws.slice(-3).join(' ') + (/\s$/.test(raw) ? ' ' : ''), limit);
+    return tail.map((k) => `${head} ${k}`);
   }
   const byLen = (a: string, b: string) => a.length - b.length;
   // after "holding / carrying / with …" an object is the likely next word, not a person
@@ -269,6 +287,9 @@ export function resolveQuery(v: Vocab, raw: string): string {
   const partial = normWords(v, raw, true),
     full = normWords(v, raw, false);
   const lastRaw = rawWs[rawWs.length - 1];
+  // a whole word that clearly fixes to a known word wins over completing it into a longer one
+  const fixedLast = full[full.length - 1];
+  if (fixedLast !== lastRaw && v.tokens.has(fixedLast)) return full.join(' ');
   const top = completions(v, raw, 1)[0];
   if (top && lastRaw.length >= 2 && !v.tokens.has(lastRaw) && !FILLER.has(lastRaw)) {
     const last = partial[partial.length - 1];
@@ -394,7 +415,7 @@ export async function phraseVector(v: Vocab, k: string): Promise<Float32Array | 
   const i = v.index.get(k);
   if (i === undefined) return null;
   const s = shardOf(k);
-  const rows = await loadRows(`${BASE}vec/${s}.bin`);
+  const rows = await loadRows(`${BASE}vec/${s}.bin${V}`);
   return rowVec(rows, i - v.shardStart.get(s)!);
 }
 
@@ -421,7 +442,7 @@ export async function queryVector(v: Vocab, plan: Plan): Promise<Float32Array | 
 let conceptP: Promise<Rows> | null = null;
 /** Read an image as words: the vocabulary concepts closest to its vector, one per kind. */
 export async function imageWords(v: Vocab, img: Float32Array, n = 4): Promise<string[]> {
-  conceptP ??= loadRows(`${BASE}concepts.bin`);
+  conceptP ??= loadRows(`${BASE}concepts.bin${V}`);
   const rows = await conceptP;
   const scored: Array<[number, string]> = [];
   for (let i = 0; i < rows.n; i++) {
@@ -446,7 +467,7 @@ export async function imageWords(v: Vocab, img: Float32Array, n = 4): Promise<st
 let gateP: Promise<Rows> | null = null;
 /** > 0 means the image reads closer to the unsafe prompts than the safe ones. */
 export async function gateScorer(v: Vocab): Promise<(e: Float32Array) => number> {
-  gateP ??= loadRows(`${BASE}gate.bin`);
+  gateP ??= loadRows(`${BASE}gate.bin${V}`);
   const rows = await gateP;
   const vecs = Array.from({ length: rows.n }, (_, i) => rowVec(rows, i));
   const bad = vecs.slice(0, v.gate.bad),
