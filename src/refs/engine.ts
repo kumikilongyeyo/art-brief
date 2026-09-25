@@ -55,6 +55,8 @@ export interface Status {
   sourcesAsked: number;
   sourcesDone: number;
   exhausted: boolean;
+  /** the search couldn't start (offline: no word list, or no model to read the image with) */
+  failed: boolean;
   /** a rare pose: nothing came close, so the nearest figures are shown instead */
   nearest: boolean;
   plan?: Plan;
@@ -136,11 +138,18 @@ export class Search {
   private waiters: Array<() => void> = [];
   private paused = false;
   private started: Promise<void>;
+  private underway = false; // start() is done: srcs holds every source this search will ask
+  private failed = false;
   onChange: () => void = () => {};
 
   constructor(private input: SearchInput) {
-    this.started = this.start();
-    this.started.catch(() => this.notify());
+    this.started = this.start().then(
+      () => void (this.underway = true),
+      () => {
+        this.failed = true;
+        this.notify();
+      },
+    );
   }
 
   abort() {
@@ -168,6 +177,7 @@ export class Search {
       sourcesAsked: this.srcs.length,
       sourcesDone: this.srcs.filter((s) => !s.busy).length,
       exhausted: this.exhausted(),
+      failed: this.failed,
       nearest: this.nearestOnly,
       plan: this.plan,
     };
@@ -179,7 +189,8 @@ export class Search {
   }
 
   private exhausted(): boolean {
-    if (!this.srcs.length) return false;
+    if (this.failed) return true;
+    if (!this.underway) return false; // no sources yet (once underway, none at all means nothing to ask)
     if (this.srcs.some((s) => s.busy || (s.more && s.fails < 3))) return false;
     if (this.inflight > 0) return false;
     for (const h of this.hits.values()) if (h.shownAt === undefined && (h.state === 'cold' || h.state === 'queued' || (h.state === 'ranked' && this.passes(h)))) return false;
@@ -421,8 +432,7 @@ export class Search {
   /** Keeps sources paging and the ranking pipeline fed just ahead of what's on screen. */
   private topUp() {
     if (this.ctl.signal.aborted || this.paused) return;
-    let unseen = 0,
-      ready = 0;
+    let ready = 0;
     const cold: Hit[] = [],
       shownCold: Hit[] = [];
     for (const h of this.hits.values()) {
@@ -433,9 +443,9 @@ export class Search {
       if (h.state === 'cold') cold.push(h);
       else if (h.state === 'queued') ready++;
       else if (h.state === 'ranked' && this.passes(h)) ready++;
-      if (h.state !== 'dropped') unseen++;
     }
-    if (unseen < LOW_WATER) for (const st of this.srcs) void this.fetchPage(st);
+    // ranked results below the floor never show, so they don't count toward what's still to come
+    if (cold.length + ready < LOW_WATER) for (const st of this.srcs) void this.fetchPage(st);
     if (!visionFailed()) for (const h of shownCold) this.embed(h); // on screen already: read them first
     const ahead = this.input.sketch ? AHEAD * 2 : AHEAD; // most candidates won't match a pose: look at more
     if (ready >= ahead || !cold.length || visionFailed()) return;
@@ -621,26 +631,29 @@ export class Search {
   voteOf(key: string) {
     return this.votes.get(key);
   }
-  /** Nearest ranked results to one result — the viewer's Similar strip and More like this's starting set. */
+  /** Nearest ranked results to one result — the viewer's Similar strip and More like this's starting set.
+   *  Never a result that was dropped (adult, broken, a reprint, 👎) and never two reprints of one picture. */
   similar(key: string, n = 6): Hit[] {
     const me = this.hits.get(key);
     if (!me?.vec) return [];
-    const out: Array<[number, Hit]> = [];
+    const near: Array<[number, Hit]> = [];
     for (const h of this.hits.values()) {
-      if (h === me || !h.vec || h.why === 'adult' || h.why === 'broken') continue;
+      if (h === me || !h.vec || h.state === 'dropped' || this.votes.get(h.c.key) === 'down') continue;
       const s = dot(me.vec, h.vec);
       if (s > 0.95) continue; // the same picture again
-      out.push([s, h]);
+      near.push([s, h]);
     }
-    return out
-      .sort((a, b) => b[0] - a[0])
-      .slice(0, n)
-      .map(([, h]) => h);
+    const out: Hit[] = [];
+    for (const [, h] of near.sort((a, b) => b[0] - a[0]))
+      if (out.length < n && !out.some((o) => dot(o.vec!, h.vec!) > 0.955)) out.push(h); // the grid's reprint test
+    return out;
   }
   /** A result whose image won't load: take it out of the running. */
   broken(key: string) {
     const h = this.hits.get(key);
-    if (h) this.fail(h);
+    if (!h) return;
+    this.fail(h);
+    this.notify(); // the count on screen drops by one
   }
   modeUsed(): EffMode | undefined {
     return this.plan?.mode;

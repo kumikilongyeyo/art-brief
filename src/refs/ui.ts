@@ -198,6 +198,7 @@ interface Like {
   vec: Float32Array;
   url: string;
   seed: Hit[];
+  down: Float32Array[]; // 👎 from the search it came from: not wanted here either
 }
 
 // ---------------------------------------------------------------- page
@@ -680,7 +681,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       mirror: prefs.mirror && !!S.bmp,
       hint: S.like?.title,
       exclude: S.like?.key,
-      prior: S.prior,
+      prior: S.prior ?? (S.like?.down.length ? { up: [], down: S.like.down } : undefined),
       seed: S.like?.seed,
       off: prefs.off,
       pose,
@@ -869,16 +870,18 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       if (showing) S.grid!.append(cell(h, i));
     }
     const done = s.status().exhausted;
-    if (!hits.length && !S.cells.length && done) {
-      if (showing) paint();
-      return;
-    }
     if (showing) {
       paintStatus();
-      if (done && s !== S.feed) paintEnd();
+      if (done && s !== S.feed) paintEnd(); // nothing found at all: the empty state
     }
     // keep filling while the bottom of the page is in view (next tick, never a tight loop)
     if (hits.length && !done && showing && sentinelVisible()) setTimeout(() => void loadMore(), 0);
+    else if (!done) {
+      // the observer only reports changes, and it may have missed the sentinel leaving and coming back
+      // while this batch landed: a fresh look reports where it is now
+      io.unobserve(sentinel);
+      io.observe(sentinel);
+    }
   }
 
   function addSkeletons(g: HTMLElement) {
@@ -900,12 +903,13 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     if (S.bmp || S.like) wrap.append(panel());
     const col = el('div', { style: 'min-width:0' });
     col.append(metaLine(), narrowRow());
-    const grid = el('div', { class: `r-grid${S.stale ? ' r-stale' : ''}` });
+    const grid = masonry(el('div', { class: `r-grid${S.stale ? ' r-stale' : ''}` }));
     S.grid = grid;
     S.cells.forEach((h, i) => grid.append(cell(h, i, false)));
     col.append(grid, sentinel);
     wrap.append(col);
     body.append(wrap);
+    if (S.search && S.search !== S.feed && !S.stale && S.search.status().exhausted) paintEnd(); // e.g. back from Saved
   }
 
   function paintStart() {
@@ -969,7 +973,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     S.stale = false;
     if (import.meta.env.DEV) (globalThis as { __refsSearch?: Search }).__refsSearch = S.feed;
     S.feed.resume();
-    const grid = el('div', { class: 'r-grid' });
+    const grid = masonry(el('div', { class: 'r-grid' }));
     S.grid = grid;
     S.cells.forEach((h, i) => grid.append(cell(h, i, false)));
     body.append(
@@ -1010,16 +1014,23 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const x = s.status(),
       n = s.picks();
     const tuned = n ? ` · tuned by ${n} pick${n > 1 ? 's' : ''}` : '';
-    const srcs = new Set(S.cells.filter((h) => h.state !== 'dropped').map((h) => h.c.src)).size;
+    const shown = S.cells.filter((h) => h.why !== 'broken'); // a picture that won't load is hidden
+    const srcs = new Set(shown.map((h) => h.c.src)).size;
+    const from = `from ${srcs} source${srcs === 1 ? '' : 's'}`;
     const vs = visionState();
     // first visit only: say the matching model is downloading instead of looking stuck
     const model = vs.phase === 'loading' && vs.total ? ` · getting the matching model ready (${Math.min(99, Math.round((vs.loaded / vs.total) * 100))}%)` : '';
     st.replaceChildren();
     if (S.stale) st.append(el('span', { class: 'r-spin' }), 'Updating…');
-    else if (!S.cells.length) st.append(el('span', { class: 'r-spin' }), `Searching ${x.sourcesAsked || ''} sources…`.replace('  ', ' ') + model);
-    else if (x.nearest) st.append(`No close match for this pose · ${S.cells.length} nearest from ${srcs} source${srcs > 1 ? 's' : ''} · drag a dot or add words to steer it`);
-    else if (!x.exhausted) st.append(`${S.cells.length} references from ${srcs} source${srcs > 1 ? 's' : ''} · scroll for more${tuned}${model}`);
-    else st.append(`${S.cells.length} references from ${srcs} source${srcs > 1 ? 's' : ''}${tuned}`);
+    else if (!shown.length && !x.exhausted) {
+      const asked = x.sourcesAsked ? `${x.sourcesAsked} source${x.sourcesAsked === 1 ? '' : 's'}` : 'sources';
+      st.append(el('span', { class: 'r-spin' }), `Searching ${asked}…${model}`);
+    }
+    else if (x.nearest) st.append(`No close match for this pose · ${shown.length} nearest ${from} · drag a dot or add words to steer it`);
+    else {
+      const refs = `${shown.length} reference${shown.length === 1 ? '' : 's'} ${from}`;
+      st.append(x.exhausted ? `${refs}${tuned}` : `${refs} · scroll for more${tuned}${model}`);
+    }
   }
   function narrowRow() {
     const mode = S.search?.modeUsed() ?? (S.mode === 'auto' ? 'pose' : S.mode);
@@ -1154,7 +1165,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
           ),
       el('a', { href: 'https://line-of-action.com/', target: '_blank', rel: 'noopener' }, ic('ext'), 'Line of Action'),
     );
-    if (!S.cells.length) {
+    if (!S.cells.some((h) => h.why !== 'broken')) {
       body.querySelector('.r-body > div:last-child')?.replaceChildren(emptyState(links));
       return;
     }
@@ -1162,8 +1173,27 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
   }
   function emptyState(links: HTMLElement) {
     const auto = S.mode === 'auto';
+    const x = S.search?.status();
+    if (x?.failed) {
+      const again = el('button', { class: 'r-chip', type: 'button' }, 'Try again');
+      again.addEventListener('click', () => run(null, { fresh: true }));
+      return el(
+        'div',
+        { class: 'r-empty' },
+        el('h2', {}, S.bmp ? 'Image search isn’t available right now' : 'This search couldn’t start'),
+        el('p', {}, S.bmp ? 'It needs the matching model, which couldn’t download. Check your connection and try again.' : 'Check your connection and try again.'),
+        el('div', { class: 'r-narrow' }, again),
+      );
+    }
     const chips = el('div', { class: 'r-narrow' });
-    const modes: Mode[] = auto ? ['pose', 'place', 'prop', 'creature'] : ['auto'];
+    const noSrc = !!x && !x.sourcesAsked, allOff = prefs.off.length >= SOURCES.length;
+    if (noSrc) {
+      const set = el('button', { class: 'r-chip', type: 'button' }, ic('sliders'), 'Search settings');
+      set.addEventListener('click', () => setBtn.click());
+      chips.append(set);
+    }
+    const used = S.search?.modeUsed();
+    const modes: Mode[] = noSrc && allOff ? [] : auto ? (['pose', 'place', 'prop', 'creature'] as Mode[]).filter((m) => m !== used) : ['auto'];
     for (const m of modes) {
       const b = el(
         'button',
@@ -1180,8 +1210,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     return el(
       'div',
       { class: 'r-empty' },
-      el('h2', {}, `No close matches for “${S.ran || 'this image'}”`),
-      el('p', {}, auto ? 'Try fewer words, or tell it what you’re after:' : 'Try fewer words, or let it pick for you:'),
+      el('h2', {}, noSrc ? (allOff ? 'Every source is switched off' : `None of the sources you have on cover ${MODE_LABEL[used ?? S.mode]} searches`) : `No close matches for “${S.ran || 'this image'}”`),
+      el('p', {}, noSrc ? `Turn ${allOff ? 'some' : 'more'} on in Search settings${modes.length ? ', or try another kind of search' : ''}:` : auto ? 'Try fewer words, or tell it what you’re after:' : 'Try fewer words, or let it pick for you:'),
       chips,
       el('div', { class: 'r-end' }, 'Or keep looking on', links),
     );
@@ -1196,7 +1226,50 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     { rootMargin: '1200px 0px' },
   );
   io.observe(sentinel);
-  const sentinelVisible = () => sentinel.isConnected && sentinel.getBoundingClientRect().top < innerHeight + 1200;
+  // edge contact counts, as it does for the observer (which then never reports it again)
+  const sentinelVisible = () => {
+    flow(); // place the batch just added before measuring
+    return sentinel.isConnected && sentinel.getBoundingClientRect().top <= innerHeight + 1200;
+  };
+
+  // masonry: a cell goes under the shortest column when it arrives and keeps its place after (CSS columns
+  // rebalanced every column on each batch), so ranks read left to right and a batch never moves what's on
+  // screen. All of a column's cells share one grid area, each pushed down by the ones above it.
+  let flowing: HTMLElement | null = null;
+  const reflow = new MutationObserver(() => flow());
+  const resized = new ResizeObserver(() => requestAnimationFrame(() => flow())); // after layout, not inside it
+  function masonry(g: HTMLElement): HTMLElement {
+    flowing = g;
+    reflow.disconnect();
+    reflow.observe(g, { childList: true, subtree: true, attributeFilter: ['hidden'] });
+    resized.disconnect();
+    resized.observe(g);
+    return g;
+  }
+  function flow() {
+    const g = flowing;
+    if (!g?.isConnected) return;
+    const cs = getComputedStyle(g),
+      cols = cs.gridTemplateColumns.split(' ').map(parseFloat),
+      w = cols[0],
+      gap = parseFloat(cs.columnGap) || 0;
+    if (!(w > 0)) return; // not laid out (the page is hidden): the resize observer flows it once it is
+    const anew = g.dataset.cols !== String(cols.length); // first time, or a new column count: place everything
+    g.dataset.cols = String(cols.length);
+    const tall = cols.map(() => 0);
+    for (const e of g.children as HTMLCollectionOf<HTMLElement>) {
+      const ar = parseFloat(e.style.aspectRatio); // cells and skeletons; the end message spans the columns below
+      if (e.hidden || !(ar > 0)) continue;
+      let c = anew || !e.style.gridColumnStart ? -1 : +e.style.gridColumnStart - 1;
+      if (c < 0) {
+        c = tall.indexOf(Math.min(...tall));
+        e.style.gridArea = `1 / ${c + 1}`;
+      }
+      const top = `${Math.round(tall[c] * 100) / 100}px`;
+      if (e.style.marginTop !== top) e.style.marginTop = top;
+      tall[c] += w / ar + gap;
+    }
+  }
   page.append(el('p', { class: 'r-sr', id: 'r-votehint' }, 'Press the right arrow key to rate this result.'));
 
   // ---------------------------------------------------------------- image panel
@@ -1650,7 +1723,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     }
     S.bmp = null;
     S.imgUrl = null;
-    S.like = { title: hit.c.title, key: hit.c.key, vec: hit.vec, url: hit.c.full || hit.c.thumb, seed };
+    S.like = { title: hit.c.title, key: hit.c.key, vec: hit.vec, url: hit.c.full || hit.c.thumb, seed, down: S.search.priorOut().down };
     S.crop = { x: 0, y: 0, w: 1, h: 1 };
     S.narrow = [];
     S.cells = [];
@@ -1738,7 +1811,7 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     chip('all', 'All', all.length);
     chip('unsorted', 'Unsorted', all.filter((r) => !r.folder || !folders.some((f) => f.id === r.folder)).length);
     for (const f of folders) chip(f.id, f.name, all.filter((r) => r.folder === f.id).length);
-    const grid = el('div', { class: 'r-grid' });
+    const grid = masonry(el('div', { class: 'r-grid' }));
     const cands = list.map((r): Cand => ({
       key: r.key,
       src: r.src,
