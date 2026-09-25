@@ -1021,6 +1021,11 @@ renderResults();
 renderLists();
 renderFooter();
 if (new URLSearchParams(location.search).get('view') === 'refs') void setView('refs');
+// Back/Forward onto an entry made on the other page (References' viewer and More like this): show that page
+window.addEventListener('popstate', () => {
+  const v: View = new URLSearchParams(location.search).get('view') === 'refs' ? 'refs' : 'briefs';
+  if (v !== view) void setView(v);
+});
 
 // A share link opened while the app is already showing in this tab only changes the hash.
 window.addEventListener('hashchange', () => {

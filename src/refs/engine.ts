@@ -570,7 +570,8 @@ export class Search {
       if (local(h)) locals++;
     };
     // More like this: the first screen starts with exactly what the viewer's Similar strip previewed
-    if (!this.shown.length) for (const s of this.input.seed ?? []) if (out.length < n) { const h = this.hits.get(s.c.key); if (h) take(h, false); }
+    // (only those that still clear this search's relevance floor)
+    if (!this.shown.length) for (const s of this.input.seed ?? []) if (out.length < n) { const h = this.hits.get(s.c.key); if (h && this.passes(h)) take(h, false); }
     for (const h of ranked) if (out.length < n) take(h, true);
     for (const h of rest) if (out.length < n) take(h, true);
     // only once nothing else is coming may one source fill the rest of a batch

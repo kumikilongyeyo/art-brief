@@ -1384,6 +1384,9 @@ select.theme {
   pointer-events: none;
   max-width: calc(100vw - 32px);
 }
+.toast[hidden] {
+  display: none;
+}
 .toast.has-action {
   pointer-events: auto;
   padding: 6px 6px 6px 18px;
