@@ -111,6 +111,14 @@ const TYPO: Record<string, string> = {
   runing: 'running',
   jumpping: 'jumping',
 };
+// Real words artists type that the vocabulary and its common-word list lack, each an edit or two from
+// one they have ("chin" isn't "chain", "stab" isn't "stag", "fang" isn't "fantasy"): searched as typed.
+const KNOWN = new Set(
+  (
+    'fang hoof hooves paw sash veil brow chin buckle stork spire squat stoop stab soar beard coif torc ' +
+    'maul cane spade hoe bellows urn mare rooster butte grin yell gasp mane glade attic wisp'
+  ).split(' '),
+);
 const NOUN_CATS = new Set(['figure', 'creature', 'prop', 'place']);
 const HOLD = new Set(['holding', 'carrying', 'wielding', 'with', 'swinging', 'drawing', 'raising', 'throwing', 'aiming', 'gripping']);
 const SUBJECT_WORDS = new Set<string>();
@@ -169,17 +177,23 @@ export function vocabFrom(f: VocabFile): Vocab {
 }
 
 export const shardOf = (k: string) => k.split(' ')[0].slice(0, 3).replace(/[^a-z0-9-]/g, '_'); // same as build-vocab.mjs
-export const keyOf = (p: string) =>
-  p
+/** Lower case with accents folded ("pokémon" → "pokemon"). Letters of other scripts are kept ("дракон",
+ *  "ドラゴン" are words); symbols and emoji become spaces. */
+const plain = (q: string) =>
+  q
     .toLowerCase()
-    .replace(/[^a-z0-9' -]/g, ' ')
+    .normalize('NFD')
+    .replace(/([a-z])[\u0300-\u036f]+/g, '$1')
+    .normalize('NFC')
+    .replace(/[^\p{L}\p{M}\p{N}' -]/gu, ' ')
+    .replace(/(^|\s)\p{M}+/gu, '$1'); // marks left on nothing (an emoji's variation selector)
+export const keyOf = (p: string) =>
+  plain(p)
     .split(/\s+/)
     .filter((w) => w && !STOP.has(w))
     .join(' ');
 export const words = (q: string) =>
-  q
-    .toLowerCase()
-    .replace(/[^a-z0-9' -]/g, ' ')
+  plain(q)
     .trim()
     .split(/\s+/)
     .filter(Boolean);
@@ -187,13 +201,31 @@ export const display = (v: Vocab, k: string) => v.disp[k] ?? k;
 
 // ---------------------------------------------------------------- typo repair
 
+// A slip of the finger hits a key next to the right one; a letter from across the keyboard makes a
+// different word ("rearing" isn't "roaring", "fangs" isn't "fans"), so it costs two edits.
+// Letters that sound alike are misspelt for each other the same way ("skeliton", "wizerd", "dragen").
+const NEAR = new Uint8Array(26 * 26); // NEAR[a * 26 + b]: keys a and b touch (or are the same key), or sound alike
+{
+  const at: Array<[number, number]> = [];
+  ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'].forEach((r, y) => [...r].forEach((c, x) => (at[c.charCodeAt(0) - 97] = [x + y / 2, y])));
+  at.forEach((p, a) => at.forEach((q, b) => (NEAR[a * 26 + b] = Number(Math.abs(p[0] - q[0]) <= 1 && Math.abs(p[1] - q[1]) <= 1))));
+  for (const g of ['aeiouy', 'cks', 'sz', 'gj'])
+    for (const a of g) for (const b of g) NEAR[(a.charCodeAt(0) - 97) * 26 + b.charCodeAt(0) - 97] = 1;
+}
+const near = (a: string, b: string | undefined) => {
+  const i = a.charCodeAt(0) - 97,
+    j = b === undefined ? -1 : b.charCodeAt(0) - 97;
+  return i >= 0 && i < 26 && j >= 0 && j < 26 && NEAR[i * 26 + j] === 1;
+};
+/** Edits from the typed word `a` to `b`: a missing letter or swapped pair costs 1; a wrong or extra key
+ *  costs 1 next to where it belongs (a doubled key is next to itself), 2 anywhere else. */
 function osa(a: string, b: string, swaps = true): number {
-  const d: number[][] = [];
-  for (let i = 0; i <= a.length; i++) d[i] = [i, ...Array(b.length).fill(0)];
-  for (let j = 0; j <= b.length; j++) d[0][j] = j;
+  const d: number[][] = [Array.from({ length: b.length + 1 }, (_, j) => j)];
+  const extra = (i: number) => (near(a[i - 1], a[i - 2]) || near(a[i - 1], a[i]) ? 1 : 2); // a[i - 1] typed by mistake
+  for (let i = 1; i <= a.length; i++) d[i] = [d[i - 1][0] + extra(i), ...Array(b.length).fill(0)];
   for (let i = 1; i <= a.length; i++)
     for (let j = 1; j <= b.length; j++) {
-      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      d[i][j] = Math.min(d[i - 1][j] + extra(i), d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : near(a[i - 1], b[j - 1]) ? 1 : 2));
       if (swaps && i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
     }
   return d[a.length][b.length];
@@ -203,6 +235,25 @@ const shared = (a: string, b: string) => {
   while (i < a.length && i < b.length && a[i] === b[i]) i++;
   return i;
 };
+const doubled = (w: string, t: string) => w.length === t.length + 1 && [...w].some((c, i) => c === w[i - 1] && w.slice(0, i) + w.slice(i + 1) === t);
+/** A regular form of a word it knows is a real word, not a typo: "rearing" (rear), "flowing" (flow),
+ *  "scaled" (scale), "foggy" (fog), "robes". */
+function inflected(v: Vocab, w: string): boolean {
+  const known = (s: string) => s.length >= 3 && (v.tokens.has(s) || v.tokens.has(`${s}s`) || KNOWN.has(s));
+  const stem = (suf: string) => (w.endsWith(suf) ? w.slice(0, -suf.length) : '');
+  const cvc = (s: string) => /^[^aeiou]*[aeiou][^aeiouwxy]$/.test(s); // one vowel, one consonant: swim, fog, stop
+  const s = stem('s');
+  // a word ending in s takes -es, not another s ("bootss" is a typo)
+  if ((!s.endsWith('s') && known(s)) || known(stem('ly')) || known(`${stem('ies') || stem('ied')}y`)) return true;
+  // -ing, -ed, -er, -y…: also after a dropped e (glide → gliding); only a word ending in one vowel and a
+  // consonant doubles it (swim → swimming, fog → foggy), so "swiming" and "fightting" are still typos
+  return ['ing', 'ed', 'er', 'est', 'es', 'y'].some((suf) => {
+    const st = stem(suf),
+      one = st.slice(0, -1);
+    if (!st || (suf === 'y' && st.endsWith('y'))) return false;
+    return known(`${st}e`) || (st.at(-1) === st.at(-2) && cvc(one) && known(one)) || (known(st) && /[^aeiou]$/.test(st) && !cvc(st));
+  });
+}
 const fixCache = new Map<string, string>();
 /** Closest vocabulary word: fewest edits → swapped letters (fast typing) → longest shared start → subject nouns. */
 /** Closest vocabulary word, only when confident — a word it doesn't know is otherwise left alone
@@ -211,9 +262,9 @@ const fixCache = new Map<string, string>();
  *  Ties: swapped letters (fast typing) → longest shared start → subject nouns. */
 export function fixWord(v: Vocab, w: string, partial: boolean): string {
   if (TYPO[w]) return TYPO[w];
-  if (v.tokens.has(w) || FILLER.has(w)) return w;
+  if (v.tokens.has(w) || FILLER.has(w) || KNOWN.has(w)) return w;
   if (partial) for (const t of v.tokens) if (t.startsWith(w)) return w;
-  if (w.length < (partial ? 3 : 4) || /\d/.test(w)) return w;
+  if (w.length < (partial ? 3 : 4) || /[^a-z'-]/.test(w) || inflected(v, w)) return w; // numbers and other scripts too
   const ck = `${w}|${partial}`;
   const hit = fixCache.get(ck);
   if (hit) return hit;
@@ -222,15 +273,18 @@ export function fixWord(v: Vocab, w: string, partial: boolean): string {
   for (const t of v.tokens) {
     if (!partial && Math.abs(t.length - w.length) > 2) continue;
     if (partial && t.length < w.length) continue;
+    // the first letter must be right, or swapped with the second (checked first: it's cheap)
+    if (w[0] !== t[0] && !(w[0] === t[1] && w[1] === t[0])) continue;
     const tt = partial ? t.slice(0, w.length) : t;
     const d = osa(w, tt);
-    const swapped = d < osa(w, tt, false);
     const lim = partial ? 1 : w.length >= 7 && w.slice(0, 2) === t.slice(0, 2) ? 2 : 1;
     if (d > lim) continue;
-    if (w[0] !== t[0] && !(swapped && w[0] === t[1] && w[1] === t[0])) continue;
-    // plain English words only fix obvious slips — a missing, extra or swapped letter, not a different
-    // letter ("geralt" is a name, not "gerald")
-    if (v.catOf(t) === 'common' && (d > 1 || (!swapped && !partial && t.length === w.length))) continue;
+    const swapped = d < osa(w, tt, false);
+    if (w[0] !== t[0] && !swapped) continue;
+    // plain English words only fix obvious slips, a swapped pair or a doubled letter typed once or twice:
+    // one letter more, less or different is often another real word ("fangs" isn't "fans", "geralt" is a
+    // name, not "gerald")
+    if (v.catOf(t) === 'common' && !partial && !(swapped && d === 1) && !doubled(w, t) && !doubled(t, w)) continue;
     const s = d * 10 - shared(w, t) - (NOUN_CATS.has(v.catOf(t)) ? 2 : 0) - (swapped ? 3 : 0);
     if (s < bs) {
       bs = s;
@@ -291,13 +345,17 @@ export function resolveQuery(v: Vocab, raw: string): string {
   const fixedLast = full[full.length - 1];
   if (fixedLast !== lastRaw && v.tokens.has(fixedLast)) return full.join(' ');
   const top = completions(v, raw, 1)[0];
-  if (top && lastRaw.length >= 2 && !v.tokens.has(lastRaw) && !FILLER.has(lastRaw)) {
+  if (top && lastRaw.length >= 2 && !v.tokens.has(lastRaw) && !FILLER.has(lastRaw) && !KNOWN.has(lastRaw)) {
     const last = partial[partial.length - 1];
     const cand = display(v, top)
       .replace(/,/g, '')
       .split(' ')
       .find((x) => x.startsWith(last));
-    if (cand) return [...partial.slice(0, -1), cand].join(' ');
+    // a short word that only nearly starts one is more likely finished than mistyped ("mop" isn't "moose"),
+    // unless two keys came out swapped ("holding sow" → sword)
+    const head = cand?.slice(0, lastRaw.length) ?? '';
+    if (cand && (cand.startsWith(lastRaw) || lastRaw.length >= 5 || osa(lastRaw, head) < osa(lastRaw, head, false)))
+      return [...partial.slice(0, -1), cand].join(' ');
   }
   return full.join(' ');
 }
@@ -312,12 +370,17 @@ export function corrected(raw: string, final: string): boolean {
 /** Longest vocabulary phrases in the text, left to right. */
 export function segment(v: Vocab, text: string): string[] {
   const toks = words(text).filter((w) => !STOP.has(w));
+  // a plural finds its word too ("flowing robes" → robe, "wolfs howling" → wolf howling)
+  const one = toks.map((w) => {
+    for (const [end, add] of [['s', ''], ['es', ''], ['ies', 'y']]) if (w.endsWith(end) && v.tokens.has(w.slice(0, -end.length) + add)) return w.slice(0, -end.length) + add;
+    return w;
+  });
   const out: string[] = [];
   for (let i = 0; i < toks.length;) {
     let hit = '';
     for (let n = Math.min(6, toks.length - i); n >= 1; n--) {
-      const k = toks.slice(i, i + n).join(' ');
-      if (v.index.has(k)) {
+      const k = [toks, one].map((t) => t.slice(i, i + n).join(' ')).find((x) => v.index.has(x));
+      if (k) {
         hit = k;
         break;
       }

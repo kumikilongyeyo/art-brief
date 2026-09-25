@@ -77,6 +77,93 @@ test('a second search while the first is still loading gets its own results', as
   expect(labels.some((l) => /^dragon \d-/.test(l))).toBe(false);
 });
 
+test('the search bar: suggestions finish the word Enter searches, the × shows only with text, a menu closes the list', async ({ page }) => {
+  await fakeWeb(page);
+  await openRefs(page);
+  const box = page.locator('#r-q'),
+    rows = page.locator('.r-sug [role=option]');
+  await expect(page.locator('.r-clear')).toBeHidden();
+  await box.pressSequentially('drago');
+  await expect(rows.first()).toHaveText('dragon', { timeout: 20_000 }); // not "dragonfly": Enter searches "dragon"
+  await expect(page.locator('.r-ghost')).toHaveText('dragon');
+  await expect(page.locator('.r-clear')).toBeVisible();
+  await box.press('Tab');
+  await expect(box).toHaveValue('dragon ');
+  await box.fill('');
+  await box.pressSequentially('drag');
+  await expect(rows.first()).toHaveText('dragon'); // the list stays open while "dragon" is typed
+  await page.locator('#r-modebtn').click();
+  await expect(page.locator('.r-menu')).toBeVisible();
+  await expect(page.locator('.r-sug')).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await box.fill('');
+  await expect(page.locator('.r-clear')).toBeHidden();
+});
+
+test('narrowing belongs to its words, keeps its mode, and a mode change searches the words in the box', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  const asked: string[] = [];
+  await page.route('https://api.openverse.org/**', (route) => {
+    asked.push(new URL(route.request().url()).searchParams.get('q') ?? '');
+    return route.fallback();
+  });
+  await openRefs(page);
+  const box = page.locator('#r-q'),
+    row = page.locator('.r-narrow'),
+    lastAsked = () => expect.poll(() => asked.at(-1), { timeout: 20_000 });
+  await search(page, 'castle');
+  await lastAsked().toBe('castle');
+  await row.getByRole('button', { name: 'at dusk' }).click();
+  await lastAsked().toBe('castle at dusk');
+  await expect(row.getByRole('button', { name: 'in fog' })).toBeVisible(); // still the Place chips
+  await expect(row.getByRole('button', { name: 'two-handed' })).toHaveCount(0);
+  await search(page, 'lantern');
+  await lastAsked().toBe('lantern');
+  await expect(row.locator('.r-on')).toHaveCount(0);
+  await box.fill('goblin');
+  await box.press('Escape');
+  await page.locator('#r-modebtn').click();
+  await page.locator('.r-menu').getByRole('menuitemradio', { name: /Creature/ }).click();
+  await lastAsked().toBe('goblin');
+  await expect(box).toHaveValue('goblin');
+});
+
+test('switching a source off takes its results away without a new search', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'lantern');
+  await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
+  // "title, Source. Open": switch off whichever source the first result came from
+  const sourceOf = (label: string | null) => (label ?? '').replace(/\. Open$/, '').split(', ').pop()!;
+  const src = sourceOf(await cells(page).first().locator('.r-open').getAttribute('aria-label'));
+  const fromIt = () => page.locator('.r-grid .r-open').evaluateAll((els, s) => els.filter((e) => e.getAttribute('aria-label')?.endsWith(`, ${s}. Open`)).length, src);
+  await page.locator('.r-setbtn').click();
+  await page.locator('.r-settings').getByLabel(src, { exact: true }).uncheck();
+  await page.keyboard.press('Escape');
+  await expect.poll(fromIt, { timeout: 15_000 }).toBe(0);
+});
+
+test('a search from Saved shows its results, and text it can’t search stays in the box', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  const box = page.locator('#r-q');
+  await box.pressSequentially('drago');
+  await expect(page.locator('.r-sug [role=option]').first()).toBeVisible({ timeout: 20_000 }); // the vocabulary is in
+  await search(page, '🐉🗡️');
+  await expect(page.locator('.toast')).toContainText('words');
+  await expect(box).toHaveValue('🐉🗡️');
+  await search(page, 'pokémon trainer');
+  await expect(box).toHaveValue('pokemon trainer');
+  await page.locator('#saved-toggle').click();
+  await expect(page.locator('.r-saved')).toBeVisible();
+  await search(page, 'lantern');
+  await expect(page.locator('.r-saved')).toHaveCount(0);
+  await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
+});
+
 test('a pose search never freezes the page and still delivers', async ({ page }, info) => {
   test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
   await fakeWeb(page);

@@ -40,9 +40,57 @@ describe('typo repair', () => {
     ['mountian', 'mountain'],
     ['spaer', 'spear'],
     ['draogn', 'dragon'],
-    ['wolfs howling', 'wolf howling'],
+    ['swiming', 'swimming'],
+    // a vowel that sounds right, a letter typed twice
+    ['dragen', 'dragon'],
+    ['skeliton', 'skeleton'],
+    ['wizerd', 'wizard'],
+    ['fightting', 'fighting'],
+    ['bootss', 'boots'],
   ])('fixes %s → %s by distance', (typed, want) => {
     expect(resolveQuery(v, typed)).toBe(want);
+  });
+  // real words one letter from a vocabulary word, and the Narrow chips' own words
+  it.each([
+    'dragon fangs',
+    'rearing horse',
+    'knight cape flowing',
+    'long flowing hair',
+    'growling wolf',
+    'gliding owl',
+    'stabbing',
+    'misty forest',
+    'hazy',
+    'two-handed mid-swing from below back view at night',
+    'backlit moody painterly high contrast cold palette',
+    'at dusk in fog interior aerial view ruined',
+    'ornate worn close-up on display engraved',
+    'in flight roaring side view in water',
+    // real words the vocabulary lacks, an edit from one it has
+    'dragon chin',
+    'knight stab',
+    'wolf fang',
+    'horse hoof',
+    'bride veil',
+    'eagle soar',
+    'mop',
+  ])('searches %s as typed', (q) => {
+    expect(resolveQuery(v, q)).toBe(q);
+  });
+  it('searches plurals as typed, and still finds their words', () => {
+    expect(resolveQuery(v, 'wolfs howling')).toBe('wolfs howling');
+    expect(segment(v, 'wolfs howling')).toContain('wolf howling');
+    expect(segment(v, 'flowing robes')).toContain('robe');
+  });
+  it('folds accents and keeps other scripts', () => {
+    expect(resolveQuery(v, 'Pokémon trainer')).toBe('pokemon trainer');
+    expect(resolveQuery(v, 'café interior')).toBe('cafe interior');
+    expect(resolveQuery(v, 'château fort')).toBe('chateau fort');
+    expect(corrected('château fort', resolveQuery(v, 'château fort'))).toBe(false);
+    expect(completions(v, 'Pokém').some((k) => k.includes('monk'))).toBe(false);
+    for (const q of ['ドラゴン', '龙', 'дракон', 'ड्रैगन']) expect(resolveQuery(v, q)).toBe(q);
+    expect(resolveQuery(v, 'ドラゴン knight')).toBe('ドラゴン knight');
+    expect(resolveQuery(v, '🐉🗡️')).toBe(''); // nothing to search: the page says so
   });
   it('leaves correct words and words it doesn’t know alone', () => {
     expect(resolveQuery(v, 'knight holding sword')).toBe('knight holding sword');

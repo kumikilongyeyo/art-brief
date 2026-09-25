@@ -246,6 +246,9 @@ mark.r-mark,
   flex: none;
   cursor: pointer;
 }
+.r-clear[hidden] {
+  display: none;
+}
 .r-clear:hover {
   background: var(--surface-2);
   color: var(--text);
