@@ -11,8 +11,8 @@ const ORT = new URL('../../node_modules/onnxruntime-web/dist/', import.meta.url)
 const jpg = (n: number) => ({ status: 200, contentType: 'image/jpeg', body: IMGS[Math.abs(n) % IMGS.length] });
 const hash = (s: string) => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
 
-/** Openverse: 20 results a page, 3 pages; everything else answers "no results". */
-async function fakeWeb(page: Page, opts: { openverseDelay?: number } = {}) {
+/** Openverse: 20 results a page (or `count`), 3 pages (none with `none`); everything else answers "no results". */
+async function fakeWeb(page: Page, opts: { openverseDelay?: number; none?: boolean; count?: number } = {}) {
   await page.route(/^https:\/\/(?!localhost)/, async (route: Route) => {
     const url = route.request().url();
     if (url.includes('cdn.jsdelivr.net/npm/onnxruntime-web')) {
@@ -22,11 +22,11 @@ async function fakeWeb(page: Page, opts: { openverseDelay?: number } = {}) {
     if (url.startsWith('https://api.openverse.org/')) {
       const u = new URL(url), q = u.searchParams.get('q') ?? '', p = +(u.searchParams.get('page') ?? 1);
       if (opts.openverseDelay) await new Promise((r) => setTimeout(r, opts.openverseDelay));
-      const results = Array.from({ length: 20 }, (_, i) => {
+      const results = Array.from({ length: opts.count ?? 20 }, (_, i) => {
         const id = `${hash(q)}-${p}-${i}`;
         return { id, title: `${q} ${p}-${i}`, thumbnail: `https://img.test/${hash(id) % 12}.jpg?${id}`, url: `https://img.test/${hash(id) % 12}.jpg?${id}`, foreign_landing_url: `https://example.org/${id}`, tags: q.split(' ').map((name) => ({ name })), width: 400, height: 300 };
       });
-      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ results, page_count: 3 }) });
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(opts.none ? { results: [], page_count: 0 } : { results, page_count: opts.count ? 1 : 3 }) });
     }
     if (url.startsWith('https://img.test/') || /wsrv\.nl|ddragon|hearthstonejson|cmsassets|dnd5eapi|scryfall\.io/.test(url)) return route.fulfill(jpg(hash(url)));
     if (/\.(jpe?g|png|webp)(\?|$)/.test(url)) return route.fulfill(jpg(hash(url)));
@@ -62,6 +62,132 @@ test('a text search shows results, and scrolling keeps loading more without dupl
   expect(await cells(page).count()).toBeGreaterThan(first);
   const keys = await page.locator('.r-grid .r-open').evaluateAll((els) => els.map((e) => e.getAttribute('aria-label')));
   expect(new Set(keys).size).toBe(keys.length);
+});
+
+test('results keep their place as more load, and the best ones lead across the top', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  await search(page, 'castle on a cliff');
+  await expect(cells(page).nth(9)).toBeVisible({ timeout: 30_000 });
+  // where each cell's layout box sits in the grid: offsets leave out the slide-in transform of a new cell,
+  // and the status line above the grid may change height as it updates
+  const boxes = () =>
+    page.locator('.r-grid .r-cell').evaluateAll((els) =>
+      (els as HTMLElement[]).map((e) => {
+        const g = e.parentElement!;
+        return e.offsetParent === g ? [e.offsetLeft, e.offsetTop] : [e.offsetLeft - g.offsetLeft, e.offsetTop - g.offsetTop];
+      }),
+    );
+  const before = await boxes();
+  for (let i = 0; i < 12 && (await cells(page).count()) <= before.length; i++) {
+    await page.mouse.wheel(0, 4000);
+    await page.waitForTimeout(700);
+  }
+  const after = await boxes();
+  expect(after.length).toBeGreaterThan(before.length);
+  expect(after.slice(0, before.length)).toEqual(before); // nothing already shown moved
+  const top = before.slice(0, 4); // ranks 0–3 make the top row, left to right
+  expect(new Set(top.map(([, y]) => y)).size).toBe(1);
+  expect(top.map(([x]) => x)).toEqual(top.map(([x]) => x).sort((a, b) => a - b));
+});
+
+test('endless scroll carries on when the bottom comes back into range while a batch lands', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  // after every change (and before the next frame), scroll so the sentinel sits just inside the look-ahead:
+  // the observer then never sees it leave, as when a quick scroll brings it back before the next frame
+  await page.evaluate(() => {
+    const keep = () => {
+      const s = document.querySelector('.r-sentinel');
+      if (s?.isConnected) scrollBy(0, s.getBoundingClientRect().top - (innerHeight + 1150));
+    };
+    new MutationObserver(() => queueMicrotask(keep)).observe(document.getElementById('r-main')!, { childList: true, subtree: true });
+  });
+  await search(page, 'castle on a cliff');
+  await expect(page.locator('.r-grid .r-end')).toBeVisible({ timeout: 60_000 });
+});
+
+test('a search that finds nothing says so instead of spinning', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page, { none: true });
+  await openRefs(page);
+  await search(page, 'xqzvbnwq');
+  await expect(page.locator('.r-empty h2')).toContainText('No close matches', { timeout: 30_000 });
+  await expect(page.locator('.r-spin, .r-skel')).toHaveCount(0);
+});
+
+test('a search none of your sources cover says so, and leads to Search settings', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  await openRefs(page);
+  // keep only the museums, which don't do figures
+  await page.locator('.r-setbtn').click();
+  for (const cb of await page.locator('.r-srcs input').all()) await cb.uncheck();
+  for (const id of ['met', 'cleveland', 'artsmia']) await page.locator(`#r-src-${id}`).check();
+  await page.keyboard.press('Escape');
+  await search(page, 'knight holding a sword');
+  await expect(page.locator('.r-empty h2')).toContainText('None of the sources you have on cover Pose searches', { timeout: 10_000 });
+  await expect(page.locator('.r-skel')).toHaveCount(0);
+  await page.locator('.r-empty').getByRole('button', { name: 'Search settings' }).click();
+  await expect(page.locator('.r-settings')).toBeVisible();
+});
+
+test('an image search without the matching model says so, and Try again recovers', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(String(e)));
+  const ort = /cdn\.jsdelivr\.net\/npm\/onnxruntime-web/;
+  await page.route(ort, (route) => route.abort());
+  await openRefs(page);
+  await page.setInputFiles('#r-file', new URL('3.jpg', FIX).pathname);
+  await expect(page.locator('.r-empty h2')).toContainText('Image search isn’t available', { timeout: 30_000 });
+  await expect(page.locator('.r-skel')).toHaveCount(0);
+  expect(errors).toEqual([]);
+  await page.unroute(ort);
+  await page.locator('.r-empty').getByRole('button', { name: 'Try again' }).click();
+  await expect(cells(page).first()).toBeVisible({ timeout: 30_000 });
+});
+
+test('the status line counts only the pictures that load', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page);
+  // every Hearthstone picture fails to load, straight and through the wsrv.nl retry (the catalog's own
+  // vectors still rank them, so they reach the grid and then drop out)
+  await page.route(/hearthstonejson/, (route) => route.fulfill({ status: 429, body: '' }));
+  await openRefs(page);
+  await search(page, 'castle on a cliff');
+  await expect(page.locator('.r-grid .r-cell[hidden]').first()).toBeAttached({ timeout: 30_000 });
+  const counted = async () => {
+    const n = await cells(page).count();
+    return (await page.locator('#r-status').textContent())?.startsWith(`${n} reference${n === 1 ? '' : 's'} from`);
+  };
+  await expect.poll(counted).toBe(true);
+  expect(await page.locator('.r-grid .r-cell').count()).toBeGreaterThan(await cells(page).count());
+});
+
+test('one result reads "1 reference from 1 source"', async ({ page }, info) => {
+  test.skip(onlyDesktopChromium(info.project.name), 'model-heavy: desktop Chromium only');
+  await fakeWeb(page, { count: 1 }); // only Openverse on, answering with one picture
+  await openRefs(page);
+  await page.locator('.r-setbtn').click();
+  for (const cb of await page.locator('.r-srcs input').all()) await cb.uncheck();
+  await page.locator('#r-src-openverse').check();
+  await page.keyboard.press('Escape');
+  // every status line on the way, "Searching 1 source…" included
+  await page.evaluate(() => {
+    const seen: string[] = ((globalThis as { __said?: string[] }).__said = []);
+    new MutationObserver(() => {
+      const t = document.getElementById('r-status')?.textContent;
+      if (t && seen.at(-1) !== t) seen.push(t);
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  });
+  await search(page, 'lighthouse');
+  await expect(page.locator('#r-status')).toHaveText('1 reference from 1 source', { timeout: 30_000 });
+  const said = await page.evaluate(() => (globalThis as { __said?: string[] }).__said ?? []);
+  expect(said.filter((t) => /\b1 (references|sources)\b/.test(t))).toEqual([]);
 });
 
 test('a second search while the first is still loading gets its own results', async ({ page }, info) => {

@@ -577,9 +577,11 @@ mark.r-mark,
   height: 14px;
 }
 
-/* grid */
+/* grid: at most 4 columns of at least 220px; flow() in ui.ts places the cells (masonry) */
 .r-grid {
-  columns: 4 220px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(220px, (100% - 36px) / 4), 1fr));
+  align-items: start;
   column-gap: 12px;
   transition: opacity 0.2s;
 }
@@ -588,8 +590,6 @@ mark.r-mark,
   pointer-events: none;
 }
 .r-cell {
-  break-inside: avoid;
-  margin: 0 0 12px;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
@@ -722,8 +722,6 @@ mark.r-mark,
   opacity: 0.3;
 }
 .r-skel {
-  break-inside: avoid;
-  margin: 0 0 12px;
   border-radius: 12px;
   background: var(--surface-2);
   position: relative;
@@ -745,7 +743,7 @@ mark.r-mark,
   }
 }
 .r-end {
-  column-span: all;
+  grid-column: 1 / -1;
   text-align: center;
   padding: 28px 12px 8px;
   color: var(--muted);
@@ -1277,12 +1275,8 @@ html.r-noscroll body {
     --r-imgmax: 34vh;
   }
   .r-grid {
-    columns: 2 140px;
+    grid-template-columns: repeat(auto-fill, minmax(max(140px, (100% - 8px) / 2), 1fr));
     column-gap: 8px;
-  }
-  .r-cell,
-  .r-skel {
-    margin-bottom: 8px;
   }
   .r-tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
