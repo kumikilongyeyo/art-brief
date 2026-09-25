@@ -148,7 +148,7 @@ const savedBtn = h(
     'aria-haspopup': 'dialog',
     'aria-expanded': 'false',
     'aria-controls': 'saved-panel',
-    onclick: () => toggleSavedPanel(),
+    onclick: () => (view === 'refs' ? refsPage?.toggleSaved() : toggleSavedPanel()),
   },
   icon('star'),
   h('span', { class: 'saved-toggle-label' }, 'Saved'),
@@ -181,6 +181,53 @@ const resultsEl = h('section', { class: 'results', 'aria-label': 'Results', id: 
 const listsEl = h('div');
 const footEl = h('footer', { class: 'foot' });
 
+// ---------- sections: Briefs | References ----------
+type View = 'briefs' | 'refs';
+let view: View = 'briefs';
+let refsPage: import('./refs/ui').RefsPage | null = null;
+const refsRoot = h('div', { class: 'refs-root' });
+const viewTab = (v: View, label: string) =>
+  h(
+    'button',
+    { type: 'button', 'data-view': v, 'aria-current': v === 'briefs' ? 'page' : undefined, onclick: () => void setView(v) },
+    label,
+  );
+const viewNav = h('nav', { class: 'view-nav', 'aria-label': 'Sections' }, viewTab('briefs', 'Briefs'), viewTab('refs', 'References'));
+
+async function setView(v: View) {
+  if (v === 'refs' && !refsPage) {
+    const { mountRefs } = await import('./refs/ui');
+    refsPage = mountRefs(refsRoot, {
+      folders: () => folders,
+      addFolder: (name) => addFolder(name),
+      onSavedChange: (n) => {
+        if (view === 'refs') savedCount.textContent = String(n);
+      },
+    });
+  }
+  view = v;
+  viewNav.querySelectorAll<HTMLButtonElement>('button').forEach((b) => {
+    if (b.dataset.view === v) b.setAttribute('aria-current', 'page');
+    else b.removeAttribute('aria-current');
+  });
+  briefsMain.hidden = v !== 'briefs';
+  app.firstElementChild?.classList.toggle('wrap-wide', v === 'refs');
+  footEl.hidden = v !== 'briefs';
+  if (v === 'refs') {
+    toggleSavedPanel(false);
+    refsPage!.show();
+    savedCount.textContent = String(refsPage!.savedCount());
+  } else {
+    refsPage?.hide();
+    savedCount.textContent = String(Object.keys(saved).length);
+  }
+  const url = new URL(location.href);
+  if (v === 'refs') url.searchParams.set('view', 'refs');
+  else url.searchParams.delete('view');
+  history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+}
+
+let briefsMain!: HTMLElement;
 app.append(
   h(
     'div',
@@ -188,11 +235,17 @@ app.append(
     h(
       'header',
       { class: 'top' },
-      h('div', { class: 'brand' }, h('span', { class: 'brand-mark', 'aria-hidden': 'true' }), 'Art Brief'),
+      h(
+        'div',
+        { class: 'brand' },
+        h('span', { class: 'brand-mark', 'aria-hidden': 'true' }),
+        h('span', { class: 'brand-name' }, 'Art Brief'),
+      ),
+      viewNav,
       h('div', { class: 'top-actions' }, savedBtn, settingsBtn),
       savedPanel,
     ),
-    h(
+    (briefsMain = h(
       'main',
       {},
       h('h1', { class: 'ask' }, 'What do you want to create?'),
@@ -212,7 +265,8 @@ app.append(
       noticesEl,
       resultsEl,
       listsEl,
-    ),
+    )),
+    refsRoot,
     footEl,
   ),
 );
@@ -923,6 +977,7 @@ function showSettings() {
 // Enter / Space generate unless focus is in something that handles those keys itself.
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Enter' && e.key !== ' ') return;
+  if (view !== 'briefs') return;
   if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
   const t = e.target as HTMLElement | null;
   if (t && t.closest('input, textarea, select, button, a, summary, [contenteditable], [role="dialog"]')) return;
@@ -953,6 +1008,7 @@ renderNotices();
 renderResults();
 renderLists();
 renderFooter();
+if (new URLSearchParams(location.search).get('view') === 'refs') void setView('refs');
 
 // A share link opened while the app is already showing in this tab only changes the hash.
 window.addEventListener('hashchange', () => {

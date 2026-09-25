@@ -1,0 +1,8 @@
+# Art Brief reference relay — its own Worker, separate from Yomu's.
+# Deploy: npx wrangler@4 deploy   (from this folder, after `npx wrangler@4 login`)
+name = "art-brief-relay"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://kumikilongyeyo.github.io,http://localhost:5179,http://localhost:4173,http://localhost:4174,http://127.0.0.1:5179"

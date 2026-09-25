@@ -6,3 +6,6 @@ test-results
 playwright-report
 data/_drafts
 .DS_Store
+.cache/
+relay/.wrangler/
+relay/node_modules/

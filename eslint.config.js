@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist', 'dist-a', 'dist-b', 'node_modules', 'test-results', 'playwright-report', 'dev-dist'] },
+  { ignores: ['dist', 'dist-a', 'dist-b', 'node_modules', 'test-results', 'playwright-report', 'dev-dist', 'relay/.wrangler', 'mockups'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -24,5 +24,14 @@ export default tseslint.config(
       ],
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
+  },
+  // The relay runs on Cloudflare Workers; the reference build scripts run in Node.
+  {
+    files: ['relay/**/*.js'],
+    languageOptions: { globals: { Response: 'readonly', Request: 'readonly', Headers: 'readonly', fetch: 'readonly', caches: 'readonly' } },
+  },
+  {
+    files: ['scripts/**/*.mjs'],
+    languageOptions: { globals: { fetch: 'readonly', Buffer: 'readonly', performance: 'readonly' } },
   },
 );

@@ -334,6 +334,9 @@ test('keyboard-only walkthrough with visible focus', async ({ page }, info) => {
       const cs = getComputedStyle(el);
       return el !== document.body && cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) >= 2;
     });
+  await page.keyboard.press('Tab'); // Briefs (section switch)
+  expect(await focusVisible()).toBe(true);
+  await page.keyboard.press('Tab'); // References
   await page.keyboard.press('Tab'); // Saved (header)
   expect(await focusVisible()).toBe(true);
   await page.keyboard.press('Tab'); // settings
