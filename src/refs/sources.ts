@@ -468,6 +468,15 @@ const europeana: Source = {
 
 // ---------------------------------------------------------------- card games
 
+// MTG creature types an artist is likely to ask for by name (Scryfall `t:`)
+const MTG_TYPES = new Set(
+  ('angel ape archer assassin bat bear beast bird boar cat centaur cleric crab crocodile cyclops deer demon devil ' +
+    'dinosaur dog dragon drake druid dwarf elemental elephant elf faerie fish fox frog giant gnome goblin golem ' +
+    'gorgon griffin horror horse hydra imp insect knight kraken leviathan lizard merfolk minotaur monk ninja ' +
+    'octopus ogre orc owl ox pegasus phoenix pirate rat rhino rogue samurai satyr scorpion serpent shaman shark ' +
+    'skeleton snake soldier specter sphinx spider spirit squirrel treefolk troll turtle unicorn vampire warrior ' +
+    'werewolf whale wizard wolf wraith wurm zombie').split(' '),
+);
 const scryfall: Source = {
   id: 'scryfall',
   label: 'MTG (Scryfall)',
@@ -490,7 +499,12 @@ const scryfall: Source = {
         signal,
       );
     let r: { data?: Card[]; has_more?: boolean } = {};
-    if (p.scry.length >= 2)
+    // a creature or character is best found by card type: art tags are loose ("art:cat" is 1,189 cards,
+    // led by Sol Ring for a cat on one printing)
+    const kind = p.nouns.find((n) => MTG_TYPES.has(n));
+    if (kind) r = await run(`t:${kind}${p.scry.filter((t) => t !== kind).slice(0, 1).map((t) => ` art:${t}`).join('')}`);
+    if (kind && !r.data?.length) r = await run(`t:${kind}`);
+    if (!r.data?.length && p.scry.length >= 2)
       r = await run(
         p.scry
           .slice(0, 3)

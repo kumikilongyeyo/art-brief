@@ -736,6 +736,9 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     let image: ImageBitmap | Float32Array | undefined;
     if (S.bmp) image = await cropped(S.bmp);
     else if (S.like) image = S.like.vec;
+    // a part of the picture: the whole one still says what it's of (a copy: the model's worker takes its own)
+    const part = S.bmp && S.crop.w * S.crop.h < 0.98 ? S.crop.w * S.crop.h : 1;
+    const whole = S.bmp && part < 1 ? await createImageBitmap(S.bmp) : undefined;
     if (seq !== startSeq) return; // a newer search started while this one was reading the image
     let pose: Skeleton | undefined,
       sketch = false;
@@ -759,6 +762,8 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
       pose,
       sketch,
       drawing: !sketch && isDrawing(),
+      whole,
+      crop: part,
     });
     S.search = s;
     if (import.meta.env.DEV) (globalThis as { __refsSearch?: Search }).__refsSearch = s; // for the dev self-tests

@@ -543,7 +543,7 @@ export function subjectQuery(v: Vocab, terms: Array<[string, number]>): string {
   const subj = terms.filter(([w]) => !['pose', 'concept', 'material'].includes(v.catOf(w)));
   if (!subj.length) return terms[0]?.[0] ?? '';
   const [a, b] = subj;
-  return b && b[1] > a[1] - 0.004 ? `${a[0]} ${b[0]}` : a[0];
+  return b && !a[0].includes(' ') && b[1] > a[1] - 0.004 ? `${a[0]} ${b[0]}` : a[0]; // "battle axe" is enough
 }
 
 /** Words read from a line drawing searched by how it looks (not as a pose). Its pose and lighting/view words

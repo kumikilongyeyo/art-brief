@@ -16,6 +16,7 @@ export interface Hit {
   prelim: number; // before the model has seen it: tags, source trust, the source's own order
   vec?: Float32Array;
   sim?: number; // match by look
+  look?: number; // image searches: how much it looks like the picture alone (typed words aside)
   gate?: number; // > 0 = reads as adult
   pose?: number; // 0…1 match to the query pose (pose searches)
   figure?: boolean; // MoveNet found a person (Pose-mode searches)
@@ -46,6 +47,10 @@ export interface SearchInput {
   sketch?: boolean;
   /** The image is a line drawing searched by how it looks (a house, a sword; not a pose). */
   drawing?: boolean;
+  /** When a part of a picture is searched: the whole picture (what it's of phrases the source queries,
+   *  so a crop of a dragon's head still asks for dragons) and how much of it the part covers (0…1). */
+  whole?: ImageBitmap;
+  crop?: number;
   /** No query: the start screen's feed of new work (this seed shuffles it, so every visit differs). */
   feed?: string;
 }
@@ -78,6 +83,9 @@ const WEB_SOURCES = 3; // the first batch waits for this many web sources to hav
 const FIRST_WAIT = 2000; // ms the first batch waits for ranking
 const SKETCH_WAIT = 3200;
 const NEXT_WAIT = 1200;
+const LOOK_MIN = 0.4; // image searches: look-alike of the picture alone, at least this…
+const LOOK_SPAN = 0.25; // …and within this of the closest one
+const CLOSE_UP = 0.35; // a crop covering less than this much of the picture looks for close-ups
 const SAME_PICTURE = 0.95; // look-alike above this = the same picture again (a reprint, a repost, the pasted image)
 const MAX_THROTTLED = 5; // "too many requests" answers a source may give before it's left out
 const LOW_WATER = 40; // unseen candidates below this → ask sources for another page
@@ -135,6 +143,9 @@ export class Search {
   private bestPose = 0;
   private nearestOnly = false;
   private like = false; // a More like this search
+  private bestLook = 0; // image searches: the closest look-alike of the picture alone
+  private textPull = 0.55; // how far typed words move an image search
+  private qFrame: Float32Array | null = null; // "close-up", for a small crop
   private gate?: (e: Float32Array) => number;
   private votes = new Map<string, 'up' | 'down'>();
   private srcPenalty = new Map<SourceId, number>();
@@ -239,6 +250,7 @@ export class Search {
     }
     let words: string[] = [];
     let subject = ''; // what a picture is of, in a word or two, for the sources
+    let modifiers = false; // the typed words describe the picture's subject rather than name one
     let eff: Mode = mode;
     // More like this: a result's own vector, and that result left out
     this.like = image instanceof Float32Array && !!this.input.exclude;
@@ -258,8 +270,11 @@ export class Search {
         if (!text.trim()) words = drawingWords(v, await imageWords(v, vecs[0], 8), mode).slice(0, 4);
       } else {
         const terms = await imageTerms(v, vecs[0], 4);
-        subject = subjectQuery(v, terms);
+        const whole = this.input.whole ? (await embedBitmap(this.input.whole, false, 1e9, false, this.ctl.signal)).vecs[0] : null;
+        subject = subjectQuery(v, whole ? await imageTerms(v, whole, 4) : terms);
         if (!text.trim()) words = terms.map(([w]) => w);
+        // typed words that only say how ("at night", "frozen", "watercolor") go with what the picture is of
+        modifiers = !!text.trim() && !makePlan(v, text, mode, adult).nouns.length;
       }
       if (mode === 'auto') eff = this.input.pose ? 'pose' : 'concept';
     }
@@ -276,11 +291,16 @@ export class Search {
         ? SKETCH_QUERY[words[0]] ?? words[0]
         : this.like
           ? (useHint ? hint! : '') || subject || text
-          : text || (useHint ? hint : '') || (this.input.drawing ? words[0] ?? '' : subject || words.join(' '));
+          : modifiers && subject
+            ? `${subject} ${text}`
+            : text || (useHint ? hint : '') || (this.input.drawing ? words[0] ?? '' : subject || words.join(' '));
     this.plan = makePlan(v, said, eff, adult, words);
     if (!this.plan.text) this.plan.text = words.slice(0, 2).join(' ');
     // only the user's own words shape the look score (hint and image words are for the sources)
-    this.qText = text.trim() || this.input.sketch ? await queryVector(v, this.plan) : null;
+    this.qText = text.trim() || this.input.sketch ? await queryVector(v, modifiers ? makePlan(v, text, eff, adult) : this.plan) : null;
+    this.textPull = modifiers ? 0.8 : 0.55; // "at night" has to move the picture's look a long way to show
+    // a small part of a picture wants close-ups of that part, not the whole scene it came from
+    if (image && !this.input.sketch && (this.input.crop ?? 1) < CLOSE_UP) this.qFrame = await queryVector(v, makePlan(v, 'close-up', eff, adult));
     this.rebuildQuery();
     this.gate = await gateScorer(v).catch(() => undefined);
     this.ctx.pose = this.input.pose;
@@ -306,7 +326,8 @@ export class Search {
       if (vec) for (let d = 0; d < DIM; d++) q[d] += vec[d] * w;
     };
     add(this.qImg, 1);
-    add(this.qText, this.qImg ? (this.like ? 0.25 : 0.55) : 1); // More like this: the picture leads
+    add(this.qText, this.qImg ? (this.like ? 0.25 : this.textPull) : 1); // More like this: the picture leads
+    add(this.qFrame, 0.25);
     const { up, down } = this.priorOut();
     for (const vec of up) add(vec, 0.4 / up.length);
     for (const vec of down) add(vec, -0.25 / down.length);
@@ -335,8 +356,8 @@ export class Search {
       h.why = 'unliked';
       return;
     }
-    if (this.input.image instanceof Float32Array && this.qImg && dot(this.qImg, h.vec) > 0.95) {
-      h.state = 'dropped'; // More like this: the same picture again (a repost or reprint)
+    if (this.qImg && dot(this.qImg, h.vec) > SAME_PICTURE) {
+      h.state = 'dropped'; // the picture you searched with, again (a repost, a reprint, the catalog card itself)
       h.why = 'dupe';
       return;
     }
@@ -349,6 +370,7 @@ export class Search {
     // the pasted picture itself (a catalog card, a repost) matches ~1.0: it may show, but it mustn't set the
     // bar every other result is measured against, or nothing else passes
     if (!(this.qImg && dot(this.qImg, h.vec!) > SAME_PICTURE)) this.best = Math.max(this.best, h.sim);
+    if (this.qImg) this.bestLook = Math.max(this.bestLook, (h.look = dot(this.qImg, h.vec!)));
     if (h.pose !== undefined) this.bestPose = Math.max(this.bestPose, h.pose);
   }
   private total(h: Hit): number {
@@ -373,6 +395,9 @@ export class Search {
     }
     if (!this.q) return true;
     if (this.wantsFigures() && h.figure === false && this.input.pose) return false;
+    // an image search must look like the picture itself, whatever the words pull toward: "watercolor" may
+    // reorder cat pictures, it mustn't let in any watercolour at all
+    if (this.qImg && (h.look ?? 0) < Math.max(LOOK_MIN, this.bestLook - LOOK_SPAN)) return false;
     const f = this.qImg ? Math.max(0.3, this.best - 0.3) : Math.max(0.15, this.best - 0.13);
     // catalogs always return their nearest cards, even when none fit ("castle" in a card game with no
     // castles): they must come close to the best match found anywhere
@@ -583,10 +608,7 @@ export class Search {
     const rest = allowUnranked && !this.input.feed ? pool.filter((h) => h.state !== 'ranked').sort((a, b) => b.prelim - a.prelim) : [];
     const out: Hit[] = [],
       perSrc = new Map<SourceId, number>();
-    const recent = this.shown
-      .slice(-60)
-      .map((h) => h.vec)
-      .filter(Boolean) as Float32Array[];
+    const recent = this.shown.slice(-60).filter((h) => h.vec);
     const local = (h: Hit) => !!SOURCE_BY_ID[h.c.src]?.local;
     // the feed leans on ArtStation's trending work: it may take half a batch
     const cap = (h: Hit) => (local(h) ? PER_LOCAL : this.input.feed && h.c.src === 'artstation' ? BATCH / 2 : PER_SOURCE);
@@ -595,8 +617,9 @@ export class Search {
       if (out.includes(h) || h.state === 'dropped') return;
       if (strict && ((perSrc.get(h.c.src) ?? 0) >= cap(h) || (local(h) && locals >= LOCAL_TOTAL))) return;
       if (h.vec)
-        for (const r of recent.concat(out.map((o) => o.vec).filter(Boolean) as Float32Array[]))
-          if (dot(h.vec, r) > 0.955) {
+        for (const r of recent.concat(out.filter((o) => o.vec)))
+          // one source's variants of one picture (a wiki's centred / tile / loading crops) differ a little more
+          if (dot(h.vec, r.vec!) > (r.c.src === h.c.src ? 0.93 : 0.955)) {
             h.state = 'dropped'; // near-identical to something already on screen (reprints, reposts)
             h.why = 'dupe';
             return;
