@@ -197,6 +197,11 @@ fs.writeFileSync(
     booru,
     scry: L.SCRYFALL_ART,
     disp: Object.fromEntries(disp),
+    // everyday words the typo fixer leaves alone (scripts/refs/real-words.txt, from build_realwords.py)
+    real: fs
+      .readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), 'real-words.txt'), 'utf8')
+      .split('\n')
+      .filter((w) => w && !ordered.includes(w)),
   }),
 );
 const size = (p) => fs.statSync(p).size;

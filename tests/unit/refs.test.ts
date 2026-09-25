@@ -67,6 +67,10 @@ describe('typo repair', () => {
     'ornate worn close-up on display engraved',
     'in flight roaring side view in water',
     // real words the vocabulary lacks, an edit from one it has
+    'rose thorn',
+    'arid desert',
+    'grim reaper',
+    'scarred face',
     'dragon chin',
     'knight stab',
     'wolf fang',

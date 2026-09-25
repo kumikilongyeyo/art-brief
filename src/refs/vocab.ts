@@ -12,6 +12,7 @@ export interface VocabFile {
   booru: Record<string, string[]>;
   scry: string[];
   disp?: Record<string, string>;
+  real?: string[]; // everyday words that aren't typos, though they're a letter or two from a vocabulary word
 }
 
 export const DIM = 512;
@@ -134,6 +135,7 @@ export interface Vocab {
   booru: Record<string, string[]>;
   scry: Set<string>;
   disp: Record<string, string>;
+  real: Set<string>;
 }
 
 let vocabP: Promise<Vocab> | null = null;
@@ -169,6 +171,7 @@ export function vocabFrom(f: VocabFile): Vocab {
     booru: f.booru,
     scry: new Set(f.scry),
     disp: f.disp ?? {},
+    real: new Set(f.real ?? []),
     catOf: (k: string) => {
       const i = index.get(k);
       return i === undefined ? '' : f.cats[+f.cat[i]];
@@ -262,7 +265,7 @@ const fixCache = new Map<string, string>();
  *  Ties: swapped letters (fast typing) → longest shared start → subject nouns. */
 export function fixWord(v: Vocab, w: string, partial: boolean): string {
   if (TYPO[w]) return TYPO[w];
-  if (v.tokens.has(w) || FILLER.has(w) || KNOWN.has(w)) return w;
+  if (v.tokens.has(w) || FILLER.has(w) || KNOWN.has(w) || v.real.has(w)) return w; // "thorn" isn't a slip of "throne"
   if (partial) for (const t of v.tokens) if (t.startsWith(w)) return w;
   if (w.length < (partial ? 3 : 4) || /[^a-z'-]/.test(w) || inflected(v, w)) return w; // numbers and other scripts too
   const ck = `${w}|${partial}`;
