@@ -1458,13 +1458,15 @@ export function mountRefs(root: HTMLElement, host: RefsHost): RefsPage {
     const g = flowing;
     if (!g?.isConnected) return;
     const cs = getComputedStyle(g),
-      cols = cs.gridTemplateColumns.split(' ').map(parseFloat),
-      w = cols[0],
+      w = parseFloat(cs.gridTemplateColumns),
       gap = parseFloat(cs.columnGap) || 0;
     if (!(w > 0)) return; // not laid out (the page is hidden): the resize observer flows it once it is
-    const anew = g.dataset.cols !== String(cols.length); // first time, or a new column count: place everything
-    g.dataset.cols = String(cols.length);
-    const tall = cols.map(() => 0);
+    // the columns the width holds (the computed track list also has empty implicit ones, where cells placed
+    // for a wider window would sit at zero width)
+    const count = Math.max(1, Math.floor((g.clientWidth + gap + 1) / (w + gap)));
+    const anew = g.dataset.cols !== String(count); // first time, or a new column count: place everything
+    g.dataset.cols = String(count);
+    const tall: number[] = Array.from({ length: count }, () => 0);
     for (const e of g.children as HTMLCollectionOf<HTMLElement>) {
       const ar = parseFloat(e.style.aspectRatio); // cells and skeletons; the end message spans the columns below
       if (e.hidden || !(ar > 0)) continue;
