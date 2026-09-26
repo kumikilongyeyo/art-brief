@@ -11,10 +11,13 @@ import { SOURCE_BY_ID } from './sources';
 import type { SourceId } from './types';
 
 const LONG_SIDE = 800; // pictures are scaled down to this (they sit ~520 units tall): PNG only, so ~15–20 MB
-const ROW_H = 520; // every section's pictures share one height
+const COL_W = 620; // each part is a column this wide; its pictures fill the width, one under another
+const COLS = 4; // columns side by side, then the next row of them
 const GAP = 40;
+// room left for the artist's own references: beside each column, and under each row of columns
+const COL_ROOM = 260;
+const ROW_ROOM = 800;
 const PER_PART = 5; // the board's pictures of a part, topped up with its swaps (3–5 once searched)
-const WIDTH = 3000; // a section wider than this wraps
 
 type Png = { bytes: Uint8Array; width: number; height: number };
 
@@ -116,19 +119,18 @@ export async function exportPur(brief: Brief, picks: RefPick[], spares: RefPick[
   const notes: PurNote[] = [];
   let y = 0;
 
-  // the brief: name, what it is, the summary
+  // the brief across the top: name, what it is, the summary, then the palette as colours
   const name = brief.fields.name?.text ?? brief.title;
+  const fullW = COLS * COL_W + (COLS - 1) * (GAP + COL_ROOM);
   const title = note(name, 0, y, 5);
   notes.push(title.note);
   y += title.h + 10;
   const sub = note(brief.title, 0, y, 2.4);
   notes.push(sub.note);
   y += sub.h + GAP / 2;
-  const body = note(wrapText(summaryNote(brief), 90), 0, y, 2.2);
+  const body = note(wrapText(summaryNote(brief), Math.floor(fullW / (NOTE_CHAR * 2.2))), 0, y, 2.2);
   notes.push(body.note);
   y += body.h + GAP;
-
-  // the palette, as colours
   const pal = await paletteImage(brief.palette.hex);
   const palLabel = note(`PALETTE · ${brief.palette.name}`, 0, y, 2.4);
   notes.push(palLabel.note);
@@ -136,30 +138,30 @@ export async function exportPur(brief: Brief, picks: RefPick[], spares: RefPick[
   images.push({ ...pal, x: 0, y, scale: 1, name: `Palette — ${brief.palette.name}` });
   y += pal.height + GAP * 2;
 
-  // one section per part: a heading, then its pictures in a row, each with a caption under it
-  for (const id of order) {
-    const list = byPart.get(id)!.filter((p) => pngs.get(p.key));
-    if (!list.length) continue;
-    const head = note(`${list[0].label.toUpperCase()} · ${list[0].q}`, 0, y, 3);
-    notes.push(head.note);
-    y += head.h + 16;
-    let x = 0,
-      rowTop = y;
-    for (const p of list) {
-      const img = pngs.get(p.key)!;
-      const scale = ROW_H / img.height,
-        w = img.width * scale;
-      if (x > 0 && x + w > WIDTH) {
-        x = 0;
-        rowTop += ROW_H + 110;
+  // then a column per part: its name and words, then its pictures one under another, each captioned with
+  // what it is and who made it (so their other work is easy to look up)
+  const cols = order.map((id) => byPart.get(id)!.filter((p) => pngs.get(p.key))).filter((l) => l.length);
+  for (let r = 0; r < cols.length; r += COLS) {
+    let bottom = y;
+    cols.slice(r, r + COLS).forEach((list, c) => {
+      const x = c * (COL_W + GAP + COL_ROOM);
+      let cy = y;
+      const head = note(wrapText(`${list[0].label.toUpperCase()}\n${list[0].q}`, Math.floor(COL_W / (NOTE_CHAR * 2.6))), x, cy, 2.6);
+      notes.push(head.note);
+      cy += head.h + 16;
+      for (const p of list) {
+        const img = pngs.get(p.key)!;
+        const scale = COL_W / img.width;
+        images.push({ ...img, x, y: cy, scale, name: `${p.label} — ${p.title}`, source: p.page });
+        cy += img.height * scale + 8;
+        const by = [p.artist, sourceName(p.src)].filter(Boolean).join(' · ');
+        const cap = note(wrapText(`${p.title || 'Untitled'}\n${by}`, Math.floor(COL_W / (NOTE_CHAR * 1.7))).split('\n').slice(0, 4).join('\n'), x, cy, 1.7);
+        notes.push(cap.note);
+        cy += cap.h + GAP;
       }
-      images.push({ ...img, x, y: rowTop, scale, name: `${p.label} — ${p.title}`, source: p.page });
-      const cols = Math.max(12, Math.floor(w / (NOTE_CHAR * 1.6)));
-      const cap = note(wrapText(`${p.title || 'Untitled'}\n${[p.artist, sourceName(p.src)].filter(Boolean).join(' · ')}`, cols).split('\n').slice(0, 3).join('\n'), x, rowTop + ROW_H + 10, 1.6);
-      notes.push(cap.note);
-      x += w + GAP;
-    }
-    y = rowTop + ROW_H + 110 + GAP;
+      bottom = Math.max(bottom, cy);
+    });
+    y = bottom + ROW_ROOM;
   }
 
   const bytes = encodePur(images, notes);

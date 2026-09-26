@@ -5,7 +5,7 @@
 import type { Brief, DataSet, RefBoard, RefPick } from '../engine/types';
 import { h, icon } from '../ui/dom';
 import { toastHost } from '../ui/toast';
-import { choose, partsFor, resolve, searchPart, type Part } from './brief-refs';
+import { choose, defaultStyle, partsFor, resolve, searchPart, STYLES, type Part, type StyleId } from './brief-refs';
 import { imageAlts } from './net';
 import { SOURCE_BY_ID } from './sources';
 import type { SourceId } from './types';
@@ -44,7 +44,7 @@ export function boardFor(brief: Brief, host: BoardHost): HTMLElement {
   return b.el;
 }
 
-const partKey = (p: Part) => p.tries.join('|');
+const partKey = (p: Part) => `${p.tries.join('|')}${p.only ? `@${p.only.join(',')}` : ''}`; // the render style's source too
 /** The tile's picture: ArtStation covers come in 400² and 800²; the big tile takes the larger. */
 const tileSrc = (p: RefPick, big: boolean) => (big && p.src === 'artstation' ? p.thumb.replace('/smaller_square/', '/small_square/') : p.thumb);
 const sourceName = (src: string) => SOURCE_BY_ID[src as SourceId]?.label ?? src;
@@ -72,6 +72,7 @@ class Board {
   private picks: RefPick[] = [];
   private spares = new Map<string, RefPick[]>();
   private asked: Record<string, string> = {};
+  private style?: StyleId; // chosen in the board's Render menu (unset: the job's)
   private running = new Map<string, { key: string; ctl: AbortController }>();
   /** Parts waiting for their search (the rest wait for the subject's): they show as places already. */
   private queued = new Set<string>();
@@ -122,6 +123,7 @@ class Board {
     if (!this.picks.length && brief.refs?.picks.length) {
       this.picks = brief.refs.picks.map((p) => ({ ...p }));
       this.asked = { ...brief.refs.asked };
+      if (STYLES.some((x) => x.id === brief.refs?.style)) this.style = brief.refs.style as StyleId;
       for (const k of brief.refs.spares ?? []) this.spares.set(k.part, [...(this.spares.get(k.part) ?? []), { ...k }]);
     }
     this.render();
@@ -133,7 +135,7 @@ class Board {
     const brief = this.brief;
     this.v ??= await loadVocab().catch(() => undefined);
     if (brief !== this.brief) return; // shown again meanwhile: that call carries on
-    this.parts = partsFor(this.host.data, brief, this.v);
+    this.parts = partsFor(this.host.data, brief, this.v, this.style ?? defaultStyle(brief));
     const ids = new Set(this.parts.map((p) => p.id));
     const stale = this.parts.filter((p) => this.asked[p.id] !== partKey(p) && this.running.get(p.id)?.key !== partKey(p) && !this.failed.has(partKey(p)));
     const before = this.picks.length;
@@ -207,7 +209,7 @@ class Board {
 
   private save() {
     // in board order, so a reopened board looks the same before its parts are worked out again
-    this.host.save(this.brief.id, { picks: this.ordered().map((p) => ({ ...p })), asked: { ...this.asked }, spares: this.keptSpares() });
+    this.host.save(this.brief.id, { picks: this.ordered().map((p) => ({ ...p })), asked: { ...this.asked }, spares: this.keptSpares(), style: this.style });
   }
 
   /** Up to SPARES_KEPT swaps per part, best first. */
@@ -307,6 +309,7 @@ class Board {
       h(
         'div',
         { class: 'rb-acts' },
+        this.styleMenu(),
         h(
           'button',
           { class: 'btn rb-btn', type: 'button', disabled: busy || !this.parts.length, title: 'New pictures for everything not kept', onclick: () => this.refresh() },
@@ -341,6 +344,19 @@ class Board {
     this.el.setAttribute('aria-busy', String(busy));
     // for tests and bug reports: how each part went (asked, found, failed)
     this.el.dataset.parts = this.parts.map((p) => `${p.id}:${this.failed.has(partKey(p)) ? 'failed' : this.asked[p.id] ? picks.filter((k) => k.part === p.id).length + '/' + (this.spares.get(p.id)?.length ?? 0) + '/' + (this.hitCount.get(p.id) ?? '?') : '…'}`).join(' ');
+  }
+
+  /** The Render section's style: one source's look (Hearthstone, League splash, Magic…), never a mix. */
+  private styleMenu(): HTMLElement {
+    const cur = this.style ?? (this.brief ? defaultStyle(this.brief) : STYLES[0].id);
+    const sel = h('select', { class: 'rb-style', 'aria-label': 'Render style', title: 'Render style: the Render pictures all come from this one source' });
+    for (const st of STYLES) sel.append(h('option', { value: st.id, selected: st.id === cur }, st.label));
+    sel.addEventListener('change', () => {
+      this.style = sel.value as StyleId;
+      this.save();
+      void this.sync(); // only the Render part's source changed: only it searches again
+    });
+    return h('label', { class: 'rb-style-wrap' }, h('span', { class: 'rb-style-label' }, 'Render'), sel);
   }
 
   private tile(p: RefPick, big: boolean): HTMLElement {

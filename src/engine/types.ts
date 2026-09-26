@@ -134,6 +134,8 @@ export interface RefBoard {
   asked: Record<string, string>;
   /** A few swaps per part, kept too: a reopened board can still swap, and its PureRef file shows 3–5 per part. */
   spares?: RefPick[];
+  /** The Render section's style (src/refs/brief-refs.ts STYLES); absent = the one the job suggests. */
+  style?: string;
 }
 
 export interface Brief {

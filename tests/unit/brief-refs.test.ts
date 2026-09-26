@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { choose, core, fit, ing, lightWord, partsFor, placeTries, variants, type Part } from '../../src/refs/brief-refs';
+import { choose, core, defaultStyle, fit, ing, lightWord, partsFor, placeTries, STYLES, variants, type Part } from '../../src/refs/brief-refs';
 import type { Hit } from '../../src/refs/engine';
 import type { Cand } from '../../src/refs/types';
 import { vocabFrom, type VocabFile } from '../../src/refs/vocab';
@@ -56,6 +56,22 @@ describe('brief reference words', () => {
           }
         }
       }
+  });
+
+  it('adds a Render section from one source only, in the style the job suggests or the one chosen', () => {
+    for (const cat of CATS) {
+      const b = one(cat, `render-${cat}`);
+      const parts = partsFor(data, b, v);
+      const render = parts.find((p) => p.id === 'render')!;
+      const want = STYLES.find((s) => s.id === defaultStyle(b))!;
+      expect(render.only, cat).toEqual([want.src]);
+      // another style changes the render part's source and nothing else
+      const other = partsFor(data, b, v, 'lorcana');
+      expect(other.find((p) => p.id === 'render')!.only).toEqual(['lorcana']);
+      expect(other.filter((p) => p.id !== 'render')).toEqual(parts.filter((p) => p.id !== 'render'));
+    }
+    expect(defaultStyle({ ...one('character', 'r1'), art: { ...one('character', 'r1').art!, purpose: 'TCG card art' } })).toBe('mtg');
+    expect(defaultStyle({ ...one('character', 'r1'), art: { ...one('character', 'r1').art!, purpose: 'Cinematic key frame' } })).toBe('lol');
   });
 
   it('asks for a character by kind and class, and its subclass', () => {

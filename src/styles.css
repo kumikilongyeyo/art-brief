@@ -1931,3 +1931,24 @@ select.theme {
     grid-template-columns: 1fr;
   }
 }
+.rb-acts {
+  flex-wrap: wrap;
+  align-items: center;
+}
+.rb-style-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.rb-style {
+  font: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 10px;
+  max-width: 100%;
+}

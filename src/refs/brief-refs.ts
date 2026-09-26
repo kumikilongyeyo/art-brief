@@ -18,7 +18,27 @@ export interface Part {
   query: string; // the one used (tries[0] until resolved)
   mode: EffMode;
   n: number; // pictures of it on the board
-  kind: 'figure' | 'pose' | 'animal' | 'place' | 'thing' | 'mood';
+  kind: 'figure' | 'pose' | 'animal' | 'place' | 'thing' | 'mood' | 'render';
+  /** Only these sources (the render section: one style, from one source). */
+  only?: SourceId[];
+}
+
+/** How finished the picture should look, each from the one source that defines it, so the Render section
+ *  is one consistent style rather than a mix. */
+export const STYLES = [
+  { id: 'hearthstone', label: 'Stylized · Hearthstone', src: 'hearthstone' },
+  { id: 'lol', label: 'Semi-realistic · League splash art', src: 'lol' },
+  { id: 'mtg', label: 'Painterly realism · Magic', src: 'scryfall' },
+  { id: 'fab', label: 'Grounded realism · Flesh and Blood', src: 'fab' },
+  { id: 'lorcana', label: 'Cartoony · Lorcana', src: 'lorcana' },
+] as const satisfies ReadonlyArray<{ id: string; label: string; src: SourceId }>;
+export type StyleId = (typeof STYLES)[number]['id'];
+/** The style a brief's job suggests (a TCG card is painted like Magic, a key frame like a League splash). */
+export function defaultStyle(brief: Brief): StyleId {
+  const job = `${brief.job ?? ''} ${brief.art?.purpose ?? ''}`.toLowerCase();
+  if (/tcg|card|codex|chapter|book|environment/.test(job)) return 'mtg';
+  if (/key ?frame|cinematic|cover|splash|poster/.test(job)) return 'lol';
+  return 'hearthstone'; // turnarounds, miniatures, vignettes: stylized reads best
 }
 
 /** Where each kind of part looks: sites that post finished, current illustration (and, for places and
@@ -33,8 +53,9 @@ const WHERE: Record<Part['kind'], SourceId[]> = {
   place: ['artstation', 'scryfall', 'hearthstone', 'riftbound', 'wallhaven', 'openverse', 'lol', 'flickr', 'pexels'],
   thing: ['artstation', 'hearthstone', 'scryfall', 'riftbound', 'fab', 'cleveland', 'artsmia', 'met', 'openverse', 'flickr', 'pexels'],
   mood: ['artstation', 'scryfall', 'wallhaven', 'hearthstone', 'lol', 'fab'],
+  render: [], // always a part's `only`
 };
-const offFor = (kind: Part['kind']) => SOURCES.map((s) => s.id).filter((id) => !WHERE[kind].includes(id));
+const offFor = (p: Part) => SOURCES.map((s) => s.id).filter((id) => !(p.only ?? WHERE[p.kind]).includes(id));
 
 const LEAD = /^(a|an|the|its|their|his|her|one|two|some)\s+/;
 const TAIL = new Set(['a', 'an', 'the', 'of', 'in', 'on', 'at', 'by', 'to', 'for', 'with', 'from', 'into', 'over', 'under', 'through', 'and', 'or', 'its', 'their', 'his', 'her', 'like', 'shaped', 'as']);
@@ -151,7 +172,7 @@ const uniq = (xs: string[]) => [...new Set(xs.map((x) => x.replace(/\s+/g, ' ').
 
 /** The searches a brief's board is made of, subject first. `v` (the search vocabulary) lets it pick out
  *  the props, creatures and people a line mentions; without it the lines' own words are used. */
-export function partsFor(data: DataSet, brief: Brief, v?: Vocab): Part[] {
+export function partsFor(data: DataSet, brief: Brief, v?: Vocab, style: StyleId = defaultStyle(brief)): Part[] {
   const t = (slot: SlotId) => (brief.fields[slot]?.text ?? '').replace(/\{[^}]*\}/g, ' ');
   const L = (slot: SlotId) => labelOf(data, brief, slot);
   const light = core(brief.art?.light ?? '', 3);
@@ -255,6 +276,10 @@ export function partsFor(data: DataSet, brief: Brief, v?: Vocab): Part[] {
       break;
     }
   }
+  // the render section: the subject again, in the one chosen style
+  const subject = parts.find((p) => p?.id === 'subject');
+  const st = STYLES.find((x) => x.id === style) ?? STYLES[0];
+  if (subject) parts.push({ ...subject, id: 'render', label: 'Render', tries: subject.tries, query: subject.tries[0], mode: 'concept', n: 2, kind: 'render', only: [st.src] });
   return parts.filter((p): p is Part => !!p);
 }
 
@@ -274,6 +299,7 @@ function artstationCount(q: string, signal: AbortSignal): Promise<number> {
  *  once; the relay caches them, and the search then reuses the chosen one's answer. */
 export async function resolve(part: Part, signal: AbortSignal, enough = 12): Promise<Part> {
   if (!RELAY) return part; // nothing to ask: use the most specific words
+  if (part.only && !part.only.includes('artstation')) return part; // ArtStation's counts say nothing about a card game's
   const counts = await Promise.all(part.tries.map((q) => artstationCount(q, signal).catch(() => 0)));
   const multi = (i: number) => part.tries[i].includes(' ');
   // a phrase over a single word: one word finds everything with that word in it
@@ -295,7 +321,7 @@ export async function searchPart(part: Part, signal: AbortSignal, like: Float32A
     text: part.query,
     mode: part.mode === 'pose' && part.kind !== 'pose' ? 'concept' : part.mode,
     adult: false,
-    off: offFor(part.kind),
+    off: offFor(part),
     pages: 1,
     prior: like.length ? { up: like, down: [] } : undefined,
   });
@@ -346,7 +372,8 @@ export function fit(h: Hit, part: Part, best: number): number {
   const title = new Set(`${h.c.title} ${h.c.tags.join(' ')}`.split(/[^A-Za-z]+/).map(stem));
   const named = want.length ? want.filter((w) => title.has(w)).length / want.length : 0;
   // the pose library is photos of people in poses: for a pose it's the best there is, not a lookalike card
-  const local = !!SOURCE_BY_ID[h.c.src]?.local && !(part.kind === 'pose' && h.c.src === 'poses');
+  // (the render section's one source is the point, not a lookalike: no catalog discount there)
+  const local = !!SOURCE_BY_ID[h.c.src]?.local && !(part.kind === 'pose' && h.c.src === 'poses') && part.kind !== 'render';
   const order = local ? 0 : Math.max(0, 1 - h.c.pos / 30);
   const sim = h.sim ?? 0;
   // not a finished picture: software tutorials, printable models, brush and asset packs, 3D viewer posts
@@ -410,10 +437,17 @@ export function choose(part: Part, hits: Hit[], others: RefPick[], vecs: Map<str
   const picks: RefPick[] = [],
     spares: RefPick[] = [];
   const mine: string[] = []; // this part's picks and swaps, so its swaps aren't copies of each other either
+  // one source's two pictures with one title are the same work (a card's reprints, an artwork posted twice)
+  const titled = new Set(others.map((o) => `${o.src}|${o.title.toLowerCase()}`));
   for (const [h] of ranked) {
     if (taken.has(h.c.key) || mine.includes(h.c.key) || near(h.vec, taken) || near(h.vec, mine)) continue;
+    const tk = `${h.c.src}|${h.c.title.toLowerCase()}`;
+    if (h.c.title && titled.has(tk)) continue;
+    titled.add(tk);
+    // (the render section is one source by design: the one-game rule doesn't apply to it)
     const full =
       h.c.src !== 'artstation' &&
+      part.kind !== 'render' &&
       ((perSrc.get(h.c.src) ?? 0) >= PER_SOURCE || picks.some((p) => p.src === h.c.src) || sameSubject(h, others.concat(picks)));
     if (picks.length < n && !full) {
       picks.push(toPick(h, part));
