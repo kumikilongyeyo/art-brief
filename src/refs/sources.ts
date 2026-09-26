@@ -730,11 +730,13 @@ const dnd = catalogSource('dnd', 'D&D 5e', T(0.2, 0.4, 0.1, 0.2, 0.9), (r) => ({
 
 // Pose library (scripts/refs/build_poselib.py): Wikimedia Commons photos of people in clear full-body
 // poses — athletes, dancers, fencers, martial artists, reenactors. Stick-figure searches match these first.
-const poses = catalogSource('poses', 'Pose library (Wikimedia)', T(0.95, 0.35, 0.1, 0.15, 0.1), (r) => ({
-  thumb: `https://upload.wikimedia.org/wikipedia/commons/${r[4]}`,
+// rows carry a Commons path, or a full Flickr URL (640 px; the viewer asks for 1024)
+const poseImg = (p = '') => (p.startsWith('https://') ? p : `https://upload.wikimedia.org/wikipedia/commons/${p}`);
+const poses = catalogSource('poses', 'Pose library', T(0.95, 0.35, 0.1, 0.15, 0.1), (r) => ({
+  thumb: poseImg(r[4]),
   // the size the index build fetched is the one Wikimedia has already rendered; other sizes get rate-limited
-  full: `https://upload.wikimedia.org/wikipedia/commons/${r[4]}`,
-  page: `https://commons.wikimedia.org/?curid=${r[0]}`,
+  full: r[4]?.startsWith('https://') ? r[4].replace(/_z\.jpg$/, '_b.jpg') : poseImg(r[4]),
+  page: r[0].startsWith('ov-') ? `https://openverse.org/image/${r[0].slice(3)}` : `https://commons.wikimedia.org/?curid=${r[0]}`,
   artist: r[3] || undefined,
   aspect: 0.75,
 }), false); // Commons photos: the adult check still applies

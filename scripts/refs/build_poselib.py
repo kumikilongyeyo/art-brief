@@ -2,7 +2,11 @@
 full-body poses, so stick-figure searches have real poses to match (MoveNet reads photos far more
 reliably than painted card art).
 
-Writes public/refs/catalogs/poses.json (rows: [id, title, words, artist, thumb-path]); then run
+Also takes Creative Commons Flickr photos found through Openverse (its API allows an anonymous visitor 200
+searches a day, so at most OV_BUDGET are spent; the pictures come straight from Flickr).
+
+Writes public/refs/catalogs/poses.json (rows: [id, title, words, artist, thumb]: a Commons path, or a full
+URL for Flickr); then run
   python build_index.py poses
 to add its vectors and joints.
 
@@ -27,6 +31,22 @@ API = 'https://commons.wikimedia.org/w/api.php'
 UPLOAD = 'https://upload.wikimedia.org/wikipedia/commons/'
 THUMB_HOSTS = ('https://upload.wikimedia.org/wikipedia/commons/', 'https://thumb.wikimedia.org/wikipedia/commons/')
 
+OV_API = 'https://api.openverse.org/v1/images/'
+OV_FOUND = os.path.join(ROOT, '.cache', 'poses-openverse.json')
+OV_BUDGET = int(os.environ.get('OV_BUDGET', '85'))  # Openverse searches this run may spend
+# Poses as Flickr photographers title them (one page of 20 each)
+OV_QUERIES = [
+    'yoga pose', 'warrior pose yoga', 'tree pose yoga', 'ballet dancer leap', 'ballet pose', 'contemporary dance', 'hip hop dance',
+    'breakdance freeze', 'flamenco dancer', 'dancer jumping', 'martial arts kick', 'karate kata', 'kung fu stance', 'tai chi',
+    'capoeira', 'boxer punching', 'kickboxing', 'fencing lunge', 'sword fighting', 'larp fight', 'reenactment battle', 'archer drawing bow',
+    'sprinter running', 'runner full body', 'long jump', 'high jump', 'hurdles', 'javelin throw', 'discus throw', 'shot put',
+    'pole vault', 'gymnast', 'acrobat', 'cartwheel', 'handstand', 'backflip', 'splits stretch', 'cheerleader jump', 'figure skater',
+    'parkour', 'skateboard trick', 'surfer riding wave', 'snowboard jump', 'rock climber', 'basketball layup', 'soccer kick',
+    'tennis serve', 'baseball pitch', 'volleyball spike', 'kneeling', 'crouching', 'squat exercise', 'lunge exercise', 'push up',
+    'sitting on the floor', 'sitting on steps', 'lying on the grass', 'jumping for joy', 'arms raised', 'reaching up', 'stretching arms',
+    'walking on the street full body', 'fashion model full body', 'cosplay full body', 'cosplay sword pose', 'pointing', 'waving',
+    'carrying a box', 'pulling a rope', 'throwing a ball', 'climbing a ladder', 'hanging from a bar', 'meditation pose', 'headstand',
+]
 # Poses artists ask for, phrased the way Commons files are titled and categorised.
 QUERIES = [
     'fencing lunge', 'fencer attack', 'kendo match', 'kenjutsu', 'historical european martial arts', 'sword fighting reenactment',
@@ -35,7 +55,7 @@ QUERIES = [
     'shot put', 'pole vault', 'ballet dancer', 'ballet jump', 'contemporary dance', 'breakdance', 'flamenco dancer', 'gymnast floor exercise',
     'gymnastics balance beam', 'acrobat', 'parkour jump', 'yoga pose', 'stretching exercise', 'archery archer drawing bow', 'tennis serve',
     'baseball pitcher', 'cricket bowler', 'basketball dunk', 'volleyball spike', 'soccer kick', 'rock climbing', 'kneeling man', 'kneeling woman',
-    'sitting on a chair portrait', 'crouching', 'squatting', 'lying on grass', 'figure drawing model pose', 'life drawing pose', 'actor stage fight',
+    'sitting on a chair portrait', 'crouching', 'squatting', 'lying on grass', 'actor stage fight',
     'cosplay sword', 'larp battle', 'medieval reenactment knight', 'samurai reenactment', 'soldier aiming rifle', 'throwing a ball', 'jumping in the air',
     'walking man full body', 'standing woman full body', 'skateboarder trick', 'surfer', 'skier jump', 'ice skater spin', 'trapeze artist', 'juggler',
     'arms raised', 'hands up celebration', 'cheering fans arms up', 'stretching arms overhead', 'sword raised overhead', 'axe swing',
@@ -88,7 +108,8 @@ def fetch(item):
         if wait > 0:
             time.sleep(wait)
         try:
-            data = urllib.request.urlopen(urllib.request.Request(UPLOAD + item['thumb'], headers=UA), timeout=40).read()
+            src = item['thumb'] if item['thumb'].startswith('https://') else UPLOAD + item['thumb']
+            data = urllib.request.urlopen(urllib.request.Request(src, headers=UA), timeout=40).read()
             im = Image.open(io.BytesIO(data)).convert('RGB')
             os.makedirs(CACHE, exist_ok=True)
             im.save(path, 'JPEG', quality=88)
@@ -106,6 +127,27 @@ def fetch(item):
         except Exception:  # noqa: BLE001
             time.sleep(1 + attempt)
     return None
+
+
+def ov_search(q):
+    """One page of CC Flickr photos for q (Openverse), as 640px Flickr URLs."""
+    for attempt in range(3):
+        try:
+            u = f'{OV_API}?{urllib.parse.urlencode({"q": q, "page_size": 20, "source": "flickr", "mature": "false"})}'
+            d = json.load(urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=40))
+            break
+        except urllib.error.HTTPError as e:
+            if e.code != 429:
+                return []
+            time.sleep(float(e.headers.get('retry-after') or 60))
+    else:
+        return []
+    out = []
+    for x in d.get('results', []):
+        m = re.match(r'(https://live\.staticflickr\.com/\d+/\d+_[0-9a-f]+)(?:_[a-z])?\.jpg$', x.get('url', ''))
+        if m:
+            out.append({'id': f"ov-{x['id']}", 'title': re.sub(r'\s+', ' ', x.get('title') or q)[:90], 'thumb': f'{m.group(1)}_z.jpg', 'artist': (x.get('creator') or '')[:60], 'q': q})
+    return out
 
 
 def full_body(mn, path):
@@ -128,9 +170,19 @@ if __name__ == '__main__':
             found[q] = search(q)
             print(f'{q}: {len(found[q])} candidates', flush=True)
             json.dump(found, open(FOUND, 'w'))
+    ov = json.load(open(OV_FOUND)) if os.path.exists(OV_FOUND) else {}
+    spent = 0
+    for q in OV_QUERIES:
+        if q in ov or offline or spent >= OV_BUDGET:
+            continue
+        ov[q] = ov_search(q)
+        spent += 1
+        print(f'openverse {q}: {len(ov[q])}', flush=True)
+        json.dump(ov, open(OV_FOUND, 'w'))
+        time.sleep(3.2)  # 20 a minute at most
     # round-robin across queries, so every pose is covered however far the download gets
     seen, items = set(), []
-    lists = [found.get(q, [])[:PER_QUERY] for q in QUERIES]
+    lists = [found.get(q, [])[:PER_QUERY] for q in QUERIES] + [ov.get(q, []) for q in OV_QUERIES]
     for i in range(PER_QUERY):
         for lst in lists:
             if i < len(lst) and lst[i]['id'] not in seen:

@@ -31,7 +31,7 @@ URLS = {  # must match the thumbnails in src/refs/sources.ts
     'hearthstone': lambda r: f'https://art.hearthstonejson.com/v1/256x/{r[0]}.jpg',
     'riftbound': lambda r: f'{RB}{r[4]}?w=400',
     'dnd': lambda r: f'https://www.dnd5eapi.co/api/images/monsters/{r[0]}.png',
-    'poses': lambda r: f'https://upload.wikimedia.org/wikipedia/commons/{r[4]}',
+    'poses': lambda r: r[4] if r[4].startswith('https://') else f'https://upload.wikimedia.org/wikipedia/commons/{r[4]}',
 }
 
 
