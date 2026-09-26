@@ -17,13 +17,14 @@ export interface BoardHost {
   save: (briefId: string, refs: RefBoard) => void;
   toast: (msg: string) => void;
   /** Download the board as a PureRef file. */
-  exportPur: (brief: Brief, picks: RefPick[]) => Promise<void>;
+  exportPur: (brief: Brief, picks: RefPick[], spares: RefPick[]) => Promise<void>;
 }
 
 /** Boards by card place (a batch's base and the variation's index): a reroll makes a new brief with a new
  *  id, and its board must carry on, keeping the parts whose words didn't change. */
 const boards = new Map<string, Board>();
 const KEEP = 12;
+const SPARES_KEPT = 4; // per part: enough for 3–5 pictures a part in the PureRef file
 const MIN = 5; // a board shows at least this many pictures when the searches found that many
 
 export function boardFor(brief: Brief, host: BoardHost): HTMLElement {
@@ -121,6 +122,7 @@ class Board {
     if (!this.picks.length && brief.refs?.picks.length) {
       this.picks = brief.refs.picks.map((p) => ({ ...p }));
       this.asked = { ...brief.refs.asked };
+      for (const k of brief.refs.spares ?? []) this.spares.set(k.part, [...(this.spares.get(k.part) ?? []), { ...k }]);
     }
     this.render();
     this.whenSeen(() => void this.sync());
@@ -168,7 +170,9 @@ class Board {
       this.hitCount.set(p.id, hits.length);
       const r = choose(q, hits, others, this.vecs, Math.max(0, p.n - kept.length));
       this.picks = [...this.picks.filter((k) => k.part !== p.id), ...kept, ...r.picks];
-      this.spares.set(p.id, r.spares);
+      // swaps that are already on the board in another part are no swaps
+      const shown = new Set(this.picks.map((k) => k.key));
+      this.spares.set(p.id, r.spares.filter((k) => !shown.has(k.key)));
       this.asked[p.id] = key;
       this.failed.delete(key);
       this.save();
@@ -203,14 +207,22 @@ class Board {
 
   private save() {
     // in board order, so a reopened board looks the same before its parts are worked out again
-    this.host.save(this.brief.id, { picks: this.ordered().map((p) => ({ ...p })), asked: { ...this.asked } });
+    this.host.save(this.brief.id, { picks: this.ordered().map((p) => ({ ...p })), asked: { ...this.asked }, spares: this.keptSpares() });
+  }
+
+  /** Up to SPARES_KEPT swaps per part, best first. */
+  private keptSpares(): RefPick[] {
+    const shown = new Set(this.picks.map((k) => k.key));
+    return [...this.spares.values()].flatMap((list) => list.filter((k) => !this.gone.has(k.key) && !shown.has(k.key)).slice(0, SPARES_KEPT));
   }
 
   // ------------------------------------------------------------ actions
 
   /** The next best picture of the same part in this one's place. */
   private swap(pick: RefPick) {
-    const next = this.spares.get(pick.part)?.shift();
+    const list = (this.spares.get(pick.part) ?? []).filter((k) => !this.picks.some((x) => x.key === k.key));
+    const next = list.shift();
+    this.spares.set(pick.part, list);
     if (!next) {
       this.host.toast(`No more for ${pick.label} — Refresh searches again`);
       return;
@@ -311,7 +323,7 @@ class Board {
             onclick: (e: Event) => {
               const b = e.currentTarget as HTMLButtonElement;
               b.disabled = true;
-              void this.host.exportPur(this.brief, picks).finally(() => (b.disabled = false));
+              void this.host.exportPur(this.brief, picks, this.keptSpares()).finally(() => (b.disabled = false));
             },
           },
           icon('download'),

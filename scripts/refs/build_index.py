@@ -32,6 +32,15 @@ URLS = {  # must match the thumbnails in src/refs/sources.ts
     'riftbound': lambda r: f'{RB}{r[4]}?w=400',
     'dnd': lambda r: f'https://www.dnd5eapi.co/api/images/monsters/{r[0]}.png',
     'poses': lambda r: r[4] if r[4].startswith('https://') else f'https://upload.wikimedia.org/wikipedia/commons/{r[4]}',
+    'fab': lambda r: f'https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/large/{r[0]}.webp',
+    'pokemon': lambda r: f'https://images.scrydex.com/pokemon/{r[0]}/medium',
+}
+# Catalogs that only have full-card scans: the art window (left, top, width, height as fractions of the card),
+# the same crop the app asks wsrv.nl for (FAB_ART / PK_ART in src/refs/sources.ts), so the vectors are of the art
+CROP = {
+    'fab': lambda r: (0.095, 0.135, 0.81, 0.45),
+    # full-art cards: the top of the picture, under the name and over the attack text
+    'pokemon': lambda r: (0.04, 0.12, 0.92, 0.42) if len(r) > 4 and r[4] == 'f' else (0.09, 0.12, 0.82, 0.35),
 }
 
 
@@ -44,7 +53,8 @@ def fetch(cat, row):
         try:
             data = urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=40).read()
             im = Image.open(io.BytesIO(data)).convert('RGB')
-            im.thumbnail((480, 480), Image.BICUBIC)
+            # whole cards are kept whole (cropped when read, so a new crop needs no new download)
+            im.thumbnail((1024, 1024) if cat in CROP else (480, 480), Image.BICUBIC)
             os.makedirs(os.path.dirname(path), exist_ok=True)
             im.save(path, 'JPEG', quality=88)
             return path
@@ -53,6 +63,15 @@ def fetch(cat, row):
             time.sleep(1 + attempt)
     print('  failed', url, err)
     return None
+
+
+def load(cat, row, path):
+    im = Image.open(path).convert('RGB')
+    if cat in CROP:
+        x, y, w, h = CROP[cat](row)
+        W, H = im.size
+        im = im.crop((round(x * W), round(y * H), round((x + w) * W), round((y + h) * H)))
+    return im
 
 
 def clip_input(im):
@@ -146,7 +165,7 @@ def build(cat, clip, mn):
     for i, p in enumerate(paths):
         if not p:
             continue
-        im = Image.open(p).convert('RGB')
+        im = load(cat, rows[i], p)
         kps[i, 51] = min(255, round(im.size[0] / im.size[1] * 64))
         batch.append(clip_input(im))
         idx.append(i)

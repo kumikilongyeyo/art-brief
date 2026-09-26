@@ -18,18 +18,21 @@ export interface Part {
   query: string; // the one used (tries[0] until resolved)
   mode: EffMode;
   n: number; // pictures of it on the board
-  kind: 'figure' | 'pose' | 'place' | 'thing' | 'mood';
+  kind: 'figure' | 'pose' | 'animal' | 'place' | 'thing' | 'mood';
 }
 
 /** Where each kind of part looks: sites that post finished, current illustration (and, for places and
  *  materials, good photography). Random reposts, wallpapers of people and low-resolution scans are left out. */
 const WHERE: Record<Part['kind'], SourceId[]> = {
-  figure: ['artstation', 'lol', 'hearthstone', 'riftbound', 'scryfall', 'dnd', 'lorcana', 'forgottenrealms', 'criticalrole', 'pathfinder', 'warhammer'],
+  // (Pokémon answers creature parts only: in any other mode its trust is under the engine's 0.3 floor)
+  figure: ['artstation', 'lol', 'hearthstone', 'riftbound', 'fab', 'scryfall', 'dnd', 'lorcana', 'forgottenrealms', 'criticalrole', 'pathfinder', 'warhammer', 'pokemon'],
   // whole figures: the pose library's photos and full-length character art (splash art is mostly cropped)
-  pose: ['artstation', 'poses', 'forgottenrealms', 'dnd', 'pathfinder', 'criticalrole'],
-  place: ['artstation', 'scryfall', 'hearthstone', 'riftbound', 'wallhaven', 'openverse', 'lol'],
-  thing: ['artstation', 'hearthstone', 'scryfall', 'riftbound', 'cleveland', 'artsmia', 'met', 'openverse'],
-  mood: ['artstation', 'scryfall', 'wallhaven', 'hearthstone', 'lol'],
+  pose: ['artstation', 'poses', 'forgottenrealms', 'dnd', 'pathfinder', 'criticalrole', 'flickr', 'pexels'],
+  // a creature's anatomy: real animals first (photographs), then creature designs
+  animal: ['artstation', 'flickr', 'pexels', 'inat'],
+  place: ['artstation', 'scryfall', 'hearthstone', 'riftbound', 'wallhaven', 'openverse', 'lol', 'flickr', 'pexels'],
+  thing: ['artstation', 'hearthstone', 'scryfall', 'riftbound', 'fab', 'cleveland', 'artsmia', 'met', 'openverse', 'flickr', 'pexels'],
+  mood: ['artstation', 'scryfall', 'wallhaven', 'hearthstone', 'lol', 'fab'],
 };
 const offFor = (kind: Part['kind']) => SOURCES.map((s) => s.id).filter((id) => !WHERE[kind].includes(id));
 
@@ -110,7 +113,7 @@ function wordOf(v: Vocab | undefined, text: string, cat: string): string {
   return segment(v, text.replace(/\{[^}]*\}/g, ' ')).find((k) => v.catOf(k) === cat) ?? '';
 }
 const GERUNDS = new Set(
-  'crouching kneeling leaping jumping running sitting standing perching lunging falling flying climbing fighting casting praying reading walking dancing hurling throwing aiming swinging charging hiding sneaking floating meditating resting lying reaching pointing striding rolling diving spinning balancing hanging riding drinking sleeping kicking blocking dodging parrying'.split(' '),
+  'crouching kneeling leaping jumping running sitting standing perching lunging falling flying climbing fighting casting praying reading walking dancing hurling throwing aiming swinging charging hiding sneaking floating meditating resting lying reaching pointing striding rolling diving spinning balancing hanging riding drinking sleeping kicking blocking dodging parrying laughing shouting screaming singing playing drawing pulling pushing carrying lifting stretching bowing crawling'.split(' '),
 );
 /** "crouched" → "crouching", "leaps" → "leaping": how pose references are titled (only for pose words). */
 export function ing(w: string): string {
@@ -167,13 +170,19 @@ export function partsFor(data: DataSet, brief: Brief, v?: Vocab): Part[] {
       const tail = core((t('species').split(',').pop() ?? '').trim(), 3); // "pointed ears", "bat-wing ears"
       const outfit = core(t('outfit'), 3);
       const gear = wordOf(v, `${t('class')} ${t('subclass')}`, 'prop');
-      const pose = core(t('pose'), 2);
+      // the action in the line, however it's worded: "head thrown back laughing" → laughing
+      const pw = t('pose').toLowerCase().split(/[^a-z-]+/).filter(Boolean);
+      const ai = pw.map(ing).findIndex((w) => GERUNDS.has(w) || (/[a-z]{3}ing$/.test(w) && !NOUN_ING.has(w)));
+      const act = ai >= 0 ? ing(pw[ai]) : '';
+      // …with what it acts on ("drawing a bow" is an archer, "drawing" alone finds sketches)
+      const obj = ai >= 0 ? (pw.slice(ai + 1).find((w) => w.length > 2 && !TAIL.has(w) && !LEAD.test(`${w} `)) ?? '') : '';
+      const pose = act || core(t('pose'), 2);
       parts = [
         P('subject', 'Subject', [`${S} ${C}`, `fantasy ${C}`, C], 'pose', 2, 'figure'),
         P('class', SC ? 'Subclass' : 'Class', [`${SC} ${C}`, `${SC}`, `${C} character`], 'pose', 1, 'figure'),
         P('look', 'Look', [`${S} portrait`, `${S} ${tail}`, `${S} character`], 'pose', 1, 'figure'),
         P('wearing', 'Wearing', [outfit, ...variants(outfit).slice(1, 2).filter((x) => x.includes(' ')), `${outfit} outfit`, `${C} outfit`], 'pose', 1, 'figure'),
-        P('pose', 'Pose', [`${pose} pose`, `${ing(pose.split(' ')[0])} pose`, `${ing(pose.split(' ')[0])} ${C}`, `${C} action pose`], 'pose', 1, 'pose'),
+        P('pose', 'Pose', [...(act && obj ? [`${act} ${obj}`, `${act} ${obj} pose`] : []), `${pose} pose`, `${ing(pose.split(' ')[0])} pose`, `${ing(pose.split(' ')[0])} ${C}`, `${C} action pose`], 'pose', 1, 'pose'),
         P('gear', 'Gear', gear ? [`fantasy ${gear}`, gear] : [], 'prop', 1, 'thing'),
         P('mood', 'Light', lit('portrait'), 'concept', 1, 'mood'),
       ];
@@ -192,7 +201,7 @@ export function partsFor(data: DataSet, brief: Brief, v?: Vocab): Part[] {
         P('body', 'Body', feature ? [`${feature} ${head}`, `${feature} creature`] : [], 'creature', 1, 'figure'),
         // only the kinds that change how it looks (a beast or a monstrosity says nothing a picture could show)
         P('type', 'Kind', DISTINCT_KINDS.has(L('creatureType')) ? [`${T} creature`, `${T} concept art`, T] : [], 'creature', 1, 'figure'),
-        P('anatomy', 'Anatomy', [`${head} anatomy`, `creature anatomy`], 'creature', 1, 'figure'),
+        P('anatomy', 'Anatomy', [`${head} anatomy`, `creature anatomy`], 'creature', 1, 'animal'),
         P('habitat', 'Habitat', placeTries(t('habitat')), 'place', 2, 'place'),
         P('mood', 'Light', lit('creature'), 'concept', 1, 'mood'),
       ];
@@ -325,7 +334,7 @@ const dot = (a: Float32Array, b: Float32Array) => {
 const NOT_ART =
   /\b(tool|tutorial|course|lesson|substance|blender|zbrush|maya|unreal|ue[45]|unity|marmoset|stl|3d print|printable|battle ?maps?|vtt|tokens?|\d+ ?x ?\d+|low ?poly|collection|photogrammetry|scans?|game[- ]ready|pbr|modular|kitbash|miniature|mesh|asset|pack|brush(es)?|preset|mockup|template|shader|material library|uv|topology|retopo|rig(ged)?|timelapse|speedpaint|wip|excerpt|chapter|page \d|poster|flyer|infographic|photoshop|procreate|font|logo|ui|hud|icons?)\b/i;
 /** Paid reference compilations ("490+ Fantasy Wizard Outfit References"): a folder of other people's work. */
-const PACK = /\b\d{2,}\s*\+|\breferences?\b|\bvol\.?\s*\d/i;
+const PACK = /\b\d{2,}\s*\+|^\s*\d{2,}\s+\w|\breferences?\b|\bvol\.?\s*\d|\bbundle\b/i;
 const stem = (w: string) => w.toLowerCase().replace(/[^a-z]/g, '').replace(/(ies|es|s)$/, '');
 const GENERIC = new Set(['fantasy', 'concept', 'art', 'design', 'character', 'creature', 'portrait', 'pose', 'illustration', 'sheet', 'texture']);
 /** How well a result fits its part. The picture model reads a two-word phrase only roughly (it's built from

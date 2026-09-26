@@ -93,6 +93,60 @@ const wallhaven: Source = {
   },
 };
 
+// Photo libraries with keys, through the relay (the keys are Worker secrets): real reference for
+// materials, places, animals and people. Without a key the relay answers "no results".
+type PexelsPhoto = { id: number; url: string; alt?: string; photographer?: string; width: number; height: number; src: { medium: string; large: string; large2x: string } };
+const pexels: Source = {
+  id: 'pexels',
+  label: 'Pexels',
+  trust: T(0.65, 0.4, 0.8, 0.75, 0.6),
+  corsThumb: true, // images.pexels.com sends CORS headers
+  async search(p, page, signal) {
+    if (!RELAY) return none;
+    const r = await getJson<{ photos?: PexelsPhoto[]; next_page?: string }>(`${RELAY}/pexels?${qs({ q: text(p), page: page + 1, n: 30 })}`, signal);
+    const items = (r.photos ?? []).map((x, i): Cand => ({
+      key: `pexels:${x.id}`,
+      src: 'pexels',
+      title: clean(x.alt, 'Pexels photo'),
+      pos: i,
+      thumb: x.src.medium,
+      rankThumb: `${x.src.medium.split('?')[0]}?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop`,
+      full: x.src.large2x,
+      page: x.url,
+      artist: x.photographer,
+      tags: words(x.alt ?? ''),
+      aspect: x.width / x.height || 1.5,
+    }));
+    return { items, more: !!r.next_page && page < 5 };
+  },
+};
+type FlickrPhoto = { id: string; owner: string; title: string; ownername?: string; tags?: string; url_z?: string; url_b?: string; width_z?: number; height_z?: number };
+const flickr: Source = {
+  id: 'flickr',
+  label: 'Flickr',
+  trust: T(0.7, 0.45, 0.8, 0.7, 0.65),
+  corsThumb: true, // live.staticflickr.com sends CORS headers
+  async search(p, page, signal) {
+    if (!RELAY) return none;
+    const r = await getJson<{ photos?: { photo?: FlickrPhoto[]; pages?: number } }>(`${RELAY}/flickr?${qs({ q: text(p), page: page + 1, n: 30 })}`, signal);
+    const items = (r.photos?.photo ?? [])
+      .filter((x) => x.url_z)
+      .map((x, i): Cand => ({
+        key: `flickr:${x.id}`,
+        src: 'flickr',
+        title: clean(x.title, 'Flickr photo'),
+        pos: i,
+        thumb: x.url_z!,
+        full: x.url_b || x.url_z!,
+        page: `https://www.flickr.com/photos/${x.owner}/${x.id}`,
+        artist: x.ownername,
+        tags: (x.tags ?? '').split(' ').filter(Boolean),
+        aspect: x.width_z && x.height_z ? x.width_z / x.height_z : 1.33,
+      }));
+    return { items, more: (r.photos?.pages ?? 1) > page + 1 && page < 5 };
+  },
+};
+
 const safebooru: Source = {
   id: 'safebooru',
   label: 'Safebooru',
@@ -733,6 +787,33 @@ const dnd = catalogSource('dnd', 'D&D 5e', T(0.2, 0.4, 0.1, 0.2, 0.9), (r) => ({
   artist: 'Wizards of the Coast (SRD)',
   aspect: 1,
 }));
+// Flesh and Blood and Pokémon only publish whole-card scans: wsrv.nl crops the art window out (the same
+// crop build_index.py read, so the index's vectors are of the art), and never enlarges the viewer's copy.
+const artOf = (src: string, crop: string, w: number) => `${showUrl(src, w)}&${crop}&precrop${w > 500 ? '&we' : ''}`;
+const FAB_IMG = 'https://legendstory-production-s3-public.s3.amazonaws.com/media/cards/large/';
+const FAB_ART = 'cx=9.5%25&cy=13.5%25&cw=81%25&ch=45%25';
+// row: [image name, card name, words, artists, FaBrary page]
+const fab = catalogSource('fab', 'Flesh and Blood', T(0.6, 0.75, 0.35, 0.55, 0.5), (r) => ({
+  thumb: artOf(`${FAB_IMG}${r[0]}.webp`, FAB_ART, 400),
+  full: artOf(`${FAB_IMG}${r[0]}.webp`, FAB_ART, 1000),
+  page: `https://fabrary.net/cards/${r[4]}`,
+  artist: r[3] || undefined,
+  aspect: 1.29,
+}));
+// Regular cards: the framed window. Full-art cards: the top of the picture, under the name, over the attacks.
+const PK_ART = 'cx=9%25&cy=12%25&cw=82%25&ch=35%25';
+const PK_FULL = 'cx=4%25&cy=12%25&cw=92%25&ch=42%25';
+// row: [card id, name, words, artist, 'f' for full art]. Creature art: asked only for creatures (see brief-refs WHERE)
+const pokemon = catalogSource('pokemon', 'Pokémon TCG', T(0, 0.2, 0, 0, 0.75), (r) => {
+  const crop = r[4] === 'f' ? PK_FULL : PK_ART;
+  return {
+    thumb: artOf(`https://images.scrydex.com/pokemon/${r[0]}/medium`, crop, 400),
+    full: artOf(`https://images.scrydex.com/pokemon/${r[0]}/large`, crop, 1000),
+    page: `https://scrydex.com/pokemon/cards/${r[1].toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}/${r[0]}`,
+    artist: r[3] || undefined,
+    aspect: r[4] === 'f' ? 1.57 : 1.68,
+  };
+});
 
 // Pose library (scripts/refs/build_poselib.py): Wikimedia Commons photos of people in clear full-body
 // poses — athletes, dancers, fencers, martial artists, reenactors. Stick-figure searches match these first.
@@ -847,11 +928,15 @@ export const SOURCES: Source[] = [
   artstation,
   scryfall,
   openverse,
+  pexels,
+  flickr,
   wallhaven,
   safebooru,
   lol,
   riftbound,
   hearthstone,
+  fab,
+  pokemon,
   commons,
   inat,
   forgottenrealms,

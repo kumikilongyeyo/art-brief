@@ -23,7 +23,7 @@ export async function getJson<T = unknown>(url: string, signal: AbortSignal, tim
 }
 
 /** Hosts whose pictures the page may read itself (they send CORS headers): ranked straight from them. */
-const DIRECT = /^https:\/\/(cdn[a-z]\.artstation\.com|ddragon\.leagueoflegends\.com|cards\.scryfall\.io|upload\.wikimedia\.org|www\.dnd5eapi\.co|inaturalist-open-data\.s3\.amazonaws\.com|live\.staticflickr\.com|farm\d+\.staticflickr\.com|api\.openverse\.org)\//;
+const DIRECT = /^https:\/\/(cdn[a-z]\.artstation\.com|ddragon\.leagueoflegends\.com|cards\.scryfall\.io|upload\.wikimedia\.org|www\.dnd5eapi\.co|inaturalist-open-data\.s3\.amazonaws\.com|live\.staticflickr\.com|farm\d+\.staticflickr\.com|images\.pexels\.com|api\.openverse\.org)\//;
 /** wsrv.nl refuses some hosts outright, and a busy address now and then (Cloudflare 1006): after a few
  *  failures in a row, our relay serves ranking thumbnails instead, for the rest of the visit. */
 const RELAY_IMG = /^https:\/\/(th\.wallhaven\.cc|safebooru\.org)\//;

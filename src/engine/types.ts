@@ -132,6 +132,8 @@ export interface RefBoard {
   picks: RefPick[];
   /** Per part, the words it was asked with: after a reroll, only parts whose words changed search again. */
   asked: Record<string, string>;
+  /** A few swaps per part, kept too: a reopened board can still swap, and its PureRef file shows 3–5 per part. */
+  spares?: RefPick[];
 }
 
 export interface Brief {

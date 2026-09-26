@@ -92,7 +92,7 @@ test.describe('reference board', () => {
     expect(searched).toBe(0);
   });
 
-  test('downloads a PureRef board with every picture and the brief as a note', async ({ page }) => {
+  test('downloads a PureRef board: the brief, the palette as colours, a labelled section per part', async ({ page }) => {
     await generate(page);
     const n = await tiles(page).count();
     const [dl] = await Promise.all([page.waitForEvent('download'), board(page).getByRole('button', { name: 'PureRef' }).click()]);
@@ -102,7 +102,13 @@ test.describe('reference board', () => {
     for await (const c of stream) chunks.push(c as Buffer);
     const b = Buffer.concat(chunks);
     expect(b.subarray(4, 12).swap16().toString('utf16le')).toBe('1.10');
-    expect(b.readUInt16BE(14)).toBe(n); // images
-    expect(b.readUInt16BE(12)).toBe(n + 1); // …and the note
+    const images = b.readUInt16BE(14),
+      items = b.readUInt16BE(12);
+    // the board's pictures (topped up with swaps, at most 5 a part) plus the palette as a picture
+    expect(images).toBeGreaterThanOrEqual(n + 1);
+    // …and notes: the brief (name, title, summary), the palette's label, a heading per part, a caption each
+    expect(items - images).toBeGreaterThanOrEqual(4 + (images - 1));
+    // the palette is drawn, not written: a PNG signature right after the 224-byte header
+    expect(b.subarray(224, 228).toString('hex')).toBe('89504e47');
   });
 });

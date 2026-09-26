@@ -1,17 +1,26 @@
-/** A brief's reference board as a PureRef file: the brief as a note on top, the subject pictures large
- *  underneath, then the parts' pictures in rows, each named for what it shows and where it's from. */
+/** A brief's reference board as a PureRef file, laid out like the brief: its name and summary on top, the
+ *  palette as colour swatches (a picture, not text), then one labelled section per part of the brief
+ *  (Subject, Look, Wearing…) with 3–5 pictures each, every picture captioned with what it is and where
+ *  it's from. */
 import { summaryNote } from '../engine/note';
 import type { Brief, RefPick } from '../engine/types';
 import { toast } from '../ui/toast';
 import { RELAY } from './net';
-import { encodePur, layoutBoard, NOTE_LINE, wrapText, type PurImage, type PurNote } from './pureref';
+import { encodePur, NOTE_CHAR, NOTE_LINE, wrapText, type PurImage, type PurNote } from './pureref';
+import { SOURCE_BY_ID } from './sources';
+import type { SourceId } from './types';
 
-const LONG_SIDE = 1280; // pictures are scaled down to this: PNG only, so a board of ten stays under ~10 MB
-const PAD = 40;
+const LONG_SIDE = 800; // pictures are scaled down to this (they sit ~520 units tall): PNG only, so ~15–20 MB
+const ROW_H = 520; // every section's pictures share one height
+const GAP = 40;
+const PER_PART = 5; // the board's pictures of a part, topped up with its swaps (3–5 once searched)
+const WIDTH = 3000; // a section wider than this wraps
+
+type Png = { bytes: Uint8Array; width: number; height: number };
 
 /** The picture as a PNG the page may read: straight from hosts that allow it, else through wsrv.nl (which
  *  converts it too), else our relay. */
-async function pngOf(p: RefPick): Promise<{ bytes: Uint8Array; width: number; height: number } | null> {
+async function pngOf(p: RefPick): Promise<Png | null> {
   const bare = (u: string) => u.replace(/^https?:\/\//, '');
   const urls = [
     p.full,
@@ -46,43 +55,112 @@ async function pngOf(p: RefPick): Promise<{ bytes: Uint8Array; width: number; he
   return null;
 }
 
-export async function exportPur(brief: Brief, picks: RefPick[]): Promise<void> {
+/** The palette as one picture: a swatch per colour, each with its hex under it. */
+async function paletteImage(hex: string[]): Promise<Png> {
+  const S = 220,
+    PAD = 16,
+    LABEL = 46;
+  const c = new OffscreenCanvas(hex.length * (S + PAD) - PAD, S + LABEL);
+  const x = c.getContext('2d')!;
+  hex.forEach((h, i) => {
+    const left = i * (S + PAD);
+    x.fillStyle = h;
+    x.fillRect(left, 0, S, S);
+    x.fillStyle = '#f2f2f2';
+    x.font = '600 28px ui-monospace, Menlo, monospace';
+    x.textAlign = 'center';
+    x.fillText(h.toUpperCase(), left + S / 2, S + 34);
+  });
+  const blob = await c.convertToBlob({ type: 'image/png' });
+  return { bytes: new Uint8Array(await blob.arrayBuffer()), width: c.width, height: c.height };
+}
+
+/** A note whose top-left corner is at (x, y) (PureRef places notes by their centre). */
+function note(text: string, x: number, y: number, scale: number): { note: PurNote; h: number; w: number } {
+  const lines = text.split('\n');
+  const w = Math.max(...lines.map((l) => l.length)) * NOTE_CHAR * scale,
+    h = lines.length * NOTE_LINE * scale;
+  return { note: { text, x: x + w / 2, y: y + h / 2, scale }, h, w };
+}
+
+const sourceName = (src: string) => SOURCE_BY_ID[src as SourceId]?.label ?? src;
+
+export async function exportPur(brief: Brief, picks: RefPick[], spares: RefPick[] = []): Promise<void> {
   toast('Making the PureRef board…');
-  const got = await Promise.all(picks.map(async (p) => ({ p, img: await pngOf(p) })));
-  const ok = got.filter((g): g is { p: RefPick; img: NonNullable<typeof g.img> } => !!g.img);
-  if (!ok.length) throw new Error('no picture could be read');
+  // each part's pictures in board order, topped up with its best swaps to 3–5
+  const order: string[] = [];
+  const byPart = new Map<string, RefPick[]>();
+  for (const p of picks) {
+    if (!byPart.has(p.part)) {
+      order.push(p.part);
+      byPart.set(p.part, []);
+    }
+    byPart.get(p.part)!.push(p);
+  }
+  // …never a picture another section already shows (a swap can be another part's pick)
+  const seen = new Set(picks.map((p) => p.key));
+  for (const s of spares) {
+    const list = byPart.get(s.part);
+    if (list && list.length < PER_PART && !seen.has(s.key)) {
+      list.push(s);
+      seen.add(s.key);
+    }
+  }
+  const all = order.flatMap((id) => byPart.get(id)!);
+  const pngs = new Map<string, Png | null>();
+  await Promise.all(all.map(async (p) => pngs.set(p.key, await pngOf(p))));
+  const read = all.filter((p) => pngs.get(p.key));
+  if (!read.length) throw new Error('no picture could be read');
 
+  const images: PurImage[] = [];
+  const notes: PurNote[] = [];
+  let y = 0;
+
+  // the brief: name, what it is, the summary
   const name = brief.fields.name?.text ?? brief.title;
-  const note = wrapText(`${name}\n${brief.title}\n\n${summaryNote(brief)}\n\nPalette: ${brief.palette.name} · ${brief.palette.hex.join(' ')}`, 64);
-  const noteScale = 2.2;
-  const noteLines = note.split('\n').length;
-  const noteH = noteLines * NOTE_LINE * noteScale;
+  const title = note(name, 0, y, 5);
+  notes.push(title.note);
+  y += title.h + 10;
+  const sub = note(brief.title, 0, y, 2.4);
+  notes.push(sub.note);
+  y += sub.h + GAP / 2;
+  const body = note(wrapText(summaryNote(brief), 90), 0, y, 2.2);
+  notes.push(body.note);
+  y += body.h + GAP;
 
-  // the subject large, then everything else in rows under it, as wide as the subject row
-  const subject = ok.filter((g) => g.p.part === 'subject');
-  const rest = ok.filter((g) => g.p.part !== 'subject');
-  const top = layoutBoard(
-    subject.map((g) => g.img),
-    { rowHeight: 900, maxWidth: 4000, gap: PAD },
-  );
-  const width = Math.max(top.width, 2400);
-  const below = layoutBoard(
-    rest.map((g) => g.img),
-    { rowHeight: 520, maxWidth: width, gap: PAD },
-  );
-  const y0 = noteH + PAD * 2;
-  const images: PurImage[] = [
-    ...subject.map((g, i) => ({ ...g.img, ...top.placed[i], y: y0 + top.placed[i].y, name: `${g.p.label} — ${g.p.title}`, source: g.p.page })),
-    ...rest.map((g, i) => ({
-      ...g.img,
-      ...below.placed[i],
-      y: y0 + top.bottom + below.placed[i].y,
-      name: `${g.p.label} — ${g.p.title}`,
-      source: g.p.page,
-    })),
-  ];
-  const longest = Math.max(...note.split('\n').map((l) => l.length));
-  const notes: PurNote[] = [{ text: note, x: (longest * 6.5 * noteScale) / 2, y: noteH / 2, scale: noteScale }];
+  // the palette, as colours
+  const pal = await paletteImage(brief.palette.hex);
+  const palLabel = note(`PALETTE · ${brief.palette.name}`, 0, y, 2.4);
+  notes.push(palLabel.note);
+  y += palLabel.h + 12;
+  images.push({ ...pal, x: 0, y, scale: 1, name: `Palette — ${brief.palette.name}` });
+  y += pal.height + GAP * 2;
+
+  // one section per part: a heading, then its pictures in a row, each with a caption under it
+  for (const id of order) {
+    const list = byPart.get(id)!.filter((p) => pngs.get(p.key));
+    if (!list.length) continue;
+    const head = note(`${list[0].label.toUpperCase()} · ${list[0].q}`, 0, y, 3);
+    notes.push(head.note);
+    y += head.h + 16;
+    let x = 0,
+      rowTop = y;
+    for (const p of list) {
+      const img = pngs.get(p.key)!;
+      const scale = ROW_H / img.height,
+        w = img.width * scale;
+      if (x > 0 && x + w > WIDTH) {
+        x = 0;
+        rowTop += ROW_H + 110;
+      }
+      images.push({ ...img, x, y: rowTop, scale, name: `${p.label} — ${p.title}`, source: p.page });
+      const cols = Math.max(12, Math.floor(w / (NOTE_CHAR * 1.6)));
+      const cap = note(wrapText(`${p.title || 'Untitled'}\n${[p.artist, sourceName(p.src)].filter(Boolean).join(' · ')}`, cols).split('\n').slice(0, 3).join('\n'), x, rowTop + ROW_H + 10, 1.6);
+      notes.push(cap.note);
+      x += w + GAP;
+    }
+    y = rowTop + ROW_H + 110 + GAP;
+  }
 
   const bytes = encodePur(images, notes);
   const file = `${name.replace(/[^\p{L}\p{N} _-]+/gu, '').trim().replace(/\s+/g, '-') || 'references'}.pur`;
@@ -94,6 +172,6 @@ export async function exportPur(brief: Brief, picks: RefPick[]): Promise<void> {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 30_000);
-  const missed = picks.length - ok.length;
+  const missed = all.length - read.length;
   toast(missed ? `Downloaded ${file} (${missed} picture${missed > 1 ? 's' : ''} couldn’t be fetched)` : `Downloaded ${file}`);
 }

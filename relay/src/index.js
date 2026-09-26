@@ -31,6 +31,24 @@ const ROUTES = {
     if (!tags) return null;
     return `https://safebooru.org/index.php?page=dapi&s=post&q=index&json=1&limit=${clamp(p.get('n'), 1, 60, 40)}&pid=${clamp(p.get('page'), 0, 20, 0)}&tags=${encodeURIComponent(tags)}`;
   },
+  // Photo sites with keys (Worker secrets: `npx wrangler@4 secret put PEXELS_KEY` / `FLICKR_KEY`); the
+  // keys stay here, never in the page. Without one the route answers "no results".
+  pexels: (p, env) => {
+    const q = p.get('q');
+    if (!q) return null;
+    if (!env.PEXELS_KEY) return { empty: '{"photos":[]}' };
+    return {
+      url: `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&per_page=${clamp(p.get('n'), 5, 80, 30)}&page=${clamp(p.get('page'), 1, 20, 1)}`,
+      headers: { Authorization: env.PEXELS_KEY },
+    };
+  },
+  flickr: (p, env) => {
+    const q = p.get('q');
+    if (!q) return null;
+    if (!env.FLICKR_KEY) return { empty: '{"photos":{"photo":[]}}' };
+    // Creative Commons and public-domain photos only (licences 1–10), safe search on, photos not screenshots
+    return `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${env.FLICKR_KEY}&text=${encodeURIComponent(q)}&sort=relevance&license=1,2,3,4,5,6,7,8,9,10&safe_search=1&content_type=1&media=photos&extras=url_z,url_b,owner_name,o_dims,tags&per_page=${clamp(p.get('n'), 5, 100, 30)}&page=${clamp(p.get('page'), 1, 20, 1)}&format=json&nojsoncallback=1`;
+  },
   swu: (p) => {
     const q = p.get('q');
     if (!q) return null;
@@ -43,6 +61,7 @@ const ROUTES = {
 const IMG_HOSTS = [
   'th.wallhaven.cc', 'safebooru.org',
   'art.hearthstonejson.com', 'cmsassets.rgpub.io', 'images.ygoprodeck.com', 'cards.lorcast.io', 'cdn.swu-db.com',
+  'legendstory-production-s3-public.s3.amazonaws.com', // Flesh and Blood cards (no CORS)
   'static.wikia.nocookie.net', 'images.uesp.net', 'pathfinderwiki.com', 'hearthstone.wiki.gg',
   'images.metmuseum.org', 'openaccess-cdn.clevelandart.org', '1.api.artsmia.org', '4.api.artsmia.org',
   'api.europeana.eu', 'static.inaturalist.org',
@@ -109,8 +128,14 @@ export default {
       return new Response(JSON.stringify({ ok: true, routes: [...Object.keys(ROUTES), 'img'] }), { headers: base });
     }
     const route = ROUTES[name];
-    const upstream = route && route(url.searchParams);
-    if (!upstream) return new Response('unknown route or missing query', { status: 400, headers: base });
+    const r = route && route(url.searchParams, env);
+    if (!r) return new Response('unknown route or missing query', { status: 400, headers: base });
+    if (r.empty) {
+      base.set('Content-Type', 'application/json');
+      return new Response(r.empty, { headers: base });
+    }
+    const upstream = typeof r === 'string' ? r : r.url;
+    const extra = typeof r === 'string' ? {} : r.headers;
 
     const cache = caches.default;
     const key = new Request(`https://relay.cache/${name}?${url.searchParams}`);
@@ -118,7 +143,7 @@ export default {
     if (!res) {
       let up;
       try {
-        up = await fetch(upstream, { headers: { 'User-Agent': UA, Accept: 'application/json' }, cf: { cacheTtl: TTL } });
+        up = await fetch(upstream, { headers: { 'User-Agent': UA, Accept: 'application/json', ...extra }, cf: { cacheTtl: TTL } });
       } catch (e) {
         return new Response(JSON.stringify({ error: 'upstream unreachable', detail: String((e && e.message) || e) }), {
           status: 502,

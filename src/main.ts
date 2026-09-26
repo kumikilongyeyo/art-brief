@@ -455,9 +455,9 @@ const boardHost: import('./refs/board').BoardHost = {
     }
   },
   toast: (msg) => toast(msg),
-  exportPur: (b, picks) =>
+  exportPur: (b, picks, spares) =>
     import('./refs/export')
-      .then((m) => m.exportPur(b, picks))
+      .then((m) => m.exportPur(b, picks, spares))
       .catch((e: unknown) => {
         if (import.meta.env.DEV) console.warn('[pureref]', e);
         toast('Couldn’t make the PureRef file');
