@@ -40,6 +40,7 @@ const ICONS: Record<string, string[]> = {
   check: ['M5 12l5 5L20 7'],
   plus: ['M12 5v14', 'M5 12h14'],
   chevron: ['M6 9l6 6 6-6'],
+  download: ['M12 4v11', 'M7 10l5 5 5-5', 'M5 20h14'],
   book: ['M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z', 'M4 19V5', 'M8 7h7'],
 };
 

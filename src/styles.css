@@ -34,6 +34,7 @@
     --accent-ink: #141220;
     --accent-soft: #2b2645;
     --lock-tint: #252038;
+  --rb-shimmer: rgba(255, 255, 255, 0.08);
     --focus: #b3a5ff;
     --toast-bg: #ecebf2;
     --toast-ink: #141220;
@@ -53,6 +54,7 @@
   --accent-ink: #141220;
   --accent-soft: #2b2645;
   --lock-tint: #252038;
+  --rb-shimmer: rgba(255, 255, 255, 0.08);
   --focus: #b3a5ff;
   --toast-bg: #ecebf2;
   --toast-ink: #141220;
@@ -1649,44 +1651,283 @@ select.theme {
   }
 }
 
-/* Briefs | References section switch */
-.view-nav {
-  display: inline-flex;
-  background: var(--surface-2);
-  border-radius: 999px;
-  padding: 3px;
-  margin-left: auto;
-  margin-right: 8px;
+
+/* ---------- reference board (src/refs/board.ts) ---------- */
+.rb {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 16px;
 }
-.view-nav button {
-  border: 0;
-  background: none;
-  border-radius: 999px;
-  padding: 0 14px;
-  min-height: 38px;
-  font-weight: 600;
-  font-size: 14px;
+.rb-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.rb-head h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted);
-  cursor: pointer;
 }
-.view-nav button[aria-current='page'] {
+.rb-count {
+  color: var(--accent);
+}
+.rb-acts {
+  display: flex;
+  gap: 6px;
+}
+.rb-btn {
+  padding: 5px 12px;
+  font-size: 13px;
+}
+.rb-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.rb-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-auto-rows: 118px;
+  gap: 8px;
+}
+.rb-grid[data-count='1'] {
+  grid-template-columns: 1fr;
+}
+.rb-grid > :first-child {
+  grid-row: span 2;
+}
+.rb-grid > :nth-child(2) {
+  grid-column: span 2;
+}
+.rb-grid > .rb-d2 {
+  grid-column: span 2;
+}
+.rb-grid > .rb-d3 {
+  grid-column: span 3;
+}
+.rb-grid > .rb-tall {
+  grid-row: span 2;
+}
+@media (max-width: 560px) {
+  .rb-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 110px;
+  }
+  .rb-grid > :nth-child(2),
+  .rb-grid > .rb-d2,
+  .rb-grid > .rb-d3 {
+    grid-column: auto;
+  }
+  .rb-grid > .rb-m2 {
+    grid-column: span 2;
+  }
+}
+.rb-tile {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-2);
+  cursor: zoom-in;
+  min-width: 0;
+}
+.rb-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.rb-tile:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.rb-lab {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  background: rgba(16, 14, 22, 0.66);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 1px 7px;
+  pointer-events: none;
+}
+.rb-tools {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.rb-tile:hover .rb-tools,
+.rb-tile:focus-within .rb-tools,
+.rb-tile.locked .rb-tools {
+  opacity: 1;
+}
+@media (hover: none) {
+  .rb-tools {
+    opacity: 1;
+  }
+}
+.rb-tool {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 0;
+  background: rgba(16, 14, 22, 0.66);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+.rb-tool svg {
+  width: 14px;
+  height: 14px;
+}
+.rb-tool:hover {
+  background: rgba(16, 14, 22, 0.85);
+}
+.rb-tile.locked .rb-tool[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.rb-wait {
+  cursor: default;
+}
+.rb-wait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, var(--rb-shimmer) 50%, transparent 70%);
+  animation: rb-shine 1.2s linear infinite;
+}
+@keyframes rb-shine {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rb-wait::after {
+    animation: none;
+  }
+}
+:root {
+  --rb-shimmer: rgba(255, 255, 255, 0.55);
+}
+
+/* the viewer */
+.rb-view {
+  border: 0;
+  padding: 0;
+  border-radius: 16px;
   background: var(--surface);
   color: var(--text);
-  box-shadow: var(--shadow);
+  width: min(920px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
 }
-@media (pointer: coarse) {
-  .view-nav button {
-    min-height: 44px;
-  }
+.rb-view[open] {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(220px, 1fr);
 }
-@media (max-width: 460px) {
-  .brand-name {
-    display: none;
-  }
-  .view-nav button {
-    padding: 0 11px;
-  }
+.rb-view::backdrop {
+  background: rgba(10, 9, 14, 0.7);
 }
-.wrap.wrap-wide {
-  max-width: 1240px;
+.rb-view-pic {
+  position: relative;
+  background: #0e0d12;
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+}
+.rb-view-pic img {
+  max-width: 100%;
+  max-height: calc(100vh - 64px);
+  object-fit: contain;
+  display: block;
+}
+.rb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(16, 14, 22, 0.6);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.rb-nav svg {
+  width: 20px;
+  height: 20px;
+}
+.rb-nav.prev {
+  left: 10px;
+}
+.rb-nav.prev svg {
+  transform: rotate(90deg);
+}
+.rb-nav.next {
+  right: 10px;
+}
+.rb-nav.next svg {
+  transform: rotate(-90deg);
+}
+.rb-view-side {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.rb-x {
+  align-self: flex-end;
+}
+.rb-view-side h3 {
+  margin: 0;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+.rb-view-part {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.rb-view-by {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.rb-view-open {
+  align-self: flex-start;
+  text-decoration: none;
+}
+.rb-view-tools {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+@media (max-width: 640px) {
+  .rb-view[open] {
+    grid-template-columns: 1fr;
+  }
 }

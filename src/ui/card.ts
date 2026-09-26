@@ -36,6 +36,8 @@ export interface CardOptions {
   /** Sections to show open (default: none — the card leads with its summary). */
   open?: CardSection[];
   data: DataSet;
+  /** The reference board (src/refs/board.ts), under the palette. */
+  board?: HTMLElement;
 }
 
 function isLocked(brief: Brief, slots: SlotId[]): boolean {
@@ -219,6 +221,7 @@ export function renderCard(brief: Brief, o: CardOptions, hd: CardHandlers): HTML
     h('p', { class: 'note' }, summaryNote(brief)),
     paletteDots(brief, hd),
   );
+  if (o.board) card.append(o.board);
   if (brief.lore?.moment)
     card.append(h('div', { class: 'moment' }, h('span', { class: 'moment-label' }, 'Moment to paint'), h('p', {}, brief.lore.moment)));
 

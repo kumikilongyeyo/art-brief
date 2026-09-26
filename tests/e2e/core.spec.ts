@@ -30,6 +30,15 @@ async function captureClipboard(page: Page) {
 const lastCopied = (page: Page) => page.evaluate(() => (window as unknown as { __copied: string[] }).__copied.at(-1) ?? '');
 
 const cards = (page: Page) => page.locator('.card:not(.sample)');
+/** Cards' text without their reference boards (pictures are searched afresh, so they differ between visits). */
+const briefText = (cards: Locator) =>
+  cards.evaluate((el) => {
+    const rbs = [...el.querySelectorAll<HTMLElement>('.rb')];
+    rbs.forEach((rb) => (rb.style.display = 'none'));
+    const t = (el as HTMLElement).innerText;
+    rbs.forEach((rb) => (rb.style.display = ''));
+    return t;
+  });
 const lineText = async (page: Page, slot: string, card = 0) =>
   (await cards(page).nth(card).locator(`.row[data-slot="${slot}"] dd`).textContent()) ?? '';
 /** Open one of a card's collapsed rows (Every detail / Story / Direction) if it is closed. */
@@ -223,7 +232,7 @@ test('a share link recreates the exact brief in a fresh context', async ({ page,
   await openSection(card, 'details');
   await card.getByRole('button', { name: 'Reroll Mood' }).click();
   await card.getByRole('button', { name: 'Lock Palette' }).click();
-  const expected = await card.innerText();
+  const expected = await briefText(card);
   await card.getByRole('button', { name: 'Link' }).click();
   const url = await lastCopied(page);
   expect(url).toContain('#c=scene');
@@ -232,7 +241,7 @@ test('a share link recreates the exact brief in a fresh context', async ({ page,
   await p2.goto(url);
   await expect(p2.locator('.card')).toHaveCount(1);
   await openSection(p2.locator('.card'), 'details');
-  expect(await p2.locator('.card').innerText()).toBe(expected);
+  expect(await briefText(p2.locator('.card'))).toBe(expected);
   await expect(p2.locator('.card .row[data-slot="palette"]')).toHaveClass(/locked/);
   await ctx.close();
 });
@@ -240,10 +249,10 @@ test('a share link recreates the exact brief in a fresh context', async ({ page,
 test('a batch link reproduces the batch; bad hashes fall back safely', async ({ page }) => {
   await page.goto('./#c=creature&t=infernal&w=mixed&n=3&s=K7Q2PX&v=2026.09.3');
   await expect(cards(page)).toHaveCount(3);
-  const a = await page.locator('.cards').innerText();
+  const a = await briefText(page.locator('.cards'));
   await page.goto('about:blank');
   await page.goto('./#c=creature&t=infernal&w=mixed&n=3&s=K7Q2PX&v=2026.09.3');
-  expect(await page.locator('.cards').innerText()).toBe(a);
+  expect(await briefText(page.locator('.cards'))).toBe(a);
   await expect(page.locator('#data-notice')).toHaveCount(0);
   await page.goto('about:blank');
   await page.goto('./#c=<script>&t=nope&w=zzz&n=99&s=K7Q2PX&l=habitat:%3Cimg%20src=x%3E&v=2020.01.1');
@@ -334,9 +343,6 @@ test('keyboard-only walkthrough with visible focus', async ({ page }, info) => {
       const cs = getComputedStyle(el);
       return el !== document.body && cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) >= 2;
     });
-  await page.keyboard.press('Tab'); // Briefs (section switch)
-  expect(await focusVisible()).toBe(true);
-  await page.keyboard.press('Tab'); // References
   await page.keyboard.press('Tab'); // Saved (header)
   expect(await focusVisible()).toBe(true);
   await page.keyboard.press('Tab'); // settings

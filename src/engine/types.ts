@@ -114,6 +114,26 @@ export interface BriefLine {
   slots?: SlotId[];
 }
 
+/** A reference picture on a brief's board (found by src/refs/brief-refs.ts). */
+export interface RefPick {
+  key: string; // source:id
+  src: string;
+  title: string;
+  thumb: string;
+  full: string;
+  page: string;
+  artist?: string;
+  part: string; // which part of the brief it shows ("subject", "wearing"…)
+  label: string; // that part, as the tile says it
+  q: string; // the words it was found with
+  locked?: boolean;
+}
+export interface RefBoard {
+  picks: RefPick[];
+  /** Per part, the words it was asked with: after a reroll, only parts whose words changed search again. */
+  asked: Record<string, string>;
+}
+
 export interface Brief {
   schemaVersion: number;
   id: string;
@@ -145,6 +165,8 @@ export interface Brief {
     note?: string;
     deadline?: string;
   };
+  /** Reference pictures (the board on the card), kept with the brief when it's saved. */
+  refs?: RefBoard;
   dataVersion: string;
   createdAt: number;
   rerolls: Record<SlotId, number>;

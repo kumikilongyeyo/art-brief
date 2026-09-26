@@ -148,7 +148,7 @@ const savedBtn = h(
     'aria-haspopup': 'dialog',
     'aria-expanded': 'false',
     'aria-controls': 'saved-panel',
-    onclick: () => (view === 'refs' ? refsPage?.toggleSaved() : toggleSavedPanel()),
+    onclick: () => toggleSavedPanel(),
   },
   icon('star'),
   h('span', { class: 'saved-toggle-label' }, 'Saved'),
@@ -181,86 +181,6 @@ const resultsEl = h('section', { class: 'results', 'aria-label': 'Results', id: 
 const listsEl = h('div');
 const footEl = h('footer', { class: 'foot' });
 
-// ---------- sections: Briefs | References ----------
-type View = 'briefs' | 'refs';
-let view: View = 'briefs';
-/** The Saved button's badge and its spoken label follow the page it opens. */
-function showSavedCount(n: number, what: 'briefs' | 'references') {
-  savedCount.textContent = String(n);
-  savedBtn.setAttribute('aria-label', `Saved ${what} (${n})`);
-}
-/** On Briefs the Saved button opens a dialog; on References it toggles that page's Saved view in place. */
-function savedBtnRole(v: View) {
-  if (v === 'refs') {
-    savedBtn.removeAttribute('aria-haspopup');
-    savedBtn.removeAttribute('aria-controls');
-    savedBtn.removeAttribute('aria-expanded');
-    savedBtn.setAttribute('aria-pressed', String(refsSavedOpen));
-  } else {
-    savedBtn.setAttribute('aria-haspopup', 'dialog');
-    savedBtn.setAttribute('aria-controls', 'saved-panel');
-    savedBtn.setAttribute('aria-expanded', String(state.savedOpen));
-    savedBtn.removeAttribute('aria-pressed');
-  }
-}
-let refsSavedOpen = false;
-let refsPage: import('./refs/ui').RefsPage | null = null;
-const refsRoot = h('div', { class: 'refs-root' });
-const viewTab = (v: View, label: string) =>
-  h(
-    'button',
-    { type: 'button', 'data-view': v, 'aria-current': v === 'briefs' ? 'page' : undefined, onclick: () => void setView(v) },
-    label,
-  );
-const viewNav = h('nav', { class: 'view-nav', 'aria-label': 'Sections' }, viewTab('briefs', 'Briefs'), viewTab('refs', 'References'));
-
-async function setView(v: View) {
-  if (v === 'refs' && !refsPage) {
-    let mod: typeof import('./refs/ui');
-    try {
-      mod = await import('./refs/ui');
-    } catch {
-      // offline, or a new version replaced this one's files: say so instead of doing nothing
-      toast('References couldn’t load — check your connection, then reload the page');
-      return;
-    }
-    const { mountRefs } = mod;
-    refsPage = mountRefs(refsRoot, {
-      folders: () => folders,
-      addFolder: (name) => addFolder(name),
-      onSavedChange: (n) => {
-        if (view === 'refs') showSavedCount(n, 'references');
-      },
-      onSavedView: (open) => {
-        refsSavedOpen = open;
-        if (view === 'refs') savedBtnRole('refs');
-      },
-    });
-  }
-  view = v;
-  viewNav.querySelectorAll<HTMLButtonElement>('button').forEach((b) => {
-    if (b.dataset.view === v) b.setAttribute('aria-current', 'page');
-    else b.removeAttribute('aria-current');
-  });
-  briefsMain.hidden = v !== 'briefs';
-  app.firstElementChild?.classList.toggle('wrap-wide', v === 'refs');
-  footEl.hidden = v !== 'briefs';
-  if (v === 'refs') {
-    toggleSavedPanel(false);
-    refsPage!.show();
-    showSavedCount(refsPage!.savedCount(), 'references');
-  } else {
-    refsPage?.hide();
-    showSavedCount(Object.keys(saved).length, 'briefs');
-  }
-  savedBtnRole(v);
-  const url = new URL(location.href);
-  if (v === 'refs') url.searchParams.set('view', 'refs');
-  else url.searchParams.delete('view');
-  history.replaceState(history.state, '', url.pathname + url.search + url.hash);
-}
-
-let briefsMain!: HTMLElement;
 app.append(
   h(
     'div',
@@ -268,17 +188,11 @@ app.append(
     h(
       'header',
       { class: 'top' },
-      h(
-        'div',
-        { class: 'brand' },
-        h('span', { class: 'brand-mark', 'aria-hidden': 'true' }),
-        h('span', { class: 'brand-name' }, 'Art Brief'),
-      ),
-      viewNav,
+      h('div', { class: 'brand' }, h('span', { class: 'brand-mark', 'aria-hidden': 'true' }), 'Art Brief'),
       h('div', { class: 'top-actions' }, savedBtn, settingsBtn),
       savedPanel,
     ),
-    (briefsMain = h(
+    h(
       'main',
       {},
       h('h1', { class: 'ask' }, 'What do you want to create?'),
@@ -298,8 +212,7 @@ app.append(
       noticesEl,
       resultsEl,
       listsEl,
-    )),
-    refsRoot,
+    ),
     footEl,
   ),
 );
@@ -505,7 +418,9 @@ const cardHandlers: CardHandlers = {
 function updateCard(i: number, fn: (b: Brief) => Brief, focusPrefix?: string) {
   const b = state.results[i];
   if (!b) return;
-  const next = fn(b);
+  let next = fn(b);
+  // a reroll builds a new brief: its reference board carries on (the board redoes only what changed)
+  if (!next.refs && b.refs) next = { ...next, refs: b.refs };
   state.results[i] = next;
   replaceInHistory(b.id, next);
   if (saved[b.id]) {
@@ -515,6 +430,57 @@ function updateCard(i: number, fn: (b: Brief) => Brief, focusPrefix?: string) {
   rerenderCard(i);
   if (focusPrefix)
     (resultsEl.querySelectorAll('.card')[i]?.querySelector(`[data-focus="${focusPrefix}:${i}"]`) as HTMLElement | null)?.focus();
+}
+
+// ---------- reference boards ----------
+
+let boardMod: typeof import('./refs/board') | null = null;
+let boardLoad: Promise<void> | null = null;
+const boardHost: import('./refs/board').BoardHost = {
+  data,
+  save(id, refs) {
+    const i = state.results.findIndex((x) => x.id === id);
+    const b = state.results[i];
+    if (!b) return;
+    const next = { ...b, refs };
+    state.results[i] = next;
+    // only where it's still in history: a board finishing after History was cleared mustn't bring it back
+    if (historyList.some((x) => x.id === id)) {
+      historyList = historyList.map((x) => (x.id === id ? next : x));
+      saveHistory(historyList);
+    }
+    if (saved[id]) {
+      saved = { ...saved, [id]: { ...saved[id], refs } };
+      saveSaved(saved);
+    }
+  },
+  toast: (msg) => toast(msg),
+  exportPur: (b, picks) =>
+    import('./refs/export')
+      .then((m) => m.exportPur(b, picks))
+      .catch((e: unknown) => {
+        if (import.meta.env.DEV) console.warn('[pureref]', e);
+        toast('Couldn’t make the PureRef file');
+      }),
+};
+/** The card's reference board. The search code loads on first use; until then, the board's outline. */
+function boardFor(b: Brief): HTMLElement {
+  if (boardMod) return boardMod.boardFor(b, boardHost);
+  boardLoad ??= import('./refs/board').then(
+    (m) => {
+      boardMod = m;
+      renderResults();
+    },
+    () => {
+      boardLoad = null;
+    },
+  );
+  return h(
+    'section',
+    { class: 'rb', 'aria-label': 'References', 'aria-busy': 'true' },
+    h('div', { class: 'rb-head' }, h('h3', {}, 'References')),
+    h('div', { class: 'rb-grid', 'data-count': '8' }, ...Array.from({ length: 8 }, (_, k) => h('div', { class: `rb-tile rb-wait${k === 7 ? ' rb-d3 rb-m2' : ''}` }))),
+  );
 }
 
 function cardFor(b: Brief, i: number): HTMLElement {
@@ -529,6 +495,7 @@ function cardFor(b: Brief, i: number): HTMLElement {
       showDnd: settings.showDnd,
       open: state.cardOpen[i],
       data,
+      board: boardFor(b),
     },
     cardHandlers,
   );
@@ -725,7 +692,8 @@ function renderLists() {
     refresh(v === 'new' ? undefined : v ? undefined : 'chip:new');
   };
   listsEl.replaceChildren(renderHistory(st, data, handlers));
-  if (view === 'briefs') showSavedCount(Object.keys(saved).length, 'briefs');
+  savedCount.textContent = String(Object.keys(saved).length);
+  savedBtn.setAttribute('aria-label', `Saved briefs (${Object.keys(saved).length})`);
   if (state.savedOpen) savedPanel.replaceChildren(savedHead(), renderSaved(st, data, handlers, setEditing));
 }
 
@@ -1014,7 +982,6 @@ function showSettings() {
 // Enter / Space generate unless focus is in something that handles those keys itself.
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Enter' && e.key !== ' ') return;
-  if (view !== 'briefs') return;
   if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
   const t = e.target as HTMLElement | null;
   if (t && t.closest('input, textarea, select, button, a, summary, [contenteditable], [role="dialog"]')) return;
@@ -1045,12 +1012,6 @@ renderNotices();
 renderResults();
 renderLists();
 renderFooter();
-if (new URLSearchParams(location.search).get('view') === 'refs') void setView('refs');
-// Back/Forward onto an entry made on the other page (References' viewer and More like this): show that page
-window.addEventListener('popstate', () => {
-  const v: View = new URLSearchParams(location.search).get('view') === 'refs' ? 'refs' : 'briefs';
-  if (v !== view) void setView(v);
-});
 
 // A share link opened while the app is already showing in this tab only changes the hash.
 window.addEventListener('hashchange', () => {

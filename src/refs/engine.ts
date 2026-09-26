@@ -53,6 +53,8 @@ export interface SearchInput {
   crop?: number;
   /** No query: the start screen's feed of new work (this seed shuffles it, so every visit differs). */
   feed?: string;
+  /** Read at most this many pages from each source (a brief's reference board needs each site's best few). */
+  pages?: number;
 }
 
 export interface Status {
@@ -100,7 +102,7 @@ const POSE_DROP = 0.25;
 /** A stick-figure result that isn't a readable figure must look this much like the pose's words. */
 const SKETCH_LOOK = 0.2;
 /** Titles and tags that say what the picture is, when the look check misses it (old photos, sketches). */
-const ADULT_WORDS =
+export const ADULT_WORDS =
   /\b(nude|nudes|naked|nudity|topless|bottomless|erotic|erotica|nsfw|hentai|ecchi|lingerie|panties|underwear|thong|breasts?|nipples?|boobs?|buttocks|porn\w*|sexy|seductive|sensual|boudoir|fetish|bdsm|stripper)\b/i;
 const NEAREST_AFTER = 6500;
 /** How a stick figure's pose is asked for on sites that search titles and tags. */
@@ -203,6 +205,23 @@ export class Search {
       nearest: this.nearestOnly,
       plan: this.plan,
     };
+  }
+
+  /** Every result that clears the relevance floor so far, shown or not, best first (a brief's reference
+   *  board picks from all of them rather than taking batches). */
+  ranked(): Hit[] {
+    return [...this.hits.values()].filter((h) => this.passes(h)).sort((a, b) => this.total(b) - this.total(a));
+  }
+  /** Everything found that isn't ruled out, read or not (without the ranking model, the board picks by
+   *  what the sites say). */
+  found(): Hit[] {
+    return [...this.hits.values()].filter((h) => h.state !== 'dropped');
+  }
+  /** Web pictures still being fetched or read (the board waits for them before it picks). */
+  pending(): number {
+    let n = 0;
+    for (const h of this.hits.values()) if (h.state === 'queued') n++;
+    return n + this.srcs.filter((s) => s.busy).length;
   }
 
   /** Every candidate and what happened to it (dev self-tests read this). */
@@ -426,7 +445,7 @@ export class Search {
     try {
       const page = await st.s.search(this.plan, st.page, this.ctl.signal, this.ctx);
       st.page++;
-      st.more = page.more;
+      st.more = page.more && !(this.input.pages && st.page >= this.input.pages);
       st.fails = 0;
       st.throttled = 0;
       for (const c of page.items) this.add(c);

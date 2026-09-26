@@ -32,6 +32,7 @@ type ArtStationProject = {
   hide_as_adult?: boolean;
   is_adult_content?: boolean;
   user?: { full_name?: string };
+  icons?: { model3d?: boolean; marmoset?: boolean; video?: boolean; video_clip?: boolean };
 };
 const artstationCand = (x: ArtStationProject, i: number): Cand => ({
   key: `artstation:${x.hash_id}`,
@@ -39,10 +40,15 @@ const artstationCand = (x: ArtStationProject, i: number): Cand => ({
   title: x.title,
   pos: i,
   thumb: x.smaller_square_cover_url,
-  full: x.smaller_square_cover_url.replace('/smaller_square/', '/large/'),
+  // covers come in 400² (smaller_square) and 800² (small_square) only, but without the cover's timestamp
+  // folder the same path is the whole artwork it was cropped from (…/498/large/name.jpg, 1920 px)
+  full: /\/\d{14}\/smaller_square\//.test(x.smaller_square_cover_url)
+    ? x.smaller_square_cover_url.replace(/\/\d{14}\/smaller_square\//, '/large/')
+    : x.smaller_square_cover_url.replace('/smaller_square/', '/small_square/'),
   page: x.url,
   artist: x.user?.full_name,
-  tags: words(x.title),
+  // a 3D viewer or video post (a model turnaround, a timelapse) is tagged so a reference board can skip it
+  tags: [...words(x.title), ...(x.icons?.model3d || x.icons?.marmoset || x.icons?.video ? ['3d-post'] : [])],
   aspect: 1,
   adult: !!(x.hide_as_adult || x.is_adult_content),
   // image paths carry their upload time (…/20260925071734/…); covers don't, and trending work is new anyway
