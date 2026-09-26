@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Instant D&D-flavoured art briefs: characters, props, creatures, buildings and scenes." />
+    <meta name="theme-color" content="#4c35b5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#16141f" media="(prefers-color-scheme: dark)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Art Brief" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <!-- References: the image hosts its first pictures come from (saves a lookup and handshake each) -->
+    <link rel="preconnect" href="https://cdna.artstation.com" crossorigin />
+    <link rel="preconnect" href="https://cdnb.artstation.com" crossorigin />
+    <link rel="preconnect" href="https://art.hearthstonejson.com" />
+    <link rel="preconnect" href="https://ddragon.leagueoflegends.com" crossorigin />
+    <link rel="preconnect" href="https://cards.scryfall.io" crossorigin />
+    <link rel="dns-prefetch" href="https://wsrv.nl" />
+    <link rel="dns-prefetch" href="https://api.openverse.org" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <title>Art Brief</title>
+    <script>
+      // Apply the saved colour scheme before first paint to avoid a flash.
+      try {
+        var s = JSON.parse(localStorage.getItem('ab:settings') || 'null');
+        var c = s && s.value && s.value.colorScheme;
+        if (c === 'light' || c === 'dark') document.documentElement.dataset.theme = c;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/art-brief/assets/index-BglN5PEO.js"></script>
+    <link rel="stylesheet" crossorigin href="/art-brief/assets/index-DE3Gct6I.css">
+  <link rel="manifest" href="/art-brief/manifest.webmanifest"></head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
