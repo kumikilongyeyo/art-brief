@@ -179,8 +179,11 @@ export function encodePur(images: PurImage[], notes: PurNote[]): Uint8Array {
   o.putStr(28, '1.11.1'); // QString: the PureRef version that saved it (FyorDev leaves it blank; their ImHex map calls it required)
   o.putU32(40, 64);
   o.putU32(108, id); // next free item id
-  // Scene bounds, then the view as a QTransform (9 doubles: zoom 1, no pan).
-  [-10000, -10000, 10000, 10000].forEach((v, k) => o.putF64(112 + k * 8, v));
+  // Scene bounds (x, y, width, height), then the view as a QTransform (9 doubles: zoom 1, no pan).
+  // PureRef opens a board fitted to its bounds, so they're the board's own (plus a margin): with the old
+  // fixed ±10000 square the board opened as a speck in the square's corner.
+  const box = bounds(images, notes);
+  [box.x, box.y, box.w, box.h].forEach((v, k) => o.putF64(112 + k * 8, v));
   o.putF64(144, 1); // m11
   o.putF64(176, 1); // m22
   o.putF64(208, 1); // m33
@@ -189,6 +192,23 @@ export function encodePur(images: PurImage[], notes: PurNote[]): Uint8Array {
   // PureRef refuses a file whose checksum is off: MD5 of everything after it, as 32 hex chars in UTF-16.
   o.putStr(44, md5Hex(o.buf.subarray(108, o.len)));
   return o.done();
+}
+
+/** Everything on the board, as x, y, width, height, with a margin. */
+function bounds(images: PurImage[], notes: PurNote[]) {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  const add = (ax: number, ay: number, bx: number, by: number) => {
+    x0 = Math.min(x0, ax); y0 = Math.min(y0, ay); x1 = Math.max(x1, bx); y1 = Math.max(y1, by);
+  };
+  for (const im of images) add(im.x, im.y, im.x + im.width * (im.scale ?? 1), im.y + im.height * (im.scale ?? 1));
+  for (const n of notes) {
+    const lines = n.text.split('\n'), s = n.scale ?? 1;
+    const w = (Math.max(...lines.map((l) => l.length)) * NOTE_CHAR * s) / 2, h = (lines.length * NOTE_LINE * s) / 2;
+    add(n.x - w, n.y - h, n.x + w, n.y + h);
+  }
+  if (!Number.isFinite(x0)) return { x: -10000, y: -10000, w: 20000, h: 20000 };
+  const m = Math.max(100, 0.03 * Math.max(x1 - x0, y1 - y0));
+  return { x: x0 - m, y: y0 - m, w: x1 - x0 + 2 * m, h: y1 - y0 + 2 * m };
 }
 
 /** Hard-wrap a note at `cols` characters, since PureRef text items don't wrap by themselves. */
