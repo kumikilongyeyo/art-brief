@@ -191,6 +191,15 @@
         "glacier",
         "mountain",
         "north"
+      ],
+      "notPlaces": [
+        "ash",
+        "brimstone",
+        "desert",
+        "fiend",
+        "jungle",
+        "tropical",
+        "volcanic"
       ]
     },
     {

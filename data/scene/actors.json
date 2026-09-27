@@ -459,6 +459,93 @@
       "themes": [
         "frost"
       ]
+    },
+    {
+      "id": "sahuagin-raider",
+      "text": "sahuagin raider",
+      "tags": [
+        "humanoid",
+        "water",
+        "abyssal"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "sea-hag-barnacled",
+      "text": "barnacled sea hag",
+      "tags": [
+        "humanoid",
+        "water",
+        "cursed"
+      ],
+      "themes": [
+        "nautical",
+        "dark-fantasy"
+      ]
+    },
+    {
+      "id": "grizzled-harpooner",
+      "text": "grizzled harpooner",
+      "tags": [
+        "humanoid",
+        "pirate",
+        "martial"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "rune-tattooed-skald",
+      "text": "rune-tattooed skald",
+      "tags": [
+        "humanoid",
+        "rune",
+        "north",
+        "performer"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "knight-errant-white-cloak",
+      "text": "knight-errant in a white cloak",
+      "tags": [
+        "humanoid",
+        "noble",
+        "heroic"
+      ],
+      "themes": [
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "clockwork-scholar",
+      "text": "clockwork scholar",
+      "tags": [
+        "construct",
+        "humanoid",
+        "clockwork",
+        "scholar"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "githzerai-monk",
+      "text": "githzerai monk",
+      "tags": [
+        "humanoid",
+        "planar",
+        "astral"
+      ],
+      "themes": [
+        "planar"
+      ]
     }
   ]
 }

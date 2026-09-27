@@ -41,6 +41,9 @@
       "text": "{a} drags {b} out of the churning water",
       "people": [
         "a"
+      ],
+      "tags": [
+        "water"
       ]
     },
     {
@@ -77,6 +80,9 @@
       "text": "{a} steals a glowing egg from the nest of {b}",
       "people": [
         "a"
+      ],
+      "tags": [
+        "beast"
       ]
     },
     {
@@ -120,7 +126,8 @@
       "id": "crowns-b-wreath-thorns",
       "text": "{a} crowns {b} with a wreath of thorns",
       "tags": [
-        "flora"
+        "flora",
+        "cursed"
       ],
       "people": [
         "a"
@@ -202,7 +209,10 @@
     },
     {
       "id": "wakes-chains-before-b",
-      "text": "{a} wakes in chains before {b}"
+      "text": "{a} wakes in chains before {b}",
+      "tags": [
+        "chains"
+      ]
     },
     {
       "id": "hides-from-b-beneath-overturned",
@@ -229,7 +239,8 @@
       "id": "dances-b-while-hall-burns",
       "text": "{a} dances with {b} while the hall burns",
       "tags": [
-        "romantic"
+        "romantic",
+        "fire"
       ],
       "people": [
         "a",
@@ -310,6 +321,9 @@
       "text": "{a} tames {b} with a single outstretched hand",
       "people": [
         "a"
+      ],
+      "tags": [
+        "beast"
       ]
     },
     {
@@ -348,6 +362,436 @@
       "people": [
         "a",
         "b"
+      ],
+      "tags": [
+        "blood"
+      ]
+    },
+    {
+      "id": "cuts-b-loose-from-rigging",
+      "text": "{a} cuts {b} loose from the rigging as the mast gives way",
+      "tags": [
+        "storm",
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "water"
+      ]
+    },
+    {
+      "id": "hauls-b-up-in-net",
+      "text": "{a} hauls {b} up from the deep in a fisherman's net",
+      "tags": [
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "water"
+      ]
+    },
+    {
+      "id": "fights-b-in-flooding-hold",
+      "text": "{a} fights {b} waist-deep in a flooding ship's hold",
+      "tags": [
+        "water",
+        "violent"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "water"
+      ]
+    },
+    {
+      "id": "parleys-b-across-boarding-plank",
+      "text": "{a} parleys with {b} across a boarding plank",
+      "tags": [
+        "pirate"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "people": [
+        "a",
+        "b"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "water"
+      ]
+    },
+    {
+      "id": "lashes-b-to-mast-in-gale",
+      "text": "{a} lashes {b} to the mast as the gale hits",
+      "tags": [
+        "storm"
+      ],
+      "themes": [
+        "nautical"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "abyssal",
+        "coast",
+        "coral",
+        "ocean",
+        "pirate",
+        "water"
+      ]
+    },
+    {
+      "id": "signs-pact-in-blood-b",
+      "text": "{a} signs a pact in blood while {b} watches",
+      "tags": [
+        "blood",
+        "grim"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "people": [
+        "a"
+      ]
+    },
+    {
+      "id": "takes-curse-from-b",
+      "text": "{a} draws a curse out of {b} and into their own hands",
+      "tags": [
+        "cursed"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "people": [
+        "a"
+      ]
+    },
+    {
+      "id": "cuts-b-down-from-gibbet",
+      "text": "{a} cuts {b} down from a gibbet at dawn",
+      "tags": [
+        "grim",
+        "gothic"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "people": [
+        "a"
+      ]
+    },
+    {
+      "id": "digs-through-ruin-as-b",
+      "text": "{a} digs through the rubble as {b} rises from the ruin",
+      "tags": [
+        "ruin"
+      ],
+      "themes": [
+        "dark-fantasy"
+      ],
+      "people": [
+        "a"
+      ]
+    },
+    {
+      "id": "forges-blade-b-works-bellows",
+      "text": "{a} forges a blade while {b} works the bellows",
+      "tags": [
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "people": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "leaps-lava-channel-b-gives-chase",
+      "text": "{a} leaps a channel of lava as {b} gives chase",
+      "tags": [
+        "magma"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "magma",
+        "volcanic"
+      ]
+    },
+    {
+      "id": "walks-unburnt-from-pyre-b",
+      "text": "{a} walks unburnt from the pyre while {b} stares",
+      "tags": [
+        "fire"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "people": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "shelters-b-from-falling-ash",
+      "text": "{a} shelters {b} from a storm of falling ash",
+      "tags": [
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "ash",
+        "magma",
+        "volcanic"
+      ]
+    },
+    {
+      "id": "leads-b-on-hunt-tall-grass",
+      "text": "{a} leads {b} on a hunt through the tall grass",
+      "tags": [
+        "beast",
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "forest",
+        "jungle",
+        "plains",
+        "village"
+      ]
+    },
+    {
+      "id": "is-marked-clan-paint-by-b",
+      "text": "{a} is marked with clan paint by {b}",
+      "tags": [
+        "tribal"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "people": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "rides-b-through-jungle-downpour",
+      "text": "{a} rides {b} through a jungle downpour",
+      "tags": [
+        "jungle",
+        "beast"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "forest",
+        "jungle",
+        "tropical"
+      ]
+    },
+    {
+      "id": "calls-storm-down-on-b",
+      "text": "{a} calls the storm down on {b}",
+      "tags": [
+        "storm",
+        "druidic"
+      ],
+      "themes": [
+        "wild-primal"
+      ],
+      "people": [
+        "a"
+      ]
+    },
+    {
+      "id": "drags-b-across-ice-sled",
+      "text": "{a} drags {b} across the ice on a sled",
+      "tags": [
+        "frost",
+        "north"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "north"
+      ]
+    },
+    {
+      "id": "reads-glacier-runes-b-keeps-watch",
+      "text": "{a} reads runes in the glacier wall while {b} keeps watch",
+      "tags": [
+        "rune",
+        "glacier"
+      ],
+      "themes": [
+        "frost"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "arctic",
+        "frost",
+        "glacier",
+        "north"
+      ]
+    },
+    {
+      "id": "receives-feather-light-from-b",
+      "text": "{a} receives a feather of light from {b}",
+      "tags": [
+        "radiant",
+        "feathered"
+      ],
+      "themes": [
+        "celestial"
+      ],
+      "people": [
+        "a"
+      ]
+    },
+    {
+      "id": "is-anointed-in-gold-by-b",
+      "text": "{a} is anointed in gold by {b}",
+      "tags": [
+        "holy",
+        "gold"
+      ],
+      "themes": [
+        "celestial"
+      ],
+      "people": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "trades-b-by-fungus-lamps",
+      "text": "{a} trades with {b} by the glow of fungus lamps",
+      "tags": [
+        "fungal",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "people": [
+        "a",
+        "b"
+      ],
+      "places": [
+        "cavern",
+        "fungal",
+        "subterranean"
+      ]
+    },
+    {
+      "id": "feels-cave-wall-b-stalks",
+      "text": "{a} feels along a cave wall as {b} stalks them in the dark",
+      "tags": [
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ],
+      "people": [
+        "a"
+      ],
+      "places": [
+        "cavern",
+        "fungal",
+        "subterranean"
+      ]
+    },
+    {
+      "id": "sells-soul-b-at-crossroads",
+      "text": "{a} haggles over the price of a soul with {b}",
+      "tags": [
+        "contract",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ],
+      "people": [
+        "a"
+      ]
+    },
+    {
+      "id": "steps-through-mirror-b-follows",
+      "text": "{a} steps through a mirror into another plane and {b} follows",
+      "tags": [
+        "planar",
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ],
+      "people": [
+        "a"
       ]
     }
   ]

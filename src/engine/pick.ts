@@ -1,8 +1,13 @@
-import { isBlocked, isOnTheme } from './theme';
+import { isBlocked, isOnTheme, isThemed } from './theme';
 import type { CategoryId, Entry, Theme, Weirdness } from './types';
 import type { Rng } from './rng';
 
 export const OFF_THEME: Record<Weirdness, number> = { grounded: 0, mixed: 0.15, wild: 0.5 };
+/**
+ * Extra weight for lines written for the theme (isThemed). Tables are ~half theme-free by design, so
+ * without this the generic lines outvote the themed ones and a Nautical scene lands in a wheat field.
+ */
+export const THEME_BOOST: Record<Weirdness, number> = { grounded: 12, mixed: 4, wild: 1.5 };
 export const SURREAL: Record<Weirdness, number> = { grounded: 0, mixed: 1, wild: 3 };
 export const FUSION_CHANCE: Record<Weirdness, number> = { grounded: 0.15, mixed: 0.4, wild: 0.75 };
 const WILD_BLOCK = 0.2;
@@ -59,7 +64,10 @@ function passesHard(e: Entry, ctx: PickContext, ignoreRequires: boolean): boolea
 
 export function entryWeight(e: Entry, ctx: PickContext, depth: number): number {
   let w = e.weight ?? 5;
-  if (depth < 1 && !isOnTheme(e, ctx.theme)) w *= OFF_THEME[ctx.weirdness];
+  if (depth < 1) {
+    if (isThemed(e, ctx.theme)) w *= THEME_BOOST[ctx.weirdness];
+    else if (!isOnTheme(e, ctx.theme)) w *= OFF_THEME[ctx.weirdness];
+  }
   if (e.surreal) w *= SURREAL[ctx.weirdness];
   if (depth < 2 && ctx.applyBlock && isBlocked(e, ctx.theme)) {
     if (ctx.weirdness !== 'wild') return 0;

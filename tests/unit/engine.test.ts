@@ -4,10 +4,10 @@ import { describe, expect, it } from 'vitest';
 import { countCombinations } from '../../src/engine/count';
 import { fieldEntries, generateBatch, lockedMap, rerollSlots, setLocked, type Diagnostics } from '../../src/engine/generate';
 import { findArticleErrors } from '../../src/engine/grammar';
-import { weightedPick } from '../../src/engine/pick';
+import { entryWeight, THEME_BOOST, weightedPick, type PickContext } from '../../src/engine/pick';
 import { rngFrom } from '../../src/engine/rng';
 import { countWords } from '../../src/engine/templates';
-import { isBlocked, isOnTheme } from '../../src/engine/theme';
+import { isBlocked, isOnTheme, isThemed } from '../../src/engine/theme';
 import { rollTier, tierOdds, TIERS } from '../../src/engine/unique';
 import { WEIRDNESS, type Brief, type CategoryId, type UniqueFrequency, type Weirdness } from '../../src/engine/types';
 import { CATS, data, one, seeds } from './helpers';
@@ -122,6 +122,51 @@ describe('U6 Grounded mode', () => {
           if (slot.kind !== 'material') expect(isBlocked(e, theme), `${c} ${slot.id}#${e.id} blocked in ${theme.id}`).toBe(false);
         }
       }
+    }
+  });
+});
+
+describe('U6b theme weighting', () => {
+  // Theme-free lines are allowed everywhere; without a boost they outvote the themed ones
+  // (a Nautical cover landed in "elven ruins swallowed by silver-barked roots" ~70% of the time).
+  const ctx = (theme: string, weirdness: Weirdness): PickContext => ({
+    theme: data.themeById[theme],
+    weirdness,
+    tags: new Set(),
+    excludes: new Set(),
+    applyBlock: true,
+  });
+
+  it('themed lines outweigh theme-free lines by THEME_BOOST; theme-free lines are not boosted', () => {
+    const themed = { id: 't', text: 'x', tags: ['pirate'] };
+    const free = { id: 'f', text: 'x', tags: ['forest'] };
+    for (const w of WEIRDNESS) {
+      expect(isThemed(themed, data.themeById.nautical)).toBe(true);
+      expect(isThemed(free, data.themeById.nautical)).toBe(false);
+      expect(entryWeight(themed, ctx('nautical', w), 0)).toBe(5 * THEME_BOOST[w]);
+      expect(entryWeight(free, ctx('nautical', w), 0)).toBe(5);
+      // depth >= 1 is the "ignore theme weighting" fallback
+      expect(entryWeight(themed, ctx('nautical', w), 1)).toBe(5);
+    }
+  });
+
+  const SCENE_SLOTS: [string, string, number][] = [
+    ['location', 'scene.location', 0],
+    ['event', 'scene.event', 0],
+    ['event', 'scene.actors', 1],
+  ];
+  it.each(data.themes.map((t) => t.id))('%s: most Grounded cover scenes carry the theme in location, event and actors', (th) => {
+    const theme = data.themeById[th];
+    for (const [slot, table, part] of SCENE_SLOTS) {
+      let hit = 0;
+      const n = 200;
+      seeds(n, `u6b-${th}-${table}`).forEach((s) => {
+        const b = one('scene', s, { weirdness: 'grounded', themeChoice: th });
+        const id = b.fields[slot].entryId.split('~')[part];
+        const e = data.tables[table].entries.find((x) => x.id === id)!;
+        if (isThemed(e, theme)) hit++;
+      });
+      expect(hit / n, `${th} ${table}`).toBeGreaterThanOrEqual(0.45);
     }
   });
 });

@@ -493,6 +493,203 @@
         "giant"
       ],
       "surreal": true
+    },
+    {
+      "id": "brimstone-chapel-chained-bells",
+      "text": "brimstone chapel where chained bells toll on their own",
+      "label": "Chapel",
+      "tags": [
+        "temple",
+        "brimstone",
+        "chains",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "contract-court-hall-of-ledgers",
+      "text": "devils' contract court lined with ledgers bound in skin",
+      "label": "Court",
+      "tags": [
+        "court",
+        "contract",
+        "fiend"
+      ],
+      "themes": [
+        "infernal"
+      ]
+    },
+    {
+      "id": "cloud-top-monastery-golden-bells",
+      "text": "cloud-top monastery of golden bells above the dawn",
+      "label": "Monastery",
+      "tags": [
+        "temple",
+        "holy",
+        "gold"
+      ],
+      "themes": [
+        "celestial"
+      ]
+    },
+    {
+      "id": "feathered-shrine-in-starlit-meadow",
+      "text": "starlit meadow shrine carpeted with fallen white feathers",
+      "label": "Shrine",
+      "tags": [
+        "temple",
+        "feathered",
+        "radiant"
+      ],
+      "themes": [
+        "celestial",
+        "high-fantasy"
+      ]
+    },
+    {
+      "id": "ash-plain-under-red-sky",
+      "text": "ash plain under a red sky, embers drifting like snow",
+      "label": "Plain",
+      "tags": [
+        "plains",
+        "volcanic",
+        "ash"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "glassworks-in-cooling-lava-field",
+      "text": "glassblowers' camp in a cooling lava field",
+      "label": "Camp",
+      "tags": [
+        "volcanic",
+        "magma",
+        "forge"
+      ],
+      "themes": [
+        "elemental-fire"
+      ]
+    },
+    {
+      "id": "rune-carved-longhouse-in-blizzard",
+      "text": "rune-carved longhouse half-buried in a blizzard",
+      "label": "Longhouse",
+      "tags": [
+        "village",
+        "north",
+        "rune",
+        "frost"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "glacier-crevasse-frozen-ship",
+      "text": "glacier crevasse with a whole longship frozen in the ice",
+      "label": "Crevasse",
+      "tags": [
+        "arctic",
+        "glacier"
+      ],
+      "themes": [
+        "frost"
+      ]
+    },
+    {
+      "id": "glowing-fungus-forest-underground",
+      "text": "forest of glowing fungus in a cavern the size of a sky",
+      "label": "Grove",
+      "tags": [
+        "cavern",
+        "fungal",
+        "subterranean"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "crystal-geode-throne-room",
+      "text": "throne room carved inside a giant crystal geode",
+      "label": "Geode",
+      "tags": [
+        "cavern",
+        "crystal",
+        "court"
+      ],
+      "themes": [
+        "underdark"
+      ]
+    },
+    {
+      "id": "clockwork-orrery-hall",
+      "text": "hall of a clockwork orrery whose planets can be walked on",
+      "label": "Orrery",
+      "tags": [
+        "clockwork",
+        "astral",
+        "arcane"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "endless-library-floating-stacks",
+      "text": "endless library where the stacks float between reading lamps",
+      "label": "Library",
+      "tags": [
+        "library",
+        "arcane"
+      ],
+      "themes": [
+        "arcane"
+      ]
+    },
+    {
+      "id": "coral-choked-wreck-seafloor",
+      "text": "coral-choked shipwreck on the lightless sea floor",
+      "label": "Wreck",
+      "tags": [
+        "ocean",
+        "coral",
+        "abyssal",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "smugglers-sea-cave-tide",
+      "text": "smugglers' sea cave with the tide coming in fast",
+      "label": "Cove",
+      "tags": [
+        "coast",
+        "pirate",
+        "water"
+      ],
+      "themes": [
+        "nautical"
+      ]
+    },
+    {
+      "id": "portal-plaza-many-doors",
+      "text": "plaza of a hundred standing portals to other planes",
+      "label": "Plaza",
+      "tags": [
+        "city",
+        "planar",
+        "portal"
+      ],
+      "themes": [
+        "planar"
+      ]
     }
   ]
 }

@@ -966,6 +966,16 @@
         "frost",
         "mountain",
         "north"
+      ],
+      "notPlaces": [
+        "brimstone",
+        "desert",
+        "fiend",
+        "infernal",
+        "jungle",
+        "magma",
+        "tropical",
+        "volcanic"
       ]
     },
     {
